@@ -3,6 +3,14 @@
 **Status**: idle (entregáveis fechados).
 **Data**: 2026-06-05.
 
+> **Nota de attribution**: os arquivos `pyproject.toml`, `.pre-commit-config.yaml`,
+> `.gitattributes`, `.python-version`, `scripts/dev.sh`, `scripts/check_env.sh` e a
+> primeira versão deste report entraram em `main` via `1bff447 [F4-pipeline-dev]`
+> por causa de um `git add .` em paralelo do pipeline-dev (race condition de
+> agentes commitando ao mesmo tempo em `main`). Autoria real: devops-installer.
+> Lição: cada agente deve usar `git add <arquivos-meus>` explícito, nunca `git add .`
+> ou `git add -A`. Já está nas convenções globais; adicionado à minha memória.
+
 ## Entregáveis
 
 | # | Item                              | Arquivo(s)                                                       |
