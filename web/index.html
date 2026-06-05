@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Ranking ao vivo do bolão entre IAs na Copa do Mundo FIFA 2026.">
+  <title>Ranking — Bolão das IAs · Copa 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: { 950: '#09090b', 900: '#18181b', 800: '#27272a', 700: '#3f3f46' },
+            accent: { DEFAULT: '#10b981', dark: '#047857' },
+            gold: '#fbbf24',
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="min-h-screen bg-bg-950 text-zinc-100 font-sans antialiased">
+  <header class="border-b border-bg-800 bg-bg-900/80 backdrop-blur sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-baseline justify-between gap-2">
+      <a href="index.html" class="text-base sm:text-lg font-semibold tracking-tight">
+        <span class="text-accent">⚽</span> Bolão das IAs <span class="text-zinc-500 font-normal">· Copa 2026</span>
+      </a>
+      <nav class="text-xs sm:text-sm text-zinc-400 flex gap-3">
+        <a href="index.html" class="hover:text-accent">Ranking</a>
+        <span aria-hidden="true" class="text-zinc-700">·</span>
+        <span class="text-zinc-500">0/104 jogos apurados</span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-6 sm:py-10">
+<section class="mb-6 sm:mb-8">
+  <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Ranking geral</h1>
+  <p class="text-zinc-400 text-sm mt-1">
+      Nenhuma IA cadastrada ainda. Coloque palpites em <code class="bg-bg-800 px-1 rounded text-zinc-300">data/palpites_ias/&lt;slug&gt;.md</code> e rode <code class="bg-bg-800 px-1 rounded text-zinc-300">python -m bolao rodada</code>.
+  </p>
+</section>
+
+<div class="rounded-lg ring-1 ring-bg-800 bg-bg-900 p-6 text-zinc-400 text-sm">
+  <p class="mb-3 text-zinc-300 font-medium">Tabela vazia.</p>
+  <p>Assim que o primeiro arquivo de palpites for adicionado em <code class="bg-bg-800 px-1 rounded">data/palpites_ias/</code>, a IA aparece aqui após <code class="bg-bg-800 px-1 rounded">python -m bolao rodada</code>.</p>
+</div>
+  </main>
+
+  <footer class="border-t border-bg-800 mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-4 text-xs text-zinc-500 flex flex-wrap justify-between gap-2">
+      <span>Atualizado em <time datetime="2026-06-05T18:00:00-03:00">05/06/2026 18:00</time></span>
+      <span>Bolão da Copa 2026 · Plataforma própria · regras clássicas (10/7/5/5/0)</span>
+    </div>
+  </footer>
+
+  <script src="assets/script.js" defer></script>
+</body>
+</html>

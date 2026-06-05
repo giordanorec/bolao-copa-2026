@@ -1,0 +1,83 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ ia.nome_display }} — Bolão das IAs · Copa 2026{% endblock %}
+{% block content %}
+<nav class="text-xs text-zinc-500 mb-3"><a href="../index.html" class="hover:text-accent">← Ranking</a></nav>
+
+<section class="mb-6 sm:mb-8">
+  <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">{{ ia.nome_display }}</h1>
+  <p class="text-zinc-400 text-sm mt-1 font-mono">slug: {{ ia.slug }}</p>
+</section>
+
+<section class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+  <div class="rounded-lg ring-1 ring-bg-800 bg-bg-900 p-4">
+    <div class="text-xs text-zinc-500 uppercase tracking-wide">Pontos</div>
+    <div class="text-2xl font-bold font-mono mt-1 text-accent">{{ ia.pontos }}</div>
+  </div>
+  <div class="rounded-lg ring-1 ring-bg-800 bg-bg-900 p-4">
+    <div class="text-xs text-zinc-500 uppercase tracking-wide">Posição</div>
+    <div class="text-2xl font-bold font-mono mt-1">{{ ia.posicao }}º</div>
+  </div>
+  <div class="rounded-lg ring-1 ring-bg-800 bg-bg-900 p-4">
+    <div class="text-xs text-zinc-500 uppercase tracking-wide">Placares exatos</div>
+    <div class="text-2xl font-bold font-mono mt-1 text-gold">{{ ia.placares_exatos }}</div>
+  </div>
+  <div class="rounded-lg ring-1 ring-bg-800 bg-bg-900 p-4">
+    <div class="text-xs text-zinc-500 uppercase tracking-wide">Vencedores</div>
+    <div class="text-2xl font-bold font-mono mt-1">{{ ia.vencedores_acertados }}</div>
+  </div>
+</section>
+
+{% if jogos_detalhe %}
+<h2 class="text-lg font-semibold mb-3">Palpites jogo a jogo</h2>
+<div class="overflow-x-auto -mx-4 sm:mx-0 rounded-lg ring-1 ring-bg-800">
+  <table class="w-full text-sm">
+    <thead class="bg-bg-900 text-zinc-400 uppercase text-xs tracking-wide">
+      <tr>
+        <th class="px-3 py-3 text-left">Jogo</th>
+        <th class="px-3 py-3 text-left">Fase</th>
+        <th class="px-3 py-3 text-left">Confronto</th>
+        <th class="px-3 py-3 text-center">Palpite</th>
+        <th class="px-3 py-3 text-center">Resultado</th>
+        <th class="px-3 py-3 text-right">Pontos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for jd in jogos_detalhe %}
+      <tr class="border-t border-bg-800 hover:bg-bg-900/60">
+        <td class="px-3 py-3 font-mono text-zinc-500">
+          <a href="../jogo/{{ jd.numero }}.html" class="hover:text-accent">#{{ jd.numero }}</a>
+        </td>
+        <td class="px-3 py-3 text-xs text-zinc-400 whitespace-nowrap">{{ jd.fase }}</td>
+        <td class="px-3 py-3">{{ jd.time_a }} <span class="text-zinc-600">×</span> {{ jd.time_b }}</td>
+        <td class="px-3 py-3 text-center font-mono">
+          {% if jd.palpite is not none %}
+            {{ jd.palpite.gols_a }}–{{ jd.palpite.gols_b }}
+          {% else %}
+            <span class="text-zinc-600">—</span>
+          {% endif %}
+        </td>
+        <td class="px-3 py-3 text-center font-mono">
+          {% if jd.resultado is not none %}
+            <strong>{{ jd.resultado.gols_a }}–{{ jd.resultado.gols_b }}</strong>
+          {% else %}
+            <span class="text-zinc-600">pendente</span>
+          {% endif %}
+        </td>
+        <td class="px-3 py-3 text-right font-mono font-semibold
+          {% if jd.pontos is none %}text-zinc-600
+          {% elif jd.pontos >= 10 %}text-gold
+          {% elif jd.pontos > 0 %}text-accent
+          {% else %}text-zinc-500{% endif %}">
+          {% if jd.pontos is not none %}+{{ jd.pontos }}{% else %}—{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="rounded-lg ring-1 ring-bg-800 bg-bg-900 p-6 text-zinc-400 text-sm">
+  Detalhe jogo a jogo ainda não disponível. Aguardando dados de palpites e resultados.
+</div>
+{% endif %}
+{% endblock %}
