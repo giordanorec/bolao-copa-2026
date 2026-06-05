@@ -47,7 +47,15 @@ Mata-mata vale 2×. Detalhes e casos de borda em `docs/02_REGRAS_DE_NEGOCIO.md`.
 ## Multi-agente
 
 - `sessions.json` — map agente → session_id
-- `scripts/open_dashboard.sh` — abre grade tmux
+- `scripts/open_dashboard.sh` — abre grade tmux (Linux/macOS)
+- `scripts/watch_logs.sh` — alternativa Windows (segue logs em prefix colorido)
 - `scripts/spawn.sh <agente>` — cria sessão
 - `scripts/drive.sh <agente> "<prompt>"` — manda prompt em background
 - `scripts/take_over.sh <agente>` — humano assume
+
+**Windows nota**: antes de usar qualquer script do plugin, exporte o PATH local
+com os shims:
+```bash
+export PATH="$(pwd)/scripts/bin:$PATH"
+```
+(supre `jq` e `uuidgen` ausentes no Git Bash. Detalhes em `docs/DECISOES.md`.)

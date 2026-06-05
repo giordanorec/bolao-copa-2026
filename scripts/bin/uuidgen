@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Shim uuidgen para Windows/Git Bash (que não tem uuidgen nativo).
+# Usa Python para gerar UUID v4.
+exec python -c "import uuid; print(uuid.uuid4())"

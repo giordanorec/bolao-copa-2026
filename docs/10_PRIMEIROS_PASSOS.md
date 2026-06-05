@@ -76,16 +76,38 @@ git push   # se quiser publicar no GitHub Pages
 
 ## Passo 6. Multi-agente (operação interna do projeto)
 
+### Em Windows (Git Bash) — usar shims
+
 ```bash
-# spawnar especialistas
+# IMPORTANTE: prepende scripts/bin no PATH em toda nova sessão de shell
+# (shims para jq e uuidgen, ausentes no Git Bash)
+export PATH="$(pwd)/scripts/bin:$PATH"
+
+# spawnar especialistas (~15s cada)
 for agente in pipeline-dev frontend-dev llm-prompt devops-installer qa-tester docs-writer; do
     scripts/spawn.sh "$agente"
 done
 
-# abrir dashboard
-scripts/open_dashboard.sh
+# tmux não está no Windows → use watch_logs.sh ao invés do dashboard
+scripts/watch_logs.sh
+# (Ctrl+C sai. Para dashboard tmux rico, rode em WSL/Linux/macOS e use scripts/open_dashboard.sh)
 
 # despachar um especialista
+scripts/drive.sh pipeline-dev "leia specs/F4-coleta-consolidacao.md e implemente"
+```
+
+### Em Linux/macOS — usar diretamente
+
+```bash
+# spawnar
+for agente in pipeline-dev frontend-dev llm-prompt devops-installer qa-tester docs-writer; do
+    scripts/spawn.sh "$agente"
+done
+
+# dashboard tmux completo (cores por agente, status bar, etc)
+scripts/open_dashboard.sh
+
+# despachar
 scripts/drive.sh pipeline-dev "leia specs/F4-coleta-consolidacao.md e implemente"
 ```
 
