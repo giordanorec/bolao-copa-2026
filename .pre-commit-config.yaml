@@ -1,0 +1,44 @@
+# Pre-commit hooks do Bolão da Copa 2026.
+# Instalar: pre-commit install (cobre pre-commit) + pre-commit install --hook-type pre-push
+# Rodar manualmente: pre-commit run --all-files
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      # Nota: mixed-line-ending foi removido. Em Windows com core.autocrlf=true
+      # (default global) entra em loop com o hook. Normalização vem do
+      # .gitattributes (* text=auto eol=lf).
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.0
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.10.0
+    hooks:
+      - id: mypy
+        args: ["--strict"]
+        files: ^src/
+        additional_dependencies: ["jinja2>=3.1"]
+
+  # Pytest roda no pre-push (não pre-commit) pra commits não ficarem lentos
+  # quando a suíte crescer. Falha rápido com -x.
+  - repo: local
+    hooks:
+      - id: pytest-fast
+        name: pytest -x (fail fast)
+        entry: pytest -x -q
+        language: system
+        pass_filenames: false
+        stages: [pre-push]

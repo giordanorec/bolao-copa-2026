@@ -1,0 +1,32 @@
+# Normalização canônica de line endings no repo.
+# - Arquivos texto: armazenados como LF, autocrlf decide o que faz no working tree.
+# - Shell scripts: SEMPRE LF (Git Bash/MSYS quebra com CRLF).
+# - Binários: nunca tocar.
+
+* text=auto eol=lf
+
+# Shell scripts e arquivos de configuração: LF estrito
+*.sh         text eol=lf
+*.bash       text eol=lf
+Makefile     text eol=lf
+*.py         text eol=lf
+*.toml       text eol=lf
+*.yaml       text eol=lf
+*.yml        text eol=lf
+*.json       text eol=lf
+*.md         text eol=lf
+*.html       text eol=lf
+*.css        text eol=lf
+*.js         text eol=lf
+.gitignore   text eol=lf
+.gitattributes text eol=lf
+
+# Binários
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.gz   binary
