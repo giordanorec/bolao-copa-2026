@@ -87,3 +87,40 @@ Sandbox bloqueia download de binários (`jq.exe`) — esperado e correto.
 - Dashboard tmux requer ambiente Unix. Em Windows: use `scripts/watch_logs.sh`.
 
 ---
+
+## 2026-06-05 — F4 fechada: MVP da plataforma + ajustes pós-feedback
+
+### Contexto
+
+Fase 4 (MVP) entregue em paralelo por 6 especialistas. Durante o drive houve dois incidentes:
+
+1. **`_stream_pretty.py` quebrou em Windows cp1252** ao escrever emoji UTF-8 no stdout. Pipe morreu mas os agentes continuaram trabalhando em filesystem.
+2. **Race condition entre commits paralelos**: pipeline-dev relatou que `git add` de outros agentes arrastou seus arquivos não-staged. Conteúdo correto, atribuição de commits "torta".
+
+### Decisão
+
+**Aceitar a F4 como fechada** com correções pontuais aplicadas pelo arquiteto:
+
+- `scripts/_stream_pretty.py`: fix permanente — `sys.stdout.reconfigure(encoding="utf-8")` no topo, robusto a Windows.
+- `src/bolao/ranking.py`: aceita `Mapping[str, Iterable[Palpite]]` E `Iterable[Palpite]` via helper `_normalizar`. Resolve mismatch entre contrato de `01_ARQUITETURA.md` e impl do pipeline.
+- `docs/01_ARQUITETURA.md`: atualizado para refletir as assinaturas reais (chave `slug` em vez de `ia`, type alias `PalpitesInput`).
+- `src/bolao/py.typed`: marker adicionado pra `mypy --strict` não reclamar do pacote (achado do qa-tester).
+- Race condition de commits: **não rebasei** — atribuição "torta" mas conteúdo OK. Próximos drives terão regra de "1 agente, 1 pasta, git add explícito por arquivo" pra evitar.
+
+### Por quê / alternativas
+
+**Aceitar a F4 com remendos pontuais em vez de re-driver** porque: (a) 54 testes verdes, cobertura 94%, todos critérios da F4 batidos; (b) re-drive consome muito token pra ganhar pouco; (c) o pipe-broken-mas-trabalho-feito virou um achado útil pra ajustar o `_stream_pretty.py` definitivo, beneficiando todos os projetos futuros que usarem o plugin no Windows.
+
+### Consequências
+
+**Habilita**:
+- Tag `v0.1.0-mvp` criada. Plataforma pronta pra Fase 5 (coleta de palpites das IAs).
+- Drive multi-agente futuro funciona robusto em Windows (encoding resolvido).
+
+**Pendências reconhecidas**:
+- Atribuição "torta" de commits da F4 fica como cicatriz histórica. Aceitável.
+- Histórico append-only (regra I6) é manual por enquanto. Endereçar em F5.
+- Pipeline `__main__.py` sem cobertura de testes (0%). Aceitável pra MVP, endereçar em F5+.
+- `resumo.txt` é mínimo. Expandir em F5 com "diff vs rodada anterior", "viradas", "consensos errados".
+
+---

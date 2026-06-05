@@ -1,27 +1,59 @@
 # Bolão da Copa 2026 — versão IA
 
-Plataforma própria para registrar e ranquear palpites de modelos de IA
-(ChatGPT, Gemini, Grok, Claude, DeepSeek, ...) na Copa do Mundo FIFA 2026.
+Plataforma própria, em Python, para registrar e ranquear palpites de modelos de
+IA (ChatGPT, Gemini, Grok, Claude, DeepSeek, ...) na Copa do Mundo FIFA 2026.
 
 > O bolão dos humanos roda em paralelo no [Dacopa](https://dacopa.com) —
-> este repo cobre apenas o "Bolão das IAs". Ver `docs/00_OBJETIVO.md`.
+> este repo cobre apenas o **Bolão das IAs**. Detalhes em `docs/00_OBJETIVO.md`.
 
-## Quickstart
+## Ranking ao vivo
 
-```bash
-python -m venv .venv && source .venv/Scripts/activate
-pip install -e ".[dev]"
-python -m bolao --help
-pytest -q
+Print do ranking aparece aqui assim que a Copa começar (11/06/2026).
+
+```
+[ placeholder — substituir por screenshot de web/index.html após a 1ª rodada ]
 ```
 
-## Como funciona (pretendido pós-Fase 4)
+URL pública (opcional, post-fase-de-grupos): a definir em `docs/DECISOES.md`.
+
+## Quickstart (5 passos)
+
+```bash
+# 1. clonar e entrar no diretório
+git clone https://github.com/<user>/bolao-da-copa.git
+cd "bolao-da-copa"
+
+# 2. criar e ativar a venv (Windows com Git Bash)
+python -m venv .venv && source .venv/Scripts/activate
+
+# 3. instalar deps (modo editável + extras de dev)
+pip install -e ".[dev]"
+
+# 4. checar ambiente (Python 3.11+, shims no PATH no Windows)
+scripts/check_env.sh
+
+# 5. rodar o ciclo completo em estado vazio (smoke test)
+python -m bolao rodada
+```
+
+Em Mac/Linux troque `source .venv/Scripts/activate` por
+`source .venv/bin/activate`.
+
+## Como funciona
 
 1. Copia o prompt em `config/prompts/ia-palpiteira.md` em cada IA.
-2. Salva a resposta de cada uma em `data/palpites_ias/<slug>.md`.
-3. Após cada rodada de jogos, edita `data/resultados/jogos.md`.
-4. Roda `python -m bolao rodada` — gera ranking HTML em `web/` e
-   resumo pronto pra WhatsApp em `resumo.txt`.
+2. Salva a resposta de cada IA em `data/palpites_ias/<slug>.md`
+   (`chatgpt-5.md`, `claude-opus-4-7.md`, etc).
+3. Após cada rodada de jogos, edita `data/resultados/jogos.md`
+   preenchendo `Gols A` e `Gols B`.
+4. Roda `python -m bolao rodada` — o pipeline:
+   - faz parse de jogos, palpites e resultados;
+   - calcula pontuação com as regras clássicas;
+   - regenera o ranking em `web/index.html`;
+   - escreve `resumo.txt` pronto pra colar no WhatsApp.
+5. (Opcional) `git push` pra atualizar GitHub Pages.
+
+Manual passo a passo durante a Copa: **[`docs/USO.md`](docs/USO.md)**.
 
 ## Regras de pontuação (clássicas)
 
@@ -33,7 +65,16 @@ pytest -q
 | Empate sem placar exato | 5 |
 | Errado | 0 |
 
-Mata-mata vale **2×**. Detalhes em `docs/02_REGRAS_DE_NEGOCIO.md`.
+Mata-mata vale **2×**. Vale o tempo regulamentar (90 min); prorrogação e
+pênaltis são ignorados pro placar. Detalhes e casos de borda em
+[`docs/02_REGRAS_DE_NEGOCIO.md`](docs/02_REGRAS_DE_NEGOCIO.md).
+
+## Stack
+
+- Python 3.11+ (stdlib + Jinja2)
+- pytest + ruff + mypy
+- HTML estático + Tailwind via CDN
+- Sem servidor, sem banco, sem login
 
 ## Estrutura
 
@@ -42,18 +83,69 @@ Mata-mata vale **2×**. Detalhes em `docs/02_REGRAS_DE_NEGOCIO.md`.
 | `src/bolao/` | Pipeline Python (parser, scoring, ranking, CLI) |
 | `data/` | Fonte de verdade: jogos, palpites das IAs, resultados |
 | `web/` | HTML estático do ranking |
-| `config/prompts/` | Prompt enviado para as IAs (versionado) |
-| `docs/` | Especificação completa (objetivo, arquitetura, regras, etc) |
+| `config/prompts/` | Prompt enviado pras IAs (versionado) |
+| `docs/` | Especificação completa (objetivo, arquitetura, regras...) |
 | `tests/` | Suíte pytest |
-| `.claude/agents/` | Especialistas multi-agente do plugin |
+| `scripts/` | Scripts shell de orquestração e diagnóstico |
+| `.claude/agents/` | Especialistas multi-agente do plugin `multiagentes-giordano` |
+
+## FAQ
+
+**E se uma IA recusar palpitar?**
+Sem drama: a IA fica sem arquivo em `data/palpites_ias/`, não aparece no
+ranking, e a gente segue. Você pode tentar reformular o prompt (sem mudar
+as regras de pontuação) ou trocar pra outro modelo da mesma família.
+
+**E se uma IA palpitar só parte dos jogos?**
+Os jogos sem palpite contam 0 pontos e não entram no contador
+"jogos palpitados". A IA participa normalmente — só fica em desvantagem
+nos jogos que pulou.
+
+**E se eu errei de digitar um resultado?**
+Edita `data/resultados/jogos.md` corrigindo `Gols A`/`Gols B` e roda
+`python -m bolao rodada` de novo. O ranking é regenerado do zero a cada
+execução (sem estado incremental), então qualquer correção propaga
+automaticamente.
+
+**E se uma IA quiser trocar o palpite no dia do jogo?**
+O parser bloqueia edições com `mtime > horário do jogo - 1h` (regra I4 em
+`02_REGRAS_DE_NEGOCIO.md`). Mexa em `data/palpites_ias/<slug>.md` só até
+1h antes do apito inicial. Histórico fica em
+`data/palpites_ias/historico/`.
+
+**Como adicionar uma nova IA durante a Copa?**
+Coloca o arquivo `data/palpites_ias/<slug-nova-ia>.md` e roda
+`python -m bolao rodada`. Atenção: ela só pontua nos jogos que ainda não
+começaram (regra de lock). Os já jogados ficam como "sem palpite".
+
+**Prorrogação e pênaltis contam?**
+Não pro placar. O palpite é avaliado contra o tempo regulamentar
+(90 min). Em mata-mata, quem se classificou via pênaltis é registrado
+em comentário lateral pra apuração de "vencedor do mata-mata", mas não
+muda os pontos do palpite.
+
+**Posso rodar isso no meu computador também?**
+Pode. Tudo offline, tudo em arquivo. Só clonar, instalar deps e rodar
+`python -m bolao rodada`. Sem necessidade de chave de API, conta em
+nuvem, ou banco.
 
 ## Multi-agente
 
-Este projeto usa o plugin `multiagentes-giordano`:
+Este projeto usa o plugin `multiagentes-giordano` (sessões persistentes,
+dashboard tmux):
 
 ```bash
 scripts/spawn.sh pipeline-dev
-scripts/open_dashboard.sh
+scripts/open_dashboard.sh        # tmux (Linux/macOS)
+scripts/watch_logs.sh            # alternativa Windows
+scripts/drive.sh pipeline-dev "<prompt>"
 ```
 
-Ver `CLAUDE.md` e `docs/08_FASES.md` para o fluxo completo.
+Detalhes em [`CLAUDE.md`](CLAUDE.md) e [`docs/08_FASES.md`](docs/08_FASES.md).
+
+## Licença
+
+Uso pessoal e educacional. Sem código de terceiros embutido. Conteúdo
+gerado pelas IAs participantes pertence aos respectivos provedores
+(OpenAI, Google, Anthropic, xAI, DeepSeek). Tabela de jogos é informação
+pública FIFA.

@@ -7,10 +7,28 @@ Só jogos com resultado registrado contam para qualquer métrica — case 10 de
 
 from __future__ import annotations
 
+from collections.abc import Iterable, Mapping
 from typing import TypedDict
 
 from .models import Jogo, Palpite, Resultado
 from .scoring import pontuar
+
+PalpitesInput = Mapping[str, Iterable[Palpite]] | Iterable[Palpite]
+
+
+def _normalizar(palpites: PalpitesInput) -> dict[str, list[Palpite]]:
+    """Aceita dict[slug, list] ou lista achatada e devolve dict[slug, list].
+
+    O contrato de `01_ARQUITETURA.md` define list[Palpite] (cada Palpite carrega
+    seu próprio `ia`); o pipeline real agrupa por slug pra performance. Aceitar
+    ambos elimina fricção entre os dois usos.
+    """
+    if isinstance(palpites, Mapping):
+        return {ia: list(lista) for ia, lista in palpites.items()}
+    agrupado: dict[str, list[Palpite]] = {}
+    for p in palpites:
+        agrupado.setdefault(p.ia, []).append(p)
+    return agrupado
 
 
 class IAStats(TypedDict):
@@ -39,7 +57,7 @@ def _vencedor_acertou(palpite: Palpite, resultado: Resultado) -> bool:
 
 
 def pontos_por_ia(
-    palpites: dict[str, list[Palpite]],
+    palpites: PalpitesInput,
     resultados: list[Resultado],
     jogos: list[Jogo],
 ) -> dict[str, IAStats]:
@@ -52,7 +70,7 @@ def pontos_por_ia(
     res_por_numero = {r.jogo_numero: r for r in resultados}
 
     out: dict[str, IAStats] = {}
-    for ia, lista in palpites.items():
+    for ia, lista in _normalizar(palpites).items():
         total = 0
         placares_exatos = 0
         vencedores_acertados = 0
@@ -83,7 +101,7 @@ def pontos_por_ia(
 
 
 def ranking_geral(
-    palpites: dict[str, list[Palpite]],
+    palpites: PalpitesInput,
     resultados: list[Resultado],
     jogos: list[Jogo],
 ) -> list[RankingRow]:

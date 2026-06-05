@@ -100,8 +100,17 @@ class Resultado:
 def pontuar(palpite: Palpite, resultado: Resultado, fase: str) -> int:
     """Retorna pontos do palpite. Aplica multiplicador 2x para mata-mata."""
 
-def ranking_geral(palpites: list[Palpite], resultados: list[Resultado], jogos: list[Jogo]) -> list[dict]:
-    """Retorna [{'ia': ..., 'pontos': ..., 'acertos_exatos': ..., ...}], ordenado desc por pontos."""
+# Aceita tanto dict[slug, list[Palpite]] (forma do pipeline) quanto
+# Iterable[Palpite] (forma achatada). Normaliza internamente.
+PalpitesInput = Mapping[str, Iterable[Palpite]] | Iterable[Palpite]
+
+def pontos_por_ia(palpites: PalpitesInput, resultados: list[Resultado], jogos: list[Jogo]) -> dict[str, IAStats]:
+    """{'slug': {'pontos':..., 'placares_exatos':..., 'vencedores_acertados':..., 'jogos_palpitados':...}}."""
+
+def ranking_geral(palpites: PalpitesInput, resultados: list[Resultado], jogos: list[Jogo]) -> list[RankingRow]:
+    """[{'slug':..., 'pontos':..., ...}] ordenado por (pontos desc, placares_exatos desc, vencedores desc, slug asc)."""
 ```
+
+**Convenção da chave**: usar `slug` (kebab-case, ex: `"chatgpt-5"`) — alinhado com o schema de `web/data/ranking.json`. Versões anteriores deste doc usavam `ia` — corrigido em 2026-06-05 após achado do `qa-tester`.
 
 Mudanças nessas assinaturas exigem update em `specs/` e em `docs/DECISOES.md`.

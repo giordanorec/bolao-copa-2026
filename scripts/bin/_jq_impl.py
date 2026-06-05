@@ -96,7 +96,7 @@ def evaluate(expr: str, data, arg_vars: dict[str, str]):
         return json.loads(default_raw)
 
     # '. + {($K): $V}'  → adiciona/sobrescreve chave $K com valor $V (string)
-    m = re.match(r'^\.\s*\+\s*\{\(\$([A-Za-z_]\w*)\)\s*:\s*\$([A-Za-z_]\w*)\}$', e)
+    m = re.match(r"^\.\s*\+\s*\{\(\$([A-Za-z_]\w*)\)\s*:\s*\$([A-Za-z_]\w*)\}$", e)
     if m:
         key_var, val_var = m.group(1), m.group(2)
         if key_var not in arg_vars or val_var not in arg_vars:

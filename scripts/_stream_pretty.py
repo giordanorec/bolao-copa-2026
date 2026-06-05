@@ -14,8 +14,16 @@ Não usa cor do agente — essa vem do `_tail_color.sh` via `║` colorido
 no início de cada linha. O parser emite cores SEMÂNTICAS no resto da
 linha, que convivem com o marcador.
 """
+
 import json
 import sys
+
+# Em Windows, stdout default vem em cp1252 — quebra ao escrever emoji.
+# Força UTF-8 pra que o parser funcione cross-plataforma.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 # Atributos ANSI
 RESET = "\033[0m"
@@ -44,9 +52,9 @@ FG_B_MAGENTA = "\033[95m"
 FG_B_CYAN = "\033[96m"
 
 # Background (apenas pra destaque forte)
-BG_RED = "\033[48;5;52m"   # vermelho escuro
-BG_GREEN = "\033[48;5;22m" # verde escuro
-BG_YELLOW = "\033[48;5;58m" # amarelo escuro
+BG_RED = "\033[48;5;52m"  # vermelho escuro
+BG_GREEN = "\033[48;5;22m"  # verde escuro
+BG_YELLOW = "\033[48;5;58m"  # amarelo escuro
 BG_RED_BRIGHT = "\033[48;5;160m"
 
 
@@ -60,21 +68,21 @@ BG_RED_BRIGHT = "\033[48;5;160m"
 # - Task/meta = rosa
 # - Web/remote = cyan
 TOOLS = {
-    "Read":         ("📖", FG_B_BLUE,    "Read"),
-    "Write":        ("📝", FG_B_GREEN,   "Write"),
-    "Edit":         ("✏️ ", FG_B_YELLOW,  "Edit"),
-    "NotebookRead": ("📓", FG_B_BLUE,    "NotebookRead"),
-    "NotebookEdit": ("📓", FG_B_YELLOW,  "NotebookEdit"),
-    "Bash":         ("⚡", FG_B_MAGENTA, "Bash"),
-    "Grep":         ("🔍", FG_B_CYAN,    "Grep"),
-    "Glob":         ("🗂️ ", FG_B_CYAN,    "Glob"),
-    "TaskCreate":   ("📋", FG_B_MAGENTA, "TaskCreate"),
-    "TaskUpdate":   ("✅", FG_B_MAGENTA, "TaskUpdate"),
-    "TaskList":     ("📋", FG_B_MAGENTA, "TaskList"),
-    "WebFetch":     ("🌐", FG_B_CYAN,    "WebFetch"),
-    "WebSearch":    ("🔎", FG_B_CYAN,    "WebSearch"),
-    "Skill":        ("🧩", FG_B_MAGENTA, "Skill"),
-    "Agent":        ("🤖", FG_B_MAGENTA, "Agent"),
+    "Read": ("📖", FG_B_BLUE, "Read"),
+    "Write": ("📝", FG_B_GREEN, "Write"),
+    "Edit": ("✏️ ", FG_B_YELLOW, "Edit"),
+    "NotebookRead": ("📓", FG_B_BLUE, "NotebookRead"),
+    "NotebookEdit": ("📓", FG_B_YELLOW, "NotebookEdit"),
+    "Bash": ("⚡", FG_B_MAGENTA, "Bash"),
+    "Grep": ("🔍", FG_B_CYAN, "Grep"),
+    "Glob": ("🗂️ ", FG_B_CYAN, "Glob"),
+    "TaskCreate": ("📋", FG_B_MAGENTA, "TaskCreate"),
+    "TaskUpdate": ("✅", FG_B_MAGENTA, "TaskUpdate"),
+    "TaskList": ("📋", FG_B_MAGENTA, "TaskList"),
+    "WebFetch": ("🌐", FG_B_CYAN, "WebFetch"),
+    "WebSearch": ("🔎", FG_B_CYAN, "WebSearch"),
+    "Skill": ("🧩", FG_B_MAGENTA, "Skill"),
+    "Agent": ("🤖", FG_B_MAGENTA, "Agent"),
 }
 TOOL_DEFAULT = ("🔧", FG_CYAN, None)
 
