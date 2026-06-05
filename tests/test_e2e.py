@@ -27,6 +27,7 @@ import json
 from pathlib import Path
 
 from _paths import JOGOS_MINI, PALPITES_DIR, RESULTADOS_MINI, id_da_ia
+
 from bolao.parser import carregar_jogos, carregar_palpites, carregar_resultados
 from bolao.ranking import pontos_por_ia, ranking_geral
 

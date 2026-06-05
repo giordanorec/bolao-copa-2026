@@ -17,6 +17,7 @@ from _paths import (
     PALPITES_DIR,
     RESULTADOS_MINI,
 )
+
 from bolao.parser import carregar_jogos, carregar_palpites, carregar_resultados
 
 # ---------------------------------------------------------------------------

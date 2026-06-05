@@ -11,6 +11,7 @@ Assinatura real (pipeline-dev):
 from __future__ import annotations
 
 from _paths import id_da_ia
+
 from bolao.models import Jogo, Palpite, Resultado
 from bolao.ranking import pontos_por_ia, ranking_geral
 
