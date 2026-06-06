@@ -1,0 +1,29 @@
+{% extends "base.html.j2" %}
+{% block title %}IAs participantes — Bolão das IAs · Copa 2026{% endblock %}
+{% block content %}
+
+<section class="section" style="padding-top:80px;">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2><span class="emoji">🤖</span>IAs participantes<span class="num">{{ ias|length }} no bolão</span></h2>
+                <p class="sub">{{ ias|length }} modelos de linguagem palpitando a Copa. Coletados via API OpenRouter (a maioria) ou manualmente via interface web (top tier). Clique em qualquer uma pra ver os palpites.</p>
+            </div>
+        </div>
+
+        <div class="ias-grid">
+            {% for ia in ias %}
+            <a class="ia-card card" href="ia/{{ ia.slug }}.html">
+                {{ ia_logo(ia.slug) }}
+                <div class="ia-meta">
+                    <div class="pos-badge">#{{ loop.index }} · {{ ia_family(ia.slug) }}</div>
+                    <div class="ia-name-card">{{ ia.nome_display }}</div>
+                </div>
+                <div class="pontos-mini">{{ ia.pontos }}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,57 +1,74 @@
 <!doctype html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="description" content="Ranking ao vivo do bolão entre IAs na Copa do Mundo FIFA 2026.">
-  <title>{% block title %}Bolão das IAs — Copa 2026{% endblock %}</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            bg: { 950: '#09090b', 900: '#18181b', 800: '#27272a', 700: '#3f3f46' },
-            accent: { DEFAULT: '#10b981', dark: '#047857' },
-            gold: '#fbbf24',
-          },
-          fontFamily: {
-            sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="{{ asset_prefix }}assets/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#009C3B">
+    <title>{% block title %}Bolão das IAs · Copa do Mundo 2026{% endblock %}</title>
+    <meta name="description" content="As IAs vão palpitar a Copa 2026 ⚽🇧🇷 ChatGPT, Claude, Gemini, Grok, DeepSeek e mais 45 modelos competindo. Quem vai ganhar?">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://hatscripts.github.io">
+    <link rel="preconnect" href="https://cdn.simpleicons.org">
+
+    <!-- Fraunces (display chubby cute) + Outfit (rounded sans) + JetBrains Mono (números) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,30..100&family=Outfit:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset_prefix }}assets/style.css">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='72'%3E⚽%3C/text%3E%3C/svg%3E">
 </head>
-<body class="min-h-screen bg-bg-950 text-zinc-100 font-sans antialiased">
-  <header class="border-b border-bg-800 bg-bg-900/80 backdrop-blur sticky top-0 z-10">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-baseline justify-between gap-2">
-      <a href="{{ asset_prefix }}index.html" class="text-base sm:text-lg font-semibold tracking-tight">
-        <span class="text-accent">⚽</span> Bolão das IAs <span class="text-zinc-500 font-normal">· Copa 2026</span>
-      </a>
-      <nav class="text-xs sm:text-sm text-zinc-400 flex gap-3">
-        <a href="{{ asset_prefix }}index.html" class="hover:text-accent">Ranking</a>
-        <span aria-hidden="true" class="text-zinc-700">·</span>
-        <span class="text-zinc-500">{{ jogos_apurados }}/{{ jogos_totais }} jogos apurados</span>
-      </nav>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="{{ asset_prefix }}index.html" class="brand">
+            <span class="brand-mark">⚽</span>
+            <span class="brand-text">
+                <span class="brand-title">Bolão das IAs</span>
+                <span class="brand-sub">🇧🇷 Copa 2026</span>
+            </span>
+        </a>
+        <nav class="site-nav">
+            <a href="{{ asset_prefix }}index.html">Ranking</a>
+            <a href="{{ asset_prefix }}jogos.html">Jogos</a>
+            <a href="{{ asset_prefix }}ias.html">IAs</a>
+        </nav>
+        <div class="header-meta">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="meta-text">{{ jogos_apurados }}/{{ jogos_totais }} apurados</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <main class="max-w-5xl mx-auto px-4 py-6 sm:py-10">
-    {% block content %}{% endblock %}
-  </main>
+<main>
+{% block content %}{% endblock %}
+</main>
 
-  <footer class="border-t border-bg-800 mt-12">
-    <div class="max-w-5xl mx-auto px-4 py-4 text-xs text-zinc-500 flex flex-wrap justify-between gap-2">
-      <span>Atualizado em <time datetime="{{ atualizado_em }}">{{ atualizado_em_humano }}</time></span>
-      <span>Bolão da Copa 2026 · Plataforma própria · regras clássicas (10/7/5/5/0)</span>
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-col">
+            <h4>O Bolão</h4>
+            <p>Comparamos palpites de modelos de IA sobre a Copa do Mundo FIFA 2026. <strong>{{ total_ias }} IAs</strong> participantes, dossiê de contexto padronizado e regras clássicas (placar exato 10, vencedor+saldo 7, vencedor 5, errado 0; mata-mata 2×). É sério, e é uma festa. 🎉</p>
+        </div>
+        <div class="footer-col">
+            <h4>Disclaimers</h4>
+            <ul>
+                <li>Não pegamos informação de casas de apostas.</li>
+                <li>Não somos patrocinados por Bets.</li>
+                <li>Gratuito. Doações cobrem a API.</li>
+                <li>Projeto em andamento — faça backup, não confie cegamente.</li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Atualização</h4>
+            <p class="updated">Última: <time>{{ atualizado_em_humano }}</time> BRT</p>
+            <p class="versao">Built with care &amp; samba. v0.3.0-site</p>
+        </div>
     </div>
-  </footer>
+</footer>
 
-  <script src="{{ asset_prefix }}assets/script.js" defer></script>
+<script src="{{ asset_prefix }}assets/script.js" defer></script>
 </body>
 </html>

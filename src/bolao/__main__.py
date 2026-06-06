@@ -138,6 +138,50 @@ def _cmd_ranking(_args: argparse.Namespace) -> int:
         encoding="utf-8",
     )
     print(f"ranking: {out_path} ({len(ias_json)} IAs)")
+
+    # Gerar dados auxiliares (jogos.json, palpites.json, resultados.json) para o site
+    jogos_serial = [
+        {
+            "numero": j.numero,
+            "fase": j.fase,
+            "data": j.data,
+            "hora": j.hora,
+            "local": j.local,
+            "time_a": j.time_a,
+            "time_b": j.time_b,
+        }
+        for j in jogos
+    ]
+    (WEB_DATA_DIR / "jogos.json").write_text(
+        json.dumps(jogos_serial, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+    palpites_serial: dict[str, list[dict[str, object]]] = {}
+    for slug, lista in palpites.items():
+        palpites_serial[slug] = [
+            {"jogo_numero": p.jogo_numero, "gols_a": p.gols_a, "gols_b": p.gols_b} for p in lista
+        ]
+    (WEB_DATA_DIR / "palpites.json").write_text(
+        json.dumps(palpites_serial, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+    resultados_serial = [
+        {"jogo_numero": r.jogo_numero, "gols_a": r.gols_a, "gols_b": r.gols_b} for r in resultados
+    ]
+    (WEB_DATA_DIR / "resultados.json").write_text(
+        json.dumps(resultados_serial, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+    # Renderizar o site estático
+    try:
+        from .render import renderizar_html
+
+        renderizar_html(out_path, WEB_DIR)
+        print(f"site: {WEB_DIR}/index.html + jogos/ + ia/ renderizados")
+    except Exception as exc:
+        print(f"site: ERRO ao renderizar HTML — {exc}", file=sys.stderr)
+        return 1
+
     return 0
 
 

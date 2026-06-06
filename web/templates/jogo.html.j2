@@ -1,68 +1,99 @@
 {% extends "base.html.j2" %}
-{% block title %}Jogo #{{ jogo.numero }} {{ jogo.time_a }} × {{ jogo.time_b }} — Bolão das IAs{% endblock %}
+{% block title %}{{ jogo.time_a }} vs {{ jogo.time_b }} · Jogo {{ jogo.numero }} — Bolão das IAs{% endblock %}
 {% block content %}
-<nav class="text-xs text-zinc-500 mb-3"><a href="../index.html" class="hover:text-accent">← Ranking</a></nav>
 
-<section class="mb-6 sm:mb-8">
-  <div class="text-xs text-zinc-500 uppercase tracking-wide mb-1">{{ jogo.fase }} · Jogo #{{ jogo.numero }}</div>
-  <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">
-    {{ jogo.time_a }} <span class="text-zinc-600">×</span> {{ jogo.time_b }}
-  </h1>
-  <p class="text-zinc-400 text-sm mt-1">{{ jogo.data }} · {{ jogo.hora }} · {{ jogo.local }}</p>
+<section class="jogo-hero">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../jogos.html">← Todos os jogos</a> · <span class="fase-label">{{ jogo.fase }}</span> Jogo #{{ jogo.numero }}
+        </div>
 
-  <div class="mt-4">
-    {% if resultado is not none %}
-      <div class="inline-flex items-baseline gap-2 rounded-lg bg-bg-900 ring-1 ring-bg-800 px-4 py-2">
-        <span class="text-xs text-zinc-500 uppercase">Resultado</span>
-        <span class="text-2xl font-mono font-bold text-accent">{{ resultado.gols_a }} – {{ resultado.gols_b }}</span>
-      </div>
-    {% else %}
-      <div class="inline-flex items-center gap-2 rounded-lg bg-bg-900 ring-1 ring-bg-800 px-4 py-2 text-zinc-500 text-sm">
-        Aguardando placar
-      </div>
-    {% endif %}
-  </div>
+        <div class="confronto-grande">
+            <div class="time-grande">
+                {{ flag_img(jogo.time_a) }}
+                <span class="nome">{{ jogo.time_a }}</span>
+            </div>
+            {% if resultado %}
+            <div class="placar-grande">{{ resultado.gols_a }} · {{ resultado.gols_b }}</div>
+            {% else %}
+            <div class="placar-grande pending">? · ?</div>
+            {% endif %}
+            <div class="time-grande">
+                {{ flag_img(jogo.time_b) }}
+                <span class="nome">{{ jogo.time_b }}</span>
+            </div>
+        </div>
+
+        <div class="data-completa">
+            <strong>{{ jogo.data_br }} · {{ jogo.hora }}</strong> ·
+            <span class="local">{{ jogo.local }}</span>
+        </div>
+    </div>
 </section>
 
-{% if palpites_ias %}
-<h2 class="text-lg font-semibold mb-3">Palpites das IAs</h2>
-<div class="overflow-x-auto -mx-4 sm:mx-0 rounded-lg ring-1 ring-bg-800">
-  <table class="w-full text-sm">
-    <thead class="bg-bg-900 text-zinc-400 uppercase text-xs tracking-wide">
-      <tr>
-        <th class="px-3 py-3 text-left">IA</th>
-        <th class="px-3 py-3 text-center">Palpite</th>
-        <th class="px-3 py-3 text-right">Pontos</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for p in palpites_ias %}
-      <tr class="border-t border-bg-800 hover:bg-bg-900/60">
-        <td class="px-3 py-3">
-          <a href="../ia/{{ p.slug }}.html" class="font-medium hover:text-accent">{{ p.nome_display }}</a>
-        </td>
-        <td class="px-3 py-3 text-center font-mono">
-          {% if p.palpite is not none %}
-            {{ p.palpite.gols_a }}–{{ p.palpite.gols_b }}
-          {% else %}
-            <span class="text-zinc-600">—</span>
-          {% endif %}
-        </td>
-        <td class="px-3 py-3 text-right font-mono font-semibold
-          {% if p.pontos is none %}text-zinc-600
-          {% elif p.pontos >= 10 %}text-gold
-          {% elif p.pontos > 0 %}text-accent
-          {% else %}text-zinc-500{% endif %}">
-          {% if p.pontos is not none %}+{{ p.pontos }}{% else %}—{% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-{% else %}
-<div class="rounded-lg ring-1 ring-bg-800 bg-bg-900 p-6 text-zinc-400 text-sm">
-  Nenhuma IA palpitou esse jogo ainda.
-</div>
+{% if consenso %}
+<section class="section" style="padding-top:20px;">
+    <div class="container">
+        <div class="consenso">
+            <h3><span class="emoji">🎯</span>Consenso das IAs</h3>
+            <div class="consenso-list">
+                {% for p in consenso[:5] %}
+                <div class="consenso-row">
+                    <span class="consenso-placar">{{ p.placar_a }} - {{ p.placar_b }}</span>
+                    <div class="consenso-bar"><div class="consenso-bar-fill" style="width: {{ p.pct }}%"></div></div>
+                    <span class="consenso-pct">{{ p.n }} IAs</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
 {% endif %}
+
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2><span class="emoji">🤖</span>Palpites de cada IA</h2>
+                <p class="sub">{{ palpites_ias|length }} IAs palpitaram este jogo. Quando o resultado real for cadastrado, cada IA recebe pontos: <strong>10</strong> placar exato, <strong>7</strong> vencedor+saldo, <strong>5</strong> vencedor, <strong>0</strong> errado.</p>
+            </div>
+        </div>
+
+        <table class="palpites-table">
+            <thead>
+                <tr>
+                    <th>IA</th>
+                    <th class="num-col">Palpite</th>
+                    <th class="num-col">Pontos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for linha in palpites_ias %}
+                <tr>
+                    <td>
+                        <a class="ia-cell" href="../ia/{{ linha.slug }}.html">
+                            {{ ia_logo(linha.slug) }}
+                            <span>
+                                <span class="ia-name">{{ linha.nome_display }}</span>
+                                <span class="ia-family">{{ ia_family(linha.slug) }}</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="num-col">
+                        {% if linha.palpite %}
+                        <span class="palpite-num{% if resultado and linha.palpite.gols_a == resultado.gols_a and linha.palpite.gols_b == resultado.gols_b %} exact{% endif %}">{{ linha.palpite.gols_a }} - {{ linha.palpite.gols_b }}</span>
+                        {% else %}
+                        <span class="sem-palpite">? - ?</span>
+                        {% endif %}
+                    </td>
+                    <td class="pontos-cell">
+                        {% if linha.pontos is not none %}{{ linha.pontos }}{% else %}—{% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
 {% endblock %}

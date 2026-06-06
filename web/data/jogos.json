@@ -1,0 +1,938 @@
+[
+  {
+    "numero": 1,
+    "fase": "Grupo A",
+    "data": "2026-06-11",
+    "hora": "16:00",
+    "local": "Cidade do México",
+    "time_a": "México",
+    "time_b": "África do Sul"
+  },
+  {
+    "numero": 2,
+    "fase": "Grupo A",
+    "data": "2026-06-11",
+    "hora": "23:00",
+    "local": "Guadalajara",
+    "time_a": "Coreia do Sul",
+    "time_b": "República Tcheca"
+  },
+  {
+    "numero": 3,
+    "fase": "Grupo B",
+    "data": "2026-06-12",
+    "hora": "16:00",
+    "local": "Toronto",
+    "time_a": "Canadá",
+    "time_b": "Bósnia-Herzegovina"
+  },
+  {
+    "numero": 4,
+    "fase": "Grupo D",
+    "data": "2026-06-12",
+    "hora": "22:00",
+    "local": "Los Angeles",
+    "time_a": "Estados Unidos",
+    "time_b": "Paraguai"
+  },
+  {
+    "numero": 5,
+    "fase": "Grupo C",
+    "data": "2026-06-13",
+    "hora": "22:00",
+    "local": "Boston",
+    "time_a": "Haiti",
+    "time_b": "Escócia"
+  },
+  {
+    "numero": 6,
+    "fase": "Grupo D",
+    "data": "2026-06-14",
+    "hora": "01:00",
+    "local": "Vancouver",
+    "time_a": "Austrália",
+    "time_b": "Turquia"
+  },
+  {
+    "numero": 7,
+    "fase": "Grupo C",
+    "data": "2026-06-13",
+    "hora": "19:00",
+    "local": "Nova York/NJ",
+    "time_a": "Brasil",
+    "time_b": "Marrocos"
+  },
+  {
+    "numero": 8,
+    "fase": "Grupo B",
+    "data": "2026-06-13",
+    "hora": "16:00",
+    "local": "San Francisco",
+    "time_a": "Qatar",
+    "time_b": "Suíça"
+  },
+  {
+    "numero": 9,
+    "fase": "Grupo E",
+    "data": "2026-06-14",
+    "hora": "20:00",
+    "local": "Filadélfia",
+    "time_a": "Costa do Marfim",
+    "time_b": "Equador"
+  },
+  {
+    "numero": 10,
+    "fase": "Grupo E",
+    "data": "2026-06-14",
+    "hora": "14:00",
+    "local": "Houston",
+    "time_a": "Alemanha",
+    "time_b": "Curaçao"
+  },
+  {
+    "numero": 11,
+    "fase": "Grupo F",
+    "data": "2026-06-14",
+    "hora": "17:00",
+    "local": "Dallas",
+    "time_a": "Países Baixos",
+    "time_b": "Japão"
+  },
+  {
+    "numero": 12,
+    "fase": "Grupo F",
+    "data": "2026-06-14",
+    "hora": "23:00",
+    "local": "Monterrey",
+    "time_a": "Suécia",
+    "time_b": "Tunísia"
+  },
+  {
+    "numero": 13,
+    "fase": "Grupo H",
+    "data": "2026-06-15",
+    "hora": "19:00",
+    "local": "Miami",
+    "time_a": "Arábia Saudita",
+    "time_b": "Uruguai"
+  },
+  {
+    "numero": 14,
+    "fase": "Grupo H",
+    "data": "2026-06-15",
+    "hora": "13:00",
+    "local": "Atlanta",
+    "time_a": "Espanha",
+    "time_b": "Cabo Verde"
+  },
+  {
+    "numero": 15,
+    "fase": "Grupo G",
+    "data": "2026-06-15",
+    "hora": "22:00",
+    "local": "Los Angeles",
+    "time_a": "Irã",
+    "time_b": "Nova Zelândia"
+  },
+  {
+    "numero": 16,
+    "fase": "Grupo G",
+    "data": "2026-06-15",
+    "hora": "16:00",
+    "local": "Seattle",
+    "time_a": "Bélgica",
+    "time_b": "Egito"
+  },
+  {
+    "numero": 17,
+    "fase": "Grupo I",
+    "data": "2026-06-16",
+    "hora": "16:00",
+    "local": "Nova York/NJ",
+    "time_a": "França",
+    "time_b": "Senegal"
+  },
+  {
+    "numero": 18,
+    "fase": "Grupo I",
+    "data": "2026-06-16",
+    "hora": "19:00",
+    "local": "Boston",
+    "time_a": "Iraque",
+    "time_b": "Noruega"
+  },
+  {
+    "numero": 19,
+    "fase": "Grupo J",
+    "data": "2026-06-16",
+    "hora": "22:00",
+    "local": "Kansas City",
+    "time_a": "Argentina",
+    "time_b": "Argélia"
+  },
+  {
+    "numero": 20,
+    "fase": "Grupo J",
+    "data": "2026-06-17",
+    "hora": "01:00",
+    "local": "San Francisco",
+    "time_a": "Áustria",
+    "time_b": "Jordânia"
+  },
+  {
+    "numero": 21,
+    "fase": "Grupo L",
+    "data": "2026-06-17",
+    "hora": "20:00",
+    "local": "Toronto",
+    "time_a": "Gana",
+    "time_b": "Panamá"
+  },
+  {
+    "numero": 22,
+    "fase": "Grupo L",
+    "data": "2026-06-17",
+    "hora": "17:00",
+    "local": "Dallas",
+    "time_a": "Inglaterra",
+    "time_b": "Croácia"
+  },
+  {
+    "numero": 23,
+    "fase": "Grupo K",
+    "data": "2026-06-17",
+    "hora": "14:00",
+    "local": "Houston",
+    "time_a": "Portugal",
+    "time_b": "Congo (RD)"
+  },
+  {
+    "numero": 24,
+    "fase": "Grupo K",
+    "data": "2026-06-17",
+    "hora": "23:00",
+    "local": "Cidade do México",
+    "time_a": "Uzbequistão",
+    "time_b": "Colômbia"
+  },
+  {
+    "numero": 25,
+    "fase": "Grupo A",
+    "data": "2026-06-18",
+    "hora": "13:00",
+    "local": "Atlanta",
+    "time_a": "República Tcheca",
+    "time_b": "África do Sul"
+  },
+  {
+    "numero": 26,
+    "fase": "Grupo B",
+    "data": "2026-06-18",
+    "hora": "16:00",
+    "local": "Los Angeles",
+    "time_a": "Suíça",
+    "time_b": "Bósnia-Herzegovina"
+  },
+  {
+    "numero": 27,
+    "fase": "Grupo B",
+    "data": "2026-06-18",
+    "hora": "19:00",
+    "local": "Vancouver",
+    "time_a": "Canadá",
+    "time_b": "Qatar"
+  },
+  {
+    "numero": 28,
+    "fase": "Grupo A",
+    "data": "2026-06-18",
+    "hora": "22:00",
+    "local": "Guadalajara",
+    "time_a": "México",
+    "time_b": "Coreia do Sul"
+  },
+  {
+    "numero": 29,
+    "fase": "Grupo C",
+    "data": "2026-06-19",
+    "hora": "21:30",
+    "local": "Filadélfia",
+    "time_a": "Brasil",
+    "time_b": "Haiti"
+  },
+  {
+    "numero": 30,
+    "fase": "Grupo C",
+    "data": "2026-06-19",
+    "hora": "19:00",
+    "local": "Boston",
+    "time_a": "Escócia",
+    "time_b": "Marrocos"
+  },
+  {
+    "numero": 31,
+    "fase": "Grupo D",
+    "data": "2026-06-20",
+    "hora": "00:00",
+    "local": "San Francisco",
+    "time_a": "Turquia",
+    "time_b": "Paraguai"
+  },
+  {
+    "numero": 32,
+    "fase": "Grupo D",
+    "data": "2026-06-19",
+    "hora": "16:00",
+    "local": "Seattle",
+    "time_a": "Estados Unidos",
+    "time_b": "Austrália"
+  },
+  {
+    "numero": 33,
+    "fase": "Grupo E",
+    "data": "2026-06-20",
+    "hora": "17:00",
+    "local": "Toronto",
+    "time_a": "Alemanha",
+    "time_b": "Costa do Marfim"
+  },
+  {
+    "numero": 34,
+    "fase": "Grupo E",
+    "data": "2026-06-20",
+    "hora": "21:00",
+    "local": "Kansas City",
+    "time_a": "Equador",
+    "time_b": "Curaçao"
+  },
+  {
+    "numero": 35,
+    "fase": "Grupo F",
+    "data": "2026-06-20",
+    "hora": "14:00",
+    "local": "Houston",
+    "time_a": "Países Baixos",
+    "time_b": "Suécia"
+  },
+  {
+    "numero": 36,
+    "fase": "Grupo F",
+    "data": "2026-06-21",
+    "hora": "01:00",
+    "local": "Monterrey",
+    "time_a": "Tunísia",
+    "time_b": "Japão"
+  },
+  {
+    "numero": 37,
+    "fase": "Grupo H",
+    "data": "2026-06-21",
+    "hora": "19:00",
+    "local": "Miami",
+    "time_a": "Uruguai",
+    "time_b": "Cabo Verde"
+  },
+  {
+    "numero": 38,
+    "fase": "Grupo H",
+    "data": "2026-06-21",
+    "hora": "13:00",
+    "local": "Atlanta",
+    "time_a": "Espanha",
+    "time_b": "Arábia Saudita"
+  },
+  {
+    "numero": 39,
+    "fase": "Grupo G",
+    "data": "2026-06-21",
+    "hora": "16:00",
+    "local": "Los Angeles",
+    "time_a": "Bélgica",
+    "time_b": "Irã"
+  },
+  {
+    "numero": 40,
+    "fase": "Grupo G",
+    "data": "2026-06-21",
+    "hora": "22:00",
+    "local": "Vancouver",
+    "time_a": "Nova Zelândia",
+    "time_b": "Egito"
+  },
+  {
+    "numero": 41,
+    "fase": "Grupo I",
+    "data": "2026-06-22",
+    "hora": "21:00",
+    "local": "Nova York/NJ",
+    "time_a": "Noruega",
+    "time_b": "Senegal"
+  },
+  {
+    "numero": 42,
+    "fase": "Grupo I",
+    "data": "2026-06-22",
+    "hora": "18:00",
+    "local": "Filadélfia",
+    "time_a": "França",
+    "time_b": "Iraque"
+  },
+  {
+    "numero": 43,
+    "fase": "Grupo J",
+    "data": "2026-06-22",
+    "hora": "14:00",
+    "local": "Dallas",
+    "time_a": "Argentina",
+    "time_b": "Áustria"
+  },
+  {
+    "numero": 44,
+    "fase": "Grupo J",
+    "data": "2026-06-23",
+    "hora": "00:00",
+    "local": "San Francisco",
+    "time_a": "Jordânia",
+    "time_b": "Argélia"
+  },
+  {
+    "numero": 45,
+    "fase": "Grupo L",
+    "data": "2026-06-23",
+    "hora": "17:00",
+    "local": "Boston",
+    "time_a": "Inglaterra",
+    "time_b": "Gana"
+  },
+  {
+    "numero": 46,
+    "fase": "Grupo L",
+    "data": "2026-06-23",
+    "hora": "20:00",
+    "local": "Toronto",
+    "time_a": "Panamá",
+    "time_b": "Croácia"
+  },
+  {
+    "numero": 47,
+    "fase": "Grupo K",
+    "data": "2026-06-23",
+    "hora": "14:00",
+    "local": "Houston",
+    "time_a": "Portugal",
+    "time_b": "Uzbequistão"
+  },
+  {
+    "numero": 48,
+    "fase": "Grupo K",
+    "data": "2026-06-23",
+    "hora": "23:00",
+    "local": "Guadalajara",
+    "time_a": "Colômbia",
+    "time_b": "Congo (RD)"
+  },
+  {
+    "numero": 49,
+    "fase": "Grupo C",
+    "data": "2026-06-24",
+    "hora": "19:00",
+    "local": "Miami",
+    "time_a": "Escócia",
+    "time_b": "Brasil"
+  },
+  {
+    "numero": 50,
+    "fase": "Grupo C",
+    "data": "2026-06-24",
+    "hora": "19:00",
+    "local": "Atlanta",
+    "time_a": "Marrocos",
+    "time_b": "Haiti"
+  },
+  {
+    "numero": 51,
+    "fase": "Grupo B",
+    "data": "2026-06-24",
+    "hora": "16:00",
+    "local": "Vancouver",
+    "time_a": "Suíça",
+    "time_b": "Canadá"
+  },
+  {
+    "numero": 52,
+    "fase": "Grupo B",
+    "data": "2026-06-24",
+    "hora": "16:00",
+    "local": "Seattle",
+    "time_a": "Bósnia-Herzegovina",
+    "time_b": "Qatar"
+  },
+  {
+    "numero": 53,
+    "fase": "Grupo A",
+    "data": "2026-06-24",
+    "hora": "22:00",
+    "local": "Cidade do México",
+    "time_a": "República Tcheca",
+    "time_b": "México"
+  },
+  {
+    "numero": 54,
+    "fase": "Grupo A",
+    "data": "2026-06-24",
+    "hora": "22:00",
+    "local": "Monterrey",
+    "time_a": "África do Sul",
+    "time_b": "Coreia do Sul"
+  },
+  {
+    "numero": 55,
+    "fase": "Grupo E",
+    "data": "2026-06-25",
+    "hora": "17:00",
+    "local": "Filadélfia",
+    "time_a": "Curaçao",
+    "time_b": "Costa do Marfim"
+  },
+  {
+    "numero": 56,
+    "fase": "Grupo E",
+    "data": "2026-06-25",
+    "hora": "17:00",
+    "local": "Nova York/NJ",
+    "time_a": "Equador",
+    "time_b": "Alemanha"
+  },
+  {
+    "numero": 57,
+    "fase": "Grupo F",
+    "data": "2026-06-25",
+    "hora": "20:00",
+    "local": "Dallas",
+    "time_a": "Japão",
+    "time_b": "Suécia"
+  },
+  {
+    "numero": 58,
+    "fase": "Grupo F",
+    "data": "2026-06-25",
+    "hora": "20:00",
+    "local": "Kansas City",
+    "time_a": "Tunísia",
+    "time_b": "Países Baixos"
+  },
+  {
+    "numero": 59,
+    "fase": "Grupo D",
+    "data": "2026-06-25",
+    "hora": "23:00",
+    "local": "Los Angeles",
+    "time_a": "Turquia",
+    "time_b": "Estados Unidos"
+  },
+  {
+    "numero": 60,
+    "fase": "Grupo D",
+    "data": "2026-06-25",
+    "hora": "23:00",
+    "local": "San Francisco",
+    "time_a": "Paraguai",
+    "time_b": "Austrália"
+  },
+  {
+    "numero": 61,
+    "fase": "Grupo I",
+    "data": "2026-06-26",
+    "hora": "16:00",
+    "local": "Boston",
+    "time_a": "Noruega",
+    "time_b": "França"
+  },
+  {
+    "numero": 62,
+    "fase": "Grupo I",
+    "data": "2026-06-26",
+    "hora": "16:00",
+    "local": "Toronto",
+    "time_a": "Senegal",
+    "time_b": "Iraque"
+  },
+  {
+    "numero": 63,
+    "fase": "Grupo G",
+    "data": "2026-06-27",
+    "hora": "00:00",
+    "local": "Seattle",
+    "time_a": "Egito",
+    "time_b": "Irã"
+  },
+  {
+    "numero": 64,
+    "fase": "Grupo G",
+    "data": "2026-06-27",
+    "hora": "00:00",
+    "local": "Vancouver",
+    "time_a": "Nova Zelândia",
+    "time_b": "Bélgica"
+  },
+  {
+    "numero": 65,
+    "fase": "Grupo H",
+    "data": "2026-06-26",
+    "hora": "21:00",
+    "local": "Houston",
+    "time_a": "Cabo Verde",
+    "time_b": "Arábia Saudita"
+  },
+  {
+    "numero": 66,
+    "fase": "Grupo H",
+    "data": "2026-06-26",
+    "hora": "21:00",
+    "local": "Guadalajara",
+    "time_a": "Uruguai",
+    "time_b": "Espanha"
+  },
+  {
+    "numero": 67,
+    "fase": "Grupo L",
+    "data": "2026-06-27",
+    "hora": "18:00",
+    "local": "Nova York/NJ",
+    "time_a": "Panamá",
+    "time_b": "Inglaterra"
+  },
+  {
+    "numero": 68,
+    "fase": "Grupo L",
+    "data": "2026-06-27",
+    "hora": "18:00",
+    "local": "Filadélfia",
+    "time_a": "Croácia",
+    "time_b": "Gana"
+  },
+  {
+    "numero": 69,
+    "fase": "Grupo J",
+    "data": "2026-06-27",
+    "hora": "23:00",
+    "local": "Kansas City",
+    "time_a": "Argélia",
+    "time_b": "Áustria"
+  },
+  {
+    "numero": 70,
+    "fase": "Grupo J",
+    "data": "2026-06-27",
+    "hora": "23:00",
+    "local": "Dallas",
+    "time_a": "Jordânia",
+    "time_b": "Argentina"
+  },
+  {
+    "numero": 71,
+    "fase": "Grupo K",
+    "data": "2026-06-27",
+    "hora": "20:30",
+    "local": "Miami",
+    "time_a": "Colômbia",
+    "time_b": "Portugal"
+  },
+  {
+    "numero": 72,
+    "fase": "Grupo K",
+    "data": "2026-06-27",
+    "hora": "20:30",
+    "local": "Atlanta",
+    "time_a": "Congo (RD)",
+    "time_b": "Uzbequistão"
+  },
+  {
+    "numero": 73,
+    "fase": "R32",
+    "data": "2026-06-28",
+    "hora": "16:00",
+    "local": "Los Angeles",
+    "time_a": "2º Grupo A",
+    "time_b": "2º Grupo B"
+  },
+  {
+    "numero": 74,
+    "fase": "R32",
+    "data": "2026-06-29",
+    "hora": "17:30",
+    "local": "Boston",
+    "time_a": "1º Grupo E",
+    "time_b": "3º Grupo A/B/C/D/F"
+  },
+  {
+    "numero": 75,
+    "fase": "R32",
+    "data": "2026-06-29",
+    "hora": "22:00",
+    "local": "Monterrey",
+    "time_a": "1º Grupo F",
+    "time_b": "2º Grupo C"
+  },
+  {
+    "numero": 76,
+    "fase": "R32",
+    "data": "2026-06-29",
+    "hora": "14:00",
+    "local": "Houston",
+    "time_a": "1º Grupo C",
+    "time_b": "2º Grupo F"
+  },
+  {
+    "numero": 77,
+    "fase": "R32",
+    "data": "2026-06-30",
+    "hora": "18:00",
+    "local": "Nova York/NJ",
+    "time_a": "1º Grupo I",
+    "time_b": "3º Grupo C/D/F/G/H"
+  },
+  {
+    "numero": 78,
+    "fase": "R32",
+    "data": "2026-06-30",
+    "hora": "14:00",
+    "local": "Dallas",
+    "time_a": "2º Grupo E",
+    "time_b": "2º Grupo I"
+  },
+  {
+    "numero": 79,
+    "fase": "R32",
+    "data": "2026-06-30",
+    "hora": "22:00",
+    "local": "Cidade do México",
+    "time_a": "1º Grupo A",
+    "time_b": "3º Grupo C/E/F/H/I"
+  },
+  {
+    "numero": 80,
+    "fase": "R32",
+    "data": "2026-07-01",
+    "hora": "13:00",
+    "local": "Atlanta",
+    "time_a": "1º Grupo L",
+    "time_b": "3º Grupo E/H/I/J/K"
+  },
+  {
+    "numero": 81,
+    "fase": "R32",
+    "data": "2026-07-01",
+    "hora": "21:00",
+    "local": "San Francisco",
+    "time_a": "1º Grupo D",
+    "time_b": "3º Grupo B/E/F/I/J"
+  },
+  {
+    "numero": 82,
+    "fase": "R32",
+    "data": "2026-07-01",
+    "hora": "17:00",
+    "local": "Seattle",
+    "time_a": "1º Grupo G",
+    "time_b": "3º Grupo A/E/H/I/J"
+  },
+  {
+    "numero": 83,
+    "fase": "R32",
+    "data": "2026-07-02",
+    "hora": "20:00",
+    "local": "Toronto",
+    "time_a": "2º Grupo K",
+    "time_b": "2º Grupo L"
+  },
+  {
+    "numero": 84,
+    "fase": "R32",
+    "data": "2026-07-02",
+    "hora": "16:00",
+    "local": "Los Angeles",
+    "time_a": "1º Grupo H",
+    "time_b": "2º Grupo J"
+  },
+  {
+    "numero": 85,
+    "fase": "R32",
+    "data": "2026-07-03",
+    "hora": "00:00",
+    "local": "Vancouver",
+    "time_a": "1º Grupo B",
+    "time_b": "3º Grupo E/F/G/I/J"
+  },
+  {
+    "numero": 86,
+    "fase": "R32",
+    "data": "2026-07-03",
+    "hora": "19:00",
+    "local": "Miami",
+    "time_a": "1º Grupo J",
+    "time_b": "2º Grupo H"
+  },
+  {
+    "numero": 87,
+    "fase": "R32",
+    "data": "2026-07-03",
+    "hora": "22:30",
+    "local": "Kansas City",
+    "time_a": "1º Grupo K",
+    "time_b": "3º Grupo D/E/I/J/L"
+  },
+  {
+    "numero": 88,
+    "fase": "R32",
+    "data": "2026-07-03",
+    "hora": "15:00",
+    "local": "Dallas",
+    "time_a": "2º Grupo D",
+    "time_b": "2º Grupo G"
+  },
+  {
+    "numero": 89,
+    "fase": "Oitavas",
+    "data": "2026-07-04",
+    "hora": "18:00",
+    "local": "Filadélfia",
+    "time_a": "Venc. J74",
+    "time_b": "Venc. J77"
+  },
+  {
+    "numero": 90,
+    "fase": "Oitavas",
+    "data": "2026-07-04",
+    "hora": "14:00",
+    "local": "Houston",
+    "time_a": "Venc. J73",
+    "time_b": "Venc. J75"
+  },
+  {
+    "numero": 91,
+    "fase": "Oitavas",
+    "data": "2026-07-05",
+    "hora": "17:00",
+    "local": "Nova York/NJ",
+    "time_a": "Venc. J76",
+    "time_b": "Venc. J78"
+  },
+  {
+    "numero": 92,
+    "fase": "Oitavas",
+    "data": "2026-07-05",
+    "hora": "21:00",
+    "local": "Cidade do México",
+    "time_a": "Venc. J79",
+    "time_b": "Venc. J80"
+  },
+  {
+    "numero": 93,
+    "fase": "Oitavas",
+    "data": "2026-07-06",
+    "hora": "16:00",
+    "local": "Dallas",
+    "time_a": "Venc. J83",
+    "time_b": "Venc. J84"
+  },
+  {
+    "numero": 94,
+    "fase": "Oitavas",
+    "data": "2026-07-06",
+    "hora": "21:00",
+    "local": "Seattle",
+    "time_a": "Venc. J81",
+    "time_b": "Venc. J82"
+  },
+  {
+    "numero": 95,
+    "fase": "Oitavas",
+    "data": "2026-07-07",
+    "hora": "13:00",
+    "local": "Atlanta",
+    "time_a": "Venc. J86",
+    "time_b": "Venc. J88"
+  },
+  {
+    "numero": 96,
+    "fase": "Oitavas",
+    "data": "2026-07-07",
+    "hora": "17:00",
+    "local": "Vancouver",
+    "time_a": "Venc. J85",
+    "time_b": "Venc. J87"
+  },
+  {
+    "numero": 97,
+    "fase": "Quartas",
+    "data": "2026-07-09",
+    "hora": "17:00",
+    "local": "Boston",
+    "time_a": "Venc. J89",
+    "time_b": "Venc. J90"
+  },
+  {
+    "numero": 98,
+    "fase": "Quartas",
+    "data": "2026-07-10",
+    "hora": "16:00",
+    "local": "Los Angeles",
+    "time_a": "Venc. J93",
+    "time_b": "Venc. J94"
+  },
+  {
+    "numero": 99,
+    "fase": "Quartas",
+    "data": "2026-07-11",
+    "hora": "18:00",
+    "local": "Miami",
+    "time_a": "Venc. J91",
+    "time_b": "Venc. J92"
+  },
+  {
+    "numero": 100,
+    "fase": "Quartas",
+    "data": "2026-07-11",
+    "hora": "22:00",
+    "local": "Kansas City",
+    "time_a": "Venc. J95",
+    "time_b": "Venc. J96"
+  },
+  {
+    "numero": 101,
+    "fase": "Semifinal",
+    "data": "2026-07-14",
+    "hora": "16:00",
+    "local": "Dallas",
+    "time_a": "Venc. J97",
+    "time_b": "Venc. J98"
+  },
+  {
+    "numero": 102,
+    "fase": "Semifinal",
+    "data": "2026-07-15",
+    "hora": "16:00",
+    "local": "Atlanta",
+    "time_a": "Venc. J99",
+    "time_b": "Venc. J100"
+  },
+  {
+    "numero": 103,
+    "fase": "3º lugar",
+    "data": "2026-07-18",
+    "hora": "18:00",
+    "local": "Miami",
+    "time_a": "Perd. J101",
+    "time_b": "Perd. J102"
+  },
+  {
+    "numero": 104,
+    "fase": "Final",
+    "data": "2026-07-19",
+    "hora": "16:00",
+    "local": "Nova York/NJ",
+    "time_a": "Venc. J101",
+    "time_b": "Venc. J102"
+  }
+]
