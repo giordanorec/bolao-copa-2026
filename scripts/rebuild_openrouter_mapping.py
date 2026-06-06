@@ -38,7 +38,6 @@ CURADO: dict[str, tuple[str, int]] = {
     "meta-llama-4": ("meta-llama/llama-4-maverick", 1),
     "qwen-3-max": ("qwen/qwen3-max", 1),
     # copilot-microsoft não tem API direta — fica fora
-
     # ─── Tier 2 — variantes mid/light ───
     "chatgpt-5-mini": ("openai/gpt-5-mini", 2),
     "chatgpt-5-nano": ("openai/gpt-5-nano", 2),
@@ -53,7 +52,6 @@ CURADO: dict[str, tuple[str, int]] = {
     "mistral-small-3": ("mistralai/mistral-small-3.2-24b-instruct", 2),
     "cohere-command-r-plus": ("cohere/command-r-plus-08-2024", 2),
     # gemini-2-0-pro / gemini-2-0-flash / grok-3 / grok-3-mini não estão mais no OR
-
     # ─── Tier 3 — open source ───
     "llama-4-maverick": ("meta-llama/llama-4-maverick", 3),
     "llama-4-scout": ("meta-llama/llama-4-scout", 3),
@@ -67,10 +65,8 @@ CURADO: dict[str, tuple[str, int]] = {
     "qwen-2-5-72b": ("qwen/qwen-2.5-72b-instruct", 3),
     # llama-3-1-405b, llama-3-2-90b-vision, mathstral, pixtral-large, nemotron, dbrx, snowflake-arctic, nous-hermes-3
     # — verificar caso a caso; muitos podem ter saído do OR
-
     # ─── Tier 4 — chineses (poucos no OR) ───
     "minimax-abab": None,  # placeholder; muitos chineses só via UI
-
     # ─── Tier 5 — legacy ───
     "gpt-4o": ("openai/gpt-4o", 5),
     "gpt-4-1": ("openai/gpt-4.1", 5),
@@ -82,7 +78,6 @@ CURADO: dict[str, tuple[str, int]] = {
     # claude-sonnet-3-7 / sonnet-3-5 / opus-3 não estão mais
     # gemini-1-5-pro/flash não vi
     # grok-2 / mixtral-8x7b / pixtral-12b — pular
-
     # ─── Tier 6 — especializadas ───
     "gemma-3-27b": ("google/gemma-3-27b-it", 6),
     "gemma-3-12b": ("google/gemma-3-12b-it", 6),
@@ -90,14 +85,12 @@ CURADO: dict[str, tuple[str, int]] = {
     "phi-4-mini": ("microsoft/phi-4-mini-instruct", 6),
     "wizardlm-2-8x22b": ("microsoft/wizardlm-2-8x22b", 6),
     # qwen-vl-max, molmo-72b, cohere-aya-expanse — verificar
-
     # ─── Tier 7 — diversificadas ───
     "cohere-command-a": ("cohere/command-a", 7),
     "cohere-command-r": ("cohere/command-r-08-2024", 7),
     "kimi-k2": ("moonshotai/kimi-k2", 7),
     "jamba-1-5-large": ("ai21/jamba-large-1.7", 7),
     # yi-large, yi-lightning, reka-core, reka-flash, falcon-3-10b, falcon-180b, olmo-2-32b, tulu-3-405b — pular
-
     # ─── Tier 8 — curiosidades ───
     "perplexity-sonar-reasoning": ("perplexity/sonar-reasoning-pro", 8),
     "perplexity-sonar-large": ("perplexity/sonar", 8),

@@ -13,7 +13,7 @@ O sistema segue o seguinte:
 
 - inicialmente, já temos criamos
   - a tabela com todos os jogos (ao menos os da fase 1)
-  - um prompt unico para passar para cada IA 
+  - um prompt unico para passar para cada IA
     - versao interface web: dizendo para acessar internet
     - versao api: sem mencao a acesso a internet
   - uma base de dados unificada para passarmos para cada IA
@@ -65,7 +65,7 @@ Sobre o site / sistema
 - usar o claude design para fazer um design moderno
 - explicar o sistema todo
   - como funcionam as ias
-  - nao pega informacao de BETs! Nao é patrocinado por BETs. 
+  - nao pega informacao de BETs! Nao é patrocinado por BETs.
   - é gratuito, mas doaçoes sao bem vindas para financiar melhorar o sistema
   - quais as regras do bolao
   - atualizacao das informacoes so em momentos chave

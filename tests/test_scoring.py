@@ -13,7 +13,6 @@ docs/01_ARQUITETURA.md antes do código existir).
 from __future__ import annotations
 
 import pytest
-
 from bolao.models import Jogo, Palpite, Resultado
 from bolao.ranking import pontos_por_ia
 from bolao.scoring import fase_eh_mata_mata, pontuar

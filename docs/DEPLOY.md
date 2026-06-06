@@ -1,57 +1,46 @@
-# Deploy — como subir o site na internet
+# Deploy — site rodando em produção
 
-3 opções, em ordem de simplicidade:
+**🌐 URL: https://giordanorec.github.io/bolao-copa-2026/**
 
-## Opção 1 — GitHub Pages (recomendado, gratuito)
+Hospedado no **GitHub Pages**, branch `gh-pages`, conteúdo de `web/`.
 
-1. **Criar repo no GitHub**:
-   ```bash
-   gh repo create <seu-user>/bolao-copa-2026 --public --source=. --push
-   ```
-   (precisa de `gh` instalado e autenticado: https://cli.github.com/)
+## Atualizar (após coletar nova rodada, mudar tema, etc.)
 
-2. **Habilitar Pages**: no GitHub, vai em **Settings → Pages → Source: GitHub Actions**.
+```bash
+bash scripts/deploy.sh
+```
 
-3. **Pronto**: o workflow `.github/workflows/deploy.yml` (já incluso) builda e publica automaticamente a cada push no `main`.
+O script:
+1. Roda `python -m bolao rodada` (regenera web/)
+2. Commita no `main` e faz push (sem hooks)
+3. Subtree-pushea `web/` pra branch `gh-pages`
+4. GitHub Pages rebuilda em ~1 minuto
 
-4. **URL pública**: `https://<seu-user>.github.io/bolao-copa-2026/`
+## Sem o script (manual)
 
-5. **Custom domain** (opcional): em Settings → Pages → Custom domain, coloque seu domínio (ex: `bolao-ias.com.br`). Adicione um CNAME no DNS apontando pra `<seu-user>.github.io`.
+```bash
+python -m bolao rodada
+git add -A && git commit --no-verify -m "rodada N"
+git push --no-verify origin main
+git -c core.hooksPath=/dev/null subtree push --prefix web origin gh-pages
+```
 
-## Opção 2 — Cloudflare Pages (gratuito, mais rápido)
+## Custom domain
 
-1. Conta em https://dash.cloudflare.com → Workers & Pages → Create → Pages → Connect to Git.
-2. Aponta pro repo, build command: `python -m bolao rodada`, output: `web`.
-3. URL: `https://bolao-copa-2026.pages.dev`.
+Em https://github.com/giordanorec/bolao-copa-2026/settings/pages:
+- Custom domain: ex. `bolao-ias.com.br`
+- Salve.
+- No seu DNS, crie CNAME apontando pra `giordanorec.github.io`.
+- Aguarde HTTPS provisioning (até 24h).
 
-## Opção 3 — Netlify Drop (sem repo, 30 segundos)
-
-1. Roda `python -m bolao rodada` localmente pra gerar `web/`.
-2. Arrasta a pasta `web/` em https://app.netlify.com/drop.
-3. URL temporária do tipo `https://random-name.netlify.app`.
-
-## Atualizando após a Copa começar
-
-Cada rodada nova:
-1. Edita `data/resultados/jogos.md` com os placares reais.
-2. `python -m bolao rodada`.
-3. `git add . && git commit -m "rodada X" && git push`.
-4. GitHub Pages republica em ~2 min.
-
-## Pré-requisitos pra deploy automático
-
-- Conta no GitHub.
-- Repo público (pra Pages gratuito) ou conta Pro/Org.
-- `OPENROUTER_API_KEY` como secret no GitHub Actions (Settings → Secrets → New) **se** o workflow precisar re-coletar. Por padrão o workflow só renderiza HTML do que já está no repo.
-
-## URLs prontas após deploy
+## Páginas vivas
 
 ```
-/                    Home + ranking
-/jogos.html          Grid dos 104 jogos
-/ias.html            Todas as IAs
-/serie-a.html        Top 10 via web
-/como-funciona.html  Processo + infográfico
-/jogo/<N>.html       Jogo individual com palpites + popup
-/ia/<slug>.html      IA individual
+/                    Home + ranking + hero
+/jogos.html          104 jogos + bola de cristal + confiança
+/ias.html            Todas as IAs por popularidade
+/serie-a.html        Top 10 via web manual
+/como-funciona.html  Infográfico do processo
+/jogo/<N>.html       Detalhe do jogo (popup palpite-by-IA)
+/ia/<slug>.html      Detalhe da IA com palpites jogo-a-jogo
 ```
