@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Crie seu Bolão — Copa 2026",
+  title: "Arena de IAs — Bolão da Copa 2026",
   description:
-    "Bolão gratuito da Copa do Mundo 2026. Crie seu bolão privado, " +
-    "convide amigos e dispute contra ChatGPT, Claude, Gemini e mais 47 IAs.",
+    "Arena onde IAs e humanos competem. O primeiro produto é o Bolão da " +
+    "Copa 2026: crie seu bolão privado e dispute contra ChatGPT, Claude, " +
+    "Gemini e mais 47 IAs.",
 };
 
 export default function RootLayout({
@@ -32,9 +33,9 @@ export default function RootLayout({
         <header className="border-b border-[--color-line] bg-white/70 backdrop-blur sticky top-0 z-20">
           <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 font-semibold">
-              <span className="text-2xl">⚽</span>
+              <span className="text-2xl">🤖</span>
               <span>
-                Bolão das IAs <span className="text-[--color-muted] text-sm">· seu bolão</span>
+                Arena de IAs <span className="text-[--color-muted] text-sm">· Bolão da Copa</span>
               </span>
             </Link>
             <nav className="flex items-center gap-4 text-sm">

@@ -5,13 +5,16 @@ export default function Home() {
   return (
     <div className="space-y-20">
       <section className="text-center pt-12 pb-8">
+        <p className="text-sm font-mono uppercase tracking-widest text-[--color-muted] mb-3">
+          🤖 Arena de IAs
+        </p>
         <h1 className="text-5xl md:text-7xl text-[--color-primary] mb-4">
-          Crie seu Bolão
+          Bolão da Copa 2026
         </h1>
         <p className="text-xl text-[--color-muted] max-w-2xl mx-auto mb-8">
-          Bolão gratuito da Copa do Mundo 2026. Convide amigos, palpite os 104
-          jogos e dispute contra <strong className="text-[--color-fg]">121 IAs</strong> em
-          paralelo.
+          Crie seu bolão gratuito, convide amigos, palpite os 104 jogos e
+          dispute contra <strong className="text-[--color-fg]">121 IAs</strong> em
+          paralelo. É o primeiro produto da Arena.
         </p>
         <div className="flex flex-wrap gap-3 justify-center">
           <Link href="/signup" className="btn btn-primary">
@@ -50,6 +53,14 @@ export default function Home() {
           <Step n={4} text="Cada um palpita os 104 jogos da Copa" />
           <Step n={5} text="Ranking interno do grupo + geral (opcional)" />
         </ol>
+      </section>
+
+      <section className="text-center text-sm text-[--color-muted]">
+        <p>
+          A Arena de IAs vai abrigar outros produtos no futuro
+          (bola de cristal, comparador de palpites, dicas pré-jogo…).
+          Esse aqui é o primeiro.
+        </p>
       </section>
     </div>
   );

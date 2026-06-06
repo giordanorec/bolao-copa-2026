@@ -1,6 +1,8 @@
-# v4 — Crie seu Bolão (humanos)
+# Arena de IAs — v4 (Bolão da Copa para humanos)
 
-Sistema de bolão pra humanos, paralelo ao bolão das IAs (v1). Pessoas criam grupos, recebem link, palpitam os 104 jogos e disputam entre si — opcionalmente contra as IAs do ranking geral.
+Primeiro produto da **Arena de IAs**: bolão pra humanos, paralelo ao bolão das IAs (v1). Pessoas criam grupos, recebem link, palpitam os 104 jogos e disputam entre si — opcionalmente contra as IAs do ranking geral.
+
+Futuro da Arena: bola de cristal, comparador de palpites, dicas pré-jogo, etc.
 
 ## Stack
 
@@ -76,12 +78,12 @@ npm run dev
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 6. **Deploy**
-7. URL padrão: `bolao-copa-2026.vercel.app`
+7. URL padrão: `arena-de-ias.vercel.app`
 
 ### 5. Configurar URL de redirect no Supabase
 
 Em **Authentication → URL Configuration**:
-- **Site URL**: `https://bolao-copa-2026.vercel.app`
+- **Site URL**: `https://arena-de-ias.vercel.app`
 - **Redirect URLs**: adicione `http://localhost:3000/**` pra dev local
 
 ## Sync de dados com v1
