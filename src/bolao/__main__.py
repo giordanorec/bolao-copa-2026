@@ -253,11 +253,10 @@ def _cmd_coletar(args: argparse.Namespace) -> int:
 
     dossie_label = dossie_path.name if dossie_path else "(nenhum)"
     print(
-        f"coletar: {len(ias)} IA(s) alvo · dossiê={dossie_label} · "
-        f"max_paralelo={args.max_paralelo}"
+        f"coletar: {len(ias)} IA(s) alvo · dossiê={dossie_label} · max_paralelo={args.max_paralelo}"
     )
     for item in ias:
-        print(f"  - {item['slug']:32s} → {item['model']}  (tier {item['tier']})")
+        print(f"  - {item['slug']:32s} -> {item['model']}  (tier {item['tier']})")
 
     if args.dry_run:
         print("(dry-run; nenhuma chamada feita)")
