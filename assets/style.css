@@ -855,15 +855,15 @@ a.palpite-num.exact, button.palpite-num.exact {
 
 /* ─── IA CARD VERTICAL — LOGOS SUPER GRANDES ─── */
 .ias-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 28px;
 }
 .ia-card {
-    padding: 26px 22px 22px; display: flex; flex-direction: column;
+    padding: 30px 28px 26px; display: flex; flex-direction: column;
     align-items: center; text-align: center; color: var(--fg);
     gap: 12px; position: relative; overflow: hidden;
 }
 .ia-card .ia-imagem-placeholder {
-    width: 100%; height: 160px;
+    width: 100%; height: 120px;
     background: linear-gradient(135deg,
         color-mix(in srgb, var(--primary) 16%, transparent),
         color-mix(in srgb, var(--accent) 16%, transparent));
@@ -878,11 +878,11 @@ a.palpite-num.exact, button.palpite-num.exact {
 }
 .ia-card .ia-imagem-placeholder::before { content: '🎨'; font-size: 32px; opacity: 0.55; }
 .ia-card .ia-logo {
-    width: 220px; height: 220px; padding: 30px;
+    width: 360px; height: 360px; padding: 12px;
     border-radius: var(--r-l); background: var(--bg-2);
     border: 1px solid var(--line); box-shadow: var(--shadow-pop);
 }
-.ia-card .ia-logo .initial-pill { font-size: 96px; border-radius: var(--r-m); }
+.ia-card .ia-logo .initial-pill { font-size: 180px; border-radius: var(--r-m); }
 .ia-card .ia-produto {
     font-family: var(--ff-display); font-variation-settings: var(--ff-display-vs);
     font-style: var(--ff-display-style); font-weight: var(--ff-display-weight);
@@ -919,17 +919,17 @@ a.palpite-num.exact, button.palpite-num.exact {
 /* ─── SÉRIE A — LOGOS GIGANTES ─── */
 .serie-a-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
+    gap: 36px;
 }
-.serie-a-grid .ia-card { padding: 40px 32px 32px; }
+.serie-a-grid .ia-card { padding: 48px 40px 36px; }
 .serie-a-grid .ia-card .ia-logo {
-    width: 320px; height: 320px; padding: 50px;
+    width: 500px; height: 500px; padding: 18px;
 }
-.serie-a-grid .ia-card .ia-logo .initial-pill { font-size: 140px; }
-.serie-a-grid .ia-card .ia-produto { font-size: 36px; }
-.serie-a-grid .ia-card .ia-modelo { font-size: 19px; }
-.serie-a-grid .ia-card .ia-imagem-placeholder { height: 220px; }
+.serie-a-grid .ia-card .ia-logo .initial-pill { font-size: 260px; }
+.serie-a-grid .ia-card .ia-produto { font-size: 44px; }
+.serie-a-grid .ia-card .ia-modelo { font-size: 22px; }
+.serie-a-grid .ia-card .ia-imagem-placeholder { height: 160px; }
 .serie-a-hero { padding: 80px 0 40px; text-align: center; }
 .serie-a-hero h1 {
     font-family: var(--ff-display); font-variation-settings: var(--ff-display-vs);
@@ -1128,10 +1128,10 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     .hero-emojis { font-size: 42px; }
     .ias-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
     .ia-card .ia-imagem-placeholder { height: 100px; }
-    .ia-card .ia-logo { width: 100px; height: 100px; padding: 16px; }
+    .ia-card .ia-logo { width: 200px; height: 200px; padding: 12px; }
     .ia-card .ia-produto { font-size: 24px; }
     .ia-card .ia-modelo { font-size: 15px; }
-    .serie-a-grid .ia-card .ia-logo { width: 140px; height: 140px; padding: 22px; }
+    .serie-a-grid .ia-card .ia-logo { width: 280px; height: 280px; padding: 14px; }
     .serie-a-grid .ia-card .ia-produto { font-size: 30px; }
 }
 
