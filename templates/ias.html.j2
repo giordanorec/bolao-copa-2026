@@ -1,24 +1,26 @@
 {% extends "base.html.j2" %}
-{% block title %}IAs participantes — Bolão das IAs · Copa 2026{% endblock %}
+{% block title %}Todas as IAs participantes — Bolão das IAs · Copa 2026{% endblock %}
 {% block content %}
 
 <section class="section" style="padding-top:80px;">
     <div class="container">
         <div class="section-head">
             <div>
-                <h2><span class="emoji">🤖</span>IAs participantes<span class="num">{{ ias|length }} no bolão</span></h2>
-                <p class="sub">{{ ias|length }} modelos palpitando a Copa, ordenados por <strong>popularidade</strong> em junho/2026 (web traffic share + usuários mensais). Clique em qualquer uma pra ver os palpites jogo a jogo.</p>
+                <h2><span class="emoji">🤖</span>Todas as IAs<span class="num">{{ ias_ordenadas|length }} no bolão</span></h2>
+                <p class="sub">{{ ias_ordenadas|length }} modelos palpitando a Copa, ordenados por <strong>popularidade</strong> em junho/2026 (web traffic + usuários mensais). ⭐ favoritas vão pro topo. Clique em qualquer card pra ver os palpites jogo a jogo.</p>
             </div>
         </div>
 
         <div class="ias-grid">
             {% for ia in ias_ordenadas %}
-            <a class="ia-card card" href="ia/{{ ia.slug }}.html">
+            <a class="ia-card card" href="ia/{{ ia.slug }}.html" data-fav-slug="{{ ia.slug }}" data-fav-label="{{ ia.nome_display }}">
+                <span class="popularidade-badge">pop. {{ popularidade(ia.slug) }}</span>
+                <button class="fav-toggle" title="favoritar">☆</button>
+                <div class="ia-imagem-placeholder"><span>imagem em breve</span></div>
                 {{ ia_logo(ia.slug) }}
-                <div class="ia-meta">
-                    <div class="pos-badge">{{ ia_family(ia.slug) }} · popularidade {{ popularidade(ia.slug) }}</div>
-                    <div class="ia-name-card">{{ ia.nome_display }}</div>
-                </div>
+                <div class="ia-produto">{{ ia_produto(ia.slug) }}</div>
+                <div class="ia-modelo">{{ ia_modelo(ia.slug) }}</div>
+                <div class="ia-empresa">{{ ia_empresa(ia.slug) }}</div>
                 <div class="pontos-mini">{{ ia.pontos }} pts</div>
             </a>
             {% endfor %}

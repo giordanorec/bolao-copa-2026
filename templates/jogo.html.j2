@@ -14,9 +14,9 @@
                 <span class="nome">{{ jogo.time_a }}</span>
             </div>
             {% if resultado %}
-            <div class="placar-grande">{{ resultado.gols_a }} · {{ resultado.gols_b }}</div>
+            <div class="placar-grande"><span class="g">{{ resultado.gols_a }}</span><span class="x">×</span><span class="g">{{ resultado.gols_b }}</span></div>
             {% else %}
-            <div class="placar-grande pending">? · ?</div>
+            <div class="placar-grande pending"><span class="g">?</span><span class="x">×</span><span class="g">?</span></div>
             {% endif %}
             <div class="time-grande">
                 {{ flag_img(jogo.time_b) }}
@@ -27,6 +27,21 @@
         <div class="data-completa">
             <strong>{{ jogo.data_br }} · {{ jogo.hora }}</strong> ·
             <span class="local">{{ jogo.local }}</span>
+        </div>
+
+        <div class="share-bar">
+            <button class="share-btn whatsapp" data-share="whatsapp"
+                data-text="{{ jogo.time_a }} {% if jogo.bola_cristal %}{{ jogo.bola_cristal.gols_a }} × {{ jogo.bola_cristal.gols_b }} (🔮 bola de cristal){% else %}vs{% endif %} {{ jogo.time_b }} — palpite das IAs no Bolão da Copa 2026">
+                <span class="ico">💬</span> WhatsApp
+            </button>
+            <button class="share-btn instagram" data-share="instagram"
+                data-text="🇧🇷⚽ {{ jogo.time_a }} {% if jogo.bola_cristal %}{{ jogo.bola_cristal.gols_a }}×{{ jogo.bola_cristal.gols_b }}{% else %}vs{% endif %} {{ jogo.time_b }} - Copa 2026">
+                <span class="ico">📸</span> Instagram
+            </button>
+            <button class="share-btn" data-share="copy"
+                data-text="{{ jogo.time_a }} vs {{ jogo.time_b }} - Copa 2026">
+                <span class="ico">🔗</span> Copiar
+            </button>
         </div>
     </div>
 </section>
@@ -39,7 +54,7 @@
             <div class="consenso-list">
                 {% for p in consenso[:5] %}
                 <div class="consenso-row">
-                    <span class="consenso-placar">{{ p.placar_a }} - {{ p.placar_b }}</span>
+                    <span class="consenso-placar">{{ p.placar_a }} × {{ p.placar_b }}</span>
                     <div class="consenso-bar"><div class="consenso-bar-fill" style="width: {{ p.pct }}%"></div></div>
                     <span class="consenso-pct">{{ p.n }} IAs</span>
                 </div>
@@ -81,9 +96,9 @@
                     </td>
                     <td class="num-col">
                         {% if linha.palpite %}
-                        <a class="palpite-num{% if resultado and linha.palpite.gols_a == resultado.gols_a and linha.palpite.gols_b == resultado.gols_b %} exact{% endif %}" href="../ia/{{ linha.slug }}.html" title="Ver palpites da {{ linha.nome_display }}">{{ linha.palpite.gols_a }} - {{ linha.palpite.gols_b }}</a>
+                        <a class="palpite-num{% if resultado and linha.palpite.gols_a == resultado.gols_a and linha.palpite.gols_b == resultado.gols_b %} exact{% endif %}" href="../ia/{{ linha.slug }}.html" title="Ver palpites da {{ linha.nome_display }}">{{ linha.palpite.gols_a }} × {{ linha.palpite.gols_b }}</a>
                         {% else %}
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                         {% endif %}
                     </td>
                     <td class="pontos-cell">

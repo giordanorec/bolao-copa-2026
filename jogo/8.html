@@ -10,16 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://hatscripts.github.io">
-    <link rel="preconnect" href="https://cdn.simpleicons.org">
+    <link rel="preconnect" href="https://unpkg.com">
 
-    <!-- Fraunces (display chubby cute) + Outfit (rounded sans) + JetBrains Mono (números) -->
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,30..100&family=Outfit:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,30..100&family=Inter:wght@300..800&family=Outfit:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../assets/style.css">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='72'%3E⚽%3C/text%3E%3C/svg%3E">
 </head>
-<body>
+<body data-theme="festivo-br">
 
 <header class="site-header">
     <div class="container header-inner">
@@ -31,9 +30,10 @@
             </span>
         </a>
         <nav class="site-nav">
-            <a href="../index.html">Ranking</a>
-            <a href="../jogos.html">Jogos</a>
-            <a href="../ias.html">IAs</a>
+            <a href="../index.html">Ranking das IAs</a>
+            <a href="../jogos.html">Palpites de Cada Jogo</a>
+            <a href="../serie-a.html">Série A 🏆</a>
+            <a href="../ias.html">Todas as IAs</a>
         </nav>
         <div class="header-meta">
             <span class="dot" aria-hidden="true"></span>
@@ -41,6 +41,18 @@
         </div>
     </div>
 </header>
+
+<div class="theme-switcher" aria-label="Escolha do tema visual">
+    <h6>🎨 escolha um tema</h6>
+    <label><input type="radio" name="theme" value="festivo-br" checked> 🇧🇷 Festivo BR</label>
+    <label><input type="radio" name="theme" value="carnaval"> 🎉 Carnaval</label>
+    <label><input type="radio" name="theme" value="tropical"> 🌴 Tropical</label>
+    <label><input type="radio" name="theme" value="anthropic"> 📜 Anthropic warm</label>
+    <label><input type="radio" name="theme" value="editorial"> 📰 Editorial</label>
+    <label><input type="radio" name="theme" value="linear"> ◇ Linear</label>
+    <label><input type="radio" name="theme" value="geist"> ▮ Geist</label>
+    <button class="toggle-btn" title="abrir/fechar">🎨</button>
+</div>
 
 <main>
 
@@ -55,7 +67,7 @@
                 <img class="" src="https://hatscripts.github.io/circle-flags/flags/qa.svg" alt="Qatar" loading="lazy">
                 <span class="nome">Qatar</span>
             </div>
-            <div class="placar-grande pending">? · ?</div>
+            <div class="placar-grande pending"><span class="g">?</span><span class="x">×</span><span class="g">?</span></div>
             <div class="time-grande">
                 <img class="" src="https://hatscripts.github.io/circle-flags/flags/ch.svg" alt="Suíça" loading="lazy">
                 <span class="nome">Suíça</span>
@@ -66,6 +78,21 @@
             <strong>Sáb 13/06 · 16:00</strong> ·
             <span class="local">San Francisco</span>
         </div>
+
+        <div class="share-bar">
+            <button class="share-btn whatsapp" data-share="whatsapp"
+                data-text="Qatar 0 × 2 (🔮 bola de cristal) Suíça — palpite das IAs no Bolão da Copa 2026">
+                <span class="ico">💬</span> WhatsApp
+            </button>
+            <button class="share-btn instagram" data-share="instagram"
+                data-text="🇧🇷⚽ Qatar 0×2 Suíça - Copa 2026">
+                <span class="ico">📸</span> Instagram
+            </button>
+            <button class="share-btn" data-share="copy"
+                data-text="Qatar vs Suíça - Copa 2026">
+                <span class="ico">🔗</span> Copiar
+            </button>
+        </div>
     </div>
 </section>
 
@@ -75,17 +102,17 @@
             <h3><span class="emoji">🎯</span>Consenso das IAs</h3>
             <div class="consenso-list">
                 <div class="consenso-row">
-                    <span class="consenso-placar">0 - 2</span>
+                    <span class="consenso-placar">0 × 2</span>
                     <div class="consenso-bar"><div class="consenso-bar-fill" style="width: 84.31372549019608%"></div></div>
                     <span class="consenso-pct">43 IAs</span>
                 </div>
                 <div class="consenso-row">
-                    <span class="consenso-placar">0 - 3</span>
+                    <span class="consenso-placar">0 × 3</span>
                     <div class="consenso-bar"><div class="consenso-bar-fill" style="width: 9.803921568627452%"></div></div>
                     <span class="consenso-pct">5 IAs</span>
                 </div>
                 <div class="consenso-row">
-                    <span class="consenso-placar">0 - 1</span>
+                    <span class="consenso-placar">0 × 1</span>
                     <div class="consenso-bar"><div class="consenso-bar-fill" style="width: 5.88235294117647%"></div></div>
                     <span class="consenso-pct">3 IAs</span>
                 </div>
@@ -123,7 +150,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/jamba-1-5-large.html" title="Ver palpites da AI21 Jamba 1.5 Large">0 - 3</a>
+                        <a class="palpite-num" href="../ia/jamba-1-5-large.html" title="Ver palpites da AI21 Jamba 1.5 Large">0 × 3</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -139,7 +166,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/chatgpt-5.html" title="Ver palpites da ChatGPT 5">0 - 2</a>
+                        <a class="palpite-num" href="../ia/chatgpt-5.html" title="Ver palpites da ChatGPT 5">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -155,7 +182,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/chatgpt-5-mini.html" title="Ver palpites da ChatGPT 5 mini">0 - 2</a>
+                        <a class="palpite-num" href="../ia/chatgpt-5-mini.html" title="Ver palpites da ChatGPT 5 mini">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -171,7 +198,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/chatgpt-5-nano.html" title="Ver palpites da ChatGPT 5 nano">0 - 2</a>
+                        <a class="palpite-num" href="../ia/chatgpt-5-nano.html" title="Ver palpites da ChatGPT 5 nano">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -187,7 +214,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/chatgpt-5-thinking.html" title="Ver palpites da ChatGPT 5 Thinking">0 - 2</a>
+                        <a class="palpite-num" href="../ia/chatgpt-5-thinking.html" title="Ver palpites da ChatGPT 5 Thinking">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -203,7 +230,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/claude-haiku-3-5.html" title="Ver palpites da Claude Haiku 3.5 (legacy)">0 - 2</a>
+                        <a class="palpite-num" href="../ia/claude-haiku-3-5.html" title="Ver palpites da Claude Haiku 3.5 (legacy)">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -219,7 +246,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/claude-haiku-4-5.html" title="Ver palpites da Claude Haiku 4.5">0 - 2</a>
+                        <a class="palpite-num" href="../ia/claude-haiku-4-5.html" title="Ver palpites da Claude Haiku 4.5">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -235,7 +262,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/claude-opus-4-5.html" title="Ver palpites da Claude Opus 4.5">0 - 2</a>
+                        <a class="palpite-num" href="../ia/claude-opus-4-5.html" title="Ver palpites da Claude Opus 4.5">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -251,7 +278,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/claude-opus-4-7.html" title="Ver palpites da Claude Opus 4.7">0 - 2</a>
+                        <a class="palpite-num" href="../ia/claude-opus-4-7.html" title="Ver palpites da Claude Opus 4.7">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -267,7 +294,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/claude-sonnet-4-5.html" title="Ver palpites da Claude Sonnet 4.5">0 - 2</a>
+                        <a class="palpite-num" href="../ia/claude-sonnet-4-5.html" title="Ver palpites da Claude Sonnet 4.5">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -283,7 +310,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/claude-sonnet-4-6.html" title="Ver palpites da Claude Sonnet 4.6">0 - 2</a>
+                        <a class="palpite-num" href="../ia/claude-sonnet-4-6.html" title="Ver palpites da Claude Sonnet 4.6">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -299,7 +326,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/codestral.html" title="Ver palpites da Codestral">0 - 1</a>
+                        <a class="palpite-num" href="../ia/codestral.html" title="Ver palpites da Codestral">0 × 1</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -315,7 +342,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/cohere-command-r.html" title="Ver palpites da Cohere Command R">0 - 2</a>
+                        <a class="palpite-num" href="../ia/cohere-command-r.html" title="Ver palpites da Cohere Command R">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -331,7 +358,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/cohere-command-r-plus.html" title="Ver palpites da Cohere Command R+">0 - 2</a>
+                        <a class="palpite-num" href="../ia/cohere-command-r-plus.html" title="Ver palpites da Cohere Command R+">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -347,7 +374,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/deepseek-r1.html" title="Ver palpites da DeepSeek R1">0 - 2</a>
+                        <a class="palpite-num" href="../ia/deepseek-r1.html" title="Ver palpites da DeepSeek R1">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -363,7 +390,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/deepseek-v3.html" title="Ver palpites da DeepSeek V3 (legacy)">0 - 2</a>
+                        <a class="palpite-num" href="../ia/deepseek-v3.html" title="Ver palpites da DeepSeek V3 (legacy)">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -379,7 +406,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/deepseek-v3-1.html" title="Ver palpites da DeepSeek V3.1">0 - 2</a>
+                        <a class="palpite-num" href="../ia/deepseek-v3-1.html" title="Ver palpites da DeepSeek V3.1">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -395,7 +422,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/deepseek-v3-2.html" title="Ver palpites da DeepSeek V3.2">0 - 2</a>
+                        <a class="palpite-num" href="../ia/deepseek-v3-2.html" title="Ver palpites da DeepSeek V3.2">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -411,7 +438,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/gemini-2-5-flash.html" title="Ver palpites da Gemini 2.5 Flash">0 - 2</a>
+                        <a class="palpite-num" href="../ia/gemini-2-5-flash.html" title="Ver palpites da Gemini 2.5 Flash">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -427,7 +454,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/gemini-2-5-flash-lite.html" title="Ver palpites da Gemini 2.5 Flash-Lite">0 - 3</a>
+                        <a class="palpite-num" href="../ia/gemini-2-5-flash-lite.html" title="Ver palpites da Gemini 2.5 Flash-Lite">0 × 3</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -443,7 +470,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/gemini-2-5-pro.html" title="Ver palpites da Gemini 2.5 Pro">0 - 2</a>
+                        <a class="palpite-num" href="../ia/gemini-2-5-pro.html" title="Ver palpites da Gemini 2.5 Pro">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -459,7 +486,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/gemma-3-12b.html" title="Ver palpites da Gemma 3 12B">0 - 1</a>
+                        <a class="palpite-num" href="../ia/gemma-3-12b.html" title="Ver palpites da Gemma 3 12B">0 × 1</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -475,7 +502,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/gemma-3-27b.html" title="Ver palpites da Gemma 3 27B">0 - 2</a>
+                        <a class="palpite-num" href="../ia/gemma-3-27b.html" title="Ver palpites da Gemma 3 27B">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -491,7 +518,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/gpt-4-1.html" title="Ver palpites da GPT-4.1 (legacy)">0 - 2</a>
+                        <a class="palpite-num" href="../ia/gpt-4-1.html" title="Ver palpites da GPT-4.1 (legacy)">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -507,7 +534,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/gpt-4o.html" title="Ver palpites da GPT-4o (legacy)">0 - 2</a>
+                        <a class="palpite-num" href="../ia/gpt-4o.html" title="Ver palpites da GPT-4o (legacy)">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -523,7 +550,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/grok-4.html" title="Ver palpites da Grok 4">0 - 1</a>
+                        <a class="palpite-num" href="../ia/grok-4.html" title="Ver palpites da Grok 4">0 × 1</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -539,7 +566,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/grok-4-fast.html" title="Ver palpites da Grok 4 Fast Reasoning">0 - 2</a>
+                        <a class="palpite-num" href="../ia/grok-4-fast.html" title="Ver palpites da Grok 4 Fast Reasoning">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -555,7 +582,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/grok-4-heavy.html" title="Ver palpites da Grok 4 Heavy">0 - 2</a>
+                        <a class="palpite-num" href="../ia/grok-4-heavy.html" title="Ver palpites da Grok 4 Heavy">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -571,7 +598,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/kimi-k2.html" title="Ver palpites da Kimi K2">0 - 2</a>
+                        <a class="palpite-num" href="../ia/kimi-k2.html" title="Ver palpites da Kimi K2">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -587,7 +614,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/le-chat-mistral.html" title="Ver palpites da Le Chat (Mistral Large)">0 - 2</a>
+                        <a class="palpite-num" href="../ia/le-chat-mistral.html" title="Ver palpites da Le Chat (Mistral Large)">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -603,7 +630,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/llama-3-1-70b.html" title="Ver palpites da Llama 3.1 70B">0 - 2</a>
+                        <a class="palpite-num" href="../ia/llama-3-1-70b.html" title="Ver palpites da Llama 3.1 70B">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -619,7 +646,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/llama-3-3-70b.html" title="Ver palpites da Llama 3.3 70B">0 - 2</a>
+                        <a class="palpite-num" href="../ia/llama-3-3-70b.html" title="Ver palpites da Llama 3.3 70B">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -635,7 +662,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/llama-4-maverick.html" title="Ver palpites da Llama 4 Maverick">0 - 2</a>
+                        <a class="palpite-num" href="../ia/llama-4-maverick.html" title="Ver palpites da Llama 4 Maverick">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -651,7 +678,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/llama-4-scout.html" title="Ver palpites da Llama 4 Scout">0 - 2</a>
+                        <a class="palpite-num" href="../ia/llama-4-scout.html" title="Ver palpites da Llama 4 Scout">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -667,7 +694,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/meta-llama-4.html" title="Ver palpites da Meta AI (Llama 4)">0 - 2</a>
+                        <a class="palpite-num" href="../ia/meta-llama-4.html" title="Ver palpites da Meta AI (Llama 4)">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -683,7 +710,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/ministral-8b.html" title="Ver palpites da Ministral 8B">0 - 2</a>
+                        <a class="palpite-num" href="../ia/ministral-8b.html" title="Ver palpites da Ministral 8B">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -699,7 +726,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/mistral-medium-3.html" title="Ver palpites da Mistral Medium 3">0 - 2</a>
+                        <a class="palpite-num" href="../ia/mistral-medium-3.html" title="Ver palpites da Mistral Medium 3">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -715,7 +742,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/mistral-small-3.html" title="Ver palpites da Mistral Small 3">0 - 2</a>
+                        <a class="palpite-num" href="../ia/mistral-small-3.html" title="Ver palpites da Mistral Small 3">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -731,7 +758,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/mixtral-8x22b.html" title="Ver palpites da Mixtral 8x22B">0 - 3</a>
+                        <a class="palpite-num" href="../ia/mixtral-8x22b.html" title="Ver palpites da Mixtral 8x22B">0 × 3</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -747,7 +774,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/o1.html" title="Ver palpites da OpenAI o1 (legacy)">0 - 2</a>
+                        <a class="palpite-num" href="../ia/o1.html" title="Ver palpites da OpenAI o1 (legacy)">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -763,7 +790,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/o3.html" title="Ver palpites da OpenAI o3">0 - 2</a>
+                        <a class="palpite-num" href="../ia/o3.html" title="Ver palpites da OpenAI o3">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -779,7 +806,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/o4-mini.html" title="Ver palpites da OpenAI o4-mini">0 - 3</a>
+                        <a class="palpite-num" href="../ia/o4-mini.html" title="Ver palpites da OpenAI o4-mini">0 × 3</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -795,7 +822,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/perplexity-sonar-large.html" title="Ver palpites da Perplexity Sonar Large">0 - 2</a>
+                        <a class="palpite-num" href="../ia/perplexity-sonar-large.html" title="Ver palpites da Perplexity Sonar Large">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -811,7 +838,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/perplexity-sonar-pro.html" title="Ver palpites da Perplexity Sonar Pro">0 - 2</a>
+                        <a class="palpite-num" href="../ia/perplexity-sonar-pro.html" title="Ver palpites da Perplexity Sonar Pro">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -827,7 +854,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/perplexity-sonar-reasoning.html" title="Ver palpites da Perplexity Sonar Reasoning">0 - 2</a>
+                        <a class="palpite-num" href="../ia/perplexity-sonar-reasoning.html" title="Ver palpites da Perplexity Sonar Reasoning">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -835,7 +862,7 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/phi-4-mini.html">
-                            <span class="initial-pill " style="background:#0078D4;color:#fff;">P</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/microsoft.svg" alt="phi-4-mini" loading="lazy">
                             <span>
                                 <span class="ia-name">Phi-4 mini</span>
                                 <span class="ia-family">Phi</span>
@@ -843,7 +870,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/phi-4-mini.html" title="Ver palpites da Phi-4 mini">0 - 2</a>
+                        <a class="palpite-num" href="../ia/phi-4-mini.html" title="Ver palpites da Phi-4 mini">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -859,7 +886,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/qwen-2-5-72b.html" title="Ver palpites da Qwen 2.5 72B">0 - 2</a>
+                        <a class="palpite-num" href="../ia/qwen-2-5-72b.html" title="Ver palpites da Qwen 2.5 72B">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -875,7 +902,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/qwen-3-235b.html" title="Ver palpites da Qwen 3 235B">0 - 2</a>
+                        <a class="palpite-num" href="../ia/qwen-3-235b.html" title="Ver palpites da Qwen 3 235B">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -891,7 +918,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/qwen-3-coder.html" title="Ver palpites da Qwen 3 Coder">0 - 3</a>
+                        <a class="palpite-num" href="../ia/qwen-3-coder.html" title="Ver palpites da Qwen 3 Coder">0 × 3</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -907,7 +934,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/qwen-3-max.html" title="Ver palpites da Qwen 3 Max">0 - 2</a>
+                        <a class="palpite-num" href="../ia/qwen-3-max.html" title="Ver palpites da Qwen 3 Max">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -915,7 +942,7 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/wizardlm-2-8x22b.html">
-                            <span class="initial-pill " style="background:#0078D4;color:#fff;">W</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/microsoft.svg" alt="wizardlm-2-8x22b" loading="lazy">
                             <span>
                                 <span class="ia-name">WizardLM 2 8x22B</span>
                                 <span class="ia-family">WizardLM</span>
@@ -923,7 +950,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <a class="palpite-num" href="../ia/wizardlm-2-8x22b.html" title="Ver palpites da WizardLM 2 8x22B">0 - 2</a>
+                        <a class="palpite-num" href="../ia/wizardlm-2-8x22b.html" title="Ver palpites da WizardLM 2 8x22B">0 × 2</a>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -939,7 +966,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -955,7 +982,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -971,7 +998,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -987,7 +1014,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1003,7 +1030,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1011,15 +1038,15 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/chatgpt-5-thinking-web.html">
-                            <span class="initial-pill " style="background:#92929b;color:#fff;">C</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/openai.svg" alt="chatgpt-5-thinking-web" loading="lazy">
                             <span>
                                 <span class="ia-name">ChatGPT 5 Thinking (via Web)</span>
-                                <span class="ia-family">—</span>
+                                <span class="ia-family">ChatGPT (via web)</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1035,7 +1062,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1051,7 +1078,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1059,15 +1086,15 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/claude-opus-4-7-web.html">
-                            <span class="initial-pill " style="background:#92929b;color:#fff;">C</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg" alt="claude-opus-4-7-web" loading="lazy">
                             <span>
                                 <span class="ia-name">Claude Opus 4.7 (via Web)</span>
-                                <span class="ia-family">—</span>
+                                <span class="ia-family">Claude (via web)</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1083,7 +1110,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1099,7 +1126,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1115,7 +1142,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1131,7 +1158,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1147,7 +1174,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1163,7 +1190,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1171,15 +1198,15 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/deepseek-r1-web.html">
-                            <span class="initial-pill " style="background:#92929b;color:#fff;">D</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/deepseek.svg" alt="deepseek-r1-web" loading="lazy">
                             <span>
                                 <span class="ia-name">DeepSeek R1 (via Web)</span>
-                                <span class="ia-family">—</span>
+                                <span class="ia-family">DeepSeek (via web)</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1195,7 +1222,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1211,7 +1238,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1227,7 +1254,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1243,7 +1270,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1259,7 +1286,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1275,7 +1302,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1291,7 +1318,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1307,7 +1334,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1315,15 +1342,15 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/gemini-2-5-pro-web.html">
-                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/gemini.svg" alt="gemini-2-5-pro-web" loading="lazy">
                             <span>
                                 <span class="ia-name">Gemini 2.5 Pro (via Web)</span>
-                                <span class="ia-family">—</span>
+                                <span class="ia-family">Gemini (via web)</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1339,7 +1366,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1355,7 +1382,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1371,7 +1398,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1387,7 +1414,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1403,7 +1430,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1419,7 +1446,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1435,7 +1462,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1443,15 +1470,15 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/grok-4-heavy-web.html">
-                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/grok.svg" alt="grok-4-heavy-web" loading="lazy">
                             <span>
                                 <span class="ia-name">Grok 4 Heavy (via Web)</span>
-                                <span class="ia-family">—</span>
+                                <span class="ia-family">Grok (via web)</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1467,7 +1494,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1483,7 +1510,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1499,7 +1526,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1515,7 +1542,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1531,7 +1558,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1539,15 +1566,15 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/le-chat-mistral-web.html">
-                            <span class="initial-pill " style="background:#92929b;color:#fff;">L</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/mistral.svg" alt="le-chat-mistral-web" loading="lazy">
                             <span>
                                 <span class="ia-name">Le Chat Mistral (via Web)</span>
-                                <span class="ia-family">—</span>
+                                <span class="ia-family">Mistral (via web)</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1563,7 +1590,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1579,7 +1606,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1595,7 +1622,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1611,7 +1638,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1627,7 +1654,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1643,7 +1670,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1651,15 +1678,15 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/meta-llama-4-web.html">
-                            <span class="initial-pill " style="background:#92929b;color:#fff;">M</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/meta.svg" alt="meta-llama-4-web" loading="lazy">
                             <span>
                                 <span class="ia-name">Meta AI Llama 4 (via Web)</span>
-                                <span class="ia-family">—</span>
+                                <span class="ia-family">Meta AI (via web)</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1675,7 +1702,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1683,15 +1710,15 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/copilot-microsoft-web.html">
-                            <span class="initial-pill " style="background:#92929b;color:#fff;">C</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/copilot.svg" alt="copilot-microsoft-web" loading="lazy">
                             <span>
                                 <span class="ia-name">Microsoft Copilot (via Web)</span>
-                                <span class="ia-family">—</span>
+                                <span class="ia-family">Copilot (via web)</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1707,7 +1734,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1723,7 +1750,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1739,7 +1766,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1755,7 +1782,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1771,7 +1798,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1779,15 +1806,15 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/perplexity-sonar-pro-web.html">
-                            <span class="initial-pill " style="background:#92929b;color:#fff;">P</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/perplexity.svg" alt="perplexity-sonar-pro-web" loading="lazy">
                             <span>
                                 <span class="ia-name">Perplexity Sonar Pro (via Web)</span>
-                                <span class="ia-family">—</span>
+                                <span class="ia-family">Perplexity (via web)</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1795,7 +1822,7 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/phi-4.html">
-                            <span class="initial-pill " style="background:#0078D4;color:#fff;">P</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/microsoft.svg" alt="phi-4" loading="lazy">
                             <span>
                                 <span class="ia-name">Phi-4</span>
                                 <span class="ia-family">Phi</span>
@@ -1803,7 +1830,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1819,7 +1846,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1835,7 +1862,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1843,15 +1870,15 @@
                 <tr>
                     <td>
                         <a class="ia-cell" href="../ia/qwen-3-max-web.html">
-                            <span class="initial-pill " style="background:#92929b;color:#fff;">Q</span>
+                            <img class="ia-svg " src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/qwen.svg" alt="qwen-3-max-web" loading="lazy">
                             <span>
                                 <span class="ia-name">Qwen 3 Max (via Web)</span>
-                                <span class="ia-family">—</span>
+                                <span class="ia-family">Qwen (via web)</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1867,7 +1894,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1883,7 +1910,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1899,7 +1926,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1915,7 +1942,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1931,7 +1958,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1947,7 +1974,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1963,7 +1990,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1979,7 +2006,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -1995,7 +2022,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -2011,7 +2038,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -2027,7 +2054,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -2043,7 +2070,7 @@
                         </a>
                     </td>
                     <td class="num-col">
-                        <span class="sem-palpite">? - ?</span>
+                        <span class="sem-palpite">? × ?</span>
                     </td>
                     <td class="pontos-cell">
 —                    </td>
@@ -2072,12 +2099,14 @@
         </div>
         <div class="footer-col">
             <h4>Atualização</h4>
-            <p class="updated">Última: <time>06/06/2026 12:04</time> BRT</p>
-            <p class="versao">Built with care &amp; samba. v0.3.0-site</p>
+            <p class="updated">Última: <time>06/06/2026 12:25</time> BRT</p>
+            <p class="versao">Built with care &amp; frevo. v0.4.0-site</p>
         </div>
     </div>
 </footer>
 
-<script src="../assets/script.js" defer></script>
+<div class="toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/share.js" defer></script>
 </body>
 </html>
