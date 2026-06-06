@@ -152,10 +152,15 @@ class _Render:
         if iso:
             url = f"{FLAG_BASE}/{iso}.svg"
             return Markup(f'<img class="{cls}" src="{url}" alt="{alt}" loading="lazy">')
-        # fallback — placeholder com iniciais (1-2 letras)
         s = _normalize(nome)
         ini = "".join(w[0] for w in s.split()[:2]).upper() or "?"
         return Markup(f'<span class="flag-fallback {cls}" title="{alt}">{escape(ini)}</span>')
+
+    def flag_url(self, nome: str) -> str:
+        iso = self._iso_pais(nome)
+        if iso:
+            return f"{FLAG_BASE}/{iso}.svg"
+        return ""
 
     def ia_logo(self, slug: str, big: bool = False) -> Markup:
         meta = self.ias_meta.get(slug, {})
@@ -273,6 +278,7 @@ def renderizar_html(
     helper = _Render(web_dir)
     env = _ambiente(tdir)
     env.globals["flag_img"] = helper.flag_img
+    env.globals["flag_url"] = helper.flag_url
     env.globals["ia_logo"] = helper.ia_logo
     env.globals["ia_family"] = helper.ia_family
     env.globals["ia_produto"] = helper.ia_produto
@@ -428,11 +434,34 @@ def renderizar_html(
         linhas.sort(key=_sort_key)
         consenso = _calc_consenso(list(palpites_neste_jogo.values()))
 
+        # Mapa { "2x1": [{slug, nome, logo_html}] } pra popup de placar
+        por_placar: dict[str, list[dict[str, str]]] = {}
+        for slug, p in palpites_neste_jogo.items():
+            ga = p.get("gols_a")
+            gb = p.get("gols_b")
+            if ga is None or gb is None:
+                continue
+            key = f"{ga}x{gb}"
+            ia_info = ias_indexed.get(slug, {})
+            por_placar.setdefault(key, []).append(
+                {
+                    "slug": slug,
+                    "nome": str(ia_info.get("nome_display", slug)),
+                    "logo": str(helper.ia_logo(slug)),
+                }
+            )
+        # ordena cada lista por nome
+        for k in por_placar:
+            por_placar[k].sort(key=lambda x: x["nome"].lower())
+
         ctx_jogo = _ctx_base(ranking, asset_prefix="../", total_palpites=total_palpites)
         ctx_jogo["jogo"] = jogo
         ctx_jogo["resultado"] = resultados_por_jogo.get(numero)
         ctx_jogo["palpites_ias"] = linhas
         ctx_jogo["consenso"] = consenso
+        ctx_jogo["palpites_por_placar_json"] = json.dumps(por_placar, ensure_ascii=False).replace(
+            "</", "<\\/"
+        )
         (jogos_dir / f"{numero}.html").write_text(
             env.get_template("jogo.html.j2").render(**ctx_jogo),
             encoding="utf-8",
