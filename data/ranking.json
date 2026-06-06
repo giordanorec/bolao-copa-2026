@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-06-05T22:17:13-03:00",
+  "atualizado_em": "2026-06-05T22:36:25-03:00",
   "ias": [
     {
       "slug": "baichuan-4",
@@ -42,6 +42,22 @@
       "jogos_palpitados": 0
     },
     {
+      "slug": "chatgpt-5-thinking-web",
+      "nome_display": "ChatGPT 5 Thinking (via Web)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
+      "slug": "chatgpt-5-web",
+      "nome_display": "ChatGPT 5 (via Web)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
       "slug": "claude-haiku-3-5",
       "nome_display": "Claude Haiku 3.5 (legacy)",
       "pontos": 0,
@@ -52,6 +68,14 @@
     {
       "slug": "claude-haiku-4-5",
       "nome_display": "Claude Haiku 4.5",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
+      "slug": "claude-haiku-4-5-web",
+      "nome_display": "Claude Haiku 4.5 (via Web)",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,
@@ -76,6 +100,14 @@
     {
       "slug": "claude-opus-4-7",
       "nome_display": "Claude Opus 4.7",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
+      "slug": "claude-opus-4-7-web",
+      "nome_display": "Claude Opus 4.7 (via Web)",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,
@@ -108,6 +140,14 @@
     {
       "slug": "claude-sonnet-4-6",
       "nome_display": "Claude Sonnet 4.6",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
+      "slug": "claude-sonnet-4-6-web",
+      "nome_display": "Claude Sonnet 4.6 (via Web)",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,
@@ -162,6 +202,14 @@
       "jogos_palpitados": 0
     },
     {
+      "slug": "copilot-microsoft-web",
+      "nome_display": "Microsoft Copilot (via Web)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
       "slug": "dbrx-instruct",
       "nome_display": "Databricks DBRX Instruct",
       "pontos": 0,
@@ -178,6 +226,14 @@
       "jogos_palpitados": 0
     },
     {
+      "slug": "deepseek-r1-web",
+      "nome_display": "DeepSeek R1 (via Web)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
       "slug": "deepseek-v3",
       "nome_display": "DeepSeek V3 (legacy)",
       "pontos": 0,
@@ -188,6 +244,14 @@
     {
       "slug": "deepseek-v3-1",
       "nome_display": "DeepSeek V3.1",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
+      "slug": "deepseek-v3-1-web",
+      "nome_display": "DeepSeek V3.1 (via Web)",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,
@@ -282,8 +346,24 @@
       "jogos_palpitados": 0
     },
     {
+      "slug": "gemini-2-5-flash-web",
+      "nome_display": "Gemini 2.5 Flash (via Web)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
       "slug": "gemini-2-5-pro",
       "nome_display": "Gemini 2.5 Pro",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
+      "slug": "gemini-2-5-pro-web",
+      "nome_display": "Gemini 2.5 Pro (via Web)",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,
@@ -394,6 +474,22 @@
       "jogos_palpitados": 0
     },
     {
+      "slug": "grok-4-heavy-web",
+      "nome_display": "Grok 4 Heavy (via Web)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
+      "slug": "grok-4-web",
+      "nome_display": "Grok 4 (via Web)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
       "slug": "hunyuan",
       "nome_display": "Hunyuan",
       "pontos": 0,
@@ -444,6 +540,14 @@
     {
       "slug": "le-chat-mistral",
       "nome_display": "Le Chat (Mistral Large)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
+      "slug": "le-chat-mistral-web",
+      "nome_display": "Le Chat Mistral (via Web)",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,
@@ -532,6 +636,14 @@
     {
       "slug": "meta-llama-4",
       "nome_display": "Meta AI (Llama 4)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
+      "slug": "meta-llama-4-web",
+      "nome_display": "Meta AI Llama 4 (via Web)",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,
@@ -666,6 +778,14 @@
       "jogos_palpitados": 0
     },
     {
+      "slug": "perplexity-sonar-pro-web",
+      "nome_display": "Perplexity Sonar Pro (via Web)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
       "slug": "perplexity-sonar-reasoning",
       "nome_display": "Perplexity Sonar Reasoning",
       "pontos": 0,
@@ -732,6 +852,14 @@
     {
       "slug": "qwen-3-max",
       "nome_display": "Qwen 3 Max",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0
+    },
+    {
+      "slug": "qwen-3-max-web",
+      "nome_display": "Qwen 3 Max (via Web)",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,
