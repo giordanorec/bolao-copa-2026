@@ -16,7 +16,6 @@
             <a class="ia-card card" href="ia/{{ ia.slug }}.html" data-fav-slug="{{ ia.slug }}" data-fav-label="{{ ia.nome_display }}">
                 <span class="popularidade-badge">pop. {{ popularidade(ia.slug) }}</span>
                 <button class="fav-toggle" title="favoritar">☆</button>
-                <div class="ia-imagem-placeholder"><span>imagem em breve</span></div>
                 {{ ia_logo(ia.slug) }}
                 <div class="ia-produto">{{ ia_produto(ia.slug) }}</div>
                 <div class="ia-modelo">{{ ia_modelo(ia.slug) }}</div>

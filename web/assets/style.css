@@ -285,15 +285,19 @@ body[data-theme="tropical"] {
    BASE — usa as variáveis acima
    ============================================================ */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+    scroll-behavior: smooth; -webkit-text-size-adjust: 100%;
+    overflow-x: clip; max-width: 100%;
+}
 body {
     margin: 0; background: var(--bg-0); color: var(--fg);
     font-family: var(--ff-sans); font-size: 17px; line-height: 1.55;
     -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh; overflow-x: hidden;
+    min-height: 100vh; overflow-x: clip; max-width: 100%; width: 100%;
     background-image: var(--body-bg-image);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+main { overflow-x: clip; max-width: 100%; }
 body::before {
     content: ''; position: fixed; inset: 0 0 auto 0; height: 6px;
     background: repeating-linear-gradient(90deg,

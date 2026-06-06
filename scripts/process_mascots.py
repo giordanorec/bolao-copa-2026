@@ -51,6 +51,7 @@ def chroma_remove(img: Image.Image) -> Image.Image:
     img = img.convert("RGBA")
     w, h = img.size
     src_px = img.load()
+    original = img.copy()  # snapshot pra amostragem do bg depois
 
     # máscara: True onde pixel é "verde-fundo" candidato
     is_bg = [[False] * w for _ in range(h)]
@@ -102,6 +103,35 @@ def chroma_remove(img: Image.Image) -> Image.Image:
                     if 0 <= nx < w and 0 <= ny < h and sp[nx, ny][3] == 0:
                         src_px[x, y] = (0, 0, 0, 0)
                         break
+
+    # Pass extra: remove ilhas internas de verde com cor quase
+    # idêntica ao fundo (buracos cercados pelo objeto, ex:
+    # vão interno do clipe Clippy, abertura do dragão Qwen).
+    # Calcula cor média do fundo amostrando linhas das bordas
+    # da imagem ORIGINAL (antes da remoção).
+    border_pixels: list[tuple[int, int, int]] = []
+    for x in range(0, w, 4):
+        border_pixels.append(original.getpixel((x, 0))[:3])
+        border_pixels.append(original.getpixel((x, h - 1))[:3])
+    for y in range(0, h, 4):
+        border_pixels.append(original.getpixel((0, y))[:3])
+        border_pixels.append(original.getpixel((w - 1, y))[:3])
+    # Filtra só verdes (descarta amostras que já podem estar fora)
+    greens = [(r, g, b) for r, g, b in border_pixels if is_green_bg(r, g, b)]
+    if greens:
+        bg_r = sum(p[0] for p in greens) / len(greens)
+        bg_g = sum(p[1] for p in greens) / len(greens)
+        bg_b = sum(p[2] for p in greens) / len(greens)
+        thresh_sq = 42 ** 2
+        orig_px = original.load()
+        for y in range(h):
+            for x in range(w):
+                if src_px[x, y][3] == 0:
+                    continue
+                r, g, b = orig_px[x, y][:3]
+                d_sq = (r - bg_r) ** 2 + (g - bg_g) ** 2 + (b - bg_b) ** 2
+                if d_sq < thresh_sq:
+                    src_px[x, y] = (0, 0, 0, 0)
     return img
 
 
