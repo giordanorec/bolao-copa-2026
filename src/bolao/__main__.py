@@ -7,6 +7,7 @@ Subcomandos:
     resumo   gera resumo.txt pronto pra WhatsApp
     rodada   parse + score + ranking + resumo
     serve    python -m http.server em web/ na porta 8000
+    coletar  chama OpenRouter pra preencher data/palpites_ias/<slug>.md
 """
 
 from __future__ import annotations
@@ -36,6 +37,9 @@ WEB_DIR = ROOT / "web"
 WEB_DATA_DIR = WEB_DIR / "data"
 REPORTS_DIR = ROOT / "reports"
 RESUMO_PATH = ROOT / "resumo.txt"
+OPENROUTER_MAPPING_PATH = ROOT / "config" / "openrouter_mapping.json"
+PROMPT_API_PATH = ROOT / "config" / "prompts" / "ia-palpiteira.md"
+DOSSIE_DIR = ROOT / "data" / "dossie"
 
 _NOME_RE = re.compile(r"^<!--\s*ia:\s*(.+?)\s*-->\s*$", re.MULTILINE)
 _NOME_CACHE: dict[str, str] = {}
@@ -174,6 +178,122 @@ def _cmd_rodada(args: argparse.Namespace) -> int:
     return 0
 
 
+def _carregar_mapping_openrouter() -> dict[str, dict[str, object]]:
+    if not OPENROUTER_MAPPING_PATH.is_file():
+        raise FileNotFoundError(
+            f"mapping não encontrado: {OPENROUTER_MAPPING_PATH}. "
+            "Veja specs/F4.5-coletor-api-e-dossie.md."
+        )
+    raw = json.loads(OPENROUTER_MAPPING_PATH.read_text(encoding="utf-8"))
+    return {k: v for k, v in raw.items() if not k.startswith("_")}
+
+
+def _filtrar_ias_coletar(
+    mapping: dict[str, dict[str, object]],
+    tier_arg: str | None,
+    ia_arg: str | None,
+) -> list[dict[str, object]]:
+    if ia_arg:
+        slugs = [s.strip() for s in ia_arg.split(",") if s.strip()]
+        out: list[dict[str, object]] = []
+        for slug in slugs:
+            entry = mapping.get(slug)
+            if entry is None:
+                print(
+                    f"WARN: slug '{slug}' fora do mapping openrouter; pulando",
+                    file=sys.stderr,
+                )
+                continue
+            out.append({"slug": slug, **entry})
+        return out
+    if tier_arg and tier_arg != "all":
+        try:
+            tier_n = int(tier_arg)
+        except ValueError:
+            print(f"erro: --tier deve ser inteiro ou 'all' (recebi {tier_arg!r})", file=sys.stderr)
+            return []
+        return [{"slug": s, **entry} for s, entry in mapping.items() if entry.get("tier") == tier_n]
+    return [{"slug": s, **entry} for s, entry in mapping.items()]
+
+
+def _achar_dossie_default() -> Path | None:
+    if not DOSSIE_DIR.is_dir():
+        return None
+    candidatos = sorted(DOSSIE_DIR.glob("*.md"))
+    return candidatos[-1] if candidatos else None
+
+
+def _cmd_coletar(args: argparse.Namespace) -> int:
+    try:
+        mapping = _carregar_mapping_openrouter()
+    except FileNotFoundError as e:
+        print(f"erro: {e}", file=sys.stderr)
+        return 1
+
+    ias = _filtrar_ias_coletar(mapping, args.tier, args.ia)
+    if not ias:
+        print("erro: nenhuma IA selecionada pelos filtros", file=sys.stderr)
+        return 1
+
+    dossie_path = Path(args.dossie) if args.dossie else _achar_dossie_default()
+    if not args.dry_run:
+        if dossie_path is None:
+            print(
+                f"erro: nenhum dossiê em {DOSSIE_DIR}. Passe --dossie <path> "
+                "ou rode com --dry-run.",
+                file=sys.stderr,
+            )
+            return 1
+        if not dossie_path.is_file():
+            print(f"erro: dossiê {dossie_path} não existe", file=sys.stderr)
+            return 1
+        if not PROMPT_API_PATH.is_file():
+            print(f"erro: prompt não encontrado em {PROMPT_API_PATH}", file=sys.stderr)
+            return 1
+
+    dossie_label = dossie_path.name if dossie_path else "(nenhum)"
+    print(
+        f"coletar: {len(ias)} IA(s) alvo · dossiê={dossie_label} · "
+        f"max_paralelo={args.max_paralelo}"
+    )
+    for item in ias:
+        print(f"  - {item['slug']:32s} → {item['model']}  (tier {item['tier']})")
+
+    if args.dry_run:
+        print("(dry-run; nenhuma chamada feita)")
+        return 0
+
+    try:
+        from .coletor import coletar_lote
+    except ImportError as e:
+        print(f"erro: falta httpx ({e}). 'pip install -e .'", file=sys.stderr)
+        return 1
+
+    assert dossie_path is not None
+    prompt_texto = PROMPT_API_PATH.read_text(encoding="utf-8")
+    dossie_texto = dossie_path.read_text(encoding="utf-8")
+    if "{{DOSSIE}}" in prompt_texto:
+        prompt_texto = prompt_texto.replace("{{DOSSIE}}", dossie_texto)
+        dossie_param = ""
+    else:
+        dossie_param = dossie_texto
+
+    import asyncio
+
+    resultados = asyncio.run(
+        coletar_lote(
+            ias=[{"slug": i["slug"], "model": i["model"]} for i in ias],
+            prompt=prompt_texto,
+            dossie=dossie_param,
+            palpites_dir=PALPITES_DIR,
+            max_paralelo=args.max_paralelo,
+        )
+    )
+    ok = sum(1 for r in resultados if r["ok"])
+    print(f"coletar: {ok}/{len(resultados)} sucesso")
+    return 0 if ok == len(resultados) else 1
+
+
 def _cmd_serve(_args: argparse.Namespace) -> int:
     WEB_DIR.mkdir(parents=True, exist_ok=True)
     os.chdir(WEB_DIR)
@@ -204,9 +324,45 @@ def main(argv: list[str] | None = None) -> int:
         "resumo": ("gera resumo.txt pronto pra WhatsApp", _cmd_resumo),
         "rodada": ("executa parse + score + ranking + resumo", _cmd_rodada),
         "serve": ("serve web/ via http.server na porta 8000", _cmd_serve),
+        "coletar": (
+            "chama OpenRouter pra coletar palpites das IAs API",
+            _cmd_coletar,
+        ),
     }
     for name, (help_, _) in handlers.items():
-        sub.add_parser(name, help=help_)
+        sp = sub.add_parser(name, help=help_)
+        if name == "coletar":
+            sp.add_argument(
+                "--tier",
+                default=None,
+                help="filtra por tier (1..8) ou 'all' (default: all se sem --ia)",
+            )
+            sp.add_argument(
+                "--ia",
+                default=None,
+                help="slug(s) separados por vírgula (sobrescreve --tier)",
+            )
+            sp.add_argument(
+                "--dossie",
+                default=None,
+                help="path do dossiê .md (default: último em data/dossie/)",
+            )
+            sp.add_argument(
+                "--dry-run",
+                action="store_true",
+                help="lista IAs alvo, não chama API",
+            )
+            sp.add_argument(
+                "--apply",
+                action="store_true",
+                help="(no-op) explicita intenção de chamar a API; default já chama",
+            )
+            sp.add_argument(
+                "--max-paralelo",
+                type=int,
+                default=5,
+                help="máximo de requisições paralelas (default 5)",
+            )
 
     args = parser.parse_args(argv)
     if args.cmd is None:
