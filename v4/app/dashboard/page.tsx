@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase-server";
-import { Plus, Trophy } from "lucide-react";
+import { Plus } from "lucide-react";
 import LogoutButton from "@/components/LogoutButton";
 import type { Bolao } from "@/lib/types";
 
@@ -40,9 +40,6 @@ export default async function Dashboard() {
       <div className="flex gap-3 flex-wrap">
         <Link href="/criar" className="btn btn-primary">
           <Plus size={18} /> Criar bolão novo
-        </Link>
-        <Link href="/dashboard/palpites" className="btn btn-ghost">
-          <Trophy size={18} /> Meus palpites
         </Link>
       </div>
 
