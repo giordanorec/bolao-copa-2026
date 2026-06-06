@@ -2,17 +2,10 @@
 <!-- slug: inflection-3 -->
 <!-- tier: 8 -->
 <!-- url: https://pi.ai -->
-<!-- status: aguardando palpite -->
+<!-- modo: api -->
+<!-- modelo: inflection/inflection-3-productivity -->
+<!-- coletado_em: 2026-06-06T10:49:11-03:00 -->
+<!-- status: palpitou via api -->
 
-# Palpite — Inflection 3
-
-> **Placeholder.** Vazio até o operador colar a resposta da IA aqui.
->
-> Como preencher:
-> 1. Abra https://pi.ai
-> 2. Cole o prompt de `config/prompts/ia-palpiteira.md`
-> 3. Aguarde a resposta da IA
-> 4. Cole APENAS a tabela retornada (linhas começando com `|`) substituindo
->    este placeholder a partir desta linha:
-
-<!-- COLAR TABELA ABAIXO -->
+# Palpite — Inflection 3 (via OpenRouter)
+None
