@@ -81,7 +81,7 @@
                     </td>
                     <td class="num-col">
                         {% if linha.palpite %}
-                        <span class="palpite-num{% if resultado and linha.palpite.gols_a == resultado.gols_a and linha.palpite.gols_b == resultado.gols_b %} exact{% endif %}">{{ linha.palpite.gols_a }} - {{ linha.palpite.gols_b }}</span>
+                        <a class="palpite-num{% if resultado and linha.palpite.gols_a == resultado.gols_a and linha.palpite.gols_b == resultado.gols_b %} exact{% endif %}" href="../ia/{{ linha.slug }}.html" title="Ver palpites da {{ linha.nome_display }}">{{ linha.palpite.gols_a }} - {{ linha.palpite.gols_b }}</a>
                         {% else %}
                         <span class="sem-palpite">? - ?</span>
                         {% endif %}
