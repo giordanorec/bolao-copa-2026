@@ -100,6 +100,23 @@ else
   bullet_warn "hook pre-commit não instalado — rode: pre-commit install"
 fi
 
+# --- OpenRouter (F4.5 coletor) — opcional, mas necessário pra coletar via API
+# Carrega config/.env só pra esta checagem se existir; não exporta nada
+# globalmente. Se a key já estiver no env, respeita.
+or_key="${OPENROUTER_API_KEY:-}"
+if [[ -z "$or_key" && -f "$ROOT/config/.env" ]]; then
+  or_key=$(grep -E '^OPENROUTER_API_KEY=' "$ROOT/config/.env" 2>/dev/null | head -1 | cut -d'=' -f2- | tr -d '"' | tr -d "'")
+fi
+if [[ -n "$or_key" && "$or_key" != "sk-or-v1-REPLACE_ME" ]]; then
+  # mascara — mostra só prefixo + comprimento, nunca a key inteira
+  prefix="${or_key:0:10}"
+  bullet_ok "OPENROUTER_API_KEY presente ($prefix..., ${#or_key} chars)"
+elif [[ -f "$ROOT/config/.env" ]]; then
+  bullet_warn "OPENROUTER_API_KEY ausente ou placeholder em config/.env — edite o arquivo. Necessário só pra 'bolao coletar' via API."
+else
+  bullet_warn "OPENROUTER_API_KEY ausente — copie config/.env.example -> config/.env e preencha. Necessário só pra 'bolao coletar' via API."
+fi
+
 # ---
 printf '\n%s\n' "Diagnóstico do ambiente — Bolão da Copa 2026"
 printf '%s\n' "============================================"

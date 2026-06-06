@@ -1,8 +1,8 @@
-# PROMPT — versão API (coleta automatizada via OpenRouter, com dossiê)
+# PROMPT — versão WEB (coleta manual com search nativo)
 
-> Esta versão é enviada via API (sem search nativo). Um **dossiê padronizado** (`{{DOSSIE}}`) é injetado em runtime pelo coletor — todas as IAs API recebem os mesmos fatos, garantindo comparação justa. Para coleta manual via interface web (com search nativo), use `config/prompts/ia-palpiteira-web.md`.
+> Use este prompt na interface web da IA (chatgpt.com, claude.ai, gemini.google.com, x.com/grok, chat.deepseek.com etc.). A IA tem acesso à web — pode pesquisar convocações, lesões, odds e amistosos por conta própria. **Não há dossiê anexo**. Para coleta automatizada via API OpenRouter, use a versão paralela `config/prompts/ia-palpiteira.md` (com dossiê padronizado).
 >
-> O coletor substitui o placeholder `{{DOSSIE}}` pelo conteúdo de `data/dossie/<rodada>.md` antes de enviar.
+> Para o operador: copie tudo abaixo da linha tracejada e cole na interface da IA.
 
 ---
 
@@ -43,12 +43,12 @@ A geometria desse sistema de pontuação muda em relação a sistemas como o do 
 
 ## O que você pode e deve fazer
 
-Você está recebendo este prompt via API e **não tem acesso à internet**. Em vez disso, no fim deste prompt há uma seção `## DOSSIÊ DE REFERÊNCIA` com dados pré-coletados sobre as 48 seleções e o torneio (convocações, forma recente, lesões, odds agregadas, condições de jogo). Trate-o como sua fonte primária de fatos.
+Você está **autorizado e incentivado a pesquisar na internet** o que quiser antes de palpitar:
 
-- **Use o dossiê** como base factual. Não tente "lembrar" de convocações, lesões ou resultados recentes que não estejam nele — sua memória de treino pode estar desatualizada ou errada para 2026.
-- **Use seu próprio raciocínio** sobre os fatos do dossiê: modelos de previsão de placares (Poisson bivariado, Elo/SPI, xG), heurísticas de jogos de grupo, value betting. O dossiê **não** dita placares — você decide.
-- **Se um fato necessário não estiver no dossiê**, palpite com base nos sinais que tem (FIFA ranking médio, força tradicional do time, histórico em copas) e siga em frente. Não invente dados.
-- **Mercados de apostas no dossiê**: se houver odds ou linhas de gols, use como probabilidade agregada, mas **não copie cegamente** — o sistema de pontuação acima premia placar exato, e odds não otimizam para isso.
+- **Estratégia**: literatura sobre previsão de placares (Poisson bivariado, Elo/SPI, xG), estratégias ótimas para bolões com essa estrutura específica de pontuação.
+- **Informação atualizada**: convocações, lesões, suspensões, forma recente, amistosos pré-Copa, condições (altitude da Cidade do México, calor, gramados, viagens).
+- **Mercados de apostas**: odds e linhas de gols são úteis como probabilidade agregada — mas **não copie cegamente o favoritismo do mercado**; o sistema de pontuação acima premia placar exato, e o mercado não otimiza para isso.
+- **Sinais fracos**: estatística histórica (distribuição típica de placares em estreias de Copa, jogos decididos no último minuto, times que jogam fechados) ou qualquer notícia que ajude a calibrar.
 
 ## Formato de resposta (obrigatório)
 
@@ -138,11 +138,3 @@ Exemplos válidos: `<!-- ia: ChatGPT 5; data: 2026-06-08 -->`, `<!-- ia: Claude 
 | 70 | Grupo J | Sáb 27/06 | 23h00 | Dallas | Jordânia | | | Argentina |
 
 Checklist final antes de responder: (1) o comentário HTML `<!-- ia: ... -->` está presente UMA vez acima da tabela; (2) as 72 linhas estão presentes e na mesma ordem; (3) todas as células de Gols A e Gols B estão preenchidas com inteiros ≥ 0; (4) nada além do comentário e da tabela na resposta.
-
-## DOSSIÊ DE REFERÊNCIA
-
-Abaixo está um dossiê padronizado com dados pré-coletados sobre as seleções e o torneio. **Use-o como sua fonte principal de fatos** — não tente "lembrar" de informações que não estejam nele. Você pode (e deve) usar seu raciocínio próprio sobre esses fatos pra estimar placares, mas não invente fatos novos.
-
-```
-{{DOSSIE}}
-```

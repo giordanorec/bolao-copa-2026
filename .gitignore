@@ -5,10 +5,14 @@ status/*.json
 memory/*/
 !memory/.gitkeep
 
-# ambiente
+# ambiente — NUNCA versionar credenciais reais
 .env
 .env.local
 .env.*.local
+config/.env
+config/.env.local
+config/.env.*.local
+!config/.env.example
 
 # sistema
 .DS_Store

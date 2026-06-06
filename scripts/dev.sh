@@ -45,12 +45,28 @@ case "$target" in
   rodada)
     run python -m bolao rodada
     ;;
+  coletar)
+    # Repassa argumentos extras: scripts/dev.sh coletar --tier 1 --dry-run
+    shift
+    # Avisa se a key não estiver presente e não for dry-run.
+    if [[ ! ":$*:" == *":--dry-run:"* ]] && [[ -z "${OPENROUTER_API_KEY:-}" ]]; then
+      if [[ -f config/.env ]]; then
+        echo "[coletar] carregando config/.env"
+        set -a; source config/.env; set +a
+      fi
+    fi
+    if [[ -z "${OPENROUTER_API_KEY:-}" ]] && [[ ! " $* " == *" --dry-run "* ]]; then
+      echo "AVISO: OPENROUTER_API_KEY ausente. Copie config/.env.example -> config/.env e preencha."
+      echo "       (ou rode com --dry-run pra listar sem chamar API)"
+    fi
+    run python -m bolao coletar "$@"
+    ;;
   check-env)
     run bash scripts/check_env.sh
     ;;
   help|-h|--help|*)
     cat <<'EOF'
-Uso: scripts/dev.sh <target>
+Uso: scripts/dev.sh <target> [args...]
 
 Targets:
   install     Instala deps editable + hooks pre-commit + pre-push
@@ -60,7 +76,10 @@ Targets:
   fmt         ruff format + ruff --fix (aplica fixes)
   serve       python -m bolao serve (http.server em web/)
   rodada      python -m bolao rodada (parse + score + ranking + resumo)
-  check-env   diagnóstico do ambiente (Python, git, shims Windows)
+  coletar     python -m bolao coletar (carrega config/.env, valida key)
+              Ex: scripts/dev.sh coletar --tier 1 --dry-run
+                  scripts/dev.sh coletar --ia chatgpt-5
+  check-env   diagnóstico do ambiente (Python, git, shims, OPENROUTER_API_KEY)
   help        Esta mensagem
 EOF
     ;;
