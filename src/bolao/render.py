@@ -168,15 +168,17 @@ class _Render:
         prov_info = self.providers.get(provider, {})
         icon = meta.get("icon") or prov_info.get("lobe")
         color = prov_info.get("color", "92929b")
-        cls = "logo-big-inner" if big else ""
+        wrapper_cls = "ia-logo" + (" ia-logo-big" if big else "")
         if icon:
             url = f"{LOBE_ICONS_BASE}/{icon}.svg"
-            return Markup(
-                f'<img class="ia-svg {cls}" src="{url}" alt="{escape(slug)}" loading="lazy">'
+            inner = (
+                f'<img class="ia-svg" src="{url}" alt="{escape(slug)}" loading="lazy">'
             )
-        ini = _inicial(slug)
-        style = f"background:#{color};color:#fff;"
-        return Markup(f'<span class="initial-pill {cls}" style="{style}">{escape(ini)}</span>')
+        else:
+            ini = _inicial(slug)
+            style = f"background:#{color};color:#fff;"
+            inner = f'<span class="initial-pill" style="{style}">{escape(ini)}</span>'
+        return Markup(f'<span class="{wrapper_cls}">{inner}</span>')
 
     def ia_family(self, slug: str) -> str:
         meta = self.ias_meta.get(slug, {})
