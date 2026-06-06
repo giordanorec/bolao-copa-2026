@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #fffaf3;
+  --color-fg: #1a1a1a;
+  --color-primary: #009c3b;
+  --color-secondary: #ffce00;
+  --color-accent: #ff6a00;
+  --color-line: #e5e0d8;
+  --color-muted: #757072;
+
+  --font-display: "Fraunces", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html, body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  button { cursor: pointer; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-lg px-5 py-3 font-semibold
+           transition-all border;
+  }
+  .btn-primary {
+    @apply bg-[--color-primary] text-white border-transparent
+           hover:opacity-90 hover:-translate-y-0.5;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-[--color-fg] border-[--color-line]
+           hover:bg-[--color-line]/50;
+  }
+  .card {
+    @apply rounded-2xl border border-[--color-line] bg-white p-6
+           shadow-[0_2px_12px_rgba(0,0,0,0.04)];
+  }
+  .input {
+    @apply w-full rounded-lg border border-[--color-line] px-4 py-3
+           text-[--color-fg] outline-none focus:border-[--color-primary]
+           focus:ring-2 focus:ring-[--color-primary]/20;
+  }
+  .label {
+    @apply block text-sm font-semibold text-[--color-fg] mb-2;
+  }
+}

@@ -124,3 +124,37 @@ Fase 4 (MVP) entregue em paralelo por 6 especialistas. Durante o drive houve doi
 - `resumo.txt` é mínimo. Expandir em F5 com "diff vs rodada anterior", "viradas", "consensos errados".
 
 ---
+
+## 2026-06-06 — F9: v4 Bolão para Humanos (scaffold)
+
+**Decisão**: Implementar v4 (do `specs/descricao inicial.md`) como app **separado** em `v4/`, stack **Next.js 15 + Supabase + Vercel**.
+
+**Por que separado do v1**:
+- v1 é site **100% estático** (GitHub Pages). v4 precisa de DB+Auth → exige runtime dinâmico.
+- Tentar amalgamar quebraria o pipeline Python e dobraria a complexidade.
+- Separação permite deploy independente: v1 muda → push GitHub Pages; v4 muda → push Vercel.
+
+**Stack escolhida**:
+- **Next.js 15** (App Router, TS) — SSR/RSC nativo, prima do TS.
+- **Supabase** (free tier 500MB DB, 50k MAU) — Auth + DB + RLS num pacote só.
+- **Vercel** (free tier 100GB bw) — autodetect Next.js, deploy automático do `v4/` como root.
+- **Tailwind v4** (PostCSS plugin).
+
+**Schema** (`v4/sql/schema.sql`):
+- `profiles`, `bolao`, `bolao_membro`, `palpite` com **RLS** ativo em todas.
+- Palpites são **por usuário**, não por bolão — reutilizados em N bolões.
+
+**Sync com v1**: `scripts/v4_sync.py` copia `web/data/jogos.json` e `ranking.json` pra `v4/public/`. Roda manual por enquanto.
+
+**Setup operacional** (Giordano):
+1. Criar projeto Supabase + rodar `v4/sql/schema.sql`
+2. Copiar URL+anon key pra `v4/.env.local`
+3. Import no Vercel com root `v4/` + vars de ambiente
+4. URL inicial: `bolao-copa-2026.vercel.app`
+
+**CTA na home v1**: botão "🎯 Crie o seu Bolão" linkando pra Vercel.
+
+**Escopo MVP**: signup/login, criar bolão, link `/bolao/{slug}`, entrar pelo link, palpitar 104 jogos, ranking interno.
+
+**Fora do MVP**: Stripe, Google OAuth, batch import de palpite IA, cards Instagram, ranking-geral combinado.
+
