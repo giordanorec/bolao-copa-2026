@@ -525,7 +525,8 @@
       "family": "ChatGPT (via web)",
       "popularidade": 98,
       "serie_a": true,
-      "serie_a_ordem": 1
+      "serie_a_ordem": 1,
+      "mascot": "assets/mascots/chatgpt-5-thinking-web.png"
     },
     "claude-opus-4-7-web": {
       "provider": "anthropic",
@@ -534,7 +535,8 @@
       "family": "Claude (via web)",
       "popularidade": 94,
       "serie_a": true,
-      "serie_a_ordem": 2
+      "serie_a_ordem": 2,
+      "mascot": "assets/mascots/claude-opus-4-7-web.png"
     },
     "gemini-2-5-pro-web": {
       "provider": "google",
@@ -543,7 +545,8 @@
       "family": "Gemini (via web)",
       "popularidade": 96,
       "serie_a": true,
-      "serie_a_ordem": 3
+      "serie_a_ordem": 3,
+      "mascot": "assets/mascots/gemini-2-5-pro-web.png"
     },
     "grok-4-heavy-web": {
       "provider": "x-ai",
@@ -552,7 +555,8 @@
       "family": "Grok (via web)",
       "popularidade": 85,
       "serie_a": true,
-      "serie_a_ordem": 4
+      "serie_a_ordem": 4,
+      "mascot": "assets/mascots/grok-4-heavy-web.png"
     },
     "deepseek-r1-web": {
       "provider": "deepseek",
@@ -561,7 +565,8 @@
       "family": "DeepSeek (via web)",
       "popularidade": 80,
       "serie_a": true,
-      "serie_a_ordem": 5
+      "serie_a_ordem": 5,
+      "mascot": "assets/mascots/deepseek-r1-web.png"
     },
     "perplexity-sonar-pro-web": {
       "provider": "perplexity",
@@ -570,7 +575,8 @@
       "family": "Perplexity (via web)",
       "popularidade": 75,
       "serie_a": true,
-      "serie_a_ordem": 6
+      "serie_a_ordem": 6,
+      "mascot": "assets/mascots/perplexity-sonar-pro-web.png"
     },
     "copilot-microsoft-web": {
       "provider": "microsoft",
@@ -579,7 +585,8 @@
       "family": "Copilot (via web)",
       "popularidade": 78,
       "serie_a": true,
-      "serie_a_ordem": 7
+      "serie_a_ordem": 7,
+      "mascot": "assets/mascots/copilot-microsoft-web.png"
     },
     "le-chat-mistral-web": {
       "provider": "mistral",
@@ -588,7 +595,8 @@
       "family": "Mistral (via web)",
       "popularidade": 70,
       "serie_a": true,
-      "serie_a_ordem": 8
+      "serie_a_ordem": 8,
+      "mascot": "assets/mascots/le-chat-mistral-web.png"
     },
     "meta-llama-4-web": {
       "provider": "meta",
@@ -597,7 +605,8 @@
       "family": "Meta AI (via web)",
       "popularidade": 72,
       "serie_a": true,
-      "serie_a_ordem": 9
+      "serie_a_ordem": 9,
+      "mascot": "assets/mascots/meta-llama-4-web.png"
     },
     "qwen-3-max-web": {
       "provider": "alibaba",
@@ -606,7 +615,8 @@
       "family": "Qwen (via web)",
       "popularidade": 68,
       "serie_a": true,
-      "serie_a_ordem": 10
+      "serie_a_ordem": 10,
+      "mascot": "assets/mascots/qwen-3-max-web.png"
     }
   }
 }
