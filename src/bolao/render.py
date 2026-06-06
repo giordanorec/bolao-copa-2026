@@ -124,7 +124,7 @@ class _Render:
 
     def ia_family(self, slug: str) -> str:
         meta = self.ias_meta.get(slug, {})
-        return meta.get("family", "—")
+        return str(meta.get("family", "—"))
 
     def popularidade(self, slug: str) -> int:
         meta = self.ias_meta.get(slug, {})
