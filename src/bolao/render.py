@@ -199,6 +199,18 @@ class _Render:
             inner = f'<span class="initial-pill" style="{style}">{escape(ini)}</span>'
         return Markup(f'<span class="{wrapper_cls}">{inner}</span>')
 
+    def ia_mascot(self, slug: str) -> Markup:
+        meta = self.ias_meta.get(slug, {})
+        path = meta.get("mascot")
+        if not path:
+            return Markup("")
+        prefix = "" if self.lang == "pt" else "../"
+        url = f"{prefix}{path}"
+        alt = escape(str(meta.get("label", slug)))
+        return Markup(
+            f'<span class="ia-mascot"><img src="{url}" alt="{alt}" loading="lazy"></span>'
+        )
+
     def ia_family(self, slug: str) -> str:
         meta = self.ias_meta.get(slug, {})
         return str(meta.get("family", "—"))
@@ -314,6 +326,7 @@ def _renderizar_lang(
     env.globals["flag_img"] = helper.flag_img
     env.globals["flag_url"] = helper.flag_url
     env.globals["ia_logo"] = helper.ia_logo
+    env.globals["ia_mascot"] = helper.ia_mascot
     env.globals["ia_family"] = helper.ia_family
     env.globals["ia_produto"] = helper.ia_produto
     env.globals["ia_modelo"] = helper.ia_modelo

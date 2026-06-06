@@ -15,7 +15,11 @@
             {% for ia in ias_serie_a %}
             <a class="ia-card serie-a-card card" href="ia/{{ ia.slug }}.html" data-fav-slug="{{ ia.slug }}" data-fav-label="{{ ia.nome_display }}">
                 <button class="fav-toggle" title="favoritar">☆</button>
-                <div class="ia-imagem-placeholder"><span>imagem em breve</span></div>
+                {% if ia.slug in ['chatgpt-5-thinking-web','claude-opus-4-7-web','gemini-2-5-pro-web','grok-4-heavy-web','deepseek-r1-web','perplexity-sonar-pro-web','copilot-microsoft-web','le-chat-mistral-web','meta-llama-4-web','qwen-3-max-web'] %}
+                    {{ ia_mascot(ia.slug) }}
+                {% else %}
+                    <div class="ia-imagem-placeholder"><span>imagem em breve</span></div>
+                {% endif %}
                 {{ ia_logo(ia.slug) }}
                 <div class="ia-produto">{{ ia_produto(ia.slug) }}</div>
                 <div class="ia-modelo">{{ ia_modelo(ia.slug) }}</div>
