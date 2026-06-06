@@ -10,16 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://hatscripts.github.io">
-    <link rel="preconnect" href="https://cdn.simpleicons.org">
+    <link rel="preconnect" href="https://unpkg.com">
 
-    <!-- Fraunces (display chubby cute) + Outfit (rounded sans) + JetBrains Mono (números) -->
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,30..100&family=Outfit:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,30..100&family=Inter:wght@300..800&family=Outfit:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset_prefix }}assets/style.css">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='72'%3E⚽%3C/text%3E%3C/svg%3E">
 </head>
-<body>
+<body data-theme="festivo-br">
 
 <header class="site-header">
     <div class="container header-inner">
@@ -31,9 +30,10 @@
             </span>
         </a>
         <nav class="site-nav">
-            <a href="{{ asset_prefix }}index.html">Ranking</a>
-            <a href="{{ asset_prefix }}jogos.html">Jogos</a>
-            <a href="{{ asset_prefix }}ias.html">IAs</a>
+            <a href="{{ asset_prefix }}index.html">Ranking das IAs</a>
+            <a href="{{ asset_prefix }}jogos.html">Palpites de Cada Jogo</a>
+            <a href="{{ asset_prefix }}serie-a.html">Série A 🏆</a>
+            <a href="{{ asset_prefix }}ias.html">Todas as IAs</a>
         </nav>
         <div class="header-meta">
             <span class="dot" aria-hidden="true"></span>
@@ -41,6 +41,18 @@
         </div>
     </div>
 </header>
+
+<div class="theme-switcher" aria-label="Escolha do tema visual">
+    <h6>🎨 escolha um tema</h6>
+    <label><input type="radio" name="theme" value="festivo-br" checked> 🇧🇷 Festivo BR</label>
+    <label><input type="radio" name="theme" value="carnaval"> 🎉 Carnaval</label>
+    <label><input type="radio" name="theme" value="tropical"> 🌴 Tropical</label>
+    <label><input type="radio" name="theme" value="anthropic"> 📜 Anthropic warm</label>
+    <label><input type="radio" name="theme" value="editorial"> 📰 Editorial</label>
+    <label><input type="radio" name="theme" value="linear"> ◇ Linear</label>
+    <label><input type="radio" name="theme" value="geist"> ▮ Geist</label>
+    <button class="toggle-btn" title="abrir/fechar">🎨</button>
+</div>
 
 <main>
 {% block content %}{% endblock %}
@@ -64,11 +76,13 @@
         <div class="footer-col">
             <h4>Atualização</h4>
             <p class="updated">Última: <time>{{ atualizado_em_humano }}</time> BRT</p>
-            <p class="versao">Built with care &amp; samba. v0.3.0-site</p>
+            <p class="versao">Built with care &amp; frevo. v0.4.0-site</p>
         </div>
     </div>
 </footer>
 
-<script src="{{ asset_prefix }}assets/script.js" defer></script>
+<div class="toast" role="status" aria-live="polite"></div>
+
+<script src="{{ asset_prefix }}assets/share.js" defer></script>
 </body>
 </html>

@@ -34,14 +34,14 @@
                     </div>
                     <div class="placar">
                         {% if j.resultado %}
-                        <span class="numeros">{{ j.resultado.gols_a }} · {{ j.resultado.gols_b }}</span>
+                        <span class="numeros"><span class="g">{{ j.resultado.gols_a }}</span><span class="x">×</span><span class="g">{{ j.resultado.gols_b }}</span></span>
                         <span class="vs">Resultado</span>
                         {% elif j.bola_cristal %}
-                        <span class="numeros bola-cristal">{{ j.bola_cristal.gols_a }} · {{ j.bola_cristal.gols_b }}</span>
+                        <span class="numeros bola-cristal"><span class="g">{{ j.bola_cristal.gols_a }}</span><span class="x">×</span><span class="g">{{ j.bola_cristal.gols_b }}</span></span>
                         <span class="vs vs-bola">🔮 Bola de Cristal</span>
                         {% else %}
-                        <span class="numeros vs-pending">? · ?</span>
-                        <span class="vs vs-pending">vs</span>
+                        <span class="numeros vs-pending"><span class="g">?</span><span class="x">×</span><span class="g">?</span></span>
+                        <span class="vs vs-pending">aguardando</span>
                         {% endif %}
                     </div>
                     <div class="time">
@@ -53,6 +53,13 @@
                     <span>{{ j.data_br }} · {{ j.hora }}</span>
                     <span class="local">{{ j.local }}</span>
                 </div>
+                {% if j.consenso_pct %}
+                <div class="consenso-meter {{ j.consenso_nivel }}">
+                    <span class="label">consenso</span>
+                    <div class="bar"><div class="fill" style="width:{{ j.consenso_pct|round(0) }}%"></div></div>
+                    <span class="pct">{{ j.consenso_pct|round(0) }}%</span>
+                </div>
+                {% endif %}
             </a>
             {% endfor %}
         </div>

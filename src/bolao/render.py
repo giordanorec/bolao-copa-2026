@@ -70,13 +70,63 @@ def _data_br(iso: str) -> str:
         return iso
 
 
+PROVIDER_LABELS: dict[str, str] = {
+    "openai": "OpenAI",
+    "anthropic": "Anthropic",
+    "google": "Google",
+    "x-ai": "xAI",
+    "meta": "Meta",
+    "microsoft": "Microsoft",
+    "mistral": "Mistral AI",
+    "perplexity": "Perplexity",
+    "deepseek": "DeepSeek",
+    "alibaba": "Alibaba",
+    "cohere": "Cohere",
+    "moonshot": "Moonshot AI",
+    "inflection": "Inflection AI",
+    "liquid": "Liquid AI",
+    "ai21": "AI21 Labs",
+}
+
+# Exceções onde decompor o label com split-na-primeira-palavra dá errado.
+PRODUTO_EXCECOES: dict[str, tuple[str, str]] = {
+    "le-chat-mistral": ("Le Chat", "Large"),
+    "le-chat-mistral-web": ("Le Chat", "Large"),
+    "meta-llama-4": ("Meta AI", "Llama 4"),
+    "meta-llama-4-web": ("Meta AI", "Llama 4"),
+    "copilot-microsoft": ("Copilot", "Microsoft"),
+    "copilot-microsoft-web": ("Copilot", "Microsoft"),
+    "perplexity-sonar-pro": ("Perplexity", "Sonar Pro"),
+    "perplexity-sonar-pro-web": ("Perplexity", "Sonar Pro"),
+    "perplexity-sonar-reasoning": ("Perplexity", "Sonar Reasoning"),
+    "perplexity-sonar-large": ("Perplexity", "Sonar Large"),
+    "cohere-command-a": ("Cohere", "Command A"),
+    "cohere-command-r-plus": ("Cohere", "Command R+"),
+    "cohere-command-r": ("Cohere", "Command R"),
+    "kimi-k2": ("Kimi", "K2"),
+    "inflection-3": ("Inflection", "3 Productivity"),
+    "inflection-pi": ("Inflection", "Pi"),
+    "jamba-1-5-large": ("Jamba", "Large"),
+    "lfm-40b": ("Liquid LFM", "40B"),
+}
+
+
+def _decompor_label(slug: str, label: str) -> tuple[str, str]:
+    if slug in PRODUTO_EXCECOES:
+        return PRODUTO_EXCECOES[slug]
+    partes = label.split(" ", 1)
+    if len(partes) == 1:
+        return (partes[0], "")
+    return (partes[0], partes[1])
+
+
 class _Render:
     def __init__(self, web_dir: Path):
         self.web_dir = web_dir
         self.data_dir = web_dir / "data"
         self.paises = _carregar_json(self.data_dir / "paises.json")
         self.ias_logos = _carregar_json(self.data_dir / "ias_logos.json")
-        self.providers_colors = self.ias_logos.get("_defaults_color", {})
+        self.providers = self.ias_logos.get("_providers", {})
         self.ias_meta = self.ias_logos.get("ias", {})
 
     def _iso_pais(self, nome: str) -> str | None:
@@ -110,8 +160,9 @@ class _Render:
     def ia_logo(self, slug: str, big: bool = False) -> Markup:
         meta = self.ias_meta.get(slug, {})
         provider = meta.get("provider", "")
-        icon = meta.get("icon")
-        color = self.providers_colors.get(provider, "92929b")
+        prov_info = self.providers.get(provider, {})
+        icon = meta.get("icon") or prov_info.get("lobe")
+        color = prov_info.get("color", "92929b")
         cls = "logo-big-inner" if big else ""
         if icon:
             url = f"{LOBE_ICONS_BASE}/{icon}.svg"
@@ -126,9 +177,30 @@ class _Render:
         meta = self.ias_meta.get(slug, {})
         return str(meta.get("family", "—"))
 
+    def ia_produto(self, slug: str) -> str:
+        meta = self.ias_meta.get(slug, {})
+        label = str(meta.get("label", slug))
+        return _decompor_label(slug, label)[0]
+
+    def ia_modelo(self, slug: str) -> str:
+        meta = self.ias_meta.get(slug, {})
+        label = str(meta.get("label", slug))
+        return _decompor_label(slug, label)[1]
+
+    def ia_empresa(self, slug: str) -> str:
+        meta = self.ias_meta.get(slug, {})
+        provider = str(meta.get("provider", ""))
+        return PROVIDER_LABELS.get(provider, provider.title())
+
     def popularidade(self, slug: str) -> int:
         meta = self.ias_meta.get(slug, {})
         return int(meta.get("popularidade", 0))
+
+    def serie_a(self, slug: str) -> bool:
+        return bool(self.ias_meta.get(slug, {}).get("serie_a", False))
+
+    def serie_a_ordem(self, slug: str) -> int:
+        return int(self.ias_meta.get(slug, {}).get("serie_a_ordem", 999))
 
 
 def _ambiente(templates_dir: Path) -> Environment:
@@ -203,7 +275,14 @@ def renderizar_html(
     env.globals["flag_img"] = helper.flag_img
     env.globals["ia_logo"] = helper.ia_logo
     env.globals["ia_family"] = helper.ia_family
+    env.globals["ia_produto"] = helper.ia_produto
+    env.globals["ia_modelo"] = helper.ia_modelo
+    env.globals["ia_empresa"] = helper.ia_empresa
     env.globals["popularidade"] = helper.popularidade
+    env.globals["serie_a_lista"] = sorted(
+        [slug for slug, m in helper.ias_meta.items() if m.get("serie_a")],
+        key=lambda s: helper.ias_meta[s].get("serie_a_ordem", 999),
+    )
 
     ranking = _carregar_json(ranking_json)
     jogos: list[dict[str, Any]] = (
@@ -247,6 +326,18 @@ def renderizar_html(
         newline="\n",
     )
 
+    # ------- serie-a.html -------
+    serie_a_slugs = [slug for slug, m in helper.ias_meta.items() if m.get("serie_a")]
+    serie_a_slugs.sort(key=lambda s: helper.ias_meta[s].get("serie_a_ordem", 999))
+    ias_by_slug = {ia["slug"]: ia for ia in ranking.get("ias", [])}
+    ctx_serie = dict(ctx)
+    ctx_serie["ias_serie_a"] = [ias_by_slug[s] for s in serie_a_slugs if s in ias_by_slug]
+    (web_dir / "serie-a.html").write_text(
+        env.get_template("serie-a.html.j2").render(**ctx_serie),
+        encoding="utf-8",
+        newline="\n",
+    )
+
     if not jogos:
         return
 
@@ -256,11 +347,13 @@ def renderizar_html(
         for p in palpites:
             palpites_lookup_tmp.setdefault(p["jogo_numero"], []).append(p)
     bola_cristal: dict[int, dict[str, int]] = {}
+    consenso_pct: dict[int, float] = {}
     for numero, lista in palpites_lookup_tmp.items():
         consenso_jogo = _calc_consenso(lista)
         if consenso_jogo:
             top = consenso_jogo[0]
             bola_cristal[numero] = {"gols_a": top["placar_a"], "gols_b": top["placar_b"]}
+            consenso_pct[numero] = float(top["pct"])
 
     # ------- jogos.html -------
     fases_unicas = []
@@ -270,10 +363,22 @@ def renderizar_html(
         if f and f not in vistos:
             vistos.add(f)
             fases_unicas.append(f)
-    # anexar resultado + bola de cristal em cada jogo
+    # anexar resultado + bola de cristal + consenso pct em cada jogo
     for j in jogos:
         j["resultado"] = resultados_por_jogo.get(j["numero"])
         j["bola_cristal"] = bola_cristal.get(j["numero"])
+        pct = consenso_pct.get(j["numero"])
+        if pct is not None:
+            j["consenso_pct"] = pct
+            if pct >= 50:
+                j["consenso_nivel"] = "forte"
+            elif pct >= 30:
+                j["consenso_nivel"] = "medio"
+            else:
+                j["consenso_nivel"] = "fraco"
+        else:
+            j["consenso_pct"] = None
+            j["consenso_nivel"] = "fraco"
     ctx_jogos = dict(ctx)
     ctx_jogos["jogos"] = jogos
     ctx_jogos["fases_unicas"] = fases_unicas

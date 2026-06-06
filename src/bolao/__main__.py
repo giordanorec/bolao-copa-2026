@@ -107,10 +107,33 @@ def _cmd_score(_args: argparse.Namespace) -> int:
     return 0
 
 
+def _carregar_popularidade() -> dict[str, int]:
+    """Lê popularidade de cada slug do web/data/ias_logos.json (0 se ausente)."""
+    path = ROOT / "web" / "data" / "ias_logos.json"
+    if not path.is_file():
+        return {}
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    ias = raw.get("ias", {})
+    return {s: int(m.get("popularidade", 0)) for s, m in ias.items() if not s.startswith("_")}
+
+
 def _cmd_ranking(_args: argparse.Namespace) -> int:
     jogos, palpites, resultados = _carregar_tudo()
     take_errors()
     ranking = ranking_geral(palpites, resultados, jogos)
+
+    # Desempate por popularidade dentro de grupos com mesmos (pontos, exatos, vencedores)
+    popmap = _carregar_popularidade()
+    ranking_sorted = sorted(
+        ranking,
+        key=lambda r: (
+            -r["pontos"],
+            -r["placares_exatos"],
+            -r["vencedores_acertados"],
+            -popmap.get(r["slug"], 0),
+            r["slug"],
+        ),
+    )
 
     ias_json = [
         {
@@ -121,7 +144,7 @@ def _cmd_ranking(_args: argparse.Namespace) -> int:
             "vencedores_acertados": r["vencedores_acertados"],
             "jogos_palpitados": r["jogos_palpitados"],
         }
-        for r in ranking
+        for r in ranking_sorted
     ]
 
     payload = {
