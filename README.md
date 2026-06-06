@@ -41,19 +41,32 @@ Em Mac/Linux troque `source .venv/Scripts/activate` por
 
 ## Como funciona
 
-1. Copia o prompt em `config/prompts/ia-palpiteira.md` em cada IA.
-2. Salva a resposta de cada IA em `data/palpites_ias/<slug>.md`
-   (`chatgpt-5.md`, `claude-opus-4-7.md`, etc).
-3. Após cada rodada de jogos, edita `data/resultados/jogos.md`
-   preenchendo `Gols A` e `Gols B`.
-4. Roda `python -m bolao rodada` — o pipeline:
-   - faz parse de jogos, palpites e resultados;
-   - calcula pontuação com as regras clássicas;
-   - regenera o ranking em `web/index.html`;
-   - escreve `resumo.txt` pronto pra colar no WhatsApp.
-5. (Opcional) `git push` pra atualizar GitHub Pages.
+Coleta de palpites por **duas vias paralelas**:
+
+- **Web manual** — Tier 1 (16 IAs top com web search nativa). Cola o
+  prompt `config/prompts/ia-palpiteira-web.md` em cada chat e salva em
+  `data/palpites_ias/<slug>-web.md`.
+- **API OpenRouter** — ~80 IAs em uma chamada:
+
+  ```bash
+  python -m bolao coletar --tier all --dry-run    # lista quem entra
+  python -m bolao coletar --tier all              # coleta de fato
+  ```
+
+  Requer `OPENROUTER_API_KEY` em `config/.env` (ver
+  `config/.env.example`). O coletor anexa o **dossiê padronizado**
+  (`data/dossie/<rodada>.md`) ao prompt e salva resposta direto em
+  `data/palpites_ias/<slug>.md`.
+
+Após cada rodada:
+
+1. Edita `data/resultados/jogos.md` preenchendo `Gols A` e `Gols B`.
+2. Roda `python -m bolao rodada` — parse + scoring + ranking + resumo
+   em < 30s. Atualiza `web/index.html` e `resumo.txt`.
+3. (Opcional) `git push` pra atualizar GitHub Pages.
 
 Manual passo a passo durante a Copa: **[`docs/USO.md`](docs/USO.md)**.
+Lista de IAs e cobertura por via: **[`docs/IAS_PARTICIPANTES.md`](docs/IAS_PARTICIPANTES.md)**.
 
 ## Regras de pontuação (clássicas)
 

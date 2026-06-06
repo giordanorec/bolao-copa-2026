@@ -10,34 +10,127 @@ estado vazio. Se ainda não rodou, ver `README.md` (Quickstart).
 
 ## 1. Antes da Copa (10/06/2026) — coleta dos palpites das IAs
 
-### 1.1 Quais IAs participam
+A coleta vai por **duas vias paralelas** (decisão registrada em
+`docs/DECISOES.md`):
 
-Lista alvo no MVP (5 modelos):
-
-| Slug | Modelo | Onde palpitar |
+| Via | Cobertura | Quando usar |
 |---|---|---|
-| `chatgpt-5` | ChatGPT 5 | chat.openai.com (conta paga) |
-| `gemini-2-5-pro` | Gemini 2.5 Pro | gemini.google.com |
-| `claude-opus-4-7` | Claude Opus 4.7 | claude.ai |
-| `grok-4` | Grok 4 | grok.com |
-| `deepseek-r1` | DeepSeek R1 | chat.deepseek.com |
+| **Web manual** | Tier 1 (16 IAs top) | Modelos com web search nativa; valor competitivo da pesquisa ao vivo |
+| **API OpenRouter** | Todas com mapping (~80 das 105) | Comparação justa com dossiê padronizado; também duplica Tier 1 |
 
-Slug recomendado para cada IA. Se trocar o slug, atualize aqui — ele vira
-ID em `data/palpites_ias/<slug>.md` e na URL `web/ia/<slug>.html`.
+Tier 1 é colhido pelas **duas** vias — slug web ganha sufixo `-web`
+(ex: `chatgpt-5-web`) e o slug "puro" (`chatgpt-5`) é o da API. Isso
+permite comparar o mesmo modelo com search ao vivo vs com dossiê
+padronizado.
 
-### 1.2 Como coletar o palpite
+Lista mestre e cobertura por IA: [`docs/IAS_PARTICIPANTES.md`](IAS_PARTICIPANTES.md).
 
-Para cada IA:
+### 1.1 Via web (manual) — Tier 1
 
-1. Abre o chat da IA correspondente em sessão **nova** (sem contexto prévio).
-2. Cola o prompt inteiro de `config/prompts/ia-palpiteira.md`.
+Tier 1 são as 16 IAs top de mercado, todas com web search nativa
+(ChatGPT 5, Claude Opus 4.7, Gemini 2.5 Pro, Grok 4, etc — lista
+completa em `IAS_PARTICIPANTES.md`).
+
+Pra cada IA do Tier 1:
+
+1. Abre o chat da IA em sessão **nova** (sem contexto prévio).
+2. Cola o prompt inteiro de `config/prompts/ia-palpiteira-web.md`.
+   (Variante sem dossiê — a IA usa o search dela.)
 3. Espera a resposta com a tabela completa (72 jogos da fase de grupos).
-4. Copia **apenas a tabela Markdown** (do header `| Jogo | Fase | ...` até a
-   última linha) e salva em `data/palpites_ias/<slug>.md`.
-5. Confere o comentário HTML invisível no topo (`<!-- IA: ... -->`) — assinatura
-   pra evitar confundir arquivos.
+4. Copia **apenas a tabela Markdown** (do header `| Jogo | Fase | ...`
+   até a última linha) e salva em `data/palpites_ias/<slug>-web.md`.
+5. Confere o comentário HTML invisível no topo (`<!-- IA: ... -->`) —
+   assinatura pra evitar confundir arquivos.
 
-Repete para cada IA.
+Esforço: ~10 min por IA × 16 = ~3h por ciclo de coleta.
+
+### 1.2 Via API OpenRouter — todas com cobertura
+
+Coletor automatizado: uma chamada cobre 80+ IAs em paralelo, todas
+recebendo o **mesmo prompt + dossiê padronizado**, sem variação humana.
+
+#### 1.2.1 Setup (uma vez só)
+
+1. Cria conta em https://openrouter.ai e gera uma API key.
+2. Coloca crédito (estimativa: ~US$ 15-30 cobre 2 ciclos completos das
+   105 IAs — fase de grupos + mata-mata).
+3. Copia `config/.env.example` pra `config/.env` e cola a key:
+
+   ```bash
+   cp config/.env.example config/.env
+   # edita config/.env com a OPENROUTER_API_KEY
+   ```
+
+4. Confere que `config/.env` está no `.gitignore` (não vai pra
+   repositório):
+
+   ```bash
+   git check-ignore config/.env   # deve imprimir o path
+   ```
+
+5. Roda o diagnóstico:
+
+   ```bash
+   scripts/check_env.sh           # deve indicar OPENROUTER_API_KEY OK
+   ```
+
+#### 1.2.2 Preparar o dossiê
+
+Antes de coletar via API, gera o dossiê padronizado em
+`data/dossie/<rodada>.md`. O dossiê é curado pelo Arquiteto
+(Claude Opus 4.7 com web search) e contém fatos pré-coletados sobre
+seleções e o torneio. Ele entra como contexto adicional pra todas as
+IAs API.
+
+Para o primeiro ciclo, o dossiê vive em
+`data/dossie/2026-06-grupos.md`. Para o mata-mata,
+`data/dossie/2026-06-mata-mata.md` (Fase 7).
+
+#### 1.2.3 Rodar dry-run primeiro
+
+```bash
+python -m bolao coletar --tier 1 --dry-run
+```
+
+Lista quais IAs seriam consultadas, **sem** chamar a API. Sempre
+confere antes de rodar pra valer — evita gastar crédito à toa.
+
+Variantes:
+
+```bash
+python -m bolao coletar --ia chatgpt-5 --dry-run      # só uma
+python -m bolao coletar --tier all --dry-run          # tudo com mapping
+python -m bolao coletar --ia chatgpt-5,grok-4 --dry-run  # várias
+```
+
+#### 1.2.4 Rodar pra valer
+
+Remove o `--dry-run`:
+
+```bash
+python -m bolao coletar --tier all
+```
+
+O coletor:
+- Lê `config/openrouter_mapping.json` pra resolver slug → modelo.
+- Chama cada IA em paralelo (max 5 simultâneas).
+- Salva resposta em `data/palpites_ias/<slug>.md` com header
+  `<!-- modo: api -->`, `<!-- modelo: <openrouter_id> -->`,
+  `<!-- coletado_em: <ISO> -->`.
+- Pula IAs que falharem (timeout, 4xx, parse) e continua.
+- No fim, imprime relatório: quantas OK, quantas falharam, quais e por quê.
+
+Esforço: 1 comando, ~5-15 min de execução pras 80+ IAs.
+
+#### 1.2.5 Validar a coleta
+
+```bash
+python -m bolao parse
+```
+
+Mesma validação da via web. Se uma IA voltou resposta fora do formato,
+ela aparece como erro estrutural — edita à mão ou descarta o arquivo e
+rodar `coletar --ia <slug>` de novo.
 
 ### 1.3 Validar tudo antes da abertura
 
@@ -223,6 +316,9 @@ python -m bolao ranking      # só regenera HTML
 python -m bolao resumo       # só gera resumo.txt
 python -m bolao rodada       # tudo acima em sequência (uso normal)
 python -m bolao serve        # preview local em http://localhost:8000
+python -m bolao coletar --tier 1 --dry-run    # lista IAs Tier 1 sem chamar API
+python -m bolao coletar --tier all            # coleta via OpenRouter (gasta crédito)
+python -m bolao coletar --ia <slug>           # coleta uma IA específica
 python -m bolao --help       # lista subcomandos
 ```
 
