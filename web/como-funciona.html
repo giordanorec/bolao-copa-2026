@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#009C3B">
+    <title>Como funciona — Bolão das IAs · Copa 2026</title>
+    <meta name="description" content="As IAs palpitam a Copa 2026 ⚽🇧🇷. ChatGPT, Claude, Gemini, Grok, DeepSeek e mais 45 modelos competindo. Quem chuta melhor?">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://hatscripts.github.io">
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&family=Inter:wght@300..800&family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/style.css">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='72'%3E⚽%3C/text%3E%3C/svg%3E">
+</head>
+<body data-theme="festivo-br">
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">⚽</span>
+            <span class="brand-text">
+                <span class="brand-title">Bolão das IAs</span>
+                <span class="brand-sub">🇧🇷 Copa 2026</span>
+            </span>
+        </a>
+        <nav class="site-nav">
+            <a href="index.html">Ranking das IAs</a>
+            <a href="jogos.html">Palpites de Cada Jogo</a>
+            <a href="serie-a.html">Série A 🏆</a>
+            <a href="ias.html">Todas as IAs</a>
+            <a href="como-funciona.html">Como funciona</a>
+        </nav>
+        <div class="header-meta">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="meta-text">0/104 apurados</span>
+        </div>
+    </div>
+</header>
+
+<div class="theme-switcher" aria-label="Escolha do tema visual">
+    <h6>🎨 escolha um tema</h6>
+    <label><input type="radio" name="theme" value="festivo-br" checked> 🇧🇷 Festivo BR</label>
+    <label><input type="radio" name="theme" value="apple"> 🍎 Apple HIG</label>
+    <label><input type="radio" name="theme" value="nike"> 👟 Nike</label>
+    <label><input type="radio" name="theme" value="airbnb"> 🏠 Airbnb</label>
+    <label><input type="radio" name="theme" value="stripe-press"> 📚 Stripe Press</label>
+    <label><input type="radio" name="theme" value="notion"> 📝 Notion</label>
+    <label><input type="radio" name="theme" value="spotify"> 🎵 Spotify</label>
+    <label><input type="radio" name="theme" value="geist"> ▮ Vercel/Geist</label>
+    <label><input type="radio" name="theme" value="linear"> ◇ Linear</label>
+    <label><input type="radio" name="theme" value="anthropic"> 📜 Anthropic</label>
+    <label><input type="radio" name="theme" value="carnaval"> 🎉 Carnaval</label>
+    <label><input type="radio" name="theme" value="tropical"> 🌴 Tropical</label>
+    <button class="toggle-btn" title="abrir/fechar">🎨</button>
+</div>
+
+<main>
+
+<section class="section" style="padding-top: 60px;">
+    <div class="container" style="max-width: 920px;">
+
+        <div style="text-align:center; margin-bottom: 60px;">
+            <div class="hero-emojis" style="font-size: 56px; margin-bottom: 16px;">
+                <span>📜</span><span>🤖</span><span>⚽</span>
+            </div>
+            <h1 style="font-family: var(--ff-display); font-variation-settings: var(--ff-display-vs); font-style: var(--ff-display-style); font-weight: var(--ff-display-weight); font-size: clamp(40px, 7vw, 80px); color: var(--secondary); letter-spacing: var(--letterspacing-display); line-height: 1; margin: 0 0 16px;">
+                Como funciona
+            </h1>
+            <p style="color: var(--fg-mid); font-size: 18px; max-width: 600px; margin: 0 auto;">
+                O passo a passo de como as IAs palpitam, como medimos confiança e como o ranking é montado.
+            </p>
+        </div>
+
+        <ol class="processo">
+            <li class="proc-step">
+                <div class="proc-num">01</div>
+                <div class="proc-body">
+                    <h3>Coleta dos jogos oficiais</h3>
+                    <p>Importamos da FIFA os <strong>104 jogos da Copa 2026</strong> (72 da fase de grupos + 32 do mata-mata), com times, datas, horários e venues. Fonte cruzada com Sky Sports, ESPN e NBC. Todos os horários no fuso de Brasília.</p>
+                    <span class="proc-icon">🗓️</span>
+                </div>
+            </li>
+
+            <li class="proc-step">
+                <div class="proc-num">02</div>
+                <div class="proc-body">
+                    <h3>Dossiê de contexto padronizado</h3>
+                    <p>Para que <strong>todas as IAs recebam exatamente as mesmas informações</strong>, montamos um dossiê único com:</p>
+                    <ul>
+                        <li>Análise dos 12 grupos com probabilidades Opta</li>
+                        <li>Odds agregadas de mercados de futebol</li>
+                        <li>Lesões e cortes confirmados (Rodrygo, Estêvão, Messi etc.)</li>
+                        <li>Condições de venue (altitude Cidade do México, calor Dallas, etc.)</li>
+                        <li>Padrões históricos de placar em Copas</li>
+                        <li>Notas táticas relevantes</li>
+                    </ul>
+                    <p class="proc-note">Dossiê gerado pelo Claude Opus 4.7 via WebSearch cruzando 7 fontes em 03–05/06/2026.</p>
+                    <span class="proc-icon">📚</span>
+                </div>
+            </li>
+
+            <li class="proc-step">
+                <div class="proc-num">03</div>
+                <div class="proc-body">
+                    <h3>Duas vias de coleta paralelas</h3>
+                    <div class="proc-2col">
+                        <div>
+                            <h4>🌐 Via web manual <span class="tag-tier-a">Série A</span></h4>
+                            <p>10 IAs top, uma por empresa, coletadas na <strong>interface web oficial com search nativo</strong> (ChatGPT 5 Pro, Claude Opus 4.7, Gemini 2.5 Pro, Grok 4 Heavy, etc.). Cada IA pesquisa internet do jeito que sabe.</p>
+                        </div>
+                        <div>
+                            <h4>⚡ Via API OpenRouter</h4>
+                            <p>57 IAs (de Phi-4 mini a Llama 4 Maverick) coletadas via API com o <strong>mesmo dossiê padronizado</strong>. Permite comparação justa entre modelos sem viés de search.</p>
+                        </div>
+                    </div>
+                    <span class="proc-icon">🔀</span>
+                </div>
+            </li>
+
+            <li class="proc-step">
+                <div class="proc-num">04</div>
+                <div class="proc-body">
+                    <h3>Regras de pontuação clássicas</h3>
+                    <table class="regras-tabela">
+                        <thead><tr><th>Acerto</th><th>Pontos</th></tr></thead>
+                        <tbody>
+                            <tr><td>Placar exato</td><td class="mono"><strong>10</strong></td></tr>
+                            <tr><td>Vencedor + saldo de gols</td><td class="mono">7</td></tr>
+                            <tr><td>Apenas vencedor</td><td class="mono">5</td></tr>
+                            <tr><td>Empate sem placar exato</td><td class="mono">5</td></tr>
+                            <tr><td>Errado</td><td class="mono">0</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="proc-note"><strong>Mata-mata vale 2×.</strong> Vale o tempo regulamentar (90 min). Prorrogação e pênaltis são ignorados para fins de placar do palpite.</p>
+                    <span class="proc-icon">📏</span>
+                </div>
+            </li>
+
+            <li class="proc-step">
+                <div class="proc-num">05</div>
+                <div class="proc-body">
+                    <h3>Bola de cristal &amp; medidor de confiança</h3>
+                    <p>Para cada jogo, calculamos:</p>
+                    <ul>
+                        <li><strong>🔮 Bola de cristal</strong>: placar mais votado entre todas as IAs (modal estatístico).</li>
+                        <li><strong>Confiança</strong>: % das IAs que concordam no placar modal. Verde (≥50% forte), amarelo (30–49% médio), rosa (<30% fraco).</li>
+                    </ul>
+                    <p>Quando &gt;50% das IAs concordam, é sinal de jogo "no papel". Quando &lt;30%, é jogo aberto com muita dispersão de palpites.</p>
+                    <span class="proc-icon">🔮</span>
+                </div>
+            </li>
+
+            <li class="proc-step">
+                <div class="proc-num">06</div>
+                <div class="proc-body">
+                    <h3>Ranking dinâmico</h3>
+                    <p>O ranking é recalculado a cada jogo apurado. Ordenação:</p>
+                    <ol>
+                        <li><strong>Pontos totais</strong> (decrescente)</li>
+                        <li><strong>Placares exatos</strong> (desempate 1)</li>
+                        <li><strong>Vencedores acertados</strong> (desempate 2)</li>
+                        <li><strong>Popularidade da IA</strong> (desempate 3 — Statcounter web traffic)</li>
+                        <li>Ordem alfabética do slug (último recurso)</li>
+                    </ol>
+                    <span class="proc-icon">🏆</span>
+                </div>
+            </li>
+
+            <li class="proc-step">
+                <div class="proc-num">07</div>
+                <div class="proc-body">
+                    <h3>Pós-Copa: análise comparativa</h3>
+                    <p>No fim do torneio, comparamos:</p>
+                    <ul>
+                        <li>Qual <strong>empresa</strong> teve melhor desempenho médio (OpenAI vs Anthropic vs Google etc.)</li>
+                        <li>Qual <strong>família</strong> de modelo se destacou (reasoners vs não-reasoners)</li>
+                        <li>Qual <strong>via</strong> ganhou: web (com search) vs API (com dossiê)</li>
+                        <li>Quem chutou <strong>mais ousado</strong> (palpites únicos) vs quem seguiu o consenso</li>
+                    </ul>
+                    <span class="proc-icon">📊</span>
+                </div>
+            </li>
+        </ol>
+
+        <div style="margin: 80px 0 40px; padding: 36px; background: linear-gradient(135deg, var(--bg-2), color-mix(in srgb, var(--accent) 10%, transparent)); border-radius: var(--r-l); border: 1px solid var(--line); text-align: center;">
+            <h3 style="font-family: var(--ff-display); font-weight: var(--ff-display-weight); color: var(--secondary); margin: 0 0 12px; font-size: 24px;">
+                Quer participar?
+            </h3>
+            <p style="color: var(--fg-mid); margin: 0 0 20px;">
+                Por enquanto o bolão é só entre IAs. Em breve abrimos a versão pra humanos competirem também! 🇧🇷
+            </p>
+            <a href="index.html" class="btn primary">Voltar ao ranking 🏆</a>
+        </div>
+
+    </div>
+</section>
+
+<style>
+.processo { list-style: none; padding: 0; margin: 0; }
+.proc-step {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+    align-items: start;
+}
+.proc-num {
+    font-family: var(--ff-mono); font-weight: 700; font-size: 64px;
+    color: var(--primary); line-height: 1; letter-spacing: -0.04em;
+}
+.proc-body {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-l);
+    padding: 28px 32px;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+}
+.proc-body h3 {
+    font-family: var(--ff-display); font-variation-settings: var(--ff-display-vs);
+    font-style: var(--ff-display-style); font-weight: var(--ff-display-weight);
+    color: var(--secondary); font-size: 26px;
+    letter-spacing: var(--letterspacing-display);
+    margin: 0 0 12px; line-height: 1.1;
+}
+.proc-body h4 {
+    font-family: var(--ff-sans); font-weight: 700;
+    color: var(--secondary); font-size: 16px; margin: 0 0 8px;
+}
+.proc-body p { color: var(--fg-mid); margin: 0 0 12px; line-height: 1.6; }
+.proc-body p:last-child { margin-bottom: 0; }
+.proc-body ul, .proc-body ol { color: var(--fg-mid); margin: 0 0 12px; padding-left: 24px; line-height: 1.6; }
+.proc-body li { margin-bottom: 4px; }
+.proc-body .proc-icon {
+    position: absolute; top: 20px; right: 24px;
+    font-size: 40px; opacity: 0.18;
+}
+.proc-note {
+    font-size: 13px; color: var(--fg-muted) !important;
+    border-left: 3px solid var(--primary);
+    padding-left: 14px; font-style: italic;
+}
+.proc-2col {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    margin: 16px 0;
+}
+.tag-tier-a {
+    display: inline-block; font-family: var(--ff-mono); font-size: 9px;
+    font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--accent); color: var(--secondary);
+    padding: 3px 8px; border-radius: var(--r-xl);
+    margin-left: 4px; vertical-align: middle;
+}
+.regras-tabela {
+    width: 100%; border-collapse: collapse; margin: 12px 0;
+    background: var(--bg-soft); border-radius: var(--r-m); overflow: hidden;
+}
+.regras-tabela th {
+    text-align: left; padding: 10px 14px;
+    font-family: var(--ff-mono); font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--secondary); color: var(--accent);
+}
+.regras-tabela th:last-child { text-align: right; }
+.regras-tabela td { padding: 10px 14px; color: var(--fg); }
+.regras-tabela td:last-child { text-align: right; }
+.regras-tabela tr:not(:last-child) td { border-bottom: 1px solid var(--line); }
+
+@media (max-width: 720px) {
+    .proc-step { grid-template-columns: 60px 1fr; gap: 16px; }
+    .proc-num { font-size: 40px; }
+    .proc-body { padding: 22px 20px; }
+    .proc-2col { grid-template-columns: 1fr; gap: 16px; }
+    .proc-body .proc-icon { font-size: 28px; top: 14px; right: 16px; }
+}
+</style>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-col">
+            <h4>O Bolão</h4>
+            <p>Comparamos palpites de modelos de IA sobre a Copa do Mundo FIFA 2026. <strong>121 IAs</strong> participantes, dossiê de contexto padronizado e regras clássicas (placar exato 10, vencedor+saldo 7, vencedor 5, errado 0; mata-mata 2×). É sério, e é uma festa. 🎉</p>
+        </div>
+        <div class="footer-col">
+            <h4>Disclaimers</h4>
+            <ul>
+                <li>Não pegamos informação de casas de apostas.</li>
+                <li>Não somos patrocinados por Bets.</li>
+                <li>Gratuito. Doações cobrem a API.</li>
+                <li>Projeto em andamento — faça backup, não confie cegamente.</li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Atualização</h4>
+            <p class="updated">Última: <time>06/06/2026 13:02</time> BRT</p>
+            <p class="versao">Built with care &amp; frevo. v0.5.0-site</p>
+        </div>
+    </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/share.js" defer></script>
+</body>
+</html>

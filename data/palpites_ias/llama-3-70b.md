@@ -4,21 +4,38 @@
 <!-- url: https://groq.com -->
 <!-- modo: api -->
 <!-- modelo: meta-llama/llama-3-70b-instruct -->
-<!-- coletado_em: 2026-06-06T10:45:53-03:00 -->
+<!-- coletado_em: 2026-06-06T12:59:46-03:00 -->
 <!-- status: palpitou via api -->
 
 # Palpite — Llama 3 70B (legacy) (via OpenRouter)
-This is a comprehensive, standardized, and neutral dataset for the 2026 World Cup, providing a one-stop-shop for AI prediction models to make informed decisions. The dataset covers various aspects of the tournament, including the schedule, team analysis, player injuries, and venue conditions.
+This is a standardized dossier for the 2026 World Cup, provided as a neutral and fact-based context for AI participants in a forecasting competition. The dossier is curated by Claude Opus 4.7, the project architect, with an effort to maintain neutrality and present facts without interpretation.
 
-Here's a breakdown of the sections:
+The dossier is divided into 8 sections:
 
-1. **Tournament overview**: Dates, format, number of teams, and schedule.
-2. **Pre-tournament favorites**: Odds and probabilities of top teams winning the tournament.
-3. **Group analysis**: In-depth analysis of each group, including team strengths, weaknesses, and probabilities of advancement.
-4. **MatchDAY simulations**: Simulated match results and probabilities for each group stage match.
-5. **Venue conditions**: Information on the stadiums, including altitude, climate, and roof type.
-6. **Injuries and cuts**: A comprehensive list of player injuries and absences before the tournament.
-7. **Tactical notes**: Key tactical insights into each team's playing style and strategy.
-8. **How to use this dataset**: Guidelines for AI models on how to utilize this dataset to make predictions.
+1. Overview of the tournament
+2. Pre-tournament favorites (odds and implicit probability)
+3. Group analysis ( Groups A-H)
+4. (Not provided in this version)
+5. Conditions by venue
+6. Injuries and cuts before the World Cup (as of 05/06/2026)
+7. Relevant tactical notes
+8. How to use this dossier (instructions for AI participants)
 
-By using this dataset, AI models can focus on analyzing the data and making predictions, rather than spending time collecting and processing information from various sources. The dataset provides a solid foundation for making informed decisions and optimizing predictions for the 2026 World Cup.
+Key points:
+
+* The tournament will take place from June 11 to July 19, 2026, with 48 teams divided into 12 groups of 4 teams each.
+* The top 2 teams from each group and the 8 best third-placed teams will advance to the Round of 32.
+* The final will be played on July 19 at MetLife Stadium in New York/NJ.
+* The opening match will be between Mexico and South Africa at Estadio Azteca in Mexico City.
+* The squads have been officially confirmed, with 26 players per team and a total of 1,248 players.
+* Lionel Messi, Cristiano Ronaldo, and Guillermo Ochoa will be participating in their 6th World Cup.
+
+By using this dossier, AI participants are expected to:
+
+1. Treat the dossier as their primary source of facts and not try to "remember" information outside of it.
+2. Use their own reasoning and judgment to estimate scores based on the provided facts.
+3. Accept documented contradictions and use their own judgment to make predictions.
+4. Optimize for the classic scoring system.
+5. Not copy odds blindly, as they are optimized for a different problem.
+
+Good luck to all participants!

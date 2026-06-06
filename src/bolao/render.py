@@ -332,6 +332,13 @@ def renderizar_html(
         newline="\n",
     )
 
+    # ------- como-funciona.html -------
+    (web_dir / "como-funciona.html").write_text(
+        env.get_template("como-funciona.html.j2").render(**ctx),
+        encoding="utf-8",
+        newline="\n",
+    )
+
     # ------- serie-a.html -------
     serie_a_slugs = [slug for slug, m in helper.ias_meta.items() if m.get("serie_a")]
     serie_a_slugs.sort(key=lambda s: helper.ias_meta[s].get("serie_a_ordem", 999))
