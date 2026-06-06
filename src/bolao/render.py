@@ -120,14 +120,33 @@ def _decompor_label(slug: str, label: str) -> tuple[str, str]:
     return (partes[0], partes[1])
 
 
+IDIOMAS = ("pt", "en", "fr", "es")
+
+
 class _Render:
-    def __init__(self, web_dir: Path):
+    def __init__(self, web_dir: Path, lang: str = "pt"):
         self.web_dir = web_dir
+        self.lang = lang
         self.data_dir = web_dir / "data"
         self.paises = _carregar_json(self.data_dir / "paises.json")
         self.ias_logos = _carregar_json(self.data_dir / "ias_logos.json")
         self.providers = self.ias_logos.get("_providers", {})
         self.ias_meta = self.ias_logos.get("ias", {})
+        i18n_path = self.data_dir / "i18n.json"
+        self.i18n: dict[str, Any] = (
+            _carregar_json(i18n_path) if i18n_path.is_file() else {}
+        )
+
+    def t(self, key: str, **kwargs: Any) -> str:
+        """Traduz key pro idioma atual; fallback pra pt; depois pra key crua."""
+        entry = self.i18n.get(key)
+        if isinstance(entry, dict):
+            text = str(entry.get(self.lang) or entry.get("pt") or key)
+        else:
+            text = key
+        for k, v in kwargs.items():
+            text = text.replace(f"{{{k}}}", str(v))
+        return text
 
     def _iso_pais(self, nome: str) -> str | None:
         if not nome:
@@ -264,20 +283,33 @@ def renderizar_html(
     *,
     templates_dir: Path | None = None,
 ) -> None:
-    """Renderiza todo o site estático."""
+    """Renderiza site estático nos 4 idiomas (pt em /, en em /en/, fr em /fr/, es em /es/)."""
     ranking_json = Path(ranking_json)
     web_dir = Path(web_dir)
     if not ranking_json.is_file():
         raise FileNotFoundError(f"ranking JSON não encontrado: {ranking_json}")
 
     web_dir.mkdir(parents=True, exist_ok=True)
-    data_dir = web_dir / "data"
 
     tdir = Path(templates_dir) if templates_dir else _DEFAULT_TEMPLATES_DIR
     if not tdir.is_dir():
         raise FileNotFoundError(f"templates dir não encontrado: {tdir}")
 
-    helper = _Render(web_dir)
+    for lang in IDIOMAS:
+        out_dir = web_dir if lang == "pt" else (web_dir / lang)
+        _renderizar_lang(ranking_json, web_dir, out_dir, tdir, lang)
+
+
+def _renderizar_lang(
+    ranking_json: Path,
+    web_root: Path,
+    out_dir: Path,
+    tdir: Path,
+    lang: str,
+) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    helper = _Render(web_root, lang=lang)
     env = _ambiente(tdir)
     env.globals["flag_img"] = helper.flag_img
     env.globals["flag_url"] = helper.flag_url
@@ -287,10 +319,16 @@ def renderizar_html(
     env.globals["ia_modelo"] = helper.ia_modelo
     env.globals["ia_empresa"] = helper.ia_empresa
     env.globals["popularidade"] = helper.popularidade
+    env.globals["t"] = helper.t
+    env.globals["LANG"] = lang
+    env.globals["lang_prefix_root"] = "" if lang == "pt" else "../"
+    env.globals["lang_prefix_assets"] = "" if lang == "pt" else "../"
     env.globals["serie_a_lista"] = sorted(
         [slug for slug, m in helper.ias_meta.items() if m.get("serie_a")],
         key=lambda s: helper.ias_meta[s].get("serie_a_ordem", 999),
     )
+    web_dir = out_dir  # noqa: F841 (compat com código abaixo)
+    data_dir = web_root / "data"
 
     ranking = _carregar_json(ranking_json)
     jogos: list[dict[str, Any]] = (
