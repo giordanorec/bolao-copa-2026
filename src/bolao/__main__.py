@@ -135,17 +135,32 @@ def _cmd_ranking(_args: argparse.Namespace) -> int:
         ),
     )
 
-    ias_json = [
-        {
-            "slug": r["slug"],
-            "nome_display": _nome_display(r["slug"]),
-            "pontos": r["pontos"],
-            "placares_exatos": r["placares_exatos"],
-            "vencedores_acertados": r["vencedores_acertados"],
-            "jogos_palpitados": r["jogos_palpitados"],
-        }
-        for r in ranking_sorted
-    ]
+    # Competition rank: IAs com (pontos, exatos, vencedores) iguais
+    # compartilham a mesma posição. Próxima posição salta pelos empatados.
+    # Ex: [10, 8, 8, 6] -> ranks [1, 2, 2, 4]
+    ias_json: list[dict[str, object]] = []
+    for idx, r in enumerate(ranking_sorted):
+        if idx == 0:
+            rank = 1
+        else:
+            prev = ranking_sorted[idx - 1]
+            mesmo_grupo = (
+                r["pontos"] == prev["pontos"]
+                and r["placares_exatos"] == prev["placares_exatos"]
+                and r["vencedores_acertados"] == prev["vencedores_acertados"]
+            )
+            rank = ias_json[idx - 1]["rank"] if mesmo_grupo else idx + 1  # type: ignore[assignment]
+        ias_json.append(
+            {
+                "slug": r["slug"],
+                "nome_display": _nome_display(r["slug"]),
+                "pontos": r["pontos"],
+                "placares_exatos": r["placares_exatos"],
+                "vencedores_acertados": r["vencedores_acertados"],
+                "jogos_palpitados": r["jogos_palpitados"],
+                "rank": rank,
+            }
+        )
 
     payload = {
         "atualizado_em": datetime.now(BRT).isoformat(timespec="seconds"),

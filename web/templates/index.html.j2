@@ -63,8 +63,8 @@
             </thead>
             <tbody>
                 {% for ia in ias %}
-                <tr class="{% if loop.index == 1 %}podium-1{% elif loop.index == 2 %}podium-2{% elif loop.index == 3 %}podium-3{% endif %}" data-fav-slug="{{ ia.slug }}" data-fav-label="{{ ia.nome_display }}">
-                    <td class="pos">{{ loop.index }}</td>
+                <tr class="{% if ia.rank == 1 %}podium-1{% elif ia.rank == 2 %}podium-2{% elif ia.rank == 3 %}podium-3{% endif %}" data-fav-slug="{{ ia.slug }}" data-fav-label="{{ ia.nome_display }}">
+                    <td class="pos">{{ ia.rank }}º</td>
                     <td>
                         <span class="ia-cell">
                             <button class="fav-toggle" title="favoritar">☆</button>

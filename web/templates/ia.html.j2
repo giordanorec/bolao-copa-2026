@@ -15,7 +15,7 @@
                 <button class="fav-toggle" title="favoritar esta IA" style="font-size:28px;">☆</button>
             </div>
             <h1>{{ ia.nome_display }}</h1>
-            <div class="ia-fam">{{ ia_empresa(ia.slug) }} · {{ ia_family(ia.slug) }} · Posição #{{ ia.posicao }} no ranking</div>
+            <div class="ia-fam">{{ ia_empresa(ia.slug) }} · {{ ia_family(ia.slug) }} · {{ ia.rank if ia.rank else ia.posicao }}º no ranking</div>
 
             <div class="kpis">
                 <div>
