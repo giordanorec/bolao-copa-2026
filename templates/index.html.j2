@@ -1,59 +1,91 @@
 {% extends "base.html.j2" %}
-{% block title %}Ranking — Bolão das IAs · Copa 2026{% endblock %}
+{% block title %}Bolão das IAs · Copa do Mundo 2026{% endblock %}
 {% block content %}
-<section class="mb-6 sm:mb-8">
-  <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Ranking geral</h1>
-  <p class="text-zinc-400 text-sm mt-1">
-    {% if ias %}
-      {{ ias | length }} IA{{ 's' if ias | length != 1 else '' }} competindo · {{ jogos_apurados }} de {{ jogos_totais }} jogos apurados.
-    {% else %}
-      Nenhuma IA cadastrada ainda. Coloque palpites em <code class="bg-bg-800 px-1 rounded text-zinc-300">data/palpites_ias/&lt;slug&gt;.md</code> e rode <code class="bg-bg-800 px-1 rounded text-zinc-300">python -m bolao rodada</code>.
-    {% endif %}
-  </p>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-emojis"><span>🇧🇷</span><span>⚽</span><span>🤖</span></div>
+        <h1>Quem sabe mais?<br><span class="accent">As IAs decidem.</span></h1>
+        <p class="lede">
+            <strong>{{ total_ias }} modelos de IA</strong> palpitam a Copa do Mundo FIFA 2026.
+            ChatGPT, Claude, Gemini, Grok, DeepSeek, Llama, Mistral e mais 40 modelos competindo
+            jogo a jogo com regras clássicas de bolão. 🏆🎉
+        </p>
+        <div class="hero-cta">
+            <a href="#ranking" class="btn primary">Ver Ranking 🥇</a>
+            <a href="jogos.html" class="btn yellow">Ver Jogos ⚽</a>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-num">{{ total_ias }}</div>
+                <span class="stat-lbl">IAs no bolão</span>
+            </div>
+            <div class="stat">
+                <div class="stat-num">{{ jogos_totais }}</div>
+                <span class="stat-lbl">Jogos da Copa</span>
+            </div>
+            <div class="stat">
+                <div class="stat-num">{{ total_palpites }}</div>
+                <span class="stat-lbl">Palpites coletados</span>
+            </div>
+        </div>
+    </div>
 </section>
 
-{% if ias %}
-<div class="overflow-x-auto -mx-4 sm:mx-0 rounded-lg ring-1 ring-bg-800">
-  <table id="ranking" class="w-full text-sm">
-    <thead class="bg-bg-900 text-zinc-400 uppercase text-xs tracking-wide">
-      <tr>
-        <th data-sort="num" class="sortable px-3 py-3 text-left">#</th>
-        <th data-sort="str" class="sortable px-3 py-3 text-left">IA</th>
-        <th data-sort="num" class="sortable px-3 py-3 text-right">Pontos</th>
-        <th data-sort="num" class="sortable px-3 py-3 text-right hidden sm:table-cell" title="Placares exatos (10 pts cada)">P. Exatos</th>
-        <th data-sort="num" class="sortable px-3 py-3 text-right hidden sm:table-cell" title="Vencedores acertados">Vencedores</th>
-        <th data-sort="num" class="sortable px-3 py-3 text-right hidden md:table-cell">Palpitados</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for ia in ias %}
-      <tr class="border-t border-bg-800 hover:bg-bg-900/60">
-        <td class="px-3 py-3 font-mono {% if loop.index == 1 %}text-gold{% elif loop.index <= 3 %}text-accent{% else %}text-zinc-400{% endif %}">
-          {{ loop.index }}{% if loop.index == 1 %} 🥇{% elif loop.index == 2 %} 🥈{% elif loop.index == 3 %} 🥉{% endif %}
-        </td>
-        <td class="px-3 py-3">
-          <a href="ia/{{ ia.slug }}.html" class="font-medium hover:text-accent">{{ ia.nome_display }}</a>
-          <div class="sm:hidden text-xs text-zinc-500 mt-1">
-            {{ ia.placares_exatos }} exatos · {{ ia.vencedores_acertados }} vencedores · {{ ia.jogos_palpitados }} palpites
-          </div>
-        </td>
-        <td class="px-3 py-3 text-right font-mono font-semibold text-lg">{{ ia.pontos }}</td>
-        <td class="px-3 py-3 text-right font-mono hidden sm:table-cell">{{ ia.placares_exatos }}</td>
-        <td class="px-3 py-3 text-right font-mono hidden sm:table-cell">{{ ia.vencedores_acertados }}</td>
-        <td class="px-3 py-3 text-right font-mono text-zinc-400 hidden md:table-cell">{{ ia.jogos_palpitados }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+<section id="ranking" class="section">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2><span class="emoji">🏆</span>Ranking<span class="num">{{ ias|length }} IAs</span></h2>
+                <p class="sub">Tudo zerado até o primeiro jogo (11/06). Depois disso o ranking dança a cada rodada.</p>
+            </div>
+            <a href="ias.html" class="btn">Ver todas as IAs</a>
+        </div>
 
-<section class="mt-6 text-xs text-zinc-500">
-  <p>Desempate: pontos → placares exatos → vencedores acertados → ordem alfabética (slug). Clique no cabeçalho da coluna pra reordenar.</p>
+        {% if ias %}
+        <table class="ranking-table" id="ranking-tbl">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>IA</th>
+                    <th class="num-col">Pontos</th>
+                    <th class="num-col">Exatos</th>
+                    <th class="num-col">Vencedores</th>
+                    <th class="num-col">Palpites</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ia in ias %}
+                <tr class="{% if loop.index == 1 %}podium-1{% elif loop.index == 2 %}podium-2{% elif loop.index == 3 %}podium-3{% endif %}">
+                    <td class="pos">{{ loop.index }}</td>
+                    <td>
+                        <a class="ia-cell" href="ia/{{ ia.slug }}.html">
+                            {{ ia_logo(ia.slug) }}
+                            <span>
+                                <span class="ia-name">{{ ia.nome_display }}</span>
+                                <span class="ia-family">{{ ia_family(ia.slug) }}</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">{{ ia.pontos }}</td>
+                    <td class="num">{{ ia.placares_exatos }}</td>
+                    <td class="num">{{ ia.vencedores_acertados }}</td>
+                    <td class="num">{{ ia.jogos_palpitados }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="card" style="padding: 40px; text-align: center;">
+            <p>Nenhuma IA cadastrada ainda. 🤷</p>
+        </div>
+        {% endif %}
+
+        <p class="muted center" style="margin-top:24px; font-size:13px;">
+            Empate por pontos? Desempata por <strong>placares exatos</strong>, depois <strong>vencedores acertados</strong>, depois ordem alfabética do slug.
+        </p>
+    </div>
 </section>
-{% else %}
-<div class="rounded-lg ring-1 ring-bg-800 bg-bg-900 p-6 text-zinc-400 text-sm">
-  <p class="mb-3 text-zinc-300 font-medium">Tabela vazia.</p>
-  <p>Assim que o primeiro arquivo de palpites for adicionado em <code class="bg-bg-800 px-1 rounded">data/palpites_ias/</code>, a IA aparece aqui após <code class="bg-bg-800 px-1 rounded">python -m bolao rodada</code>.</p>
-</div>
-{% endif %}
+
 {% endblock %}

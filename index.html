@@ -1,67 +1,2072 @@
 <!doctype html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="description" content="Ranking ao vivo do bolão entre IAs na Copa do Mundo FIFA 2026.">
-  <title>Ranking — Bolão das IAs · Copa 2026</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            bg: { 950: '#09090b', 900: '#18181b', 800: '#27272a', 700: '#3f3f46' },
-            accent: { DEFAULT: '#10b981', dark: '#047857' },
-            gold: '#fbbf24',
-          },
-          fontFamily: {
-            sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="assets/style.css">
-</head>
-<body class="min-h-screen bg-bg-950 text-zinc-100 font-sans antialiased">
-  <header class="border-b border-bg-800 bg-bg-900/80 backdrop-blur sticky top-0 z-10">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-baseline justify-between gap-2">
-      <a href="index.html" class="text-base sm:text-lg font-semibold tracking-tight">
-        <span class="text-accent">⚽</span> Bolão das IAs <span class="text-zinc-500 font-normal">· Copa 2026</span>
-      </a>
-      <nav class="text-xs sm:text-sm text-zinc-400 flex gap-3">
-        <a href="index.html" class="hover:text-accent">Ranking</a>
-        <span aria-hidden="true" class="text-zinc-700">·</span>
-        <span class="text-zinc-500">0/104 jogos apurados</span>
-      </nav>
-    </div>
-  </header>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#009C3B">
+    <title>Bolão das IAs · Copa do Mundo 2026</title>
+    <meta name="description" content="As IAs vão palpitar a Copa 2026 ⚽🇧🇷 ChatGPT, Claude, Gemini, Grok, DeepSeek e mais 45 modelos competindo. Quem vai ganhar?">
 
-  <main class="max-w-5xl mx-auto px-4 py-6 sm:py-10">
-<section class="mb-6 sm:mb-8">
-  <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Ranking geral</h1>
-  <p class="text-zinc-400 text-sm mt-1">
-      Nenhuma IA cadastrada ainda. Coloque palpites em <code class="bg-bg-800 px-1 rounded text-zinc-300">data/palpites_ias/&lt;slug&gt;.md</code> e rode <code class="bg-bg-800 px-1 rounded text-zinc-300">python -m bolao rodada</code>.
-  </p>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://hatscripts.github.io">
+    <link rel="preconnect" href="https://cdn.simpleicons.org">
+
+    <!-- Fraunces (display chubby cute) + Outfit (rounded sans) + JetBrains Mono (números) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,30..100&family=Outfit:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/style.css">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='72'%3E⚽%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">⚽</span>
+            <span class="brand-text">
+                <span class="brand-title">Bolão das IAs</span>
+                <span class="brand-sub">🇧🇷 Copa 2026</span>
+            </span>
+        </a>
+        <nav class="site-nav">
+            <a href="index.html">Ranking</a>
+            <a href="jogos.html">Jogos</a>
+            <a href="ias.html">IAs</a>
+        </nav>
+        <div class="header-meta">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="meta-text">0/104 apurados</span>
+        </div>
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-emojis"><span>🇧🇷</span><span>⚽</span><span>🤖</span></div>
+        <h1>Quem sabe mais?<br><span class="accent">As IAs decidem.</span></h1>
+        <p class="lede">
+            <strong>121 modelos de IA</strong> palpitam a Copa do Mundo FIFA 2026.
+            ChatGPT, Claude, Gemini, Grok, DeepSeek, Llama, Mistral e mais 40 modelos competindo
+            jogo a jogo com regras clássicas de bolão. 🏆🎉
+        </p>
+        <div class="hero-cta">
+            <a href="#ranking" class="btn primary">Ver Ranking 🥇</a>
+            <a href="jogos.html" class="btn yellow">Ver Jogos ⚽</a>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-num">121</div>
+                <span class="stat-lbl">IAs no bolão</span>
+            </div>
+            <div class="stat">
+                <div class="stat-num">104</div>
+                <span class="stat-lbl">Jogos da Copa</span>
+            </div>
+            <div class="stat">
+                <div class="stat-num">3516</div>
+                <span class="stat-lbl">Palpites coletados</span>
+            </div>
+        </div>
+    </div>
 </section>
 
-<div class="rounded-lg ring-1 ring-bg-800 bg-bg-900 p-6 text-zinc-400 text-sm">
-  <p class="mb-3 text-zinc-300 font-medium">Tabela vazia.</p>
-  <p>Assim que o primeiro arquivo de palpites for adicionado em <code class="bg-bg-800 px-1 rounded">data/palpites_ias/</code>, a IA aparece aqui após <code class="bg-bg-800 px-1 rounded">python -m bolao rodada</code>.</p>
-</div>
-  </main>
+<section id="ranking" class="section">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2><span class="emoji">🏆</span>Ranking<span class="num">121 IAs</span></h2>
+                <p class="sub">Tudo zerado até o primeiro jogo (11/06). Depois disso o ranking dança a cada rodada.</p>
+            </div>
+            <a href="ias.html" class="btn">Ver todas as IAs</a>
+        </div>
 
-  <footer class="border-t border-bg-800 mt-12">
-    <div class="max-w-5xl mx-auto px-4 py-4 text-xs text-zinc-500 flex flex-wrap justify-between gap-2">
-      <span>Atualizado em <time datetime="2026-06-05T18:00:00-03:00">05/06/2026 18:00</time></span>
-      <span>Bolão da Copa 2026 · Plataforma própria · regras clássicas (10/7/5/5/0)</span>
+        <table class="ranking-table" id="ranking-tbl">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>IA</th>
+                    <th class="num-col">Pontos</th>
+                    <th class="num-col">Exatos</th>
+                    <th class="num-col">Vencedores</th>
+                    <th class="num-col">Palpites</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="podium-1">
+                    <td class="pos">1</td>
+                    <td>
+                        <a class="ia-cell" href="ia/baichuan-4.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">B</span>
+                            <span>
+                                <span class="ia-name">Baichuan 4</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="podium-2">
+                    <td class="pos">2</td>
+                    <td>
+                        <a class="ia-cell" href="ia/chatgpt-5.html">
+                            <span class="initial-pill " style="background:#00A67E;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">ChatGPT 5</span>
+                                <span class="ia-family">GPT-5</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="podium-3">
+                    <td class="pos">3</td>
+                    <td>
+                        <a class="ia-cell" href="ia/chatgpt-5-mini.html">
+                            <span class="initial-pill " style="background:#00A67E;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">ChatGPT 5 mini</span>
+                                <span class="ia-family">GPT-5</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">4</td>
+                    <td>
+                        <a class="ia-cell" href="ia/chatgpt-5-nano.html">
+                            <span class="initial-pill " style="background:#00A67E;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">ChatGPT 5 nano</span>
+                                <span class="ia-family">GPT-5</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">5</td>
+                    <td>
+                        <a class="ia-cell" href="ia/chatgpt-5-thinking.html">
+                            <span class="initial-pill " style="background:#00A67E;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">ChatGPT 5 Thinking</span>
+                                <span class="ia-family">GPT-5 reasoning</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">6</td>
+                    <td>
+                        <a class="ia-cell" href="ia/chatgpt-5-thinking-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">ChatGPT 5 Thinking (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">7</td>
+                    <td>
+                        <a class="ia-cell" href="ia/chatgpt-5-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">ChatGPT 5 (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">8</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-haiku-3-5.html">
+                            <img class="" src="https://cdn.simpleicons.org/anthropic/D97757" alt="claude-haiku-3-5" loading="lazy">
+                            <span>
+                                <span class="ia-name">Claude Haiku 3.5 (legacy)</span>
+                                <span class="ia-family">legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">9</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-haiku-4-5.html">
+                            <img class="" src="https://cdn.simpleicons.org/anthropic/D97757" alt="claude-haiku-4-5" loading="lazy">
+                            <span>
+                                <span class="ia-name">Claude Haiku 4.5</span>
+                                <span class="ia-family">Claude 4 / Haiku</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">10</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-haiku-4-5-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">Claude Haiku 4.5 (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">11</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-opus-3.html">
+                            <img class="" src="https://cdn.simpleicons.org/anthropic/D97757" alt="claude-opus-3" loading="lazy">
+                            <span>
+                                <span class="ia-name">Claude Opus 3 (legacy)</span>
+                                <span class="ia-family">legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">12</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-opus-4-5.html">
+                            <img class="" src="https://cdn.simpleicons.org/anthropic/D97757" alt="claude-opus-4-5" loading="lazy">
+                            <span>
+                                <span class="ia-name">Claude Opus 4.5</span>
+                                <span class="ia-family">Claude 4 / Opus</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">13</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-opus-4-7.html">
+                            <img class="" src="https://cdn.simpleicons.org/anthropic/D97757" alt="claude-opus-4-7" loading="lazy">
+                            <span>
+                                <span class="ia-name">Claude Opus 4.7</span>
+                                <span class="ia-family">Claude 4 / Opus</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">14</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-opus-4-7-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">Claude Opus 4.7 (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">15</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-sonnet-3-5.html">
+                            <img class="" src="https://cdn.simpleicons.org/anthropic/D97757" alt="claude-sonnet-3-5" loading="lazy">
+                            <span>
+                                <span class="ia-name">Claude Sonnet 3.5 (legacy)</span>
+                                <span class="ia-family">legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">16</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-sonnet-3-7.html">
+                            <img class="" src="https://cdn.simpleicons.org/anthropic/D97757" alt="claude-sonnet-3-7" loading="lazy">
+                            <span>
+                                <span class="ia-name">Claude Sonnet 3.7 (legacy)</span>
+                                <span class="ia-family">legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">17</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-sonnet-4-5.html">
+                            <img class="" src="https://cdn.simpleicons.org/anthropic/D97757" alt="claude-sonnet-4-5" loading="lazy">
+                            <span>
+                                <span class="ia-name">Claude Sonnet 4.5</span>
+                                <span class="ia-family">Claude 4 / Sonnet</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">18</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-sonnet-4-6.html">
+                            <img class="" src="https://cdn.simpleicons.org/anthropic/D97757" alt="claude-sonnet-4-6" loading="lazy">
+                            <span>
+                                <span class="ia-name">Claude Sonnet 4.6</span>
+                                <span class="ia-family">Claude 4 / Sonnet</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">19</td>
+                    <td>
+                        <a class="ia-cell" href="ia/claude-sonnet-4-6-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">Claude Sonnet 4.6 (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">20</td>
+                    <td>
+                        <a class="ia-cell" href="ia/codestral.html">
+                            <img class="" src="https://cdn.simpleicons.org/mistralai/FA520F" alt="codestral" loading="lazy">
+                            <span>
+                                <span class="ia-name">Codestral</span>
+                                <span class="ia-family">Mistral</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">21</td>
+                    <td>
+                        <a class="ia-cell" href="ia/cohere-aya-expanse.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">Cohere Aya Expanse 32B</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">22</td>
+                    <td>
+                        <a class="ia-cell" href="ia/cohere-command-a.html">
+                            <span class="initial-pill " style="background:#39CFEE;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">Cohere Command A</span>
+                                <span class="ia-family">Cohere</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">23</td>
+                    <td>
+                        <a class="ia-cell" href="ia/cohere-command-r.html">
+                            <span class="initial-pill " style="background:#39CFEE;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">Cohere Command R</span>
+                                <span class="ia-family">Cohere</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">24</td>
+                    <td>
+                        <a class="ia-cell" href="ia/cohere-command-r-plus.html">
+                            <span class="initial-pill " style="background:#39CFEE;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">Cohere Command R+</span>
+                                <span class="ia-family">Cohere</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">25</td>
+                    <td>
+                        <a class="ia-cell" href="ia/copilot-microsoft.html">
+                            <span class="initial-pill " style="background:#0078D4;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">Microsoft Copilot</span>
+                                <span class="ia-family">Copilot</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">26</td>
+                    <td>
+                        <a class="ia-cell" href="ia/copilot-microsoft-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">C</span>
+                            <span>
+                                <span class="ia-name">Microsoft Copilot (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">27</td>
+                    <td>
+                        <a class="ia-cell" href="ia/dbrx-instruct.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">D</span>
+                            <span>
+                                <span class="ia-name">Databricks DBRX Instruct</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">28</td>
+                    <td>
+                        <a class="ia-cell" href="ia/deepseek-r1.html">
+                            <span class="initial-pill " style="background:#4D6BFE;color:#fff;">D</span>
+                            <span>
+                                <span class="ia-name">DeepSeek R1</span>
+                                <span class="ia-family">DeepSeek</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">29</td>
+                    <td>
+                        <a class="ia-cell" href="ia/deepseek-r1-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">D</span>
+                            <span>
+                                <span class="ia-name">DeepSeek R1 (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">30</td>
+                    <td>
+                        <a class="ia-cell" href="ia/deepseek-v3.html">
+                            <span class="initial-pill " style="background:#4D6BFE;color:#fff;">D</span>
+                            <span>
+                                <span class="ia-name">DeepSeek V3 (legacy)</span>
+                                <span class="ia-family">legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">31</td>
+                    <td>
+                        <a class="ia-cell" href="ia/deepseek-v3-1.html">
+                            <span class="initial-pill " style="background:#4D6BFE;color:#fff;">D</span>
+                            <span>
+                                <span class="ia-name">DeepSeek V3.1</span>
+                                <span class="ia-family">DeepSeek</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">32</td>
+                    <td>
+                        <a class="ia-cell" href="ia/deepseek-v3-1-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">D</span>
+                            <span>
+                                <span class="ia-name">DeepSeek V3.1 (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">33</td>
+                    <td>
+                        <a class="ia-cell" href="ia/deepseek-v3-2.html">
+                            <span class="initial-pill " style="background:#4D6BFE;color:#fff;">D</span>
+                            <span>
+                                <span class="ia-name">DeepSeek V3.2</span>
+                                <span class="ia-family">DeepSeek</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">34</td>
+                    <td>
+                        <a class="ia-cell" href="ia/doubao.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">D</span>
+                            <span>
+                                <span class="ia-name">Doubao</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">35</td>
+                    <td>
+                        <a class="ia-cell" href="ia/ernie-4-5.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">E</span>
+                            <span>
+                                <span class="ia-name">Ernie 4.5</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">36</td>
+                    <td>
+                        <a class="ia-cell" href="ia/falcon-180b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">F</span>
+                            <span>
+                                <span class="ia-name">TII Falcon 180B</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">37</td>
+                    <td>
+                        <a class="ia-cell" href="ia/falcon-3-10b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">F</span>
+                            <span>
+                                <span class="ia-name">TII Falcon 3 10B</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">38</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemini-1-5-flash.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">Gemini 1.5 Flash (legacy)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">39</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemini-1-5-pro.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">Gemini 1.5 Pro (legacy)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">40</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemini-2-0-flash.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">Gemini 2.0 Flash</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">41</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemini-2-0-pro.html">
+                            <img class="" src="https://cdn.simpleicons.org/googlegemini/4285F4" alt="gemini-2-0-pro" loading="lazy">
+                            <span>
+                                <span class="ia-name">Gemini 2.0 Pro</span>
+                                <span class="ia-family">Gemini 2.0</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">42</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemini-2-5-flash.html">
+                            <img class="" src="https://cdn.simpleicons.org/googlegemini/4285F4" alt="gemini-2-5-flash" loading="lazy">
+                            <span>
+                                <span class="ia-name">Gemini 2.5 Flash</span>
+                                <span class="ia-family">Gemini 2.5</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">43</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemini-2-5-flash-lite.html">
+                            <img class="" src="https://cdn.simpleicons.org/googlegemini/4285F4" alt="gemini-2-5-flash-lite" loading="lazy">
+                            <span>
+                                <span class="ia-name">Gemini 2.5 Flash-Lite</span>
+                                <span class="ia-family">Gemini 2.5</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">44</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemini-2-5-flash-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">Gemini 2.5 Flash (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">45</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemini-2-5-pro.html">
+                            <img class="" src="https://cdn.simpleicons.org/googlegemini/4285F4" alt="gemini-2-5-pro" loading="lazy">
+                            <span>
+                                <span class="ia-name">Gemini 2.5 Pro</span>
+                                <span class="ia-family">Gemini 2.5</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">46</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemini-2-5-pro-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">Gemini 2.5 Pro (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">47</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemma-2-27b.html">
+                            <img class="" src="https://cdn.simpleicons.org/googlegemini/4285F4" alt="gemma-2-27b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Gemma 2 27B (legacy)</span>
+                                <span class="ia-family">legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">48</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemma-3-12b.html">
+                            <img class="" src="https://cdn.simpleicons.org/googlegemini/4285F4" alt="gemma-3-12b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Gemma 3 12B</span>
+                                <span class="ia-family">Gemma 3</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">49</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gemma-3-27b.html">
+                            <img class="" src="https://cdn.simpleicons.org/googlegemini/4285F4" alt="gemma-3-27b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Gemma 3 27B</span>
+                                <span class="ia-family">Gemma 3</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">50</td>
+                    <td>
+                        <a class="ia-cell" href="ia/glm-4-5.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">GLM-4.5</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">51</td>
+                    <td>
+                        <a class="ia-cell" href="ia/glm-4-5-air.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">GLM-4.5 Air</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">52</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gpt-4-1.html">
+                            <span class="initial-pill " style="background:#00A67E;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">GPT-4.1 (legacy)</span>
+                                <span class="ia-family">legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">53</td>
+                    <td>
+                        <a class="ia-cell" href="ia/gpt-4o.html">
+                            <span class="initial-pill " style="background:#00A67E;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">GPT-4o (legacy)</span>
+                                <span class="ia-family">legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">54</td>
+                    <td>
+                        <a class="ia-cell" href="ia/grok-2.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">Grok 2 (legacy)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">55</td>
+                    <td>
+                        <a class="ia-cell" href="ia/grok-3.html">
+                            <img class="" src="https://cdn.simpleicons.org/x/1E1E1E" alt="grok-3" loading="lazy">
+                            <span>
+                                <span class="ia-name">Grok 3</span>
+                                <span class="ia-family">legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">56</td>
+                    <td>
+                        <a class="ia-cell" href="ia/grok-3-mini.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">Grok 3 mini</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">57</td>
+                    <td>
+                        <a class="ia-cell" href="ia/grok-4.html">
+                            <img class="" src="https://cdn.simpleicons.org/x/1E1E1E" alt="grok-4" loading="lazy">
+                            <span>
+                                <span class="ia-name">Grok 4</span>
+                                <span class="ia-family">Grok</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">58</td>
+                    <td>
+                        <a class="ia-cell" href="ia/grok-4-fast.html">
+                            <img class="" src="https://cdn.simpleicons.org/x/1E1E1E" alt="grok-4-fast" loading="lazy">
+                            <span>
+                                <span class="ia-name">Grok 4 Fast Reasoning</span>
+                                <span class="ia-family">Grok</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">59</td>
+                    <td>
+                        <a class="ia-cell" href="ia/grok-4-heavy.html">
+                            <img class="" src="https://cdn.simpleicons.org/x/1E1E1E" alt="grok-4-heavy" loading="lazy">
+                            <span>
+                                <span class="ia-name">Grok 4 Heavy</span>
+                                <span class="ia-family">Grok</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">60</td>
+                    <td>
+                        <a class="ia-cell" href="ia/grok-4-heavy-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">Grok 4 Heavy (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">61</td>
+                    <td>
+                        <a class="ia-cell" href="ia/grok-4-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">G</span>
+                            <span>
+                                <span class="ia-name">Grok 4 (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">62</td>
+                    <td>
+                        <a class="ia-cell" href="ia/hunyuan.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">H</span>
+                            <span>
+                                <span class="ia-name">Hunyuan</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">63</td>
+                    <td>
+                        <a class="ia-cell" href="ia/ibm-granite-3-1-8b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">I</span>
+                            <span>
+                                <span class="ia-name">IBM Granite 3.1 8B</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">64</td>
+                    <td>
+                        <a class="ia-cell" href="ia/inflection-3.html">
+                            <span class="initial-pill " style="background:#C8B6FF;color:#fff;">I</span>
+                            <span>
+                                <span class="ia-name">Inflection 3</span>
+                                <span class="ia-family">Inflection</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">65</td>
+                    <td>
+                        <a class="ia-cell" href="ia/inflection-pi.html">
+                            <span class="initial-pill " style="background:#C8B6FF;color:#fff;">I</span>
+                            <span>
+                                <span class="ia-name">Inflection Pi</span>
+                                <span class="ia-family">Inflection</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">66</td>
+                    <td>
+                        <a class="ia-cell" href="ia/jamba-1-5-large.html">
+                            <span class="initial-pill " style="background:#FF6B35;color:#fff;">J</span>
+                            <span>
+                                <span class="ia-name">AI21 Jamba 1.5 Large</span>
+                                <span class="ia-family">AI21</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">67</td>
+                    <td>
+                        <a class="ia-cell" href="ia/kimi-k2.html">
+                            <span class="initial-pill " style="background:#5856D6;color:#fff;">K</span>
+                            <span>
+                                <span class="ia-name">Kimi K2</span>
+                                <span class="ia-family">Moonshot</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">68</td>
+                    <td>
+                        <a class="ia-cell" href="ia/le-chat-mistral.html">
+                            <img class="" src="https://cdn.simpleicons.org/mistralai/FA520F" alt="le-chat-mistral" loading="lazy">
+                            <span>
+                                <span class="ia-name">Le Chat (Mistral Large)</span>
+                                <span class="ia-family">Mistral</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">69</td>
+                    <td>
+                        <a class="ia-cell" href="ia/le-chat-mistral-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">L</span>
+                            <span>
+                                <span class="ia-name">Le Chat Mistral (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">70</td>
+                    <td>
+                        <a class="ia-cell" href="ia/lfm-40b.html">
+                            <span class="initial-pill " style="background:#07A0F2;color:#fff;">L</span>
+                            <span>
+                                <span class="ia-name">Liquid AI LFM-40B</span>
+                                <span class="ia-family">Liquid AI</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">71</td>
+                    <td>
+                        <a class="ia-cell" href="ia/lfm-7b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">L</span>
+                            <span>
+                                <span class="ia-name">Liquid AI LFM-7B</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">72</td>
+                    <td>
+                        <a class="ia-cell" href="ia/llama-3-1-405b.html">
+                            <img class="" src="https://cdn.simpleicons.org/meta/0866FF" alt="llama-3-1-405b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Llama 3.1 405B</span>
+                                <span class="ia-family">Llama</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">73</td>
+                    <td>
+                        <a class="ia-cell" href="ia/llama-3-1-70b.html">
+                            <img class="" src="https://cdn.simpleicons.org/meta/0866FF" alt="llama-3-1-70b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Llama 3.1 70B</span>
+                                <span class="ia-family">Llama</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">74</td>
+                    <td>
+                        <a class="ia-cell" href="ia/llama-3-2-90b-vision.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">L</span>
+                            <span>
+                                <span class="ia-name">Llama 3.2 90B Vision</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">75</td>
+                    <td>
+                        <a class="ia-cell" href="ia/llama-3-3-70b.html">
+                            <img class="" src="https://cdn.simpleicons.org/meta/0866FF" alt="llama-3-3-70b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Llama 3.3 70B</span>
+                                <span class="ia-family">Llama</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">76</td>
+                    <td>
+                        <a class="ia-cell" href="ia/llama-3-70b.html">
+                            <img class="" src="https://cdn.simpleicons.org/meta/0866FF" alt="llama-3-70b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Llama 3 70B (legacy)</span>
+                                <span class="ia-family">legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">77</td>
+                    <td>
+                        <a class="ia-cell" href="ia/llama-4-maverick.html">
+                            <img class="" src="https://cdn.simpleicons.org/meta/0866FF" alt="llama-4-maverick" loading="lazy">
+                            <span>
+                                <span class="ia-name">Llama 4 Maverick</span>
+                                <span class="ia-family">Llama</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">78</td>
+                    <td>
+                        <a class="ia-cell" href="ia/llama-4-scout.html">
+                            <img class="" src="https://cdn.simpleicons.org/meta/0866FF" alt="llama-4-scout" loading="lazy">
+                            <span>
+                                <span class="ia-name">Llama 4 Scout</span>
+                                <span class="ia-family">Llama</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">79</td>
+                    <td>
+                        <a class="ia-cell" href="ia/mathstral.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">M</span>
+                            <span>
+                                <span class="ia-name">Mathstral</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">80</td>
+                    <td>
+                        <a class="ia-cell" href="ia/meta-llama-4.html">
+                            <img class="" src="https://cdn.simpleicons.org/meta/0866FF" alt="meta-llama-4" loading="lazy">
+                            <span>
+                                <span class="ia-name">Meta AI (Llama 4)</span>
+                                <span class="ia-family">Llama</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">81</td>
+                    <td>
+                        <a class="ia-cell" href="ia/meta-llama-4-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">M</span>
+                            <span>
+                                <span class="ia-name">Meta AI Llama 4 (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">82</td>
+                    <td>
+                        <a class="ia-cell" href="ia/minimax-abab.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">M</span>
+                            <span>
+                                <span class="ia-name">MiniMax abab</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">83</td>
+                    <td>
+                        <a class="ia-cell" href="ia/ministral-8b.html">
+                            <img class="" src="https://cdn.simpleicons.org/mistralai/FA520F" alt="ministral-8b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Ministral 8B</span>
+                                <span class="ia-family">Mistral</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">84</td>
+                    <td>
+                        <a class="ia-cell" href="ia/mistral-medium-3.html">
+                            <img class="" src="https://cdn.simpleicons.org/mistralai/FA520F" alt="mistral-medium-3" loading="lazy">
+                            <span>
+                                <span class="ia-name">Mistral Medium 3</span>
+                                <span class="ia-family">Mistral</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">85</td>
+                    <td>
+                        <a class="ia-cell" href="ia/mistral-small-3.html">
+                            <img class="" src="https://cdn.simpleicons.org/mistralai/FA520F" alt="mistral-small-3" loading="lazy">
+                            <span>
+                                <span class="ia-name">Mistral Small 3</span>
+                                <span class="ia-family">Mistral</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">86</td>
+                    <td>
+                        <a class="ia-cell" href="ia/mixtral-8x22b.html">
+                            <img class="" src="https://cdn.simpleicons.org/mistralai/FA520F" alt="mixtral-8x22b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Mixtral 8x22B</span>
+                                <span class="ia-family">Mixtral</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">87</td>
+                    <td>
+                        <a class="ia-cell" href="ia/mixtral-8x7b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">M</span>
+                            <span>
+                                <span class="ia-name">Mixtral 8x7B (legacy)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">88</td>
+                    <td>
+                        <a class="ia-cell" href="ia/molmo-72b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">M</span>
+                            <span>
+                                <span class="ia-name">Allen AI Molmo 72B (vision)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">89</td>
+                    <td>
+                        <a class="ia-cell" href="ia/nemotron-340b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">N</span>
+                            <span>
+                                <span class="ia-name">NVIDIA Nemotron 340B</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">90</td>
+                    <td>
+                        <a class="ia-cell" href="ia/nemotron-70b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">N</span>
+                            <span>
+                                <span class="ia-name">NVIDIA Nemotron 70B</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">91</td>
+                    <td>
+                        <a class="ia-cell" href="ia/nous-hermes-3.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">N</span>
+                            <span>
+                                <span class="ia-name">Nous Hermes 3</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">92</td>
+                    <td>
+                        <a class="ia-cell" href="ia/o1.html">
+                            <span class="initial-pill " style="background:#00A67E;color:#fff;">O</span>
+                            <span>
+                                <span class="ia-name">OpenAI o1 (legacy)</span>
+                                <span class="ia-family">reasoning legacy</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">93</td>
+                    <td>
+                        <a class="ia-cell" href="ia/o3.html">
+                            <span class="initial-pill " style="background:#00A67E;color:#fff;">O</span>
+                            <span>
+                                <span class="ia-name">OpenAI o3</span>
+                                <span class="ia-family">reasoning</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">94</td>
+                    <td>
+                        <a class="ia-cell" href="ia/o4-mini.html">
+                            <span class="initial-pill " style="background:#00A67E;color:#fff;">O</span>
+                            <span>
+                                <span class="ia-name">OpenAI o4-mini</span>
+                                <span class="ia-family">reasoning</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">95</td>
+                    <td>
+                        <a class="ia-cell" href="ia/olmo-2-32b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">O</span>
+                            <span>
+                                <span class="ia-name">Allen AI OLMo 2 32B</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">96</td>
+                    <td>
+                        <a class="ia-cell" href="ia/perplexity-sonar-large.html">
+                            <img class="" src="https://cdn.simpleicons.org/perplexity/20808D" alt="perplexity-sonar-large" loading="lazy">
+                            <span>
+                                <span class="ia-name">Perplexity Sonar Large</span>
+                                <span class="ia-family">Perplexity</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">97</td>
+                    <td>
+                        <a class="ia-cell" href="ia/perplexity-sonar-pro.html">
+                            <img class="" src="https://cdn.simpleicons.org/perplexity/20808D" alt="perplexity-sonar-pro" loading="lazy">
+                            <span>
+                                <span class="ia-name">Perplexity Sonar Pro</span>
+                                <span class="ia-family">Perplexity</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">98</td>
+                    <td>
+                        <a class="ia-cell" href="ia/perplexity-sonar-pro-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">P</span>
+                            <span>
+                                <span class="ia-name">Perplexity Sonar Pro (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">99</td>
+                    <td>
+                        <a class="ia-cell" href="ia/perplexity-sonar-reasoning.html">
+                            <img class="" src="https://cdn.simpleicons.org/perplexity/20808D" alt="perplexity-sonar-reasoning" loading="lazy">
+                            <span>
+                                <span class="ia-name">Perplexity Sonar Reasoning</span>
+                                <span class="ia-family">Perplexity</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">100</td>
+                    <td>
+                        <a class="ia-cell" href="ia/phi-4.html">
+                            <span class="initial-pill " style="background:#0078D4;color:#fff;">P</span>
+                            <span>
+                                <span class="ia-name">Phi-4</span>
+                                <span class="ia-family">Phi</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">101</td>
+                    <td>
+                        <a class="ia-cell" href="ia/phi-4-mini.html">
+                            <span class="initial-pill " style="background:#0078D4;color:#fff;">P</span>
+                            <span>
+                                <span class="ia-name">Phi-4 mini</span>
+                                <span class="ia-family">Phi</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">102</td>
+                    <td>
+                        <a class="ia-cell" href="ia/pixtral-12b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">P</span>
+                            <span>
+                                <span class="ia-name">Pixtral 12B (legacy)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">103</td>
+                    <td>
+                        <a class="ia-cell" href="ia/pixtral-large.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">P</span>
+                            <span>
+                                <span class="ia-name">Pixtral Large</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">104</td>
+                    <td>
+                        <a class="ia-cell" href="ia/qwen-2-5-72b.html">
+                            <img class="" src="https://cdn.simpleicons.org/alibabacloud/FF6A00" alt="qwen-2-5-72b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Qwen 2.5 72B</span>
+                                <span class="ia-family">Qwen 2.5</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">105</td>
+                    <td>
+                        <a class="ia-cell" href="ia/qwen-3-235b.html">
+                            <img class="" src="https://cdn.simpleicons.org/alibabacloud/FF6A00" alt="qwen-3-235b" loading="lazy">
+                            <span>
+                                <span class="ia-name">Qwen 3 235B</span>
+                                <span class="ia-family">Qwen 3</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">106</td>
+                    <td>
+                        <a class="ia-cell" href="ia/qwen-3-coder.html">
+                            <img class="" src="https://cdn.simpleicons.org/alibabacloud/FF6A00" alt="qwen-3-coder" loading="lazy">
+                            <span>
+                                <span class="ia-name">Qwen 3 Coder</span>
+                                <span class="ia-family">Qwen 3</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">107</td>
+                    <td>
+                        <a class="ia-cell" href="ia/qwen-3-max.html">
+                            <img class="" src="https://cdn.simpleicons.org/alibabacloud/FF6A00" alt="qwen-3-max" loading="lazy">
+                            <span>
+                                <span class="ia-name">Qwen 3 Max</span>
+                                <span class="ia-family">Qwen 3</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">108</td>
+                    <td>
+                        <a class="ia-cell" href="ia/qwen-3-max-web.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">Q</span>
+                            <span>
+                                <span class="ia-name">Qwen 3 Max (via Web)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">109</td>
+                    <td>
+                        <a class="ia-cell" href="ia/qwen-vl-max.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">Q</span>
+                            <span>
+                                <span class="ia-name">Qwen VL Max (vision)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">110</td>
+                    <td>
+                        <a class="ia-cell" href="ia/qwq-32b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">Q</span>
+                            <span>
+                                <span class="ia-name">QwQ 32B (reasoner)</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">111</td>
+                    <td>
+                        <a class="ia-cell" href="ia/reka-core.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">R</span>
+                            <span>
+                                <span class="ia-name">Reka Core</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">112</td>
+                    <td>
+                        <a class="ia-cell" href="ia/reka-flash.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">R</span>
+                            <span>
+                                <span class="ia-name">Reka Flash</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">113</td>
+                    <td>
+                        <a class="ia-cell" href="ia/sensechat.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">S</span>
+                            <span>
+                                <span class="ia-name">SenseChat</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">114</td>
+                    <td>
+                        <a class="ia-cell" href="ia/snowflake-arctic.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">S</span>
+                            <span>
+                                <span class="ia-name">Snowflake Arctic</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">115</td>
+                    <td>
+                        <a class="ia-cell" href="ia/spark-4-ultra.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">S</span>
+                            <span>
+                                <span class="ia-name">iFlytek Spark 4.0 Ultra</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">116</td>
+                    <td>
+                        <a class="ia-cell" href="ia/stablelm-2-12b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">S</span>
+                            <span>
+                                <span class="ia-name">Stability StableLM 2 12B</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">117</td>
+                    <td>
+                        <a class="ia-cell" href="ia/step-2.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">S</span>
+                            <span>
+                                <span class="ia-name">Step 2</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">118</td>
+                    <td>
+                        <a class="ia-cell" href="ia/tulu-3-405b.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">T</span>
+                            <span>
+                                <span class="ia-name">Allen AI Tülu 3 405B</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">119</td>
+                    <td>
+                        <a class="ia-cell" href="ia/wizardlm-2-8x22b.html">
+                            <span class="initial-pill " style="background:#0078D4;color:#fff;">W</span>
+                            <span>
+                                <span class="ia-name">WizardLM 2 8x22B</span>
+                                <span class="ia-family">WizardLM</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">120</td>
+                    <td>
+                        <a class="ia-cell" href="ia/yi-large.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">Y</span>
+                            <span>
+                                <span class="ia-name">Yi-Large</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+                <tr class="">
+                    <td class="pos">121</td>
+                    <td>
+                        <a class="ia-cell" href="ia/yi-lightning.html">
+                            <span class="initial-pill " style="background:#92929b;color:#fff;">Y</span>
+                            <span>
+                                <span class="ia-name">Yi-Lightning</span>
+                                <span class="ia-family">—</span>
+                            </span>
+                        </a>
+                    </td>
+                    <td class="pts">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                    <td class="num">0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="muted center" style="margin-top:24px; font-size:13px;">
+            Empate por pontos? Desempata por <strong>placares exatos</strong>, depois <strong>vencedores acertados</strong>, depois ordem alfabética do slug.
+        </p>
     </div>
-  </footer>
+</section>
 
-  <script src="assets/script.js" defer></script>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-col">
+            <h4>O Bolão</h4>
+            <p>Comparamos palpites de modelos de IA sobre a Copa do Mundo FIFA 2026. <strong>121 IAs</strong> participantes, dossiê de contexto padronizado e regras clássicas (placar exato 10, vencedor+saldo 7, vencedor 5, errado 0; mata-mata 2×). É sério, e é uma festa. 🎉</p>
+        </div>
+        <div class="footer-col">
+            <h4>Disclaimers</h4>
+            <ul>
+                <li>Não pegamos informação de casas de apostas.</li>
+                <li>Não somos patrocinados por Bets.</li>
+                <li>Gratuito. Doações cobrem a API.</li>
+                <li>Projeto em andamento — faça backup, não confie cegamente.</li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Atualização</h4>
+            <p class="updated">Última: <time>06/06/2026 11:51</time> BRT</p>
+            <p class="versao">Built with care &amp; samba. v0.3.0-site</p>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/script.js" defer></script>
 </body>
 </html>

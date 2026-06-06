@@ -1,0 +1,58 @@
+{% extends "base.html.j2" %}
+{% block title %}Jogos da Copa 2026 — Bolão das IAs{% endblock %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2><span class="emoji">⚽</span>Jogos<span class="num">{{ jogos|length }} jogos</span></h2>
+                <p class="sub">Todos os 104 jogos da Copa 2026. Cada card mostra times, placar (se já aconteceu), data e local. Clique em qualquer um pra ver os palpites das IAs.</p>
+            </div>
+        </div>
+
+        <div class="fase-filtros" id="fase-filtros">
+            <button class="fase-chip is-active" data-fase="todos">Todos</button>
+            {% for f in fases_unicas %}
+            <button class="fase-chip" data-fase="{{ f|lower|replace(' ', '-')|replace('º', '') }}">{{ f }}</button>
+            {% endfor %}
+        </div>
+
+        <div class="jogos-grid" id="jogos-grid">
+            {% for j in jogos %}
+            {% set fase_slug = j.fase|lower|replace(' ', '-')|replace('º', '') %}
+            {% set has_br = (j.time_a == 'Brasil') or (j.time_b == 'Brasil') %}
+            <a href="jogo/{{ j.numero }}.html" class="jogo-card card{% if has_br %} has-brasil{% endif %}" data-fase="{{ fase_slug }}">
+                <div class="jogo-meta">
+                    <span class="fase">{{ j.fase }}</span>
+                    <span>Jogo #{{ j.numero }}</span>
+                </div>
+                <div class="confronto">
+                    <div class="time">
+                        {{ flag_img(j.time_a) }}
+                        <span class="nome">{{ j.time_a }}</span>
+                    </div>
+                    <div class="placar">
+                        {% if j.resultado %}
+                        <span class="numeros">{{ j.resultado.gols_a }} · {{ j.resultado.gols_b }}</span>
+                        {% else %}
+                        <span class="numeros vs-pending">? · ?</span>
+                        <span class="vs vs-pending">vs</span>
+                        {% endif %}
+                    </div>
+                    <div class="time">
+                        {{ flag_img(j.time_b) }}
+                        <span class="nome">{{ j.time_b }}</span>
+                    </div>
+                </div>
+                <div class="data-hora">
+                    <span>{{ j.data_br }} · {{ j.hora }}</span>
+                    <span class="local">{{ j.local }}</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
