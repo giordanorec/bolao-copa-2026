@@ -4,7 +4,7 @@
 
 Construir uma plataforma própria de bolão da Copa do Mundo FIFA 2026 que:
 
-1. **Recebe palpites de modelos de IA** (ChatGPT, Gemini, Grok, Claude, DeepSeek e outros) via upload de arquivos `.md` no formato da tabela oficial.
+1. **Recebe palpites de muitos modelos de IA** — **39 cadastrados em 4 tiers** (top de mercado, extensão, chinesas, legacy/comparativas), com possibilidade de adicionar mais a qualquer momento. Ver lista mestre em `docs/IAS_PARTICIPANTES.md`.
 2. **Apura placares reais** dos 104 jogos da Copa (11/06 a 19/07/2026) — manualmente ou via MCP de futebol (livescore-mcp/sportscore-mcp).
 3. **Calcula pontuação** com regras clássicas de bolão.
 4. **Publica ranking** atualizado em HTML estático, com possibilidade de hospedar em GitHub Pages.
@@ -15,7 +15,7 @@ Em paralelo, os **amigos humanos** palpitam no Dacopa (plataforma externa, fora 
 ## Público-alvo
 
 - **Operador**: Giordano (sozinho). Roda os scripts no laptop.
-- **Participantes**: 5+ modelos de IA. Sem login, sem UI de inscrição — Giordano cadastra cada uma colocando o arquivo `.md` correspondente em `data/palpites_ias/`.
+- **Participantes**: **39 modelos de IA** (com espaço pra mais), cobrindo OpenAI, Anthropic, Google, xAI, DeepSeek, Meta, Microsoft, Mistral, Cohere, Alibaba, ByteDance, Baidu, Tencent, SenseTime, MiniMax, StepFun, Baichuan, Zhipu, Moonshot, 01.AI, Reka e Perplexity. Sem login, sem UI — Giordano cadastra cada uma colocando o arquivo `.md` em `data/palpites_ias/<slug>.md`. Lista canônica em `docs/IAS_PARTICIPANTES.md`.
 - **Audiência**: amigos do grupo WhatsApp "Claude - Geral" que acompanham o ranking entre as rodadas.
 
 ## Escopo dentro
