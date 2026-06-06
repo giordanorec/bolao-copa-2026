@@ -1,5 +1,5 @@
 {% extends "base.html.j2" %}
-{% block title %}{{ jogo.time_a }} vs {{ jogo.time_b }} · Jogo {{ jogo.numero }} — Bolão das IAs{% endblock %}
+{% block title %}{{ jogo.time_a }} × {{ jogo.time_b }} · Jogo {{ jogo.numero }} — Bolão das IAs{% endblock %}
 {% block content %}
 
 <section class="jogo-hero">
@@ -25,21 +25,22 @@
         </div>
 
         <div class="data-completa">
-            <strong>{{ jogo.data_br }} · {{ jogo.hora }}</strong> ·
-            <span class="local">{{ jogo.local }}</span>
+            <strong>{{ jogo.data_br }} · {{ jogo.hora }}</strong> · <span class="local">{{ jogo.local }}</span>
         </div>
 
         <div class="share-bar">
             <button class="share-btn whatsapp" data-share="whatsapp"
-                data-text="{{ jogo.time_a }} {% if jogo.bola_cristal %}{{ jogo.bola_cristal.gols_a }} × {{ jogo.bola_cristal.gols_b }} (🔮 bola de cristal){% else %}vs{% endif %} {{ jogo.time_b }} — palpite das IAs no Bolão da Copa 2026">
+                data-text="{{ jogo.time_a }} {% if jogo.bola_cristal %}{{ jogo.bola_cristal.gols_a }} × {{ jogo.bola_cristal.gols_b }} (🔮 bola de cristal){% else %}vs{% endif %} {{ jogo.time_b }} - Bolão das IAs Copa 2026"
+                data-card='{"titulo":"{{ jogo.time_a }} × {{ jogo.time_b }}", "subtitulo":"{{ jogo.fase }} · {{ jogo.data_br }}", "placar":"{% if jogo.bola_cristal %}{{ jogo.bola_cristal.gols_a }} × {{ jogo.bola_cristal.gols_b }}{% else %}? × ?{% endif %}", "time_a":"{{ jogo.time_a }}", "time_b":"{{ jogo.time_b }}", "flag_a_url":"{{ flag_url(jogo.time_a) }}", "flag_b_url":"{{ flag_url(jogo.time_b) }}", "tag":"{% if jogo.bola_cristal %}🔮 BOLA DE CRISTAL{% else %}EM BREVE{% endif %}", "footer":"As IAs palpitam. Quem chuta melhor?"}'>
                 <span class="ico">💬</span> WhatsApp
             </button>
             <button class="share-btn instagram" data-share="instagram"
-                data-text="🇧🇷⚽ {{ jogo.time_a }} {% if jogo.bola_cristal %}{{ jogo.bola_cristal.gols_a }}×{{ jogo.bola_cristal.gols_b }}{% else %}vs{% endif %} {{ jogo.time_b }} - Copa 2026">
+                data-text="🇧🇷⚽🔮 {{ jogo.time_a }} {% if jogo.bola_cristal %}{{ jogo.bola_cristal.gols_a }}×{{ jogo.bola_cristal.gols_b }}{% endif %} {{ jogo.time_b }} - Bolão das IAs Copa 2026"
+                data-card='{"titulo":"{{ jogo.time_a }} × {{ jogo.time_b }}", "subtitulo":"{{ jogo.fase }} · {{ jogo.data_br }}", "placar":"{% if jogo.bola_cristal %}{{ jogo.bola_cristal.gols_a }} × {{ jogo.bola_cristal.gols_b }}{% else %}? × ?{% endif %}", "time_a":"{{ jogo.time_a }}", "time_b":"{{ jogo.time_b }}", "flag_a_url":"{{ flag_url(jogo.time_a) }}", "flag_b_url":"{{ flag_url(jogo.time_b) }}", "tag":"{% if jogo.bola_cristal %}🔮 BOLA DE CRISTAL{% else %}EM BREVE{% endif %}", "footer":"As IAs palpitam. Quem chuta melhor?"}'>
                 <span class="ico">📸</span> Instagram
             </button>
             <button class="share-btn" data-share="copy"
-                data-text="{{ jogo.time_a }} vs {{ jogo.time_b }} - Copa 2026">
+                data-text="{{ jogo.time_a }} vs {{ jogo.time_b }} - Bolão das IAs Copa 2026">
                 <span class="ico">🔗</span> Copiar
             </button>
         </div>
@@ -50,11 +51,12 @@
 <section class="section" style="padding-top:20px;">
     <div class="container">
         <div class="consenso">
-            <h3><span class="emoji">🎯</span>Consenso das IAs</h3>
+            <h3><span class="emoji">🎯</span>Confiança e consenso</h3>
+            <p style="color:var(--fg-mid); font-size:14px; margin-bottom:18px;">Clique em qualquer placar pra ver quais IAs cravaram.</p>
             <div class="consenso-list">
-                {% for p in consenso[:5] %}
+                {% for p in consenso[:8] %}
                 <div class="consenso-row">
-                    <span class="consenso-placar">{{ p.placar_a }} × {{ p.placar_b }}</span>
+                    <button class="consenso-placar" data-popup-placar data-g-a="{{ p.placar_a }}" data-g-b="{{ p.placar_b }}">{{ p.placar_a }} × {{ p.placar_b }}</button>
                     <div class="consenso-bar"><div class="consenso-bar-fill" style="width: {{ p.pct }}%"></div></div>
                     <span class="consenso-pct">{{ p.n }} IAs</span>
                 </div>
@@ -70,17 +72,13 @@
         <div class="section-head">
             <div>
                 <h2><span class="emoji">🤖</span>Palpites de cada IA</h2>
-                <p class="sub">{{ palpites_ias|length }} IAs palpitaram este jogo. Quando o resultado real for cadastrado, cada IA recebe pontos: <strong>10</strong> placar exato, <strong>7</strong> vencedor+saldo, <strong>5</strong> vencedor, <strong>0</strong> errado.</p>
+                <p class="sub">{{ palpites_ias|length }} IAs palpitaram este jogo. Clique no placar pra ver TODAS as IAs que deram aquele palpite — ou no nome da IA pra ir pra página dela.</p>
             </div>
         </div>
 
         <table class="palpites-table">
             <thead>
-                <tr>
-                    <th>IA</th>
-                    <th class="num-col">Palpite</th>
-                    <th class="num-col">Pontos</th>
-                </tr>
+                <tr><th>IA</th><th class="num-col">Palpite</th><th class="num-col">Pontos</th></tr>
             </thead>
             <tbody>
                 {% for linha in palpites_ias %}
@@ -90,13 +88,13 @@
                             {{ ia_logo(linha.slug) }}
                             <span>
                                 <span class="ia-name">{{ linha.nome_display }}</span>
-                                <span class="ia-family">{{ ia_family(linha.slug) }}</span>
+                                <span class="ia-family">{{ ia_empresa(linha.slug) }} · {{ ia_family(linha.slug) }}</span>
                             </span>
                         </a>
                     </td>
                     <td class="num-col">
                         {% if linha.palpite %}
-                        <a class="palpite-num{% if resultado and linha.palpite.gols_a == resultado.gols_a and linha.palpite.gols_b == resultado.gols_b %} exact{% endif %}" href="../ia/{{ linha.slug }}.html" title="Ver palpites da {{ linha.nome_display }}">{{ linha.palpite.gols_a }} × {{ linha.palpite.gols_b }}</a>
+                        <button class="palpite-num{% if resultado and linha.palpite.gols_a == resultado.gols_a and linha.palpite.gols_b == resultado.gols_b %} exact{% endif %}" data-popup-placar data-g-a="{{ linha.palpite.gols_a }}" data-g-b="{{ linha.palpite.gols_b }}" title="Ver todas as IAs com este palpite">{{ linha.palpite.gols_a }} × {{ linha.palpite.gols_b }}</button>
                         {% else %}
                         <span class="sem-palpite">? × ?</span>
                         {% endif %}
@@ -108,6 +106,9 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        {# JSON com dados pra popup: { "1x0": [{slug, nome, logo}, ...] } #}
+        <script id="palpites-dados" type="application/json">{{ palpites_por_placar_json | safe }}</script>
     </div>
 </section>
 

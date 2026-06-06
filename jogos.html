@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#009C3B">
-    <title>Jogos da Copa 2026 — Bolão das IAs</title>
-    <meta name="description" content="As IAs vão palpitar a Copa 2026 ⚽🇧🇷 ChatGPT, Claude, Gemini, Grok, DeepSeek e mais 45 modelos competindo. Quem vai ganhar?">
+    <title>Palpites de Cada Jogo — Bolão das IAs · Copa 2026</title>
+    <meta name="description" content="As IAs palpitam a Copa 2026 ⚽🇧🇷. ChatGPT, Claude, Gemini, Grok, DeepSeek e mais 45 modelos competindo. Quem chuta melhor?">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://hatscripts.github.io">
     <link rel="preconnect" href="https://unpkg.com">
 
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,30..100&family=Inter:wght@300..800&family=Outfit:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&family=Inter:wght@300..800&family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/style.css">
 
@@ -45,12 +45,17 @@
 <div class="theme-switcher" aria-label="Escolha do tema visual">
     <h6>🎨 escolha um tema</h6>
     <label><input type="radio" name="theme" value="festivo-br" checked> 🇧🇷 Festivo BR</label>
+    <label><input type="radio" name="theme" value="apple"> 🍎 Apple HIG</label>
+    <label><input type="radio" name="theme" value="nike"> 👟 Nike</label>
+    <label><input type="radio" name="theme" value="airbnb"> 🏠 Airbnb</label>
+    <label><input type="radio" name="theme" value="stripe-press"> 📚 Stripe Press</label>
+    <label><input type="radio" name="theme" value="notion"> 📝 Notion</label>
+    <label><input type="radio" name="theme" value="spotify"> 🎵 Spotify</label>
+    <label><input type="radio" name="theme" value="geist"> ▮ Vercel/Geist</label>
+    <label><input type="radio" name="theme" value="linear"> ◇ Linear</label>
+    <label><input type="radio" name="theme" value="anthropic"> 📜 Anthropic</label>
     <label><input type="radio" name="theme" value="carnaval"> 🎉 Carnaval</label>
     <label><input type="radio" name="theme" value="tropical"> 🌴 Tropical</label>
-    <label><input type="radio" name="theme" value="anthropic"> 📜 Anthropic warm</label>
-    <label><input type="radio" name="theme" value="editorial"> 📰 Editorial</label>
-    <label><input type="radio" name="theme" value="linear"> ◇ Linear</label>
-    <label><input type="radio" name="theme" value="geist"> ▮ Geist</label>
     <button class="toggle-btn" title="abrir/fechar">🎨</button>
 </div>
 
@@ -60,8 +65,8 @@
     <div class="container">
         <div class="section-head">
             <div>
-                <h2><span class="emoji">⚽</span>Jogos<span class="num">104 jogos</span></h2>
-                <p class="sub">Todos os 104 jogos da Copa 2026. Cada card mostra times, placar (se já aconteceu), data e local. Clique em qualquer um pra ver os palpites das IAs.</p>
+                <h2><span class="emoji">⚽</span>Palpites de Cada Jogo<span class="num">104 jogos</span></h2>
+                <p class="sub">Cada card mostra a <strong>🔮 Bola de Cristal</strong> (placar mais votado pelas IAs) e o <strong>medidor de confiança</strong> (quão concordes as IAs estão). Clique em qualquer jogo pra ver palpite por IA.</p>
             </div>
         </div>
 
@@ -88,7 +93,7 @@
         </div>
 
         <div class="jogos-grid" id="jogos-grid">
-            <a href="jogo/1.html" class="jogo-card card" data-fase="grupo-a">
+            <div class="jogo-card card" data-fase="grupo-a" data-popup-jogo="1" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo A</span>
                     <span>Jogo #1</span>
@@ -111,13 +116,13 @@
                     <span>Qui 11/06 · 16:00</span>
                     <span class="local">Cidade do México</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:80.0%"></div></div>
                     <span class="pct">80.0%</span>
                 </div>
-            </a>
-            <a href="jogo/2.html" class="jogo-card card" data-fase="grupo-a">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-a" data-popup-jogo="2" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo A</span>
                     <span>Jogo #2</span>
@@ -140,13 +145,13 @@
                     <span>Qui 11/06 · 23:00</span>
                     <span class="local">Guadalajara</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:73.0%"></div></div>
                     <span class="pct">73.0%</span>
                 </div>
-            </a>
-            <a href="jogo/3.html" class="jogo-card card" data-fase="grupo-b">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-b" data-popup-jogo="3" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo B</span>
                     <span>Jogo #3</span>
@@ -169,13 +174,13 @@
                     <span>Sex 12/06 · 16:00</span>
                     <span class="local">Toronto</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:44.0%"></div></div>
                     <span class="pct">44.0%</span>
                 </div>
-            </a>
-            <a href="jogo/4.html" class="jogo-card card" data-fase="grupo-d">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-d" data-popup-jogo="4" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo D</span>
                     <span>Jogo #4</span>
@@ -198,13 +203,13 @@
                     <span>Sex 12/06 · 22:00</span>
                     <span class="local">Los Angeles</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:37.0%"></div></div>
                     <span class="pct">37.0%</span>
                 </div>
-            </a>
-            <a href="jogo/5.html" class="jogo-card card" data-fase="grupo-c">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-c" data-popup-jogo="5" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo C</span>
                     <span>Jogo #5</span>
@@ -227,13 +232,13 @@
                     <span>Sáb 13/06 · 22:00</span>
                     <span class="local">Boston</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:62.0%"></div></div>
                     <span class="pct">62.0%</span>
                 </div>
-            </a>
-            <a href="jogo/6.html" class="jogo-card card" data-fase="grupo-d">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-d" data-popup-jogo="6" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo D</span>
                     <span>Jogo #6</span>
@@ -256,13 +261,13 @@
                     <span>Dom 14/06 · 01:00</span>
                     <span class="local">Vancouver</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:68.0%"></div></div>
                     <span class="pct">68.0%</span>
                 </div>
-            </a>
-            <a href="jogo/7.html" class="jogo-card card has-brasil" data-fase="grupo-c">
+            </div>
+            <div class="jogo-card card has-brasil" data-fase="grupo-c" data-popup-jogo="7" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo C</span>
                     <span>Jogo #7</span>
@@ -285,13 +290,13 @@
                     <span>Sáb 13/06 · 19:00</span>
                     <span class="local">Nova York/NJ</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:40.0%"></div></div>
                     <span class="pct">40.0%</span>
                 </div>
-            </a>
-            <a href="jogo/8.html" class="jogo-card card" data-fase="grupo-b">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-b" data-popup-jogo="8" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo B</span>
                     <span>Jogo #8</span>
@@ -314,13 +319,13 @@
                     <span>Sáb 13/06 · 16:00</span>
                     <span class="local">San Francisco</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:84.0%"></div></div>
                     <span class="pct">84.0%</span>
                 </div>
-            </a>
-            <a href="jogo/9.html" class="jogo-card card" data-fase="grupo-e">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-e" data-popup-jogo="9" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo E</span>
                     <span>Jogo #9</span>
@@ -343,13 +348,13 @@
                     <span>Dom 14/06 · 20:00</span>
                     <span class="local">Filadélfia</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:60.0%"></div></div>
                     <span class="pct">60.0%</span>
                 </div>
-            </a>
-            <a href="jogo/10.html" class="jogo-card card" data-fase="grupo-e">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-e" data-popup-jogo="10" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo E</span>
                     <span>Jogo #10</span>
@@ -372,13 +377,13 @@
                     <span>Dom 14/06 · 14:00</span>
                     <span class="local">Houston</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:74.0%"></div></div>
                     <span class="pct">74.0%</span>
                 </div>
-            </a>
-            <a href="jogo/11.html" class="jogo-card card" data-fase="grupo-f">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-f" data-popup-jogo="11" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo F</span>
                     <span>Jogo #11</span>
@@ -401,13 +406,13 @@
                     <span>Dom 14/06 · 17:00</span>
                     <span class="local">Dallas</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:70.0%"></div></div>
                     <span class="pct">70.0%</span>
                 </div>
-            </a>
-            <a href="jogo/12.html" class="jogo-card card" data-fase="grupo-f">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-f" data-popup-jogo="12" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo F</span>
                     <span>Jogo #12</span>
@@ -430,13 +435,13 @@
                     <span>Dom 14/06 · 23:00</span>
                     <span class="local">Monterrey</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:60.0%"></div></div>
                     <span class="pct">60.0%</span>
                 </div>
-            </a>
-            <a href="jogo/13.html" class="jogo-card card" data-fase="grupo-h">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-h" data-popup-jogo="13" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo H</span>
                     <span>Jogo #13</span>
@@ -459,13 +464,13 @@
                     <span>Seg 15/06 · 19:00</span>
                     <span class="local">Miami</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:70.0%"></div></div>
                     <span class="pct">70.0%</span>
                 </div>
-            </a>
-            <a href="jogo/14.html" class="jogo-card card" data-fase="grupo-h">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-h" data-popup-jogo="14" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo H</span>
                     <span>Jogo #14</span>
@@ -488,13 +493,13 @@
                     <span>Seg 15/06 · 13:00</span>
                     <span class="local">Atlanta</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:69.0%"></div></div>
                     <span class="pct">69.0%</span>
                 </div>
-            </a>
-            <a href="jogo/15.html" class="jogo-card card" data-fase="grupo-g">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-g" data-popup-jogo="15" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo G</span>
                     <span>Jogo #15</span>
@@ -517,13 +522,13 @@
                     <span>Seg 15/06 · 22:00</span>
                     <span class="local">Los Angeles</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:48.0%"></div></div>
                     <span class="pct">48.0%</span>
                 </div>
-            </a>
-            <a href="jogo/16.html" class="jogo-card card" data-fase="grupo-g">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-g" data-popup-jogo="16" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo G</span>
                     <span>Jogo #16</span>
@@ -546,13 +551,13 @@
                     <span>Seg 15/06 · 16:00</span>
                     <span class="local">Seattle</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:54.0%"></div></div>
                     <span class="pct">54.0%</span>
                 </div>
-            </a>
-            <a href="jogo/17.html" class="jogo-card card" data-fase="grupo-i">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-i" data-popup-jogo="17" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo I</span>
                     <span>Jogo #17</span>
@@ -575,13 +580,13 @@
                     <span>Ter 16/06 · 16:00</span>
                     <span class="local">Nova York/NJ</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:40.0%"></div></div>
                     <span class="pct">40.0%</span>
                 </div>
-            </a>
-            <a href="jogo/18.html" class="jogo-card card" data-fase="grupo-i">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-i" data-popup-jogo="18" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo I</span>
                     <span>Jogo #18</span>
@@ -604,13 +609,13 @@
                     <span>Ter 16/06 · 19:00</span>
                     <span class="local">Boston</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:58.0%"></div></div>
                     <span class="pct">58.0%</span>
                 </div>
-            </a>
-            <a href="jogo/19.html" class="jogo-card card" data-fase="grupo-j">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-j" data-popup-jogo="19" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo J</span>
                     <span>Jogo #19</span>
@@ -633,13 +638,13 @@
                     <span>Ter 16/06 · 22:00</span>
                     <span class="local">Kansas City</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:74.0%"></div></div>
                     <span class="pct">74.0%</span>
                 </div>
-            </a>
-            <a href="jogo/20.html" class="jogo-card card" data-fase="grupo-j">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-j" data-popup-jogo="20" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo J</span>
                     <span>Jogo #20</span>
@@ -662,13 +667,13 @@
                     <span>Qua 17/06 · 01:00</span>
                     <span class="local">San Francisco</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:40.0%"></div></div>
                     <span class="pct">40.0%</span>
                 </div>
-            </a>
-            <a href="jogo/21.html" class="jogo-card card" data-fase="grupo-l">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-l" data-popup-jogo="21" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo L</span>
                     <span>Jogo #21</span>
@@ -691,13 +696,13 @@
                     <span>Qua 17/06 · 20:00</span>
                     <span class="local">Toronto</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:49.0%"></div></div>
                     <span class="pct">49.0%</span>
                 </div>
-            </a>
-            <a href="jogo/22.html" class="jogo-card card" data-fase="grupo-l">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-l" data-popup-jogo="22" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo L</span>
                     <span>Jogo #22</span>
@@ -720,13 +725,13 @@
                     <span>Qua 17/06 · 17:00</span>
                     <span class="local">Dallas</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:37.0%"></div></div>
                     <span class="pct">37.0%</span>
                 </div>
-            </a>
-            <a href="jogo/23.html" class="jogo-card card" data-fase="grupo-k">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-k" data-popup-jogo="23" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo K</span>
                     <span>Jogo #23</span>
@@ -749,13 +754,13 @@
                     <span>Qua 17/06 · 14:00</span>
                     <span class="local">Houston</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:55.0%"></div></div>
                     <span class="pct">55.0%</span>
                 </div>
-            </a>
-            <a href="jogo/24.html" class="jogo-card card" data-fase="grupo-k">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-k" data-popup-jogo="24" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo K</span>
                     <span>Jogo #24</span>
@@ -778,13 +783,13 @@
                     <span>Qua 17/06 · 23:00</span>
                     <span class="local">Cidade do México</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:49.0%"></div></div>
                     <span class="pct">49.0%</span>
                 </div>
-            </a>
-            <a href="jogo/25.html" class="jogo-card card" data-fase="grupo-a">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-a" data-popup-jogo="25" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo A</span>
                     <span>Jogo #25</span>
@@ -807,13 +812,13 @@
                     <span>Qui 18/06 · 13:00</span>
                     <span class="local">Atlanta</span>
                 </div>
-                <div class="consenso-meter fraco">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter fraco">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:29.0%"></div></div>
                     <span class="pct">29.0%</span>
                 </div>
-            </a>
-            <a href="jogo/26.html" class="jogo-card card" data-fase="grupo-b">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-b" data-popup-jogo="26" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo B</span>
                     <span>Jogo #26</span>
@@ -836,13 +841,13 @@
                     <span>Qui 18/06 · 16:00</span>
                     <span class="local">Los Angeles</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:39.0%"></div></div>
                     <span class="pct">39.0%</span>
                 </div>
-            </a>
-            <a href="jogo/27.html" class="jogo-card card" data-fase="grupo-b">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-b" data-popup-jogo="27" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo B</span>
                     <span>Jogo #27</span>
@@ -865,13 +870,13 @@
                     <span>Qui 18/06 · 19:00</span>
                     <span class="local">Vancouver</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:53.0%"></div></div>
                     <span class="pct">53.0%</span>
                 </div>
-            </a>
-            <a href="jogo/28.html" class="jogo-card card" data-fase="grupo-a">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-a" data-popup-jogo="28" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo A</span>
                     <span>Jogo #28</span>
@@ -894,13 +899,13 @@
                     <span>Qui 18/06 · 22:00</span>
                     <span class="local">Guadalajara</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:33.0%"></div></div>
                     <span class="pct">33.0%</span>
                 </div>
-            </a>
-            <a href="jogo/29.html" class="jogo-card card has-brasil" data-fase="grupo-c">
+            </div>
+            <div class="jogo-card card has-brasil" data-fase="grupo-c" data-popup-jogo="29" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo C</span>
                     <span>Jogo #29</span>
@@ -923,13 +928,13 @@
                     <span>Sex 19/06 · 21:30</span>
                     <span class="local">Filadélfia</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:69.0%"></div></div>
                     <span class="pct">69.0%</span>
                 </div>
-            </a>
-            <a href="jogo/30.html" class="jogo-card card" data-fase="grupo-c">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-c" data-popup-jogo="30" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo C</span>
                     <span>Jogo #30</span>
@@ -952,13 +957,13 @@
                     <span>Sex 19/06 · 19:00</span>
                     <span class="local">Boston</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:47.0%"></div></div>
                     <span class="pct">47.0%</span>
                 </div>
-            </a>
-            <a href="jogo/31.html" class="jogo-card card" data-fase="grupo-d">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-d" data-popup-jogo="31" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo D</span>
                     <span>Jogo #31</span>
@@ -981,13 +986,13 @@
                     <span>Sáb 20/06 · 00:00</span>
                     <span class="local">San Francisco</span>
                 </div>
-                <div class="consenso-meter fraco">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter fraco">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:29.0%"></div></div>
                     <span class="pct">29.0%</span>
                 </div>
-            </a>
-            <a href="jogo/32.html" class="jogo-card card" data-fase="grupo-d">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-d" data-popup-jogo="32" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo D</span>
                     <span>Jogo #32</span>
@@ -1010,13 +1015,13 @@
                     <span>Sex 19/06 · 16:00</span>
                     <span class="local">Seattle</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:41.0%"></div></div>
                     <span class="pct">41.0%</span>
                 </div>
-            </a>
-            <a href="jogo/33.html" class="jogo-card card" data-fase="grupo-e">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-e" data-popup-jogo="33" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo E</span>
                     <span>Jogo #33</span>
@@ -1039,13 +1044,13 @@
                     <span>Sáb 20/06 · 17:00</span>
                     <span class="local">Toronto</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:51.0%"></div></div>
                     <span class="pct">51.0%</span>
                 </div>
-            </a>
-            <a href="jogo/34.html" class="jogo-card card" data-fase="grupo-e">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-e" data-popup-jogo="34" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo E</span>
                     <span>Jogo #34</span>
@@ -1068,13 +1073,13 @@
                     <span>Sáb 20/06 · 21:00</span>
                     <span class="local">Kansas City</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:51.0%"></div></div>
                     <span class="pct">51.0%</span>
                 </div>
-            </a>
-            <a href="jogo/35.html" class="jogo-card card" data-fase="grupo-f">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-f" data-popup-jogo="35" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo F</span>
                     <span>Jogo #35</span>
@@ -1097,13 +1102,13 @@
                     <span>Sáb 20/06 · 14:00</span>
                     <span class="local">Houston</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:42.0%"></div></div>
                     <span class="pct">42.0%</span>
                 </div>
-            </a>
-            <a href="jogo/36.html" class="jogo-card card" data-fase="grupo-f">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-f" data-popup-jogo="36" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo F</span>
                     <span>Jogo #36</span>
@@ -1126,13 +1131,13 @@
                     <span>Dom 21/06 · 01:00</span>
                     <span class="local">Monterrey</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:39.0%"></div></div>
                     <span class="pct">39.0%</span>
                 </div>
-            </a>
-            <a href="jogo/37.html" class="jogo-card card" data-fase="grupo-h">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-h" data-popup-jogo="37" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo H</span>
                     <span>Jogo #37</span>
@@ -1155,13 +1160,13 @@
                     <span>Dom 21/06 · 19:00</span>
                     <span class="local">Miami</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:61.0%"></div></div>
                     <span class="pct">61.0%</span>
                 </div>
-            </a>
-            <a href="jogo/38.html" class="jogo-card card" data-fase="grupo-h">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-h" data-popup-jogo="38" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo H</span>
                     <span>Jogo #38</span>
@@ -1184,13 +1189,13 @@
                     <span>Dom 21/06 · 13:00</span>
                     <span class="local">Atlanta</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:47.0%"></div></div>
                     <span class="pct">47.0%</span>
                 </div>
-            </a>
-            <a href="jogo/39.html" class="jogo-card card" data-fase="grupo-g">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-g" data-popup-jogo="39" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo G</span>
                     <span>Jogo #39</span>
@@ -1213,13 +1218,13 @@
                     <span>Dom 21/06 · 16:00</span>
                     <span class="local">Los Angeles</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:37.0%"></div></div>
                     <span class="pct">37.0%</span>
                 </div>
-            </a>
-            <a href="jogo/40.html" class="jogo-card card" data-fase="grupo-g">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-g" data-popup-jogo="40" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo G</span>
                     <span>Jogo #40</span>
@@ -1242,13 +1247,13 @@
                     <span>Dom 21/06 · 22:00</span>
                     <span class="local">Vancouver</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:59.0%"></div></div>
                     <span class="pct">59.0%</span>
                 </div>
-            </a>
-            <a href="jogo/41.html" class="jogo-card card" data-fase="grupo-i">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-i" data-popup-jogo="41" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo I</span>
                     <span>Jogo #41</span>
@@ -1271,13 +1276,13 @@
                     <span>Seg 22/06 · 21:00</span>
                     <span class="local">Nova York/NJ</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:44.0%"></div></div>
                     <span class="pct">44.0%</span>
                 </div>
-            </a>
-            <a href="jogo/42.html" class="jogo-card card" data-fase="grupo-i">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-i" data-popup-jogo="42" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo I</span>
                     <span>Jogo #42</span>
@@ -1300,13 +1305,13 @@
                     <span>Seg 22/06 · 18:00</span>
                     <span class="local">Filadélfia</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:46.0%"></div></div>
                     <span class="pct">46.0%</span>
                 </div>
-            </a>
-            <a href="jogo/43.html" class="jogo-card card" data-fase="grupo-j">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-j" data-popup-jogo="43" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo J</span>
                     <span>Jogo #43</span>
@@ -1329,13 +1334,13 @@
                     <span>Seg 22/06 · 14:00</span>
                     <span class="local">Dallas</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:47.0%"></div></div>
                     <span class="pct">47.0%</span>
                 </div>
-            </a>
-            <a href="jogo/44.html" class="jogo-card card" data-fase="grupo-j">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-j" data-popup-jogo="44" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo J</span>
                     <span>Jogo #44</span>
@@ -1358,13 +1363,13 @@
                     <span>Ter 23/06 · 00:00</span>
                     <span class="local">San Francisco</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:38.0%"></div></div>
                     <span class="pct">38.0%</span>
                 </div>
-            </a>
-            <a href="jogo/45.html" class="jogo-card card" data-fase="grupo-l">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-l" data-popup-jogo="45" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo L</span>
                     <span>Jogo #45</span>
@@ -1387,13 +1392,13 @@
                     <span>Ter 23/06 · 17:00</span>
                     <span class="local">Boston</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:56.0%"></div></div>
                     <span class="pct">56.0%</span>
                 </div>
-            </a>
-            <a href="jogo/46.html" class="jogo-card card" data-fase="grupo-l">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-l" data-popup-jogo="46" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo L</span>
                     <span>Jogo #46</span>
@@ -1416,13 +1421,13 @@
                     <span>Ter 23/06 · 20:00</span>
                     <span class="local">Toronto</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:65.0%"></div></div>
                     <span class="pct">65.0%</span>
                 </div>
-            </a>
-            <a href="jogo/47.html" class="jogo-card card" data-fase="grupo-k">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-k" data-popup-jogo="47" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo K</span>
                     <span>Jogo #47</span>
@@ -1445,13 +1450,13 @@
                     <span>Ter 23/06 · 14:00</span>
                     <span class="local">Houston</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:69.0%"></div></div>
                     <span class="pct">69.0%</span>
                 </div>
-            </a>
-            <a href="jogo/48.html" class="jogo-card card" data-fase="grupo-k">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-k" data-popup-jogo="48" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo K</span>
                     <span>Jogo #48</span>
@@ -1474,13 +1479,13 @@
                     <span>Ter 23/06 · 23:00</span>
                     <span class="local">Guadalajara</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:50.0%"></div></div>
                     <span class="pct">50.0%</span>
                 </div>
-            </a>
-            <a href="jogo/49.html" class="jogo-card card has-brasil" data-fase="grupo-c">
+            </div>
+            <div class="jogo-card card has-brasil" data-fase="grupo-c" data-popup-jogo="49" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo C</span>
                     <span>Jogo #49</span>
@@ -1503,13 +1508,13 @@
                     <span>Qua 24/06 · 19:00</span>
                     <span class="local">Miami</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:62.0%"></div></div>
                     <span class="pct">62.0%</span>
                 </div>
-            </a>
-            <a href="jogo/50.html" class="jogo-card card" data-fase="grupo-c">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-c" data-popup-jogo="50" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo C</span>
                     <span>Jogo #50</span>
@@ -1532,13 +1537,13 @@
                     <span>Qua 24/06 · 19:00</span>
                     <span class="local">Atlanta</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:56.0%"></div></div>
                     <span class="pct">56.0%</span>
                 </div>
-            </a>
-            <a href="jogo/51.html" class="jogo-card card" data-fase="grupo-b">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-b" data-popup-jogo="51" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo B</span>
                     <span>Jogo #51</span>
@@ -1561,13 +1566,13 @@
                     <span>Qua 24/06 · 16:00</span>
                     <span class="local">Vancouver</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:54.0%"></div></div>
                     <span class="pct">54.0%</span>
                 </div>
-            </a>
-            <a href="jogo/52.html" class="jogo-card card" data-fase="grupo-b">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-b" data-popup-jogo="52" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo B</span>
                     <span>Jogo #52</span>
@@ -1590,13 +1595,13 @@
                     <span>Qua 24/06 · 16:00</span>
                     <span class="local">Seattle</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:31.0%"></div></div>
                     <span class="pct">31.0%</span>
                 </div>
-            </a>
-            <a href="jogo/53.html" class="jogo-card card" data-fase="grupo-a">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-a" data-popup-jogo="53" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo A</span>
                     <span>Jogo #53</span>
@@ -1619,13 +1624,13 @@
                     <span>Qua 24/06 · 22:00</span>
                     <span class="local">Cidade do México</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:48.0%"></div></div>
                     <span class="pct">48.0%</span>
                 </div>
-            </a>
-            <a href="jogo/54.html" class="jogo-card card" data-fase="grupo-a">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-a" data-popup-jogo="54" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo A</span>
                     <span>Jogo #54</span>
@@ -1648,13 +1653,13 @@
                     <span>Qua 24/06 · 22:00</span>
                     <span class="local">Monterrey</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:42.0%"></div></div>
                     <span class="pct">42.0%</span>
                 </div>
-            </a>
-            <a href="jogo/55.html" class="jogo-card card" data-fase="grupo-e">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-e" data-popup-jogo="55" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo E</span>
                     <span>Jogo #55</span>
@@ -1677,13 +1682,13 @@
                     <span>Qui 25/06 · 17:00</span>
                     <span class="local">Filadélfia</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:54.0%"></div></div>
                     <span class="pct">54.0%</span>
                 </div>
-            </a>
-            <a href="jogo/56.html" class="jogo-card card" data-fase="grupo-e">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-e" data-popup-jogo="56" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo E</span>
                     <span>Jogo #56</span>
@@ -1706,13 +1711,13 @@
                     <span>Qui 25/06 · 17:00</span>
                     <span class="local">Nova York/NJ</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:48.0%"></div></div>
                     <span class="pct">48.0%</span>
                 </div>
-            </a>
-            <a href="jogo/57.html" class="jogo-card card" data-fase="grupo-f">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-f" data-popup-jogo="57" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo F</span>
                     <span>Jogo #57</span>
@@ -1735,13 +1740,13 @@
                     <span>Qui 25/06 · 20:00</span>
                     <span class="local">Dallas</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:50.0%"></div></div>
                     <span class="pct">50.0%</span>
                 </div>
-            </a>
-            <a href="jogo/58.html" class="jogo-card card" data-fase="grupo-f">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-f" data-popup-jogo="58" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo F</span>
                     <span>Jogo #58</span>
@@ -1764,13 +1769,13 @@
                     <span>Qui 25/06 · 20:00</span>
                     <span class="local">Kansas City</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:73.0%"></div></div>
                     <span class="pct">73.0%</span>
                 </div>
-            </a>
-            <a href="jogo/59.html" class="jogo-card card" data-fase="grupo-d">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-d" data-popup-jogo="59" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo D</span>
                     <span>Jogo #59</span>
@@ -1793,13 +1798,13 @@
                     <span>Qui 25/06 · 23:00</span>
                     <span class="local">Los Angeles</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:46.0%"></div></div>
                     <span class="pct">46.0%</span>
                 </div>
-            </a>
-            <a href="jogo/60.html" class="jogo-card card" data-fase="grupo-d">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-d" data-popup-jogo="60" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo D</span>
                     <span>Jogo #60</span>
@@ -1822,13 +1827,13 @@
                     <span>Qui 25/06 · 23:00</span>
                     <span class="local">San Francisco</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:44.0%"></div></div>
                     <span class="pct">44.0%</span>
                 </div>
-            </a>
-            <a href="jogo/61.html" class="jogo-card card" data-fase="grupo-i">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-i" data-popup-jogo="61" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo I</span>
                     <span>Jogo #61</span>
@@ -1851,13 +1856,13 @@
                     <span>Sex 26/06 · 16:00</span>
                     <span class="local">Boston</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:48.0%"></div></div>
                     <span class="pct">48.0%</span>
                 </div>
-            </a>
-            <a href="jogo/62.html" class="jogo-card card" data-fase="grupo-i">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-i" data-popup-jogo="62" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo I</span>
                     <span>Jogo #62</span>
@@ -1880,13 +1885,13 @@
                     <span>Sex 26/06 · 16:00</span>
                     <span class="local">Toronto</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:52.0%"></div></div>
                     <span class="pct">52.0%</span>
                 </div>
-            </a>
-            <a href="jogo/63.html" class="jogo-card card" data-fase="grupo-g">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-g" data-popup-jogo="63" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo G</span>
                     <span>Jogo #63</span>
@@ -1909,13 +1914,13 @@
                     <span>Sáb 27/06 · 00:00</span>
                     <span class="local">Seattle</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:42.0%"></div></div>
                     <span class="pct">42.0%</span>
                 </div>
-            </a>
-            <a href="jogo/64.html" class="jogo-card card" data-fase="grupo-g">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-g" data-popup-jogo="64" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo G</span>
                     <span>Jogo #64</span>
@@ -1938,13 +1943,13 @@
                     <span>Sáb 27/06 · 00:00</span>
                     <span class="local">Vancouver</span>
                 </div>
-                <div class="consenso-meter forte">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter forte">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:52.0%"></div></div>
                     <span class="pct">52.0%</span>
                 </div>
-            </a>
-            <a href="jogo/65.html" class="jogo-card card" data-fase="grupo-h">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-h" data-popup-jogo="65" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo H</span>
                     <span>Jogo #65</span>
@@ -1967,13 +1972,13 @@
                     <span>Sex 26/06 · 21:00</span>
                     <span class="local">Houston</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:44.0%"></div></div>
                     <span class="pct">44.0%</span>
                 </div>
-            </a>
-            <a href="jogo/66.html" class="jogo-card card" data-fase="grupo-h">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-h" data-popup-jogo="66" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo H</span>
                     <span>Jogo #66</span>
@@ -1996,13 +2001,13 @@
                     <span>Sex 26/06 · 21:00</span>
                     <span class="local">Guadalajara</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:44.0%"></div></div>
                     <span class="pct">44.0%</span>
                 </div>
-            </a>
-            <a href="jogo/67.html" class="jogo-card card" data-fase="grupo-l">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-l" data-popup-jogo="67" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo L</span>
                     <span>Jogo #67</span>
@@ -2025,13 +2030,13 @@
                     <span>Sáb 27/06 · 18:00</span>
                     <span class="local">Nova York/NJ</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:48.0%"></div></div>
                     <span class="pct">48.0%</span>
                 </div>
-            </a>
-            <a href="jogo/68.html" class="jogo-card card" data-fase="grupo-l">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-l" data-popup-jogo="68" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo L</span>
                     <span>Jogo #68</span>
@@ -2054,13 +2059,13 @@
                     <span>Sáb 27/06 · 18:00</span>
                     <span class="local">Filadélfia</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:46.0%"></div></div>
                     <span class="pct">46.0%</span>
                 </div>
-            </a>
-            <a href="jogo/69.html" class="jogo-card card" data-fase="grupo-j">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-j" data-popup-jogo="69" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo J</span>
                     <span>Jogo #69</span>
@@ -2083,13 +2088,13 @@
                     <span>Sáb 27/06 · 23:00</span>
                     <span class="local">Kansas City</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:35.0%"></div></div>
                     <span class="pct">35.0%</span>
                 </div>
-            </a>
-            <a href="jogo/70.html" class="jogo-card card" data-fase="grupo-j">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-j" data-popup-jogo="70" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo J</span>
                     <span>Jogo #70</span>
@@ -2112,13 +2117,13 @@
                     <span>Sáb 27/06 · 23:00</span>
                     <span class="local">Dallas</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:47.0%"></div></div>
                     <span class="pct">47.0%</span>
                 </div>
-            </a>
-            <a href="jogo/71.html" class="jogo-card card" data-fase="grupo-k">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-k" data-popup-jogo="71" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo K</span>
                     <span>Jogo #71</span>
@@ -2141,13 +2146,13 @@
                     <span>Sáb 27/06 · 20:30</span>
                     <span class="local">Miami</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:33.0%"></div></div>
                     <span class="pct">33.0%</span>
                 </div>
-            </a>
-            <a href="jogo/72.html" class="jogo-card card" data-fase="grupo-k">
+            </div>
+            <div class="jogo-card card" data-fase="grupo-k" data-popup-jogo="72" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Grupo K</span>
                     <span>Jogo #72</span>
@@ -2170,13 +2175,13 @@
                     <span>Sáb 27/06 · 20:30</span>
                     <span class="local">Atlanta</span>
                 </div>
-                <div class="consenso-meter medio">
-                    <span class="label">consenso</span>
+                <div class="confianca-meter medio">
+                    <span class="label">Confiança</span>
                     <div class="bar"><div class="fill" style="width:38.0%"></div></div>
                     <span class="pct">38.0%</span>
                 </div>
-            </a>
-            <a href="jogo/73.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="73" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #73</span>
@@ -2199,8 +2204,8 @@
                     <span>Dom 28/06 · 16:00</span>
                     <span class="local">Los Angeles</span>
                 </div>
-            </a>
-            <a href="jogo/74.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="74" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #74</span>
@@ -2223,8 +2228,8 @@
                     <span>Seg 29/06 · 17:30</span>
                     <span class="local">Boston</span>
                 </div>
-            </a>
-            <a href="jogo/75.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="75" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #75</span>
@@ -2247,8 +2252,8 @@
                     <span>Seg 29/06 · 22:00</span>
                     <span class="local">Monterrey</span>
                 </div>
-            </a>
-            <a href="jogo/76.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="76" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #76</span>
@@ -2271,8 +2276,8 @@
                     <span>Seg 29/06 · 14:00</span>
                     <span class="local">Houston</span>
                 </div>
-            </a>
-            <a href="jogo/77.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="77" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #77</span>
@@ -2295,8 +2300,8 @@
                     <span>Ter 30/06 · 18:00</span>
                     <span class="local">Nova York/NJ</span>
                 </div>
-            </a>
-            <a href="jogo/78.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="78" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #78</span>
@@ -2319,8 +2324,8 @@
                     <span>Ter 30/06 · 14:00</span>
                     <span class="local">Dallas</span>
                 </div>
-            </a>
-            <a href="jogo/79.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="79" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #79</span>
@@ -2343,8 +2348,8 @@
                     <span>Ter 30/06 · 22:00</span>
                     <span class="local">Cidade do México</span>
                 </div>
-            </a>
-            <a href="jogo/80.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="80" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #80</span>
@@ -2367,8 +2372,8 @@
                     <span>Qua 01/07 · 13:00</span>
                     <span class="local">Atlanta</span>
                 </div>
-            </a>
-            <a href="jogo/81.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="81" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #81</span>
@@ -2391,8 +2396,8 @@
                     <span>Qua 01/07 · 21:00</span>
                     <span class="local">San Francisco</span>
                 </div>
-            </a>
-            <a href="jogo/82.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="82" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #82</span>
@@ -2415,8 +2420,8 @@
                     <span>Qua 01/07 · 17:00</span>
                     <span class="local">Seattle</span>
                 </div>
-            </a>
-            <a href="jogo/83.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="83" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #83</span>
@@ -2439,8 +2444,8 @@
                     <span>Qui 02/07 · 20:00</span>
                     <span class="local">Toronto</span>
                 </div>
-            </a>
-            <a href="jogo/84.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="84" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #84</span>
@@ -2463,8 +2468,8 @@
                     <span>Qui 02/07 · 16:00</span>
                     <span class="local">Los Angeles</span>
                 </div>
-            </a>
-            <a href="jogo/85.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="85" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #85</span>
@@ -2487,8 +2492,8 @@
                     <span>Sex 03/07 · 00:00</span>
                     <span class="local">Vancouver</span>
                 </div>
-            </a>
-            <a href="jogo/86.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="86" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #86</span>
@@ -2511,8 +2516,8 @@
                     <span>Sex 03/07 · 19:00</span>
                     <span class="local">Miami</span>
                 </div>
-            </a>
-            <a href="jogo/87.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="87" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #87</span>
@@ -2535,8 +2540,8 @@
                     <span>Sex 03/07 · 22:30</span>
                     <span class="local">Kansas City</span>
                 </div>
-            </a>
-            <a href="jogo/88.html" class="jogo-card card" data-fase="r32">
+            </div>
+            <div class="jogo-card card" data-fase="r32" data-popup-jogo="88" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">R32</span>
                     <span>Jogo #88</span>
@@ -2559,8 +2564,8 @@
                     <span>Sex 03/07 · 15:00</span>
                     <span class="local">Dallas</span>
                 </div>
-            </a>
-            <a href="jogo/89.html" class="jogo-card card" data-fase="oitavas">
+            </div>
+            <div class="jogo-card card" data-fase="oitavas" data-popup-jogo="89" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Oitavas</span>
                     <span>Jogo #89</span>
@@ -2583,8 +2588,8 @@
                     <span>Sáb 04/07 · 18:00</span>
                     <span class="local">Filadélfia</span>
                 </div>
-            </a>
-            <a href="jogo/90.html" class="jogo-card card" data-fase="oitavas">
+            </div>
+            <div class="jogo-card card" data-fase="oitavas" data-popup-jogo="90" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Oitavas</span>
                     <span>Jogo #90</span>
@@ -2607,8 +2612,8 @@
                     <span>Sáb 04/07 · 14:00</span>
                     <span class="local">Houston</span>
                 </div>
-            </a>
-            <a href="jogo/91.html" class="jogo-card card" data-fase="oitavas">
+            </div>
+            <div class="jogo-card card" data-fase="oitavas" data-popup-jogo="91" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Oitavas</span>
                     <span>Jogo #91</span>
@@ -2631,8 +2636,8 @@
                     <span>Dom 05/07 · 17:00</span>
                     <span class="local">Nova York/NJ</span>
                 </div>
-            </a>
-            <a href="jogo/92.html" class="jogo-card card" data-fase="oitavas">
+            </div>
+            <div class="jogo-card card" data-fase="oitavas" data-popup-jogo="92" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Oitavas</span>
                     <span>Jogo #92</span>
@@ -2655,8 +2660,8 @@
                     <span>Dom 05/07 · 21:00</span>
                     <span class="local">Cidade do México</span>
                 </div>
-            </a>
-            <a href="jogo/93.html" class="jogo-card card" data-fase="oitavas">
+            </div>
+            <div class="jogo-card card" data-fase="oitavas" data-popup-jogo="93" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Oitavas</span>
                     <span>Jogo #93</span>
@@ -2679,8 +2684,8 @@
                     <span>Seg 06/07 · 16:00</span>
                     <span class="local">Dallas</span>
                 </div>
-            </a>
-            <a href="jogo/94.html" class="jogo-card card" data-fase="oitavas">
+            </div>
+            <div class="jogo-card card" data-fase="oitavas" data-popup-jogo="94" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Oitavas</span>
                     <span>Jogo #94</span>
@@ -2703,8 +2708,8 @@
                     <span>Seg 06/07 · 21:00</span>
                     <span class="local">Seattle</span>
                 </div>
-            </a>
-            <a href="jogo/95.html" class="jogo-card card" data-fase="oitavas">
+            </div>
+            <div class="jogo-card card" data-fase="oitavas" data-popup-jogo="95" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Oitavas</span>
                     <span>Jogo #95</span>
@@ -2727,8 +2732,8 @@
                     <span>Ter 07/07 · 13:00</span>
                     <span class="local">Atlanta</span>
                 </div>
-            </a>
-            <a href="jogo/96.html" class="jogo-card card" data-fase="oitavas">
+            </div>
+            <div class="jogo-card card" data-fase="oitavas" data-popup-jogo="96" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Oitavas</span>
                     <span>Jogo #96</span>
@@ -2751,8 +2756,8 @@
                     <span>Ter 07/07 · 17:00</span>
                     <span class="local">Vancouver</span>
                 </div>
-            </a>
-            <a href="jogo/97.html" class="jogo-card card" data-fase="quartas">
+            </div>
+            <div class="jogo-card card" data-fase="quartas" data-popup-jogo="97" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Quartas</span>
                     <span>Jogo #97</span>
@@ -2775,8 +2780,8 @@
                     <span>Qui 09/07 · 17:00</span>
                     <span class="local">Boston</span>
                 </div>
-            </a>
-            <a href="jogo/98.html" class="jogo-card card" data-fase="quartas">
+            </div>
+            <div class="jogo-card card" data-fase="quartas" data-popup-jogo="98" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Quartas</span>
                     <span>Jogo #98</span>
@@ -2799,8 +2804,8 @@
                     <span>Sex 10/07 · 16:00</span>
                     <span class="local">Los Angeles</span>
                 </div>
-            </a>
-            <a href="jogo/99.html" class="jogo-card card" data-fase="quartas">
+            </div>
+            <div class="jogo-card card" data-fase="quartas" data-popup-jogo="99" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Quartas</span>
                     <span>Jogo #99</span>
@@ -2823,8 +2828,8 @@
                     <span>Sáb 11/07 · 18:00</span>
                     <span class="local">Miami</span>
                 </div>
-            </a>
-            <a href="jogo/100.html" class="jogo-card card" data-fase="quartas">
+            </div>
+            <div class="jogo-card card" data-fase="quartas" data-popup-jogo="100" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Quartas</span>
                     <span>Jogo #100</span>
@@ -2847,8 +2852,8 @@
                     <span>Sáb 11/07 · 22:00</span>
                     <span class="local">Kansas City</span>
                 </div>
-            </a>
-            <a href="jogo/101.html" class="jogo-card card" data-fase="semifinal">
+            </div>
+            <div class="jogo-card card" data-fase="semifinal" data-popup-jogo="101" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Semifinal</span>
                     <span>Jogo #101</span>
@@ -2871,8 +2876,8 @@
                     <span>Ter 14/07 · 16:00</span>
                     <span class="local">Dallas</span>
                 </div>
-            </a>
-            <a href="jogo/102.html" class="jogo-card card" data-fase="semifinal">
+            </div>
+            <div class="jogo-card card" data-fase="semifinal" data-popup-jogo="102" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Semifinal</span>
                     <span>Jogo #102</span>
@@ -2895,8 +2900,8 @@
                     <span>Qua 15/07 · 16:00</span>
                     <span class="local">Atlanta</span>
                 </div>
-            </a>
-            <a href="jogo/103.html" class="jogo-card card" data-fase="3-lugar">
+            </div>
+            <div class="jogo-card card" data-fase="3-lugar" data-popup-jogo="103" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">3º lugar</span>
                     <span>Jogo #103</span>
@@ -2919,8 +2924,8 @@
                     <span>Sáb 18/07 · 18:00</span>
                     <span class="local">Miami</span>
                 </div>
-            </a>
-            <a href="jogo/104.html" class="jogo-card card" data-fase="final">
+            </div>
+            <div class="jogo-card card" data-fase="final" data-popup-jogo="104" data-prefix="">
                 <div class="jogo-meta">
                     <span class="fase">Final</span>
                     <span>Jogo #104</span>
@@ -2943,7 +2948,7 @@
                     <span>Dom 19/07 · 16:00</span>
                     <span class="local">Nova York/NJ</span>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </section>
@@ -2967,8 +2972,8 @@
         </div>
         <div class="footer-col">
             <h4>Atualização</h4>
-            <p class="updated">Última: <time>06/06/2026 12:25</time> BRT</p>
-            <p class="versao">Built with care &amp; frevo. v0.4.0-site</p>
+            <p class="updated">Última: <time>06/06/2026 12:44</time> BRT</p>
+            <p class="versao">Built with care &amp; frevo. v0.5.0-site</p>
         </div>
     </div>
 </footer>
