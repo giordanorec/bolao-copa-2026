@@ -84,3 +84,9 @@ Não alterei. O schema dos casos (jogo + palpite + resultado + pontos_esperados)
 ## Próximos passos (fora da F4.5)
 
 - Após primeira coleta real (10/06/2026), revisar amostra de 5 respostas de cada via (web vs API) e medir: (a) aderência ao formato, (b) taxa de invenção factual (referência a jogadores convocados fora do dossiê), (c) variância de palpites entre web e API da mesma IA Tier 1 — comparação intra-modelo testa se o dossiê neutralizou o sinal de search.
+
+## Nota operacional — race de commits paralelos
+
+Meus 3 arquivos (`ia-palpiteira.md`, `ia-palpiteira-web.md`, este report) foram absorvidos pelo commit `5749f19 [F4.5-devops] env OpenRouter + deps httpx/dotenv + target coletar` que rodou em paralelo. Conteúdo preservado intacto — só o commit ficou com etiqueta mista. Race conhecida em ambiente multi-agente Windows (registrada em `feedback_multiagente_windows.md`).
+
+Para auditoria futura: meu trabalho está no diff de `5749f19` nos arquivos `config/prompts/ia-palpiteira.md` (+24/−9 linhas), `config/prompts/ia-palpiteira-web.md` (+140 linhas) e `reports/F4.5-coletor-api/llm-prompt.md` (+86 linhas, antes desta nota).
