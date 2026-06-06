@@ -263,12 +263,14 @@
     }
 
     if (opts.time_a && opts.time_b) {
-      drawTime2(ctx, opts.time_a, opts.flag_a_url, 90, 510, 280, imgMap);
-      drawTime2(ctx, opts.time_b, opts.flag_b_url, W - 90 - 280, 510, 280, imgMap);
+      // Layout: bandeira esquerda + placar central + bandeira direita, mais espaço
+      drawTime2(ctx, opts.time_a, opts.flag_a_url, 50, 520, 240, imgMap);
+      drawTime2(ctx, opts.time_b, opts.flag_b_url, W - 50 - 240, 520, 240, imgMap);
+      // placar ABAIXO da linha das bandeiras pra não sobrepor
       ctx.fillStyle = primary;
-      ctx.font = 'bold 160px "JetBrains Mono", monospace';
+      ctx.font = 'bold 180px "JetBrains Mono", monospace';
       ctx.textAlign = 'center';
-      ctx.fillText((opts.placar || '? × ?').replace(/x/i, '×').replace('-', '×'), W/2, 720);
+      ctx.fillText((opts.placar || '? × ?').replace(/x/i, '×').replace('-', '×'), W/2, 870);
     }
 
     ctx.fillStyle = fg;
@@ -464,23 +466,7 @@
     abrirModal(html);
   });
 
-  // ── POPUP: JOGO INTEIRO (clica no card de jogo na lista) ──
-  document.addEventListener('click', function (ev) {
-    var card = ev.target.closest('.jogo-card[data-popup-jogo]');
-    if (!card) return;
-    if (ev.target.closest('a, button')) return; // permitir links internos do card
-    ev.preventDefault();
-    var jogoNum = card.dataset.popupJogo;
-    var prefix = card.dataset.prefix || '';
-    fetch(prefix + 'jogo/' + jogoNum + '.html')
-      .then(function (r) { return r.text(); })
-      .then(function (html) {
-        var dom = new DOMParser().parseFromString(html, 'text/html');
-        var main = dom.querySelector('main');
-        if (main) abrirModal(main.innerHTML);
-      })
-      .catch(function () { window.location.href = prefix + 'jogo/' + jogoNum + '.html'; });
-  });
+  // Popup de jogo inteiro removido — navegação direta agora (link normal)
 
   // ── FILTRO DE FASES ───────────────────────────────────────
   var filtros = document.getElementById('fase-filtros');

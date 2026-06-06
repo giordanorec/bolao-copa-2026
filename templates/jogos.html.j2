@@ -22,10 +22,10 @@
             {% for j in jogos %}
             {% set fase_slug = j.fase|lower|replace(' ', '-')|replace('º', '') %}
             {% set has_br = (j.time_a == 'Brasil') or (j.time_b == 'Brasil') %}
-            <div class="jogo-card card{% if has_br %} has-brasil{% endif %}" data-fase="{{ fase_slug }}" data-popup-jogo="{{ j.numero }}" data-prefix="">
+            <a href="jogo/{{ j.numero }}.html" class="jogo-card card{% if has_br %} has-brasil{% endif %}" data-fase="{{ fase_slug }}">
                 <div class="jogo-meta">
                     <span class="fase">{{ j.fase }}</span>
-                    <span>Jogo #{{ j.numero }}</span>
+                    <span>Jogo #{{ j.numero }} <span class="abrir-ico">→</span></span>
                 </div>
                 <div class="confronto">
                     <div class="time">
@@ -60,7 +60,10 @@
                     <span class="pct">{{ j.consenso_pct|round(0) }}%</span>
                 </div>
                 {% endif %}
-            </div>
+                <div class="cta-ver-palpites">
+                    Ver palpites de cada IA <span class="arrow">→</span>
+                </div>
+            </a>
             {% endfor %}
         </div>
     </div>
