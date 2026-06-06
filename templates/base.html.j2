@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="{{ {'pt':'pt-BR','en':'en','fr':'fr','es':'es'}[LANG] }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -14,7 +14,13 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&family=Inter:wght@300..800&family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset_prefix }}assets/style.css">
+    <link rel="stylesheet" href="{{ lang_prefix_assets }}assets/style.css">
+
+    <link rel="alternate" hreflang="pt-BR" href="https://giordanorec.github.io/bolao-copa-2026/">
+    <link rel="alternate" hreflang="en" href="https://giordanorec.github.io/bolao-copa-2026/en/">
+    <link rel="alternate" hreflang="fr" href="https://giordanorec.github.io/bolao-copa-2026/fr/">
+    <link rel="alternate" hreflang="es" href="https://giordanorec.github.io/bolao-copa-2026/es/">
+    <link rel="alternate" hreflang="x-default" href="https://giordanorec.github.io/bolao-copa-2026/">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='72'%3E⚽%3C/text%3E%3C/svg%3E">
 </head>
@@ -30,15 +36,21 @@
             </span>
         </a>
         <nav class="site-nav">
-            <a href="{{ asset_prefix }}index.html">Ranking das IAs</a>
-            <a href="{{ asset_prefix }}jogos.html">Palpites de Cada Jogo</a>
-            <a href="{{ asset_prefix }}serie-a.html">Série A 🏆</a>
-            <a href="{{ asset_prefix }}ias.html">Todas as IAs</a>
-            <a href="{{ asset_prefix }}como-funciona.html">Como funciona</a>
+            <a href="{{ asset_prefix }}index.html">{{ t('nav_ranking') }}</a>
+            <a href="{{ asset_prefix }}jogos.html">{{ t('nav_jogos') }}</a>
+            <a href="{{ asset_prefix }}serie-a.html">{{ t('nav_serie_a') }}</a>
+            <a href="{{ asset_prefix }}ias.html">{{ t('nav_ias') }}</a>
+            <a href="{{ asset_prefix }}como-funciona.html">{{ t('nav_como_funciona') }}</a>
         </nav>
         <div class="header-meta">
             <span class="dot" aria-hidden="true"></span>
-            <span class="meta-text">{{ jogos_apurados }}/{{ jogos_totais }} apurados</span>
+            <span class="meta-text">{{ jogos_apurados }}/{{ jogos_totais }} {{ t('header_apurados') }}</span>
+        </div>
+        <div class="lang-switcher" aria-label="{{ t('lang_label') }}">
+            <a href="{{ lang_prefix_root }}index.html" class="{% if LANG=='pt' %}is-current{% endif %}" title="{{ t('lang_pt') }}">🇧🇷</a>
+            <a href="{{ lang_prefix_root }}en/index.html" class="{% if LANG=='en' %}is-current{% endif %}" title="{{ t('lang_en') }}">🇬🇧</a>
+            <a href="{{ lang_prefix_root }}fr/index.html" class="{% if LANG=='fr' %}is-current{% endif %}" title="{{ t('lang_fr') }}">🇫🇷</a>
+            <a href="{{ lang_prefix_root }}es/index.html" class="{% if LANG=='es' %}is-current{% endif %}" title="{{ t('lang_es') }}">🇪🇸</a>
         </div>
     </div>
 </header>
@@ -89,6 +101,6 @@
 
 <div class="toast" role="status" aria-live="polite"></div>
 
-<script src="{{ asset_prefix }}assets/share.js" defer></script>
+<script src="{{ lang_prefix_assets }}assets/share.js" defer></script>
 </body>
 </html>
