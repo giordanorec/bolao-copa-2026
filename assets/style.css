@@ -519,14 +519,14 @@ tr.is-favorito {
 
 /* ─── LOGOS PADRONIZADOS — base ─── */
 .ia-logo {
-    width: 48px; height: 48px; padding: 7px;
+    width: 140px; height: 140px; padding: 6px;
     background: var(--bg-2); border: 1px solid var(--line);
     border-radius: var(--r-m); box-shadow: var(--shadow-soft);
     display: inline-flex; align-items: center; justify-content: center;
     flex-shrink: 0; overflow: hidden;
 }
 .ia-logo .ia-svg, .ia-logo img {
-    width: 100%; height: 100%; object-fit: contain; display: block;
+    width: 100% !important; height: 100% !important; object-fit: contain; display: block; transform: scale(1.15);
 }
 .ia-logo .initial-pill {
     width: 100%; height: 100%; border-radius: calc(var(--r-m) - 4px);
@@ -855,7 +855,7 @@ a.palpite-num.exact, button.palpite-num.exact {
 
 /* ─── IA CARD VERTICAL — LOGOS SUPER GRANDES ─── */
 .ias-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 22px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 26px;
 }
 .ia-card {
     padding: 26px 22px 22px; display: flex; flex-direction: column;
@@ -878,11 +878,11 @@ a.palpite-num.exact, button.palpite-num.exact {
 }
 .ia-card .ia-imagem-placeholder::before { content: '🎨'; font-size: 32px; opacity: 0.55; }
 .ia-card .ia-logo {
-    width: 130px; height: 130px; padding: 4px;
+    width: 280px; height: 280px; padding: 4px;
     border-radius: var(--r-l); background: var(--bg-2);
     border: 1px solid var(--line); box-shadow: var(--shadow-pop);
 }
-.ia-card .ia-logo .initial-pill { font-size: 64px; border-radius: var(--r-m); }
+.ia-card .ia-logo .initial-pill { font-size: 140px; border-radius: var(--r-m); }
 .ia-card .ia-produto {
     font-family: var(--ff-display); font-variation-settings: var(--ff-display-vs);
     font-style: var(--ff-display-style); font-weight: var(--ff-display-weight);
@@ -919,14 +919,14 @@ a.palpite-num.exact, button.palpite-num.exact {
 /* ─── SÉRIE A — LOGOS GIGANTES ─── */
 .serie-a-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 32px;
 }
 .serie-a-grid .ia-card { padding: 32px 26px 24px; }
 .serie-a-grid .ia-card .ia-logo {
-    width: 180px; height: 180px; padding: 6px;
+    width: 400px; height: 400px; padding: 6px;
 }
-.serie-a-grid .ia-card .ia-logo .initial-pill { font-size: 90px; }
+.serie-a-grid .ia-card .ia-logo .initial-pill { font-size: 200px; }
 .serie-a-grid .ia-card .ia-produto { font-size: 36px; }
 .serie-a-grid .ia-card .ia-modelo { font-size: 19px; }
 .serie-a-grid .ia-card .ia-imagem-placeholder { height: 170px; }
@@ -1062,7 +1062,7 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     background: var(--bg-soft); border-color: var(--primary);
     transform: translateY(-2px);
 }
-.modal-body .ia-pill .ia-logo { width: 32px; height: 32px; padding: 4px; box-shadow: none; }
+.modal-body .ia-pill .ia-logo { width: 60px; height: 60px; padding: 3px; box-shadow: none; }
 
 /* ─── FOOTER ─── */
 .site-footer {
@@ -1128,10 +1128,10 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     .hero-emojis { font-size: 42px; }
     .ias-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
     .ia-card .ia-imagem-placeholder { height: 100px; }
-    .ia-card .ia-logo { width: 110px; height: 110px; padding: 4px; }
+    .ia-card .ia-logo { width: 220px; height: 220px; padding: 4px; }
     .ia-card .ia-produto { font-size: 24px; }
     .ia-card .ia-modelo { font-size: 15px; }
-    .serie-a-grid .ia-card .ia-logo { width: 150px; height: 150px; padding: 6px; }
+    .serie-a-grid .ia-card .ia-logo { width: 300px; height: 300px; padding: 6px; }
     .serie-a-grid .ia-card .ia-produto { font-size: 30px; }
 }
 
