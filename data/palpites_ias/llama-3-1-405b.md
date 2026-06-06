@@ -1,6 +1,6 @@
 <!-- ia: Llama 3.1 405B -->
 <!-- slug: llama-3-1-405b -->
-<!-- tier: 2 -->
+<!-- tier: 3 -->
 <!-- url: https://openrouter.ai -->
 <!-- status: aguardando palpite -->
 

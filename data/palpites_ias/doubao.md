@@ -1,6 +1,6 @@
 <!-- ia: Doubao -->
 <!-- slug: doubao -->
-<!-- tier: 3 -->
+<!-- tier: 4 -->
 <!-- url: https://doubao.com -->
 <!-- status: aguardando palpite -->
 

@@ -1,6 +1,6 @@
 <!-- ia: Ernie 4.5 -->
 <!-- slug: ernie-4-5 -->
-<!-- tier: 3 -->
+<!-- tier: 4 -->
 <!-- url: https://yiyan.baidu.com -->
 <!-- status: aguardando palpite -->
 

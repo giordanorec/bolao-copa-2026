@@ -1,6 +1,6 @@
 <!-- ia: Phi-4 -->
 <!-- slug: phi-4 -->
-<!-- tier: 2 -->
+<!-- tier: 6 -->
 <!-- url: https://huggingface.co/chat -->
 <!-- status: aguardando palpite -->
 

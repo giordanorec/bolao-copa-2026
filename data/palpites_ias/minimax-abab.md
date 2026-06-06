@@ -1,6 +1,6 @@
 <!-- ia: MiniMax abab -->
 <!-- slug: minimax-abab -->
-<!-- tier: 3 -->
+<!-- tier: 4 -->
 <!-- url: https://chat.minimax.io -->
 <!-- status: aguardando palpite -->
 

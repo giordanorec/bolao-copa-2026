@@ -1,6 +1,6 @@
 <!-- ia: Yi-Large -->
 <!-- slug: yi-large -->
-<!-- tier: 2 -->
+<!-- tier: 7 -->
 <!-- url: https://yi.01.ai -->
 <!-- status: aguardando palpite -->
 

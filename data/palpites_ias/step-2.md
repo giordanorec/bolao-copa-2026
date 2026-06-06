@@ -1,6 +1,6 @@
 <!-- ia: Step 2 -->
 <!-- slug: step-2 -->
-<!-- tier: 3 -->
+<!-- tier: 4 -->
 <!-- url: https://yuewen.cn -->
 <!-- status: aguardando palpite -->
 

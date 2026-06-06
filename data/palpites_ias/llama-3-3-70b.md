@@ -1,6 +1,6 @@
 <!-- ia: Llama 3.3 70B -->
 <!-- slug: llama-3-3-70b -->
-<!-- tier: 2 -->
+<!-- tier: 3 -->
 <!-- url: https://groq.com -->
 <!-- status: aguardando palpite -->
 

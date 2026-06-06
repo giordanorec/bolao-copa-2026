@@ -1,6 +1,6 @@
 <!-- ia: GPT-4o (legacy) -->
 <!-- slug: gpt-4o -->
-<!-- tier: 4 -->
+<!-- tier: 5 -->
 <!-- url: https://platform.openai.com/playground -->
 <!-- status: aguardando palpite -->
 

@@ -1,6 +1,6 @@
 <!-- ia: Hunyuan -->
 <!-- slug: hunyuan -->
-<!-- tier: 3 -->
+<!-- tier: 4 -->
 <!-- url: https://hunyuan.tencent.com -->
 <!-- status: aguardando palpite -->
 

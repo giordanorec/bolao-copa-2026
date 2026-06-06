@@ -1,6 +1,6 @@
 <!-- ia: Reka Core -->
 <!-- slug: reka-core -->
-<!-- tier: 2 -->
+<!-- tier: 7 -->
 <!-- url: https://chat.reka.ai -->
 <!-- status: aguardando palpite -->
 

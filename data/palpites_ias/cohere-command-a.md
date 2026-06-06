@@ -1,6 +1,6 @@
 <!-- ia: Cohere Command A -->
 <!-- slug: cohere-command-a -->
-<!-- tier: 2 -->
+<!-- tier: 7 -->
 <!-- url: https://cohere.com/playground -->
 <!-- status: aguardando palpite -->
 

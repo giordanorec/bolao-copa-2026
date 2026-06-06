@@ -1,6 +1,6 @@
 <!-- ia: Kimi K2 -->
 <!-- slug: kimi-k2 -->
-<!-- tier: 2 -->
+<!-- tier: 7 -->
 <!-- url: https://kimi.com -->
 <!-- status: aguardando palpite -->
 

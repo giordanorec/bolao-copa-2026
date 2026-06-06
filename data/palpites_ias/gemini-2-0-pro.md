@@ -1,10 +1,10 @@
-<!-- ia: Gemini 2.0 Pro (legacy) -->
+<!-- ia: Gemini 2.0 Pro -->
 <!-- slug: gemini-2-0-pro -->
-<!-- tier: 4 -->
+<!-- tier: 2 -->
 <!-- url: https://aistudio.google.com -->
 <!-- status: aguardando palpite -->
 
-# Palpite — Gemini 2.0 Pro (legacy)
+# Palpite — Gemini 2.0 Pro
 
 > **Placeholder.** Vazio até o operador colar a resposta da IA aqui.
 >

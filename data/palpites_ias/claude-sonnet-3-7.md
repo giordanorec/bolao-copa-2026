@@ -1,6 +1,6 @@
 <!-- ia: Claude Sonnet 3.7 (legacy) -->
 <!-- slug: claude-sonnet-3-7 -->
-<!-- tier: 4 -->
+<!-- tier: 5 -->
 <!-- url: https://console.anthropic.com -->
 <!-- status: aguardando palpite -->
 

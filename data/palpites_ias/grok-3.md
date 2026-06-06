@@ -1,10 +1,10 @@
-<!-- ia: Grok 3 (legacy) -->
+<!-- ia: Grok 3 -->
 <!-- slug: grok-3 -->
-<!-- tier: 4 -->
+<!-- tier: 2 -->
 <!-- url: https://grok.com -->
 <!-- status: aguardando palpite -->
 
-# Palpite — Grok 3 (legacy)
+# Palpite — Grok 3
 
 > **Placeholder.** Vazio até o operador colar a resposta da IA aqui.
 >

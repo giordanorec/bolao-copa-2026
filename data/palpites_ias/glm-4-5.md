@@ -1,6 +1,6 @@
 <!-- ia: GLM-4.5 -->
 <!-- slug: glm-4-5 -->
-<!-- tier: 2 -->
+<!-- tier: 4 -->
 <!-- url: https://chatglm.cn -->
 <!-- status: aguardando palpite -->
 

@@ -1,6 +1,6 @@
 <!-- ia: DeepSeek V3 (legacy) -->
 <!-- slug: deepseek-v3 -->
-<!-- tier: 4 -->
+<!-- tier: 5 -->
 <!-- url: https://chat.deepseek.com -->
 <!-- status: aguardando palpite -->
 

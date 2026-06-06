@@ -1,6 +1,6 @@
 <!-- ia: SenseChat -->
 <!-- slug: sensechat -->
-<!-- tier: 3 -->
+<!-- tier: 4 -->
 <!-- url: https://chat.sensetime.com -->
 <!-- status: aguardando palpite -->
 

@@ -16,6 +16,7 @@ import contextlib
 import http.server
 import json
 import os
+import re
 import socketserver
 import sys
 from datetime import datetime, timedelta, timezone
@@ -36,57 +37,32 @@ WEB_DATA_DIR = WEB_DIR / "data"
 REPORTS_DIR = ROOT / "reports"
 RESUMO_PATH = ROOT / "resumo.txt"
 
-_NOME_OVERRIDES = {
-    # tier 1
-    "chatgpt-5": "ChatGPT 5",
-    "chatgpt-5-thinking": "ChatGPT 5 Thinking",
-    "claude-opus-4-7": "Claude Opus 4.7",
-    "claude-sonnet-4-6": "Claude Sonnet 4.6",
-    "claude-haiku-4-5": "Claude Haiku 4.5",
-    "gemini-2-5-pro": "Gemini 2.5 Pro",
-    "gemini-2-5-flash": "Gemini 2.5 Flash",
-    "grok-4": "Grok 4",
-    "grok-4-heavy": "Grok 4 Heavy",
-    "deepseek-r1": "DeepSeek R1",
-    "deepseek-v3-1": "DeepSeek V3.1",
-    "perplexity-sonar-pro": "Perplexity Sonar Pro",
-    "copilot-microsoft": "Microsoft Copilot",
-    "le-chat-mistral": "Le Chat (Mistral)",
-    "meta-llama-4": "Meta AI (Llama 4)",
-    "qwen-3-max": "Qwen 3 Max",
-    # tier 2
-    "cohere-command-a": "Cohere Command A",
-    "kimi-k2": "Kimi K2",
-    "glm-4-5": "GLM-4.5",
-    "phi-4": "Phi-4",
-    "gemma-3": "Gemma 3",
-    "reka-core": "Reka Core",
-    "llama-3-3-70b": "Llama 3.3 70B",
-    "llama-3-1-405b": "Llama 3.1 405B",
-    "yi-large": "Yi-Large",
-    # tier 3 chinesas
-    "ernie-4-5": "Ernie 4.5",
-    "doubao": "Doubao",
-    "hunyuan": "Hunyuan",
-    "sensechat": "SenseChat",
-    "minimax-abab": "MiniMax abab",
-    "step-2": "Step 2",
-    "baichuan-4": "Baichuan 4",
-    # tier 4 legacy
-    "gpt-4o": "GPT-4o",
-    "gpt-4-1": "GPT-4.1",
-    "o3": "OpenAI o3",
-    "claude-sonnet-3-7": "Claude Sonnet 3.7",
-    "gemini-2-0-pro": "Gemini 2.0 Pro",
-    "deepseek-v3": "DeepSeek V3",
-    "grok-3": "Grok 3",
-}
+_NOME_RE = re.compile(r"^<!--\s*ia:\s*(.+?)\s*-->\s*$", re.MULTILINE)
+_NOME_CACHE: dict[str, str] = {}
 
 
 def _nome_display(slug: str) -> str:
-    if slug in _NOME_OVERRIDES:
-        return _NOME_OVERRIDES[slug]
-    return slug.replace("-", " ").title()
+    """Resolve nome bonito da IA. Ordem de fonte:
+
+    1. Header ``<!-- ia: Nome Bonito -->`` no arquivo ``data/palpites_ias/<slug>.md``.
+       É o lugar canônico — escrito pelo ``scripts/bootstrap_palpites.sh``.
+    2. Fallback ``slug.title()`` com hífens substituídos.
+
+    Cacheado em memória dentro de uma execução do CLI pra não reler arquivos.
+    """
+    if slug in _NOME_CACHE:
+        return _NOME_CACHE[slug]
+    arq = PALPITES_DIR / f"{slug}.md"
+    if arq.is_file():
+        try:
+            m = _NOME_RE.search(arq.read_text(encoding="utf-8"))
+            if m:
+                _NOME_CACHE[slug] = m.group(1)
+                return _NOME_CACHE[slug]
+        except OSError:
+            pass
+    _NOME_CACHE[slug] = slug.replace("-", " ").title()
+    return _NOME_CACHE[slug]
 
 
 def _carregar_tudo() -> tuple[list, dict, list]:  # type: ignore[type-arg]

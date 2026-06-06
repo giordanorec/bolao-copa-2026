@@ -1,6 +1,6 @@
 <!-- ia: Baichuan 4 -->
 <!-- slug: baichuan-4 -->
-<!-- tier: 3 -->
+<!-- tier: 4 -->
 <!-- url: https://chat.baichuan-ai.com -->
 <!-- status: aguardando palpite -->
 

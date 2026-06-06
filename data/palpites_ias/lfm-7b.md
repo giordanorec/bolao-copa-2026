@@ -1,15 +1,15 @@
-<!-- ia: Gemma 3 -->
-<!-- slug: gemma-3 -->
-<!-- tier: 2 -->
-<!-- url: https://aistudio.google.com -->
+<!-- ia: Liquid AI LFM-7B -->
+<!-- slug: lfm-7b -->
+<!-- tier: 8 -->
+<!-- url: https://chat.liquid.ai -->
 <!-- status: aguardando palpite -->
 
-# Palpite — Gemma 3
+# Palpite — Liquid AI LFM-7B
 
 > **Placeholder.** Vazio até o operador colar a resposta da IA aqui.
 >
 > Como preencher:
-> 1. Abra https://aistudio.google.com
+> 1. Abra https://chat.liquid.ai
 > 2. Cole o prompt de `config/prompts/ia-palpiteira.md`
 > 3. Aguarde a resposta da IA
 > 4. Cole APENAS a tabela retornada (linhas começando com `|`) substituindo
