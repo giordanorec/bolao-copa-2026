@@ -1158,3 +1158,101 @@ a.card:hover, button.card:hover {
     .hero .stat { padding: 16px 20px; }
     .hero .stat-num { font-size: 32px; }
 }
+
+/* ============================================================
+   PADRONIZAÇÃO DE LOGOS DE IA — todos mesmo tamanho
+   ============================================================ */
+
+/* Container sempre fixo */
+.ia-logo {
+    width: 44px;
+    height: 44px;
+    padding: 6px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 39, 118, 0.08);
+}
+.ia-logo .ia-svg,
+.ia-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+.ia-logo .initial-pill {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Logo grande (página de IA) */
+.logo-big {
+    padding: 14px;
+}
+.logo-big .ia-svg,
+.logo-big img,
+.logo-big .initial-pill {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+}
+.logo-big .initial-pill {
+    font-size: 52px;
+}
+
+/* Card de IA na grade ias.html — tamanho consistente */
+.ia-card .ia-logo {
+    width: 56px;
+    height: 56px;
+    padding: 9px;
+    flex-shrink: 0;
+}
+
+/* No card de palpite jogo-a-jogo (página IA) — sem container */
+.ia-palpite-card .ia-logo { display: none; }
+
+/* ============================================================
+   PALPITE CLICÁVEL (página de jogo)
+   ============================================================ */
+a.palpite-num {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--bg-soft);
+    border: 1px solid transparent;
+    color: var(--br-azul);
+    text-decoration: none;
+    transition: all 0.15s ease;
+    font-family: var(--ff-mono);
+    font-weight: 700;
+}
+a.palpite-num:hover {
+    background: var(--br-amarelo);
+    color: var(--br-azul);
+    border-color: var(--br-amarelo-3);
+    transform: scale(1.05);
+}
+a.palpite-num.exact {
+    background: linear-gradient(135deg, var(--br-amarelo), var(--br-amarelo-2));
+    color: var(--br-azul-3);
+    box-shadow: var(--shadow-gold);
+}
+
+/* ============================================================
+   BOLA DE CRISTAL — placar consenso no card de jogo
+   ============================================================ */
+.jogo-card .placar .numeros.bola-cristal {
+    color: var(--roxo);
+    font-style: italic;
+}
+.jogo-card .placar .vs-bola {
+    color: var(--roxo);
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: none;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+}

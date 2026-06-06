@@ -7,19 +7,19 @@
         <div class="section-head">
             <div>
                 <h2><span class="emoji">🤖</span>IAs participantes<span class="num">{{ ias|length }} no bolão</span></h2>
-                <p class="sub">{{ ias|length }} modelos de linguagem palpitando a Copa. Coletados via API OpenRouter (a maioria) ou manualmente via interface web (top tier). Clique em qualquer uma pra ver os palpites.</p>
+                <p class="sub">{{ ias|length }} modelos palpitando a Copa, ordenados por <strong>popularidade</strong> em junho/2026 (web traffic share + usuários mensais). Clique em qualquer uma pra ver os palpites jogo a jogo.</p>
             </div>
         </div>
 
         <div class="ias-grid">
-            {% for ia in ias %}
+            {% for ia in ias_ordenadas %}
             <a class="ia-card card" href="ia/{{ ia.slug }}.html">
                 {{ ia_logo(ia.slug) }}
                 <div class="ia-meta">
-                    <div class="pos-badge">#{{ loop.index }} · {{ ia_family(ia.slug) }}</div>
+                    <div class="pos-badge">{{ ia_family(ia.slug) }} · popularidade {{ popularidade(ia.slug) }}</div>
                     <div class="ia-name-card">{{ ia.nome_display }}</div>
                 </div>
-                <div class="pontos-mini">{{ ia.pontos }}</div>
+                <div class="pontos-mini">{{ ia.pontos }} pts</div>
             </a>
             {% endfor %}
         </div>

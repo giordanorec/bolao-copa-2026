@@ -34,7 +34,7 @@ _HERE = Path(__file__).resolve().parent
 _DEFAULT_TEMPLATES_DIR = _HERE.parent.parent / "web" / "templates"
 
 FLAG_BASE = "https://hatscripts.github.io/circle-flags/flags"
-SIMPLEICONS_BASE = "https://cdn.simpleicons.org"
+LOBE_ICONS_BASE = "https://unpkg.com/@lobehub/icons-static-svg@latest/icons"
 
 
 def _carregar_json(path: Path) -> Any:
@@ -76,7 +76,7 @@ class _Render:
         self.data_dir = web_dir / "data"
         self.paises = _carregar_json(self.data_dir / "paises.json")
         self.ias_logos = _carregar_json(self.data_dir / "ias_logos.json")
-        self.providers = self.ias_logos.get("_defaults", {})
+        self.providers_colors = self.ias_logos.get("_defaults_color", {})
         self.ias_meta = self.ias_logos.get("ias", {})
 
     def _iso_pais(self, nome: str) -> str | None:
@@ -110,23 +110,25 @@ class _Render:
     def ia_logo(self, slug: str, big: bool = False) -> Markup:
         meta = self.ias_meta.get(slug, {})
         provider = meta.get("provider", "")
-        prov_meta = self.providers.get(provider, {})
-        icon = prov_meta.get("icon")
-        color = prov_meta.get("color", "92929b")
+        icon = meta.get("icon")
+        color = self.providers_colors.get(provider, "92929b")
         cls = "logo-big-inner" if big else ""
         if icon:
-            url = f"{SIMPLEICONS_BASE}/{icon}/{color}"
-            return Markup(f'<img class="{cls}" src="{url}" alt="{escape(slug)}" loading="lazy">')
-        # fallback: inicial em pill com cor do provedor
+            url = f"{LOBE_ICONS_BASE}/{icon}.svg"
+            return Markup(
+                f'<img class="ia-svg {cls}" src="{url}" alt="{escape(slug)}" loading="lazy">'
+            )
         ini = _inicial(slug)
         style = f"background:#{color};color:#fff;"
-        return Markup(
-            f'<span class="initial-pill {cls}" style="{style}">{escape(ini)}</span>'
-        )
+        return Markup(f'<span class="initial-pill {cls}" style="{style}">{escape(ini)}</span>')
 
     def ia_family(self, slug: str) -> str:
         meta = self.ias_meta.get(slug, {})
         return meta.get("family", "—")
+
+    def popularidade(self, slug: str) -> int:
+        meta = self.ias_meta.get(slug, {})
+        return int(meta.get("popularidade", 0))
 
 
 def _ambiente(templates_dir: Path) -> Environment:
@@ -201,6 +203,7 @@ def renderizar_html(
     env.globals["flag_img"] = helper.flag_img
     env.globals["ia_logo"] = helper.ia_logo
     env.globals["ia_family"] = helper.ia_family
+    env.globals["popularidade"] = helper.popularidade
 
     ranking = _carregar_json(ranking_json)
     jogos: list[dict[str, Any]] = (
@@ -232,15 +235,32 @@ def renderizar_html(
         newline="\n",
     )
 
-    # ------- ias.html -------
+    # ------- ias.html: ordenado por popularidade -------
+    ctx_ias = dict(ctx)
+    ctx_ias["ias_ordenadas"] = sorted(
+        ranking.get("ias", []),
+        key=lambda r: (-helper.popularidade(r["slug"]), r["nome_display"].lower()),
+    )
     (web_dir / "ias.html").write_text(
-        env.get_template("ias.html.j2").render(**ctx),
+        env.get_template("ias.html.j2").render(**ctx_ias),
         encoding="utf-8",
         newline="\n",
     )
 
     if not jogos:
         return
+
+    # Bola de Cristal por jogo: placar mais votado pelas IAs
+    palpites_lookup_tmp: dict[int, list[dict[str, Any]]] = {}
+    for slug, palpites in palpites_por_ia.items():
+        for p in palpites:
+            palpites_lookup_tmp.setdefault(p["jogo_numero"], []).append(p)
+    bola_cristal: dict[int, dict[str, int]] = {}
+    for numero, lista in palpites_lookup_tmp.items():
+        consenso_jogo = _calc_consenso(lista)
+        if consenso_jogo:
+            top = consenso_jogo[0]
+            bola_cristal[numero] = {"gols_a": top["placar_a"], "gols_b": top["placar_b"]}
 
     # ------- jogos.html -------
     fases_unicas = []
@@ -250,9 +270,10 @@ def renderizar_html(
         if f and f not in vistos:
             vistos.add(f)
             fases_unicas.append(f)
-    # anexar resultado em cada jogo
+    # anexar resultado + bola de cristal em cada jogo
     for j in jogos:
         j["resultado"] = resultados_por_jogo.get(j["numero"])
+        j["bola_cristal"] = bola_cristal.get(j["numero"])
     ctx_jogos = dict(ctx)
     ctx_jogos["jogos"] = jogos
     ctx_jogos["fases_unicas"] = fases_unicas
