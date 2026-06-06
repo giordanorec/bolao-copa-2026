@@ -14,7 +14,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&family=Inter:wght@300..800&family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ lang_prefix_assets }}assets/style.css">
+    <link rel="stylesheet" href="{{ asset_prefix }}{{ lang_prefix_assets }}assets/style.css">
 
     <link rel="alternate" hreflang="pt-BR" href="https://giordanorec.github.io/bolao-copa-2026/">
     <link rel="alternate" hreflang="en" href="https://giordanorec.github.io/bolao-copa-2026/en/">
@@ -47,10 +47,10 @@
             <span class="meta-text">{{ jogos_apurados }}/{{ jogos_totais }} {{ t('header_apurados') }}</span>
         </div>
         <div class="lang-switcher" aria-label="{{ t('lang_label') }}">
-            <a href="{{ lang_prefix_root }}index.html" class="{% if LANG=='pt' %}is-current{% endif %}" title="{{ t('lang_pt') }}">🇧🇷</a>
-            <a href="{{ lang_prefix_root }}en/index.html" class="{% if LANG=='en' %}is-current{% endif %}" title="{{ t('lang_en') }}">🇬🇧</a>
-            <a href="{{ lang_prefix_root }}fr/index.html" class="{% if LANG=='fr' %}is-current{% endif %}" title="{{ t('lang_fr') }}">🇫🇷</a>
-            <a href="{{ lang_prefix_root }}es/index.html" class="{% if LANG=='es' %}is-current{% endif %}" title="{{ t('lang_es') }}">🇪🇸</a>
+            <a href="{{ asset_prefix }}{{ lang_prefix_root }}index.html" class="{% if LANG=='pt' %}is-current{% endif %}" title="{{ t('lang_pt') }}">🇧🇷</a>
+            <a href="{{ asset_prefix }}{{ lang_prefix_root }}en/index.html" class="{% if LANG=='en' %}is-current{% endif %}" title="{{ t('lang_en') }}">🇬🇧</a>
+            <a href="{{ asset_prefix }}{{ lang_prefix_root }}fr/index.html" class="{% if LANG=='fr' %}is-current{% endif %}" title="{{ t('lang_fr') }}">🇫🇷</a>
+            <a href="{{ asset_prefix }}{{ lang_prefix_root }}es/index.html" class="{% if LANG=='es' %}is-current{% endif %}" title="{{ t('lang_es') }}">🇪🇸</a>
         </div>
     </div>
 </header>
@@ -101,6 +101,6 @@
 
 <div class="toast" role="status" aria-live="polite"></div>
 
-<script src="{{ lang_prefix_assets }}assets/share.js" defer></script>
+<script src="{{ asset_prefix }}{{ lang_prefix_assets }}assets/share.js" defer></script>
 </body>
 </html>
