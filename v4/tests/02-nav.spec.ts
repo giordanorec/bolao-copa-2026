@@ -24,13 +24,33 @@ test.describe("Navegação", () => {
     });
   }
 
-  test("links do header funcionam", async ({ page }) => {
+  test("links do header funcionam", async ({ page, viewport }) => {
     await page.goto("/");
     const nav = page.locator(".site-nav");
+    // mobile: drawer fica hidden até abrir o hamburger
+    if (viewport && viewport.width < 900) {
+      await page.locator(".nav-hamburger").click();
+    }
     await expect(nav).toBeVisible();
     const links = nav.locator("a");
     const count = await links.count();
     expect(count).toBeGreaterThan(2);
+  });
+
+  test("mobile: hamburger abre e fecha drawer", async ({ page, viewport }) => {
+    if (!viewport || viewport.width >= 900) test.skip();
+    await page.goto("/");
+    const hamb = page.locator(".nav-hamburger");
+    await expect(hamb).toBeVisible();
+    const nav = page.locator(".site-nav");
+    expect(await hamb.getAttribute("aria-expanded")).toBe("false");
+    await hamb.click();
+    await expect(nav).toBeVisible();
+    expect(await hamb.getAttribute("aria-expanded")).toBe("true");
+    // fecha clicando no hamburger novamente
+    await hamb.click();
+    await page.waitForTimeout(300);
+    expect(await hamb.getAttribute("aria-expanded")).toBe("false");
   });
 
   test("rotas protegidas redirecionam pra login", async ({ page }) => {
