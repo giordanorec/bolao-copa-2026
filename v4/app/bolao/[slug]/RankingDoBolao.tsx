@@ -49,6 +49,7 @@ export default async function RankingDoBolao({
   return (
     <div className="card">
       <h2 style={{ fontSize: 28, marginBottom: 16 }}>🏆 Ranking</h2>
+      <div className="table-scroll">
       <table className="ranking-table">
         <thead>
           <tr>
@@ -69,6 +70,7 @@ export default async function RankingDoBolao({
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

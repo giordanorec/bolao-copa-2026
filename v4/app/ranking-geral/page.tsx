@@ -100,6 +100,7 @@ export default async function RankingGeralPage() {
             Aguardando palpites…
           </p>
         ) : (
+          <div className="table-scroll">
           <table className="ranking-table">
             <thead>
               <tr>
@@ -130,6 +131,7 @@ export default async function RankingGeralPage() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </div>
 

@@ -48,10 +48,7 @@ export default function RootLayout({
           type="image/svg+xml"
           href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='72'%3E⚽%3C/text%3E%3C/svg%3E"
         />
-        <link
-          rel="apple-touch-icon"
-          href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23FF385C' rx='20'/%3E%3Ctext y='75' x='50%25' font-size='62' text-anchor='middle'%3E⚽%3C/text%3E%3C/svg%3E"
-        />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body>
         <header className="site-header">

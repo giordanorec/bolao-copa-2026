@@ -565,3 +565,50 @@ button[disabled]:not(.btn)::before {
 @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.001s !important; transition: none !important; }
 }
+
+/* ============================================================
+   FIXES PÓS-AUDITORIA MOBILE (2026-06-07)
+   ============================================================ */
+
+/* HIGH: tabelas com scroll horizontal em vez de cortar */
+.table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--r-m);
+}
+.table-scroll table { min-width: 480px; }
+
+/* MEDIUM: dashboard h1 responsivo */
+.dash-head h1 { font-size: clamp(28px, 5vw, 40px); }
+
+/* MEDIUM: nav header em mobile compacto */
+@media (max-width: 540px) {
+    .site-nav {
+        width: 100%;
+        justify-content: center;
+        gap: 2px;
+        order: 3;
+        margin-top: 4px;
+    }
+    .site-nav a {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+    .brand-title { font-size: 16px; }
+    .brand-sub { font-size: 11px; }
+}
+
+/* MEDIUM: btn pode quebrar em telas extremas */
+@media (max-width: 380px) {
+    .btn { white-space: normal; padding: 12px 16px; text-align: center; }
+}
+
+/* LOW: ranking nome com ellipsis em mobile */
+@media (max-width: 720px) {
+    .ranking-table .nome {
+        max-width: 140px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

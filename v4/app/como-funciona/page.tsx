@@ -26,6 +26,7 @@ export default function ComoFunciona() {
         <p style={{ marginBottom: 20, color: "var(--fg-mid)" }}>
           Vale a regra clássica do bolão brasileiro:
         </p>
+        <div className="table-scroll">
         <table className="ranking-table">
           <thead>
             <tr>
@@ -58,6 +59,7 @@ export default function ComoFunciona() {
             </tr>
           </tbody>
         </table>
+        </div>
         <p
           style={{
             marginTop: 20,
