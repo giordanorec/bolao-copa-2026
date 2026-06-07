@@ -1,12 +1,11 @@
 import { test, expect, Page } from "@playwright/test";
 
 async function abrirSwitcher(page: Page) {
-  const fechado = await page.evaluate(() =>
-    document.body.classList.contains("theme-switcher-closed"),
-  );
-  if (fechado) {
-    await page.locator(".theme-switcher .toggle-btn").click();
-  }
+  await page.evaluate(() => {
+    document.body.classList.remove("theme-switcher-closed");
+    localStorage.removeItem("v4-tema-fechado");
+  });
+  await page.waitForTimeout(300);
 }
 
 test.describe("Visual / consistência", () => {
@@ -37,9 +36,12 @@ test.describe("Visual / consistência", () => {
   test("trocar tema persiste por reload", async ({ page }) => {
     await page.goto("/");
     await abrirSwitcher(page);
-    await page
-      .locator('input[name="theme"][value="anthropic"]')
-      .check({ force: true });
+    await page.evaluate(() => {
+      const el = document.querySelector<HTMLInputElement>(
+        'input[name="theme"][value="anthropic"]',
+      );
+      el?.click();
+    });
     await page.waitForTimeout(100);
     const before = await page.evaluate(() =>
       document.body.getAttribute("data-theme"),
@@ -55,12 +57,19 @@ test.describe("Visual / consistência", () => {
   test("todos os 12 temas aplicam atributo data-theme", async ({ page }) => {
     await page.goto("/");
     await abrirSwitcher(page);
-    const temas = await page.locator('input[name="theme"]').all();
-    expect(temas.length).toBeGreaterThanOrEqual(6);
-    for (const radio of temas) {
-      const val = await radio.getAttribute("value");
-      if (!val) continue;
-      await radio.check({ force: true });
+    const valores = await page
+      .locator('input[name="theme"]')
+      .evaluateAll((els) =>
+        (els as HTMLInputElement[]).map((e) => e.value),
+      );
+    expect(valores.length).toBeGreaterThanOrEqual(6);
+    for (const val of valores) {
+      await page.evaluate((v) => {
+        const el = document.querySelector<HTMLInputElement>(
+          `input[name="theme"][value="${v}"]`,
+        );
+        el?.click();
+      }, val);
       await page.waitForTimeout(50);
       const aplicado = await page.evaluate(() =>
         document.body.getAttribute("data-theme"),

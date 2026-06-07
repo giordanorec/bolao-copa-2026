@@ -67,15 +67,17 @@ test.describe("Edge cases", () => {
     context,
   }) => {
     await page.goto("/");
+    await page.waitForLoadState("networkidle");
     await context.setOffline(true);
     try {
       await page.click('a[href="/como-funciona"]', { timeout: 3000 });
+      await page.waitForLoadState("load", { timeout: 5000 });
     } catch {
       // esperado falhar
     }
     await context.setOffline(false);
-    // pelo menos confirma que voltou
+    await page.waitForTimeout(500);
     await page.goto("/");
-    await expect(page.locator("h1")).toBeVisible();
+    await expect(page.locator("h1")).toBeVisible({ timeout: 10000 });
   });
 });

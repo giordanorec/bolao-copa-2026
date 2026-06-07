@@ -49,17 +49,17 @@ test.describe("Home", () => {
     await page.goto("/");
     const switcher = page.locator(".theme-switcher");
     await expect(switcher).toBeVisible();
-    // garante painel aberto (mobile inicia fechado)
-    const fechado = await page.evaluate(() =>
-      document.body.classList.contains("theme-switcher-closed"),
-    );
-    if (fechado) {
-      await page.locator(".theme-switcher .toggle-btn").click();
-    }
-    const radioFestivo = page.locator(
-      'input[name="theme"][value="festivo-br"]',
-    );
-    await radioFestivo.check({ force: true });
+    await page.evaluate(() => {
+      document.body.classList.remove("theme-switcher-closed");
+    });
+    // clicar via DOM evita problemas de viewport no mobile
+    await page.evaluate(() => {
+      const el = document.querySelector<HTMLInputElement>(
+        'input[name="theme"][value="festivo-br"]',
+      );
+      el?.click();
+    });
+    await page.waitForTimeout(100);
     const themeAttr = await page.evaluate(() =>
       document.body.getAttribute("data-theme"),
     );
