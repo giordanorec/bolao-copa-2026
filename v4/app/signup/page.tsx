@@ -67,7 +67,7 @@ function SignupForm() {
         return;
       }
     }
-    router.push(redirect);
+    router.push(`/bem-vindo?redirect=${encodeURIComponent(redirect)}`);
     router.refresh();
   }
 
