@@ -47,10 +47,31 @@ test.describe("Navegação", () => {
     await hamb.click();
     await expect(nav).toBeVisible();
     expect(await hamb.getAttribute("aria-expanded")).toBe("true");
-    // fecha clicando no hamburger novamente
-    await hamb.click();
+    // fecha pelo botão X dentro do drawer
+    await page.locator(".site-nav-close").click();
     await page.waitForTimeout(300);
     expect(await hamb.getAttribute("aria-expanded")).toBe("false");
+  });
+
+  test("mobile: drawer não corta links (todos visíveis)", async ({
+    page,
+    viewport,
+  }) => {
+    if (!viewport || viewport.width >= 900) test.skip();
+    await page.goto("/");
+    await page.locator(".nav-hamburger").click();
+    const links = page.locator(".site-nav a");
+    const n = await links.count();
+    expect(n).toBeGreaterThan(3);
+    // todos devem ter boundingBox dentro do viewport (não cortados)
+    for (let i = 0; i < n; i++) {
+      const box = await links.nth(i).boundingBox();
+      expect(box, `link ${i} sem box`).not.toBeNull();
+      if (box) {
+        expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 1);
+        expect(box.y + box.height).toBeLessThanOrEqual(viewport.height + 1);
+      }
+    }
   });
 
   test("rotas protegidas redirecionam pra login", async ({ page }) => {

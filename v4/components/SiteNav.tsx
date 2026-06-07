@@ -33,6 +33,13 @@ export default function SiteNav({ locale = "pt" }: { locale?: Locale }) {
   const drawer = (
     <>
       <nav className={`site-nav ${aberto ? "is-open" : ""}`}>
+        <button
+          className="site-nav-close"
+          aria-label="Fechar menu"
+          onClick={fechar}
+        >
+          ✕
+        </button>
         <MeusBoloesLink onClick={fechar} locale={locale} />
         <a
           href="https://giordanorec.github.io/bolao-copa-2026/"
