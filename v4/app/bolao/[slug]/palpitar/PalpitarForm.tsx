@@ -8,6 +8,7 @@ import type { DadosPorJogo, PalpiteIA, PaisIA } from "@/lib/palpites-ias";
 import PrePreencherBar from "./PrePreencherBar";
 import SugestaoIA from "./SugestaoIA";
 import Bandeira from "@/components/Bandeira";
+import DoacaoBanner from "@/components/DoacaoBanner";
 
 type Estado = Record<number, { gols_a: number; gols_b: number }>;
 
@@ -323,6 +324,8 @@ export default function PalpitarForm({
           })}
         </div>
       ))}
+
+      {preenchidos > 0 && <DoacaoBanner variante="pos_palpitar" />}
 
       {/* ── FOOTER: resumo + ações ── */}
       <div className="palp-footer">

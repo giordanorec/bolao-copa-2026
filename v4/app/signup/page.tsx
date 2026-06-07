@@ -16,6 +16,8 @@ function SignupForm() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [nome, setNome] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
   const [erro, setErro] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -38,7 +40,18 @@ function SignupForm() {
       setLoading(false);
       return;
     }
-    // Se veio de convite de bolão, faz auto-join e leva pra /palpitar
+    // Atualiza profile com instagram/whatsapp (trigger criou com display_name)
+    if (data.user && (instagram || whatsapp)) {
+      const insta = instagram.trim().replace(/^@/, "");
+      const wpp = whatsapp.trim().replace(/\D/g, "");
+      await supabase
+        .from("profiles")
+        .update({
+          instagram: insta || null,
+          whatsapp: wpp || null,
+        })
+        .eq("id", data.user.id);
+    }
     if (slugConvite && data.user) {
       const { data: bolao } = await supabase
         .from("bolao")
@@ -119,6 +132,57 @@ function SignupForm() {
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
           />
+        </div>
+        <div
+          style={{
+            background: "var(--bg-soft)",
+            padding: 16,
+            borderRadius: "var(--r-m)",
+            marginBottom: 16,
+            border: "1px dashed var(--line-strong)",
+          }}
+        >
+          <p
+            style={{
+              fontSize: 12,
+              fontFamily: "var(--ff-mono)",
+              color: "var(--fg-muted)",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              marginBottom: 12,
+            }}
+          >
+            {locale === "en" ? "Optional — Contact"
+              : locale === "es" ? "Opcional — Contacto"
+              : locale === "fr" ? "Optionnel — Contact"
+              : "Opcional — Contato"}
+          </p>
+          <div className="form-group">
+            <label className="label" htmlFor="instagram">
+              📸 Instagram
+            </label>
+            <input
+              id="instagram"
+              type="text"
+              className="input"
+              placeholder="@seu.user"
+              value={instagram}
+              onChange={(e) => setInstagram(e.target.value)}
+            />
+          </div>
+          <div className="form-group" style={{ marginBottom: 0 }}>
+            <label className="label" htmlFor="whatsapp">
+              💬 WhatsApp
+            </label>
+            <input
+              id="whatsapp"
+              type="tel"
+              className="input"
+              placeholder="(00) 90000-0000"
+              value={whatsapp}
+              onChange={(e) => setWhatsapp(e.target.value)}
+            />
+          </div>
         </div>
         {erro && <p className="err">{erro}</p>}
         <button

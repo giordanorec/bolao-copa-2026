@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { promises as fs } from "fs";
 import path from "path";
+import DoacaoBanner from "@/components/DoacaoBanner";
+import { resolverLocale } from "@/lib/locale-server";
 
 type IA = {
   slug: string;
@@ -52,6 +54,7 @@ export const metadata = {
 
 export default async function IAsPage() {
   const ias = await carregarIAs();
+  const locale = await resolverLocale();
 
   const porEmpresa: Record<string, IA[]> = {};
   for (const ia of ias) {
@@ -72,15 +75,8 @@ export default async function IAsPage() {
           De ChatGPT a Qwen. Cada uma recebeu o mesmo prompt e palpitou os 104
           jogos.
         </p>
-        <p style={{ marginTop: 20 }}>
-          <a
-            href="https://giordanorec.github.io/bolao-copa-2026/ias.html"
-            className="btn yellow"
-          >
-            🏆 Ver ranking completo
-          </a>
-        </p>
       </div>
+      <DoacaoBanner variante="ias" locale={locale} />
 
       {empresasOrdenadas.length === 0 ? (
         <div className="card empty">
