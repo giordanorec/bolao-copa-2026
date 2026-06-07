@@ -1,8 +1,10 @@
 import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
-import UserWidget from "@/components/UserWidget";
+import SiteNav from "@/components/SiteNav";
+import LangSwitcher from "@/components/LangSwitcher";
+import { resolverLocale } from "@/lib/locale-server";
+import { t } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Bolão das IAs · Copa do Mundo 2026",
@@ -28,13 +30,21 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default function RootLayout({
+const HTML_LANG: Record<string, string> = {
+  pt: "pt-BR",
+  en: "en",
+  es: "es",
+  fr: "fr",
+};
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await resolverLocale();
   return (
-    <html lang="pt-BR">
+    <html lang={HTML_LANG[locale] ?? "pt-BR"}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -54,56 +64,18 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body data-theme="airbnb">
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var f=localStorage.getItem('v4-tema-fechado');var m=window.matchMedia('(max-width: 720px)').matches;if(f==='1'||(f===null&&m)){document.body.classList.add('theme-switcher-closed');}var t=localStorage.getItem('v4-tema');if(t){document.body.setAttribute('data-theme',t);}}catch(e){}})();`,
-          }}
-        />
         <header className="site-header">
           <div className="container header-inner">
             <Link href="/" className="brand">
               <span className="brand-mark">⚽</span>
               <span className="brand-text">
-                <span className="brand-title">Bolão das IAs</span>
-                <span className="brand-sub">🇧🇷 Copa 2026</span>
+                <span className="brand-title">{t(locale, "brand.title")}</span>
+                <span className="brand-sub">{t(locale, "brand.sub")}</span>
               </span>
             </Link>
-            <nav className="site-nav">
-              <a
-                href="https://giordanorec.github.io/bolao-copa-2026/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ranking ↗
-              </a>
-              <a
-                href="https://giordanorec.github.io/bolao-copa-2026/jogos.html"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Jogos ↗
-              </a>
-              <a
-                href="https://giordanorec.github.io/bolao-copa-2026/serie-a.html"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Série A ↗
-              </a>
-              <a
-                href="https://giordanorec.github.io/bolao-copa-2026/cristal.html"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                🔮 Cristal ↗
-              </a>
-              <Link href="/como-funciona">Como funciona</Link>
-              <UserWidget />
-            </nav>
+            <SiteNav locale={locale} />
           </div>
         </header>
-
-        <ThemeSwitcher />
 
         <main>
           <div className="container">{children}</div>
@@ -112,48 +84,67 @@ export default function RootLayout({
         <footer className="site-footer">
           <div className="container footer-inner">
             <div className="footer-col">
-              <h4>O Bolão</h4>
-              <p>
-                Comparamos palpites de modelos de IA sobre a Copa do Mundo FIFA
-                2026. <strong>122 IAs</strong> participantes + Bola de Cristal,
-                dossiê de contexto padronizado e regras clássicas (placar exato
-                10, vencedor+saldo 7, vencedor 5, errado 0; mata-mata 2×). É
-                sério, e é uma festa. 🎉
-              </p>
+              <h4>{t(locale, "footer.bolao.titulo")}</h4>
+              <p>{t(locale, "footer.bolao.texto")}</p>
               <p style={{ marginTop: 12 }}>
-                <Link href="/signup" style={{ color: "var(--primary)", fontWeight: 700 }}>
-                  Crie seu bolão →
+                <Link
+                  href="/signup"
+                  style={{ color: "var(--primary)", fontWeight: 700 }}
+                >
+                  {t(locale, "footer.bolao.criar")}
                 </Link>
               </p>
             </div>
             <div className="footer-col">
-              <h4>Disclaimers</h4>
+              <h4>{t(locale, "footer.disclaimers.titulo")}</h4>
               <ul>
-                <li>Não pegamos informação de casas de apostas.</li>
-                <li>Não somos patrocinados por Bets.</li>
-                <li>Gratuito. Doações cobrem a API.</li>
-                <li>Projeto em andamento — faça backup, não confie cegamente.</li>
+                <li>{t(locale, "footer.disclaimers.1")}</li>
+                <li>{t(locale, "footer.disclaimers.2")}</li>
+                <li>{t(locale, "footer.disclaimers.3")}</li>
+                <li>{t(locale, "footer.disclaimers.4")}</li>
               </ul>
             </div>
             <div className="footer-col">
-              <h4>Atualização</h4>
+              <h4>{t(locale, "footer.atualizacao.titulo")}</h4>
               <p>
-                v4 ao vivo em{" "}
-                <a href="https://arena-de-ias.vercel.app">arena-de-ias.vercel.app</a>
+                <a href="https://arena-de-ias.vercel.app">
+                  arena-de-ias.vercel.app
+                </a>
               </p>
               <p style={{ marginTop: 8 }}>
-                <Link href="/doar">💛 Doe via PIX</Link> ·{" "}
+                <Link href="/doar">{t(locale, "footer.doar")}</Link> ·{" "}
                 <a
                   href="https://github.com/giordanorec/bolao-copa-2026"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  código no GitHub
+                  {t(locale, "footer.codigo")}
                 </a>
               </p>
               <p className="versao" style={{ marginTop: 8 }}>
-                Built with care & frevo. v0.6.0
+                v0.7.0
               </p>
+              <div
+                style={{
+                  marginTop: 14,
+                  paddingTop: 14,
+                  borderTop: "1px solid var(--line)",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: 11,
+                    fontFamily: "var(--ff-mono)",
+                    color: "var(--fg-muted)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                    marginBottom: 8,
+                  }}
+                >
+                  {t(locale, "footer.idioma")}
+                </p>
+                <LangSwitcher atual={locale} />
+              </div>
             </div>
           </div>
         </footer>

@@ -1,12 +1,4 @@
-import { test, expect, Page } from "@playwright/test";
-
-async function abrirSwitcher(page: Page) {
-  await page.evaluate(() => {
-    document.body.classList.remove("theme-switcher-closed");
-    localStorage.removeItem("v4-tema-fechado");
-  });
-  await page.waitForTimeout(300);
-}
+import { test, expect } from "@playwright/test";
 
 test.describe("Visual / consistência", () => {
   test("contraste do texto principal ≥ AA", async ({ page }) => {
@@ -33,49 +25,12 @@ test.describe("Visual / consistência", () => {
     }
   });
 
-  test("trocar tema persiste por reload", async ({ page }) => {
+  test("tema airbnb é fixo (sem switcher)", async ({ page }) => {
     await page.goto("/");
-    await abrirSwitcher(page);
-    await page.evaluate(() => {
-      const el = document.querySelector<HTMLInputElement>(
-        'input[name="theme"][value="anthropic"]',
-      );
-      el?.click();
-    });
-    await page.waitForTimeout(100);
-    const before = await page.evaluate(() =>
-      document.body.getAttribute("data-theme"),
-    );
-    expect(before).toBe("anthropic");
-    await page.reload();
-    const after = await page.evaluate(() =>
-      document.body.getAttribute("data-theme"),
-    );
-    expect(after).toBe("anthropic");
-  });
-
-  test("todos os 12 temas aplicam atributo data-theme", async ({ page }) => {
-    await page.goto("/");
-    await abrirSwitcher(page);
-    const valores = await page
-      .locator('input[name="theme"]')
-      .evaluateAll((els) =>
-        (els as HTMLInputElement[]).map((e) => e.value),
-      );
-    expect(valores.length).toBeGreaterThanOrEqual(6);
-    for (const val of valores) {
-      await page.evaluate((v) => {
-        const el = document.querySelector<HTMLInputElement>(
-          `input[name="theme"][value="${v}"]`,
-        );
-        el?.click();
-      }, val);
-      await page.waitForTimeout(50);
-      const aplicado = await page.evaluate(() =>
-        document.body.getAttribute("data-theme"),
-      );
-      expect(aplicado, `tema ${val} não aplicado`).toBe(val);
-    }
+    expect(
+      await page.evaluate(() => document.body.getAttribute("data-theme")),
+    ).toBe("airbnb");
+    await expect(page.locator(".theme-switcher")).toHaveCount(0);
   });
 
   test("hero emojis não overflow", async ({ page, viewport }) => {

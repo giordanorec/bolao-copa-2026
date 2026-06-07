@@ -4,11 +4,14 @@ import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase-browser";
+import { useLocale } from "@/lib/use-locale";
+import { t } from "@/lib/i18n";
 
 function SignupForm() {
   const router = useRouter();
   const params = useSearchParams();
   const redirect = params.get("redirect") || "/dashboard";
+  const locale = useLocale();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -71,18 +74,15 @@ function SignupForm() {
             color: "var(--fg)",
           }}
         >
-          🎯 Você foi convidado pra um bolão. Cria conta e entra direto.
+          {t(locale, "signup.convite_banner")}
         </div>
       ) : null}
-      <h1>Criar conta</h1>
-      <p className="lede-form">
-        Email e senha, simples. Nada de SMS ou cartão. Login fica salvo por 1
-        ano — entra uma vez só.
-      </p>
+      <h1>{t(locale, "signup.titulo")}</h1>
+      <p className="lede-form">{t(locale, "signup.lede")}</p>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="label" htmlFor="nome">
-            Seu nome
+            {t(locale, "signup.nome")}
           </label>
           <input
             id="nome"
@@ -95,7 +95,7 @@ function SignupForm() {
         </div>
         <div className="form-group">
           <label className="label" htmlFor="email">
-            Email
+            {t(locale, "signup.email")}
           </label>
           <input
             id="email"
@@ -108,7 +108,7 @@ function SignupForm() {
         </div>
         <div className="form-group">
           <label className="label" htmlFor="senha">
-            Senha
+            {t(locale, "signup.senha")}
           </label>
           <input
             id="senha"
@@ -119,7 +119,6 @@ function SignupForm() {
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
           />
-          <span className="input-hint">mínimo 6 caracteres</span>
         </div>
         {erro && <p className="err">{erro}</p>}
         <button
@@ -127,15 +126,13 @@ function SignupForm() {
           disabled={loading}
           className="btn primary block"
         >
-          {loading ? "Criando..." : "Criar conta"}
+          {loading ? t(locale, "signup.criando") : t(locale, "signup.criar")}
         </button>
       </form>
       <p className="alt">
-        Já tem conta?{" "}
-        <Link
-          href={`/login?redirect=${encodeURIComponent(redirect)}`}
-        >
-          Entrar
+        {t(locale, "signup.ja_conta")}{" "}
+        <Link href={`/login?redirect=${encodeURIComponent(redirect)}`}>
+          {t(locale, "signup.entrar")}
         </Link>
       </p>
     </div>

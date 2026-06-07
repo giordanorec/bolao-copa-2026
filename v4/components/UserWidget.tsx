@@ -5,7 +5,9 @@ import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase-browser";
 
-export default function UserWidget() {
+export default function UserWidget({
+  onNavigate,
+}: { onNavigate?: () => void } = {}) {
   const router = useRouter();
   const pathname = usePathname();
   const [nome, setNome] = useState<string | null>(null);
@@ -58,7 +60,7 @@ export default function UserWidget() {
 
   if (!nome) {
     return (
-      <Link href="/login" className="cta">
+      <Link href="/login" className="cta" onClick={onNavigate}>
         Entrar
       </Link>
     );

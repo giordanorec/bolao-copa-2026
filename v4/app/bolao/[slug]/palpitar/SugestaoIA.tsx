@@ -3,6 +3,14 @@
 import { useState, useMemo } from "react";
 import type { DadosPorJogo, PaisIA } from "@/lib/palpites-ias";
 import Bandeira from "@/components/Bandeira";
+import IconeIA from "@/components/IconeIA";
+import {
+  familiaDe,
+  MARCAS,
+  ORDEM_POPULARIDADE,
+  scorePopularidade,
+  type FamiliaIA,
+} from "@/lib/ias";
 
 type ConsensoLocal = {
   gols_a: number;
@@ -19,7 +27,6 @@ export default function SugestaoIA({
   isoB,
   dados,
   iasDict,
-  paises,
   onPick,
 }: {
   jogoNumero: number;
@@ -29,40 +36,35 @@ export default function SugestaoIA({
   isoB?: string;
   dados: DadosPorJogo | null;
   iasDict: Record<string, string>;
-  paises: Record<string, PaisIA>;
+  paises?: Record<string, PaisIA>;
   onPick: (gols_a: number, gols_b: number) => void;
 }) {
   const [aberto, setAberto] = useState(false);
-  const [paisFiltro, setPaisFiltro] = useState<string>("all");
+  const [familiaFiltro, setFamiliaFiltro] = useState<FamiliaIA | "all">("all");
   const [iaEscolhida, setIaEscolhida] = useState<string>("");
 
-  // Recalcula consenso baseado no filtro
-  const { consensoFiltrado, totalFiltrado, todosPaises, bolaFiltrada } =
+  const { consensoFiltrado, totalFiltrado, familiasChips, bolaFiltrada } =
     useMemo(() => {
       if (!dados) {
         return {
           consensoFiltrado: [] as ConsensoLocal[],
           totalFiltrado: 0,
-          todosPaises: {} as Record<string, number>,
+          familiasChips: [] as { familia: FamiliaIA; count: number }[],
           bolaFiltrada: null as ConsensoLocal | null,
         };
       }
       const slugs = Object.keys(dados.palpites);
-      // Contar IAs por país (pros chips)
-      const contPais: Record<string, number> = {};
+      const contFam: Record<string, number> = {};
       slugs.forEach((slug) => {
-        const p = paises[slug];
-        const code = p?.codigo ?? "xx";
-        contPais[code] = (contPais[code] ?? 0) + 1;
+        const f = familiaDe(slug);
+        contFam[f] = (contFam[f] ?? 0) + 1;
       });
 
-      // Slugs filtrados
       const slugsFiltrados =
-        paisFiltro === "all"
+        familiaFiltro === "all"
           ? slugs
-          : slugs.filter((s) => (paises[s]?.codigo ?? "xx") === paisFiltro);
+          : slugs.filter((s) => familiaDe(s) === familiaFiltro);
 
-      // Recalcular consenso só com IAs filtradas
       const contagem: Record<string, ConsensoLocal> = {};
       slugsFiltrados.forEach((slug) => {
         const p = dados.palpites[slug];
@@ -83,13 +85,16 @@ export default function SugestaoIA({
         return b.gols_a + b.gols_b - (a.gols_a + a.gols_b);
       });
 
+      const familias = ORDEM_POPULARIDADE.filter((f) => contFam[f])
+        .map((f) => ({ familia: f, count: contFam[f] }));
+
       return {
         consensoFiltrado: consenso,
         totalFiltrado: slugsFiltrados.length,
-        todosPaises: contPais,
+        familiasChips: familias,
         bolaFiltrada: consenso[0] ?? null,
       };
-    }, [dados, paisFiltro, paises]);
+    }, [dados, familiaFiltro]);
 
   if (!dados || !dados.palpites || Object.keys(dados.palpites).length === 0) {
     return null;
@@ -98,26 +103,9 @@ export default function SugestaoIA({
   const palpiteIA = iaEscolhida ? dados.palpites[iaEscolhida] : null;
   const iasOrdenadas = Object.keys(dados.palpites)
     .filter((s) =>
-      paisFiltro === "all" ? true : (paises[s]?.codigo ?? "xx") === paisFiltro,
+      familiaFiltro === "all" ? true : familiaDe(s) === familiaFiltro,
     )
-    .sort((a, b) => {
-      const na = iasDict[a] ?? a;
-      const nb = iasDict[b] ?? b;
-      return na.localeCompare(nb);
-    });
-
-  // Ordem dos chips de país por contagem
-  const paisesChips = Object.entries(todosPaises)
-    .sort((a, b) => b[1] - a[1])
-    .map(([code, count]) => {
-      const exemplo = Object.values(paises).find((p) => p.codigo === code);
-      return {
-        codigo: code,
-        nome: exemplo?.nome ?? code.toUpperCase(),
-        bandeira: exemplo?.bandeira ?? "🏳️",
-        count,
-      };
-    });
+    .sort((a, b) => scorePopularidade(a) - scorePopularidade(b));
 
   return (
     <>
@@ -191,7 +179,6 @@ export default function SugestaoIA({
             </div>
 
             <div style={{ padding: 24 }}>
-              {/* Chips de país */}
               <h4
                 style={{
                   fontFamily: "var(--ff-mono)",
@@ -202,7 +189,7 @@ export default function SugestaoIA({
                   marginBottom: 10,
                 }}
               >
-                Filtrar por país da IA
+                Filtrar por família de IA
               </h4>
               <div
                 style={{
@@ -212,32 +199,34 @@ export default function SugestaoIA({
                   flexWrap: "wrap",
                 }}
               >
-                <ChipPais
-                  ativo={paisFiltro === "all"}
-                  onClick={() => setPaisFiltro("all")}
-                  label="🌍 Todas"
+                <ChipFamilia
+                  ativo={familiaFiltro === "all"}
+                  onClick={() => setFamiliaFiltro("all")}
+                  emoji="🌐"
+                  label="Todas"
                   count={Object.keys(dados.palpites).length}
                 />
-                {paisesChips.map((p) => (
-                  <ChipPais
-                    key={p.codigo}
-                    ativo={paisFiltro === p.codigo}
-                    onClick={() => setPaisFiltro(p.codigo)}
-                    label={`${p.bandeira} ${p.nome}`}
-                    count={p.count}
+                {familiasChips.map((f) => (
+                  <ChipFamilia
+                    key={f.familia}
+                    ativo={familiaFiltro === f.familia}
+                    onClick={() => setFamiliaFiltro(f.familia)}
+                    emoji={MARCAS[f.familia].emoji}
+                    label={MARCAS[f.familia].nome}
+                    count={f.count}
+                    cor={MARCAS[f.familia].cor}
                   />
                 ))}
               </div>
 
-              {/* Consenso filtrado em destaque */}
               {bolaFiltrada && (
                 <div
                   style={{
                     background:
-                      paisFiltro === "all"
+                      familiaFiltro === "all"
                         ? "linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, transparent), color-mix(in srgb, var(--primary) 8%, transparent))"
                         : "linear-gradient(135deg, color-mix(in srgb, var(--primary) 10%, transparent), color-mix(in srgb, var(--secondary) 6%, transparent))",
-                    border: `2px solid ${paisFiltro === "all" ? "var(--accent)" : "var(--primary)"}`,
+                    border: `2px solid ${familiaFiltro === "all" ? "var(--accent)" : "var(--primary)"}`,
                     borderRadius: "var(--r-m)",
                     padding: 18,
                     marginBottom: 20,
@@ -247,16 +236,15 @@ export default function SugestaoIA({
                   }}
                 >
                   <span style={{ fontSize: 40 }}>
-                    {paisFiltro === "all"
+                    {familiaFiltro === "all"
                       ? "🔮"
-                      : paisesChips.find((p) => p.codigo === paisFiltro)
-                          ?.bandeira ?? "🏳️"}
+                      : MARCAS[familiaFiltro].emoji}
                   </span>
                   <div style={{ flex: 1 }}>
                     <strong style={{ fontSize: 16, color: "var(--fg)" }}>
-                      {paisFiltro === "all"
+                      {familiaFiltro === "all"
                         ? "Consenso geral"
-                        : `Mais votado pelas ${paisesChips.find((p) => p.codigo === paisFiltro)?.nome ?? ""}`}
+                        : `Mais votado por ${MARCAS[familiaFiltro].nome}`}
                     </strong>
                     <p
                       style={{
@@ -292,7 +280,6 @@ export default function SugestaoIA({
                 </div>
               )}
 
-              {/* Placares mais votados (filtrado) */}
               {consensoFiltrado.length > 1 && (
                 <>
                   <h4
@@ -338,7 +325,7 @@ export default function SugestaoIA({
                         >
                           {c.gols_a}×{c.gols_b}
                         </span>
-                        <div style={{ flex: 1 }}>
+                        <div style={{ flex: 1, minWidth: 0 }}>
                           <div
                             style={{
                               height: 6,
@@ -355,26 +342,44 @@ export default function SugestaoIA({
                               }}
                             />
                           </div>
-                          <p
+                          <div
                             style={{
-                              fontSize: 11,
-                              color: "var(--fg-muted)",
-                              marginTop: 4,
-                              fontFamily: "var(--ff-mono)",
+                              display: "flex",
+                              gap: 4,
+                              alignItems: "center",
+                              marginTop: 6,
+                              flexWrap: "wrap",
                             }}
                           >
-                            {c.votos} {c.votos === 1 ? "voto" : "votos"}
-                            {c.ias.length <= 4 &&
-                              " · " +
-                                c.ias
-                                  .map(
-                                    (s) =>
-                                      (paises[s]?.bandeira ?? "") +
-                                      " " +
-                                      (iasDict[s] ?? s),
-                                  )
-                                  .join(", ")}
-                          </p>
+                            <span
+                              style={{
+                                fontSize: 11,
+                                color: "var(--fg-muted)",
+                                fontFamily: "var(--ff-mono)",
+                              }}
+                            >
+                              {c.votos} {c.votos === 1 ? "voto" : "votos"}
+                            </span>
+                            {c.ias.slice(0, 6).map((s) => (
+                              <IconeIA
+                                key={s}
+                                slug={s}
+                                size={18}
+                                title={iasDict[s] ?? s}
+                              />
+                            ))}
+                            {c.ias.length > 6 && (
+                              <span
+                                style={{
+                                  fontSize: 10,
+                                  color: "var(--fg-muted)",
+                                  fontFamily: "var(--ff-mono)",
+                                }}
+                              >
+                                +{c.ias.length - 6}
+                              </span>
+                            )}
+                          </div>
                         </div>
                         <button
                           onClick={() => {
@@ -391,7 +396,6 @@ export default function SugestaoIA({
                 </>
               )}
 
-              {/* IA específica */}
               <h4
                 style={{
                   fontFamily: "var(--ff-mono)",
@@ -410,14 +414,12 @@ export default function SugestaoIA({
                 className="input"
                 style={{ marginBottom: 12, cursor: "pointer" }}
               >
-                <option value="">— Escolher IA —</option>
+                <option value="">— Escolher IA (popular primeiro) —</option>
                 {iasOrdenadas.map((slug) => {
                   const p = dados.palpites[slug];
-                  const pais = paises[slug];
                   return (
                     <option key={slug} value={slug}>
-                      {pais?.bandeira ?? "🏳️"} {iasDict[slug] ?? slug} →{" "}
-                      {p.gols_a}×{p.gols_b}
+                      {iasDict[slug] ?? slug} → {p.gols_a}×{p.gols_b}
                     </option>
                   );
                 })}
@@ -435,11 +437,18 @@ export default function SugestaoIA({
                     border: "1px solid var(--line)",
                   }}
                 >
-                  <span style={{ fontSize: 28 }}>
-                    {paises[iaEscolhida]?.bandeira ?? "🤖"}
-                  </span>
-                  <div style={{ flex: 1 }}>
-                    <strong style={{ fontSize: 15, color: "var(--fg)" }}>
+                  <IconeIA slug={iaEscolhida} size={36} />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <strong
+                      style={{
+                        fontSize: 15,
+                        color: "var(--fg)",
+                        display: "block",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
                       {iasDict[iaEscolhida] ?? iaEscolhida}
                     </strong>
                     <p
@@ -447,9 +456,10 @@ export default function SugestaoIA({
                         fontSize: 11,
                         color: "var(--fg-muted)",
                         fontFamily: "var(--ff-mono)",
+                        margin: 0,
                       }}
                     >
-                      {paises[iaEscolhida]?.nome ?? "?"} · {iaEscolhida}
+                      {MARCAS[familiaDe(iaEscolhida)].nome}
                     </p>
                   </div>
                   <span
@@ -481,16 +491,20 @@ export default function SugestaoIA({
   );
 }
 
-function ChipPais({
+function ChipFamilia({
   ativo,
   onClick,
+  emoji,
   label,
   count,
+  cor,
 }: {
   ativo: boolean;
   onClick: () => void;
+  emoji: string;
   label: string;
   count: number;
+  cor?: string;
 }) {
   return (
     <button
@@ -498,19 +512,23 @@ function ChipPais({
       style={{
         padding: "6px 12px",
         borderRadius: 999,
-        border: `1.5px solid ${ativo ? "var(--primary)" : "var(--line-strong)"}`,
+        border: `1.5px solid ${ativo ? cor ?? "var(--primary)" : "var(--line-strong)"}`,
         background: ativo
-          ? "color-mix(in srgb, var(--primary) 12%, transparent)"
+          ? `color-mix(in srgb, ${cor ?? "var(--primary)"} 12%, transparent)`
           : "var(--bg-2)",
-        color: ativo ? "var(--primary)" : "var(--fg)",
+        color: ativo ? cor ?? "var(--primary)" : "var(--fg)",
         fontFamily: "var(--ff-sans)",
         fontSize: 13,
         fontWeight: 600,
         cursor: "pointer",
         transition: "all 0.15s ease",
         whiteSpace: "nowrap",
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 6,
       }}
     >
+      <span style={{ fontSize: 14 }}>{emoji}</span>
       {label}{" "}
       <span
         style={{

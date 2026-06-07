@@ -1,63 +1,90 @@
 import Link from "next/link";
+import SerieA from "@/components/SerieA";
+import { resolverLocale } from "@/lib/locale-server";
+import { t } from "@/lib/i18n";
 
-const destinos = [
-  {
-    href: "https://giordanorec.github.io/bolao-copa-2026/serie-a.html",
-    external: true,
-    emoji: "🏆",
-    titulo: "Série A das IAs",
-    sub: "Os 10 cabeças de chave",
-    desc: "ChatGPT 5 Pro, Claude Opus 4.7, Gemini 2.5 Pro, Grok 4 Heavy, DeepSeek R1, Perplexity, Copilot, Le Chat, Meta AI e Qwen 3 Max — coletados via interface web com search.",
-    cta: "Ver os 10 →",
-  },
-  {
-    href: "https://giordanorec.github.io/bolao-copa-2026/jogos.html",
-    external: true,
-    emoji: "⚽",
-    titulo: "Palpites Jogo a Jogo",
-    sub: "Pra usar no seu bolão",
-    desc: "Pros 104 jogos: qual placar cada IA chutou, quantas concordam, o consenso. Sem precisar criar conta — copia pro seu bolão de WhatsApp.",
-    cta: "Espiar →",
-  },
-  {
-    href: "/signup",
-    external: false,
-    emoji: "🎯",
-    titulo: "Crie Seu Bolão",
-    sub: "Privado, pra galera",
-    desc: "Link único pra convidar amigos. Palpita do celular (ou copia de qualquer IA num clique). Ranking automático. Tudo grátis.",
-    cta: "Criar conta →",
-  },
-  {
-    href: "https://giordanorec.github.io/bolao-copa-2026/ias.html",
-    external: true,
-    emoji: "🤖",
-    titulo: "Ranking das 122",
-    sub: "Todas as IAs lado a lado",
-    desc: "Ranking completo: chute mais épico, IAs que mais erram, quem chuta zero a zero (a medrosa), quem sempre crava 3×2.",
-    cta: "Ranking completo →",
-  },
-  {
-    href: "/ranking-geral",
-    external: false,
-    emoji: "🌍",
-    titulo: "Hall da Fama",
-    sub: "Humanos + IAs juntos",
-    desc: "Humanos opt-in disputando contra as 122 IAs + Bola de Cristal. O ranking onde todo mundo briga no mesmo placar.",
-    cta: "Entrar no Hall →",
-  },
-  {
-    href: "https://giordanorec.github.io/bolao-copa-2026/cristal.html",
-    external: true,
-    emoji: "🔮",
-    titulo: "Bola de Cristal",
-    sub: "O palpite consenso",
-    desc: "Pra cada jogo, juntamos o placar mais votado entre TODAS as 122 IAs. Sabedoria das massas aplicada a futebol.",
-    cta: "Olhar a Cristal →",
-  },
-];
+export default async function Home() {
+  const locale = await resolverLocale();
 
-export default function Home() {
+  const destinos = [
+    {
+      href: "https://giordanorec.github.io/bolao-copa-2026/serie-a.html",
+      external: true,
+      emoji: "🏆",
+      titulo: t(locale, "home.hero.cta.serie_a"),
+      sub: "Top 10",
+      desc:
+        locale === "pt"
+          ? "ChatGPT 5 Pro, Claude Opus 4.7, Gemini 2.5 Pro, Grok 4 Heavy, DeepSeek R1, Perplexity, Copilot, Le Chat, Meta AI e Qwen 3 Max — coletados via interface web com search."
+          : locale === "en"
+            ? "ChatGPT 5 Pro, Claude Opus 4.7, Gemini 2.5 Pro, Grok 4 Heavy, DeepSeek R1, Perplexity, Copilot, Le Chat, Meta AI, Qwen 3 Max — gathered via web interface with search."
+            : locale === "es"
+              ? "ChatGPT 5 Pro, Claude Opus 4.7, Gemini 2.5 Pro, Grok 4 Heavy, DeepSeek R1, Perplexity, Copilot, Le Chat, Meta AI, Qwen 3 Max — recogidos vía web con búsqueda."
+              : "ChatGPT 5 Pro, Claude Opus 4.7, Gemini 2.5 Pro, Grok 4 Heavy, DeepSeek R1, Perplexity, Copilot, Le Chat, Meta AI, Qwen 3 Max — collectés via interface web avec recherche.",
+      cta:
+        locale === "pt"
+          ? "Ver os 10 →"
+          : locale === "en"
+            ? "See the 10 →"
+            : locale === "es"
+              ? "Ver los 10 →"
+              : "Voir les 10 →",
+    },
+    {
+      href: "https://giordanorec.github.io/bolao-copa-2026/jogos.html",
+      external: true,
+      emoji: "⚽",
+      titulo: t(locale, "home.hero.cta.jogos"),
+      sub:
+        locale === "pt"
+          ? "Pra usar no seu bolão"
+          : locale === "en"
+            ? "To use in your pool"
+            : locale === "es"
+              ? "Para usar en tu polla"
+              : "À utiliser dans votre cagnotte",
+      desc:
+        locale === "pt"
+          ? "Pros 104 jogos: qual placar cada IA chutou, quantas concordam, o consenso. Sem precisar criar conta."
+          : locale === "en"
+            ? "For all 104 matches: which score each AI predicted, how many agree, the consensus. No account needed."
+            : locale === "es"
+              ? "Para los 104 partidos: qué marcador predijo cada IA, cuántas concuerdan, el consenso. Sin cuenta."
+              : "Pour les 104 matches : quel score chaque IA a prédit, combien sont d'accord, le consensus. Sans compte.",
+      cta:
+        locale === "pt"
+          ? "Espiar →"
+          : locale === "en"
+            ? "Peek →"
+            : locale === "es"
+              ? "Espiar →"
+              : "Voir →",
+    },
+    {
+      href: "/signup",
+      external: false,
+      emoji: "🎯",
+      titulo: t(locale, "home.hero.cta.criar"),
+      sub:
+        locale === "pt"
+          ? "Privado, pra galera"
+          : locale === "en"
+            ? "Private, for your group"
+            : locale === "es"
+              ? "Privada, para tu grupo"
+              : "Privée, pour votre groupe",
+      desc:
+        locale === "pt"
+          ? "Link único pra convidar amigos. Palpita do celular. Ranking automático. Tudo grátis."
+          : locale === "en"
+            ? "Unique invite link. Predict from your phone. Auto ranking. All free."
+            : locale === "es"
+              ? "Enlace único para invitar amigos. Predice desde el móvil. Ranking automático. Todo gratis."
+              : "Lien d'invitation unique. Pronostiquez depuis votre mobile. Classement automatique. Tout gratuit.",
+      cta: t(locale, "login.criar") + " →",
+    },
+  ];
+
   return (
     <>
       <section className="hero">
@@ -68,14 +95,14 @@ export default function Home() {
             <span>🔮</span>
           </div>
           <h1>
-            Quem chuta melhor?
+            {t(locale, "home.hero.h1.l1")}
             <br />
-            <span className="accent">As IAs palpitam.</span>
+            <span className="accent">{t(locale, "home.hero.h1.l2")}</span>
           </h1>
           <p className="lede">
-            <strong>122 modelos de IA</strong> + Bola de Cristal palpitam os
-            104 jogos da Copa 2026. Espie o que cada uma chutou, copie pro seu
-            bolão, ou crie um privado pra galera. <strong>Tudo de graça.</strong> 🏆
+            <strong>122 {t(locale, "home.hero.lede.parte1")}</strong>{" "}
+            {t(locale, "home.hero.lede.parte2")}{" "}
+            <strong>{t(locale, "home.hero.lede.gratis")}</strong> 🏆
           </p>
 
           <div className="hero-cta">
@@ -85,7 +112,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              🏆 Série A das IAs
+              {t(locale, "home.hero.cta.serie_a")}
             </a>
             <a
               href="https://giordanorec.github.io/bolao-copa-2026/jogos.html"
@@ -93,35 +120,38 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              ⚽ Palpites Jogo a Jogo
+              {t(locale, "home.hero.cta.jogos")}
             </a>
             <Link href="/signup" className="btn">
-              🎯 Crie Seu Bolão
+              {t(locale, "home.hero.cta.criar")}
             </Link>
           </div>
 
           <div className="stats">
             <div className="stat">
               <div className="stat-num">122</div>
-              <span className="stat-lbl">IAs no bolão</span>
+              <span className="stat-lbl">{t(locale, "home.stats.ias")}</span>
             </div>
             <div className="stat">
               <div className="stat-num">104</div>
-              <span className="stat-lbl">Jogos da Copa</span>
+              <span className="stat-lbl">{t(locale, "home.stats.jogos")}</span>
             </div>
             <div className="stat">
               <div className="stat-num">8.6k+</div>
-              <span className="stat-lbl">Palpites coletados</span>
+              <span className="stat-lbl">
+                {t(locale, "home.stats.palpites")}
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─────────── 6 DESTINOS ─────────── */}
+      <SerieA locale={locale} />
+
       <section className="section">
         <div className="container">
           <h2 style={{ textAlign: "center", marginBottom: 12 }}>
-            Por onde começar
+            {t(locale, "home.destinos.titulo")}
           </h2>
           <p
             style={{
@@ -133,7 +163,7 @@ export default function Home() {
               marginInline: "auto",
             }}
           >
-            Seis caminhos, mesma porta de entrada.
+            {t(locale, "home.destinos.sub")}
           </p>
 
           <div
@@ -168,39 +198,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─────────── REGRAS ─────────── */}
       <section className="section">
         <div className="container">
           <h2 style={{ textAlign: "center", marginBottom: 32 }}>
-            Como funciona o placar
+            {t(locale, "home.regras.titulo")}
           </h2>
           <div className="card" style={{ maxWidth: 640, margin: "0 auto" }}>
             <table className="regras-table">
               <thead>
                 <tr>
-                  <th>Acerto</th>
-                  <th style={{ textAlign: "right" }}>Pts</th>
+                  <th>{t(locale, "home.regras.cabecalho.acerto")}</th>
+                  <th style={{ textAlign: "right" }}>
+                    {t(locale, "home.regras.cabecalho.pts")}
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>🎯 Placar exato</td>
+                  <td>{t(locale, "home.regras.placar_exato")}</td>
                   <td className="pts">10</td>
                 </tr>
                 <tr>
-                  <td>📏 Vencedor + saldo de gols</td>
+                  <td>{t(locale, "home.regras.vencedor_saldo")}</td>
                   <td className="pts">7</td>
                 </tr>
                 <tr>
-                  <td>✅ Vencedor (sem saldo)</td>
+                  <td>{t(locale, "home.regras.vencedor")}</td>
                   <td className="pts">5</td>
                 </tr>
                 <tr>
-                  <td>🤝 Empate (sem placar exato)</td>
+                  <td>{t(locale, "home.regras.empate")}</td>
                   <td className="pts">5</td>
                 </tr>
                 <tr>
-                  <td>❌ Errado</td>
+                  <td>{t(locale, "home.regras.errado")}</td>
                   <td className="pts" style={{ color: "var(--fg-muted)" }}>
                     0
                   </td>
@@ -218,12 +249,12 @@ export default function Home() {
                 textAlign: "center",
               }}
             >
-              🏆 <strong>Mata-mata vale 2×.</strong> Detalhes em{" "}
+              🏆 <strong>{t(locale, "home.regras.nota")}</strong>{" "}
               <Link
                 href="/como-funciona"
                 style={{ color: "var(--primary)", fontWeight: 700 }}
               >
-                como funciona
+                {t(locale, "home.regras.link")}
               </Link>
               .
             </p>
@@ -249,13 +280,7 @@ function CardConteudo({
 }) {
   return (
     <>
-      <div
-        style={{
-          fontSize: 56,
-          marginBottom: 12,
-          lineHeight: 1,
-        }}
-      >
+      <div style={{ fontSize: 56, marginBottom: 12, lineHeight: 1 }}>
         {emoji}
       </div>
       <h3

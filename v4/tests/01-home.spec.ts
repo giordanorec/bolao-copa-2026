@@ -45,25 +45,13 @@ test.describe("Home", () => {
     await expect(githubLink).toBeVisible();
   });
 
-  test("theme switcher abre e troca tema", async ({ page }) => {
+  test("tema airbnb aplicado por default", async ({ page }) => {
     await page.goto("/");
-    const switcher = page.locator(".theme-switcher");
-    await expect(switcher).toBeVisible();
-    await page.evaluate(() => {
-      document.body.classList.remove("theme-switcher-closed");
-    });
-    // clicar via DOM evita problemas de viewport no mobile
-    await page.evaluate(() => {
-      const el = document.querySelector<HTMLInputElement>(
-        'input[name="theme"][value="festivo-br"]',
-      );
-      el?.click();
-    });
-    await page.waitForTimeout(100);
-    const themeAttr = await page.evaluate(() =>
+    const tema = await page.evaluate(() =>
       document.body.getAttribute("data-theme"),
     );
-    expect(themeAttr).toBe("festivo-br");
+    expect(tema).toBe("airbnb");
+    await expect(page.locator(".theme-switcher")).toHaveCount(0);
   });
 
   test("body não tem scroll horizontal", async ({ page }) => {
