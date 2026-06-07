@@ -150,17 +150,17 @@ export default async function IAsPage() {
           return (
             <div key={familia} className="familia-bloco">
               <div className="familia-head">
-                <span
-                  className="familia-logo"
-                  style={{ background: "#fff", border: `1.5px solid ${marca.cor}33`, padding: 6 }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={marca.logo}
-                    alt=""
-                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
-                  />
-                </span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={marca.logo}
+                  alt={marca.nome}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    objectFit: "contain",
+                    flexShrink: 0,
+                  }}
+                />
                 <strong>{marca.nome}</strong>
                 <span className="familia-count">
                   {lista.length} {lista.length === 1 ? "modelo" : "modelos"}

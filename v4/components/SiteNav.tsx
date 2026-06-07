@@ -37,8 +37,8 @@ export default function SiteNav({
 
   const fechar = () => setAberto(false);
 
-  // Drawer + backdrop renderizados no body (portal) para escapar
-  // do containing block criado pelo backdrop-filter do .site-header.
+  // Drawer só contém os links de navegação. UserWidget e seletores ficam no
+  // header (visíveis sempre).
   const drawer = (
     <>
       <nav className={`site-nav ${aberto ? "is-open" : ""}`}>
@@ -57,19 +57,18 @@ export default function SiteNav({
           {t(locale, "nav.cristal").replace(" ↗", "")}
         </Link>
         <Link href="/ranking-ias" onClick={fechar}>
-          🏆 {locale === "en" ? "AI Ranking"
-            : locale === "es" ? "Ranking de IAs"
-            : locale === "fr" ? "Classement IA"
-            : "Ranking de IAs"}
+          🏆{" "}
+          {locale === "en"
+            ? "AI Ranking"
+            : locale === "es"
+              ? "Ranking de IAs"
+              : locale === "fr"
+                ? "Classement IA"
+                : "Ranking de IAs"}
         </Link>
         <Link href="/como-funciona" onClick={fechar}>
           {t(locale, "nav.como")}
         </Link>
-        <UserWidget onNavigate={fechar} />
-        <div className="site-nav-lang">
-          <LangSwitcher atual={locale} />
-          <TemaSwitcher atual={tema} />
-        </div>
       </nav>
 
       {aberto && (
@@ -84,20 +83,21 @@ export default function SiteNav({
 
   return (
     <>
-      <div className="header-lang-mobile">
+      <div className="header-tools">
         <LangSwitcher atual={locale} />
         <TemaSwitcher atual={tema} />
+        <UserWidget onNavigate={fechar} />
+        <button
+          className="nav-hamburger"
+          aria-label={aberto ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={aberto}
+          onClick={() => setAberto((v) => !v)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-      <button
-        className="nav-hamburger"
-        aria-label={aberto ? "Fechar menu" : "Abrir menu"}
-        aria-expanded={aberto}
-        onClick={() => setAberto((v) => !v)}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
 
       {montado ? createPortal(drawer, document.body) : null}
     </>

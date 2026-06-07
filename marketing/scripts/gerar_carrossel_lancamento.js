@@ -31,10 +31,7 @@ function logoIA(familia, size = 88) {
   const arq = path.join(LOGOS_DIR, `${familia}.svg`);
   if (!fs.existsSync(arq)) return `<div style="width:${size}px;height:${size}px;"></div>`;
   const svg = fs.readFileSync(arq).toString("base64");
-  const cor = CORES[familia] || "#888";
-  return `<div style="width:${size}px;height:${size}px;background:#fff;border:2px solid ${cor}33;border-radius:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:${Math.round(size*0.16)}px;box-sizing:border-box;">
-    <img src="data:image/svg+xml;base64,${svg}" style="width:100%;height:100%;object-fit:contain;" />
-  </div>`;
+  return `<img src="data:image/svg+xml;base64,${svg}" style="width:${size}px;height:${size}px;object-fit:contain;flex-shrink:0;" />`;
 }
 
 // CSS comum a todos os slides (1080×1080, fundo branco, brand BR)
