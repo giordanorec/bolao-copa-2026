@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase-server";
 import { Plus } from "lucide-react";
 import LogoutButton from "@/components/LogoutButton";
@@ -9,7 +10,7 @@ export default async function Dashboard() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) return null;
+  if (!user) redirect("/login?redirect=/dashboard");
 
   const { data: profile } = await supabase
     .from("profiles")
