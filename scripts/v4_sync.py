@@ -23,8 +23,108 @@ WEB_DATA = ROOT / "web" / "data"
 V4_PUB = ROOT / "v4" / "public"
 
 
-def _gerar_palpites_por_jogo() -> tuple[dict, dict]:
-    """Roda parser do v1 e agrega palpites por jogo + dict de IAs."""
+def _mapear_pais(slug: str) -> dict:
+    """Mapeia slug da IA pra (codigo_pais, nome_pt, emoji_bandeira)."""
+    s = slug.lower()
+    # USA
+    if any(
+        s.startswith(p) or p in s
+        for p in (
+            "chatgpt",
+            "gpt-",
+            "openai",
+            "o1",
+            "o3",
+            "o4-",
+            "claude",
+            "gemini",
+            "gemma",
+            "palm",
+            "bard",
+            "grok",
+            "llama",
+            "meta-",
+            "copilot",
+            "phi-",
+            "perplexity",
+            "sonar",
+            "wizardlm",
+            "dbrx",
+            "databricks",
+            "liquid",
+            "inflection",
+        )
+    ):
+        return {"codigo": "us", "nome": "Estados Unidos", "bandeira": "🇺🇸"}
+    # França
+    if any(p in s for p in ("mistral", "codestral", "ministral", "le-chat", "mixtral")):
+        return {"codigo": "fr", "nome": "França", "bandeira": "🇫🇷"}
+    # China
+    if any(
+        p in s
+        for p in (
+            "deepseek",
+            "qwen",
+            "kimi",
+            "baichuan",
+            "yi-",
+            "01-ai",
+            "glm",
+            "chatglm",
+            "tongyi",
+            "ernie",
+            "doubao",
+            "moonshot",
+        )
+    ):
+        return {"codigo": "cn", "nome": "China", "bandeira": "🇨🇳"}
+    # Israel
+    if any(p in s for p in ("jamba", "ai21")):
+        return {"codigo": "il", "nome": "Israel", "bandeira": "🇮🇱"}
+    # Canadá
+    if any(p in s for p in ("cohere", "command-", "aya-")):
+        return {"codigo": "ca", "nome": "Canadá", "bandeira": "🇨🇦"}
+    # UK / Inglaterra
+    if any(p in s for p in ("stability", "deepmind", "reka")):
+        return {"codigo": "gb", "nome": "Reino Unido", "bandeira": "🇬🇧"}
+    # USA extra (modelos open source ou menos famosos)
+    if any(
+        p in s
+        for p in (
+            "lfm-",
+            "falcon",
+            "ibm-",
+            "granite",
+            "minimax",
+            "molmo",
+            "nemotron",
+            "nous-hermes",
+            "olmo-",
+            "pixtral",
+            "qwq",
+            "snowflake",
+            "stablelm",
+            "step-",
+            "tulu",
+            "mathstral",
+            "spark-",
+        )
+    ):
+        # mathstral é Mistral (France); pixtral é Mistral
+        if any(p in s for p in ("mathstral", "pixtral")):
+            return {"codigo": "fr", "nome": "França", "bandeira": "🇫🇷"}
+        # hunyuan/sensechat/spark sao chineses
+        return {"codigo": "us", "nome": "Estados Unidos", "bandeira": "🇺🇸"}
+    if any(p in s for p in ("hunyuan", "sensechat", "spark-", "step-")):
+        return {"codigo": "cn", "nome": "China", "bandeira": "🇨🇳"}
+    # Bola de Cristal = nao tem pais
+    if s == "bola-de-cristal":
+        return {"codigo": "cristal", "nome": "Consenso Global", "bandeira": "🔮"}
+    return {"codigo": "xx", "nome": "Outro", "bandeira": "🏳️"}
+
+
+def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
+    """Roda parser do v1 e agrega palpites por jogo + dict de IAs + paises."""
     import sys
 
     sys.path.insert(0, str(ROOT / "src"))
@@ -86,7 +186,11 @@ def _gerar_palpites_por_jogo() -> tuple[dict, dict]:
             "consenso": consenso[:10],  # top 10
             "bola_de_cristal": cristal.get(str(num)),
         }
-    return por_jogo, ias_dict
+    # paises por IA
+    paises: dict[str, dict] = {}
+    for slug in ias_dict:
+        paises[slug] = _mapear_pais(slug)
+    return por_jogo, ias_dict, paises
 
 
 def main() -> None:
@@ -115,8 +219,8 @@ def main() -> None:
         n = len(json.loads(dst.read_text(encoding="utf-8")))
         print(f"bola de cristal: {n} jogos -> {dst.name}")
 
-    # 4. palpites_por_jogo.json (NOVO)
-    por_jogo, ias_dict = _gerar_palpites_por_jogo()
+    # 4. palpites_por_jogo.json
+    por_jogo, ias_dict, paises = _gerar_palpites_por_jogo()
     out = V4_PUB / "palpites_por_jogo.json"
     out.write_text(
         json.dumps(por_jogo, ensure_ascii=False, indent=None, separators=(",", ":")),
@@ -125,13 +229,23 @@ def main() -> None:
     com_palpites = sum(1 for v in por_jogo.values() if v.get("palpites"))
     print(f"palpites por jogo: {com_palpites} jogos com IAs -> {out.name}")
 
-    # 5. ias_dict.json (NOVO)
+    # 5. ias_dict.json
     out_ias = V4_PUB / "ias_dict.json"
     out_ias.write_text(
         json.dumps(ias_dict, ensure_ascii=False, indent=None, separators=(",", ":")),
         encoding="utf-8",
     )
     print(f"dict IAs: {len(ias_dict)} -> {out_ias.name}")
+
+    # 6. ias_paises.json (NOVO)
+    out_paises = V4_PUB / "ias_paises.json"
+    out_paises.write_text(
+        json.dumps(paises, ensure_ascii=False, indent=None, separators=(",", ":")),
+        encoding="utf-8",
+    )
+    contagem_pais: Counter[str] = Counter(p["codigo"] for p in paises.values())
+    resumo = ", ".join(f"{c}={n}" for c, n in contagem_pais.most_common())
+    print(f"paises: {resumo} -> {out_paises.name}")
 
 
 if __name__ == "__main__":

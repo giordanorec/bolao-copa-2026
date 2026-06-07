@@ -4,7 +4,7 @@ import { useState, useRef, useMemo } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase-browser";
 import type { Jogo } from "@/lib/types";
-import type { DadosPorJogo, PalpiteIA } from "@/lib/palpites-ias";
+import type { DadosPorJogo, PalpiteIA, PaisIA } from "@/lib/palpites-ias";
 import PrePreencherBar from "./PrePreencherBar";
 import SugestaoIA from "./SugestaoIA";
 
@@ -17,6 +17,7 @@ export default function PalpitarForm({
   palpitesIniciais,
   palpitesIAs,
   iasDict,
+  paises,
 }: {
   bolaoNome: string;
   bolaoSlug: string;
@@ -24,6 +25,7 @@ export default function PalpitarForm({
   palpitesIniciais: Estado;
   palpitesIAs: Record<string, DadosPorJogo>;
   iasDict: Record<string, string>;
+  paises: Record<string, PaisIA>;
 }) {
   const [palpites, setPalpites] = useState<Estado>(palpitesIniciais);
   const [salvando, setSalvando] = useState<Set<number>>(new Set());
@@ -250,6 +252,7 @@ export default function PalpitarForm({
                   timeB={j.time_b}
                   dados={dados}
                   iasDict={iasDict}
+                  paises={paises}
                   onPick={(a, b) => aplicarSugestao(j.numero, a, b)}
                 />
               </div>

@@ -21,8 +21,11 @@ export type DadosPorJogo = {
   } | null;
 };
 
+export type PaisIA = { codigo: string; nome: string; bandeira: string };
+
 let cachePalpites: Record<string, DadosPorJogo> | null = null;
 let cacheIAs: Record<string, string> | null = null;
+let cachePaises: Record<string, PaisIA> | null = null;
 
 export async function carregarPalpitesIAs(): Promise<
   Record<string, DadosPorJogo>
@@ -45,6 +48,18 @@ export async function carregarDictIAs(): Promise<Record<string, string>> {
     const raw = await fs.readFile(fp, "utf-8");
     cacheIAs = JSON.parse(raw);
     return cacheIAs!;
+  } catch {
+    return {};
+  }
+}
+
+export async function carregarPaises(): Promise<Record<string, PaisIA>> {
+  if (cachePaises) return cachePaises;
+  const fp = path.join(process.cwd(), "public", "ias_paises.json");
+  try {
+    const raw = await fs.readFile(fp, "utf-8");
+    cachePaises = JSON.parse(raw);
+    return cachePaises!;
   } catch {
     return {};
   }

@@ -1,7 +1,14 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import type { DadosPorJogo } from "@/lib/palpites-ias";
+import type { DadosPorJogo, PaisIA } from "@/lib/palpites-ias";
+
+type ConsensoLocal = {
+  gols_a: number;
+  gols_b: number;
+  votos: number;
+  ias: string[];
+};
 
 export default function SugestaoIA({
   jogoNumero,
@@ -9,6 +16,7 @@ export default function SugestaoIA({
   timeB,
   dados,
   iasDict,
+  paises,
   onPick,
 }: {
   jogoNumero: number;
@@ -16,27 +24,95 @@ export default function SugestaoIA({
   timeB: string;
   dados: DadosPorJogo | null;
   iasDict: Record<string, string>;
+  paises: Record<string, PaisIA>;
   onPick: (gols_a: number, gols_b: number) => void;
 }) {
   const [aberto, setAberto] = useState(false);
+  const [paisFiltro, setPaisFiltro] = useState<string>("all");
   const [iaEscolhida, setIaEscolhida] = useState<string>("");
 
-  const totalVotos = useMemo(
-    () =>
-      dados?.consenso.reduce((acc, c) => acc + c.votos, 0) ?? 0,
-    [dados],
-  );
+  // Recalcula consenso baseado no filtro
+  const { consensoFiltrado, totalFiltrado, todosPaises, bolaFiltrada } =
+    useMemo(() => {
+      if (!dados) {
+        return {
+          consensoFiltrado: [] as ConsensoLocal[],
+          totalFiltrado: 0,
+          todosPaises: {} as Record<string, number>,
+          bolaFiltrada: null as ConsensoLocal | null,
+        };
+      }
+      const slugs = Object.keys(dados.palpites);
+      // Contar IAs por país (pros chips)
+      const contPais: Record<string, number> = {};
+      slugs.forEach((slug) => {
+        const p = paises[slug];
+        const code = p?.codigo ?? "xx";
+        contPais[code] = (contPais[code] ?? 0) + 1;
+      });
+
+      // Slugs filtrados
+      const slugsFiltrados =
+        paisFiltro === "all"
+          ? slugs
+          : slugs.filter((s) => (paises[s]?.codigo ?? "xx") === paisFiltro);
+
+      // Recalcular consenso só com IAs filtradas
+      const contagem: Record<string, ConsensoLocal> = {};
+      slugsFiltrados.forEach((slug) => {
+        const p = dados.palpites[slug];
+        const key = `${p.gols_a}-${p.gols_b}`;
+        if (!contagem[key]) {
+          contagem[key] = {
+            gols_a: p.gols_a,
+            gols_b: p.gols_b,
+            votos: 0,
+            ias: [],
+          };
+        }
+        contagem[key].votos += 1;
+        contagem[key].ias.push(slug);
+      });
+      const consenso = Object.values(contagem).sort((a, b) => {
+        if (b.votos !== a.votos) return b.votos - a.votos;
+        return b.gols_a + b.gols_b - (a.gols_a + a.gols_b);
+      });
+
+      return {
+        consensoFiltrado: consenso,
+        totalFiltrado: slugsFiltrados.length,
+        todosPaises: contPais,
+        bolaFiltrada: consenso[0] ?? null,
+      };
+    }, [dados, paisFiltro, paises]);
 
   if (!dados || !dados.palpites || Object.keys(dados.palpites).length === 0) {
     return null;
   }
 
   const palpiteIA = iaEscolhida ? dados.palpites[iaEscolhida] : null;
-  const iasOrdenadas = Object.keys(dados.palpites).sort((a, b) => {
-    const na = iasDict[a] ?? a;
-    const nb = iasDict[b] ?? b;
-    return na.localeCompare(nb);
-  });
+  const iasOrdenadas = Object.keys(dados.palpites)
+    .filter((s) =>
+      paisFiltro === "all" ? true : (paises[s]?.codigo ?? "xx") === paisFiltro,
+    )
+    .sort((a, b) => {
+      const na = iasDict[a] ?? a;
+      const nb = iasDict[b] ?? b;
+      return na.localeCompare(nb);
+    });
+
+  // Ordem dos chips de país por contagem
+  const paisesChips = Object.entries(todosPaises)
+    .sort((a, b) => b[1] - a[1])
+    .map(([code, count]) => {
+      const exemplo = Object.values(paises).find((p) => p.codigo === code);
+      return {
+        codigo: code,
+        nome: exemplo?.nome ?? code.toUpperCase(),
+        bandeira: exemplo?.bandeira ?? "🏳️",
+        count,
+      };
+    });
 
   return (
     <>
@@ -76,11 +152,11 @@ export default function SugestaoIA({
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              background: "white",
+              background: "var(--bg-2)",
               borderRadius: "var(--r-l)",
               width: "100%",
-              maxWidth: 520,
-              maxHeight: "85vh",
+              maxWidth: 560,
+              maxHeight: "88vh",
               overflowY: "auto",
               boxShadow: "var(--shadow-pop)",
             }}
@@ -92,6 +168,10 @@ export default function SugestaoIA({
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
+                position: "sticky",
+                top: 0,
+                background: "var(--bg-2)",
+                zIndex: 1,
               }}
             >
               <div>
@@ -107,7 +187,7 @@ export default function SugestaoIA({
                 >
                   Jogo #{jogoNumero}
                 </p>
-                <h3 style={{ fontSize: 20, margin: 0 }}>
+                <h3 style={{ fontSize: 22, margin: 0, color: "var(--fg)" }}>
                   {timeA} × {timeB}
                 </h3>
               </div>
@@ -116,7 +196,7 @@ export default function SugestaoIA({
                 style={{
                   border: "none",
                   background: "transparent",
-                  fontSize: 24,
+                  fontSize: 26,
                   cursor: "pointer",
                   color: "var(--fg-muted)",
                   padding: 4,
@@ -127,24 +207,73 @@ export default function SugestaoIA({
             </div>
 
             <div style={{ padding: 24 }}>
-              {/* Bola de Cristal destaque */}
-              {dados.bola_de_cristal && (
+              {/* Chips de país */}
+              <h4
+                style={{
+                  fontFamily: "var(--ff-mono)",
+                  fontSize: 11,
+                  color: "var(--fg-muted)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  marginBottom: 10,
+                }}
+              >
+                Filtrar por país da IA
+              </h4>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 6,
+                  marginBottom: 22,
+                  flexWrap: "wrap",
+                }}
+              >
+                <ChipPais
+                  ativo={paisFiltro === "all"}
+                  onClick={() => setPaisFiltro("all")}
+                  label="🌍 Todas"
+                  count={Object.keys(dados.palpites).length}
+                />
+                {paisesChips.map((p) => (
+                  <ChipPais
+                    key={p.codigo}
+                    ativo={paisFiltro === p.codigo}
+                    onClick={() => setPaisFiltro(p.codigo)}
+                    label={`${p.bandeira} ${p.nome}`}
+                    count={p.count}
+                  />
+                ))}
+              </div>
+
+              {/* Consenso filtrado em destaque */}
+              {bolaFiltrada && (
                 <div
                   style={{
                     background:
-                      "linear-gradient(135deg, rgba(255,206,0,0.12), rgba(0,166,153,0.12))",
-                    border: "2px solid var(--accent)",
+                      paisFiltro === "all"
+                        ? "linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, transparent), color-mix(in srgb, var(--primary) 8%, transparent))"
+                        : "linear-gradient(135deg, color-mix(in srgb, var(--primary) 10%, transparent), color-mix(in srgb, var(--secondary) 6%, transparent))",
+                    border: `2px solid ${paisFiltro === "all" ? "var(--accent)" : "var(--primary)"}`,
                     borderRadius: "var(--r-m)",
-                    padding: 16,
+                    padding: 18,
                     marginBottom: 20,
                     display: "flex",
                     alignItems: "center",
                     gap: 16,
                   }}
                 >
-                  <span style={{ fontSize: 36 }}>🔮</span>
+                  <span style={{ fontSize: 40 }}>
+                    {paisFiltro === "all"
+                      ? "🔮"
+                      : paisesChips.find((p) => p.codigo === paisFiltro)
+                          ?.bandeira ?? "🏳️"}
+                  </span>
                   <div style={{ flex: 1 }}>
-                    <strong>Bola de Cristal</strong>
+                    <strong style={{ fontSize: 16, color: "var(--fg)" }}>
+                      {paisFiltro === "all"
+                        ? "Consenso geral"
+                        : `Mais votado pelas ${paisesChips.find((p) => p.codigo === paisFiltro)?.nome ?? ""}`}
+                    </strong>
                     <p
                       style={{
                         fontSize: 12,
@@ -152,8 +281,7 @@ export default function SugestaoIA({
                         margin: "2px 0 0",
                       }}
                     >
-                      {dados.bola_de_cristal.votos} de{" "}
-                      {Object.keys(dados.palpites).length} IAs concordam
+                      {bolaFiltrada.votos} de {totalFiltrado} IAs concordam
                     </p>
                   </div>
                   <div style={{ textAlign: "center" }}>
@@ -161,20 +289,16 @@ export default function SugestaoIA({
                       style={{
                         fontFamily: "var(--ff-mono)",
                         fontWeight: 800,
-                        fontSize: 24,
-                        color: "var(--accent-3)",
+                        fontSize: 26,
+                        color: "var(--primary)",
                       }}
                     >
-                      {dados.bola_de_cristal.gols_a}×
-                      {dados.bola_de_cristal.gols_b}
+                      {bolaFiltrada.gols_a}×{bolaFiltrada.gols_b}
                     </div>
                   </div>
                   <button
                     onClick={() => {
-                      onPick(
-                        dados.bola_de_cristal!.gols_a,
-                        dados.bola_de_cristal!.gols_b,
-                      );
+                      onPick(bolaFiltrada.gols_a, bolaFiltrada.gols_b);
                       setAberto(false);
                     }}
                     className="btn primary small"
@@ -184,101 +308,104 @@ export default function SugestaoIA({
                 </div>
               )}
 
-              {/* Consenso (placares mais votados) */}
-              <h4
-                style={{
-                  fontFamily: "var(--ff-mono)",
-                  fontSize: 11,
-                  color: "var(--fg-muted)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                  marginBottom: 12,
-                }}
-              >
-                Placares mais votados
-              </h4>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 8,
-                  marginBottom: 24,
-                }}
-              >
-                {dados.consenso.slice(0, 6).map((c, i) => (
-                  <div
-                    key={`${c.gols_a}-${c.gols_b}`}
+              {/* Placares mais votados (filtrado) */}
+              {consensoFiltrado.length > 1 && (
+                <>
+                  <h4
                     style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 12,
-                      padding: 10,
-                      background:
-                        i === 0 ? "var(--bg-soft)" : "transparent",
-                      borderRadius: "var(--r-s)",
-                      border: "1px solid var(--line)",
+                      fontFamily: "var(--ff-mono)",
+                      fontSize: 11,
+                      color: "var(--fg-muted)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.08em",
+                      marginBottom: 12,
                     }}
                   >
-                    <span
-                      style={{
-                        fontFamily: "var(--ff-mono)",
-                        fontWeight: 800,
-                        fontSize: 18,
-                        color: "var(--fg)",
-                        minWidth: 50,
-                      }}
-                    >
-                      {c.gols_a}×{c.gols_b}
-                    </span>
-                    <div style={{ flex: 1 }}>
+                    Outros placares votados
+                  </h4>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 8,
+                      marginBottom: 24,
+                    }}
+                  >
+                    {consensoFiltrado.slice(1, 6).map((c) => (
                       <div
+                        key={`${c.gols_a}-${c.gols_b}`}
                         style={{
-                          height: 6,
-                          background: "var(--bg-soft)",
-                          borderRadius: 3,
-                          overflow: "hidden",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 12,
+                          padding: 10,
+                          borderRadius: "var(--r-s)",
+                          border: "1px solid var(--line)",
                         }}
                       >
-                        <div
+                        <span
                           style={{
-                            height: "100%",
-                            width: `${(c.votos / totalVotos) * 100}%`,
-                            background:
-                              i === 0
-                                ? "var(--primary)"
-                                : "var(--fg-mid)",
+                            fontFamily: "var(--ff-mono)",
+                            fontWeight: 800,
+                            fontSize: 18,
+                            color: "var(--fg)",
+                            minWidth: 56,
                           }}
-                        />
+                        >
+                          {c.gols_a}×{c.gols_b}
+                        </span>
+                        <div style={{ flex: 1 }}>
+                          <div
+                            style={{
+                              height: 6,
+                              background: "var(--bg-soft)",
+                              borderRadius: 3,
+                              overflow: "hidden",
+                            }}
+                          >
+                            <div
+                              style={{
+                                height: "100%",
+                                width: `${(c.votos / totalFiltrado) * 100}%`,
+                                background: "var(--fg-mid)",
+                              }}
+                            />
+                          </div>
+                          <p
+                            style={{
+                              fontSize: 11,
+                              color: "var(--fg-muted)",
+                              marginTop: 4,
+                              fontFamily: "var(--ff-mono)",
+                            }}
+                          >
+                            {c.votos} {c.votos === 1 ? "voto" : "votos"}
+                            {c.ias.length <= 4 &&
+                              " · " +
+                                c.ias
+                                  .map(
+                                    (s) =>
+                                      (paises[s]?.bandeira ?? "") +
+                                      " " +
+                                      (iasDict[s] ?? s),
+                                  )
+                                  .join(", ")}
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => {
+                            onPick(c.gols_a, c.gols_b);
+                            setAberto(false);
+                          }}
+                          className="btn small"
+                        >
+                          Usar
+                        </button>
                       </div>
-                      <p
-                        style={{
-                          fontSize: 11,
-                          color: "var(--fg-muted)",
-                          marginTop: 4,
-                          fontFamily: "var(--ff-mono)",
-                        }}
-                        title={c.ias
-                          .map((s) => iasDict[s] ?? s)
-                          .join(", ")}
-                      >
-                        {c.votos} {c.votos === 1 ? "voto" : "votos"}
-                        {c.ias.length <= 3 &&
-                          " · " +
-                            c.ias.map((s) => iasDict[s] ?? s).join(", ")}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => {
-                        onPick(c.gols_a, c.gols_b);
-                        setAberto(false);
-                      }}
-                      className="btn small"
-                    >
-                      Usar
-                    </button>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </>
+              )}
 
               {/* IA específica */}
               <h4
@@ -291,7 +418,7 @@ export default function SugestaoIA({
                   marginBottom: 12,
                 }}
               >
-                Ou ver palpite de IA específica
+                Ou pega de uma IA específica
               </h4>
               <select
                 value={iaEscolhida}
@@ -302,9 +429,11 @@ export default function SugestaoIA({
                 <option value="">— Escolher IA —</option>
                 {iasOrdenadas.map((slug) => {
                   const p = dados.palpites[slug];
+                  const pais = paises[slug];
                   return (
                     <option key={slug} value={slug}>
-                      {iasDict[slug] ?? slug} → {p.gols_a}×{p.gols_b}
+                      {pais?.bandeira ?? "🏳️"} {iasDict[slug] ?? slug} →{" "}
+                      {p.gols_a}×{p.gols_b}
                     </option>
                   );
                 })}
@@ -314,16 +443,21 @@ export default function SugestaoIA({
                 <div
                   style={{
                     background: "var(--bg-1)",
-                    padding: 12,
+                    padding: 14,
                     borderRadius: "var(--r-m)",
                     display: "flex",
                     alignItems: "center",
                     gap: 12,
+                    border: "1px solid var(--line)",
                   }}
                 >
-                  <span style={{ fontSize: 24 }}>🤖</span>
+                  <span style={{ fontSize: 28 }}>
+                    {paises[iaEscolhida]?.bandeira ?? "🤖"}
+                  </span>
                   <div style={{ flex: 1 }}>
-                    <strong>{iasDict[iaEscolhida] ?? iaEscolhida}</strong>
+                    <strong style={{ fontSize: 15, color: "var(--fg)" }}>
+                      {iasDict[iaEscolhida] ?? iaEscolhida}
+                    </strong>
                     <p
                       style={{
                         fontSize: 11,
@@ -331,7 +465,7 @@ export default function SugestaoIA({
                         fontFamily: "var(--ff-mono)",
                       }}
                     >
-                      {iaEscolhida}
+                      {paises[iaEscolhida]?.nome ?? "?"} · {iaEscolhida}
                     </p>
                   </div>
                   <span
@@ -360,5 +494,49 @@ export default function SugestaoIA({
         </div>
       )}
     </>
+  );
+}
+
+function ChipPais({
+  ativo,
+  onClick,
+  label,
+  count,
+}: {
+  ativo: boolean;
+  onClick: () => void;
+  label: string;
+  count: number;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        padding: "6px 12px",
+        borderRadius: 999,
+        border: `1.5px solid ${ativo ? "var(--primary)" : "var(--line-strong)"}`,
+        background: ativo
+          ? "color-mix(in srgb, var(--primary) 12%, transparent)"
+          : "var(--bg-2)",
+        color: ativo ? "var(--primary)" : "var(--fg)",
+        fontFamily: "var(--ff-sans)",
+        fontSize: 13,
+        fontWeight: 600,
+        cursor: "pointer",
+        transition: "all 0.15s ease",
+        whiteSpace: "nowrap",
+      }}
+    >
+      {label}{" "}
+      <span
+        style={{
+          opacity: 0.6,
+          fontFamily: "var(--ff-mono)",
+          fontSize: 11,
+        }}
+      >
+        {count}
+      </span>
+    </button>
   );
 }
