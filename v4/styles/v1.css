@@ -1383,12 +1383,93 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     text-transform: uppercase; color: var(--fg-muted); letter-spacing: 0.1em;
 }
 .ia-card small { font-size: 11px; color: var(--fg-muted); }
+.ia-card .ia-modelo {
+    font-family: var(--ff-mono); font-size: 12px;
+    color: var(--fg-muted); margin: 0 0 10px;
+}
+.ia-card-body { display: flex; flex-direction: column; align-items: center; }
 @media (max-width: 720px) {
     .serie-a-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .ia-card { padding: 14px 10px 12px; }
     .ia-card img { width: 72px; height: 72px; }
     .ia-card h3 { font-size: 13px; min-height: 32px; }
     .ia-card .ia-pontos strong { font-size: 22px; }
+}
+
+/* ─── SÉRIE A · VARIANTE DESTAQUE (home: 1 coluna, mascote enorme, sem borda) ─── */
+.serie-a-grid.destaque {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 760px;
+    margin: 0 auto;
+}
+.serie-a-grid.destaque .ia-card {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 18px 12px;
+    gap: 28px;
+    border-radius: var(--r-l);
+}
+.serie-a-grid.destaque .ia-card:hover {
+    transform: none;
+    box-shadow: none;
+    background: var(--bg-soft);
+}
+.serie-a-grid.destaque .ia-card img {
+    width: 160px; height: 160px;
+    margin-bottom: 0; flex-shrink: 0;
+}
+.serie-a-grid.destaque .ia-card .ia-rank {
+    position: static;
+    font-size: 14px;
+    padding: 6px 12px;
+    align-self: flex-start;
+}
+.serie-a-grid.destaque .ia-card-body {
+    align-items: flex-start;
+    flex: 1; min-width: 0;
+}
+.serie-a-grid.destaque .ia-card h3 {
+    font-family: var(--ff-display);
+    font-weight: var(--ff-display-weight);
+    font-style: var(--ff-display-style);
+    font-variation-settings: var(--ff-display-vs);
+    color: var(--secondary);
+    font-size: 32px;
+    min-height: auto;
+    margin: 0 0 4px;
+    line-height: 1.05;
+}
+.serie-a-grid.destaque .ia-card .ia-modelo {
+    font-size: 14px;
+    margin: 0 0 14px;
+}
+.serie-a-grid.destaque .ia-card .ia-pontos {
+    gap: 6px;
+}
+.serie-a-grid.destaque .ia-card .ia-pontos strong {
+    font-size: 42px;
+}
+.serie-a-grid.destaque .ia-card .ia-pontos span {
+    font-size: 13px;
+}
+.serie-a-grid.destaque .ia-card small {
+    font-size: 13px;
+    color: var(--fg-mid);
+    font-family: var(--ff-mono);
+}
+@media (max-width: 600px) {
+    .serie-a-grid.destaque .ia-card {
+        gap: 16px;
+        padding: 14px 8px;
+    }
+    .serie-a-grid.destaque .ia-card img { width: 110px; height: 110px; }
+    .serie-a-grid.destaque .ia-card h3 { font-size: 22px; }
+    .serie-a-grid.destaque .ia-card .ia-pontos strong { font-size: 32px; }
+    .serie-a-grid.destaque .ia-card .ia-modelo { font-size: 12px; margin-bottom: 8px; }
 }
 
 /* ─── JOGOS LISTA (página /jogos) ─── */

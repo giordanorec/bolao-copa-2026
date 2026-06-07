@@ -139,7 +139,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <SerieA locale={locale} />
+      <SerieA locale={locale} variante="destaque" />
 
       <section className="section">
         <div className="container">
