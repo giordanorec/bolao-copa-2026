@@ -5,8 +5,6 @@ Salva em v4/public/logos/{familia}.svg
 
 from __future__ import annotations
 
-import json
-import os
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -99,10 +97,50 @@ def tentar_baixar(slug: str, cor_marca: str | None = None) -> bytes | None:
         return None
 
 
+LOBE_BASE = "https://unpkg.com/@lobehub/icons-static-svg/icons"
+# overrides (familia → URL específica, prioritária sobre SimpleIcons)
+OVERRIDES = {
+    # Microsoft Copilot colorido (LobeHub)
+    "microsoft": f"{LOBE_BASE}/copilot-color.svg",
+    # Grok só símbolo (LobeHub monochrome; ajustamos cor depois)
+    "xai": f"{LOBE_BASE}/grok.svg",
+    # ChatGPT-Logo Wikimedia (versão verde tradicional)
+    "openai": "https://upload.wikimedia.org/wikipedia/commons/e/ef/ChatGPT-Logo.svg",
+    # Gemini icon 2025 colorido (Wikimedia)
+    "google": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Google_Gemini_icon_2025.svg",
+}
+
+
+def baixar_override(fam: str, cor: str | None) -> bytes | None:
+    url = OVERRIDES.get(fam)
+    if not url:
+        return None
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            data = r.read()
+            if not data or len(data) < 50 or b"<svg" not in data:
+                return None
+            text = data.decode("utf-8", errors="ignore")
+            # Lobe usa fill="currentColor" - substitui pela cor da marca
+            if "currentColor" in text and cor:
+                text = text.replace('fill="currentColor"', f'fill="#{cor}"')
+            return text.encode("utf-8")
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
+        return None
+
+
 def main() -> None:
     sucesso = 0
     fallback = 0
     for fam, si_slug, cor, nome in FAMILIAS:
+        # 1. tenta override (Wikimedia/LobeHub - logos mais coloridas/precisas)
+        baixado = baixar_override(fam, cor)
+        if baixado:
+            (OUT / f"{fam}.svg").write_bytes(baixado)
+            print(f"  ★ {fam}: override")
+            sucesso += 1
+            continue
         out = OUT / f"{fam}.svg"
         baixado = None
         if si_slug:
