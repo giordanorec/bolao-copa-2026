@@ -49,9 +49,9 @@ export default function PrePreencherBar({
           marginBottom: aberto ? 16 : 0,
         }}
       >
-        <span style={{ fontSize: 22 }}>💡</span>
+        <span style={{ fontSize: 22 }}>🤖</span>
         <div style={{ flex: 1, minWidth: 200 }}>
-          <strong>Em vez de chutar 104 vezes…</strong>
+          <strong>Aproveitar palpites das IAs</strong>
           <p
             style={{
               fontSize: 13,
@@ -59,14 +59,14 @@ export default function PrePreencherBar({
               marginTop: 2,
             }}
           >
-            Importe palpites de uma IA ou da Bola de Cristal.
+            Copia em lote os palpites de uma IA ou da Bola de Cristal.
           </p>
         </div>
         <button
           onClick={() => setAberto((a) => !a)}
           className="btn small"
         >
-          {aberto ? "Fechar" : "🔮 Pré-preencher"}
+          {aberto ? "Fechar" : "🤖 Palpites das IAs"}
         </button>
       </div>
 

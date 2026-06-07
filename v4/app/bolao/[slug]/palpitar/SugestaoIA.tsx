@@ -112,12 +112,12 @@ export default function SugestaoIA({
       <button
         type="button"
         onClick={() => setAberto(true)}
-        title={`Usar palpite de IA pra ${timeA} × ${timeB}`}
+        title={`Ver sugestões de IA pra ${timeA} × ${timeB}`}
         className="btn-sugestao"
         aria-label="Sugestões das IAs"
       >
         <span style={{ fontSize: 16 }}>✨</span>
-        <span className="btn-sugestao-lbl">Sugerir</span>
+        <span className="btn-sugestao-lbl">Sugestões</span>
       </button>
 
       {aberto && (
