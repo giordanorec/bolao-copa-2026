@@ -1322,6 +1322,36 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     .lang-switcher a { width: 28px; height: 28px; font-size: 14px; }
 }
 
+/* ─── LANG SWITCHER NO HEADER ─── */
+/* Mobile (< 900px): mostra ao lado do hamburger */
+.header-lang-mobile { display: inline-flex; align-items: center; }
+.header-lang-mobile .lang-switcher-footer { gap: 2px; }
+.header-lang-mobile .lang-switcher-footer button {
+    padding: 4px 7px; font-size: 11px;
+    border-radius: var(--r-s);
+    border-width: 1px;
+}
+.header-lang-mobile .lang-switcher-footer button > span:first-child { font-size: 14px; }
+.header-lang-mobile .lang-switcher-footer button > span:last-child { display: none; }
+/* Drawer aberto: lang no fim do menu */
+.site-nav-lang {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+@media (min-width: 901px) {
+    /* Desktop: drawer não usado; lang aparece no flow do .site-nav inline */
+    .header-lang-mobile { display: none; }
+    .site-nav-lang {
+        border-top: none;
+        padding-top: 0;
+        margin-top: 0;
+        margin-left: 8px;
+        padding-left: 12px;
+        border-left: 1px solid var(--line);
+    }
+}
+
 /* ─── LANG SWITCHER FOOTER ─── */
 .lang-switcher-footer { display: flex; gap: 6px; flex-wrap: wrap; }
 .lang-switcher-footer button {
@@ -1644,6 +1674,143 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
 .ia-mini strong {
     display: block; font-size: 14px; color: var(--fg); font-weight: 600;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ─── JOGO CARD CLICAVEL + MODAL ─── */
+.jogo-card-btn {
+    display: block; width: 100%; padding: 0;
+    background: transparent; border: none; cursor: pointer;
+    text-align: left; color: inherit; font: inherit;
+}
+.jogo-card-btn:hover .jogo-card {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+}
+.time-link {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 4px; color: var(--fg); text-decoration: none;
+    font-size: 13px; font-weight: 700;
+    padding: 6px 8px; border-radius: var(--r-s);
+    transition: background 0.15s ease;
+    min-width: 0;
+}
+.time-link:hover {
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    color: var(--primary);
+}
+.time-link span {
+    overflow: hidden; text-overflow: ellipsis;
+    white-space: nowrap; max-width: 100%;
+    text-align: center;
+}
+.jogo-card-acao {
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px dashed var(--line);
+    font-size: 12px; color: var(--primary);
+    font-weight: 600; text-align: center;
+}
+
+.jogo-modal-consenso {
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--accent) 14%, transparent),
+        color-mix(in srgb, var(--primary) 10%, transparent));
+    border: 2px solid var(--accent);
+    border-radius: var(--r-l);
+    padding: 16px 18px;
+    display: flex; align-items: center; gap: 16px;
+}
+.confianca-wrap {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 6px;
+}
+.confianca-track {
+    flex: 1; height: 8px; background: var(--bg-soft);
+    border-radius: 4px; overflow: hidden;
+}
+.confianca-fill {
+    height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+.confianca-pct {
+    font-family: var(--ff-mono); font-weight: 800;
+    font-size: 14px; color: var(--primary);
+    min-width: 42px; text-align: right;
+}
+
+.placares-lista {
+    display: flex; flex-direction: column; gap: 6px;
+}
+.placar-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px;
+    background: var(--bg-1);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r-m);
+    cursor: pointer; transition: all 0.15s ease;
+    color: var(--fg); font-family: inherit;
+    text-align: left;
+}
+.placar-row:hover {
+    border-color: var(--primary);
+    background: var(--bg-soft);
+}
+.placar-row.ativo {
+    border-color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+}
+.placar-num {
+    font-family: var(--ff-mono); font-weight: 800;
+    font-size: 18px; min-width: 56px;
+}
+.placar-bar-wrap { flex: 1; min-width: 0; }
+.placar-bar {
+    height: 6px; background: var(--bg-soft);
+    border-radius: 3px; overflow: hidden; margin-bottom: 4px;
+}
+.placar-bar-fill {
+    height: 100%; background: var(--fg-mid);
+}
+.placar-bar-wrap small {
+    font-family: var(--ff-mono); font-size: 11px;
+    color: var(--fg-muted);
+}
+.placar-toggle {
+    font-size: 16px; color: var(--fg-muted);
+    flex-shrink: 0;
+}
+
+.ias-do-placar {
+    margin-top: 16px; padding: 16px;
+    background: var(--bg-1);
+    border-radius: var(--r-m);
+    border: 1px solid var(--line);
+}
+.ias-do-placar h5 {
+    font-family: var(--ff-mono); font-size: 12px;
+    color: var(--fg-muted); text-transform: uppercase;
+    letter-spacing: 0.08em; margin: 0 0 10px;
+}
+.ias-do-placar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 6px;
+}
+.ia-chip {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px;
+    background: var(--bg-2);
+    border-radius: var(--r-s);
+    border: 1px solid var(--line);
+    font-size: 13px;
+}
+.ia-chip span {
+    flex: 1; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    color: var(--fg);
+}
+.ia-chip small {
+    font-family: var(--ff-mono); font-size: 10px;
+    font-weight: 700;
 }
 
 /* ─── DOACAO BANNER ─── */

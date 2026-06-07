@@ -7,9 +7,10 @@ import {
 import { carregarMapaPaises } from "@/lib/paises";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
-import Bandeira from "@/components/Bandeira";
 import IconeIA from "@/components/IconeIA";
 import DoacaoBanner from "@/components/DoacaoBanner";
+import JogoModal from "@/components/JogoModal";
+import TimeLink from "@/components/TimeLink";
 import { scorePopularidade } from "@/lib/ias";
 
 export const metadata = {
@@ -71,53 +72,66 @@ export default async function JogosPage() {
                     .slice(0, 3)
                 : [];
               return (
-                <div key={j.numero} className="jogo-card">
-                  <div className="jogo-card-head">
-                    <span className="jogo-num">#{j.numero}</span>
-                    <span className="jogo-data">{j.data} · {j.hora}</span>
-                  </div>
-                  <div className="jogo-card-times">
-                    <div className="time-bloco">
-                      <Bandeira iso={mapaPaises[j.time_a]} nome={j.time_a} size={32} />
-                      <span>{j.time_a}</span>
-                    </div>
-                    <div className="jogo-card-vs">
-                      {bola ? (
-                        <>
-                          <div className="placar-consenso">
-                            {bola.gols_a}×{bola.gols_b}
-                          </div>
-                          <small>🔮 consenso · {bola.votos}/{totalVotos}</small>
-                        </>
-                      ) : (
-                        <span style={{ opacity: 0.4 }}>—</span>
+                <JogoModal
+                  key={j.numero}
+                  jogoNumero={j.numero}
+                  timeA={j.time_a}
+                  timeB={j.time_b}
+                  isoA={mapaPaises[j.time_a]}
+                  isoB={mapaPaises[j.time_b]}
+                  data={j.data}
+                  hora={j.hora}
+                  local={j.local}
+                  dados={dados}
+                  iasDict={iasDict}
+                  locale={locale}
+                  trigger={
+                    <div className="jogo-card">
+                      <div className="jogo-card-head">
+                        <span className="jogo-num">#{j.numero}</span>
+                        <span className="jogo-data">{j.data} · {j.hora}</span>
+                      </div>
+                      <div className="jogo-card-times">
+                        <TimeLink nome={j.time_a} iso={mapaPaises[j.time_a]} size={32} />
+                        <div className="jogo-card-vs">
+                          {bola ? (
+                            <>
+                              <div className="placar-consenso">
+                                {bola.gols_a}×{bola.gols_b}
+                              </div>
+                              <small>🔮 consenso · {bola.votos}/{totalVotos}</small>
+                            </>
+                          ) : (
+                            <span style={{ opacity: 0.4 }}>—</span>
+                          )}
+                        </div>
+                        <TimeLink nome={j.time_b} iso={mapaPaises[j.time_b]} size={32} />
+                      </div>
+                      {topIas.length > 0 && (
+                        <div className="jogo-card-ias">
+                          {topIas.map((s) => {
+                            const p = dados!.palpites[s];
+                            return (
+                              <div key={s} className="ia-palpite-mini">
+                                <IconeIA slug={s} size={18} title={iasDict[s] ?? s} />
+                                <span>{p.gols_a}×{p.gols_b}</span>
+                              </div>
+                            );
+                          })}
+                          {totalVotos > 3 && (
+                            <span className="mais-ias">+{totalVotos - 3}</span>
+                          )}
+                        </div>
                       )}
+                      <div className="jogo-card-acao">
+                        🔍 {locale === "en" ? "Click to see all picks"
+                          : locale === "es" ? "Clic para ver todas las apuestas"
+                          : locale === "fr" ? "Cliquez pour voir tous les pronostics"
+                          : "Clique pra ver todos os palpites"}
+                      </div>
                     </div>
-                    <div className="time-bloco">
-                      <Bandeira iso={mapaPaises[j.time_b]} nome={j.time_b} size={32} />
-                      <span>{j.time_b}</span>
-                    </div>
-                  </div>
-                  {topIas.length > 0 && (
-                    <div className="jogo-card-ias">
-                      {topIas.map((s) => {
-                        const p = dados!.palpites[s];
-                        return (
-                          <div key={s} className="ia-palpite-mini">
-                            <IconeIA slug={s} size={18} title={iasDict[s] ?? s} />
-                            <span>{p.gols_a}×{p.gols_b}</span>
-                          </div>
-                        );
-                      })}
-                      {totalVotos > 3 && (
-                        <span className="mais-ias">+{totalVotos - 3}</span>
-                      )}
-                    </div>
-                  )}
-                  {j.local && (
-                    <div className="jogo-card-local">📍 {j.local}</div>
-                  )}
-                </div>
+                  }
+                />
               );
             })}
           </div>

@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import UserWidget from "@/components/UserWidget";
 import MeusBoloesLink from "@/components/MeusBoloesLink";
+import LangSwitcher from "@/components/LangSwitcher";
 import { t, type Locale } from "@/lib/i18n";
 
 export default function SiteNav({ locale = "pt" }: { locale?: Locale }) {
@@ -63,6 +64,9 @@ export default function SiteNav({ locale = "pt" }: { locale?: Locale }) {
           {t(locale, "nav.como")}
         </Link>
         <UserWidget onNavigate={fechar} />
+        <div className="site-nav-lang">
+          <LangSwitcher atual={locale} />
+        </div>
       </nav>
 
       {aberto && (
@@ -77,6 +81,9 @@ export default function SiteNav({ locale = "pt" }: { locale?: Locale }) {
 
   return (
     <>
+      <div className="header-lang-mobile">
+        <LangSwitcher atual={locale} />
+      </div>
       <button
         className="nav-hamburger"
         aria-label={aberto ? "Fechar menu" : "Abrir menu"}

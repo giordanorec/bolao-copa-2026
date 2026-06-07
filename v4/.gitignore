@@ -9,3 +9,8 @@ next-env.d.ts
 test-results/
 tests-report/
 playwright-report/
+
+# agent temp files
+_search.txt
+_tail.txt
+_user_msgs.txt
