@@ -14,6 +14,22 @@ export default defineConfig({
     video: "off",
     actionTimeout: 10_000,
     navigationTimeout: 20_000,
+    locale: "pt-BR",
+    storageState: {
+      cookies: [
+        {
+          name: "v4-lang",
+          value: "pt",
+          domain: "arena-de-ias.vercel.app",
+          path: "/",
+          expires: -1,
+          httpOnly: false,
+          secure: true,
+          sameSite: "Lax",
+        },
+      ],
+      origins: [],
+    },
   },
   projects: [
     {

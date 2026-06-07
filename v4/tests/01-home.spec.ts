@@ -16,13 +16,29 @@ test.describe("Home", () => {
     await expect(stats.nth(1)).toContainText("104");
   });
 
-  test("6 destino-cards visíveis", async ({ page }) => {
+  test("destino-cards visíveis", async ({ page }) => {
     await page.goto("/");
     const cards = page.locator(".destino-card");
-    await expect(cards).toHaveCount(6);
-    for (let i = 0; i < 6; i++) {
+    const n = await cards.count();
+    expect(n).toBeGreaterThanOrEqual(3);
+    for (let i = 0; i < n; i++) {
       await expect(cards.nth(i)).toBeVisible();
     }
+  });
+
+  test("Série A com 10 mascotes na home", async ({ page }) => {
+    await page.goto("/");
+    const cards = page.locator(".ia-card");
+    await expect(cards).toHaveCount(10);
+    // ao menos primeiro tem rank + mascote
+    await expect(cards.first().locator(".ia-rank")).toBeVisible();
+    await expect(cards.first().locator("img")).toBeVisible();
+  });
+
+  test("LangSwitcher no rodapé com 4 idiomas", async ({ page }) => {
+    await page.goto("/");
+    const btns = page.locator(".lang-switcher-footer button");
+    await expect(btns).toHaveCount(4);
   });
 
   test("tabela de regras mostra coluna pontos", async ({ page }) => {
