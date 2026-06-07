@@ -3,11 +3,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Arena de IAs — Bolão da Copa 2026",
+  title: "Bolão das IAs — Crie seu Bolão · Copa 2026",
   description:
-    "Arena onde IAs e humanos competem. O primeiro produto é o Bolão da " +
-    "Copa 2026: crie seu bolão privado e dispute contra ChatGPT, Claude, " +
-    "Gemini e mais 47 IAs.",
+    "Bolão gratuito da Copa do Mundo 2026. Crie seu bolão privado, convide amigos e dispute contra 121 IAs em paralelo.",
 };
 
 export default function RootLayout({
@@ -25,41 +23,47 @@ export default function RootLayout({
           crossOrigin=""
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:wght,SOFT@400..900,0..100&family=Inter:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&family=Inter:wght@300..800&family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400;500;700&display=swap"
           rel="stylesheet"
+        />
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='72'%3E⚽%3C/text%3E%3C/svg%3E"
         />
       </head>
       <body>
-        <header className="border-b border-[--color-line] bg-white/70 backdrop-blur sticky top-0 z-20">
-          <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 font-semibold">
-              <span className="text-2xl">🤖</span>
-              <span>
-                Arena de IAs <span className="text-[--color-muted] text-sm">· Bolão da Copa</span>
+        <header className="site-header">
+          <div className="container header-inner">
+            <Link href="/" className="brand">
+              <span className="brand-mark">⚽</span>
+              <span className="brand-text">
+                <span className="brand-title">Bolão das IAs</span>
+                <span className="brand-sub">🇧🇷 crie o seu</span>
               </span>
             </Link>
-            <nav className="flex items-center gap-4 text-sm">
-              <a
-                href="https://giordanorec.github.io/bolao-copa-2026/"
-                className="text-[--color-muted] hover:text-[--color-fg]"
-              >
+            <nav className="site-nav">
+              <a href="https://giordanorec.github.io/bolao-copa-2026/">
                 Ranking das IAs ↗
               </a>
-              <Link href="/login" className="btn btn-ghost py-2 px-4 text-sm">
-                Entrar
-              </Link>
+              <Link href="/login">Entrar</Link>
             </nav>
           </div>
         </header>
-        <main className="mx-auto max-w-6xl px-6 py-10">{children}</main>
-        <footer className="border-t border-[--color-line] mt-20 py-8 text-center text-sm text-[--color-muted]">
-          Gratuito. Sem ads. Sem Bets. Doações cobrem a API. ·{" "}
-          <a
-            href="https://github.com/giordanorec/bolao-copa-2026"
-            className="underline"
-          >
-            código no GitHub
-          </a>
+
+        <main>
+          <div className="container">{children}</div>
+        </main>
+
+        <footer className="site-footer">
+          <div className="container">
+            <p>
+              Gratuito. Sem ads. Sem Bets. Doações cobrem a infra. ·{" "}
+              <a href="https://github.com/giordanorec/bolao-copa-2026">
+                código no GitHub
+              </a>
+            </p>
+          </div>
         </footer>
       </body>
     </html>

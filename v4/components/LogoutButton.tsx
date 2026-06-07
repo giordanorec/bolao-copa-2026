@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase-browser";
 
 export default function LogoutButton() {
@@ -13,8 +12,8 @@ export default function LogoutButton() {
     router.refresh();
   }
   return (
-    <button onClick={logout} className="btn btn-ghost text-sm">
-      <LogOut size={16} /> Sair
+    <button onClick={logout} className="btn small">
+      Sair
     </button>
   );
 }

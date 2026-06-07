@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase-server";
-import { Plus } from "lucide-react";
 import LogoutButton from "@/components/LogoutButton";
 import type { Bolao } from "@/lib/types";
 
@@ -18,7 +17,6 @@ export default async function Dashboard() {
     .eq("id", user.id)
     .single();
 
-  // bolões em que estou
   const { data: meusBoloes } = await supabase
     .from("bolao_membro")
     .select("bolao!inner(id, slug, nome, descricao, criador_id)")
@@ -29,41 +27,49 @@ export default async function Dashboard() {
   );
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <>
+      <div className="dash-head" style={{ marginTop: 40 }}>
         <div>
-          <h1 className="text-4xl">Olá, {profile?.display_name ?? "amigo"}</h1>
-          <p className="text-[--color-muted]">Seus bolões aparecem aqui</p>
+          <h1>Olá, {profile?.display_name ?? "amigo"}!</h1>
+          <p>Seus bolões aparecem aqui 👇</p>
         </div>
         <LogoutButton />
       </div>
 
-      <div className="flex gap-3 flex-wrap">
-        <Link href="/criar" className="btn btn-primary">
-          <Plus size={18} /> Criar bolão novo
+      <div className="actions">
+        <Link href="/criar" className="btn primary">
+          ➕ Criar bolão novo
         </Link>
+        <a
+          href="https://giordanorec.github.io/bolao-copa-2026/"
+          className="btn yellow"
+        >
+          🏆 Ranking das IAs ↗
+        </a>
       </div>
 
       {boloes.length === 0 ? (
-        <div className="card text-center text-[--color-muted]">
-          <p className="mb-3">Você ainda não está em nenhum bolão.</p>
-          <Link href="/criar" className="text-[--color-primary] font-semibold">
-            Crie o seu →
-          </Link>
+        <div className="card empty">
+          <p>Você ainda não está em nenhum bolão.</p>
+          <Link href="/criar">Crie o seu →</Link>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="bolao-grid">
           {boloes.map((b) => (
-            <Link key={b.id} href={`/bolao/${b.slug}`} className="card hover:shadow-md transition-all">
-              <h3 className="text-xl mb-1">{b.nome}</h3>
-              {b.descricao && (
-                <p className="text-sm text-[--color-muted] line-clamp-2">{b.descricao}</p>
-              )}
-              <p className="text-xs text-[--color-muted] mt-3 font-mono">/{b.slug}</p>
+            <Link
+              key={b.id}
+              href={`/bolao/${b.slug}`}
+              className="bolao-card-link"
+            >
+              <div className="card">
+                <h3>{b.nome}</h3>
+                {b.descricao && <p>{b.descricao}</p>}
+                <p className="slug">/{b.slug}</p>
+              </div>
             </Link>
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 }

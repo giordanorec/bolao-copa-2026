@@ -33,35 +33,65 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="max-w-md mx-auto card mt-8">
-      <h1 className="text-3xl mb-2">Criar conta</h1>
-      <p className="text-[--color-muted] text-sm mb-6">
+    <div className="card form-card">
+      <h1>Criar conta</h1>
+      <p className="lede-form">
         Email e senha, simples. Nada de SMS ou cartão.
       </p>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="label" htmlFor="nome">Seu nome</label>
-          <input id="nome" className="input" required minLength={2}
-            value={nome} onChange={(e) => setNome(e.target.value)} />
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label className="label" htmlFor="nome">
+            Seu nome
+          </label>
+          <input
+            id="nome"
+            className="input"
+            required
+            minLength={2}
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+          />
         </div>
-        <div>
-          <label className="label" htmlFor="email">Email</label>
-          <input id="email" type="email" required className="input"
-            value={email} onChange={(e) => setEmail(e.target.value)} />
+        <div className="form-group">
+          <label className="label" htmlFor="email">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            required
+            className="input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-        <div>
-          <label className="label" htmlFor="senha">Senha</label>
-          <input id="senha" type="password" required minLength={6} className="input"
-            value={senha} onChange={(e) => setSenha(e.target.value)} />
-          <p className="text-xs text-[--color-muted] mt-1">mínimo 6 caracteres</p>
+        <div className="form-group">
+          <label className="label" htmlFor="senha">
+            Senha
+          </label>
+          <input
+            id="senha"
+            type="password"
+            required
+            minLength={6}
+            className="input"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
+          <span className="input-hint">mínimo 6 caracteres</span>
         </div>
-        {erro && <p className="text-red-600 text-sm">{erro}</p>}
-        <button type="submit" disabled={loading} className="btn btn-primary w-full justify-center">
+        {erro && <p className="err">{erro}</p>}
+        <button
+          type="submit"
+          disabled={loading}
+          className="btn primary block"
+        >
           {loading ? "Criando..." : "Criar conta"}
         </button>
       </form>
-      <p className="text-sm text-[--color-muted] mt-6 text-center">
-        Já tem conta? <Link href="/login" className="text-[--color-primary] font-semibold">Entrar</Link>
+      <p className="alt">
+        Já tem conta?{" "}
+        <Link href="/login">Entrar</Link>
       </p>
     </div>
   );

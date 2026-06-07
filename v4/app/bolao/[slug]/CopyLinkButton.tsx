@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Check, Share2 } from "lucide-react";
 
 export default function CopyLinkButton({ slug }: { slug: string }) {
   const [copied, setCopied] = useState(false);
@@ -25,17 +24,13 @@ export default function CopyLinkButton({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="flex gap-2">
-      <button onClick={copy} className="btn btn-ghost text-sm py-2 px-4">
-        {copied ? <Check size={16} /> : <Copy size={16} />}
-        {copied ? "Copiado" : "Copiar link"}
+    <>
+      <button onClick={copy} className="btn small">
+        {copied ? "✓ Copiado" : "🔗 Copiar link"}
       </button>
-      <button
-        onClick={whatsapp}
-        className="btn btn-ghost text-sm py-2 px-4 hover:bg-green-50 hover:border-green-500 hover:text-green-700"
-      >
-        <Share2 size={16} /> WhatsApp
+      <button onClick={whatsapp} className="btn small">
+        💬 WhatsApp
       </button>
-    </div>
+    </>
   );
 }

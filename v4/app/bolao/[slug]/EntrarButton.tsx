@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase-browser";
-import { UserPlus } from "lucide-react";
 
 export default function EntrarButton({
   bolaoId,
@@ -35,9 +34,9 @@ export default function EntrarButton({
     <button
       onClick={entrar}
       disabled={loading}
-      className="btn btn-primary text-sm py-2 px-4"
+      className="btn primary small"
     >
-      <UserPlus size={16} /> {loading ? "Entrando…" : "Entrar no bolão"}
+      {loading ? "Entrando…" : "➕ Entrar no bolão"}
     </button>
   );
 }

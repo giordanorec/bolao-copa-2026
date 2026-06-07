@@ -10,7 +10,9 @@ export default async function PalpitarPage({
 }) {
   const { slug } = await params;
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   if (!user) return null;
 
   const { data: bolao } = await supabase
@@ -32,11 +34,21 @@ export default async function PalpitarPage({
   });
 
   return (
-    <div className="space-y-6">
-      <div>
-        <p className="text-sm text-[--color-muted]">{bolao.nome}</p>
-        <h1 className="text-3xl">Seus palpites</h1>
-        <p className="text-[--color-muted] mt-2 text-sm">
+    <div style={{ marginTop: 40 }}>
+      <div style={{ marginBottom: 24 }}>
+        <p
+          style={{
+            fontFamily: "var(--ff-mono)",
+            fontSize: 12,
+            color: "var(--fg-muted)",
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+          }}
+        >
+          {bolao.nome}
+        </p>
+        <h1 style={{ fontSize: 36, marginTop: 4 }}>🎯 Seus palpites</h1>
+        <p style={{ color: "var(--fg-muted)", marginTop: 6, fontSize: 14 }}>
           Vale pra todos os bolões em que você está. Salva sozinho ao mudar.
         </p>
       </div>
