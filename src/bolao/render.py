@@ -133,9 +133,7 @@ class _Render:
         self.providers = self.ias_logos.get("_providers", {})
         self.ias_meta = self.ias_logos.get("ias", {})
         i18n_path = self.data_dir / "i18n.json"
-        self.i18n: dict[str, Any] = (
-            _carregar_json(i18n_path) if i18n_path.is_file() else {}
-        )
+        self.i18n: dict[str, Any] = _carregar_json(i18n_path) if i18n_path.is_file() else {}
 
     def t(self, key: str, **kwargs: Any) -> str:
         """Traduz key pro idioma atual; fallback pra pt; depois pra key crua."""
@@ -154,14 +152,14 @@ class _Render:
         # match direto
         code = self.paises.get(nome)
         if code:
-            return code
+            return str(code)
         # tentativa normalizando acentos
         norm = _normalize(nome)
         for k, v in self.paises.items():
             if k.startswith("_"):
                 continue
             if _normalize(k) == norm:
-                return v
+                return str(v)
         return None
 
     def flag_img(self, nome: str, mini: bool = False) -> Markup:
@@ -190,9 +188,7 @@ class _Render:
         wrapper_cls = "ia-logo" + (" ia-logo-big" if big else "")
         if icon:
             url = f"{LOBE_ICONS_BASE}/{icon}.svg"
-            inner = (
-                f'<img class="ia-svg" src="{url}" alt="{escape(slug)}" loading="lazy">'
-            )
+            inner = f'<img class="ia-svg" src="{url}" alt="{escape(slug)}" loading="lazy">'
         else:
             ini = _inicial(slug)
             style = f"background:#{color};color:#fff;"
@@ -340,7 +336,7 @@ def _renderizar_lang(
         [slug for slug, m in helper.ias_meta.items() if m.get("serie_a")],
         key=lambda s: helper.ias_meta[s].get("serie_a_ordem", 999),
     )
-    web_dir = out_dir  # noqa: F841 (compat com código abaixo)
+    web_dir = out_dir  # (compat com código abaixo)
     data_dir = web_root / "data"
 
     ranking = _carregar_json(ranking_json)
@@ -409,7 +405,7 @@ def _renderizar_lang(
 
     # Bola de Cristal por jogo: placar mais votado pelas IAs
     palpites_lookup_tmp: dict[int, list[dict[str, Any]]] = {}
-    for slug, palpites in palpites_por_ia.items():
+    for _slug, palpites in palpites_por_ia.items():
         for p in palpites:
             palpites_lookup_tmp.setdefault(p["jogo_numero"], []).append(p)
     bola_cristal: dict[int, dict[str, int]] = {}
@@ -527,6 +523,23 @@ def _renderizar_lang(
             encoding="utf-8",
             newline="\n",
         )
+
+    # ------- cristal.html -------
+    cristal_json_path = data_dir / "bola_de_cristal.json"
+    cristal_data: dict[int, dict[str, Any]] = {}
+    if cristal_json_path.is_file():
+        raw_cristal = _carregar_json(cristal_json_path)
+        # JSON keys are strings; convert to int
+        cristal_data = {int(k): v for k, v in raw_cristal.items()}
+    ctx_cristal = _ctx_base(ranking, asset_prefix="", total_palpites=total_palpites)
+    ctx_cristal["jogos"] = jogos
+    ctx_cristal["fases_unicas"] = fases_unicas
+    ctx_cristal["bola_de_cristal"] = cristal_data
+    (web_dir / "cristal.html").write_text(
+        env.get_template("cristal.html.j2").render(**ctx_cristal),
+        encoding="utf-8",
+        newline="\n",
+    )
 
     # ------- páginas por IA -------
     ias_dir = web_dir / "ia"

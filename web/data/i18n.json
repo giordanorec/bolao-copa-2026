@@ -9,6 +9,12 @@
   "nav_serie_a":        {"pt": "Série A 🏆", "en": "Premier Tier 🏆", "fr": "Série A 🏆", "es": "Serie A 🏆"},
   "nav_ias":            {"pt": "Todas as IAs", "en": "All AIs", "fr": "Toutes les IA", "es": "Todas las IAs"},
   "nav_como_funciona":  {"pt": "Como funciona", "en": "How it works", "fr": "Comment ça marche", "es": "Cómo funciona"},
+  "nav_cristal":        {"pt": "🔮 Bola de Cristal", "en": "🔮 Crystal Ball", "fr": "🔮 Boule de Cristal", "es": "🔮 Bola de Cristal"},
+
+  "cristal_title":      {"pt": "Bola de Cristal", "en": "Crystal Ball", "fr": "Boule de Cristal", "es": "Bola de Cristal"},
+  "cristal_h":          {"pt": "Bola de Cristal", "en": "Crystal Ball", "fr": "Boule de Cristal", "es": "Bola de Cristal"},
+  "cristal_sub":        {"pt": "O placar mais votado entre todas as IAs para cada jogo. Em caso de empate de votos, o placar mais épico (mais gols) vence.", "en": "The most-voted score among all AIs for each match. On tied votes, the more epic score (more goals) wins.", "fr": "Le score le plus voté parmi toutes les IA pour chaque match. En cas d'égalité, le score le plus épique (plus de buts) l'emporte.", "es": "El marcador más votado entre todas las IAs para cada partido. En empate de votos, gana el marcador más épico (más goles)."},
+  "cristal_votos":      {"pt": "votos", "en": "votes", "fr": "votes", "es": "votos"},
 
   "header_apurados":    {"pt": "apurados", "en": "settled", "fr": "réglés", "es": "resueltos"},
 

@@ -26,7 +26,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
-import httpx
+import httpx  # type: ignore[import-not-found]
 
 BRT = timezone(timedelta(hours=-3))
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"

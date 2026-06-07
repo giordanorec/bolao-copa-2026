@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-06-06T19:30:14-03:00",
+  "atualizado_em": "2026-06-07T00:03:56-03:00",
   "ias": [
     {
       "slug": "chatgpt-5",
@@ -679,6 +679,15 @@
     {
       "slug": "baichuan-4",
       "nome_display": "Baichuan 4",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0,
+      "rank": 1
+    },
+    {
+      "slug": "bola-de-cristal",
+      "nome_display": "Bola de Cristal",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,

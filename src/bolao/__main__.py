@@ -24,6 +24,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from . import __version__
+from .cristal import calcular_bola_de_cristal
 from .parser import carregar_jogos, carregar_palpites, carregar_resultados, take_errors
 from .ranking import pontos_por_ia, ranking_geral
 
@@ -48,13 +49,18 @@ _NOME_CACHE: dict[str, str] = {}
 def _nome_display(slug: str) -> str:
     """Resolve nome bonito da IA. Ordem de fonte:
 
-    1. Header ``<!-- ia: Nome Bonito -->`` no arquivo ``data/palpites_ias/<slug>.md``.
+    1. Slug especial ``bola-de-cristal`` retorna nome fixo.
+    2. Header ``<!-- ia: Nome Bonito -->`` no arquivo ``data/palpites_ias/<slug>.md``.
        É o lugar canônico — escrito pelo ``scripts/bootstrap_palpites.sh``.
-    2. Fallback ``slug.title()`` com hífens substituídos.
+    3. Fallback ``slug.title()`` com hífens substituídos.
 
     Cacheado em memória dentro de uma execução do CLI pra não reler arquivos.
     """
     if slug in _NOME_CACHE:
+        return _NOME_CACHE[slug]
+    # Slug especial — não tem arquivo de palpite
+    if slug == "bola-de-cristal":
+        _NOME_CACHE[slug] = "Bola de Cristal"
         return _NOME_CACHE[slug]
     arq = PALPITES_DIR / f"{slug}.md"
     if arq.is_file():
@@ -117,10 +123,42 @@ def _carregar_popularidade() -> dict[str, int]:
     return {s: int(m.get("popularidade", 0)) for s, m in ias.items() if not s.startswith("_")}
 
 
+_SLUG_CRISTAL = "bola-de-cristal"
+_NOME_CRISTAL = "Bola de Cristal"
+
+
 def _cmd_ranking(_args: argparse.Namespace) -> int:
+    from .models import Palpite as _Palpite
+
     jogos, palpites, resultados = _carregar_tudo()
     take_errors()
-    ranking = ranking_geral(palpites, resultados, jogos)
+
+    # Calcular e persistir Bola de Cristal antes de incluir no ranking
+    cristal_resultado = calcular_bola_de_cristal(palpites, jogos)
+    WEB_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    (WEB_DATA_DIR / "bola_de_cristal.json").write_text(
+        json.dumps(
+            {str(k): v for k, v in cristal_resultado.items()},
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    print(f"cristal: {WEB_DATA_DIR / 'bola_de_cristal.json'} ({len(cristal_resultado)} jogos)")
+
+    # Injetar Bola de Cristal no mapa de palpites como IA especial
+    palpites_com_cristal = dict(palpites)
+    palpites_com_cristal[_SLUG_CRISTAL] = [
+        _Palpite(
+            ia=_SLUG_CRISTAL,
+            jogo_numero=numero,
+            gols_a=v["gols_a"],
+            gols_b=v["gols_b"],
+        )
+        for numero, v in cristal_resultado.items()
+    ]
+
+    ranking = ranking_geral(palpites_com_cristal, resultados, jogos)
 
     # Desempate por popularidade dentro de grupos com mesmos (pontos, exatos, vencedores)
     popmap = _carregar_popularidade()
