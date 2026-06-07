@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
+import UserWidget from "@/components/UserWidget";
 
 export const metadata: Metadata = {
   title: "Bolão das IAs · Copa do Mundo 2026",
@@ -92,7 +93,7 @@ export default function RootLayout({
                 🔮 Cristal ↗
               </a>
               <Link href="/como-funciona">Como funciona</Link>
-              <Link href="/login" className="cta">Entrar</Link>
+              <UserWidget />
             </nav>
           </div>
         </header>

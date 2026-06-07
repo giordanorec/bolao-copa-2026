@@ -26,7 +26,11 @@ export default function EntrarButton({
     }
     await supabase
       .from("bolao_membro")
-      .insert({ bolao_id: bolaoId, user_id: user.id });
+      .upsert(
+        { bolao_id: bolaoId, user_id: user.id },
+        { onConflict: "bolao_id,user_id", ignoreDuplicates: true },
+      );
+    router.push(`/bolao/${slug}/palpitar`);
     router.refresh();
   }
 
@@ -34,9 +38,9 @@ export default function EntrarButton({
     <button
       onClick={entrar}
       disabled={loading}
-      className="btn primary small"
+      className="btn primary"
     >
-      {loading ? "Entrando…" : "➕ Entrar no bolão"}
+      {loading ? "Entrando…" : "🎯 Entrar no bolão →"}
     </button>
   );
 }

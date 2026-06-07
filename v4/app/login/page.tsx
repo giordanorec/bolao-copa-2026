@@ -15,12 +15,15 @@ function LoginForm() {
   const [erro, setErro] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const bolaoMatch = redirect.match(/^\/bolao\/([\w-]+)/);
+  const slugConvite = bolaoMatch?.[1] ?? null;
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setErro(null);
     const supabase = createClient();
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password: senha,
     });
@@ -29,14 +32,50 @@ function LoginForm() {
       setLoading(false);
       return;
     }
+    // Se veio de convite, garante membership antes de ir
+    if (slugConvite && data.user) {
+      const { data: bolao } = await supabase
+        .from("bolao")
+        .select("id")
+        .eq("slug", slugConvite)
+        .single();
+      if (bolao) {
+        await supabase
+          .from("bolao_membro")
+          .upsert(
+            { bolao_id: bolao.id, user_id: data.user.id },
+            { onConflict: "bolao_id,user_id", ignoreDuplicates: true },
+          );
+      }
+    }
     router.push(redirect);
     router.refresh();
   }
 
   return (
     <div className="card form-card">
+      {slugConvite ? (
+        <div
+          style={{
+            background:
+              "linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, transparent), color-mix(in srgb, var(--primary) 10%, transparent))",
+            padding: 14,
+            borderRadius: "var(--r-m)",
+            marginBottom: 20,
+            border:
+              "1px solid color-mix(in srgb, var(--primary) 30%, transparent)",
+            fontSize: 14,
+            fontWeight: 600,
+            color: "var(--fg)",
+          }}
+        >
+          🎯 Faltam só 2 campos pra você entrar nesse bolão.
+        </div>
+      ) : null}
       <h1>Entrar</h1>
-      <p className="lede-form">Bem-vindo de volta.</p>
+      <p className="lede-form">
+        Bem-vindo de volta. Login fica salvo, próxima vez vai direto.
+      </p>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="label" htmlFor="email">
@@ -75,7 +114,9 @@ function LoginForm() {
       </form>
       <p className="alt">
         Sem conta?{" "}
-        <Link href="/signup">Criar conta</Link>
+        <Link href={`/signup?redirect=${encodeURIComponent(redirect)}`}>
+          Criar conta
+        </Link>
       </p>
     </div>
   );

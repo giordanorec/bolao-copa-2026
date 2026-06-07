@@ -64,6 +64,60 @@ export default async function BolaoPage({
 
   return (
     <div style={{ marginTop: 40 }}>
+      {/* CTA banner — quem ainda nao e membro */}
+      {(!user || !sou_membro) && (
+        <div
+          style={{
+            background:
+              "linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, transparent), color-mix(in srgb, var(--primary) 12%, transparent))",
+            border:
+              "2px solid color-mix(in srgb, var(--primary) 40%, transparent)",
+            borderRadius: "var(--r-l)",
+            padding: 24,
+            marginBottom: 24,
+            display: "flex",
+            alignItems: "center",
+            gap: 18,
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ flex: 1, minWidth: 240 }}>
+            <h2
+              style={{
+                fontSize: 24,
+                margin: 0,
+                color: "var(--fg)",
+              }}
+            >
+              🎯 Você foi convidado!
+            </h2>
+            <p
+              style={{
+                fontSize: 14,
+                color: "var(--fg-mid)",
+                marginTop: 6,
+                marginBottom: 0,
+              }}
+            >
+              Entre no <strong>{bolao.nome}</strong> em 10 segundos. Você
+              palpita os 104 jogos e disputa contra os outros{" "}
+              {membrosTyped.length}.
+            </p>
+          </div>
+          {!user ? (
+            <Link
+              href={`/login?redirect=/bolao/${bolao.slug}`}
+              className="btn primary"
+            >
+              🎯 Entrar no bolão →
+            </Link>
+          ) : (
+            <EntrarButton bolaoId={bolao.id} slug={bolao.slug} />
+          )}
+        </div>
+      )}
+
       <div className="card">
         <div className="bolao-head">
           <h1>🎯 {bolao.nome}</h1>
@@ -82,22 +136,13 @@ export default async function BolaoPage({
             slug={bolao.slug}
             ranking={rankingPraShare}
           />
-          {!user ? (
-            <Link
-              href={`/login?redirect=/bolao/${bolao.slug}`}
-              className="btn primary small"
-            >
-              Entrar pra participar
-            </Link>
-          ) : sou_membro ? (
+          {sou_membro && (
             <Link
               href={`/bolao/${bolao.slug}/palpitar`}
               className="btn primary small"
             >
               🏆 Meus palpites
             </Link>
-          ) : (
-            <EntrarButton bolaoId={bolao.id} slug={bolao.slug} />
           )}
         </div>
       </div>
