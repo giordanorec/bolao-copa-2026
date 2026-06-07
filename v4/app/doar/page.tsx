@@ -1,5 +1,19 @@
 import Link from "next/link";
+import { promises as fs } from "fs";
+import path from "path";
 import { resolverLocale } from "@/lib/locale-server";
+import PixCard from "@/components/PixCard";
+
+const PIX_CHAVE = "grec@cin.ufpe.br";
+
+async function carregarPixPayload(): Promise<string> {
+  try {
+    const fp = path.join(process.cwd(), "public", "pix-payload.txt");
+    return (await fs.readFile(fp, "utf-8")).trim();
+  } catch {
+    return "";
+  }
+}
 
 export const metadata = {
   title: "Apoie · Bolão das IAs",
@@ -66,7 +80,10 @@ const ONDE_VAI = [
 ];
 
 export default async function DoarPage() {
-  const locale = await resolverLocale();
+  const [locale, pixPayload] = await Promise.all([
+    resolverLocale(),
+    carregarPixPayload(),
+  ]);
   return (
     <div className="doar-page">
       <section className="doar-hero">
@@ -100,30 +117,28 @@ export default async function DoarPage() {
                 ))}
               </ul>
               <a
-                href={STRIPE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#pix"
                 className={`btn ${r.destaque ? "primary" : ""} block`}
               >
-                {locale === "en"
-                  ? "Donate"
-                  : locale === "es"
-                    ? "Donar"
-                    : locale === "fr"
-                      ? "Donner"
-                      : "Doar"}{" "}
-                {r.valor} →
+                💸 Doar {r.valor} via PIX →
               </a>
             </div>
           ))}
         </div>
         <p className="doar-recompensas-nota">
-          🎯 Quer doar outro valor?{" "}
-          <a href={STRIPE_LINK} target="_blank" rel="noopener noreferrer">
-            Clique aqui
-          </a>{" "}
-          — você escolhe quanto.
+          🎯 Quer doar outro valor? Escolhe livremente no PIX abaixo.
         </p>
+      </section>
+
+      {/* PIX — método principal */}
+      <section id="pix" className="doar-pix-principal">
+        <div className="doar-pix-header">
+          <h2>💸 Doar via PIX</h2>
+          <p>
+            Sem taxa, instantâneo, brasileiro. Escolhe o valor no app do banco.
+          </p>
+        </div>
+        <PixCard payload={pixPayload} chave={PIX_CHAVE} />
       </section>
 
       <section className="doar-onde">
@@ -139,27 +154,24 @@ export default async function DoarPage() {
         </div>
       </section>
 
-      <section className="doar-pix">
-        <h2>Prefere PIX?</h2>
-        <p>
-          Mesma coisa — você ganha as recompensas do tier proporcional ao valor.
-        </p>
-        <div className="doar-pix-card">
-          <span className="doar-pix-label">CHAVE PIX (email)</span>
-          <code className="doar-pix-code">grec@cin.ufpe.br</code>
-          <small>
-            Manda o comprovante no Instagram{" "}
+      {STRIPE_LINK &&
+        !STRIPE_LINK.includes("test_placeholder") && (
+          <section className="doar-cartao">
+            <h3>💳 De fora do Brasil ou prefere cartão?</h3>
+            <p>
+              Aceita cartão internacional via Stripe. Taxa de processamento ~4%
+              fica com o Stripe, mas se for sua melhor opção, vale.
+            </p>
             <a
-              href="https://instagram.com/arena.das.ias"
+              href={STRIPE_LINK}
               target="_blank"
               rel="noopener noreferrer"
+              className="btn"
             >
-              @arena.das.ias
-            </a>{" "}
-            pra liberar as recompensas
-          </small>
-        </div>
-      </section>
+              Doar com cartão (Stripe) →
+            </a>
+          </section>
+        )}
 
       <div style={{ textAlign: "center", marginTop: 40 }}>
         <Link href="/" style={{ color: "var(--primary)", fontWeight: 700 }}>
