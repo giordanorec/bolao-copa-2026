@@ -40,12 +40,12 @@ export default async function Dashboard() {
         <Link href="/criar" className="btn primary">
           ➕ Criar bolão novo
         </Link>
-        <a
-          href="https://giordanorec.github.io/bolao-copa-2026/"
-          className="btn yellow"
-        >
-          🏆 Ranking das IAs ↗
-        </a>
+        <Link href="/perfil" className="btn">
+          👤 Meu perfil
+        </Link>
+        <Link href="/ranking-geral" className="btn yellow">
+          🏆 Ranking geral
+        </Link>
       </div>
 
       {boloes.length === 0 ? (
