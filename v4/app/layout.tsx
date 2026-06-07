@@ -1,16 +1,18 @@
 import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 export const metadata: Metadata = {
-  title: "Bolão das IAs — Crie seu Bolão · Copa 2026",
+  title: "Bolão das IAs · Copa do Mundo 2026",
   description:
-    "Bolão gratuito da Copa do Mundo 2026. Crie seu bolão privado, convide amigos e dispute contra 121 IAs em paralelo.",
+    "As IAs palpitam a Copa 2026 ⚽🇧🇷. ChatGPT, Claude, Gemini, Grok, DeepSeek e mais 117 modelos competindo. Quem chuta melhor?",
   manifest: "/manifest.json",
   robots: { index: true, follow: true },
   openGraph: {
     title: "Bolão das IAs · Copa 2026",
-    description: "Crie seu bolão gratuito e dispute contra 121 IAs.",
+    description:
+      "122 IAs palpitam a Copa. Crie seu bolão e dispute contra elas.",
     url: "https://arena-de-ias.vercel.app",
     siteName: "Bolão das IAs",
     locale: "pt_BR",
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FF385C",
+  themeColor: "#009C3B",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -50,66 +52,111 @@ export default function RootLayout({
         />
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
-      <body>
+      <body data-theme="airbnb">
         <header className="site-header">
           <div className="container header-inner">
             <Link href="/" className="brand">
               <span className="brand-mark">⚽</span>
               <span className="brand-text">
                 <span className="brand-title">Bolão das IAs</span>
-                <span className="brand-sub">🇧🇷 crie o seu</span>
+                <span className="brand-sub">🇧🇷 Copa 2026</span>
               </span>
             </Link>
             <nav className="site-nav">
-              <Link href="/como-funciona">📖 Como funciona</Link>
-              <Link href="/ias">🤖 IAs</Link>
               <a
                 href="https://giordanorec.github.io/bolao-copa-2026/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🏆 Ranking ↗
+                Ranking ↗
               </a>
-              <Link href="/login">Entrar</Link>
+              <a
+                href="https://giordanorec.github.io/bolao-copa-2026/jogos.html"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Jogos ↗
+              </a>
+              <a
+                href="https://giordanorec.github.io/bolao-copa-2026/serie-a.html"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Série A ↗
+              </a>
+              <a
+                href="https://giordanorec.github.io/bolao-copa-2026/cristal.html"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🔮 Cristal ↗
+              </a>
+              <Link href="/como-funciona">Como funciona</Link>
+              <Link href="/login" className="cta">Entrar</Link>
             </nav>
           </div>
         </header>
+
+        <ThemeSwitcher />
 
         <main>
           <div className="container">{children}</div>
         </main>
 
         <footer className="site-footer">
-          <div className="container">
-            <p>
-              Gratuito. Sem ads. Sem Bets. ·{" "}
-              <Link href="/doar">💛 apoie</Link> ·{" "}
-              <a
-                href="https://github.com/giordanorec/bolao-copa-2026"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                código no GitHub
-              </a>{" "}
-              · <Link href="/como-funciona">como funciona</Link> ·{" "}
-              <Link href="/ranking-geral">ranking geral</Link>
-            </p>
-            <p style={{ marginTop: 8, fontSize: 12 }}>
-              Versão MVP. Pode dar erro — faça backup dos teus palpites
-              importantes.
-            </p>
+          <div className="container footer-inner">
+            <div className="footer-col">
+              <h4>O Bolão</h4>
+              <p>
+                Comparamos palpites de modelos de IA sobre a Copa do Mundo FIFA
+                2026. <strong>122 IAs</strong> participantes + Bola de Cristal,
+                dossiê de contexto padronizado e regras clássicas (placar exato
+                10, vencedor+saldo 7, vencedor 5, errado 0; mata-mata 2×). É
+                sério, e é uma festa. 🎉
+              </p>
+              <p style={{ marginTop: 12 }}>
+                <Link href="/signup" style={{ color: "var(--primary)", fontWeight: 700 }}>
+                  Crie seu bolão →
+                </Link>
+              </p>
+            </div>
+            <div className="footer-col">
+              <h4>Disclaimers</h4>
+              <ul>
+                <li>Não pegamos informação de casas de apostas.</li>
+                <li>Não somos patrocinados por Bets.</li>
+                <li>Gratuito. Doações cobrem a API.</li>
+                <li>Projeto em andamento — faça backup, não confie cegamente.</li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h4>Atualização</h4>
+              <p>
+                v4 ao vivo em{" "}
+                <a href="https://arena-de-ias.vercel.app">arena-de-ias.vercel.app</a>
+              </p>
+              <p style={{ marginTop: 8 }}>
+                <Link href="/doar">💛 Doe via PIX</Link> ·{" "}
+                <a
+                  href="https://github.com/giordanorec/bolao-copa-2026"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  código no GitHub
+                </a>
+              </p>
+              <p className="versao" style={{ marginTop: 8 }}>
+                Built with care & frevo. v0.6.0
+              </p>
+            </div>
           </div>
         </footer>
 
+        <div className="toast" role="status" aria-live="polite" />
+
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                  navigator.serviceWorker.register('/sw.js').catch(() => {});
-                });
-              }
-            `,
+            __html: `if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}`,
           }}
         />
       </body>
