@@ -342,6 +342,22 @@ body[data-theme="carnaval"] .site-header { top: 6px; }
     letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
 }
 .site-nav { display: flex; gap: 4px; align-items: center; }
+.nav-meus-boloes {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    color: var(--primary) !important;
+    border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
+    font-weight: 700;
+}
+.nav-meus-boloes:hover {
+    background: color-mix(in srgb, var(--primary) 20%, transparent) !important;
+}
+.nav-meus-boloes .badge {
+    background: var(--primary); color: white;
+    border-radius: 999px; padding: 1px 8px;
+    font-size: 11px; font-weight: 800;
+    min-width: 18px; text-align: center;
+}
 .site-nav a {
     font-size: 16px; font-weight: 600; color: var(--fg-mid);
     padding: 10px 18px; border-radius: var(--r-m);
