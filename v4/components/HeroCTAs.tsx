@@ -42,8 +42,11 @@ export default function HeroCTAs({ locale = "pt" }: { locale?: Locale }) {
 
   return (
     <div className="hero-cta">
-      <Link href="/serie-a" className="btn primary">
-        {t(locale, "home.hero.cta.serie_a")}
+      <Link href="/ranking-ias" className="btn primary">
+        🏆 {locale === "en" ? "AI Ranking"
+          : locale === "es" ? "Ranking de IAs"
+          : locale === "fr" ? "Classement IA"
+          : "Ranking de IAs"}
       </Link>
       <Link href="/jogos" className="btn yellow">
         {t(locale, "home.hero.cta.jogos")}

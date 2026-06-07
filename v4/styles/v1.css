@@ -1391,6 +1391,27 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     width: 96px; height: 96px; object-fit: contain;
     margin-bottom: 10px;
 }
+.ia-mascote-wrap {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+    margin-bottom: 10px;
+}
+.ia-mascote-wrap img { margin-bottom: 0; }
+.ia-marca-badge {
+    position: absolute;
+    bottom: -6px; right: -6px;
+    background: var(--bg-0);
+    border-radius: 50%;
+    padding: 3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    display: inline-flex;
+}
+.serie-a-grid.destaque .ia-mascote-wrap { margin-bottom: 0; }
+.serie-a-grid.destaque .ia-marca-badge {
+    bottom: -4px; right: -4px;
+    padding: 4px;
+}
 .ia-card h3 {
     font-family: var(--ff-sans); font-size: 15px; font-weight: 700;
     color: var(--fg); margin: 0 0 8px; line-height: 1.2; min-height: 36px;
@@ -1674,6 +1695,34 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
 .ia-mini strong {
     display: block; font-size: 14px; color: var(--fg); font-weight: 600;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ─── SHARE BUTTONS ─── */
+.share-buttons {
+    display: flex; gap: 8px; flex-wrap: wrap;
+}
+.share-buttons.stack { flex-direction: column; align-items: stretch; }
+.btn-share {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 14px; border-radius: var(--r-m);
+    border: 1.5px solid var(--line-strong);
+    background: var(--bg-2); color: var(--fg);
+    cursor: pointer; font-size: 14px; font-weight: 700;
+    font-family: var(--ff-sans); text-decoration: none;
+    transition: all 0.15s ease;
+}
+.btn-share:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.btn-share span { font-size: 18px; line-height: 1; }
+.btn-share-whatsapp:hover { border-color: #25D366; color: #25D366; }
+.btn-share-insta:hover { border-color: #E1306C; color: #E1306C; }
+.btn-share-native:hover { border-color: var(--primary); color: var(--primary); }
+.btn-share-link.copiado {
+    border-color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    color: var(--primary);
 }
 
 /* ─── JOGO CARD CLICAVEL + MODAL ─── */

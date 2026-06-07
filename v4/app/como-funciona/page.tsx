@@ -117,8 +117,8 @@ export default function ComoFunciona() {
             121 modelos de IA: ChatGPT 5 Pro, Claude Opus 4.7, Gemini 2.5 Pro,
             Grok 4 Heavy, DeepSeek R1, Llama 4, Mistral, Qwen e mais. Cada uma
             recebe o mesmo prompt e palpita os 104 jogos. Ver lista completa em{" "}
-            <Link href="/ias" style={{ color: "var(--primary)" }}>
-              /ias
+            <Link href="/ranking-ias" style={{ color: "var(--primary)" }}>
+              /ranking-ias
             </Link>
             .
           </p>

@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import Bandeira from "@/components/Bandeira";
 import IconeIA from "@/components/IconeIA";
+import ShareButtons from "@/components/ShareButtons";
 import { scorePopularidade, marcaDe, MARCAS } from "@/lib/ias";
 import type { DadosPorJogo } from "@/lib/palpites-ias";
 import type { Locale } from "@/lib/i18n";
@@ -241,6 +242,30 @@ export default function JogoModal({
                         </div>
                       ))}
                   </div>
+                </div>
+              )}
+
+              {/* Share */}
+              {top && (
+                <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid var(--line)" }}>
+                  <p style={{
+                    fontSize: 12,
+                    fontFamily: "var(--ff-mono)",
+                    color: "var(--fg-muted)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                    marginBottom: 10,
+                  }}>
+                    {locale === "en" ? "Share this prediction"
+                      : locale === "es" ? "Compartir este pronóstico"
+                      : locale === "fr" ? "Partager ce pronostic"
+                      : "Compartilhar este palpite"}
+                  </p>
+                  <ShareButtons
+                    url={`/jogos#${jogoNumero}`}
+                    texto={`🔮 As IAs preveem: ${timeA} ${top.gols_a}×${top.gols_b} ${timeB} (${confiancaPct}% de confiança · ${top.votos}/${totalVotos} IAs)`}
+                    locale={locale}
+                  />
                 </div>
               )}
 

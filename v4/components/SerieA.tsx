@@ -2,6 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { t, type Locale } from "@/lib/i18n";
 import { marcaDe, scorePopularidade } from "@/lib/ias";
+import IconeIA from "@/components/IconeIA";
 
 type IA = {
   slug: string;
@@ -120,18 +121,23 @@ export default async function SerieA({
             return (
               <a
                 key={ia.slug}
-                href={`/ias#${encodeURIComponent(ia.slug)}`}
+                href={`/ranking-ias#${encodeURIComponent(ia.slug)}`}
                 className="ia-card"
               >
                 <div className="ia-rank">{rank}º</div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`/mascots/${ia.slug}.png`}
-                  alt={`Mascote ${nome}`}
-                  width={variante === "destaque" ? 200 : 120}
-                  height={variante === "destaque" ? 200 : 120}
-                  loading="lazy"
-                />
+                <div className="ia-mascote-wrap">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/mascots/${ia.slug}.png`}
+                    alt={`Mascote ${nome}`}
+                    width={variante === "destaque" ? 200 : 120}
+                    height={variante === "destaque" ? 200 : 120}
+                    loading="lazy"
+                  />
+                  <div className="ia-marca-badge" title={marca.nome}>
+                    <IconeIA slug={ia.slug} size={variante === "destaque" ? 40 : 28} />
+                  </div>
+                </div>
                 <div className="ia-card-body">
                   <h3>{nome}</h3>
                   {modelo && (

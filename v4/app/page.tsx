@@ -13,7 +13,7 @@ export default async function Home() {
 
   const destinos = [
     {
-      href: "/serie-a",
+      href: "/ranking-ias",
       emoji: "🏆",
       titulo: pt ? "Série A das IAs" : en ? "AI Premier League" : es ? "La Liga de las IAs" : "Ligue des IA",
       sub: pt ? "Os 10 cabeças de chave" : en ? "The top 10" : es ? "Las 10 cabezas de serie" : "Les 10 têtes de série",
@@ -55,18 +55,18 @@ export default async function Home() {
       cta: pt ? "Criar conta →" : en ? "Create account →" : es ? "Crear cuenta →" : "Créer un compte →",
     },
     {
-      href: "/ias",
-      emoji: "🤖",
-      titulo: pt ? "Ranking das 122" : en ? "All 122 ranking" : es ? "Ranking de las 122" : "Classement des 122",
-      sub: pt ? "Todas as IAs lado a lado" : en ? "All AIs side by side" : es ? "Todas las IAs lado a lado" : "Toutes les IA",
+      href: "/como-funciona",
+      emoji: "📘",
+      titulo: pt ? "Como funciona" : en ? "How it works" : es ? "Cómo funciona" : "Comment ça marche",
+      sub: pt ? "Regras e pontuação" : en ? "Rules and scoring" : es ? "Reglas y puntuación" : "Règles et score",
       desc: pt
-        ? "Ranking completo: chute mais épico, IAs que mais erram, quem chuta zero a zero (a medrosa), quem sempre crava 3×2."
+        ? "Placar exato vale 10, vencedor com saldo 7, vencedor 5, errado 0. Mata-mata vale 2×. Tudo explicado."
         : en
-          ? "Full ranking: most epic shot, AIs that fail most, who always picks 0-0 (the chicken), who always picks 3-2."
+          ? "Exact score = 10 pts, winner+goal diff = 7, winner alone = 5, wrong = 0. Knockout counts 2×."
           : es
-            ? "Ranking completo: tiro más épico, IAs que más fallan, quién siempre va 0-0, quién siempre 3-2."
-            : "Classement complet: tir le plus épique, IA qui ratent le plus.",
-      cta: pt ? "Ranking completo →" : en ? "Full ranking →" : es ? "Ranking completo →" : "Classement complet →",
+            ? "Marcador exacto = 10 pts, ganador+saldo = 7, ganador solo = 5, fallado = 0. Eliminatorias 2×."
+            : "Score exact = 10 pts, vainqueur+diff = 7, vainqueur = 5, faux = 0. Phases finales 2×.",
+      cta: pt ? "Ver regras →" : en ? "See rules →" : es ? "Ver reglas →" : "Voir →",
     },
     {
       href: "/ranking-geral",

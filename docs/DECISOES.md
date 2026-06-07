@@ -223,3 +223,18 @@ Decisões que devem perdurar (não reverter sem confirmação):
 
 ### Regra geral
 Decisões firmadas neste log são especificação. Não revisitar sem perguntar ao usuário.
+
+---
+
+## 2026-06-07 (Giordano) — Unificação /serie-a + /ias
+
+- **Unificar /serie-a e /ias** em uma única rota: **/ranking-ias**.
+- Header NÃO precisa mais do link "Série A" separado — só "Ranking de IAs".
+- Na vitrine de IAs (mascotes da Série A), mostrar **ícone do produto AO LADO do mascote** (não substituir; coexistir).
+
+## Marketing & infra (não-funcional)
+
+- **Cards de partida pra Instagram**: gerar 1 PNG por partida com resultado Bola de Cristal. Salvar local em `marketing/cards/`. Será agendado depois.
+- **Domínio próprio**: `bolao.arenadasias.com.br` (já comprado). Apontar via DNS CNAME pro Vercel.
+- **Stripe final**: Payment Link sem nome do dono aparecendo (configurar business_name genérico tipo "Arena de IAs").
+- **Agendamento Instagram**: investigar Meta Business Suite (nativo, grátis) ou alternativas (Buffer, Later free tier).
