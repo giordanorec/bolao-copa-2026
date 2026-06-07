@@ -1322,6 +1322,195 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     .lang-switcher a { width: 28px; height: 28px; font-size: 14px; }
 }
 
+/* ─── DOAR PAGE ─── */
+.doar-page {
+    max-width: 1100px; margin: 24px auto 64px;
+    padding: 0 16px;
+}
+.doar-hero {
+    text-align: center;
+    padding: 56px 24px;
+    background: linear-gradient(135deg,
+        rgba(255,206,0,0.10), rgba(0,156,59,0.06));
+    border-radius: var(--r-l);
+    border: 2px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    margin-bottom: 40px;
+}
+.doar-hero-emoji {
+    font-size: 72px; line-height: 1; margin-bottom: 18px;
+    animation: float 4s ease-in-out infinite;
+    display: inline-block;
+}
+.doar-hero-kicker {
+    font-family: var(--ff-mono); font-size: 13px;
+    color: var(--accent); text-transform: uppercase;
+    letter-spacing: 0.12em; font-weight: 700;
+    margin-bottom: 12px;
+}
+.doar-hero h1 {
+    font-family: var(--ff-display);
+    font-weight: var(--ff-display-weight);
+    font-style: var(--ff-display-style);
+    font-variation-settings: var(--ff-display-vs);
+    font-size: clamp(36px, 6vw, 64px);
+    color: var(--secondary); letter-spacing: -0.03em;
+    line-height: 1.0; margin-bottom: 18px;
+}
+.doar-hero-lede {
+    font-size: 17px; color: var(--fg-mid);
+    max-width: 620px; margin: 0 auto;
+    line-height: 1.55;
+}
+.doar-hero-lede strong { color: var(--fg); }
+
+.doar-recompensas { margin: 48px 0; }
+.doar-recompensas h2,
+.doar-onde h2,
+.doar-pix h2 {
+    text-align: center;
+    font-family: var(--ff-display);
+    font-weight: var(--ff-display-weight);
+    font-style: var(--ff-display-style);
+    font-variation-settings: var(--ff-display-vs);
+    font-size: clamp(28px, 4vw, 38px);
+    color: var(--secondary);
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+}
+.doar-recompensas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
+.doar-tier {
+    background: var(--bg-2);
+    border: 1.5px solid var(--line-strong);
+    border-radius: var(--r-l);
+    padding: 32px 24px 24px;
+    text-align: center;
+    display: flex; flex-direction: column;
+    position: relative;
+}
+.doar-tier-destaque {
+    border: 2.5px solid var(--primary);
+    background: linear-gradient(180deg,
+        color-mix(in srgb, var(--primary) 6%, var(--bg-2)),
+        var(--bg-2));
+    box-shadow: 0 10px 40px color-mix(in srgb, var(--primary) 16%, transparent);
+    transform: scale(1.03);
+}
+.doar-tier-badge {
+    position: absolute; top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary); color: #fff;
+    padding: 4px 14px; border-radius: 999px;
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase;
+}
+.doar-tier-emoji {
+    font-size: 56px; line-height: 1; margin-bottom: 10px;
+}
+.doar-tier-nome {
+    font-family: var(--ff-mono); font-size: 12px;
+    color: var(--fg-muted); text-transform: uppercase;
+    letter-spacing: 0.1em; font-weight: 700;
+    margin-bottom: 4px;
+}
+.doar-tier-valor {
+    font-family: var(--ff-display);
+    font-weight: var(--ff-display-weight);
+    font-style: var(--ff-display-style);
+    font-variation-settings: var(--ff-display-vs);
+    font-size: 46px; color: var(--fg);
+    letter-spacing: -0.03em; line-height: 1;
+    margin-bottom: 20px;
+}
+.doar-tier ul {
+    list-style: none; padding: 0;
+    text-align: left; margin-bottom: 22px;
+    flex-grow: 1;
+}
+.doar-tier ul li {
+    font-size: 14px; color: var(--fg-mid);
+    line-height: 1.45; padding-left: 22px;
+    position: relative; margin-bottom: 10px;
+}
+.doar-tier ul li::before {
+    content: "✓"; position: absolute; left: 0; top: 0;
+    color: var(--primary); font-weight: 800;
+}
+.doar-recompensas-nota {
+    text-align: center; margin-top: 24px;
+    color: var(--fg-mid); font-size: 14px;
+}
+.doar-recompensas-nota a { color: var(--primary); font-weight: 700; }
+
+.doar-onde { margin: 56px 0; }
+.doar-onde-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
+.doar-onde-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-l);
+    padding: 28px 26px;
+}
+.doar-onde-emoji {
+    font-size: 44px; line-height: 1; margin-bottom: 14px;
+}
+.doar-onde-card strong {
+    display: block; font-size: 18px;
+    color: var(--secondary);
+    font-family: var(--ff-display);
+    margin-bottom: 8px;
+}
+.doar-onde-card p {
+    font-size: 14px; color: var(--fg-mid);
+    line-height: 1.55; margin: 0;
+}
+
+.doar-pix { margin: 56px 0 32px; }
+.doar-pix > p {
+    text-align: center; color: var(--fg-mid);
+    font-size: 15px; margin-bottom: 24px;
+}
+.doar-pix-card {
+    background: var(--bg-2);
+    border: 2px dashed var(--line-strong);
+    border-radius: var(--r-l);
+    padding: 32px 28px;
+    max-width: 480px; margin: 0 auto;
+    text-align: center;
+}
+.doar-pix-label {
+    display: block;
+    font-family: var(--ff-mono); font-size: 11px;
+    color: var(--fg-muted); text-transform: uppercase;
+    letter-spacing: 0.12em; font-weight: 700;
+    margin-bottom: 10px;
+}
+.doar-pix-code {
+    display: block;
+    font-family: var(--ff-mono); font-size: 22px;
+    font-weight: 800; color: var(--fg);
+    background: var(--bg-soft);
+    padding: 14px 20px; border-radius: var(--r-m);
+    margin-bottom: 16px;
+    word-break: break-all;
+}
+.doar-pix-card small {
+    display: block; font-size: 13px;
+    color: var(--fg-mid); line-height: 1.5;
+}
+.doar-pix-card small a { color: var(--primary); font-weight: 700; }
+
+@media (max-width: 600px) {
+    .doar-tier-destaque { transform: none; }
+    .doar-tier { padding: 28px 20px 22px; }
+}
+
 /* ─── BOLÃO PAGE (landing convidativa) ─── */
 .bolao-page { margin-top: 24px; margin-bottom: 64px; }
 .bolao-hero {
