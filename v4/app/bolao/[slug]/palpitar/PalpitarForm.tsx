@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase-browser";
 import type { Jogo } from "@/lib/types";
@@ -32,7 +32,12 @@ export default function PalpitarForm({
 }) {
   const [palpites, setPalpites] = useState<Estado>(palpitesIniciais);
   const [salvando, setSalvando] = useState<Set<number>>(new Set());
+  const [erroSalvar, setErroSalvar] = useState<string | null>(null);
   const timers = useRef<Record<number, NodeJS.Timeout>>({});
+  const palpitesRef = useRef<Estado>(palpitesIniciais);
+  useEffect(() => {
+    palpitesRef.current = palpites;
+  }, [palpites]);
 
   const total = jogos.length;
   const preenchidos = Object.keys(palpites).length;
@@ -80,16 +85,17 @@ export default function PalpitarForm({
   }
 
   async function aplicarLote(slug: string, modo: "todos" | "vazios") {
-    const novos: Estado = { ...palpites };
+    const novos: Estado = { ...palpitesRef.current };
     const jogoNumeros: number[] = [];
     for (const j of jogos) {
-      const ja = palpites[j.numero];
+      const ja = palpitesRef.current[j.numero];
       if (modo === "vazios" && ja) continue;
       const p = getPalpiteIA(slug, j.numero);
       if (!p) continue;
       novos[j.numero] = { gols_a: p.gols_a, gols_b: p.gols_b };
       jogoNumeros.push(j.numero);
     }
+    palpitesRef.current = novos;
     setPalpites(novos);
     setSalvando((s) => {
       const n = new Set(s);
@@ -118,7 +124,9 @@ export default function PalpitarForm({
 
   function aplicarSugestao(numero: number, gols_a: number, gols_b: number) {
     const novo = { gols_a, gols_b };
-    setPalpites((p) => ({ ...p, [numero]: novo }));
+    palpitesRef.current = { ...palpitesRef.current, [numero]: novo };
+    setPalpites(palpitesRef.current);
+    if (timers.current[numero]) clearTimeout(timers.current[numero]);
     salvar(numero, novo);
   }
 
@@ -127,11 +135,15 @@ export default function PalpitarForm({
     campo: "gols_a" | "gols_b",
     valor: number,
   ) {
-    const atual = palpites[numero] ?? { gols_a: 0, gols_b: 0 };
+    const atual = palpitesRef.current[numero] ?? { gols_a: 0, gols_b: 0 };
     const novo = { ...atual, [campo]: valor };
-    setPalpites((p) => ({ ...p, [numero]: novo }));
+    palpitesRef.current = { ...palpitesRef.current, [numero]: novo };
+    setPalpites(palpitesRef.current);
     if (timers.current[numero]) clearTimeout(timers.current[numero]);
-    timers.current[numero] = setTimeout(() => salvar(numero, novo), 600);
+    timers.current[numero] = setTimeout(() => {
+      const final = palpitesRef.current[numero] ?? novo;
+      salvar(numero, final);
+    }, 600);
   }
 
   async function salvar(
@@ -143,14 +155,31 @@ export default function PalpitarForm({
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) return;
-    await supabase.from("palpite").upsert({
-      user_id: user.id,
-      jogo_numero: numero,
-      gols_a: valor.gols_a,
-      gols_b: valor.gols_b,
-      atualizado_em: new Date().toISOString(),
-    });
+    if (!user) {
+      setErroSalvar("Você precisa estar logado.");
+      setSalvando((s) => {
+        const n = new Set(s);
+        n.delete(numero);
+        return n;
+      });
+      return;
+    }
+    const { error } = await supabase.from("palpite").upsert(
+      {
+        user_id: user.id,
+        jogo_numero: numero,
+        gols_a: valor.gols_a,
+        gols_b: valor.gols_b,
+        atualizado_em: new Date().toISOString(),
+      },
+      { onConflict: "user_id,jogo_numero" },
+    );
+    if (error) {
+      console.error("[palpite upsert]", error);
+      setErroSalvar(`Erro ao salvar jogo #${numero}: ${error.message}`);
+    } else {
+      setErroSalvar(null);
+    }
     setSalvando((s) => {
       const n = new Set(s);
       n.delete(numero);
@@ -176,9 +205,14 @@ export default function PalpitarForm({
             <h1>🎯 Seus palpites</h1>
           </div>
           <span
-            className={`palp-save-chip ${algumSalvando ? "salvando" : ""}`}
+            className={`palp-save-chip ${algumSalvando ? "salvando" : ""} ${erroSalvar ? "erro" : ""}`}
+            title={erroSalvar ?? undefined}
           >
-            {algumSalvando ? "💾 salvando…" : "✓ tudo salvo"}
+            {erroSalvar
+              ? "⚠ erro"
+              : algumSalvando
+                ? "💾 salvando…"
+                : "✓ tudo salvo"}
           </span>
         </div>
         <div className="palp-progress">
@@ -192,6 +226,25 @@ export default function PalpitarForm({
             {preenchidos}/{total} ({pct}%)
           </span>
         </div>
+        {erroSalvar && (
+          <div className="palp-erro-banner" role="alert">
+            ⚠ {erroSalvar}
+            <button
+              onClick={() => setErroSalvar(null)}
+              style={{
+                marginLeft: 12,
+                background: "transparent",
+                border: "none",
+                color: "inherit",
+                cursor: "pointer",
+                fontSize: 16,
+              }}
+              aria-label="Fechar"
+            >
+              ✕
+            </button>
+          </div>
+        )}
       </div>
 
       <p

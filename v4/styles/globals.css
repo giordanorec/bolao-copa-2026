@@ -647,6 +647,23 @@ body[data-theme="festivo-br"] {
     background: color-mix(in srgb, var(--accent) 14%, transparent);
     color: var(--fg);
 }
+.palp-save-chip.erro {
+    background: color-mix(in srgb, #e74c3c 18%, transparent);
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+.palp-erro-banner {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: color-mix(in srgb, #e74c3c 14%, transparent);
+    border: 1px solid #e74c3c;
+    border-radius: var(--r-m);
+    color: var(--fg);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 .palp-progress {
     margin-top: 14px;
