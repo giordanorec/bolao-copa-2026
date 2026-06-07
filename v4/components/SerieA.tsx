@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { t, type Locale } from "@/lib/i18n";
-import { marcaDe, MARCAS } from "@/lib/ias";
+import { marcaDe } from "@/lib/ias";
 
 type IA = {
   slug: string;
@@ -90,7 +90,7 @@ export default async function SerieA({
             const ap = APELIDOS[ia.slug];
             const nome = ap?.nome ?? ia.nome_display;
             const modelo = ap?.modelo ?? "";
-            const marca = MARCAS[marcaDe(ia.slug)];
+            const marca = marcaDe(ia.slug);
             return (
               <a
                 key={ia.slug}
