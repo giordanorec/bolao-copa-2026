@@ -366,3 +366,29 @@ body { font-family: var(--ff-sans); }
 @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.001s !important; transition: none !important; }
 }
+
+/* ─── DESTINO CARDS (home — 6 cards iguais) ─── */
+.destino-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 32px 28px;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 340px;
+}
+.destino-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-pop);
+    border-color: var(--primary);
+}
+.destino-card > p:nth-last-of-type(2) {
+    flex-grow: 1;
+}
+.destino-card h3 {
+    margin-top: 0;
+}
+@media (max-width: 720px) {
+    .destino-card { min-height: 280px; padding: 24px 20px; }
+    .destino-card > div:first-child { font-size: 44px !important; }
+    .destino-card h3 { font-size: 24px !important; }
+}
