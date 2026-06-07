@@ -195,3 +195,31 @@ Fase 4 (MVP) entregue em paralelo por 6 especialistas. Durante o drive houve doi
 - Confirmar user antigo no Supabase Auth (criado antes do `mailer_autoconfirm`).
 - Revogar tokens (Vercel + Supabase PAT) depois do MVP estabilizado.
 - Decidir nome final / domínio próprio.
+
+---
+
+## 2026-06-07 (Giordano) — Decisões de UX firmadas
+
+Decisões que devem perdurar (não reverter sem confirmação):
+
+### Ranking & ordenação
+- **Empates aparecem com mesmo número** (1º, 1º, 3º — nunca 1º, 2º, 3º).
+- **Ordenação por popularidade** quando há empate de pontos. Ordem das famílias: OpenAI > Anthropic > Google > xAI > DeepSeek > Microsoft > Meta > Perplexity > Mistral > Alibaba. Dentro da família, modelos flagship/via-web primeiro. Implementado em `v4/lib/ias.ts:scorePopularidade`.
+- Ordem de popularidade é o **default** na lista de Sugestões durante palpitar.
+
+### Separação de páginas
+- **`/ias`**: APRESENTAÇÃO informativa, NÃO competição.
+  - Lista das 122 organizadas por empresa, com ícones dos produtos.
+  - Sem rank/pontos competitivos misturados (confunde com /ranking-geral).
+  - Série A pode aparecer no topo como vitrine.
+- **`/ranking-geral`**: COMPETIÇÃO geral (humanos + IAs no mesmo placar).
+  - Única página com o ranking competitivo unificado.
+- **`/serie-a`**: TOP 10 com pontos. Campeonato premium das flagship.
+
+### Tipografia mobile
+- **Mínimo 13px** para qualquer texto de leitura (não usar fontes ilegíveis no celular).
+- Em cards de IA na home (variante destaque): nome do **modelo** ligeiramente menor que nome do **produto**, mas ainda legível.
+- Nome do produto sempre cabe na linha (ellipsis ok se nome muito longo; preferir word-break sensato).
+
+### Regra geral
+Decisões firmadas neste log são especificação. Não revisitar sem perguntar ao usuário.

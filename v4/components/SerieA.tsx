@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { t, type Locale } from "@/lib/i18n";
-import { marcaDe } from "@/lib/ias";
+import { marcaDe, scorePopularidade } from "@/lib/ias";
 
 type IA = {
   slug: string;
@@ -44,10 +44,34 @@ async function carregarSerieA(): Promise<IA[]> {
     const raw = await fs.readFile(arquivo, "utf-8");
     const dados = JSON.parse(raw) as { ias: IA[] };
     const ias = dados.ias.filter((i) => SLUGS_SERIE_A.includes(i.slug));
-    return ias.sort((a, b) => b.pontos - a.pontos || a.slug.localeCompare(b.slug));
+    // ordena por: pontos desc, depois popularidade asc (não alfabético)
+    return ias.sort(
+      (a, b) =>
+        b.pontos - a.pontos ||
+        scorePopularidade(a.slug) - scorePopularidade(b.slug),
+    );
   } catch {
     return [];
   }
+}
+
+// Calcula rank com empate (dense ranking estilo "1, 1, 3").
+function calcularRanks(ias: IA[]): number[] {
+  const ranks: number[] = [];
+  let rankAtual = 1;
+  for (let i = 0; i < ias.length; i++) {
+    if (i === 0) {
+      ranks.push(1);
+      continue;
+    }
+    if (ias[i].pontos === ias[i - 1].pontos) {
+      ranks.push(rankAtual);
+    } else {
+      rankAtual = i + 1;
+      ranks.push(rankAtual);
+    }
+  }
+  return ranks;
 }
 
 export default async function SerieA({
@@ -59,6 +83,7 @@ export default async function SerieA({
 }) {
   const ias = await carregarSerieA();
   if (ias.length === 0) return null;
+  const ranks = calcularRanks(ias);
 
   const sufixoJogos =
     locale === "en" ? "matches" : locale === "es" ? "partidos" : locale === "fr" ? "matches" : "jogos";
@@ -91,13 +116,14 @@ export default async function SerieA({
             const nome = ap?.nome ?? ia.nome_display;
             const modelo = ap?.modelo ?? "";
             const marca = marcaDe(ia.slug);
+            const rank = ranks[i];
             return (
               <a
                 key={ia.slug}
                 href={`/ias#${encodeURIComponent(ia.slug)}`}
                 className="ia-card"
               >
-                <div className="ia-rank">{i + 1}º</div>
+                <div className="ia-rank">{rank}º</div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/mascots/${ia.slug}.png`}
