@@ -418,3 +418,150 @@ h1, h2, h3 {
     .form-card { margin: 24px auto; }
     .form-card h1 { font-size: 28px; }
 }
+
+/* ============================================================
+   MICROINTERAÇÕES & POLIMENTO
+   ============================================================ */
+
+/* Animações suaves nos botões */
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    width: 0; height: 0; border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    transform: translate(-50%,-50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    pointer-events: none;
+}
+.btn:active::after { width: 300px; height: 300px; }
+.btn:disabled {
+    opacity: 0.6; cursor: not-allowed;
+    transform: none !important; box-shadow: none !important;
+}
+
+/* Hero stats hover */
+.stat { transition: all 0.25s ease; cursor: default; }
+.stat:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-pop);
+}
+
+/* Cards hover sutil */
+.card { transition: box-shadow 0.2s ease, transform 0.2s ease; }
+
+/* Inputs com transition no focus */
+.input {
+    transition: border-color 0.15s ease, box-shadow 0.2s ease, background 0.15s ease;
+}
+.input::placeholder { color: var(--fg-dim); }
+
+/* Bolão card hover já tem, vou intensificar */
+.bolao-card-link .card {
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Loading state sutil pro form */
+button[disabled] { position: relative; }
+button[disabled]:not(.btn)::before {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(255,255,255,0.5); border-radius: inherit;
+}
+
+/* Steps hover */
+.step { transition: transform 0.18s ease, background 0.18s ease; }
+.step:hover {
+    transform: translateX(4px);
+    background: var(--bg-soft);
+}
+
+/* Brand hover */
+.brand { transition: opacity 0.15s ease; }
+.brand:hover { opacity: 0.85; }
+
+/* Animações de entrada */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.hero h1, .hero .lede, .hero-cta { animation: fadeUp 0.5s ease backwards; }
+.hero .lede { animation-delay: 0.1s; }
+.hero-cta { animation-delay: 0.2s; }
+.stats { animation: fadeUp 0.5s ease 0.3s backwards; }
+
+/* Focus visible accessibility */
+*:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+.input:focus-visible { outline: none; }
+
+/* ============================================================
+   MOBILE REFINADO
+   ============================================================ */
+@media (max-width: 720px) {
+    .container { padding: 0 16px; }
+    .site-nav { gap: 4px; }
+    .site-nav a { padding: 6px 10px; font-size: 13px; }
+    .brand-title { font-size: 17px; }
+    .brand-mark { font-size: 28px; }
+
+    .hero { padding: 40px 0 32px; }
+    .hero h1 { font-size: clamp(32px, 8vw, 48px); }
+    .hero .lede { font-size: 16px; }
+    .hero-cta .btn { padding: 12px 20px; font-size: 14px; flex-grow: 1; }
+    .hero-cta { gap: 10px; }
+
+    .stats { gap: 12px; margin-top: 28px; }
+    .stat { min-width: 90px; padding: 14px 16px; flex: 1; }
+    .stat-num { font-size: 26px; }
+    .stat-lbl { font-size: 10px; }
+
+    .section { padding: 40px 0; }
+    .section h2 { font-size: 28px; }
+
+    .card { padding: 20px; }
+    .features { gap: 16px; }
+
+    .form-card { margin: 24px auto; padding: 24px; }
+    .form-card h1 { font-size: 26px; }
+
+    .jogo-linha {
+        padding: 10px 12px; gap: 8px;
+        flex-wrap: wrap;
+    }
+    .jogo-num { width: 28px; font-size: 10px; }
+    .jogo-data { display: none; }
+    .jogo-time { min-width: 80px; font-size: 14px; flex: 1 1 100px; }
+    .jogo-input { width: 48px; padding: 6px; font-size: 14px; }
+
+    .ranking-table th, .ranking-table td {
+        padding: 10px 8px; font-size: 14px;
+    }
+    .ranking-table .pos { width: 28px; }
+
+    .bolao-head h1 { font-size: 28px; }
+    .bolao-grid { gap: 12px; grid-template-columns: 1fr; }
+    .actions { gap: 8px; }
+    .actions .btn { flex-grow: 1; }
+    .share-row { gap: 8px; }
+    .share-row .btn { font-size: 13px; padding: 8px 12px; }
+}
+
+/* iOS safe area */
+@supports (padding: max(0px)) {
+    body {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+    .site-header { padding-top: env(safe-area-inset-top); }
+}
+
+/* Print clean */
+@media print {
+    .site-header, .site-footer, .share-row, .actions { display: none !important; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001s !important; transition: none !important; }
+}

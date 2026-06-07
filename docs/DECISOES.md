@@ -158,3 +158,40 @@ Fase 4 (MVP) entregue em paralelo por 6 especialistas. Durante o drive houve doi
 
 **Fora do MVP**: Stripe, Google OAuth, batch import de palpite IA, cards Instagram, ranking-geral combinado.
 
+
+## 2026-06-07 — Noite de implementação (Arquiteto trabalhou enquanto user dormiu)
+
+**Entregas no v1**:
+- **Bola de Cristal** (`src/bolao/cristal.py`): consenso por jogo entre todas as IAs. Em caso de empate, escolhe o placar com maior soma de gols. Renderizada em `cristal.html` nas 4 línguas. Aparece no ranking como 122ª "IA".
+- Nav atualizada com `🔮 Bola de Cristal`.
+
+**Entregas no v4 (arena-de-ias.vercel.app)**:
+- **Visual sincronizado com v1** (tema Airbnb): Fraunces + Inter, rosa Rausch + teal Babu + amarelo BR. Removeu Tailwind v4 (estava causando bugs).
+- **/como-funciona**: explica pontuação, FAQ, disclaimers.
+- **/ias**: lista 121 IAs agrupadas por empresa.
+- **/ranking-geral**: humanos opt-in + IAs + Bola de Cristal combinados.
+- **/doar**: PIX + placeholder Stripe (sem implementação de pagamento ainda).
+- **/criar protegida server-side** (era acessível sem login).
+- **PWA**: manifest.json + sw.js + ícones 192/512.
+- **Cards de share**: Canvas API gera PNG 1080×1080 com top 5 ranking + link.
+- **Microinterações**: ripple no btn, hover stats/steps, fade-up no hero, focus-visible accessibility.
+- **Mobile refinado**: breakpoints, safe-area-inset iOS, jogos linha responsiva.
+- **Open Graph + manifest meta** corretos.
+
+**Bugs corrigidos** (do report do qa-tester):
+1. `/criar` protegida server-side via redirect.
+2. Link "Ranking" abre em nova aba com `rel="noopener noreferrer"`.
+3. `robots: index, follow` explícito.
+
+**Decisões**:
+- Email confirmation desativada via Supabase Management API (`mailer_autoconfirm: true`).
+- Site URL + redirect URLs configurados via API.
+- Vercel SSO desativado via API (site público).
+- Framework Vercel setado pra `nextjs` via API (estava `null` causando 404).
+- Hardcoded `SUPABASE_URL` e `SUPABASE_ANON_KEY` em `lib/supabase-config.ts` como fallback (são públicas por design).
+- Middleware removido — Supabase SSR crasha no Edge Runtime do Next 15.5; auth check inline nas Server Components.
+
+**Pendências do usuário**:
+- Confirmar user antigo no Supabase Auth (criado antes do `mailer_autoconfirm`).
+- Revogar tokens (Vercel + Supabase PAT) depois do MVP estabilizado.
+- Decidir nome final / domínio próprio.

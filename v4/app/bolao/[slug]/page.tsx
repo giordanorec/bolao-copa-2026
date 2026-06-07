@@ -1,9 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase-server";
+import { totalPontos } from "@/lib/scoring";
+import { carregarJogos } from "@/lib/jogos";
 import EntrarButton from "./EntrarButton";
 import CopyLinkButton from "./CopyLinkButton";
 import RankingDoBolao from "./RankingDoBolao";
+import ShareCardButton from "./ShareCardButton";
+import type { Palpite } from "@/lib/types";
 
 export default async function BolaoPage({
   params,
@@ -37,6 +41,27 @@ export default async function BolaoPage({
     ? membrosTyped.some((m) => m.user_id === user.id)
     : false;
 
+  const userIds = membrosTyped.map((m) => m.user_id);
+  const jogos = await carregarJogos();
+  let rankingPraShare: { nome: string; pontos: number }[] = [];
+  if (userIds.length > 0) {
+    const { data: pp } = await supabase
+      .from("palpite")
+      .select("user_id, jogo_numero, gols_a, gols_b, atualizado_em")
+      .in("user_id", userIds);
+    const porUser = new Map<string, Record<number, Palpite>>();
+    (pp ?? []).forEach((p) => {
+      if (!porUser.has(p.user_id)) porUser.set(p.user_id, {});
+      porUser.get(p.user_id)![p.jogo_numero] = p as Palpite;
+    });
+    rankingPraShare = membrosTyped
+      .map((m) => ({
+        nome: m.profiles.display_name,
+        pontos: totalPontos(porUser.get(m.user_id) ?? {}, jogos),
+      }))
+      .sort((a, b) => b.pontos - a.pontos);
+  }
+
   return (
     <div style={{ marginTop: 40 }}>
       <div className="card">
@@ -52,6 +77,11 @@ export default async function BolaoPage({
             {membrosTyped.length === 1 ? "membro" : "membros"}
           </span>
           <CopyLinkButton slug={bolao.slug} />
+          <ShareCardButton
+            nomeBolao={bolao.nome}
+            slug={bolao.slug}
+            ranking={rankingPraShare}
+          />
           {!user ? (
             <Link
               href={`/login?redirect=/bolao/${bolao.slug}`}
