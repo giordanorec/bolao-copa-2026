@@ -136,45 +136,15 @@ export default function SugestaoIA({
 
       {aberto && (
         <div
+          className="modal-backdrop-sugestao"
           onClick={() => setAberto(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.55)",
-            backdropFilter: "blur(6px)",
-            zIndex: 200,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 16,
-          }}
         >
           <div
+            className="modal-sugestao"
             onClick={(e) => e.stopPropagation()}
-            style={{
-              background: "var(--bg-2)",
-              borderRadius: "var(--r-l)",
-              width: "100%",
-              maxWidth: 560,
-              maxHeight: "88vh",
-              overflowY: "auto",
-              boxShadow: "var(--shadow-pop)",
-            }}
           >
-            <div
-              style={{
-                padding: "20px 24px",
-                borderBottom: "1px solid var(--line)",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                position: "sticky",
-                top: 0,
-                background: "var(--bg-2)",
-                zIndex: 1,
-              }}
-            >
-              <div>
+            <div className="modal-sugestao-header">
+              <div style={{ flex: 1, minWidth: 0 }}>
                 <p
                   style={{
                     fontFamily: "var(--ff-mono)",
@@ -187,20 +157,23 @@ export default function SugestaoIA({
                 >
                   Jogo #{jogoNumero}
                 </p>
-                <h3 style={{ fontSize: 22, margin: 0, color: "var(--fg)" }}>
+                <h3
+                  style={{
+                    fontSize: 20,
+                    margin: 0,
+                    color: "var(--fg)",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
                   {timeA} × {timeB}
                 </h3>
               </div>
               <button
                 onClick={() => setAberto(false)}
-                style={{
-                  border: "none",
-                  background: "transparent",
-                  fontSize: 26,
-                  cursor: "pointer",
-                  color: "var(--fg-muted)",
-                  padding: 4,
-                }}
+                aria-label="Fechar"
+                className="modal-close-btn"
               >
                 ✕
               </button>

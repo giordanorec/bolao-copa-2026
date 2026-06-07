@@ -221,31 +221,21 @@ export default function PalpitarForm({
                 <span className="jogo-data">
                   {j.data} {j.hora}
                 </span>
-                <span className="jogo-time esq">{j.time_a}</span>
-                <input
-                  type="number"
-                  min={0}
-                  max={20}
-                  className="jogo-input"
-                  value={palp?.gols_a ?? ""}
-                  placeholder="-"
-                  onChange={(e) =>
-                    atualizar(j.numero, "gols_a", Number(e.target.value))
-                  }
-                />
-                <span className="jogo-x">×</span>
-                <input
-                  type="number"
-                  min={0}
-                  max={20}
-                  className="jogo-input"
-                  value={palp?.gols_b ?? ""}
-                  placeholder="-"
-                  onChange={(e) =>
-                    atualizar(j.numero, "gols_b", Number(e.target.value))
-                  }
-                />
-                <span className="jogo-time dir">{j.time_b}</span>
+                <div className="jogo-linha-times">
+                  <span className="jogo-time esq">{j.time_a}</span>
+                  <div className="jogo-placar">
+                    <InputGol
+                      valor={palp?.gols_a}
+                      onChange={(v) => atualizar(j.numero, "gols_a", v)}
+                    />
+                    <span className="jogo-x">×</span>
+                    <InputGol
+                      valor={palp?.gols_b}
+                      onChange={(v) => atualizar(j.numero, "gols_b", v)}
+                    />
+                  </div>
+                  <span className="jogo-time dir">{j.time_b}</span>
+                </div>
                 <SugestaoIA
                   jogoNumero={j.numero}
                   timeA={j.time_a}
@@ -289,5 +279,39 @@ export default function PalpitarForm({
         </div>
       </div>
     </div>
+  );
+}
+
+/* Input de gol que evita leading zero ("01" -> "1") e aceita só inteiros 0-20 */
+function InputGol({
+  valor,
+  onChange,
+}: {
+  valor: number | undefined;
+  onChange: (v: number) => void;
+}) {
+  const display = valor !== undefined && valor !== null ? String(valor) : "";
+  return (
+    <input
+      type="text"
+      inputMode="numeric"
+      pattern="[0-9]*"
+      maxLength={2}
+      className="jogo-input"
+      value={display}
+      placeholder="-"
+      onChange={(e) => {
+        const raw = e.target.value.replace(/\D/g, "");
+        if (raw === "") {
+          onChange(0);
+          return;
+        }
+        const n = parseInt(raw, 10);
+        if (isNaN(n)) return;
+        if (n > 20) return;
+        onChange(n);
+      }}
+      onFocus={(e) => e.target.select()}
+    />
   );
 }
