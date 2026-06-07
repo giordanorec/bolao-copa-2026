@@ -15,8 +15,8 @@ const destinos = [
     external: true,
     emoji: "⚽",
     titulo: "Palpites Jogo a Jogo",
-    sub: "Pra usar no teu bolão",
-    desc: "Pros 104 jogos: qual placar cada IA chutou, quantas concordam, consenso. Sem precisar criar conta — copia pro teu bolão de WhatsApp.",
+    sub: "Pra usar no seu bolão",
+    desc: "Pros 104 jogos: qual placar cada IA chutou, quantas concordam, o consenso. Sem precisar criar conta — copia pro seu bolão de WhatsApp.",
     cta: "Espiar →",
   },
   {
@@ -34,7 +34,7 @@ const destinos = [
     emoji: "🤖",
     titulo: "Ranking das 122",
     sub: "Todas as IAs lado a lado",
-    desc: "Ranking completo: chute mais épico, IAs que mais erram, quem chuta zero a zero (o medroso), quem sempre cravando 3×2.",
+    desc: "Ranking completo: chute mais épico, IAs que mais erram, quem chuta zero a zero (a medrosa), quem sempre crava 3×2.",
     cta: "Ranking completo →",
   },
   {
@@ -43,7 +43,7 @@ const destinos = [
     emoji: "🌍",
     titulo: "Hall da Fama",
     sub: "Humanos + IAs juntos",
-    desc: "Os humanos que opt-in disputando contra as 122 IAs + Bola de Cristal. O ranking único onde todo mundo briga no mesmo placar.",
+    desc: "Humanos opt-in disputando contra as 122 IAs + Bola de Cristal. O ranking onde todo mundo briga no mesmo placar.",
     cta: "Entrar no Hall →",
   },
   {
@@ -52,7 +52,7 @@ const destinos = [
     emoji: "🔮",
     titulo: "Bola de Cristal",
     sub: "O palpite consenso",
-    desc: "Pra cada jogo, juntamos o palpite mais votado entre TODAS as 122 IAs. Sabedoria das massas aplicada a futebol.",
+    desc: "Pra cada jogo, juntamos o placar mais votado entre TODAS as 122 IAs. Sabedoria das massas aplicada a futebol.",
     cta: "Olhar a Cristal →",
   },
 ];
@@ -74,9 +74,31 @@ export default function Home() {
           </h1>
           <p className="lede">
             <strong>122 modelos de IA</strong> + Bola de Cristal palpitam os
-            104 jogos da Copa 2026. Espia o que cada uma chutou, copia pro teu
-            bolão, ou cria um privado pra galera. <strong>Tudo de graça.</strong> 🏆
+            104 jogos da Copa 2026. Espie o que cada uma chutou, copie pro seu
+            bolão, ou crie um privado pra galera. <strong>Tudo de graça.</strong> 🏆
           </p>
+
+          <div className="hero-cta">
+            <a
+              href="https://giordanorec.github.io/bolao-copa-2026/serie-a.html"
+              className="btn primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              🏆 Série A das IAs
+            </a>
+            <a
+              href="https://giordanorec.github.io/bolao-copa-2026/jogos.html"
+              className="btn yellow"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ⚽ Palpites Jogo a Jogo
+            </a>
+            <Link href="/signup" className="btn">
+              🎯 Crie Seu Bolão
+            </Link>
+          </div>
 
           <div className="stats">
             <div className="stat">
@@ -95,11 +117,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─────────── 6 DESTINOS IGUAIS ─────────── */}
+      {/* ─────────── 6 DESTINOS ─────────── */}
       <section className="section">
         <div className="container">
           <h2 style={{ textAlign: "center", marginBottom: 12 }}>
-            Onde tu quer ir?
+            Por onde começar
           </h2>
           <p
             style={{
@@ -153,40 +175,38 @@ export default function Home() {
             Como funciona o placar
           </h2>
           <div className="card" style={{ maxWidth: 640, margin: "0 auto" }}>
-            <div className="table-scroll">
-              <table className="ranking-table">
-                <thead>
-                  <tr>
-                    <th>Acerto</th>
-                    <th style={{ textAlign: "right" }}>Pontos</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>🎯 Placar exato</td>
-                    <td className="pts">10</td>
-                  </tr>
-                  <tr>
-                    <td>📏 Vencedor + saldo de gols</td>
-                    <td className="pts">7</td>
-                  </tr>
-                  <tr>
-                    <td>✅ Vencedor (sem saldo)</td>
-                    <td className="pts">5</td>
-                  </tr>
-                  <tr>
-                    <td>🤝 Empate (sem placar exato)</td>
-                    <td className="pts">5</td>
-                  </tr>
-                  <tr>
-                    <td>❌ Errado</td>
-                    <td className="pts" style={{ color: "var(--fg-muted)" }}>
-                      0
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <table className="regras-table">
+              <thead>
+                <tr>
+                  <th>Acerto</th>
+                  <th style={{ textAlign: "right" }}>Pts</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>🎯 Placar exato</td>
+                  <td className="pts">10</td>
+                </tr>
+                <tr>
+                  <td>📏 Vencedor + saldo de gols</td>
+                  <td className="pts">7</td>
+                </tr>
+                <tr>
+                  <td>✅ Vencedor (sem saldo)</td>
+                  <td className="pts">5</td>
+                </tr>
+                <tr>
+                  <td>🤝 Empate (sem placar exato)</td>
+                  <td className="pts">5</td>
+                </tr>
+                <tr>
+                  <td>❌ Errado</td>
+                  <td className="pts" style={{ color: "var(--fg-muted)" }}>
+                    0
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <p
               style={{
                 marginTop: 20,

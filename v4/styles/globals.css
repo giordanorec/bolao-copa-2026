@@ -393,6 +393,56 @@ body { font-family: var(--ff-sans); }
     .destino-card h3 { font-size: 24px !important; }
 }
 
+/* ─── REGRAS TABLE (sem scroll, mobile-friendly) ─── */
+.regras-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+.regras-table th {
+    text-align: left;
+    padding: 14px 12px;
+    border-bottom: 2px solid var(--line);
+    font-size: 11px;
+    color: var(--fg-muted);
+    font-family: var(--ff-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+.regras-table th:last-child { width: 80px; text-align: right; }
+.regras-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--line);
+    color: var(--fg);
+    font-size: 15px;
+    vertical-align: middle;
+}
+.regras-table tr:last-child td { border-bottom: none; }
+.regras-table .pts {
+    text-align: right;
+    font-family: var(--ff-mono);
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 22px;
+    white-space: nowrap;
+}
+@media (max-width: 720px) {
+    .regras-table { font-size: 14px; }
+    .regras-table th, .regras-table td { padding: 12px 8px; }
+    .regras-table th:last-child { width: 56px; }
+    .regras-table .pts { font-size: 18px; }
+    .regras-table td:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+@media (max-width: 420px) {
+    .regras-table { font-size: 13px; }
+    .regras-table th:first-child { letter-spacing: 0.05em; }
+}
+
 /* ============================================================
    FIXES DO RED TEAM
    ============================================================ */
