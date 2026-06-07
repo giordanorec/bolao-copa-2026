@@ -1,17 +1,10 @@
 import Link from "next/link";
 import { carregarJogos } from "@/lib/jogos";
 import { carregarPalpitesIAs } from "@/lib/palpites-ias";
+import { carregarMapaPaises } from "@/lib/paises";
 import { resolverLocale } from "@/lib/locale-server";
 import Bandeira from "@/components/Bandeira";
 import DoacaoBanner from "@/components/DoacaoBanner";
-
-const ISO: Record<string, string> = {
-  Argentina: "ar", Brasil: "br", Canadá: "ca", México: "mx",
-  "Estados Unidos": "us", França: "fr", Inglaterra: "gb-eng",
-  Alemanha: "de", Espanha: "es", Portugal: "pt", Itália: "it",
-  Holanda: "nl", Bélgica: "be", Suíça: "ch", Áustria: "at",
-  Croácia: "hr", Polônia: "pl", "Sérvia": "rs", Dinamarca: "dk",
-};
 
 export const metadata = {
   title: "🔮 Bola de Cristal · Bolão das IAs",
@@ -19,9 +12,10 @@ export const metadata = {
 };
 
 export default async function CristalPage() {
-  const [jogos, palpitesIAs, locale] = await Promise.all([
+  const [jogos, palpitesIAs, mapaPaises, locale] = await Promise.all([
     carregarJogos(),
     carregarPalpitesIAs(),
+    carregarMapaPaises(),
     resolverLocale(),
   ]);
 
@@ -62,7 +56,7 @@ export default async function CristalPage() {
                 <div key={j.numero} className="cristal-card">
                   <div className="cristal-card-head">#{j.numero} · {j.data}</div>
                   <div className="cristal-card-times">
-                    <Bandeira iso={ISO[j.time_a]} nome={j.time_a} size={26} />
+                    <Bandeira iso={mapaPaises[j.time_a]} nome={j.time_a} size={26} />
                     <span className="time-nome">{j.time_a}</span>
                     {b ? (
                       <span className="placar">{b.gols_a}×{b.gols_b}</span>
@@ -70,7 +64,7 @@ export default async function CristalPage() {
                       <span className="placar" style={{ opacity: 0.3 }}>—</span>
                     )}
                     <span className="time-nome">{j.time_b}</span>
-                    <Bandeira iso={ISO[j.time_b]} nome={j.time_b} size={26} />
+                    <Bandeira iso={mapaPaises[j.time_b]} nome={j.time_b} size={26} />
                   </div>
                   {b && (
                     <div className="cristal-conf">

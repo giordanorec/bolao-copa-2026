@@ -4,21 +4,13 @@ import {
   carregarPalpitesIAs,
   carregarDictIAs,
 } from "@/lib/palpites-ias";
+import { carregarMapaPaises } from "@/lib/paises";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 import Bandeira from "@/components/Bandeira";
 import IconeIA from "@/components/IconeIA";
 import DoacaoBanner from "@/components/DoacaoBanner";
-import { scorePopularidade, marcaDe } from "@/lib/ias";
-
-const ISO: Record<string, string> = {
-  Argentina: "ar", Brasil: "br", Canadá: "ca", México: "mx",
-  "Estados Unidos": "us", França: "fr", Inglaterra: "gb-eng",
-  Alemanha: "de", Espanha: "es", Portugal: "pt", Itália: "it",
-  Holanda: "nl", Bélgica: "be", Suíça: "ch", Áustria: "at",
-  Croácia: "hr", Polônia: "pl", "Sérvia": "rs", Dinamarca: "dk",
-  Noruega: "no",
-};
+import { scorePopularidade } from "@/lib/ias";
 
 export const metadata = {
   title: "104 Jogos · Bolão das IAs",
@@ -26,10 +18,11 @@ export const metadata = {
 };
 
 export default async function JogosPage() {
-  const [jogos, palpitesIAs, iasDict, locale] = await Promise.all([
+  const [jogos, palpitesIAs, iasDict, mapaPaises, locale] = await Promise.all([
     carregarJogos(),
     carregarPalpitesIAs(),
     carregarDictIAs(),
+    carregarMapaPaises(),
     resolverLocale(),
   ]);
 
@@ -85,7 +78,7 @@ export default async function JogosPage() {
                   </div>
                   <div className="jogo-card-times">
                     <div className="time-bloco">
-                      <Bandeira iso={ISO[j.time_a]} nome={j.time_a} size={32} />
+                      <Bandeira iso={mapaPaises[j.time_a]} nome={j.time_a} size={32} />
                       <span>{j.time_a}</span>
                     </div>
                     <div className="jogo-card-vs">
@@ -101,7 +94,7 @@ export default async function JogosPage() {
                       )}
                     </div>
                     <div className="time-bloco">
-                      <Bandeira iso={ISO[j.time_b]} nome={j.time_b} size={32} />
+                      <Bandeira iso={mapaPaises[j.time_b]} nome={j.time_b} size={32} />
                       <span>{j.time_b}</span>
                     </div>
                   </div>
