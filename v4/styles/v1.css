@@ -1506,6 +1506,49 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     .cristal-card-times .placar { font-size: 15px; padding: 0 6px; }
 }
 
+/* ─── IAS: familias / mini grid ─── */
+.familia-bloco {
+    margin-bottom: 28px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-l);
+    padding: 18px 20px;
+}
+.familia-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+}
+.familia-head strong { font-size: 18px; color: var(--fg); }
+.familia-head .familia-count {
+    margin-left: auto;
+    font-family: var(--ff-mono); font-size: 12px;
+    color: var(--fg-muted); text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.ias-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+}
+.ia-mini {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px;
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    border-radius: var(--r-m);
+    scroll-margin-top: 80px;
+}
+.ia-mini:target { border-color: var(--primary); }
+.ia-mini strong {
+    display: block; font-size: 13px; color: var(--fg);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ia-mini small {
+    font-family: var(--ff-mono); font-size: 11px;
+    color: var(--fg-muted);
+}
+
 /* ─── DOACAO BANNER ─── */
 .doacao-banner {
     background: linear-gradient(135deg,

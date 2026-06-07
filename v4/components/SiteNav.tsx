@@ -41,14 +41,23 @@ export default function SiteNav({ locale = "pt" }: { locale?: Locale }) {
           ✕
         </button>
         <MeusBoloesLink onClick={fechar} locale={locale} />
-        <Link href="/ias" onClick={fechar}>
-          {t(locale, "nav.ranking").replace(" ↗", "")}
+        <Link href="/serie-a" onClick={fechar}>
+          🏆 {locale === "en" ? "Premier League"
+            : locale === "es" ? "Liga A"
+            : locale === "fr" ? "Ligue A"
+            : "Série A"}
         </Link>
         <Link href="/jogos" onClick={fechar}>
           {t(locale, "nav.jogos").replace(" ↗", "")}
         </Link>
         <Link href="/cristal" onClick={fechar}>
           {t(locale, "nav.cristal").replace(" ↗", "")}
+        </Link>
+        <Link href="/ias" onClick={fechar}>
+          🤖 {locale === "en" ? "All 122"
+            : locale === "es" ? "Las 122"
+            : locale === "fr" ? "Les 122"
+            : "As 122"}
         </Link>
         <Link href="/como-funciona" onClick={fechar}>
           {t(locale, "nav.como")}

@@ -42,7 +42,7 @@ export default function HeroCTAs({ locale = "pt" }: { locale?: Locale }) {
 
   return (
     <div className="hero-cta">
-      <Link href="/ias" className="btn primary">
+      <Link href="/serie-a" className="btn primary">
         {t(locale, "home.hero.cta.serie_a")}
       </Link>
       <Link href="/jogos" className="btn yellow">
