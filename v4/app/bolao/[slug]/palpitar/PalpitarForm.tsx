@@ -7,6 +7,7 @@ import type { Jogo } from "@/lib/types";
 import type { DadosPorJogo, PalpiteIA, PaisIA } from "@/lib/palpites-ias";
 import PrePreencherBar from "./PrePreencherBar";
 import SugestaoIA from "./SugestaoIA";
+import Bandeira from "@/components/Bandeira";
 
 type Estado = Record<number, { gols_a: number; gols_b: number }>;
 
@@ -18,6 +19,7 @@ export default function PalpitarForm({
   palpitesIAs,
   iasDict,
   paises,
+  mapaPaises,
 }: {
   bolaoNome: string;
   bolaoSlug: string;
@@ -26,6 +28,7 @@ export default function PalpitarForm({
   palpitesIAs: Record<string, DadosPorJogo>;
   iasDict: Record<string, string>;
   paises: Record<string, PaisIA>;
+  mapaPaises: Record<string, string>;
 }) {
   const [palpites, setPalpites] = useState<Estado>(palpitesIniciais);
   const [salvando, setSalvando] = useState<Set<number>>(new Set());
@@ -215,14 +218,26 @@ export default function PalpitarForm({
           {lista.map((j) => {
             const palp = palpites[j.numero];
             const dados = palpitesIAs[String(j.numero)] ?? null;
+            const isoA = mapaPaises[j.time_a];
+            const isoB = mapaPaises[j.time_b];
             return (
               <div key={j.numero} className="jogo-linha">
-                <span className="jogo-num">#{j.numero}</span>
-                <span className="jogo-data">
-                  {j.data} {j.hora}
-                </span>
+                <div className="jogo-meta">
+                  <span className="jogo-num">#{j.numero}</span>
+                  <span className="jogo-data">
+                    {j.data} {j.hora}
+                  </span>
+                  {j.local && (
+                    <span className="jogo-local" title={j.local}>
+                      📍 {j.local}
+                    </span>
+                  )}
+                </div>
                 <div className="jogo-linha-times">
-                  <span className="jogo-time esq">{j.time_a}</span>
+                  <div className="jogo-time-bloco esq">
+                    <Bandeira iso={isoA} nome={j.time_a} size={28} />
+                    <span className="jogo-time esq">{j.time_a}</span>
+                  </div>
                   <div className="jogo-placar">
                     <InputGol
                       valor={palp?.gols_a}
@@ -234,12 +249,17 @@ export default function PalpitarForm({
                       onChange={(v) => atualizar(j.numero, "gols_b", v)}
                     />
                   </div>
-                  <span className="jogo-time dir">{j.time_b}</span>
+                  <div className="jogo-time-bloco dir">
+                    <span className="jogo-time dir">{j.time_b}</span>
+                    <Bandeira iso={isoB} nome={j.time_b} size={28} />
+                  </div>
                 </div>
                 <SugestaoIA
                   jogoNumero={j.numero}
                   timeA={j.time_a}
                   timeB={j.time_b}
+                  isoA={isoA}
+                  isoB={isoB}
                   dados={dados}
                   iasDict={iasDict}
                   paises={paises}

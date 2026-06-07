@@ -204,6 +204,14 @@ def main() -> None:
         n = len(json.loads(dst.read_text(encoding="utf-8")))
         print(f"jogos: {n} -> {dst.name}")
 
+    # 1b. paises.json (mapeamento nome -> ISO)
+    src_paises = WEB_DATA / "paises.json"
+    if src_paises.is_file():
+        dst = V4_PUB / "paises_iso.json"
+        shutil.copy(src_paises, dst)
+        n = sum(1 for k in json.loads(dst.read_text(encoding="utf-8")) if not k.startswith("_"))
+        print(f"paises ISO: {n} -> {dst.name}")
+
     # 2. ranking-ias.json
     src_rank = WEB_DATA / "ranking.json"
     if src_rank.is_file():

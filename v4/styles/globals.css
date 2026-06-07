@@ -703,7 +703,39 @@ body[data-theme="festivo-br"] {
     .palp-footer { padding: 20px; }
 }
 
-/* ─── JOGO LINHA: layout mobile melhorado ─── */
+/* ─── JOGO LINHA: meta (numero + data + local) ─── */
+.jogo-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--fg-muted);
+    margin-bottom: 0;
+    flex-wrap: wrap;
+}
+.jogo-meta .jogo-num { font-weight: 700; }
+.jogo-meta .jogo-data { font-weight: 600; }
+.jogo-local {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 180px;
+    font-weight: 500;
+}
+
+/* Bloco com bandeira + nome do time */
+.jogo-time-bloco {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+.jogo-time-bloco.dir { justify-content: flex-start; }
+.jogo-time-bloco.esq { justify-content: flex-end; }
+
+/* ─── JOGO LINHA: layout times mobile melhorado ─── */
 .jogo-linha-times {
     display: flex;
     align-items: center;
@@ -717,6 +749,36 @@ body[data-theme="festivo-br"] {
     gap: 6px;
     flex-shrink: 0;
 }
+
+/* ─── BOTÃO SUGESTÃO ─── */
+.btn-sugestao {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--accent) 12%, transparent),
+        color-mix(in srgb, var(--primary) 8%, transparent));
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    border-radius: var(--r-m);
+    color: var(--fg);
+    font-family: var(--ff-sans);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.btn-sugestao:hover {
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--accent) 20%, transparent),
+        color-mix(in srgb, var(--primary) 14%, transparent));
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-accent);
+}
+.btn-sugestao:active { transform: translateY(0); }
 @media (max-width: 720px) {
     .jogo-linha {
         flex-direction: column;
@@ -724,17 +786,21 @@ body[data-theme="festivo-br"] {
         gap: 10px;
         padding: 14px 16px;
     }
-    .jogo-linha > .jogo-num,
-    .jogo-linha > .jogo-data {
-        display: inline-block;
+    .jogo-meta {
+        gap: 8px;
         font-size: 10px;
-        width: auto;
-        margin-right: 8px;
     }
+    .jogo-local { max-width: 140px; font-size: 10px; }
     .jogo-linha-times {
         flex-direction: column;
-        gap: 10px;
+        gap: 6px;
         width: 100%;
+    }
+    .jogo-time-bloco {
+        flex: none;
+        justify-content: center !important;
+        width: 100%;
+        gap: 10px;
     }
     .jogo-time {
         text-align: center !important;
@@ -757,10 +823,10 @@ body[data-theme="festivo-br"] {
         border-radius: var(--r-m);
     }
     .jogo-x { font-size: 22px !important; }
-    .jogo-linha > button {
+    .btn-sugestao {
         align-self: center;
-        padding: 8px 16px !important;
-        font-size: 18px !important;
+        font-size: 14px;
+        padding: 10px 18px;
     }
 }
 

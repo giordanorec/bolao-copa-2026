@@ -6,6 +6,7 @@ import {
   carregarDictIAs,
   carregarPaises,
 } from "@/lib/palpites-ias";
+import { carregarMapaPaises } from "@/lib/paises";
 import PalpitarForm from "./PalpitarForm";
 
 export const metadata = {
@@ -31,11 +32,12 @@ export default async function PalpitarPage({
     .single();
   if (!bolao) notFound();
 
-  const [jogos, palpitesIAs, iasDict, paises] = await Promise.all([
+  const [jogos, palpitesIAs, iasDict, paises, mapaPaises] = await Promise.all([
     carregarJogos(),
     carregarPalpitesIAs(),
     carregarDictIAs(),
     carregarPaises(),
+    carregarMapaPaises(),
   ]);
 
   const { data: palpites } = await supabase
@@ -58,6 +60,7 @@ export default async function PalpitarPage({
         palpitesIAs={palpitesIAs}
         iasDict={iasDict}
         paises={paises}
+        mapaPaises={mapaPaises}
       />
     </div>
   );

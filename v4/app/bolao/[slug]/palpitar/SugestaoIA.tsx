@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import type { DadosPorJogo, PaisIA } from "@/lib/palpites-ias";
+import Bandeira from "@/components/Bandeira";
 
 type ConsensoLocal = {
   gols_a: number;
@@ -14,6 +15,8 @@ export default function SugestaoIA({
   jogoNumero,
   timeA,
   timeB,
+  isoA,
+  isoB,
   dados,
   iasDict,
   paises,
@@ -22,6 +25,8 @@ export default function SugestaoIA({
   jogoNumero: number;
   timeA: string;
   timeB: string;
+  isoA?: string;
+  isoB?: string;
   dados: DadosPorJogo | null;
   iasDict: Record<string, string>;
   paises: Record<string, PaisIA>;
@@ -119,19 +124,12 @@ export default function SugestaoIA({
       <button
         type="button"
         onClick={() => setAberto(true)}
-        title={`Ver palpites das IAs pra ${timeA} × ${timeB}`}
-        style={{
-          background: "transparent",
-          border: "1px solid var(--line-strong)",
-          borderRadius: "var(--r-s)",
-          padding: "6px 8px",
-          fontSize: 16,
-          cursor: "pointer",
-          color: "var(--accent)",
-          lineHeight: 1,
-        }}
+        title={`Usar palpite de IA pra ${timeA} × ${timeB}`}
+        className="btn-sugestao"
+        aria-label="Sugestões das IAs"
       >
-        💡
+        <span style={{ fontSize: 16 }}>✨</span>
+        <span className="btn-sugestao-lbl">Sugerir</span>
       </button>
 
       {aberto && (
@@ -152,23 +150,36 @@ export default function SugestaoIA({
                     color: "var(--fg-muted)",
                     textTransform: "uppercase",
                     letterSpacing: "0.08em",
-                    marginBottom: 2,
+                    marginBottom: 4,
                   }}
                 >
                   Jogo #{jogoNumero}
                 </p>
-                <h3
+                <div
                   style={{
-                    fontSize: 20,
-                    margin: 0,
-                    color: "var(--fg)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    flexWrap: "nowrap",
                     overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
                   }}
                 >
-                  {timeA} × {timeB}
-                </h3>
+                  <Bandeira iso={isoA} nome={timeA} size={24} />
+                  <h3
+                    style={{
+                      fontSize: 18,
+                      margin: 0,
+                      color: "var(--fg)",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                      flexShrink: 1,
+                    }}
+                  >
+                    {timeA} × {timeB}
+                  </h3>
+                  <Bandeira iso={isoB} nome={timeB} size={24} />
+                </div>
               </div>
               <button
                 onClick={() => setAberto(false)}
