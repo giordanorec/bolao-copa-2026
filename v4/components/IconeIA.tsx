@@ -13,24 +13,33 @@ export default function IconeIA({
   return (
     <span
       title={title ?? marca.nome}
+      aria-label={marca.nome}
       style={{
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
         width: size,
         height: size,
-        borderRadius: "50%",
-        background: marca.bg,
-        color: marca.cor,
-        fontSize: Math.round(size * 0.55),
-        fontWeight: 700,
-        fontFamily: "var(--ff-mono, monospace)",
-        lineHeight: 1,
+        borderRadius: Math.round(size * 0.22),
+        background: "#fff",
+        border: `1.5px solid ${marca.cor}1f`,
+        padding: Math.round(size * 0.14),
         flexShrink: 0,
+        boxSizing: "border-box",
       }}
-      aria-label={marca.nome}
     >
-      {marca.emoji}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={marca.logo}
+        alt=""
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          display: "block",
+        }}
+        loading="lazy"
+      />
     </span>
   );
 }

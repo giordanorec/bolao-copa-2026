@@ -152,9 +152,14 @@ export default async function IAsPage() {
               <div className="familia-head">
                 <span
                   className="familia-logo"
-                  style={{ background: marca.bg, color: marca.cor }}
+                  style={{ background: "#fff", border: `1.5px solid ${marca.cor}33`, padding: 6 }}
                 >
-                  {marca.emoji}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={marca.logo}
+                    alt=""
+                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                  />
                 </span>
                 <strong>{marca.nome}</strong>
                 <span className="familia-count">

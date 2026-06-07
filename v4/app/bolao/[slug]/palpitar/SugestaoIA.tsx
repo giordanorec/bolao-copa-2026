@@ -202,8 +202,8 @@ export default function SugestaoIA({
                 <ChipFamilia
                   ativo={familiaFiltro === "all"}
                   onClick={() => setFamiliaFiltro("all")}
-                  emoji="🌐"
-                  label="Todas"
+                  logo={null}
+                  label="🌐 Todas"
                   count={Object.keys(dados.palpites).length}
                 />
                 {familiasChips.map((f) => (
@@ -211,7 +211,7 @@ export default function SugestaoIA({
                     key={f.familia}
                     ativo={familiaFiltro === f.familia}
                     onClick={() => setFamiliaFiltro(f.familia)}
-                    emoji={MARCAS[f.familia].emoji}
+                    logo={MARCAS[f.familia].logo}
                     label={MARCAS[f.familia].nome}
                     count={f.count}
                     cor={MARCAS[f.familia].cor}
@@ -235,10 +235,17 @@ export default function SugestaoIA({
                     gap: 16,
                   }}
                 >
-                  <span style={{ fontSize: 40 }}>
-                    {familiaFiltro === "all"
-                      ? "🔮"
-                      : MARCAS[familiaFiltro].emoji}
+                  <span style={{ fontSize: 40, display: "inline-flex" }}>
+                    {familiaFiltro === "all" ? (
+                      "🔮"
+                    ) : (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={MARCAS[familiaFiltro].logo}
+                        alt={MARCAS[familiaFiltro].nome}
+                        style={{ width: 40, height: 40, objectFit: "contain" }}
+                      />
+                    )}
                   </span>
                   <div style={{ flex: 1 }}>
                     <strong style={{ fontSize: 16, color: "var(--fg)" }}>
@@ -494,14 +501,14 @@ export default function SugestaoIA({
 function ChipFamilia({
   ativo,
   onClick,
-  emoji,
+  logo,
   label,
   count,
   cor,
 }: {
   ativo: boolean;
   onClick: () => void;
-  emoji: string;
+  logo: string | null;
   label: string;
   count: number;
   cor?: string;
@@ -528,7 +535,10 @@ function ChipFamilia({
         gap: 6,
       }}
     >
-      <span style={{ fontSize: 14 }}>{emoji}</span>
+      {logo && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={logo} alt="" style={{ width: 16, height: 16, objectFit: "contain" }} />
+      )}
       {label}{" "}
       <span
         style={{

@@ -49,7 +49,7 @@ Tudo grátis. Zero ads. Sem casa de aposta envolvida.
 
 🇧🇷 bolao.arenadasias.com.br
 
-#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT #Claude #Gemini #IA #InteligenciaArtificial #FutebolETech #BolaoDaCopa #ArenaDasIAs #TechBrasil
+#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT #Claude #Gemini #IA #InteligenciaArtificial #FutebolETech #BolaoDaCopa #ArenaDasIAs @arena.das.ias #TechBrasil
 ```
 
 ### Caption EN (cross-post pra audiência global)
@@ -69,7 +69,7 @@ Spoiler: they disagree A LOT.
 
 🌍 bolao.arenadasias.com.br
 
-#FifaWorldCup2026 #AI #ChatGPT #Claude #Gemini #AIvsHuman #SoccerTech #Copa2026 #ArenaDasIAs
+#FifaWorldCup2026 #AI #ChatGPT #Claude #Gemini #AIvsHuman #SoccerTech #Copa2026 #ArenaDasIAs @arena.das.ias
 ```
 
 ---
