@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SerieA from "@/components/SerieA";
+import HeroCTAs from "@/components/HeroCTAs";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 
@@ -8,8 +9,8 @@ export default async function Home() {
 
   const destinos = [
     {
-      href: "https://giordanorec.github.io/bolao-copa-2026/serie-a.html",
-      external: true,
+      href: "/ias",
+      external: false,
       emoji: "🏆",
       titulo: t(locale, "home.hero.cta.serie_a"),
       sub: "Top 10",
@@ -31,8 +32,8 @@ export default async function Home() {
               : "Voir les 10 →",
     },
     {
-      href: "https://giordanorec.github.io/bolao-copa-2026/jogos.html",
-      external: true,
+      href: "/jogos",
+      external: false,
       emoji: "⚽",
       titulo: t(locale, "home.hero.cta.jogos"),
       sub:
@@ -105,27 +106,7 @@ export default async function Home() {
             <strong>{t(locale, "home.hero.lede.gratis")}</strong> 🏆
           </p>
 
-          <div className="hero-cta">
-            <a
-              href="https://giordanorec.github.io/bolao-copa-2026/serie-a.html"
-              className="btn primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t(locale, "home.hero.cta.serie_a")}
-            </a>
-            <a
-              href="https://giordanorec.github.io/bolao-copa-2026/jogos.html"
-              className="btn yellow"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t(locale, "home.hero.cta.jogos")}
-            </a>
-            <Link href="/signup" className="btn">
-              {t(locale, "home.hero.cta.criar")}
-            </Link>
-          </div>
+          <HeroCTAs locale={locale} />
 
           <div className="stats">
             <div className="stat">

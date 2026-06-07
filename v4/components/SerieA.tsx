@@ -79,9 +79,7 @@ export default async function SerieA({ locale = "pt" }: { locale?: Locale }) {
           {ias.map((ia, i) => (
             <a
               key={ia.slug}
-              href={`https://giordanorec.github.io/bolao-copa-2026/ia.html?slug=${encodeURIComponent(ia.slug)}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/ias#${encodeURIComponent(ia.slug)}`}
               className="ia-card"
             >
               <div className="ia-rank">{i + 1}º</div>

@@ -41,30 +41,15 @@ export default function SiteNav({ locale = "pt" }: { locale?: Locale }) {
           ✕
         </button>
         <MeusBoloesLink onClick={fechar} locale={locale} />
-        <a
-          href="https://giordanorec.github.io/bolao-copa-2026/"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={fechar}
-        >
-          {t(locale, "nav.ranking")}
-        </a>
-        <a
-          href="https://giordanorec.github.io/bolao-copa-2026/jogos.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={fechar}
-        >
-          {t(locale, "nav.jogos")}
-        </a>
-        <a
-          href="https://giordanorec.github.io/bolao-copa-2026/cristal.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={fechar}
-        >
-          {t(locale, "nav.cristal")}
-        </a>
+        <Link href="/ias" onClick={fechar}>
+          {t(locale, "nav.ranking").replace(" ↗", "")}
+        </Link>
+        <Link href="/jogos" onClick={fechar}>
+          {t(locale, "nav.jogos").replace(" ↗", "")}
+        </Link>
+        <Link href="/cristal" onClick={fechar}>
+          {t(locale, "nav.cristal").replace(" ↗", "")}
+        </Link>
         <Link href="/como-funciona" onClick={fechar}>
           {t(locale, "nav.como")}
         </Link>
