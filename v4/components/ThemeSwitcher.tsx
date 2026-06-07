@@ -29,8 +29,12 @@ export default function ThemeSwitcher() {
     } else {
       document.body.dataset.theme = "airbnb";
     }
-    if (localStorage.getItem("v4-tema-fechado") === "1") {
+    const flag = localStorage.getItem("v4-tema-fechado");
+    const ehMobile = window.matchMedia("(max-width: 720px)").matches;
+    const iniciaFechado = flag === "1" || (flag === null && ehMobile);
+    if (iniciaFechado) {
       document.body.classList.add("theme-switcher-closed");
+      setAberto(false);
     } else {
       setAberto(true);
     }

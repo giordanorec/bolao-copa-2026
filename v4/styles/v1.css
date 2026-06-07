@@ -1032,8 +1032,8 @@ a.palpite-num.exact, button.palpite-num.exact {
     background: var(--primary); color: white; border: none; border-radius: 50%;
     font-size: 18px; cursor: pointer; box-shadow: var(--shadow-primary);
 }
-body.theme-switcher-closed .theme-switcher { transform: translateX(calc(100% + 32px)); }
-body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-256px); }
+body.theme-switcher-closed .theme-switcher { transform: translateX(calc(100% + 32px)); pointer-events: none; }
+body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-256px); pointer-events: auto; }
 
 /* ─── MODAL / POPUP ─── */
 .modal-backdrop {

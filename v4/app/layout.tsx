@@ -54,6 +54,11 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body data-theme="airbnb">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var f=localStorage.getItem('v4-tema-fechado');var m=window.matchMedia('(max-width: 720px)').matches;if(f==='1'||(f===null&&m)){document.body.classList.add('theme-switcher-closed');}var t=localStorage.getItem('v4-tema');if(t){document.body.setAttribute('data-theme',t);}}catch(e){}})();`,
+          }}
+        />
         <header className="site-header">
           <div className="container header-inner">
             <Link href="/" className="brand">
