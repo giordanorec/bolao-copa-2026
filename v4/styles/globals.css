@@ -392,3 +392,263 @@ body { font-family: var(--ff-sans); }
     .destino-card > div:first-child { font-size: 44px !important; }
     .destino-card h3 { font-size: 24px !important; }
 }
+
+/* ============================================================
+   FIXES DO RED TEAM
+   ============================================================ */
+
+/* 1. Hero h1 — gradiente sem marrom sujo */
+.hero h1 .accent {
+    background: linear-gradient(135deg,
+        var(--primary) 0%,
+        var(--accent) 45%,
+        var(--extra) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 2. Emojis do hero com float + pulse */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+.hero-emojis span {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+.hero-emojis span:nth-child(2) {
+    animation: pulse 2s ease-in-out infinite;
+    animation-delay: 0.3s;
+}
+.hero-emojis span:nth-child(3) { animation-delay: 0.6s; }
+
+/* 3. Stats reduzir gap + hover glow */
+.hero .stats { margin-top: 48px !important; }
+.hero .stat {
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+.hero .stat:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: var(--shadow-primary);
+    border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+}
+
+/* 4. Background saturado no festivo-br */
+body[data-theme="festivo-br"] {
+    --body-bg-image:
+        radial-gradient(circle at 12% 18%, rgba(255,223,0,0.35), transparent 32%),
+        radial-gradient(circle at 88% 8%, rgba(0,156,59,0.28), transparent 36%),
+        radial-gradient(circle at 50% 50%, rgba(255,77,141,0.10), transparent 45%),
+        radial-gradient(circle at 50% 95%, rgba(0,39,118,0.18), transparent 40%),
+        radial-gradient(circle at 92% 75%, rgba(255,77,141,0.20), transparent 36%);
+}
+
+/* 5. Destino-cards: identidade por nth-child */
+.destino-card {
+    position: relative;
+    overflow: hidden;
+    animation: slide-up 0.5s ease both;
+}
+.destino-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    transition: height 0.22s ease;
+}
+.destino-card:hover::before { height: 8px; }
+.destino-card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent), var(--accent-2)); animation-delay: 0.00s; }
+.destino-card:nth-child(2)::before { background: linear-gradient(90deg, var(--primary), var(--primary-2)); animation-delay: 0.08s; }
+.destino-card:nth-child(3)::before { background: linear-gradient(90deg, var(--extra), var(--primary)); animation-delay: 0.16s; }
+.destino-card:nth-child(4)::before { background: linear-gradient(90deg, var(--secondary), var(--secondary-2)); animation-delay: 0.24s; }
+.destino-card:nth-child(5)::before { background: linear-gradient(90deg, var(--accent-2), var(--extra)); animation-delay: 0.32s; }
+.destino-card:nth-child(6)::before { background: linear-gradient(90deg, var(--extra), var(--accent-3)); animation-delay: 0.40s; }
+
+/* CTA card 3 com bg mais quente */
+.destino-card:nth-child(3) {
+    background: linear-gradient(135deg,
+        var(--bg-2),
+        color-mix(in srgb, var(--extra) 7%, transparent));
+}
+
+/* Emoji em circle */
+.destino-card > div:first-child {
+    width: 88px;
+    height: 88px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-soft);
+    border-radius: 50%;
+    margin-bottom: 16px !important;
+    font-size: 48px !important;
+    transition: transform 0.3s ease;
+}
+.destino-card:hover > div:first-child {
+    transform: rotate(-6deg) scale(1.08);
+}
+
+@keyframes slide-up {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 6. Jogo-input quando preenchido */
+.jogo-input:not(:placeholder-shown) {
+    border-color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 6%, var(--bg-2));
+    color: var(--primary-3, var(--primary));
+}
+
+/* 7. Jogo-linha hover expressivo */
+.jogo-linha {
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.jogo-linha:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-primary);
+    background: color-mix(in srgb, var(--primary) 3%, var(--bg-2));
+}
+
+@media (max-width: 720px) {
+    .destino-card > div:first-child {
+        width: 68px !important;
+        height: 68px !important;
+        font-size: 38px !important;
+    }
+}
+
+/* ============================================================
+   PALPITAR UX REPENSADA (toolbar + progress + footer)
+   ============================================================ */
+
+.palp-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: color-mix(in srgb, var(--bg-0) 92%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    margin: -40px -24px 24px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--line);
+}
+.palp-toolbar-inner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+.palp-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--r-m);
+    background: var(--bg-soft);
+    color: var(--fg);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+.palp-back:hover { background: var(--bg-1); color: var(--primary); }
+
+.palp-info { flex: 1; min-width: 200px; }
+.palp-info .bolao-nome {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+}
+.palp-info h1 {
+    font-family: var(--ff-display);
+    font-variation-settings: var(--ff-display-vs);
+    font-style: var(--ff-display-style);
+    font-weight: var(--ff-display-weight);
+    font-size: 26px;
+    margin: 2px 0 0;
+    color: var(--secondary);
+    line-height: 1;
+    letter-spacing: var(--letterspacing-display);
+}
+.palp-save-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--ff-mono);
+}
+.palp-save-chip.salvando {
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--fg);
+}
+
+.palp-progress {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.palp-progress-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--bg-soft);
+    border-radius: 999px;
+    overflow: hidden;
+}
+.palp-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.palp-progress-text {
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    color: var(--fg-mid);
+    font-weight: 700;
+    min-width: 80px;
+    text-align: right;
+}
+
+.palp-footer {
+    margin-top: 40px;
+    padding: 28px;
+    border-radius: var(--r-l);
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.palp-footer .resumo {
+    font-size: 15px;
+    color: var(--fg-mid);
+    flex: 1;
+    min-width: 200px;
+}
+.palp-footer .resumo strong { color: var(--primary); font-family: var(--ff-mono); }
+
+@media (max-width: 720px) {
+    .palp-toolbar { margin: -24px -16px 16px; padding: 14px 16px; }
+    .palp-info h1 { font-size: 22px; }
+    .palp-back { font-size: 13px; padding: 6px 12px; }
+    .palp-progress-text { font-size: 11px; min-width: 60px; }
+    .palp-footer { padding: 20px; }
+}

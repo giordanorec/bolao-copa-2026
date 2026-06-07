@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase-browser";
 import type { Jogo } from "@/lib/types";
 import type { DadosPorJogo, PalpiteIA } from "@/lib/palpites-ias";
@@ -10,11 +11,15 @@ import SugestaoIA from "./SugestaoIA";
 type Estado = Record<number, { gols_a: number; gols_b: number }>;
 
 export default function PalpitarForm({
+  bolaoNome,
+  bolaoSlug,
   jogos,
   palpitesIniciais,
   palpitesIAs,
   iasDict,
 }: {
+  bolaoNome: string;
+  bolaoSlug: string;
   jogos: Jogo[];
   palpitesIniciais: Estado;
   palpitesIAs: Record<string, DadosPorJogo>;
@@ -22,11 +27,14 @@ export default function PalpitarForm({
 }) {
   const [palpites, setPalpites] = useState<Estado>(palpitesIniciais);
   const [salvando, setSalvando] = useState<Set<number>>(new Set());
-  const [salvos, setSalvos] = useState<Set<number>>(new Set());
   const timers = useRef<Record<number, NodeJS.Timeout>>({});
 
-  // contagem de palpites por IA
-  const iasInfo = (() => {
+  const total = jogos.length;
+  const preenchidos = Object.keys(palpites).length;
+  const pct = Math.round((preenchidos / total) * 100);
+  const algumSalvando = salvando.size > 0;
+
+  const iasInfo = useMemo(() => {
     const contagem: Record<string, number> = {};
     Object.values(palpitesIAs).forEach((d) => {
       if (d.bola_de_cristal) {
@@ -37,16 +45,16 @@ export default function PalpitarForm({
       });
     });
     return Object.entries(contagem)
-      .map(([slug, jogos]) => ({
+      .map(([slug, j]) => ({
         slug,
         nome:
           slug === "bola-de-cristal"
             ? "Bola de Cristal"
             : iasDict[slug] ?? slug,
-        jogos,
+        jogos: j,
       }))
       .filter((i) => i.jogos > 0);
-  })();
+  }, [palpitesIAs, iasDict]);
 
   function getPalpiteIA(
     slugIA: string,
@@ -78,7 +86,6 @@ export default function PalpitarForm({
       jogoNumeros.push(j.numero);
     }
     setPalpites(novos);
-    // salvar em lote
     setSalvando((s) => {
       const n = new Set(s);
       jogoNumeros.forEach((num) => n.add(num));
@@ -96,26 +103,12 @@ export default function PalpitarForm({
       gols_b: novos[num].gols_b,
       atualizado_em: new Date().toISOString(),
     }));
-    if (rows.length > 0) {
-      await supabase.from("palpite").upsert(rows);
-    }
+    if (rows.length > 0) await supabase.from("palpite").upsert(rows);
     setSalvando((s) => {
       const n = new Set(s);
       jogoNumeros.forEach((num) => n.delete(num));
       return n;
     });
-    setSalvos((s) => {
-      const n = new Set(s);
-      jogoNumeros.forEach((num) => n.add(num));
-      return n;
-    });
-    setTimeout(() => {
-      setSalvos((s) => {
-        const n = new Set(s);
-        jogoNumeros.forEach((num) => n.delete(num));
-        return n;
-      });
-    }, 2500);
   }
 
   function aplicarSugestao(numero: number, gols_a: number, gols_b: number) {
@@ -158,14 +151,6 @@ export default function PalpitarForm({
       n.delete(numero);
       return n;
     });
-    setSalvos((s) => new Set(s).add(numero));
-    setTimeout(() => {
-      setSalvos((s) => {
-        const n = new Set(s);
-        n.delete(numero);
-        return n;
-      });
-    }, 1500);
   }
 
   const porFase = jogos.reduce<Record<string, Jogo[]>>((acc, j) => {
@@ -175,6 +160,47 @@ export default function PalpitarForm({
 
   return (
     <div>
+      {/* ── TOOLBAR sticky com Voltar + progresso + status salvo ── */}
+      <div className="palp-toolbar">
+        <div className="palp-toolbar-inner">
+          <Link href={`/bolao/${bolaoSlug}`} className="palp-back">
+            ← Bolão
+          </Link>
+          <div className="palp-info">
+            <div className="bolao-nome">{bolaoNome}</div>
+            <h1>🎯 Seus palpites</h1>
+          </div>
+          <span
+            className={`palp-save-chip ${algumSalvando ? "salvando" : ""}`}
+          >
+            {algumSalvando ? "💾 salvando…" : "✓ tudo salvo"}
+          </span>
+        </div>
+        <div className="palp-progress">
+          <div className="palp-progress-bar">
+            <div
+              className="palp-progress-fill"
+              style={{ width: `${pct}%` }}
+            />
+          </div>
+          <span className="palp-progress-text">
+            {preenchidos}/{total} ({pct}%)
+          </span>
+        </div>
+      </div>
+
+      <p
+        style={{
+          color: "var(--fg-muted)",
+          fontSize: 14,
+          marginBottom: 20,
+          textAlign: "center",
+        }}
+      >
+        💡 Salva sozinho ao mudar. Use o botão de sugestão pra ver palpites
+        das IAs em cada jogo.
+      </p>
+
       <PrePreencherBar
         ias={iasInfo}
         totalJogos={jogos.length}
@@ -226,15 +252,39 @@ export default function PalpitarForm({
                   iasDict={iasDict}
                   onPick={(a, b) => aplicarSugestao(j.numero, a, b)}
                 />
-                <span className="jogo-status">
-                  {salvando.has(j.numero) && "…"}
-                  {salvos.has(j.numero) && "✓"}
-                </span>
               </div>
             );
           })}
         </div>
       ))}
+
+      {/* ── FOOTER: resumo + ações ── */}
+      <div className="palp-footer">
+        <div className="resumo">
+          {preenchidos === total ? (
+            <>
+              🏆 <strong>Tudo palpitado!</strong> Bora ver como você se sai.
+            </>
+          ) : (
+            <>
+              Falta palpitar{" "}
+              <strong>
+                {total - preenchidos}{" "}
+                {total - preenchidos === 1 ? "jogo" : "jogos"}
+              </strong>
+              . Auto-salvo, pode fechar a aba quando quiser.
+            </>
+          )}
+        </div>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <Link href={`/bolao/${bolaoSlug}`} className="btn">
+            ← Voltar pro bolão
+          </Link>
+          <Link href={`/bolao/${bolaoSlug}#ranking`} className="btn primary">
+            🏆 Ver ranking →
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

@@ -45,25 +45,9 @@ export default async function PalpitarPage({
 
   return (
     <div style={{ marginTop: 40 }}>
-      <div style={{ marginBottom: 24 }}>
-        <p
-          style={{
-            fontFamily: "var(--ff-mono)",
-            fontSize: 12,
-            color: "var(--fg-muted)",
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-          }}
-        >
-          {bolao.nome}
-        </p>
-        <h1 style={{ fontSize: 36, marginTop: 4 }}>🎯 Seus palpites</h1>
-        <p style={{ color: "var(--fg-muted)", marginTop: 6, fontSize: 14 }}>
-          Vale pra todos os bolões em que você está. Salva sozinho ao mudar.
-          Use o 💡 ao lado de cada jogo pra ver palpites das IAs.
-        </p>
-      </div>
       <PalpitarForm
+        bolaoNome={bolao.nome}
+        bolaoSlug={bolao.slug}
         jogos={jogos}
         palpitesIniciais={palpitesMap}
         palpitesIAs={palpitesIAs}
