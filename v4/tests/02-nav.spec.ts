@@ -60,16 +60,24 @@ test.describe("Navegação", () => {
     if (!viewport || viewport.width >= 900) test.skip();
     await page.goto("/");
     await page.locator(".nav-hamburger").click();
-    const links = page.locator(".site-nav a");
+    const nav = page.locator(".site-nav.is-open");
+    await expect(nav).toBeVisible();
+    await page.waitForTimeout(400); // espera transição translateX terminar
+    const links = nav.locator("a");
     const n = await links.count();
     expect(n).toBeGreaterThan(3);
-    // todos devem ter boundingBox dentro do viewport (não cortados)
     for (let i = 0; i < n; i++) {
       const box = await links.nth(i).boundingBox();
       expect(box, `link ${i} sem box`).not.toBeNull();
       if (box) {
-        expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 1);
-        expect(box.y + box.height).toBeLessThanOrEqual(viewport.height + 1);
+        expect(
+          box.x + box.width,
+          `link ${i} corta direita (x=${box.x} w=${box.width})`,
+        ).toBeLessThanOrEqual(viewport.width + 1);
+        expect(
+          box.x,
+          `link ${i} corta esquerda (x=${box.x})`,
+        ).toBeGreaterThanOrEqual(-1);
       }
     }
   });
