@@ -1,0 +1,95 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ t('cristal_title') }} — Bolão das IAs · Copa 2026{% endblock %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <h2><span class="emoji">🔮</span>{{ t('cristal_h') }}<span class="num">{{ jogos|length }} jogos</span></h2>
+                <p class="sub">{{ t('cristal_sub') }}</p>
+            </div>
+        </div>
+
+        <div class="fase-filtros" id="fase-filtros">
+            <button class="fase-chip is-active" data-fase="todos">{{ t('fase_filtro_todos') }}</button>
+            {% for f in fases_unicas %}
+            <button class="fase-chip" data-fase="{{ f|lower|replace(' ', '-')|replace('º', '') }}">{{ f }}</button>
+            {% endfor %}
+        </div>
+
+        <div class="jogos-grid" id="jogos-grid">
+            {% for j in jogos %}
+            {% set fase_slug = j.fase|lower|replace(' ', '-')|replace('º', '') %}
+            {% set has_br = (j.time_a == 'Brasil') or (j.time_b == 'Brasil') %}
+            {% set cristal = bola_de_cristal.get(j.numero) %}
+            <a href="{{ asset_prefix }}jogo/{{ j.numero }}.html" class="jogo-card card{% if has_br %} has-brasil{% endif %}" data-fase="{{ fase_slug }}">
+                <div class="jogo-meta">
+                    <span class="fase">{{ j.fase }}</span>
+                    <span>{{ t('card_jogo_num') }} #{{ j.numero }} <span class="abrir-ico">→</span></span>
+                </div>
+                <div class="confronto">
+                    <div class="time">
+                        {{ flag_img(j.time_a) }}
+                        <span class="nome">{{ j.time_a }}</span>
+                    </div>
+                    <div class="placar">
+                        {% if j.resultado %}
+                        <span class="numeros"><span class="g">{{ j.resultado.gols_a }}</span><span class="x">×</span><span class="g">{{ j.resultado.gols_b }}</span></span>
+                        <span class="vs">{{ t('card_resultado') }}</span>
+                        {% elif cristal %}
+                        <span class="numeros bola-cristal"><span class="g">{{ cristal.gols_a }}</span><span class="x">×</span><span class="g">{{ cristal.gols_b }}</span></span>
+                        <span class="vs vs-bola">🔮 {{ t('card_bola_cristal') }}</span>
+                        {% else %}
+                        <span class="numeros vs-pending"><span class="g">?</span><span class="x">×</span><span class="g">?</span></span>
+                        <span class="vs vs-pending">{{ t('card_aguardando') }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="time">
+                        {{ flag_img(j.time_b) }}
+                        <span class="nome">{{ j.time_b }}</span>
+                    </div>
+                </div>
+                <div class="data-hora">
+                    <span>{{ j.data_br }} · {{ j.hora }}</span>
+                    <span class="local">{{ j.local }}</span>
+                </div>
+                {% if cristal %}
+                <div class="cristal-votos">
+                    <span class="cristal-badge">🔮 {{ cristal.votos }} {{ t('cristal_votos') }}</span>
+                    <span class="cristal-ias">
+                        {% for slug in cristal.fonte_ias[:5] %}{{ slug }}{% if not loop.last %}, {% endif %}{% endfor %}{% if cristal.fonte_ias|length > 5 %} +{{ cristal.fonte_ias|length - 5 }}{% endif %}
+                    </span>
+                </div>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+.cristal-votos {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 0 0;
+    border-top: 1px solid var(--border, #eee);
+    margin-top: 8px;
+}
+.cristal-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent, #6c47ff);
+}
+.cristal-ias {
+    font-size: 11px;
+    color: var(--muted, #888);
+    font-family: var(--font-mono, monospace);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
+
+{% endblock %}
