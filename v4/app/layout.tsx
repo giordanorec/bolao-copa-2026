@@ -4,6 +4,7 @@ import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import LangSwitcher from "@/components/LangSwitcher";
 import { resolverLocale } from "@/lib/locale-server";
+import { resolverTema } from "@/lib/tema-server";
 import { t } from "@/lib/i18n";
 
 export const metadata: Metadata = {
@@ -42,7 +43,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const locale = await resolverLocale();
+  const [locale, tema] = await Promise.all([resolverLocale(), resolverTema()]);
   return (
     <html lang={HTML_LANG[locale] ?? "pt-BR"}>
       <head>
@@ -63,7 +64,7 @@ export default async function RootLayout({
         />
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
-      <body data-theme="airbnb">
+      <body data-theme={tema}>
         <header className="site-header">
           <div className="container header-inner">
             <Link href="/" className="brand">
@@ -73,7 +74,7 @@ export default async function RootLayout({
                 <span className="brand-sub">{t(locale, "brand.sub")}</span>
               </span>
             </Link>
-            <SiteNav locale={locale} />
+            <SiteNav locale={locale} tema={tema} />
           </div>
         </header>
 

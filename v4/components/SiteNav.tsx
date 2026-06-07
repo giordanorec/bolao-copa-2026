@@ -6,9 +6,17 @@ import Link from "next/link";
 import UserWidget from "@/components/UserWidget";
 import MeusBoloesLink from "@/components/MeusBoloesLink";
 import LangSwitcher from "@/components/LangSwitcher";
+import TemaSwitcher from "@/components/TemaSwitcher";
 import { t, type Locale } from "@/lib/i18n";
+import type { TemaSlug } from "@/lib/temas";
 
-export default function SiteNav({ locale = "pt" }: { locale?: Locale }) {
+export default function SiteNav({
+  locale = "pt",
+  tema = "airbnb",
+}: {
+  locale?: Locale;
+  tema?: TemaSlug;
+}) {
   const [aberto, setAberto] = useState(false);
   const [montado, setMontado] = useState(false);
 
@@ -60,6 +68,7 @@ export default function SiteNav({ locale = "pt" }: { locale?: Locale }) {
         <UserWidget onNavigate={fechar} />
         <div className="site-nav-lang">
           <LangSwitcher atual={locale} />
+          <TemaSwitcher atual={tema} />
         </div>
       </nav>
 
@@ -77,6 +86,7 @@ export default function SiteNav({ locale = "pt" }: { locale?: Locale }) {
     <>
       <div className="header-lang-mobile">
         <LangSwitcher atual={locale} />
+        <TemaSwitcher atual={tema} />
       </div>
       <button
         className="nav-hamburger"
