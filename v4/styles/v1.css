@@ -1905,7 +1905,7 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     }
 }
 
-/* ─── HEADER NAV BAR (links principais inline com o brand+tools) ─── */
+/* ─── HEADER NAV BAR (links principais) ─── */
 .header-navbar {
     flex: 1; min-width: 0;
     display: flex; align-items: center; justify-content: center;
@@ -1934,19 +1934,37 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     color: var(--primary);
 }
 .header-navbar-emoji { font-size: 15px; line-height: 1; }
-@media (max-width: 1100px) {
-    /* Em telas medias: esconde labels, mostra só emoji */
+
+/* Tablet (700-1100): só emojis inline */
+@media (max-width: 1100px) and (min-width: 701px) {
     .header-navbar-link span:last-child { display: none; }
-    .header-navbar-link {
-        padding: 7px 9px;
-        font-size: 18px;
-    }
+    .header-navbar-link { padding: 7px 9px; }
     .header-navbar-emoji { font-size: 20px; }
 }
-@media (max-width: 600px) {
-    .header-navbar-inner { padding: 0 4px; gap: 0; }
-    .header-navbar-link { padding: 6px 7px; }
-    .header-navbar-emoji { font-size: 18px; }
+
+/* Mobile (≤ 700px): navbar vai pra segunda linha do header, full width */
+@media (max-width: 700px) {
+    .header-inner { flex-wrap: wrap; row-gap: 8px; }
+    .brand { order: 1; flex: 1; min-width: 0; }
+    .header-tools { order: 2; }
+    .header-navbar {
+        order: 3;
+        flex: 0 0 100%;
+        max-width: 100%;
+        justify-content: flex-start;
+        margin: 0 -16px; /* expande além do padding do header-inner */
+        padding: 6px 12px 4px;
+        border-top: 1px solid var(--line);
+        background: color-mix(in srgb, var(--bg-soft) 50%, transparent);
+    }
+    .header-navbar-inner {
+        gap: 4px; padding: 0;
+        justify-content: flex-start;
+    }
+    .header-navbar-link {
+        padding: 6px 10px; font-size: 13px;
+    }
+    .header-navbar-emoji { font-size: 14px; }
 }
 
 /* ─── HEADER TOOLS (sempre visíveis: doar, idioma, tema, user, hamburger) ─── */
