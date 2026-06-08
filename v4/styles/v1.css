@@ -1390,11 +1390,11 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
 }
 
 /* ─── DOAR PAGE ─── */
-.doar-page {
+.colaborar-page {
     max-width: 1100px; margin: 24px auto 64px;
     padding: 0 16px;
 }
-.doar-hero {
+.colaborar-hero {
     text-align: center;
     padding: 56px 24px;
     background: linear-gradient(135deg,
@@ -1403,18 +1403,18 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     border: 2px solid color-mix(in srgb, var(--accent) 30%, transparent);
     margin-bottom: 40px;
 }
-.doar-hero-emoji {
+.colaborar-hero-emoji {
     font-size: 72px; line-height: 1; margin-bottom: 18px;
     animation: float 4s ease-in-out infinite;
     display: inline-block;
 }
-.doar-hero-kicker {
+.colaborar-hero-kicker {
     font-family: var(--ff-mono); font-size: 13px;
     color: var(--accent); text-transform: uppercase;
     letter-spacing: 0.12em; font-weight: 700;
     margin-bottom: 12px;
 }
-.doar-hero h1 {
+.colaborar-hero h1 {
     font-family: var(--ff-display);
     font-weight: var(--ff-display-weight);
     font-style: var(--ff-display-style);
@@ -1423,16 +1423,16 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     color: var(--secondary); letter-spacing: -0.03em;
     line-height: 1.0; margin-bottom: 18px;
 }
-.doar-hero-lede {
+.colaborar-hero-lede {
     font-size: 17px; color: var(--fg-mid);
     max-width: 620px; margin: 0 auto;
     line-height: 1.55;
 }
-.doar-hero-lede strong { color: var(--fg); }
+.colaborar-hero-lede strong { color: var(--fg); }
 
-.doar-recompensas { margin: 48px 0; }
-.doar-recompensas h2,
-.doar-onde h2,
+.colaborar-recompensas { margin: 48px 0; }
+.colaborar-recompensas h2,
+.colaborar-onde h2,
 .doar-pix h2 {
     text-align: center;
     font-family: var(--ff-display);
@@ -1444,12 +1444,12 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     letter-spacing: -0.02em;
     margin-bottom: 32px;
 }
-.doar-recompensas-grid {
+.colaborar-recompensas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 18px;
 }
-.doar-tier {
+.colaborar-tier {
     background: var(--bg-2);
     border: 1.5px solid var(--line-strong);
     border-radius: var(--r-l);
@@ -1458,7 +1458,7 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     display: flex; flex-direction: column;
     position: relative;
 }
-.doar-tier-destaque {
+.colaborar-tier-destaque {
     border: 2.5px solid var(--primary);
     background: linear-gradient(180deg,
         color-mix(in srgb, var(--primary) 6%, var(--bg-2)),
@@ -1466,7 +1466,7 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     box-shadow: 0 10px 40px color-mix(in srgb, var(--primary) 16%, transparent);
     transform: scale(1.03);
 }
-.doar-tier-badge {
+.colaborar-tier-badge {
     position: absolute; top: -12px; left: 50%;
     transform: translateX(-50%);
     background: var(--primary); color: #fff;
@@ -1474,16 +1474,16 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     font-size: 11px; font-weight: 800;
     letter-spacing: 0.08em; text-transform: uppercase;
 }
-.doar-tier-emoji {
+.colaborar-tier-emoji {
     font-size: 56px; line-height: 1; margin-bottom: 10px;
 }
-.doar-tier-nome {
+.colaborar-tier-nome {
     font-family: var(--ff-mono); font-size: 12px;
     color: var(--fg-muted); text-transform: uppercase;
     letter-spacing: 0.1em; font-weight: 700;
     margin-bottom: 4px;
 }
-.doar-tier-valor {
+.colaborar-tier-valor {
     font-family: var(--ff-display);
     font-weight: var(--ff-display-weight);
     font-style: var(--ff-display-style);
@@ -1492,53 +1492,53 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     letter-spacing: -0.03em; line-height: 1;
     margin-bottom: 20px;
 }
-.doar-tier ul {
+.colaborar-tier ul {
     list-style: none; padding: 0;
     text-align: left; margin-bottom: 22px;
     flex-grow: 1;
 }
-.doar-tier ul li {
+.colaborar-tier ul li {
     font-size: 14px; color: var(--fg-mid);
     line-height: 1.45; padding-left: 22px;
     position: relative; margin-bottom: 10px;
 }
-.doar-tier ul li::before {
+.colaborar-tier ul li::before {
     content: "✓"; position: absolute; left: 0; top: 0;
     color: var(--primary); font-weight: 800;
 }
-.doar-recompensas-nota {
+.colaborar-recompensas-nota {
     text-align: center; margin-top: 24px;
     color: var(--fg-mid); font-size: 14px;
 }
-.doar-recompensas-nota a { color: var(--primary); font-weight: 700; }
+.colaborar-recompensas-nota a { color: var(--primary); font-weight: 700; }
 
-.doar-onde { margin: 56px 0; }
-.doar-onde-grid {
+.colaborar-onde { margin: 56px 0; }
+.colaborar-onde-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 18px;
 }
-.doar-onde-card {
+.colaborar-onde-card {
     background: var(--bg-2);
     border: 1px solid var(--line);
     border-radius: var(--r-l);
     padding: 28px 26px;
 }
-.doar-onde-emoji {
+.colaborar-onde-emoji {
     font-size: 44px; line-height: 1; margin-bottom: 14px;
 }
-.doar-onde-card strong {
+.colaborar-onde-card strong {
     display: block; font-size: 18px;
     color: var(--secondary);
     font-family: var(--ff-display);
     margin-bottom: 8px;
 }
-.doar-onde-card p {
+.colaborar-onde-card p {
     font-size: 14px; color: var(--fg-mid);
     line-height: 1.55; margin: 0;
 }
 
-.doar-pix-principal {
+.colaborar-pix-principal {
     margin: 64px 0 40px;
     padding: 40px 28px;
     background: linear-gradient(135deg,
@@ -1548,8 +1548,8 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     border: 2px solid color-mix(in srgb, #20BF6B 30%, transparent);
     scroll-margin-top: 80px;
 }
-.doar-pix-header { text-align: center; margin-bottom: 32px; }
-.doar-pix-header h2 {
+.colaborar-pix-header { text-align: center; margin-bottom: 32px; }
+.colaborar-pix-header h2 {
     text-align: center;
     font-family: var(--ff-display);
     font-weight: var(--ff-display-weight);
@@ -1560,7 +1560,7 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     letter-spacing: -0.02em;
     margin-bottom: 8px;
 }
-.doar-pix-header p {
+.colaborar-pix-header p {
     color: var(--fg-mid); font-size: 16px;
 }
 
@@ -1688,11 +1688,11 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
 }
 
 @media (max-width: 600px) {
-    .doar-tier-destaque { transform: none; }
-    .doar-tier { padding: 28px 20px 22px; }
+    .colaborar-tier-destaque { transform: none; }
+    .colaborar-tier { padding: 28px 20px 22px; }
 }
 
-.doar-cartao {
+.colaborar-cartao {
     margin: 32px auto;
     max-width: 640px;
     padding: 24px 28px;
@@ -1701,17 +1701,54 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     border-radius: var(--r-l);
     text-align: center;
 }
-.doar-cartao h3 {
+.colaborar-cartao h3 {
     font-family: var(--ff-display);
     font-weight: 800;
     font-size: 20px;
     color: var(--secondary);
     margin-bottom: 8px;
 }
-.doar-cartao p {
+.colaborar-cartao p {
     font-size: 14px;
     color: var(--fg-mid);
     margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+/* Stripe como bloco principal (estrangeiro) */
+.colaborar-stripe-principal {
+    margin: 64px 0 40px;
+    padding: 40px 28px;
+    background: linear-gradient(135deg,
+        rgba(99,91,255,0.08),
+        rgba(0,116,228,0.06));
+    border-radius: var(--r-l);
+    border: 2px solid color-mix(in srgb, #635BFF 30%, transparent);
+    scroll-margin-top: 80px;
+}
+.colaborar-stripe-principal .colaborar-pix-header h2 {
+    color: var(--secondary);
+}
+.colaborar-stripe-card {
+    max-width: 540px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 28px;
+    border-radius: var(--r-l);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+    text-align: center;
+}
+.colaborar-stripe-titulo {
+    font-size: 16px;
+    color: var(--fg-mid);
+    margin-bottom: 18px;
+    line-height: 1.5;
+}
+.colaborar-stripe-nota {
+    display: block;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--fg-muted);
     line-height: 1.5;
 }
 

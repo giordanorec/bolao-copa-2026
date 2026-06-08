@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { promises as fs } from "fs";
 import path from "path";
-import { resolverLocale } from "@/lib/locale-server";
+import { resolverLocale, paisDetectado } from "@/lib/locale-server";
 import PixCard from "@/components/PixCard";
 
 const PIX_CHAVE = "grec@cin.ufpe.br";
@@ -18,7 +18,7 @@ async function carregarPixPayload(): Promise<string> {
 export const metadata = {
   title: "Apoie · Bolão das IAs",
   description:
-    "Colabore via Stripe ou PIX. Ajuda a manter as IAs rodando e refazer palpites a cada notícia.",
+    "Colabore via PIX (Brasil) ou cartão (Stripe). Ajuda a manter as IAs rodando e refazer palpites a cada notícia.",
 };
 
 const STRIPE_LINK =
@@ -27,7 +27,7 @@ const STRIPE_LINK =
 
 const RECOMPENSAS = [
   {
-    valor: "R$ 10",
+    valor: { br: "R$ 10", intl: "US$ 2" },
     nome: "Apoiador",
     emoji: "💛",
     perks: [
@@ -37,7 +37,7 @@ const RECOMPENSAS = [
     ],
   },
   {
-    valor: "R$ 25",
+    valor: { br: "R$ 25", intl: "US$ 5" },
     nome: "Mantenedor",
     emoji: "🛟",
     destaque: true,
@@ -49,7 +49,7 @@ const RECOMPENSAS = [
     ],
   },
   {
-    valor: "R$ 100",
+    valor: { br: "R$ 100", intl: "US$ 20" },
     nome: "Padrinho",
     emoji: "👑",
     perks: [
@@ -79,70 +79,157 @@ const ONDE_VAI = [
   },
 ];
 
-export default async function DoarPage() {
-  const [locale, pixPayload] = await Promise.all([
+export default async function ColaborarPage() {
+  const [locale, pixPayload, pais] = await Promise.all([
     resolverLocale(),
     carregarPixPayload(),
+    paisDetectado(),
   ]);
+  const isBR = !pais || pais.toUpperCase() === "BR";
+  const stripeAtivo =
+    STRIPE_LINK && !STRIPE_LINK.includes("test_placeholder");
+
+  // Conteúdo dos blocos PIX e Stripe — renderizo em ordem diferente conforme país
+  const blocoPix = (
+    <section id="pix" className="colaborar-pix-principal" key="pix">
+      <div className="colaborar-pix-header">
+        <h2>
+          {isBR ? "💸 Colaborar via PIX" : "💸 PIX (Brazil only)"}
+        </h2>
+        <p>
+          {isBR
+            ? "Sem taxa, instantâneo, brasileiro. Escolhe o valor no app do banco."
+            : "Free of fees, instant, Brazil-only. Use this if you have a Brazilian bank account."}
+        </p>
+      </div>
+      <PixCard payload={pixPayload} chave={PIX_CHAVE} />
+    </section>
+  );
+
+  const blocoStripe = stripeAtivo ? (
+    <section id="stripe" className="colaborar-stripe-principal" key="stripe">
+      <div className="colaborar-pix-header">
+        <h2>
+          {isBR ? "💳 Colaborar com cartão (Stripe)" : "💳 Support with card (Stripe)"}
+        </h2>
+        <p>
+          {isBR
+            ? "Aceita cartão internacional. Taxa do Stripe ~4% fica retida no processamento."
+            : "International cards accepted. ~4% processing fee goes to Stripe."}
+        </p>
+      </div>
+      <div className="colaborar-stripe-card">
+        <p className="colaborar-stripe-titulo">
+          {isBR
+            ? "Você escolhe o valor no checkout do Stripe."
+            : "You choose the amount on Stripe's checkout."}
+        </p>
+        <a
+          href={STRIPE_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn primary block"
+          style={{ fontSize: 16, padding: "14px 28px" }}
+        >
+          {isBR
+            ? "💳 Colaborar via cartão / Stripe →"
+            : "💳 Donate with card →"}
+        </a>
+        <small className="colaborar-stripe-nota">
+          {isBR
+            ? "Após pagar, manda print no Instagram @arena.das.ias pra liberar as recompensas."
+            : "After paying, DM us on Instagram @arena.das.ias to unlock rewards."}
+        </small>
+      </div>
+    </section>
+  ) : null;
+
+  // Pra BR: PIX principal, Stripe secundário | Pra exterior: Stripe principal, PIX secundário
+  const ordemPagamento = isBR
+    ? [blocoPix, blocoStripe]
+    : [blocoStripe, blocoPix];
+
+  // CTA href dos tiers
+  const ctaHref = isBR ? "#pix" : stripeAtivo ? STRIPE_LINK : "#pix";
+  const ctaTarget = !isBR && stripeAtivo ? "_blank" : undefined;
+  const ctaMetodo = isBR ? "PIX" : stripeAtivo ? "Stripe" : "PIX";
+
   return (
     <div className="colaborar-page">
       <section className="colaborar-hero">
         <div className="colaborar-hero-emoji">💛</div>
-        <p className="colaborar-hero-kicker">Apoie o projeto</p>
-        <h1>Mantém o Bolão das IAs no ar.</h1>
+        <p className="colaborar-hero-kicker">
+          {isBR ? "Apoie o projeto" : "Support the project"}
+        </p>
+        <h1>
+          {isBR
+            ? "Mantém o Bolão das IAs no ar."
+            : "Keep the AI Soccer Pool running."}
+        </h1>
         <p className="colaborar-hero-lede">
-          <strong>sem ads, sem casa de aposta</strong>.
-          Sua colaboração cobre as APIs das IAs e libera experimentos mais avançados.
-          Em troca, você ganha <strong>recompensas tangíveis</strong>.
+          <strong>
+            {isBR
+              ? "Sem ads, sem casa de aposta."
+              : "No ads, no betting."}
+          </strong>{" "}
+          {isBR
+            ? "Sua colaboração cobre as APIs das IAs e libera experimentos mais avançados. Em troca, você ganha "
+            : "Your contribution covers AI APIs and unlocks new experiments. In return, you get "}
+          <strong>
+            {isBR ? "recompensas tangíveis" : "tangible rewards"}
+          </strong>
+          .
         </p>
       </section>
 
       <section className="colaborar-recompensas">
-        <h2>O que você ganha</h2>
+        <h2>{isBR ? "O que você ganha" : "What you get"}</h2>
         <div className="colaborar-recompensas-grid">
-          {RECOMPENSAS.map((r) => (
-            <div
-              key={r.valor}
-              className={`colaborar-tier ${r.destaque ? "colaborar-tier-destaque" : ""}`}
-            >
-              {r.destaque && (
-                <div className="colaborar-tier-badge">★ mais escolhido</div>
-              )}
-              <div className="colaborar-tier-emoji">{r.emoji}</div>
-              <div className="colaborar-tier-nome">{r.nome}</div>
-              <div className="colaborar-tier-valor">{r.valor}</div>
-              <ul>
-                {r.perks.map((p, i) => (
-                  <li key={i}>{p}</li>
-                ))}
-              </ul>
-              <a
-                href="#pix"
-                className={`btn ${r.destaque ? "primary" : ""} block`}
+          {RECOMPENSAS.map((r) => {
+            const v = isBR ? r.valor.br : r.valor.intl;
+            return (
+              <div
+                key={v}
+                className={`colaborar-tier ${r.destaque ? "colaborar-tier-destaque" : ""}`}
               >
-                💸 Colaborar {r.valor} via PIX →
-              </a>
-            </div>
-          ))}
+                {r.destaque && (
+                  <div className="colaborar-tier-badge">
+                    {isBR ? "★ mais escolhido" : "★ most popular"}
+                  </div>
+                )}
+                <div className="colaborar-tier-emoji">{r.emoji}</div>
+                <div className="colaborar-tier-nome">{r.nome}</div>
+                <div className="colaborar-tier-valor">{v}</div>
+                <ul>
+                  {r.perks.map((p, i) => (
+                    <li key={i}>{p}</li>
+                  ))}
+                </ul>
+                <a
+                  href={ctaHref}
+                  target={ctaTarget}
+                  rel={ctaTarget ? "noopener noreferrer" : undefined}
+                  className={`btn ${r.destaque ? "primary" : ""} block`}
+                >
+                  {isBR ? `💸 Colaborar ${v}` : `💳 Donate ${v}`} via {ctaMetodo} →
+                </a>
+              </div>
+            );
+          })}
         </div>
         <p className="colaborar-recompensas-nota">
-          🎯 Quer colaborar outro valor? Escolhe livremente no PIX abaixo.
+          🎯{" "}
+          {isBR
+            ? "Quer colaborar outro valor? Escolhe livremente no formulário abaixo."
+            : "Want to give a different amount? Choose freely below."}
         </p>
       </section>
 
-      {/* PIX — método principal */}
-      <section id="pix" className="colaborar-pix-principal">
-        <div className="colaborar-pix-header">
-          <h2>💸 Colaborar via PIX</h2>
-          <p>
-            Sem taxa, instantâneo, brasileiro. Escolhe o valor no app do banco.
-          </p>
-        </div>
-        <PixCard payload={pixPayload} chave={PIX_CHAVE} />
-      </section>
+      {/* Bloco principal de pagamento (ordem depende do país) */}
+      {ordemPagamento}
 
       <section className="colaborar-onde">
-        <h2>Pra onde vai cada real</h2>
+        <h2>{isBR ? "Pra onde vai cada real" : "Where every cent goes"}</h2>
         <div className="colaborar-onde-grid">
           {ONDE_VAI.map((o) => (
             <div key={o.titulo} className="colaborar-onde-card">
@@ -154,28 +241,9 @@ export default async function DoarPage() {
         </div>
       </section>
 
-      {STRIPE_LINK &&
-        !STRIPE_LINK.includes("test_placeholder") && (
-          <section className="colaborar-cartao">
-            <h3>💳 De fora do Brasil ou prefere cartão?</h3>
-            <p>
-              Aceita cartão internacional via Stripe. Taxa de processamento ~4%
-              fica com o Stripe, mas se for sua melhor opção, vale.
-            </p>
-            <a
-              href={STRIPE_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn"
-            >
-              Colaborar com cartão (Stripe) →
-            </a>
-          </section>
-        )}
-
       <div style={{ textAlign: "center", marginTop: 40 }}>
         <Link href="/" style={{ color: "var(--primary)", fontWeight: 700 }}>
-          ← Voltar pra home
+          ← {isBR ? "Voltar pra home" : "Back home"}
         </Link>
       </div>
     </div>
