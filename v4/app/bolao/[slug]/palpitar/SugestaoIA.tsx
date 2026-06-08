@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import type { DadosPorJogo, PaisIA } from "@/lib/palpites-ias";
 import Bandeira from "@/components/Bandeira";
 import IconeIA from "@/components/IconeIA";
+import SelectIA from "@/components/SelectIA";
 import {
   familiaDe,
   MARCAS,
@@ -415,22 +416,21 @@ export default function SugestaoIA({
               >
                 Ou pega de uma IA específica
               </h4>
-              <select
-                value={iaEscolhida}
-                onChange={(e) => setIaEscolhida(e.target.value)}
-                className="input"
-                style={{ marginBottom: 12, cursor: "pointer" }}
-              >
-                <option value="">— Escolher IA (popular primeiro) —</option>
-                {iasOrdenadas.map((slug) => {
-                  const p = dados.palpites[slug];
-                  return (
-                    <option key={slug} value={slug}>
-                      {iasDict[slug] ?? slug} → {p.gols_a}×{p.gols_b}
-                    </option>
-                  );
-                })}
-              </select>
+              <div style={{ marginBottom: 12 }}>
+                <SelectIA
+                  opcoes={iasOrdenadas.map((slug) => {
+                    const p = dados.palpites[slug];
+                    return {
+                      slug,
+                      nome: iasDict[slug] ?? slug,
+                      extra: `${p.gols_a}×${p.gols_b}`,
+                    };
+                  })}
+                  valor={iaEscolhida}
+                  onChange={setIaEscolhida}
+                  placeholder="— Escolher IA (popular primeiro) —"
+                />
+              </div>
 
               {palpiteIA && (
                 <div

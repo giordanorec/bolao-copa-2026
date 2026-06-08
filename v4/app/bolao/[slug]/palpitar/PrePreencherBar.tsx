@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import SelectIA, { type OpcaoIA } from "@/components/SelectIA";
 
 type IA = { slug: string; nome: string; jogos: number };
 
@@ -80,25 +81,18 @@ export default function PrePreencherBar({
             borderTop: "1px solid var(--line)",
           }}
         >
-          <label className="label" htmlFor="ia-lote">
-            De quem importar:
-          </label>
-          <select
-            id="ia-lote"
-            value={escolhido}
-            onChange={(e) => setEscolhido(e.target.value)}
-            className="input"
-            style={{ cursor: "pointer" }}
-          >
-            {iasOrdenadas.map((i) => (
-              <option key={i.slug} value={i.slug}>
-                {i.slug === "bola-de-cristal" ? "🔮 " : "🤖 "}
-                {i.nome}
-                {" — "}
-                {i.jogos}/{totalJogos} jogos
-              </option>
-            ))}
-          </select>
+          <label className="label">De quem importar:</label>
+          <SelectIA
+            opcoes={iasOrdenadas.map(
+              (i): OpcaoIA => ({
+                slug: i.slug,
+                nome: i.nome,
+                extra: `${i.jogos}/${totalJogos}`,
+              }),
+            )}
+            valor={escolhido}
+            onChange={(v) => setEscolhido(v)}
+          />
 
           <div
             style={{
