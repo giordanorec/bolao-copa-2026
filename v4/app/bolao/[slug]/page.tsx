@@ -114,7 +114,17 @@ export default async function BolaoPage({
             </Link>
           )}
           <CopyLinkButton slug={bolao.slug} nome={bolao.nome} />
+          <ShareCardButton
+            nomeBolao={bolao.nome}
+            slug={bolao.slug}
+            ranking={rankingPraShare}
+          />
         </div>
+      </section>
+
+      {/* ── Ranking do bolão (logo após o hero) ── */}
+      <section style={{ marginTop: 32 }}>
+        <RankingDoBolao bolaoId={bolao.id} membros={membrosTyped} />
       </section>
 
       {/* ── O que é o Bolão das IAs (pra TODO mundo) ── */}
@@ -163,28 +173,6 @@ export default async function BolaoPage({
 
       {/* ── Série A em destaque (sempre) ── */}
       <SerieA locale={locale} variante="compact" />
-
-      {/* ── Ranking do bolão ── */}
-      <section style={{ marginTop: 32 }}>
-        <RankingDoBolao bolaoId={bolao.id} membros={membrosTyped} />
-      </section>
-
-      {/* ── Share row ── */}
-      <section className="bolao-share-section">
-        <h3>Convidar mais gente</h3>
-        <p>
-          Quanto mais gente palpitar, mais animada fica a disputa. Copia o link
-          do bolão e manda no grupo.
-        </p>
-        <div className="share-row">
-          <CopyLinkButton slug={bolao.slug} nome={bolao.nome} />
-          <ShareCardButton
-            nomeBolao={bolao.nome}
-            slug={bolao.slug}
-            ranking={rankingPraShare}
-          />
-        </div>
-      </section>
     </div>
   );
 }

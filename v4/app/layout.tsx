@@ -75,9 +75,9 @@ export default async function RootLayout({
                 <span className="brand-sub">{t(locale, "brand.sub")}</span>
               </span>
             </Link>
+            <HeaderNavBar locale={locale} />
             <SiteNav locale={locale} tema={tema} />
           </div>
-          <HeaderNavBar locale={locale} />
         </header>
 
         <main>

@@ -53,9 +53,14 @@ export default function HeaderNavBar({ locale }: { locale: Locale }) {
 
   return (
     <nav className="header-navbar" aria-label="Navegação principal">
-      <div className="container header-navbar-inner">
+      <div className="header-navbar-inner">
         {items.map((it) => (
-          <Link key={it.href} href={it.href} className="header-navbar-link">
+          <Link
+            key={it.href}
+            href={it.href}
+            className="header-navbar-link"
+            title={it.label}
+          >
             <span className="header-navbar-emoji">{it.emoji}</span>
             <span>{it.label}</span>
           </Link>
