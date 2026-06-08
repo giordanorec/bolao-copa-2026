@@ -1905,11 +1905,50 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     }
 }
 
-/* ─── HEADER TOOLS (sempre visíveis: idioma, tema, user, hamburger) ─── */
+/* ─── HEADER TOOLS (sempre visíveis: doar, idioma, tema, user, hamburger) ─── */
 .header-tools {
     display: inline-flex; align-items: center; gap: 6px;
 }
 @media (max-width: 600px) { .header-tools { gap: 4px; } }
+
+/* botão "Doar" sempre visível no topo */
+.header-doar {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #FFCE00 0%, #FF8A00 100%);
+    color: #1A1A1A; font-weight: 800;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 4px 14px rgba(255, 138, 0, 0.32);
+    transition: all 0.18s ease;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    white-space: nowrap;
+}
+.header-doar:hover {
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 8px 22px rgba(255, 138, 0, 0.42);
+    color: #1A1A1A;
+}
+.header-doar span:first-child {
+    font-size: 18px;
+    line-height: 1;
+    animation: pulse-coracao 2.5s ease-in-out infinite;
+    transform-origin: center;
+}
+@keyframes pulse-coracao {
+    0%, 100% { transform: scale(1); }
+    15%, 30% { transform: scale(1.18); }
+    45% { transform: scale(1); }
+}
+@media (max-width: 600px) {
+    .header-doar { padding: 6px 12px; font-size: 13px; gap: 4px; }
+    .header-doar span:first-child { font-size: 16px; }
+}
+@media (max-width: 380px) {
+    .header-doar .header-doar-lbl { display: none; }
+    .header-doar { padding: 6px 10px; }
+}
 
 /* ─── LANG SWITCHER (dropdown bandeira única) ─── */
 .lang-switcher { position: relative; display: inline-flex; }

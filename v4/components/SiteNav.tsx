@@ -84,6 +84,18 @@ export default function SiteNav({
   return (
     <>
       <div className="header-tools">
+        <Link href="/doar" className="header-doar" aria-label="Doar">
+          <span aria-hidden>💛</span>
+          <span className="header-doar-lbl">
+            {locale === "en"
+              ? "Donate"
+              : locale === "es"
+                ? "Donar"
+                : locale === "fr"
+                  ? "Donner"
+                  : "Doar"}
+          </span>
+        </Link>
         <LangSwitcher atual={locale} />
         <TemaSwitcher atual={tema} />
         <UserWidget onNavigate={fechar} />
