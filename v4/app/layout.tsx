@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
+import HeaderNavBar from "@/components/HeaderNavBar";
 import LangSwitcher from "@/components/LangSwitcher";
 import { resolverLocale } from "@/lib/locale-server";
 import { resolverTema } from "@/lib/tema-server";
@@ -76,6 +77,7 @@ export default async function RootLayout({
             </Link>
             <SiteNav locale={locale} tema={tema} />
           </div>
+          <HeaderNavBar locale={locale} />
         </header>
 
         <main>

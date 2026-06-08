@@ -50,21 +50,35 @@ export default function SiteNav({
           ✕
         </button>
         <MeusBoloesLink onClick={fechar} locale={locale} />
-        <Link href="/jogos" onClick={fechar}>
-          {t(locale, "nav.jogos").replace(" ↗", "")}
-        </Link>
-        <Link href="/cristal" onClick={fechar}>
-          {t(locale, "nav.cristal").replace(" ↗", "")}
-        </Link>
-        <Link href="/ranking-ias" onClick={fechar}>
-          🏆{" "}
+        <Link href="/criar" onClick={fechar}>
+          ➕{" "}
           {locale === "en"
-            ? "AI Ranking"
+            ? "New pool"
             : locale === "es"
-              ? "Ranking de IAs"
+              ? "Nueva polla"
               : locale === "fr"
-                ? "Classement IA"
-                : "Ranking de IAs"}
+                ? "Nouvelle cagnotte"
+                : "Criar bolão"}
+        </Link>
+        <Link href="/perfil" onClick={fechar}>
+          👤{" "}
+          {locale === "en"
+            ? "Profile"
+            : locale === "es"
+              ? "Perfil"
+              : locale === "fr"
+                ? "Profil"
+                : "Meu perfil"}
+        </Link>
+        <Link href="/doar" onClick={fechar}>
+          💛{" "}
+          {locale === "en"
+            ? "Donate"
+            : locale === "es"
+              ? "Donar"
+              : locale === "fr"
+                ? "Donner"
+                : "Apoiar"}
         </Link>
         <Link href="/como-funciona" onClick={fechar}>
           {t(locale, "nav.como")}

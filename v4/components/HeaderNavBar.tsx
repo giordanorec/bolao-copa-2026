@@ -1,0 +1,66 @@
+"use client";
+
+import Link from "next/link";
+import { t, type Locale } from "@/lib/i18n";
+
+/**
+ * Barra horizontal de navegação principal — sempre visível abaixo do topo,
+ * scrolável em mobile, inline em desktop. Pra os links principais não ficarem
+ * escondidos no drawer.
+ */
+export default function HeaderNavBar({ locale }: { locale: Locale }) {
+  const items = [
+    {
+      href: "/jogos",
+      emoji: "⚽",
+      label: t(locale, "nav.jogos").replace(" ↗", ""),
+    },
+    {
+      href: "/cristal",
+      emoji: "🔮",
+      label: t(locale, "nav.cristal").replace(" ↗", ""),
+    },
+    {
+      href: "/ranking-ias",
+      emoji: "🏆",
+      label:
+        locale === "en"
+          ? "AI Ranking"
+          : locale === "es"
+            ? "Ranking IAs"
+            : locale === "fr"
+              ? "Classement"
+              : "Ranking de IAs",
+    },
+    {
+      href: "/ranking-geral",
+      emoji: "🌍",
+      label:
+        locale === "en"
+          ? "Hall of Fame"
+          : locale === "es"
+            ? "Salón Fama"
+            : locale === "fr"
+              ? "Hall Fame"
+              : "Hall da Fama",
+    },
+    {
+      href: "/como-funciona",
+      emoji: "📘",
+      label: t(locale, "nav.como"),
+    },
+  ];
+
+  return (
+    <nav className="header-navbar" aria-label="Navegação principal">
+      <div className="container header-navbar-inner">
+        {items.map((it) => (
+          <Link key={it.href} href={it.href} className="header-navbar-link">
+            <span className="header-navbar-emoji">{it.emoji}</span>
+            <span>{it.label}</span>
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
+}

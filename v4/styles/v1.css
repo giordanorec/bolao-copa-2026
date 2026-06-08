@@ -1905,6 +1905,41 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     }
 }
 
+/* ─── HEADER NAV BAR (links principais sempre visíveis, abaixo do topo) ─── */
+.header-navbar {
+    background: var(--bg-0);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0;
+    z-index: 48;
+}
+.header-navbar-inner {
+    display: flex; gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 6px 24px;
+}
+.header-navbar-inner::-webkit-scrollbar { display: none; }
+.header-navbar-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--r-m);
+    color: var(--fg-mid); text-decoration: none;
+    font-size: 14px; font-weight: 700;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+}
+.header-navbar-link:hover {
+    background: var(--bg-soft);
+    color: var(--primary);
+}
+.header-navbar-emoji { font-size: 16px; line-height: 1; }
+@media (max-width: 600px) {
+    .header-navbar-inner { padding: 6px 12px; gap: 2px; }
+    .header-navbar-link { padding: 7px 11px; font-size: 13px; }
+}
+
 /* ─── HEADER TOOLS (sempre visíveis: doar, idioma, tema, user, hamburger) ─── */
 .header-tools {
     display: inline-flex; align-items: center; gap: 6px;

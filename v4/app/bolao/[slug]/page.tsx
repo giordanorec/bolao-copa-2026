@@ -117,54 +117,52 @@ export default async function BolaoPage({
         </div>
       </section>
 
-      {/* ── O que é o Bolão das IAs (pra quem caiu de paraquedas) ── */}
-      {isVisitante && (
-        <section className="bolao-explica">
-          <h2>Espera, o que é esse site?</h2>
-          <p className="bolao-explica-lede">
-            <strong>Bolão das IAs</strong> é um bolão da Copa 2026, mas com um
-            twist: além de você e a galera palpitar, a gente pegou{" "}
-            <strong>122 modelos de IA</strong> (ChatGPT, Claude, Gemini, Grok,
-            DeepSeek e mais 117) e mandou cada uma palpitar os 104 jogos
-            também.
-          </p>
-          <div className="bolao-explica-grid">
-            <Link href="/jogos" className="card hoverable">
-              <div className="bolao-explica-emoji">⚽</div>
-              <strong>Os 104 jogos</strong>
-              <p>O que cada IA chutou pra cada partida. Clique num jogo, veja todos os placares votados.</p>
-            </Link>
-            <Link href="/cristal" className="card hoverable">
-              <div className="bolao-explica-emoji">🔮</div>
-              <strong>Bola de Cristal</strong>
-              <p>O placar mais votado entre as 122 IAs pra cada jogo. Sabedoria das máquinas.</p>
-            </Link>
-            <Link href="/ranking-ias" className="card hoverable">
-              <div className="bolao-explica-emoji">🏆</div>
-              <strong>Ranking das IAs</strong>
-              <p>Quem está chutando melhor — ChatGPT, Claude, Gemini, Grok? Todas comparadas.</p>
-            </Link>
-            <Link href="/ranking-geral" className="card hoverable">
-              <div className="bolao-explica-emoji">🌍</div>
-              <strong>Hall da Fama</strong>
-              <p>Humanos opt-in disputam contra as 122 IAs no mesmo placar.</p>
-            </Link>
-            <Link href="/como-funciona" className="card hoverable">
-              <div className="bolao-explica-emoji">📘</div>
-              <strong>Como funciona</strong>
-              <p>Placar exato vale 10, vencedor com saldo 7, vencedor 5, errado 0. Mata-mata 2×.</p>
-            </Link>
-            <Link href="/doar" className="card hoverable">
-              <div className="bolao-explica-emoji">💛</div>
-              <strong>Apoie</strong>
-              <p>Tudo grátis, sem ads, sem casa de aposta. Doações cobrem as APIs das IAs.</p>
-            </Link>
-          </div>
-        </section>
-      )}
+      {/* ── O que é o Bolão das IAs (pra TODO mundo) ── */}
+      <section className="bolao-explica">
+        <h2>{isVisitante ? "Espera, o que é esse site?" : "Explore o resto do site"}</h2>
+        <p className="bolao-explica-lede">
+          <strong>Bolão das IAs</strong> é um bolão da Copa 2026, mas com um
+          twist: além de você e a galera palpitar, a gente pegou{" "}
+          <strong>122 modelos de IA</strong> (ChatGPT, Claude, Gemini, Grok,
+          DeepSeek e mais 117) e mandou cada uma palpitar os 104 jogos
+          também.
+        </p>
+        <div className="bolao-explica-grid">
+          <Link href="/jogos" className="card hoverable">
+            <div className="bolao-explica-emoji">⚽</div>
+            <strong>Os 104 jogos</strong>
+            <p>O que cada IA chutou pra cada partida. Clique num jogo, veja todos os placares votados.</p>
+          </Link>
+          <Link href="/cristal" className="card hoverable">
+            <div className="bolao-explica-emoji">🔮</div>
+            <strong>Bola de Cristal</strong>
+            <p>O placar mais votado entre as 122 IAs pra cada jogo. Sabedoria das máquinas.</p>
+          </Link>
+          <Link href="/ranking-ias" className="card hoverable">
+            <div className="bolao-explica-emoji">🏆</div>
+            <strong>Ranking das IAs</strong>
+            <p>Quem está chutando melhor — ChatGPT, Claude, Gemini, Grok? Todas comparadas.</p>
+          </Link>
+          <Link href="/ranking-geral" className="card hoverable">
+            <div className="bolao-explica-emoji">🌍</div>
+            <strong>Hall da Fama</strong>
+            <p>Humanos opt-in disputam contra as 122 IAs no mesmo placar.</p>
+          </Link>
+          <Link href="/como-funciona" className="card hoverable">
+            <div className="bolao-explica-emoji">📘</div>
+            <strong>Como funciona</strong>
+            <p>Placar exato vale 10, vencedor com saldo 7, vencedor 5, errado 0. Mata-mata 2×.</p>
+          </Link>
+          <Link href="/doar" className="card hoverable">
+            <div className="bolao-explica-emoji">💛</div>
+            <strong>Apoie</strong>
+            <p>Tudo grátis, sem ads, sem casa de aposta. Doações cobrem as APIs das IAs.</p>
+          </Link>
+        </div>
+      </section>
 
-      {/* ── Série A em destaque (sociabilizar) ── */}
-      {isVisitante && <SerieA locale={locale} variante="compact" />}
+      {/* ── Série A em destaque (sempre) ── */}
+      <SerieA locale={locale} variante="compact" />
 
       {/* ── Ranking do bolão ── */}
       <section style={{ marginTop: 32 }}>
