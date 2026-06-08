@@ -8,7 +8,7 @@ import { carregarMapaPaises } from "@/lib/paises";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 import IconeIA from "@/components/IconeIA";
-import DoacaoBanner from "@/components/DoacaoBanner";
+import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 import JogoModal from "@/components/JogoModal";
 import TimeLink from "@/components/TimeLink";
 import { scorePopularidade } from "@/lib/ias";
@@ -51,7 +51,7 @@ export default async function JogosPage() {
         <p className="lede" style={{ marginTop: 8 }}>{sub}</p>
       </header>
 
-      <DoacaoBanner variante="ias" locale={locale} />
+      <ColaboracaoBanner variante="ias" locale={locale} />
 
       {Object.entries(porFase).map(([fase, lista]) => (
         <section key={fase} style={{ marginBottom: 32 }}>

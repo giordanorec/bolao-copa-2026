@@ -4,7 +4,7 @@ import { carregarPalpitesIAs } from "@/lib/palpites-ias";
 import { carregarMapaPaises } from "@/lib/paises";
 import { resolverLocale } from "@/lib/locale-server";
 import Bandeira from "@/components/Bandeira";
-import DoacaoBanner from "@/components/DoacaoBanner";
+import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 
 export const metadata = {
   title: "🔮 Bola de Cristal · Bolão das IAs",
@@ -38,7 +38,7 @@ export default async function CristalPage() {
         <h1 style={{ fontSize: "clamp(28px, 5vw, 48px)" }}>{titulo}</h1>
         <p className="lede" style={{ marginTop: 8 }}>{sub}</p>
       </header>
-      <DoacaoBanner variante="ranking" locale={locale} />
+      <ColaboracaoBanner variante="ranking" locale={locale} />
       {Object.entries(porFase).map(([fase, lista]) => (
         <section key={fase} style={{ marginBottom: 28 }}>
           <h2 className="fase-titulo">{fase}</h2>

@@ -115,14 +115,7 @@ export default async function RootLayout({
                 </a>
               </p>
               <p style={{ marginTop: 8 }}>
-                <Link href="/doar">{t(locale, "footer.doar")}</Link> ·{" "}
-                <a
-                  href="https://github.com/giordanorec/bolao-copa-2026"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t(locale, "footer.codigo")}
-                </a>
+                <Link href="/colaborar">{t(locale, "footer.colaborar")}</Link>
               </p>
               <p className="versao" style={{ marginTop: 8 }}>
                 v0.7.0

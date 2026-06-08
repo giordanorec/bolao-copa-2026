@@ -46,11 +46,11 @@ export default async function Home() {
       titulo: pt ? "Crie seu bolão" : en ? "Start your pool" : es ? "Crea tu polla" : "Créez votre cagnotte",
       sub: pt ? "Privado, pra galera" : en ? "Private, for your group" : es ? "Privada, para tu grupo" : "Privée, pour votre groupe",
       desc: pt
-        ? "Link único pra convidar amigos. Palpita do celular (ou copia de qualquer IA num clique). Ranking automático. Tudo grátis."
+        ? "Link único pra convidar amigos. Palpita do celular (ou aproveita de qualquer IA num clique). Ranking automático."
         : en
-          ? "Unique invite link. Predict from your phone (or copy any AI's bet). Auto ranking. All free."
+          ? "Unique invite link. Predict from your phone (or borrow any AI's prediction). Auto ranking."
           : es
-            ? "Enlace único para amigos. Pronostica desde el móvil. Ranking automático. Todo gratis."
+            ? "Enlace único para amigos. Pronostica desde el móvil. Ranking automático."
             : "Lien d'invitation unique. Pronostiquez depuis votre mobile. Classement auto.",
       cta: pt ? "Criar conta →" : en ? "Create account →" : es ? "Crear cuenta →" : "Créer un compte →",
     },

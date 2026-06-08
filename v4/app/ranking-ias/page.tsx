@@ -2,7 +2,7 @@ import Link from "next/link";
 import { promises as fs } from "fs";
 import path from "path";
 import IconeIA from "@/components/IconeIA";
-import DoacaoBanner from "@/components/DoacaoBanner";
+import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 import SerieA from "@/components/SerieA";
 import { resolverLocale } from "@/lib/locale-server";
 import {
@@ -114,7 +114,7 @@ export default async function IAsPage() {
 
       <SerieA locale={locale} />
 
-      <DoacaoBanner variante="ias" locale={locale} />
+      <ColaboracaoBanner variante="ias" locale={locale} />
 
       <section style={{ marginTop: 40 }}>
         <h2 style={{ textAlign: "center", marginBottom: 8 }}>

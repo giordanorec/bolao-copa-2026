@@ -767,6 +767,23 @@ body[data-theme="festivo-br"] {
     flex-shrink: 0;
 }
 
+/* ─── BOTÃO REMOVER PALPITE (jogo a jogo) ─── */
+.btn-remover-palpite {
+    width: 32px; height: 32px;
+    border: 1.5px solid var(--line-strong);
+    background: var(--bg-2); color: var(--fg-muted);
+    border-radius: var(--r-s);
+    cursor: pointer; font-size: 18px;
+    font-family: var(--ff-sans); font-weight: 700;
+    line-height: 1; display: inline-flex;
+    align-items: center; justify-content: center;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+}
+.btn-remover-palpite:hover {
+    background: #fee2e2; color: #C0392B; border-color: #C0392B;
+}
+
 /* ─── BOTÃO SUGESTÃO ─── */
 .btn-sugestao {
     display: inline-flex;

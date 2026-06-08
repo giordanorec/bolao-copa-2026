@@ -18,7 +18,7 @@ async function carregarPixPayload(): Promise<string> {
 export const metadata = {
   title: "Apoie · Bolão das IAs",
   description:
-    "Doe via Stripe ou PIX. Ajuda a manter as IAs rodando e refazer palpites a cada notícia.",
+    "Colabore via Stripe ou PIX. Ajuda a manter as IAs rodando e refazer palpites a cada notícia.",
 };
 
 const STRIPE_LINK =
@@ -65,7 +65,7 @@ const ONDE_VAI = [
   {
     emoji: "🤖",
     titulo: "API das IAs Premium",
-    desc: "Coletar palpites dos modelos pagos (Claude Opus, GPT-5 Pro, Gemini 2.5 Pro, Grok 4 Heavy) custa US$ 30-50 por rodada. Quanto mais doações, mais rodadas — e mais frescas as previsões durante a Copa.",
+    desc: "Coletar palpites dos modelos pagos (Claude Opus, GPT-5 Pro, Gemini 2.5 Pro, Grok 4 Heavy) custa US$ 30-50 por rodada. Quanto mais colaborações, mais rodadas — e mais frescas as previsões durante a Copa.",
   },
   {
     emoji: "☁️",
@@ -75,7 +75,7 @@ const ONDE_VAI = [
   {
     emoji: "🔁",
     titulo: "Refazer palpites a cada notícia",
-    desc: "É aqui que faz mais diferença: rodar as IAs DE NOVO toda vez que cair uma notícia importante (lesão, escalação, virada na fase de grupos). Hoje rodamos 1×; com doações, vira contínuo.",
+    desc: "É aqui que faz mais diferença: rodar as IAs DE NOVO toda vez que cair uma notícia importante (lesão, escalação, virada na fase de grupos). Hoje rodamos 1×; com colaborações, vira contínuo.",
   },
 ];
 
@@ -85,32 +85,32 @@ export default async function DoarPage() {
     carregarPixPayload(),
   ]);
   return (
-    <div className="doar-page">
-      <section className="doar-hero">
-        <div className="doar-hero-emoji">💛</div>
-        <p className="doar-hero-kicker">Apoie o projeto</p>
+    <div className="colaborar-page">
+      <section className="colaborar-hero">
+        <div className="colaborar-hero-emoji">💛</div>
+        <p className="colaborar-hero-kicker">Apoie o projeto</p>
         <h1>Mantém o Bolão das IAs no ar.</h1>
-        <p className="doar-hero-lede">
-          Tudo gratuito e <strong>sem ads, sem casa de aposta</strong>.
-          Sua doação cobre as APIs das IAs e libera experimentos mais avançados.
+        <p className="colaborar-hero-lede">
+          <strong>sem ads, sem casa de aposta</strong>.
+          Sua colaboração cobre as APIs das IAs e libera experimentos mais avançados.
           Em troca, você ganha <strong>recompensas tangíveis</strong>.
         </p>
       </section>
 
-      <section className="doar-recompensas">
+      <section className="colaborar-recompensas">
         <h2>O que você ganha</h2>
-        <div className="doar-recompensas-grid">
+        <div className="colaborar-recompensas-grid">
           {RECOMPENSAS.map((r) => (
             <div
               key={r.valor}
-              className={`doar-tier ${r.destaque ? "doar-tier-destaque" : ""}`}
+              className={`colaborar-tier ${r.destaque ? "colaborar-tier-destaque" : ""}`}
             >
               {r.destaque && (
-                <div className="doar-tier-badge">★ mais escolhido</div>
+                <div className="colaborar-tier-badge">★ mais escolhido</div>
               )}
-              <div className="doar-tier-emoji">{r.emoji}</div>
-              <div className="doar-tier-nome">{r.nome}</div>
-              <div className="doar-tier-valor">{r.valor}</div>
+              <div className="colaborar-tier-emoji">{r.emoji}</div>
+              <div className="colaborar-tier-nome">{r.nome}</div>
+              <div className="colaborar-tier-valor">{r.valor}</div>
               <ul>
                 {r.perks.map((p, i) => (
                   <li key={i}>{p}</li>
@@ -120,20 +120,20 @@ export default async function DoarPage() {
                 href="#pix"
                 className={`btn ${r.destaque ? "primary" : ""} block`}
               >
-                💸 Doar {r.valor} via PIX →
+                💸 Colaborar {r.valor} via PIX →
               </a>
             </div>
           ))}
         </div>
-        <p className="doar-recompensas-nota">
-          🎯 Quer doar outro valor? Escolhe livremente no PIX abaixo.
+        <p className="colaborar-recompensas-nota">
+          🎯 Quer colaborar outro valor? Escolhe livremente no PIX abaixo.
         </p>
       </section>
 
       {/* PIX — método principal */}
-      <section id="pix" className="doar-pix-principal">
-        <div className="doar-pix-header">
-          <h2>💸 Doar via PIX</h2>
+      <section id="pix" className="colaborar-pix-principal">
+        <div className="colaborar-pix-header">
+          <h2>💸 Colaborar via PIX</h2>
           <p>
             Sem taxa, instantâneo, brasileiro. Escolhe o valor no app do banco.
           </p>
@@ -141,12 +141,12 @@ export default async function DoarPage() {
         <PixCard payload={pixPayload} chave={PIX_CHAVE} />
       </section>
 
-      <section className="doar-onde">
+      <section className="colaborar-onde">
         <h2>Pra onde vai cada real</h2>
-        <div className="doar-onde-grid">
+        <div className="colaborar-onde-grid">
           {ONDE_VAI.map((o) => (
-            <div key={o.titulo} className="doar-onde-card">
-              <div className="doar-onde-emoji">{o.emoji}</div>
+            <div key={o.titulo} className="colaborar-onde-card">
+              <div className="colaborar-onde-emoji">{o.emoji}</div>
               <strong>{o.titulo}</strong>
               <p>{o.desc}</p>
             </div>
@@ -156,7 +156,7 @@ export default async function DoarPage() {
 
       {STRIPE_LINK &&
         !STRIPE_LINK.includes("test_placeholder") && (
-          <section className="doar-cartao">
+          <section className="colaborar-cartao">
             <h3>💳 De fora do Brasil ou prefere cartão?</h3>
             <p>
               Aceita cartão internacional via Stripe. Taxa de processamento ~4%
@@ -168,7 +168,7 @@ export default async function DoarPage() {
               rel="noopener noreferrer"
               className="btn"
             >
-              Doar com cartão (Stripe) →
+              Colaborar com cartão (Stripe) →
             </a>
           </section>
         )}

@@ -70,14 +70,14 @@ export default function SiteNav({
                 ? "Profil"
                 : "Meu perfil"}
         </Link>
-        <Link href="/doar" onClick={fechar}>
+        <Link href="/colaborar" onClick={fechar}>
           💛{" "}
           {locale === "en"
-            ? "Donate"
+            ? "Support"
             : locale === "es"
-              ? "Donar"
+              ? "Colaborar"
               : locale === "fr"
-                ? "Donner"
+                ? "Soutenir"
                 : "Apoiar"}
         </Link>
         <Link href="/como-funciona" onClick={fechar}>
@@ -98,16 +98,16 @@ export default function SiteNav({
   return (
     <>
       <div className="header-tools">
-        <Link href="/doar" className="header-doar" aria-label="Doar">
+        <Link href="/colaborar" className="header-colaborar" aria-label="Colaborar">
           <span aria-hidden>💛</span>
-          <span className="header-doar-lbl">
+          <span className="header-colaborar-lbl">
             {locale === "en"
-              ? "Donate"
+              ? "Support"
               : locale === "es"
-                ? "Donar"
+                ? "Colaborar"
                 : locale === "fr"
-                  ? "Donner"
-                  : "Doar"}
+                  ? "Soutenir"
+                  : "Colaborar"}
           </span>
         </Link>
         <LangSwitcher atual={locale} />

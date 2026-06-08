@@ -5,11 +5,11 @@ const VARIANTES = {
   pos_palpitar: {
     pt: {
       titulo: "🎯 Palpites salvos! Ajuda a manter o sistema rodando?",
-      desc: "Cada rodada de palpites das IAs premium custa US$ 30-50. Doe pra rodarmos mais frequente e refazer a cada notícia importante.",
+      desc: "Cada rodada de palpites das IAs premium custa US$ 30-50. Colabore pra rodarmos mais frequente e refazer a cada notícia importante.",
     },
     en: {
       titulo: "🎯 Predictions saved! Help keep the system running?",
-      desc: "Each round of premium AI predictions costs US$ 30-50. Donate to run more often and re-predict on every breaking news.",
+      desc: "Each round of premium AI predictions costs US$ 30-50. Support to run more often and re-predict on every breaking news.",
     },
     es: {
       titulo: "🎯 ¡Pronósticos guardados! ¿Ayudas a mantener el sistema?",
@@ -23,7 +23,7 @@ const VARIANTES = {
   ranking: {
     pt: {
       titulo: "🏆 Quer que as IAs se atualizem entre os jogos?",
-      desc: "Com mais doações, refazemos os palpites assim que sair notícia de lesão, escalação ou virada na fase de grupos.",
+      desc: "Com mais colaborações, refazemos os palpites assim que sair notícia de lesão, escalação ou virada na fase de grupos.",
     },
     en: {
       titulo: "🏆 Want the AIs to update mid-tournament?",
@@ -58,7 +58,7 @@ const VARIANTES = {
   },
 };
 
-export default function DoacaoBanner({
+export default function ColaboracaoBanner({
   variante,
   locale = "pt",
 }: {
@@ -69,20 +69,20 @@ export default function DoacaoBanner({
     VARIANTES[variante][locale] ?? VARIANTES[variante].pt;
   const cta =
     locale === "en"
-      ? "💛 Donate"
+      ? "💛 Support"
       : locale === "es"
-        ? "💛 Donar"
+        ? "💛 Colaborar"
         : locale === "fr"
-          ? "💛 Donner"
-          : "💛 Doar";
+          ? "💛 Soutenir"
+          : "💛 Colaborar";
   return (
-    <aside className="doacao-banner">
-      <div className="doacao-icon">💛</div>
-      <div className="doacao-body">
+    <aside className="colaboracao-banner">
+      <div className="colaboracao-icon">💛</div>
+      <div className="colaboracao-body">
         <strong>{tx.titulo}</strong>
         <p>{tx.desc}</p>
       </div>
-      <Link href="/doar" className="btn primary small">
+      <Link href="/colaborar" className="btn primary small">
         {cta}
       </Link>
     </aside>

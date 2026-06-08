@@ -135,10 +135,10 @@ export default function ComoFunciona() {
         </div>
 
         <div style={{ marginBottom: 24 }}>
-          <h3 style={{ fontSize: 20, marginBottom: 8 }}>É de graça mesmo?</h3>
+          <h3 style={{ fontSize: 20, marginBottom: 8 }}>Como o site se sustenta?</h3>
           <p style={{ color: "var(--fg-mid)" }}>
-            Sim. Sem ads, sem cobrança, sem casa de aposta envolvida. Doações
-            voluntárias cobrem custo de API. Quem quiser ajudar, manda PIX pra{" "}
+            Sem ads, sem cobrança, sem casa de aposta envolvida. Colaborações
+            voluntárias cobrem custo das APIs das IAs. Quem quiser ajudar, manda PIX pra{" "}
             <code style={{ fontFamily: "var(--ff-mono)", fontSize: 14 }}>
               grec@cin.ufpe.br
             </code>
@@ -189,7 +189,7 @@ export default function ComoFunciona() {
           </li>
           <li>
             <strong>Não é uma plataforma de aposta.</strong> É um bolão entre
-            amigos. Vencer não dá prêmio nenhum (só zoeira).
+            amigos. Vencer não dá prêmio nenhum — é só pela diversão.
           </li>
           <li>
             <strong>Projeto em andamento.</strong> Pode dar erro. Faça backup

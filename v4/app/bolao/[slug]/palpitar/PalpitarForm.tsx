@@ -8,7 +8,7 @@ import type { DadosPorJogo, PalpiteIA, PaisIA } from "@/lib/palpites-ias";
 import PrePreencherBar from "./PrePreencherBar";
 import SugestaoIA from "./SugestaoIA";
 import Bandeira from "@/components/Bandeira";
-import DoacaoBanner from "@/components/DoacaoBanner";
+import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 
 type Estado = Record<number, { gols_a: number; gols_b: number }>;
 
@@ -188,6 +188,54 @@ export default function PalpitarForm({
     });
   }
 
+  async function removerPalpite(numero: number) {
+    // Remove do estado local
+    const novos = { ...palpitesRef.current };
+    delete novos[numero];
+    palpitesRef.current = novos;
+    setPalpites(novos);
+    if (timers.current[numero]) clearTimeout(timers.current[numero]);
+    // Remove do banco
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    const { error } = await supabase
+      .from("palpite")
+      .delete()
+      .eq("user_id", user.id)
+      .eq("jogo_numero", numero);
+    if (error) {
+      setErroSalvar(`Erro ao remover #${numero}: ${error.message}`);
+    }
+  }
+
+  async function removerTodos() {
+    if (
+      !confirm(
+        "Tem certeza? Vai apagar TODOS os seus palpites (em todos os bolões em que você está). Não dá pra desfazer.",
+      )
+    )
+      return;
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    const { error } = await supabase
+      .from("palpite")
+      .delete()
+      .eq("user_id", user.id);
+    if (error) {
+      setErroSalvar(`Erro ao apagar palpites: ${error.message}`);
+      return;
+    }
+    palpitesRef.current = {};
+    setPalpites({});
+    Object.keys(timers.current).forEach((n) => {
+      const t = timers.current[Number(n)];
+      if (t) clearTimeout(t);
+    });
+    timers.current = {};
+  }
+
   const porFase = jogos.reduce<Record<string, Jogo[]>>((acc, j) => {
     (acc[j.fase] ??= []).push(j);
     return acc;
@@ -308,24 +356,37 @@ export default function PalpitarForm({
                     <Bandeira iso={isoB} nome={j.time_b} size={28} />
                   </div>
                 </div>
-                <SugestaoIA
-                  jogoNumero={j.numero}
-                  timeA={j.time_a}
-                  timeB={j.time_b}
-                  isoA={isoA}
-                  isoB={isoB}
-                  dados={dados}
-                  iasDict={iasDict}
-                  paises={paises}
-                  onPick={(a, b) => aplicarSugestao(j.numero, a, b)}
-                />
+                <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                  <SugestaoIA
+                    jogoNumero={j.numero}
+                    timeA={j.time_a}
+                    timeB={j.time_b}
+                    isoA={isoA}
+                    isoB={isoB}
+                    dados={dados}
+                    iasDict={iasDict}
+                    paises={paises}
+                    onPick={(a, b) => aplicarSugestao(j.numero, a, b)}
+                  />
+                  {palp && (
+                    <button
+                      type="button"
+                      onClick={() => removerPalpite(j.numero)}
+                      className="btn-remover-palpite"
+                      title={`Remover palpite de ${j.time_a} × ${j.time_b}`}
+                      aria-label="Remover palpite"
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
               </div>
             );
           })}
         </div>
       ))}
 
-      {preenchidos > 0 && <DoacaoBanner variante="pos_palpitar" />}
+      {preenchidos > 0 && <ColaboracaoBanner variante="pos_palpitar" />}
 
       {/* ── FOOTER: resumo + ações ── */}
       <div className="palp-footer">
@@ -352,6 +413,20 @@ export default function PalpitarForm({
           <Link href={`/bolao/${bolaoSlug}#ranking`} className="btn primary">
             🏆 Ver ranking →
           </Link>
+          {preenchidos > 0 && (
+            <button
+              type="button"
+              onClick={removerTodos}
+              className="btn"
+              style={{
+                marginLeft: "auto",
+                color: "#C0392B",
+                borderColor: "#C0392B33",
+              }}
+            >
+              🗑 Apagar todos
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -163,10 +163,10 @@ export default async function BolaoPage({
             <strong>Como funciona</strong>
             <p>Placar exato vale 10, vencedor com saldo 7, vencedor 5, errado 0. Mata-mata 2×.</p>
           </Link>
-          <Link href="/doar" className="card hoverable">
+          <Link href="/colaborar" className="card hoverable">
             <div className="bolao-explica-emoji">💛</div>
             <strong>Apoie</strong>
-            <p>Tudo grátis, sem ads, sem casa de aposta. Doações cobrem as APIs das IAs.</p>
+            <p>Sem ads, sem casa de aposta. Colaborações cobrem as APIs das IAs.</p>
           </Link>
         </div>
       </section>

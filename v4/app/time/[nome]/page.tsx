@@ -10,7 +10,7 @@ import { resolverLocale } from "@/lib/locale-server";
 import Bandeira from "@/components/Bandeira";
 import IconeIA from "@/components/IconeIA";
 import JogoModal from "@/components/JogoModal";
-import DoacaoBanner from "@/components/DoacaoBanner";
+import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 import { scorePopularidade } from "@/lib/ias";
 
 export default async function TimePage({
@@ -152,7 +152,7 @@ export default async function TimePage({
         </div>
       )}
 
-      <DoacaoBanner variante="ranking" locale={locale} />
+      <ColaboracaoBanner variante="ranking" locale={locale} />
 
       <section style={{ marginTop: 32 }}>
         <h2 className="fase-titulo">{tx.jogosTit}</h2>

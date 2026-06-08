@@ -6,6 +6,7 @@ const config: NextConfig = {
     return [
       { source: "/ias", destination: "/ranking-ias", permanent: true },
       { source: "/serie-a", destination: "/ranking-ias", permanent: true },
+      { source: "/doar", destination: "/colaborar", permanent: true },
     ];
   },
 };
