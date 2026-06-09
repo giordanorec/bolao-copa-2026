@@ -138,11 +138,10 @@ export default function ComoFunciona() {
           <h3 style={{ fontSize: 20, marginBottom: 8 }}>Como o site se sustenta?</h3>
           <p style={{ color: "var(--fg-mid)" }}>
             Sem ads, sem cobrança, sem casa de aposta envolvida. Colaborações
-            voluntárias cobrem custo das APIs das IAs. Quem quiser ajudar, manda PIX pra{" "}
-            <code style={{ fontFamily: "var(--ff-mono)", fontSize: 14 }}>
-              grec@cin.ufpe.br
-            </code>
-            .
+            voluntárias cobrem custo das APIs das IAs.{" "}
+            <Link href="/colaborar" style={{ color: "var(--primary)", fontWeight: 700 }}>
+              Como colaborar →
+            </Link>
           </p>
         </div>
 

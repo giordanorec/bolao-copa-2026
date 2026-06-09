@@ -5,12 +5,32 @@ import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase-browser";
 
+// Hash SHA-256 do email admin. Comparação server-side acontece em /admin
+// — aqui é só pra decidir mostrar/esconder o link no menu.
+const ADMIN_EMAIL_HASH =
+  "3af6dac2945f81befdd61bfd0ca2562c72c98386d42a1301debb2466de0ad287";
+
+async function checarAdmin(email: string | null | undefined): Promise<boolean> {
+  if (!email) return false;
+  try {
+    const enc = new TextEncoder().encode(email.toLowerCase().trim());
+    const buf = await crypto.subtle.digest("SHA-256", enc);
+    const hex = Array.from(new Uint8Array(buf))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+    return hex === ADMIN_EMAIL_HASH;
+  } catch {
+    return false;
+  }
+}
+
 export default function UserWidget({
   onNavigate,
 }: { onNavigate?: () => void } = {}) {
   const router = useRouter();
   const pathname = usePathname();
   const [nome, setNome] = useState<string | null>(null);
+  const [admin, setAdmin] = useState(false);
   const [carregado, setCarregado] = useState(false);
   const [aberto, setAberto] = useState(false);
 
@@ -24,6 +44,7 @@ export default function UserWidget({
       if (!alive) return;
       if (!user) {
         setNome(null);
+        setAdmin(false);
         setCarregado(true);
         return;
       }
@@ -33,6 +54,9 @@ export default function UserWidget({
         .eq("id", user.id)
         .single();
       setNome((profile as { display_name?: string } | null)?.display_name ?? user.email ?? null);
+      const ehAdmin = await checarAdmin(user.email);
+      if (!alive) return;
+      setAdmin(ehAdmin);
       setCarregado(true);
     })();
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -150,6 +174,18 @@ export default function UserWidget({
           >
             👤 Meu perfil
           </Link>
+          {admin && (
+            <>
+              <hr style={{ border: 0, borderTop: "1px solid var(--line)", margin: "6px 0" }} />
+              <Link
+                href="/admin"
+                onClick={() => setAberto(false)}
+                style={{ ...menuItem, color: "var(--primary)" }}
+              >
+                🛡️ Painel admin
+              </Link>
+            </>
+          )}
           <hr style={{ border: 0, borderTop: "1px solid var(--line)", margin: "6px 0" }} />
           <button onClick={sair} style={{ ...menuItem, color: "var(--fg-muted)", width: "100%", textAlign: "left", background: "transparent", border: "none", cursor: "pointer", fontFamily: "var(--ff-sans)" }}>
             Sair

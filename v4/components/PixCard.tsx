@@ -10,6 +10,7 @@ export default function PixCard({
   chave: string;
 }) {
   const [copiado, setCopiado] = useState<"payload" | "chave" | null>(null);
+  const [revelar, setRevelar] = useState(false);
 
   async function copiar(texto: string, tipo: "payload" | "chave") {
     try {
@@ -50,7 +51,19 @@ export default function PixCard({
         <div className="pix-chave-bloco">
           <span className="pix-chave-label">Chave PIX (email)</span>
           <div className="pix-chave-row">
-            <code>{chave}</code>
+            {revelar ? (
+              <code>{chave}</code>
+            ) : (
+              <code aria-label="Chave PIX oculta">•••••••••••••••••••••</code>
+            )}
+            <button
+              type="button"
+              onClick={() => setRevelar((v) => !v)}
+              className="pix-mini-btn"
+              title={revelar ? "Ocultar chave" : "Mostrar chave"}
+            >
+              {revelar ? "🙈" : "👁️"}
+            </button>
             <button
               type="button"
               onClick={() => copiar(chave, "chave")}
