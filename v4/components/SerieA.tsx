@@ -185,39 +185,10 @@ export default async function SerieA({
                 >
                   <div className="ia-rank">{rank}º</div>
                   <div className="ia-mascote-wrap">
+                    <div className="ia-mascote-misterio">?</div>
                     <div
-                      style={{
-                        width: dim,
-                        height: dim,
-                        borderRadius: "50%",
-                        background:
-                          "radial-gradient(circle at 30% 30%, #4c1d95 0%, #1e1b4b 70%, #0f0d2e 100%)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: variante === "destaque" ? 120 : 72,
-                        fontWeight: 900,
-                        color: "#fff",
-                        textShadow: "0 4px 24px rgba(168,85,247,0.6)",
-                        border: "3px dashed rgba(168,85,247,0.5)",
-                      }}
-                    >
-                      ?
-                    </div>
-                    <div
-                      className="ia-marca-badge"
+                      className="ia-marca-badge ia-marca-badge-misterio"
                       title={tx.marca}
-                      style={{
-                        background: "#1e1b4b",
-                        color: "#a855f7",
-                        fontWeight: 900,
-                        fontSize: variante === "destaque" ? 24 : 18,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        width: variante === "destaque" ? 40 : 28,
-                        height: variante === "destaque" ? 40 : 28,
-                      }}
                     >
                       ?
                     </div>
