@@ -15,7 +15,7 @@ type IA = {
 
 const SLUGS_SERIE_A = [
   "chatgpt-5-thinking-web",
-  "claude-opus-4-7-web",
+  "claude-opus-4-8-web",
   "gemini-2-5-pro-web",
   "grok-4-heavy-web",
   "deepseek-r1-web",
@@ -28,7 +28,7 @@ const SLUGS_SERIE_A = [
 
 const APELIDOS: Record<string, { nome: string; modelo: string }> = {
   "chatgpt-5-thinking-web": { nome: "ChatGPT 5 Thinking", modelo: "GPT-5 Pro (Thinking)" },
-  "claude-opus-4-7-web": { nome: "Claude Opus 4.7", modelo: "Anthropic Opus 4.7" },
+  "claude-opus-4-8-web": { nome: "Claude Opus 4.8", modelo: "Anthropic Opus 4.8" },
   "gemini-2-5-pro-web": { nome: "Gemini 2.5 Pro", modelo: "Google Gemini 2.5 Pro" },
   "grok-4-heavy-web": { nome: "Grok 4 Heavy", modelo: "xAI Grok 4 Heavy" },
   "deepseek-r1-web": { nome: "DeepSeek R1", modelo: "DeepSeek R1 Reasoning" },

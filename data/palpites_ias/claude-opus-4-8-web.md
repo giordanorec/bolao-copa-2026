@@ -1,11 +1,11 @@
-<!-- ia: Claude Opus 4.7 (via Web) -->
-<!-- slug: claude-opus-4-7-web -->
+<!-- ia: Claude Opus 4.8 (via Web) -->
+<!-- slug: claude-opus-4-8-web -->
 <!-- tier: 1-web -->
 <!-- modo: web -->
 <!-- url: https://claude.ai -->
 <!-- status: aguardando palpite -->
 
-# Palpite — Claude Opus 4.7 (via Web)
+# Palpite — Claude Opus 4.8 (via Web)
 
 > **Placeholder Web Manual.** Esta variante existe pra captar a versão da
 > IA com search nativo da interface. A versão sem sufixo `-web` será

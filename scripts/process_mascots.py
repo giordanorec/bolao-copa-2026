@@ -3,11 +3,11 @@
 Uso:
     .venv/Scripts/python.exe scripts/process_mascots.py
 """
+
 from __future__ import annotations
 
-from pathlib import Path
-
 from collections import deque
+from pathlib import Path
 
 from PIL import Image, ImageDraw  # noqa: F401 (kept for compatibility)
 
@@ -18,7 +18,7 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 FILE_TO_SLUG = {
     "chatgpt.png": "chatgpt-5-thinking-web",
-    "claude.png": "claude-opus-4-7-web",
+    "claude.png": "claude-opus-4-8-web",
     "gemini.png": "gemini-2-5-pro-web",
     "grok.png": "grok-4-heavy-web",
     "deepseek.png": "deepseek-r1-web",
@@ -122,7 +122,7 @@ def chroma_remove(img: Image.Image) -> Image.Image:
         bg_r = sum(p[0] for p in greens) / len(greens)
         bg_g = sum(p[1] for p in greens) / len(greens)
         bg_b = sum(p[2] for p in greens) / len(greens)
-        thresh_sq = 42 ** 2
+        thresh_sq = 42**2
         orig_px = original.load()
         for y in range(h):
             for x in range(w):

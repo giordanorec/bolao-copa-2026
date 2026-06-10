@@ -170,7 +170,7 @@ Devolva **somente** a tabela abaixo, completa, na **mesma ordem**, preenchendo *
 
 Exemplos válidos:
 - `<!-- ia: ChatGPT 5 Pro; data: 2026-06-08; modo: Deep Research -->`
-- `<!-- ia: Claude Opus 4.7; data: 2026-06-08; modo: Extended Thinking + Web Search -->`
+- `<!-- ia: Claude Opus 4.8; data: 2026-06-08; modo: Extended Thinking + Web Search -->`
 - `<!-- ia: Gemini 2.5 Pro; data: 2026-06-08; modo: Deep Research -->`
 - `<!-- ia: Grok 4 Heavy; data: 2026-06-08; modo: DeepSearch + Think -->`
 

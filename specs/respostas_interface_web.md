@@ -5,7 +5,7 @@ Bolao da copa, estao aqui as respostas das IAs pela interface web. Nem sempre re
   ├─────┼────────────┼───────────┼──────────────┼────────────────────────────────┼───────────────────────────────────────────────┤
   │ 1   │ ChatGPT    │ 5 Pro     │ OpenAI       │ chatgpt.com (modo Pro)         │ data/palpites_ias/chatgpt-5-thinking-web.md   │
   ├─────┼────────────┼───────────┼──────────────┼────────────────────────────────┼───────────────────────────────────────────────┤
-  │ 2   │ Claude     │ Opus 4.7  │ Anthropic    │ claude.ai (selecionar Opus 4.7 │ data/palpites_ias/claude-opus-4-7-web.md      │
+  │ 2   │ Claude     │ Opus 4.8  │ Anthropic    │ claude.ai (selecionar Opus 4.8 │ data/palpites_ias/claude-opus-4-8-web.md      │
   │     │            │           │              │  + Web Search)                 │                                               │
   ├─────┼────────────┼───────────┼──────────────┼────────────────────────────────┼───────────────────────────────────────────────┤
   │ 3   │ Gemini     │ 2.5 Pro   │ Google       │ gemini.google.com (selecionar  │ data/palpites_ias/gemini-2-5-pro-web.md       │
@@ -29,7 +29,7 @@ Bolao da copa, estao aqui as respostas das IAs pela interface web. Nem sempre re
   │ 9   │ Meta AI    │ Llama 4   │ Meta · Menlo │ meta.ai (login Facebook/IG)    │ data/palpites_ias/meta-llama-4-web.md         │
   │     │            │           │  Park        │                                │                                               │
   ├─────┼────────────┼───────────┼──────────────┼────────────────────────────────┼───────────────────────────────────────────────┤
-  │ 10  │ Qwen       │ 3 Max     │ Alibaba ·    │ chat.qwen.ai (selecionar       │ data/palpites_ias/qwen-3-max-web.md      
+  │ 10  │ Qwen       │ 3 Max     │ Alibaba ·    │ chat.qwen.ai (selecionar       │ data/palpites_ias/qwen-3-max-web.md
 
 
 
@@ -775,6 +775,3 @@ Qwen
 | 70   | J     | Sáb 27/06 | 23:00      | Dallas           | Jordânia           | 0      | 1      | Argentina          |
 | 71   | K     | Sáb 27/06 | 20:30      | Miami            | Colômbia           | 1      | 0      | Portugal           |
 | 72   | K     | Sáb 27/06 | 20:30      | Atlanta          | Congo (RD)         | 0      | 1      | Uzbequistão        |
-
-
-

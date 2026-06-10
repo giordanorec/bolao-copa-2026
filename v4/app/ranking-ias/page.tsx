@@ -17,7 +17,7 @@ type IA = { slug: string; nome: string };
 
 const SLUGS_SERIE_A = new Set([
   "chatgpt-5-thinking-web",
-  "claude-opus-4-7-web",
+  "claude-opus-4-8-web",
   "gemini-2-5-pro-web",
   "grok-4-heavy-web",
   "deepseek-r1-web",
