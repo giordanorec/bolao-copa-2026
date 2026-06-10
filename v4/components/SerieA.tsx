@@ -40,7 +40,43 @@ const APELIDOS: Record<string, { nome: string; modelo: string }> = {
   "meta-llama-4-web": { nome: "Meta Llama 4", modelo: "Llama 4 Maverick" },
   "le-chat-mistral-web": { nome: "Le Chat Mistral", modelo: "Mistral Large 2" },
   "qwen-3-max-web": { nome: "Qwen 3 Max", modelo: "Alibaba Qwen 3 Max" },
-  [SLUG_MISTERIO]: { nome: "?", modelo: "???" },
+};
+
+const MISTERIO_TEXTOS: Record<Locale, {
+  nome: string;
+  marca: string;
+  modelo: string;
+  small: string;
+  aria: string;
+}> = {
+  pt: {
+    nome: "A 11ª está chegando…",
+    marca: "Mistério",
+    modelo: "Acaba de ser lançada. Você vai querer ver.",
+    small: "Revelação iminente · fique de olho",
+    aria: "Membro misterioso da Série A — revelação em breve",
+  },
+  en: {
+    nome: "The 11th is coming…",
+    marca: "Mystery",
+    modelo: "Just launched. You'll want to see this.",
+    small: "Reveal imminent · stay tuned",
+    aria: "Mystery member of the Premier League — reveal coming soon",
+  },
+  es: {
+    nome: "La 11ª está por llegar…",
+    marca: "Misterio",
+    modelo: "Recién lanzada. Vas a querer verlo.",
+    small: "Revelación inminente · atentos",
+    aria: "Miembro misterioso de la Liga — revelación próxima",
+  },
+  fr: {
+    nome: "La 11ᵉ arrive…",
+    marca: "Mystère",
+    modelo: "Tout juste lancée. Vous voudrez voir ça.",
+    small: "Révélation imminente · restez à l'affût",
+    aria: "Membre mystère de la Ligue — révélation à venir",
+  },
 };
 
 async function carregarSerieA(): Promise<IA[]> {
@@ -138,15 +174,16 @@ export default async function SerieA({
             const dim = variante === "destaque" ? 200 : 120;
 
             if (isMisterio) {
+              const tx = MISTERIO_TEXTOS[locale];
               return (
                 <div
                   key={ia.slug}
                   className="ia-card"
                   style={{ cursor: "default" }}
-                  aria-label="Membro misterioso da Série A — será revelado em breve"
-                  title="Membro misterioso — em breve"
+                  aria-label={tx.aria}
+                  title={tx.aria}
                 >
-                  <div className="ia-rank">?</div>
+                  <div className="ia-rank">{rank}º</div>
                   <div className="ia-mascote-wrap">
                     <div
                       style={{
@@ -169,7 +206,7 @@ export default async function SerieA({
                     </div>
                     <div
                       className="ia-marca-badge"
-                      title="Mistério"
+                      title={tx.marca}
                       style={{
                         background: "#1e1b4b",
                         color: "#a855f7",
@@ -186,17 +223,17 @@ export default async function SerieA({
                     </div>
                   </div>
                   <div className="ia-card-body">
-                    <h3>?</h3>
+                    <h3>{tx.nome}</h3>
                     <p className="ia-modelo">
-                      <span style={{ color: "#a855f7", fontWeight: 800 }}>?</span>
+                      <span style={{ color: "#a855f7", fontWeight: 800 }}>{tx.marca}</span>
                       <span style={{ opacity: 0.5 }}> · </span>
-                      {modelo}
+                      {tx.modelo}
                     </p>
                     <div className="ia-pontos">
-                      <strong>?</strong>
+                      <strong>{ia.pontos}</strong>
                       <span>pts</span>
                     </div>
-                    <small>? {sufixoJogos} · ? {sufixoExatos}</small>
+                    <small>{tx.small}</small>
                   </div>
                 </div>
               );
