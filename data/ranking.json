@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-06-07T00:12:02-03:00",
+  "atualizado_em": "2026-06-10T06:37:33-03:00",
   "ias": [
     {
       "slug": "chatgpt-5",
@@ -29,8 +29,8 @@
       "rank": 1
     },
     {
-      "slug": "claude-opus-4-7-web",
-      "nome_display": "Claude Opus 4.7 (via Web)",
+      "slug": "chatgpt-5-thinking",
+      "nome_display": "ChatGPT 5 Thinking",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,
@@ -38,8 +38,8 @@
       "rank": 1
     },
     {
-      "slug": "chatgpt-5-thinking",
-      "nome_display": "ChatGPT 5 Thinking",
+      "slug": "claude-fable-5",
+      "nome_display": "Claude Fable 5",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,
@@ -706,6 +706,15 @@
     {
       "slug": "claude-haiku-4-5-web",
       "nome_display": "Claude Haiku 4.5 (via Web)",
+      "pontos": 0,
+      "placares_exatos": 0,
+      "vencedores_acertados": 0,
+      "jogos_palpitados": 0,
+      "rank": 1
+    },
+    {
+      "slug": "claude-opus-4-8-web",
+      "nome_display": "Claude Opus 4.8 (via Web)",
       "pontos": 0,
       "placares_exatos": 0,
       "vencedores_acertados": 0,

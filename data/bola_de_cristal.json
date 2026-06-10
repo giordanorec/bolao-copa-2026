@@ -2,12 +2,13 @@
   "1": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 38,
+    "votos": 39,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-4-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
@@ -255,12 +256,13 @@
   "8": {
     "gols_a": 0,
     "gols_b": 2,
-    "votos": 43,
+    "votos": 44,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-haiku-4-5",
       "claude-opus-4-5",
@@ -344,11 +346,12 @@
   "10": {
     "gols_a": 3,
     "gols_b": 0,
-    "votos": 38,
+    "votos": 39,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-haiku-4-5",
       "claude-opus-4-7",
@@ -389,11 +392,12 @@
   "11": {
     "gols_a": 2,
     "gols_b": 1,
-    "votos": 36,
+    "votos": 37,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
@@ -432,10 +436,11 @@
   "12": {
     "gols_a": 1,
     "gols_b": 0,
-    "votos": 32,
+    "votos": 33,
     "fonte_ias": [
       "chatgpt-5-mini",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-4-5",
       "claude-opus-4-5",
       "claude-sonnet-4-6",
@@ -471,11 +476,12 @@
   "13": {
     "gols_a": 0,
     "gols_b": 2,
-    "votos": 35,
+    "votos": 36,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
@@ -513,12 +519,13 @@
   "14": {
     "gols_a": 3,
     "gols_b": 0,
-    "votos": 33,
+    "votos": 34,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-haiku-4-5",
       "claude-opus-4-5",
@@ -553,11 +560,12 @@
   "15": {
     "gols_a": 1,
     "gols_b": 0,
-    "votos": 24,
+    "votos": 25,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
@@ -682,12 +690,13 @@
   "19": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 37,
+    "votos": 38,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
@@ -872,23 +881,24 @@
   },
   "25": {
     "gols_a": 1,
-    "gols_b": 1,
-    "votos": 14,
+    "gols_b": 0,
+    "votos": 15,
     "fonte_ias": [
-      "claude-haiku-3-5",
-      "claude-haiku-4-5",
-      "claude-opus-4-7",
-      "codestral",
-      "cohere-command-r",
-      "cohere-command-r-plus",
-      "gemma-3-12b",
-      "grok-4-fast",
-      "le-chat-mistral",
-      "ministral-8b",
-      "mistral-small-3",
-      "mixtral-8x22b",
-      "qwen-2-5-72b",
-      "qwen-3-235b"
+      "chatgpt-5-mini",
+      "chatgpt-5-nano",
+      "chatgpt-5-thinking",
+      "claude-fable-5",
+      "claude-sonnet-4-6",
+      "deepseek-v3-1",
+      "gemini-2-5-flash-lite",
+      "gpt-4o",
+      "grok-4",
+      "grok-4-heavy",
+      "llama-3-1-70b",
+      "llama-3-3-70b",
+      "llama-4-maverick",
+      "meta-llama-4",
+      "perplexity-sonar-large"
     ]
   },
   "26": {
@@ -921,11 +931,12 @@
   "27": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 26,
+    "votos": 27,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
@@ -977,11 +988,12 @@
   "29": {
     "gols_a": 3,
     "gols_b": 0,
-    "votos": 35,
+    "votos": 36,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-haiku-4-5",
       "claude-opus-4-5",
@@ -1019,10 +1031,11 @@
   "30": {
     "gols_a": 0,
     "gols_b": 1,
-    "votos": 23,
+    "votos": 24,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
+      "claude-fable-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
       "claude-sonnet-4-6",
@@ -1049,9 +1062,10 @@
   "31": {
     "gols_a": 1,
     "gols_b": 0,
-    "votos": 15,
+    "votos": 16,
     "fonte_ias": [
       "chatgpt-5",
+      "claude-fable-5",
       "claude-opus-4-7",
       "codestral",
       "cohere-command-r",
@@ -1098,9 +1112,10 @@
   "33": {
     "gols_a": 2,
     "gols_b": 1,
-    "votos": 24,
+    "votos": 25,
     "fonte_ias": [
       "chatgpt-5-nano",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-haiku-4-5",
       "claude-opus-4-5",
@@ -1129,11 +1144,12 @@
   "34": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 24,
+    "votos": 25,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-opus-4-7",
       "claude-sonnet-4-6",
       "cohere-command-r",
@@ -1160,10 +1176,11 @@
   "35": {
     "gols_a": 2,
     "gols_b": 1,
-    "votos": 21,
+    "votos": 22,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-nano",
+      "claude-fable-5",
       "claude-haiku-4-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
@@ -1188,10 +1205,11 @@
   "36": {
     "gols_a": 0,
     "gols_b": 1,
-    "votos": 19,
+    "votos": 20,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
+      "claude-fable-5",
       "claude-opus-4-7",
       "claude-sonnet-4-6",
       "codestral",
@@ -1214,12 +1232,13 @@
   "37": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 30,
+    "votos": 31,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
@@ -1341,9 +1360,10 @@
   "41": {
     "gols_a": 2,
     "gols_b": 1,
-    "votos": 22,
+    "votos": 23,
     "fonte_ias": [
       "chatgpt-5-mini",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
@@ -1456,11 +1476,12 @@
   "45": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 27,
+    "votos": 28,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
@@ -1530,11 +1551,12 @@
   "47": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 34,
+    "votos": 35,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-haiku-4-5",
       "claude-opus-4-5",
@@ -1571,10 +1593,11 @@
   "48": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 25,
+    "votos": 26,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-4-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
@@ -1642,11 +1665,12 @@
   "50": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 27,
+    "votos": 28,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
@@ -1676,10 +1700,11 @@
   "51": {
     "gols_a": 1,
     "gols_b": 1,
-    "votos": 27,
+    "votos": 28,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
@@ -1791,11 +1816,12 @@
   "55": {
     "gols_a": 0,
     "gols_b": 2,
-    "votos": 27,
+    "votos": 28,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
@@ -1961,11 +1987,12 @@
   "60": {
     "gols_a": 1,
     "gols_b": 0,
-    "votos": 22,
+    "votos": 23,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-nano",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
       "claude-sonnet-4-6",
@@ -2020,10 +2047,11 @@
   "62": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 26,
+    "votos": 27,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
@@ -2053,9 +2081,10 @@
   "63": {
     "gols_a": 1,
     "gols_b": 1,
-    "votos": 21,
+    "votos": 22,
     "fonte_ias": [
       "chatgpt-5",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
@@ -2081,10 +2110,11 @@
   "64": {
     "gols_a": 0,
     "gols_b": 2,
-    "votos": 26,
+    "votos": 27,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-3-5",
       "claude-haiku-4-5",
       "claude-opus-4-5",
@@ -2142,10 +2172,11 @@
   "66": {
     "gols_a": 1,
     "gols_b": 1,
-    "votos": 21,
+    "votos": 22,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-opus-4-7",
       "claude-sonnet-4-5",
       "claude-sonnet-4-6",
@@ -2284,10 +2315,11 @@
   "71": {
     "gols_a": 1,
     "gols_b": 1,
-    "votos": 18,
+    "votos": 19,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-thinking",
+      "claude-fable-5",
       "claude-haiku-4-5",
       "claude-opus-4-5",
       "claude-opus-4-7",
