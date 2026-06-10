@@ -213,7 +213,7 @@ export default async function SerieA({
             return (
               <a
                 key={ia.slug}
-                href={`/ranking-ias#${encodeURIComponent(ia.slug)}`}
+                href={`/ia/${encodeURIComponent(ia.slug)}`}
                 className="ia-card"
               >
                 <div className="ia-rank">{rank}º</div>

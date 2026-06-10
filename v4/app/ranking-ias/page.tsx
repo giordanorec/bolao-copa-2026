@@ -13,7 +13,13 @@ import {
   type FamiliaIA,
 } from "@/lib/ias";
 
-type IA = { slug: string; nome: string };
+type IA = {
+  slug: string;
+  nome: string;
+  pontos: number;
+  placares_exatos: number;
+  jogos_palpitados: number;
+};
 
 const SLUGS_SERIE_A = new Set([
   "chatgpt-5-thinking-web",
@@ -34,9 +40,18 @@ async function carregarIAs(): Promise<IA[]> {
     const raw = await fs.readFile(filePath, "utf-8");
     const data = JSON.parse(raw);
     return (data.ias ?? []).map(
-      (ia: { slug?: string; nome_display?: string }) => ({
+      (ia: {
+        slug?: string;
+        nome_display?: string;
+        pontos?: number;
+        placares_exatos?: number;
+        jogos_palpitados?: number;
+      }) => ({
         slug: ia.slug ?? "",
         nome: ia.nome_display ?? ia.slug ?? "",
+        pontos: ia.pontos ?? 0,
+        placares_exatos: ia.placares_exatos ?? 0,
+        jogos_palpitados: ia.jogos_palpitados ?? 0,
       }),
     );
   } catch {
@@ -168,12 +183,58 @@ export default async function IAsPage() {
               </div>
               <div className="ias-mini-grid">
                 {lista.map((ia) => (
-                  <div key={ia.slug} className="ia-mini" id={ia.slug}>
+                  <Link
+                    key={ia.slug}
+                    href={`/ia/${encodeURIComponent(ia.slug)}`}
+                    className="ia-mini"
+                    id={ia.slug}
+                  >
                     <IconeIA slug={ia.slug} size={36} />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <strong>{ia.nome}</strong>
+                      <small
+                        style={{
+                          display: "block",
+                          fontSize: 11,
+                          color: "var(--fg-muted)",
+                          fontFamily: "var(--ff-mono)",
+                          marginTop: 2,
+                        }}
+                      >
+                        {ia.jogos_palpitados} {en ? "predictions" : es ? "pronósticos" : fr ? "pronostics" : "palpites"}
+                      </small>
                     </div>
-                  </div>
+                    <div
+                      style={{
+                        textAlign: "right",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <strong
+                        style={{
+                          fontFamily: "var(--ff-display)",
+                          fontSize: 22,
+                          color: "var(--secondary)",
+                          lineHeight: 1,
+                        }}
+                      >
+                        {ia.pontos}
+                      </strong>
+                      <span
+                        style={{
+                          display: "block",
+                          fontFamily: "var(--ff-mono)",
+                          fontSize: 10,
+                          color: "var(--fg-muted)",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.08em",
+                          marginTop: 1,
+                        }}
+                      >
+                        pts
+                      </span>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
