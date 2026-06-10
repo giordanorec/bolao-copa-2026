@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SerieA from "@/components/SerieA";
 import HeroCTAs from "@/components/HeroCTAs";
+import JogosDoDia from "@/components/JogosDoDia";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 
@@ -138,6 +139,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <JogosDoDia locale={locale} max={2} />
 
       <SerieA locale={locale} variante="destaque" />
 
