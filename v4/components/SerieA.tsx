@@ -13,6 +13,8 @@ type IA = {
   rank: number;
 };
 
+const SLUG_MISTERIO = "misterio";
+
 const SLUGS_SERIE_A = [
   "chatgpt-5-thinking-web",
   "claude-opus-4-8-web",
@@ -24,6 +26,7 @@ const SLUGS_SERIE_A = [
   "meta-llama-4-web",
   "le-chat-mistral-web",
   "qwen-3-max-web",
+  SLUG_MISTERIO,
 ];
 
 const APELIDOS: Record<string, { nome: string; modelo: string }> = {
@@ -37,6 +40,7 @@ const APELIDOS: Record<string, { nome: string; modelo: string }> = {
   "meta-llama-4-web": { nome: "Meta Llama 4", modelo: "Llama 4 Maverick" },
   "le-chat-mistral-web": { nome: "Le Chat Mistral", modelo: "Mistral Large 2" },
   "qwen-3-max-web": { nome: "Qwen 3 Max", modelo: "Alibaba Qwen 3 Max" },
+  [SLUG_MISTERIO]: { nome: "?", modelo: "???" },
 };
 
 async function carregarSerieA(): Promise<IA[]> {
@@ -46,11 +50,23 @@ async function carregarSerieA(): Promise<IA[]> {
     const dados = JSON.parse(raw) as { ias: IA[] };
     const ias = dados.ias.filter((i) => SLUGS_SERIE_A.includes(i.slug));
     // ordena por: pontos desc, depois popularidade asc (não alfabético)
-    return ias.sort(
+    ias.sort(
       (a, b) =>
         b.pontos - a.pontos ||
         scorePopularidade(a.slug) - scorePopularidade(b.slug),
     );
+    // membro misterioso sempre por último, sem entrada real no ranking
+    if (!ias.find((i) => i.slug === SLUG_MISTERIO)) {
+      ias.push({
+        slug: SLUG_MISTERIO,
+        nome_display: "?",
+        pontos: 0,
+        placares_exatos: 0,
+        jogos_palpitados: 0,
+        rank: ias.length + 1,
+      });
+    }
+    return ias;
   } catch {
     return [];
   }
@@ -118,6 +134,74 @@ export default async function SerieA({
             const modelo = ap?.modelo ?? "";
             const marca = marcaDe(ia.slug);
             const rank = ranks[i];
+            const isMisterio = ia.slug === SLUG_MISTERIO;
+            const dim = variante === "destaque" ? 200 : 120;
+
+            if (isMisterio) {
+              return (
+                <div
+                  key={ia.slug}
+                  className="ia-card"
+                  style={{ cursor: "default" }}
+                  aria-label="Membro misterioso da Série A — será revelado em breve"
+                  title="Membro misterioso — em breve"
+                >
+                  <div className="ia-rank">?</div>
+                  <div className="ia-mascote-wrap">
+                    <div
+                      style={{
+                        width: dim,
+                        height: dim,
+                        borderRadius: "50%",
+                        background:
+                          "radial-gradient(circle at 30% 30%, #4c1d95 0%, #1e1b4b 70%, #0f0d2e 100%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: variante === "destaque" ? 120 : 72,
+                        fontWeight: 900,
+                        color: "#fff",
+                        textShadow: "0 4px 24px rgba(168,85,247,0.6)",
+                        border: "3px dashed rgba(168,85,247,0.5)",
+                      }}
+                    >
+                      ?
+                    </div>
+                    <div
+                      className="ia-marca-badge"
+                      title="Mistério"
+                      style={{
+                        background: "#1e1b4b",
+                        color: "#a855f7",
+                        fontWeight: 900,
+                        fontSize: variante === "destaque" ? 24 : 18,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: variante === "destaque" ? 40 : 28,
+                        height: variante === "destaque" ? 40 : 28,
+                      }}
+                    >
+                      ?
+                    </div>
+                  </div>
+                  <div className="ia-card-body">
+                    <h3>?</h3>
+                    <p className="ia-modelo">
+                      <span style={{ color: "#a855f7", fontWeight: 800 }}>?</span>
+                      <span style={{ opacity: 0.5 }}> · </span>
+                      {modelo}
+                    </p>
+                    <div className="ia-pontos">
+                      <strong>?</strong>
+                      <span>pts</span>
+                    </div>
+                    <small>? {sufixoJogos} · ? {sufixoExatos}</small>
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <a
                 key={ia.slug}
@@ -130,8 +214,8 @@ export default async function SerieA({
                   <img
                     src={`/mascots/${ia.slug}.png`}
                     alt={`Mascote ${nome}`}
-                    width={variante === "destaque" ? 200 : 120}
-                    height={variante === "destaque" ? 200 : 120}
+                    width={dim}
+                    height={dim}
                     loading="lazy"
                   />
                   <div className="ia-marca-badge" title={marca.nome}>

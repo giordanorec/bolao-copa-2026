@@ -133,6 +133,13 @@
       "family": "Claude Opus",
       "popularidade": 78
     },
+    "claude-fable-5": {
+      "provider": "anthropic",
+      "icon": "claude-color",
+      "label": "Claude Fable 5",
+      "family": "Claude Fable",
+      "popularidade": 90
+    },
     "claude-sonnet-4-6": {
       "provider": "anthropic",
       "icon": "claude-color",
