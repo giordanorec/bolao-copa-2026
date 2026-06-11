@@ -1256,8 +1256,11 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
 }
 
 @media (max-width: 720px) {
-    .ranking-table thead th:nth-child(5), .ranking-table tbody td:nth-child(5),
-    .ranking-table thead th:nth-child(6), .ranking-table tbody td:nth-child(6) { display: none; }
+    /* Tabela compacta em mobile. NUNCA esconder coluna de Pontos.
+       Scroll horizontal (.table-scroll) cuida do overflow. */
+    .ranking-table tbody td { padding: 12px 10px; }
+    .ranking-table thead th { padding: 12px 10px; font-size: 11px; }
+    .ranking-table .pts { font-size: 18px; }
     .hero { padding: 60px 0 40px; }
     .hero-emojis { font-size: 42px; }
     .ias-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
