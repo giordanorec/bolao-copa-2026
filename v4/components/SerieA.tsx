@@ -13,7 +13,7 @@ type IA = {
   rank: number;
 };
 
-const SLUG_MISTERIO = "misterio";
+const SLUG_FABLE = "claude-fable-5";
 
 const SLUGS_SERIE_A = [
   "chatgpt-5-thinking-web",
@@ -26,7 +26,7 @@ const SLUGS_SERIE_A = [
   "meta-llama-4-web",
   "le-chat-mistral-web",
   "qwen-3-max-web",
-  SLUG_MISTERIO,
+  SLUG_FABLE,
 ];
 
 const APELIDOS: Record<string, { nome: string; modelo: string }> = {
@@ -40,43 +40,7 @@ const APELIDOS: Record<string, { nome: string; modelo: string }> = {
   "meta-llama-4-web": { nome: "Meta Llama 4", modelo: "Llama 4 Maverick" },
   "le-chat-mistral-web": { nome: "Le Chat Mistral", modelo: "Mistral Large 2" },
   "qwen-3-max-web": { nome: "Qwen 3 Max", modelo: "Alibaba Qwen 3 Max" },
-};
-
-const MISTERIO_TEXTOS: Record<Locale, {
-  nome: string;
-  marca: string;
-  modelo: string;
-  small: string;
-  aria: string;
-}> = {
-  pt: {
-    nome: "A 11ª está chegando…",
-    marca: "Mistério",
-    modelo: "Acaba de ser lançada. Você vai querer ver.",
-    small: "Revelação iminente · fique de olho",
-    aria: "Membro misterioso da Série A — revelação em breve",
-  },
-  en: {
-    nome: "The 11th is coming…",
-    marca: "Mystery",
-    modelo: "Just launched. You'll want to see this.",
-    small: "Reveal imminent · stay tuned",
-    aria: "Mystery member of the Premier League — reveal coming soon",
-  },
-  es: {
-    nome: "La 11ª está por llegar…",
-    marca: "Misterio",
-    modelo: "Recién lanzada. Vas a querer verlo.",
-    small: "Revelación inminente · atentos",
-    aria: "Miembro misterioso de la Liga — revelación próxima",
-  },
-  fr: {
-    nome: "La 11ᵉ arrive…",
-    marca: "Mystère",
-    modelo: "Tout juste lancée. Vous voudrez voir ça.",
-    small: "Révélation imminente · restez à l'affût",
-    aria: "Membre mystère de la Ligue — révélation à venir",
-  },
+  [SLUG_FABLE]: { nome: "Anthropic Fable", modelo: "Claude Fable 5 · novo" },
 };
 
 // Pra cada slug "-web" da Série A, qual o irmão sem "-web" pra fallback
@@ -106,7 +70,6 @@ async function carregarSerieA(): Promise<IA[]> {
     // se o slug oficial não tem palpites apurados, usa do irmão sem "-web"
     const ias: IA[] = [];
     for (const slug of SLUGS_SERIE_A) {
-      if (slug === SLUG_MISTERIO) continue;
       const oficial = porSlug.get(slug);
       const fallback = FALLBACK_NAO_WEB[slug]
         ? porSlug.get(FALLBACK_NAO_WEB[slug])
@@ -130,15 +93,6 @@ async function carregarSerieA(): Promise<IA[]> {
         scorePopularidade(a.slug) - scorePopularidade(b.slug),
     );
 
-    // membro misterioso sempre por último, sem entrada real no ranking
-    ias.push({
-      slug: SLUG_MISTERIO,
-      nome_display: "?",
-      pontos: 0,
-      placares_exatos: 0,
-      jogos_palpitados: 0,
-      rank: ias.length + 1,
-    });
     return ias;
   } catch {
     return [];
@@ -207,51 +161,14 @@ export default async function SerieA({
             const modelo = ap?.modelo ?? "";
             const marca = marcaDe(ia.slug);
             const rank = ranks[i];
-            const isMisterio = ia.slug === SLUG_MISTERIO;
+            const isFable = ia.slug === SLUG_FABLE;
             const dim = variante === "destaque" ? 200 : 120;
-
-            if (isMisterio) {
-              const tx = MISTERIO_TEXTOS[locale];
-              return (
-                <div
-                  key={ia.slug}
-                  className="ia-card"
-                  style={{ cursor: "default" }}
-                  aria-label={tx.aria}
-                  title={tx.aria}
-                >
-                  <div className="ia-rank">{rank}º</div>
-                  <div className="ia-mascote-wrap">
-                    <div className="ia-mascote-misterio">?</div>
-                    <div
-                      className="ia-marca-badge ia-marca-badge-misterio"
-                      title={tx.marca}
-                    >
-                      ?
-                    </div>
-                  </div>
-                  <div className="ia-card-body">
-                    <h3>{tx.nome}</h3>
-                    <p className="ia-modelo">
-                      <span style={{ color: "#a855f7", fontWeight: 800 }}>{tx.marca}</span>
-                      <span style={{ opacity: 0.5 }}> · </span>
-                      {tx.modelo}
-                    </p>
-                    <div className="ia-pontos">
-                      <strong>{ia.pontos}</strong>
-                      <span>pts</span>
-                    </div>
-                    <small>{tx.small}</small>
-                  </div>
-                </div>
-              );
-            }
 
             return (
               <a
                 key={ia.slug}
                 href={`/ia/${encodeURIComponent(ia.slug)}`}
-                className="ia-card"
+                className={`ia-card${isFable ? " ia-card-fable" : ""}`}
               >
                 <div className="ia-rank">{rank}º</div>
                 <div className="ia-mascote-wrap">
