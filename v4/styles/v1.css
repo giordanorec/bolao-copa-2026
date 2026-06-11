@@ -1256,11 +1256,18 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
 }
 
 @media (max-width: 720px) {
-    /* Tabela compacta em mobile. NUNCA esconder coluna de Pontos.
-       Scroll horizontal (.table-scroll) cuida do overflow. */
+    /* Tabela compacta em mobile. NUNCA esconder coluna de Pontos. */
     .ranking-table tbody td { padding: 12px 10px; }
     .ranking-table thead th { padding: 12px 10px; font-size: 11px; }
     .ranking-table .pts { font-size: 18px; }
+    /* Defensivo: garante que coluna Pontos (sempre a ultima) e # (primeira)
+       fiquem visiveis mesmo se alguma regra legada tentar esconder. */
+    .ranking-table thead th:last-child,
+    .ranking-table tbody td:last-child,
+    .ranking-table thead th:first-child,
+    .ranking-table tbody td:first-child,
+    .ranking-table .pts,
+    .ranking-table .pos { display: table-cell !important; }
     .hero { padding: 60px 0 40px; }
     .hero-emojis { font-size: 42px; }
     .ias-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
