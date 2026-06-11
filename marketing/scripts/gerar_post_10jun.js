@@ -299,16 +299,10 @@ function htmlPersonalidade(p, n) {
         align-self: center;
         margin-top: 16px;
       }
-      .emoji-topo {
-        font-size: 56px;
-        text-align: center;
-        line-height: 1;
-        margin-top: 14px;
-      }
       .mascote-wrap {
         position: relative;
-        width: 320px; height: 320px;
-        margin: 6px auto 4px;
+        width: 340px; height: 340px;
+        margin: 24px auto 4px;
         display: flex; align-items: center; justify-content: center;
       }
       .mascote-wrap .glow {
@@ -320,7 +314,7 @@ function htmlPersonalidade(p, n) {
       }
       .mascote-wrap img.mascote {
         position: relative; z-index: 1;
-        width: 300px; height: 300px;
+        width: 320px; height: 320px;
         object-fit: contain;
       }
       .mascote-wrap .badge-logo {
@@ -372,7 +366,6 @@ function htmlPersonalidade(p, n) {
         ${brandMini()}
         <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
           <div class="pip">${n} DE 10</div>
-          <div class="emoji-topo">${p.emoji}</div>
           <div class="mascote-wrap">
             <div class="glow"></div>
             ${mascotB64 ? `<img class="mascote" src="data:image/png;base64,${mascotB64}" />` : ""}
