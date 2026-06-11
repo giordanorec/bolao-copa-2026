@@ -227,6 +227,14 @@ def main() -> None:
         n = len(json.loads(dst.read_text(encoding="utf-8")))
         print(f"bola de cristal: {n} jogos -> {dst.name}")
 
+    # 3b. resultados.json (jogos ja encerrados com placar oficial)
+    src_resultados = WEB_DATA / "resultados.json"
+    if src_resultados.is_file():
+        dst = V4_PUB / "resultados.json"
+        shutil.copy(src_resultados, dst)
+        n = len(json.loads(dst.read_text(encoding="utf-8")))
+        print(f"resultados: {n} jogos -> {dst.name}")
+
     # 4. palpites_por_jogo.json
     por_jogo, ias_dict, paises = _gerar_palpites_por_jogo()
     out = V4_PUB / "palpites_por_jogo.json"

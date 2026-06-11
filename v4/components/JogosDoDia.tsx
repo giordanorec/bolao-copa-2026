@@ -1,3 +1,5 @@
+import { promises as fs } from "fs";
+import path from "path";
 import { carregarJogos } from "@/lib/jogos";
 import { carregarPalpitesIAs, carregarDictIAs } from "@/lib/palpites-ias";
 import { carregarMapaPaises } from "@/lib/paises";
@@ -89,6 +91,17 @@ const TX: Record<Locale, {
   },
 };
 
+async function carregarResultadosSet(): Promise<Set<number>> {
+  const fp = path.join(process.cwd(), "public", "resultados.json");
+  try {
+    const raw = await fs.readFile(fp, "utf-8");
+    const arr = JSON.parse(raw) as Array<{ jogo_numero: number }>;
+    return new Set(arr.map((r) => r.jogo_numero));
+  } catch {
+    return new Set();
+  }
+}
+
 export default async function JogosDoDia({
   locale = "pt",
   max = 2,
@@ -96,21 +109,23 @@ export default async function JogosDoDia({
   locale?: Locale;
   max?: number;
 }) {
-  const [jogos, palpitesIAs, iasDict, mapaPaises] = await Promise.all([
+  const [jogos, palpitesIAs, iasDict, mapaPaises, encerrados] = await Promise.all([
     carregarJogos(),
     carregarPalpitesIAs(),
     carregarDictIAs(),
     carregarMapaPaises(),
+    carregarResultadosSet(),
   ]);
 
   const hoje = hojeBRT();
-  const futuros = jogos
-    .filter((j) => j.data >= hoje)
+  // pendentes = data >= hoje E sem resultado ainda
+  const pendentes = jogos
+    .filter((j) => j.data >= hoje && !encerrados.has(j.numero))
     .sort((a, b) => (a.data + a.hora).localeCompare(b.data + b.hora));
-  if (!futuros.length) return null;
+  if (!pendentes.length) return null;
 
-  const primeiraData = futuros[0].data;
-  const jogosDia = futuros.filter((j) => j.data === primeiraData).slice(0, max);
+  const primeiraData = pendentes[0].data;
+  const jogosDia = pendentes.filter((j) => j.data === primeiraData).slice(0, max);
   if (!jogosDia.length) return null;
 
   const tx = TX[locale];

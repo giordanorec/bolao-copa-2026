@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { promises as fs } from "fs";
+import path from "path";
 import { carregarJogos } from "@/lib/jogos";
 import { carregarPalpitesIAs, carregarDictIAs } from "@/lib/palpites-ias";
 import { carregarMapaPaises } from "@/lib/paises";
@@ -8,6 +10,42 @@ import Bandeira from "@/components/Bandeira";
 import IconeIA from "@/components/IconeIA";
 import ShareButtons from "@/components/ShareButtons";
 import { scorePopularidade } from "@/lib/ias";
+
+type Resultado = { jogo_numero: number; gols_a: number; gols_b: number };
+
+async function carregarResultados(): Promise<Map<number, Resultado>> {
+  const fp = path.join(process.cwd(), "public", "resultados.json");
+  try {
+    const raw = await fs.readFile(fp, "utf-8");
+    const arr = JSON.parse(raw) as Resultado[];
+    return new Map(arr.map((r) => [r.jogo_numero, r]));
+  } catch {
+    return new Map();
+  }
+}
+
+function pontuar(
+  palpiteA: number,
+  palpiteB: number,
+  resA: number,
+  resB: number,
+  isMataMata: boolean,
+): number {
+  let pts = 0;
+  if (palpiteA === resA && palpiteB === resB) pts = 10;
+  else if (
+    palpiteA === palpiteB &&
+    resA === resB
+  ) pts = 5;
+  else if (
+    palpiteA !== palpiteB &&
+    resA !== resB &&
+    palpiteA > palpiteB === resA > resB
+  ) {
+    pts = palpiteA - palpiteB === resA - resB ? 7 : 5;
+  }
+  return isMataMata ? pts * 2 : pts;
+}
 
 const SITE_URL = "https://bolao.arenadasias.com.br";
 
@@ -36,12 +74,13 @@ export default async function JogoDetalhePage({
   params: Promise<{ numero: string }>;
 }) {
   const { numero } = await params;
-  const [jogos, palpitesIAs, iasDict, mapaPaises, locale] = await Promise.all([
+  const [jogos, palpitesIAs, iasDict, mapaPaises, locale, resultados] = await Promise.all([
     carregarJogos(),
     carregarPalpitesIAs(),
     carregarDictIAs(),
     carregarMapaPaises(),
     resolverLocale(),
+    carregarResultados(),
   ]);
 
   const jogo = jogos.find((j) => String(j.numero) === numero);
@@ -50,6 +89,8 @@ export default async function JogoDetalhePage({
   const dados = palpitesIAs[numero];
   const total = dados ? Object.keys(dados.palpites).length : 0;
   const cristal = dados?.bola_de_cristal;
+  const resultado = resultados.get(jogo.numero);
+  const isMataMata = !jogo.fase.toLowerCase().startsWith("grupo");
 
   const en = locale === "en";
   const es = locale === "es";
@@ -122,6 +163,14 @@ export default async function JogoDetalhePage({
           }}
         >
           {tx.teaser} · {jogo.fase} · {jogo.data.split("-").reverse().join("/")} {jogo.hora}
+          {resultado && (
+            <>
+              {" "}·{" "}
+              <span style={{ color: "#10b981", fontWeight: 800 }}>
+                {en ? "FT" : "ENCERRADO"}
+              </span>
+            </>
+          )}
         </p>
         <div
           style={{
@@ -138,6 +187,19 @@ export default async function JogoDetalhePage({
             <strong style={{ fontSize: "clamp(16px, 3vw, 22px)", textAlign: "center" }}>
               {jogo.time_a}
             </strong>
+            {resultado && (
+              <span
+                style={{
+                  fontFamily: "var(--ff-display)",
+                  fontSize: 48,
+                  fontWeight: 900,
+                  color: resultado.gols_a > resultado.gols_b ? "#10b981" : "var(--fg-mid)",
+                  lineHeight: 1,
+                }}
+              >
+                {resultado.gols_a}
+              </span>
+            )}
           </div>
           <span style={{ fontFamily: "var(--ff-display)", fontSize: 36, color: "var(--fg-muted)" }}>×</span>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
@@ -145,6 +207,19 @@ export default async function JogoDetalhePage({
             <strong style={{ fontSize: "clamp(16px, 3vw, 22px)", textAlign: "center" }}>
               {jogo.time_b}
             </strong>
+            {resultado && (
+              <span
+                style={{
+                  fontFamily: "var(--ff-display)",
+                  fontSize: 48,
+                  fontWeight: 900,
+                  color: resultado.gols_b > resultado.gols_a ? "#10b981" : "var(--fg-mid)",
+                  lineHeight: 1,
+                }}
+              >
+                {resultado.gols_b}
+              </span>
+            )}
           </div>
         </div>
       </header>
@@ -223,17 +298,29 @@ export default async function JogoDetalhePage({
           {slugs.map((slug) => {
             const p = dados!.palpites[slug];
             const nome = iasDict[slug] ?? slug;
+            const pts = resultado
+              ? pontuar(p.gols_a, p.gols_b, resultado.gols_a, resultado.gols_b, isMataMata)
+              : null;
             return (
               <Link
                 key={slug}
                 href={`/ia/${encodeURIComponent(slug)}`}
                 className="ia-palpite-mini"
+                data-acertou={pts !== null && pts >= 10 ? "1" : "0"}
               >
                 <IconeIA slug={slug} size={28} />
                 <span className="ia-palpite-nome">{nome}</span>
                 <span className="ia-palpite-placar">
                   <strong>{p.gols_a}</strong>×<strong>{p.gols_b}</strong>
                 </span>
+                {pts !== null && (
+                  <span
+                    className="ia-palpite-pts"
+                    data-tier={pts >= 10 ? "exato" : pts >= 5 ? "venc" : "zero"}
+                  >
+                    {pts}
+                  </span>
+                )}
               </Link>
             );
           })}
@@ -327,6 +414,21 @@ export default async function JogoDetalhePage({
           white-space: nowrap;
         }
         .ia-palpite-placar strong { font-weight: 900; }
+        .ia-palpite-mini[data-acertou="1"] {
+          background: color-mix(in srgb, #10b981 12%, var(--bg-1));
+          border-color: #10b981;
+        }
+        .ia-palpite-pts {
+          font-family: var(--ff-mono);
+          font-size: 12px;
+          font-weight: 800;
+          padding: 3px 8px;
+          border-radius: 999px;
+          white-space: nowrap;
+        }
+        .ia-palpite-pts[data-tier="exato"] { background: #10b981; color: #fff; }
+        .ia-palpite-pts[data-tier="venc"]  { background: #d4d4d4; color: #1a2657; }
+        .ia-palpite-pts[data-tier="zero"]  { background: transparent; color: var(--fg-muted); }
       `}</style>
     </div>
   );
