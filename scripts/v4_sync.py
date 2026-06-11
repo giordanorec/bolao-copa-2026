@@ -196,13 +196,28 @@ def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
 def main() -> None:
     V4_PUB.mkdir(parents=True, exist_ok=True)
 
-    # 1. jogos.json
+    # 1. jogos.json — merge resultados (gols_a/gols_b) por jogo encerrado
     src_jogos = WEB_DATA / "jogos.json"
     if src_jogos.is_file():
         dst = V4_PUB / "jogos.json"
-        shutil.copy(src_jogos, dst)
-        n = len(json.loads(dst.read_text(encoding="utf-8")))
-        print(f"jogos: {n} -> {dst.name}")
+        jogos = json.loads(src_jogos.read_text(encoding="utf-8"))
+        src_resultados = WEB_DATA / "resultados.json"
+        res_por_num: dict[int, dict] = {}
+        if src_resultados.is_file():
+            for r in json.loads(src_resultados.read_text(encoding="utf-8")):
+                res_por_num[int(r["jogo_numero"])] = r
+        encerrados = 0
+        for j in jogos:
+            r = res_por_num.get(int(j.get("numero", 0)))
+            j["gols_a"] = r["gols_a"] if r else None
+            j["gols_b"] = r["gols_b"] if r else None
+            if r:
+                encerrados += 1
+        dst.write_text(
+            json.dumps(jogos, ensure_ascii=False, indent=None, separators=(",", ":")),
+            encoding="utf-8",
+        )
+        print(f"jogos: {len(jogos)} ({encerrados} encerrados) -> {dst.name}")
 
     # 1b. paises.json (mapeamento nome -> ISO)
     src_paises = WEB_DATA / "paises.json"
