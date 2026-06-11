@@ -79,29 +79,66 @@ const MISTERIO_TEXTOS: Record<Locale, {
   },
 };
 
+// Pra cada slug "-web" da Série A, qual o irmão sem "-web" pra fallback
+// quando o web ainda não tem palpites coletados.
+const FALLBACK_NAO_WEB: Record<string, string> = {
+  "chatgpt-5-thinking-web": "chatgpt-5-thinking",
+  "claude-opus-4-8-web": "claude-opus-4-7",
+  "gemini-2-5-pro-web": "gemini-2-5-pro",
+  "grok-4-heavy-web": "grok-4-heavy",
+  "deepseek-r1-web": "deepseek-r1",
+  "copilot-microsoft-web": "copilot-microsoft",
+  "perplexity-sonar-pro-web": "perplexity-sonar-pro",
+  "meta-llama-4-web": "meta-llama-4",
+  "le-chat-mistral-web": "le-chat-mistral",
+  "qwen-3-max-web": "qwen-3-max",
+};
+
 async function carregarSerieA(): Promise<IA[]> {
   try {
     const arquivo = path.join(process.cwd(), "public", "ranking-ias.json");
     const raw = await fs.readFile(arquivo, "utf-8");
     const dados = JSON.parse(raw) as { ias: IA[] };
-    const ias = dados.ias.filter((i) => SLUGS_SERIE_A.includes(i.slug));
-    // ordena por: pontos desc, depois popularidade asc (não alfabético)
+    const porSlug = new Map<string, IA>();
+    for (const ia of dados.ias) porSlug.set(ia.slug, ia);
+
+    // Pra cada slug da Série A:
+    // se o slug oficial não tem palpites apurados, usa do irmão sem "-web"
+    const ias: IA[] = [];
+    for (const slug of SLUGS_SERIE_A) {
+      if (slug === SLUG_MISTERIO) continue;
+      const oficial = porSlug.get(slug);
+      const fallback = FALLBACK_NAO_WEB[slug]
+        ? porSlug.get(FALLBACK_NAO_WEB[slug])
+        : undefined;
+      const fonte =
+        oficial && oficial.jogos_palpitados > 0 ? oficial : fallback ?? oficial;
+      if (!fonte) continue;
+      ias.push({
+        slug,
+        nome_display: oficial?.nome_display ?? fonte.nome_display,
+        pontos: fonte.pontos,
+        placares_exatos: fonte.placares_exatos,
+        jogos_palpitados: fonte.jogos_palpitados,
+        rank: 0,
+      });
+    }
+
     ias.sort(
       (a, b) =>
         b.pontos - a.pontos ||
         scorePopularidade(a.slug) - scorePopularidade(b.slug),
     );
+
     // membro misterioso sempre por último, sem entrada real no ranking
-    if (!ias.find((i) => i.slug === SLUG_MISTERIO)) {
-      ias.push({
-        slug: SLUG_MISTERIO,
-        nome_display: "?",
-        pontos: 0,
-        placares_exatos: 0,
-        jogos_palpitados: 0,
-        rank: ias.length + 1,
-      });
-    }
+    ias.push({
+      slug: SLUG_MISTERIO,
+      nome_display: "?",
+      pontos: 0,
+      placares_exatos: 0,
+      jogos_palpitados: 0,
+      rank: ias.length + 1,
+    });
     return ias;
   } catch {
     return [];

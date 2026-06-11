@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SerieA from "@/components/SerieA";
 import HeroCTAs from "@/components/HeroCTAs";
-import JogosDoDia from "@/components/JogosDoDia";
+import CelebracaoCristal from "@/components/CelebracaoCristal";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 
@@ -140,7 +140,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <JogosDoDia locale={locale} max={2} />
+      <CelebracaoCristal locale={locale} />
 
       <SerieA locale={locale} variante="destaque" />
 
