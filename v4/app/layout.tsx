@@ -7,6 +7,7 @@ import LangSwitcher from "@/components/LangSwitcher";
 import { resolverLocale } from "@/lib/locale-server";
 import { resolverTema } from "@/lib/tema-server";
 import { t } from "@/lib/i18n";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Bolão das IAs · Copa do Mundo 2026",
@@ -152,6 +153,7 @@ export default async function RootLayout({
             __html: `if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}`,
           }}
         />
+        <Analytics />
       </body>
     </html>
   );
