@@ -93,11 +93,67 @@ async function ultimoCristalAcertou(): Promise<{
   }
 }
 
+function ordinalPT(n: number): string {
+  const tabela: Record<number, string> = {
+    2: "segunda",
+    3: "terceira",
+    4: "quarta",
+    5: "quinta",
+    6: "sexta",
+    7: "sétima",
+    8: "oitava",
+    9: "nona",
+    10: "décima",
+  };
+  return tabela[n] ?? `${n}ª`;
+}
+function ordinalEN(n: number): string {
+  const tabela: Record<number, string> = {
+    2: "second",
+    3: "third",
+    4: "fourth",
+    5: "fifth",
+    6: "sixth",
+    7: "seventh",
+    8: "eighth",
+    9: "ninth",
+    10: "tenth",
+  };
+  return tabela[n] ?? `${n}th`;
+}
+function ordinalES(n: number): string {
+  const tabela: Record<number, string> = {
+    2: "segunda",
+    3: "tercera",
+    4: "cuarta",
+    5: "quinta",
+    6: "sexta",
+    7: "séptima",
+    8: "octava",
+    9: "novena",
+    10: "décima",
+  };
+  return tabela[n] ?? `${n}ª`;
+}
+function ordinalFR(n: number): string {
+  const tabela: Record<number, string> = {
+    2: "deuxième",
+    3: "troisième",
+    4: "quatrième",
+    5: "cinquième",
+    6: "sixième",
+    7: "septième",
+    8: "huitième",
+    9: "neuvième",
+    10: "dixième",
+  };
+  return tabela[n] ?? `${n}ème`;
+}
+
 const TX: Record<Locale, {
-  badge: string;
   badgeStreak: string;
   badgePrimeiro: string;
-  titulo: (streak: number) => string;
+  titulo: (acertos: number, streak: number) => string;
   resultado: string;
   votos: (n: number, total: number) => string;
   acertaram: (n: number, total: number) => string;
@@ -105,13 +161,13 @@ const TX: Record<Locale, {
   cta: string;
 }> = {
   pt: {
-    badge: "🔮 BOLA DE CRISTAL CRAVOU",
     badgeStreak: "🔥 CRAVOU DE NOVO",
     badgePrimeiro: "🔮 BOLA DE CRISTAL CRAVOU",
-    titulo: (streak) =>
-      streak >= 2
-        ? `${streak} jogos seguidos. As IAs estão prevendo a Copa.`
-        : "O placar previsto pelas IAs aconteceu.",
+    titulo: (acertos, streak) => {
+      if (acertos === 1) return "O placar previsto pelas IAs aconteceu.";
+      if (streak >= 3) return `${streak} jogos seguidos. As IAs estão prevendo a Copa.`;
+      return `Pela ${ordinalPT(acertos)} vez, o placar previsto pelas IAs aconteceu.`;
+    },
     resultado: "RESULTADO FINAL",
     votos: (n, total) => `${n} de ${total} IAs apostaram exatamente nesse placar.`,
     acertaram: (n, total) => `${n}/${total} cravaram. E você?`,
@@ -119,13 +175,13 @@ const TX: Record<Locale, {
     cta: "Ver o palpite das IAs no próximo jogo →",
   },
   en: {
-    badge: "🔮 CRYSTAL BALL NAILED IT",
     badgeStreak: "🔥 NAILED IT AGAIN",
     badgePrimeiro: "🔮 CRYSTAL BALL NAILED IT",
-    titulo: (streak) =>
-      streak >= 2
-        ? `${streak} matches in a row. The AIs are predicting the Cup.`
-        : "The score the AIs predicted… happened.",
+    titulo: (acertos, streak) => {
+      if (acertos === 1) return "The score the AIs predicted… happened.";
+      if (streak >= 3) return `${streak} matches in a row. The AIs are predicting the Cup.`;
+      return `For the ${ordinalEN(acertos)} time, the score the AIs predicted happened.`;
+    },
     resultado: "FINAL SCORE",
     votos: (n, total) => `${n} of ${total} AIs bet on this exact score.`,
     acertaram: (n, total) => `${n}/${total} nailed it. And you?`,
@@ -133,13 +189,13 @@ const TX: Record<Locale, {
     cta: "See AI picks for the next match →",
   },
   es: {
-    badge: "🔮 BOLA DE CRISTAL ACERTÓ",
     badgeStreak: "🔥 ACERTÓ DE NUEVO",
     badgePrimeiro: "🔮 BOLA DE CRISTAL ACERTÓ",
-    titulo: (streak) =>
-      streak >= 2
-        ? `${streak} partidos seguidos. Las IAs predicen el Mundial.`
-        : "El marcador que las IAs predijeron… pasó.",
+    titulo: (acertos, streak) => {
+      if (acertos === 1) return "El marcador que las IAs predijeron… pasó.";
+      if (streak >= 3) return `${streak} partidos seguidos. Las IAs predicen el Mundial.`;
+      return `Por ${ordinalES(acertos)} vez, el marcador que las IAs predijeron pasó.`;
+    },
     resultado: "RESULTADO FINAL",
     votos: (n, total) => `${n} de ${total} IAs apostaron por ese marcador.`,
     acertaram: (n, total) => `${n}/${total} clavaron. ¿Y tú?`,
@@ -147,13 +203,13 @@ const TX: Record<Locale, {
     cta: "Ver el pronóstico de las IAs para el próximo partido →",
   },
   fr: {
-    badge: "🔮 LA BOULE DE CRISTAL A VU JUSTE",
     badgeStreak: "🔥 ENCORE VU JUSTE",
     badgePrimeiro: "🔮 LA BOULE DE CRISTAL A VU JUSTE",
-    titulo: (streak) =>
-      streak >= 2
-        ? `${streak} matches d'affilée. Les IA prédisent la Coupe.`
-        : "Le score prédit par les IA… est arrivé.",
+    titulo: (acertos, streak) => {
+      if (acertos === 1) return "Le score prédit par les IA… est arrivé.";
+      if (streak >= 3) return `${streak} matches d'affilée. Les IA prédisent la Coupe.`;
+      return `Pour la ${ordinalFR(acertos)} fois, le score prédit par les IA est arrivé.`;
+    },
     resultado: "SCORE FINAL",
     votos: (n, total) => `${n} sur ${total} IA ont parié sur ce score exact.`,
     acertaram: (n, total) => `${n}/${total} ont vu juste. Et vous ?`,
@@ -187,10 +243,10 @@ export default async function CelebracaoCristal({
           <div className="cristal-badges-row">
             <div
               className={`cristal-badge-topo ${
-                dados.estreak >= 2 ? "cristal-badge-streak" : ""
+                dados.cristalAcertos >= 2 ? "cristal-badge-streak" : ""
               }`}
             >
-              {dados.estreak >= 2 ? tx.badgeStreak : tx.badgePrimeiro}
+              {dados.cristalAcertos >= 2 ? tx.badgeStreak : tx.badgePrimeiro}
             </div>
             <div className="cristal-placar-streak" title={tx.placar(dados.cristalAcertos, dados.cristalTotal)}>
               <span className="streak-num">{dados.cristalAcertos}</span>
@@ -198,7 +254,7 @@ export default async function CelebracaoCristal({
               <span className="streak-total">{dados.cristalTotal}</span>
             </div>
           </div>
-          <h2 className="cristal-titulo">{tx.titulo(dados.estreak)}</h2>
+          <h2 className="cristal-titulo">{tx.titulo(dados.cristalAcertos, dados.estreak)}</h2>
 
           <div className="cristal-jogo-wrap">
             <div className="cristal-time">
