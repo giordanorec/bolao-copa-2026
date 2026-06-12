@@ -3,5 +3,10 @@
     "jogo_numero": 1,
     "gols_a": 2,
     "gols_b": 0
+  },
+  {
+    "jogo_numero": 2,
+    "gols_a": 2,
+    "gols_b": 1
   }
 ]
