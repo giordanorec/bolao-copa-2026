@@ -20,6 +20,9 @@ async function ultimoCristalAcertou(): Promise<{
   votosCristal: number;
   totalIAs: number;
   acertaram: number;
+  cristalAcertos: number;
+  cristalTotal: number;
+  estreak: number;
 } | null> {
   const fp = path.join(process.cwd(), "public", "resultados.json");
   try {
@@ -32,6 +35,26 @@ async function ultimoCristalAcertou(): Promise<{
       carregarPalpitesIAs(),
       carregarMapaPaises(),
     ]);
+
+    // Calcula histórico geral do Cristal
+    let cristalAcertos = 0;
+    let cristalTotal = 0;
+    const acertosBool: boolean[] = [];
+    for (const r of resultados) {
+      const dados = palpites[String(r.jogo_numero)];
+      if (!dados?.bola_de_cristal) continue;
+      cristalTotal++;
+      const c = dados.bola_de_cristal;
+      const acertou = c.gols_a === r.gols_a && c.gols_b === r.gols_b;
+      acertosBool.push(acertou);
+      if (acertou) cristalAcertos++;
+    }
+    // streak = quantos acertos consecutivos no FIM da lista
+    let estreak = 0;
+    for (let i = acertosBool.length - 1; i >= 0; i--) {
+      if (acertosBool[i]) estreak++;
+      else break;
+    }
 
     // Procura o resultado mais recente onde o Cristal acertou o placar exato
     const ordenados = [...resultados].reverse();
@@ -59,6 +82,9 @@ async function ultimoCristalAcertou(): Promise<{
         votosCristal: c.votos,
         totalIAs: total,
         acertaram,
+        cristalAcertos,
+        cristalTotal,
+        estreak,
       };
     }
     return null;
@@ -69,42 +95,69 @@ async function ultimoCristalAcertou(): Promise<{
 
 const TX: Record<Locale, {
   badge: string;
-  titulo: string;
+  badgeStreak: string;
+  badgePrimeiro: string;
+  titulo: (streak: number) => string;
   resultado: string;
   votos: (n: number, total: number) => string;
   acertaram: (n: number, total: number) => string;
+  placar: (acertos: number, total: number) => string;
   cta: string;
 }> = {
   pt: {
     badge: "🔮 BOLA DE CRISTAL CRAVOU",
-    titulo: "O placar previsto pelas IAs aconteceu.",
+    badgeStreak: "🔥 CRAVOU DE NOVO",
+    badgePrimeiro: "🔮 BOLA DE CRISTAL CRAVOU",
+    titulo: (streak) =>
+      streak >= 2
+        ? `${streak} jogos seguidos. As IAs estão prevendo a Copa.`
+        : "O placar previsto pelas IAs aconteceu.",
     resultado: "RESULTADO FINAL",
     votos: (n, total) => `${n} de ${total} IAs apostaram exatamente nesse placar.`,
     acertaram: (n, total) => `${n}/${total} cravaram. E você?`,
+    placar: (a, t) => `Placar do Cristal: ${a} de ${t} jogos cravados`,
     cta: "Ver o palpite das IAs no próximo jogo →",
   },
   en: {
     badge: "🔮 CRYSTAL BALL NAILED IT",
-    titulo: "The score the AIs predicted… happened.",
+    badgeStreak: "🔥 NAILED IT AGAIN",
+    badgePrimeiro: "🔮 CRYSTAL BALL NAILED IT",
+    titulo: (streak) =>
+      streak >= 2
+        ? `${streak} matches in a row. The AIs are predicting the Cup.`
+        : "The score the AIs predicted… happened.",
     resultado: "FINAL SCORE",
     votos: (n, total) => `${n} of ${total} AIs bet on this exact score.`,
     acertaram: (n, total) => `${n}/${total} nailed it. And you?`,
+    placar: (a, t) => `Crystal Ball record: ${a} of ${t} matches nailed`,
     cta: "See AI picks for the next match →",
   },
   es: {
     badge: "🔮 BOLA DE CRISTAL ACERTÓ",
-    titulo: "El marcador que las IAs predijeron… pasó.",
+    badgeStreak: "🔥 ACERTÓ DE NUEVO",
+    badgePrimeiro: "🔮 BOLA DE CRISTAL ACERTÓ",
+    titulo: (streak) =>
+      streak >= 2
+        ? `${streak} partidos seguidos. Las IAs predicen el Mundial.`
+        : "El marcador que las IAs predijeron… pasó.",
     resultado: "RESULTADO FINAL",
     votos: (n, total) => `${n} de ${total} IAs apostaron por ese marcador.`,
     acertaram: (n, total) => `${n}/${total} clavaron. ¿Y tú?`,
+    placar: (a, t) => `Récord de Bola de Cristal: ${a} de ${t} clavados`,
     cta: "Ver el pronóstico de las IAs para el próximo partido →",
   },
   fr: {
     badge: "🔮 LA BOULE DE CRISTAL A VU JUSTE",
-    titulo: "Le score prédit par les IA… est arrivé.",
+    badgeStreak: "🔥 ENCORE VU JUSTE",
+    badgePrimeiro: "🔮 LA BOULE DE CRISTAL A VU JUSTE",
+    titulo: (streak) =>
+      streak >= 2
+        ? `${streak} matches d'affilée. Les IA prédisent la Coupe.`
+        : "Le score prédit par les IA… est arrivé.",
     resultado: "SCORE FINAL",
     votos: (n, total) => `${n} sur ${total} IA ont parié sur ce score exact.`,
     acertaram: (n, total) => `${n}/${total} ont vu juste. Et vous ?`,
+    placar: (a, t) => `Bilan Boule de Cristal: ${a} sur ${t} matchs vus juste`,
     cta: "Voir les pronostics IA pour le prochain match →",
   },
 };
@@ -131,8 +184,21 @@ export default async function CelebracaoCristal({
             <span style={{ top: "85%", left: "48%" }}>⚽</span>
           </div>
 
-          <div className="cristal-badge-topo">{tx.badge}</div>
-          <h2 className="cristal-titulo">{tx.titulo}</h2>
+          <div className="cristal-badges-row">
+            <div
+              className={`cristal-badge-topo ${
+                dados.estreak >= 2 ? "cristal-badge-streak" : ""
+              }`}
+            >
+              {dados.estreak >= 2 ? tx.badgeStreak : tx.badgePrimeiro}
+            </div>
+            <div className="cristal-placar-streak" title={tx.placar(dados.cristalAcertos, dados.cristalTotal)}>
+              <span className="streak-num">{dados.cristalAcertos}</span>
+              <span className="streak-sep">/</span>
+              <span className="streak-total">{dados.cristalTotal}</span>
+            </div>
+          </div>
+          <h2 className="cristal-titulo">{tx.titulo(dados.estreak)}</h2>
 
           <div className="cristal-jogo-wrap">
             <div className="cristal-time">
@@ -197,6 +263,15 @@ export default async function CelebracaoCristal({
           font-size: 28px;
           opacity: 0.5;
         }
+        .cristal-badges-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          margin-bottom: 14px;
+          flex-wrap: wrap;
+          position: relative; z-index: 2;
+        }
         .cristal-badge-topo {
           display: inline-block;
           background: linear-gradient(90deg, #a855f7, #ec4899);
@@ -207,8 +282,41 @@ export default async function CelebracaoCristal({
           font-weight: 900;
           font-size: 14px;
           letter-spacing: 0.08em;
-          margin-bottom: 12px;
-          position: relative; z-index: 2;
+        }
+        .cristal-badge-streak {
+          background: linear-gradient(90deg, #f59e0b, #ef4444, #ec4899);
+          background-size: 200% 100%;
+          animation: streakPulse 2.5s ease-in-out infinite;
+          box-shadow: 0 0 24px rgba(239, 68, 68, 0.5);
+        }
+        @keyframes streakPulse {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .cristal-placar-streak {
+          display: inline-flex;
+          align-items: baseline;
+          gap: 4px;
+          padding: 6px 16px;
+          background: rgba(16, 185, 129, 0.15);
+          border: 1px solid rgba(16, 185, 129, 0.4);
+          border-radius: 999px;
+          font-family: var(--ff-display);
+          color: #a7f3d0;
+        }
+        .cristal-placar-streak .streak-num {
+          font-size: 22px;
+          font-weight: 900;
+          color: #10b981;
+        }
+        .cristal-placar-streak .streak-sep {
+          font-size: 18px;
+          opacity: 0.5;
+        }
+        .cristal-placar-streak .streak-total {
+          font-size: 18px;
+          font-weight: 700;
+          opacity: 0.85;
         }
         .cristal-titulo {
           font-family: var(--ff-display);
