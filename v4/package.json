@@ -18,8 +18,10 @@
     "nanoid": "^5.0.7",
     "next": "^15.5.0",
     "posthog-js": "^1.386.6",
+    "racing-bars": "^0.3.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "recharts": "^3.8.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

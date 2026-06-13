@@ -1,16 +1,47 @@
-import IconeIA from "@/components/IconeIA";
+"use client";
+
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import { marcaDe } from "@/lib/ias";
 
 type IA = {
   slug: string;
   nome_display: string;
   pontos: number;
-  placares_exatos: number;
-  jogos_palpitados: number;
 };
 
-export default function GraficoEstatico({ ias }: { ias: IA[] }) {
-  const maxPts = Math.max(1, ...ias.map((ia) => ia.pontos));
+type Frame = {
+  jogoNum: number;
+  rotulo: string;
+  pts: Record<string, number>;
+};
+
+export default function GraficoEstatico({
+  ias,
+  frames,
+}: {
+  ias: IA[];
+  frames: Frame[];
+}) {
+  // Constroi os dados no formato esperado pelo recharts:
+  // [{ rodada: 'Jogo 1', 'ChatGPT 5': 10, 'Claude Opus 4.7': 0, ... }, ...]
+  const data = frames.map((f) => {
+    const ponto: Record<string, string | number> = {
+      rodada: f.jogoNum === 0 ? "Início" : `Jogo ${f.jogoNum}`,
+    };
+    for (const ia of ias) {
+      ponto[ia.nome_display] = f.pts[ia.slug] ?? 0;
+    }
+    return ponto;
+  });
 
   return (
     <div
@@ -19,116 +50,86 @@ export default function GraficoEstatico({ ias }: { ias: IA[] }) {
         border: "1px solid var(--line)",
         borderRadius: "var(--r-l)",
         padding: 20,
-        display: "flex",
-        flexDirection: "column",
-        gap: 6,
       }}
     >
-      {ias.map((ia, i) => {
-        const marca = marcaDe(ia.slug);
-        const widthPct = (ia.pontos / maxPts) * 100;
-        const isTopTres = i < 3;
-        const podioCor =
-          i === 0 ? "#fbbf24" : i === 1 ? "#cbd5e1" : i === 2 ? "#ea8b3f" : "var(--fg-muted)";
-        return (
-          <div
-            key={ia.slug}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "36px 1fr 70px",
-              alignItems: "center",
-              gap: 12,
-              padding: "8px 4px",
-              borderRadius: "var(--r-s)",
-              background: isTopTres ? "var(--bg-soft)" : "transparent",
-            }}
+      <div style={{ width: "100%", height: 480 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={data}
+            margin={{ top: 12, right: 20, left: 0, bottom: 8 }}
           >
-            <span
-              style={{
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="var(--line)"
+              vertical={false}
+            />
+            <XAxis
+              dataKey="rodada"
+              tick={{
+                fill: "var(--fg-mid)",
+                fontSize: 12,
                 fontFamily: "var(--ff-mono)",
-                fontSize: 13,
-                fontWeight: 800,
-                color: podioCor,
-                textAlign: "right",
               }}
-            >
-              {i + 1}º
-            </span>
-            <div
-              style={{
-                position: "relative",
-                height: 32,
+              tickLine={{ stroke: "var(--line)" }}
+              axisLine={{ stroke: "var(--line)" }}
+            />
+            <YAxis
+              tick={{
+                fill: "var(--fg-mid)",
+                fontSize: 12,
+                fontFamily: "var(--ff-mono)",
+              }}
+              tickLine={{ stroke: "var(--line)" }}
+              axisLine={{ stroke: "var(--line)" }}
+              label={{
+                value: "Pontos",
+                angle: -90,
+                position: "insideLeft",
+                offset: 16,
+                style: {
+                  fill: "var(--fg-muted)",
+                  fontSize: 11,
+                  fontFamily: "var(--ff-mono)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                },
+              }}
+            />
+            <Tooltip
+              contentStyle={{
                 background: "var(--bg-1)",
-                border: "1px solid var(--line)",
-                borderRadius: 16,
-                overflow: "hidden",
+                border: "1px solid var(--line-strong)",
+                borderRadius: 12,
+                fontSize: 12,
               }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: `${widthPct}%`,
-                  background: `linear-gradient(90deg, ${marca.cor}, color-mix(in srgb, ${marca.cor} 60%, var(--accent)))`,
-                  borderRadius: 16,
-                }}
-              />
-              <div
-                style={{
-                  position: "relative",
-                  zIndex: 2,
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "0 12px",
-                }}
-              >
-                <IconeIA slug={ia.slug} size={20} />
-                <span
-                  style={{
-                    fontFamily: "var(--ff-display)",
-                    fontWeight: 800,
-                    fontSize: 13,
-                    color: widthPct > 25 ? "#fff" : "var(--fg)",
-                    textShadow:
-                      widthPct > 25 ? "0 1px 2px rgba(0,0,0,0.5)" : "none",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {ia.nome_display}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "var(--ff-mono)",
-                    fontSize: 11,
-                    color: widthPct > 25 ? "rgba(255,255,255,0.9)" : "var(--fg-muted)",
-                    marginLeft: "auto",
-                    textShadow:
-                      widthPct > 25 ? "0 1px 2px rgba(0,0,0,0.5)" : "none",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {ia.placares_exatos}✓
-                </span>
-              </div>
-            </div>
-            <span
-              style={{
-                fontFamily: "var(--ff-display)",
-                fontSize: 22,
-                fontWeight: 900,
-                color: "var(--secondary)",
-                textAlign: "right",
+              labelStyle={{ color: "var(--fg)", fontWeight: 700 }}
+              itemStyle={{ color: "var(--fg-mid)" }}
+            />
+            <Legend
+              wrapperStyle={{
+                paddingTop: 12,
+                fontSize: 11,
+                fontFamily: "var(--ff-mono)",
               }}
-            >
-              {ia.pontos}
-            </span>
-          </div>
-        );
-      })}
+            />
+            {ias.map((ia) => {
+              const marca = marcaDe(ia.slug);
+              return (
+                <Line
+                  key={ia.slug}
+                  type="monotone"
+                  dataKey={ia.nome_display}
+                  stroke={marca.cor}
+                  strokeWidth={2.5}
+                  dot={{ r: 4, strokeWidth: 0, fill: marca.cor }}
+                  activeDot={{ r: 6, strokeWidth: 2, stroke: "#fff" }}
+                  isAnimationActive={false}
+                />
+              );
+            })}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

@@ -13,8 +13,9 @@ const DURACAO_MS = 7000;
 const PAUSA_MS = 3000;
 const CICLO_MS = DURACAO_MS + PAUSA_MS;
 
-const NUM_LANES = 14;
-const MIN_DIST_X_PCT = 7; // 7% de distancia minima na mesma raia
+const NUM_LANES = 22;
+const MIN_DIST_X_PCT = 12; // 12% de distancia minima na mesma raia
+const NOME_LARGURA_APROX_PCT = 11; // nome ocupa ~11% de largura — packing leva isso em conta
 
 type Posicionada = IA & { x: number; lane: number };
 
@@ -28,28 +29,40 @@ type Posicionada = IA & { x: number; lane: number };
 function packLanes(ias: IA[]): Posicionada[] {
   const maxPts = Math.max(1, ...ias.map((ia) => ia.pontos));
   const out: Posicionada[] = [];
-  // mantemos a ultima IA posicionada por raia (so precisamos do X delas pra checagem)
-  const ultimosX: number[] = new Array(NUM_LANES).fill(-Infinity);
+  // Pra cada raia, lista de X ja ocupados (precisamos checar ALL, nao so o ultimo)
+  const ocupados: number[][] = Array.from({ length: NUM_LANES }, () => []);
 
   for (const ia of ias) {
-    const x = (ia.pontos / maxPts) * 92; // 92% pra deixar margem na chegada
+    const x = (ia.pontos / maxPts) * 90; // 90% pra deixar margem na chegada
 
     let bestLane = 0;
     let bestGap = -Infinity;
     for (let l = 0; l < NUM_LANES; l++) {
-      const gap = Math.abs(x - ultimosX[l]);
-      if (gap >= MIN_DIST_X_PCT) {
+      // calcula menor distancia desta IA pra qualquer outra ja na raia l
+      let menorGap = Infinity;
+      for (const xOutro of ocupados[l]) {
+        const g = Math.abs(x - xOutro);
+        if (g < menorGap) menorGap = g;
+      }
+      // espaco minimo: nome ocupa NOME_LARGURA_APROX_PCT, entao 2 IAs precisam
+      // estar pelo menos NOME_LARGURA_APROX_PCT + ~icone (5%) afastadas
+      const minDist = NOME_LARGURA_APROX_PCT + 5;
+      if (menorGap >= Math.max(MIN_DIST_X_PCT, minDist)) {
         bestLane = l;
-        bestGap = gap;
+        ocupados[l].push(x);
+        out.push({ ...ia, x, lane: l });
         break;
       }
-      if (gap > bestGap) {
-        bestGap = gap;
+      if (menorGap > bestGap) {
+        bestGap = menorGap;
         bestLane = l;
       }
     }
-    out.push({ ...ia, x, lane: bestLane });
-    ultimosX[bestLane] = x;
+    // se nenhuma raia atendeu (out.length nao mudou nesse loop), cai no bestLane
+    if (out.length === 0 || out[out.length - 1].slug !== ia.slug) {
+      ocupados[bestLane].push(x);
+      out.push({ ...ia, x, lane: bestLane });
+    }
   }
   return out;
 }
@@ -113,7 +126,7 @@ export default function CorridaTopDown({ ias }: { ias: IA[] }) {
         .cn-pista {
           position: relative;
           width: 100%;
-          height: 560px;
+          height: 720px;
           background:
             repeating-linear-gradient(
               90deg,
@@ -177,7 +190,7 @@ export default function CorridaTopDown({ ias }: { ias: IA[] }) {
           100% { left: calc(var(--target-x) - 16px); }
         }
         .cn-icon {
-          width: 28px; height: 28px;
+          width: 24px; height: 24px;
           border-radius: 50%;
           background: #fff;
           display: flex; align-items: center; justify-content: center;
@@ -192,11 +205,11 @@ export default function CorridaTopDown({ ias }: { ias: IA[] }) {
         .cn-nome {
           font-family: var(--ff-display);
           font-weight: 800;
-          font-size: 12px;
-          color: rgba(255,255,255,0.92);
+          font-size: 11px;
+          color: rgba(255,255,255,0.95);
           text-shadow: 0 1px 2px #000, 0 0 8px rgba(168,85,247,0.5);
           letter-spacing: -0.01em;
-          max-width: 130px;
+          max-width: 100px;
           overflow: hidden;
           text-overflow: ellipsis;
         }

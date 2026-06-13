@@ -127,9 +127,6 @@ export default async function CorridaDasIAsPage() {
     ),
   }));
 
-  // Pra gráfico estático: top 30
-  const ias30 = topIas.slice(0, 30);
-
   return (
     <div style={{ marginTop: 24, marginBottom: 64 }}>
       <header style={{ textAlign: "center", marginBottom: 28 }}>
@@ -161,12 +158,12 @@ export default async function CorridaDasIAsPage() {
       </section>
 
       <section style={{ marginBottom: 32 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📈 Modo C — Gráfico estático</h2>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📈 Modo C — Gráfico de linhas</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Top 30 IAs em barras horizontais, sem animação. Útil pra ver o
-          estado atual de uma vez só, sem precisar esperar ciclo.
+          Linhas mostrando a evolução dos pontos das top 10 IAs ao longo das
+          rodadas apuradas. Cada linha colorida pela marca da IA.
         </p>
-        <GraficoEstatico ias={ias30} />
+        <GraficoEstatico ias={ias15.slice(0, 10)} frames={framesFiltrados} />
       </section>
     </div>
   );
