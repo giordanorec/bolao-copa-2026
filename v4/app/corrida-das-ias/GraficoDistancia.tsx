@@ -25,8 +25,6 @@ type Frame = {
   pts: Record<string, number>;
 };
 
-const TOPO = 100;
-
 export default function GraficoDistancia({
   ias,
   frames,
@@ -34,21 +32,30 @@ export default function GraficoDistancia({
   ias: IA[];
   frames: Frame[];
 }) {
-  // Pra cada frame, calcula o lider e converte cada IA pra (100 - delta)
+  // Pra cada frame:
+  // - calcula min e max dos pts entre as IAs mostradas
+  // - mid = (min + max) / 2
+  // - range = (max - min) / 2  (com floor de 1 pra evitar /0)
+  // - Y = 50 + ((pts - mid) / range) * 40
+  //   -> pts == max  -> Y = 90
+  //   -> pts == mid  -> Y = 50
+  //   -> pts == min  -> Y = 10
   const data = frames.map((f) => {
     const ptsFrame = ias.map((ia) => f.pts[ia.slug] ?? 0);
-    const maxPts = Math.max(0, ...ptsFrame);
+    const min = Math.min(...ptsFrame);
+    const max = Math.max(...ptsFrame);
+    const mid = (min + max) / 2;
+    const range = Math.max(1, (max - min) / 2);
     const ponto: Record<string, string | number> = {
       rodada: f.jogoNum === 0 ? "Início" : `Jogo ${f.jogoNum}`,
-      _max: maxPts,
+      _max: max,
+      _min: min,
     };
     for (const ia of ias) {
       const pts = f.pts[ia.slug] ?? 0;
-      // Y = 100 - (lider - pts) = 100 - delta
-      // Se a IA é o líder ou empata com ele: Y = 100
-      // Se está 30 pts atrás: Y = 70
-      const delta = maxPts - pts;
-      ponto[ia.nome_display] = TOPO - delta;
+      const y = 50 + ((pts - mid) / range) * 40;
+      ponto[ia.nome_display] = Math.round(y * 10) / 10;
+      ponto[`__pts_${ia.nome_display}`] = pts;
     }
     return ponto;
   });
@@ -70,8 +77,9 @@ export default function GraficoDistancia({
           fontFamily: "var(--ff-mono)",
         }}
       >
-        Y = {TOPO} − (líder − IA). Quem está em {TOPO} é o líder do momento.
-        Quanto mais baixa a linha, mais atrás do líder.
+        Y centrado em 50. Líder do frame fica em 90, último em 10, meio do
+        pelotão fica no centro. As linhas se espalham pra mostrar quem subiu e
+        quem caiu em relação ao pelotão da rodada.
       </div>
       <div style={{ width: "100%", height: 480 }}>
         <ResponsiveContainer width="100%" height="100%">
@@ -95,7 +103,7 @@ export default function GraficoDistancia({
               axisLine={{ stroke: "var(--line)" }}
             />
             <YAxis
-              domain={[0, TOPO]}
+              domain={[0, 100]}
               tick={{
                 fill: "var(--fg-mid)",
                 fontSize: 12,
@@ -104,7 +112,7 @@ export default function GraficoDistancia({
               tickLine={{ stroke: "var(--line)" }}
               axisLine={{ stroke: "var(--line)" }}
               label={{
-                value: "Distância do líder",
+                value: "Posição relativa",
                 angle: -90,
                 position: "insideLeft",
                 offset: 16,
@@ -118,12 +126,12 @@ export default function GraficoDistancia({
               }}
             />
             <ReferenceLine
-              y={TOPO}
-              stroke="var(--accent)"
-              strokeDasharray="3 3"
+              y={50}
+              stroke="var(--line-strong)"
+              strokeDasharray="4 4"
               label={{
-                value: "LÍDER",
-                fill: "var(--accent)",
+                value: "MEIO DO PELOTÃO",
+                fill: "var(--fg-muted)",
                 fontSize: 10,
                 fontFamily: "var(--ff-mono)",
                 position: "insideTopRight",
@@ -138,10 +146,11 @@ export default function GraficoDistancia({
               }}
               labelStyle={{ color: "var(--fg)", fontWeight: 700 }}
               itemStyle={{ color: "var(--fg-mid)" }}
-              formatter={(value) => {
-                const n = typeof value === "number" ? value : Number(value);
-                if (Number.isNaN(n)) return String(value);
-                return `${n} (${TOPO - n} pts atrás)`;
+              formatter={(value, name, item) => {
+                // recharts passa item.payload com todos os dados do ponto
+                const ptsKey = `__pts_${name}`;
+                const pts = (item.payload as Record<string, number>)?.[ptsKey];
+                return [`${value}  ·  ${pts} pts`, name as string];
               }}
             />
             <Legend

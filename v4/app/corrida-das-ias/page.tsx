@@ -2,6 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import CorridaTopDown from "./CorridaTopDown";
 import BarRaceTemporal from "./BarRaceTemporal";
+import BarRaceCustom from "./BarRaceCustom";
 import GraficoEstatico from "./GraficoEstatico";
 import GraficoDistancia from "./GraficoDistancia";
 
@@ -116,15 +117,27 @@ export default async function CorridaDasIAsPage() {
   // Pra corrida top-down: usa as 50 primeiras pra dar movimento
   const ias50 = topIas.slice(0, 50);
 
-  // Pra bar race: 15 que estão no topo HOJE
+  // Pra bar races: top 15
   const ias15 = topIas.slice(0, 15);
-  // Filtra frames pra incluir só as 15 que vamos mostrar
   const ias15Slugs = new Set(ias15.map((ia) => ia.slug));
-  const framesFiltrados = frames.map((f) => ({
+  const framesTop15 = frames.map((f) => ({
     jogoNum: f.jogoNum,
     rotulo: f.rotulo,
     pts: Object.fromEntries(
       Object.entries(f.pts).filter(([s]) => ias15Slugs.has(s)),
+    ),
+  }));
+
+  // Pra C/D: top 25 contenders (todos com >= 5 pts no fim, capped em 25)
+  const ias25 = topIas
+    .filter((ia) => ia.pontos >= 5)
+    .slice(0, 25);
+  const ias25Slugs = new Set(ias25.map((ia) => ia.slug));
+  const framesTop25 = frames.map((f) => ({
+    jogoNum: f.jogoNum,
+    rotulo: f.rotulo,
+    pts: Object.fromEntries(
+      Object.entries(f.pts).filter(([s]) => ias25Slugs.has(s)),
     ),
   }));
 
@@ -149,32 +162,40 @@ export default async function CorridaDasIAsPage() {
       </section>
 
       <section style={{ marginBottom: 56 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📊 Modo B — Bar Race temporal</h2>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📊 Modo B1 — Bar Race (custom)</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Top 15 ao longo dos {frames.length - 1} jogos já apurados. A cada
-          frame as barras se reordenam, tipo bar chart race do YouTube. Quando
-          uma IA passa outra, ela sobe no ranking.
+          Versão custom — todas as 15 IAs sempre visíveis, posicionadas por
+          rank, transições suaves. Mais fácil de seguir uma IA específica.
         </p>
-        <BarRaceTemporal ias={ias15} frames={framesFiltrados} />
+        <BarRaceCustom ias={ias15} frames={framesTop15} />
+      </section>
+
+      <section style={{ marginBottom: 56 }}>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📊 Modo B2 — Bar Race (lib racing-bars)</h2>
+        <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
+          Versão da biblioteca <code>racing-bars</code> — só top 10 visíveis,
+          IAs entram e saem do quadro como nos vídeos do YouTube.
+        </p>
+        <BarRaceTemporal ias={ias15} frames={framesTop15} />
       </section>
 
       <section style={{ marginBottom: 56 }}>
         <h2 style={{ marginBottom: 4, fontSize: 26 }}>📈 Modo C — Gráfico de linhas (absoluto)</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Y = pontos absolutos. Eixo X = rodadas. Top 10 IAs, cada linha
-          colorida pela marca. Evolução temporal numa única imagem.
+          Y = pontos absolutos. Eixo X = rodadas. Top {ias25.length} contenders
+          (todas as IAs com ≥ 5 pts), uma linha cada, cor da marca.
         </p>
-        <GraficoEstatico ias={ias15.slice(0, 10)} frames={framesFiltrados} />
+        <GraficoEstatico ias={ias25} frames={framesTop25} />
       </section>
 
       <section style={{ marginBottom: 32 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>🎯 Modo D — Distância do líder</h2>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>🎯 Modo D — Posição relativa</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Y = 100 − (pts do líder − pts da IA). Quem está empatado com o líder
-          em cada rodada fica em 100. Quanto mais baixa a linha, mais atrás. Bom
-          pra ver quem está "colado" no líder.
+          Y centrado em 50. Líder de cada rodada vai pra 90, último vai pra 10,
+          meio do pelotão fica no meio. Mostra quem subiu/caiu em relação ao
+          grupo — não estica nem comprime tudo numa direção só.
         </p>
-        <GraficoDistancia ias={ias15.slice(0, 10)} frames={framesFiltrados} />
+        <GraficoDistancia ias={ias25} frames={framesTop25} />
       </section>
     </div>
   );

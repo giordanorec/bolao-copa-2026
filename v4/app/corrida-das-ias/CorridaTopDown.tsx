@@ -98,10 +98,10 @@ export default function CorridaTopDown({ ias }: { ias: IA[] }) {
               ["--delay" as string]: `${(i % 8) * 0.03}s`,
             }}
           >
+            <span className="cn-nome">{p.nome_display}</span>
             <div className="cn-icon">
               <IconeIA slug={p.slug} size={22} />
             </div>
-            <span className="cn-nome">{p.nome_display}</span>
             <span className="cn-pts">{p.pontos}</span>
           </div>
         ))}
@@ -175,52 +175,63 @@ export default function CorridaTopDown({ ias }: { ias: IA[] }) {
         }
         .cn-runner {
           position: absolute;
-          left: 0;
+          left: 36px;
           transform: translate(0, -50%);
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          white-space: nowrap;
+          /* container vazio, icone serve de ancora; nome e pts sao absolute */
+          width: 0; height: 0;
           animation: avancar ${DURACAO_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
           animation-delay: var(--delay);
           z-index: 2;
         }
         @keyframes avancar {
-          0%  { left: 32px; }
-          100% { left: calc(var(--target-x) - 16px); }
+          0%  { left: 36px; }
+          100% { left: var(--target-x); }
         }
         .cn-icon {
+          position: absolute;
+          top: -12px; left: -12px;
           width: 24px; height: 24px;
           border-radius: 50%;
           background: #fff;
           display: flex; align-items: center; justify-content: center;
           box-shadow: 0 3px 10px rgba(168,85,247,0.5), 0 0 0 2px rgba(168,85,247,0.3);
-          flex-shrink: 0;
           animation: bob 0.45s ease-in-out infinite alternate;
+          z-index: 2;
         }
         @keyframes bob {
           0% { transform: translateY(0) rotate(-2deg); }
           100% { transform: translateY(-2px) rotate(2deg); }
         }
         .cn-nome {
+          position: absolute;
+          top: 50%;
+          right: calc(100% + 18px); /* nome flutua a ESQUERDA do icone */
+          transform: translateY(-50%);
           font-family: var(--ff-display);
           font-weight: 800;
           font-size: 11px;
           color: rgba(255,255,255,0.95);
-          text-shadow: 0 1px 2px #000, 0 0 8px rgba(168,85,247,0.5);
+          text-shadow: 0 1px 3px #000, 0 0 8px rgba(168,85,247,0.6);
           letter-spacing: -0.01em;
-          max-width: 100px;
+          max-width: 110px;
           overflow: hidden;
           text-overflow: ellipsis;
+          white-space: nowrap;
+          z-index: 1;
         }
         .cn-pts {
+          position: absolute;
+          top: 50%;
+          left: calc(100% + 18px); /* pts a DIREITA do icone */
+          transform: translateY(-50%);
           font-family: var(--ff-mono);
           font-size: 11px;
           font-weight: 800;
           color: #fbbf24;
-          background: rgba(0,0,0,0.6);
+          background: rgba(0,0,0,0.7);
           padding: 1px 6px;
           border-radius: 6px;
+          z-index: 1;
         }
       `}</style>
     </div>
