@@ -3,6 +3,7 @@ import path from "path";
 import CorridaTopDown from "./CorridaTopDown";
 import BarRaceTemporal from "./BarRaceTemporal";
 import GraficoEstatico from "./GraficoEstatico";
+import GraficoDistancia from "./GraficoDistancia";
 
 type IA = {
   slug: string;
@@ -157,13 +158,23 @@ export default async function CorridaDasIAsPage() {
         <BarRaceTemporal ias={ias15} frames={framesFiltrados} />
       </section>
 
-      <section style={{ marginBottom: 32 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📈 Modo C — Gráfico de linhas</h2>
+      <section style={{ marginBottom: 56 }}>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📈 Modo C — Gráfico de linhas (absoluto)</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Linhas mostrando a evolução dos pontos das top 10 IAs ao longo das
-          rodadas apuradas. Cada linha colorida pela marca da IA.
+          Y = pontos absolutos. Eixo X = rodadas. Top 10 IAs, cada linha
+          colorida pela marca. Evolução temporal numa única imagem.
         </p>
         <GraficoEstatico ias={ias15.slice(0, 10)} frames={framesFiltrados} />
+      </section>
+
+      <section style={{ marginBottom: 32 }}>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>🎯 Modo D — Distância do líder</h2>
+        <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
+          Y = 100 − (pts do líder − pts da IA). Quem está empatado com o líder
+          em cada rodada fica em 100. Quanto mais baixa a linha, mais atrás. Bom
+          pra ver quem está "colado" no líder.
+        </p>
+        <GraficoDistancia ias={ias15.slice(0, 10)} frames={framesFiltrados} />
       </section>
     </div>
   );

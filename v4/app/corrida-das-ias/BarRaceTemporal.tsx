@@ -38,15 +38,20 @@ export default function BarRaceTemporal({
   useEffect(() => {
     if (!containerRef.current || frames.length === 0) return;
 
-    // Constroi o dataset no formato esperado pela lib:
+    // Filtra IAs que terminaram com 0 pts (nao aparecem no race)
+    const iasComPts = ias.filter((ia) => {
+      const ult = frames[frames.length - 1];
+      return (ult?.pts[ia.slug] ?? 0) > 0;
+    });
+
+    // Constroi o dataset no formato esperado pela lib racing-bars:
     // [{ date, name, value, category }, ...]
     const data: RaceRow[] = [];
-    const dictIa = Object.fromEntries(ias.map((ia) => [ia.slug, ia]));
     for (const f of frames) {
       const date = f.jogoNum === 0
-        ? "Jogo 0"
-        : `Jogo ${String(f.jogoNum).padStart(2, "0")}`;
-      for (const ia of ias) {
+        ? "00 · Antes da Copa"
+        : `${String(f.jogoNum).padStart(2, "0")} · ${f.rotulo.replace(/^Jogo \d+: /, "")}`;
+      for (const ia of iasComPts) {
         const pts = f.pts[ia.slug] ?? 0;
         const marca = marcaDe(ia.slug);
         data.push({
@@ -68,21 +73,30 @@ export default function BarRaceTemporal({
     let cancelled = false;
     const racePromise = race(data, `#${containerId}`, {
       title: "Corrida das IAs · Copa 2026",
-      subTitle: "Pontos cumulativos ao longo dos jogos apurados",
+      subTitle: "Top 10 pontos cumulativos por jogo apurado",
       caption: "bolao.arenadasias.com.br",
       labelsPosition: "outside",
       topN: 10,
-      tickDuration: 1200,           // 1.2s por frame — mais lento que antes
+      tickDuration: 4000,       // 4s por frame — bem mais lento, dá pra acompanhar
       loop: true,
       autorun: true,
       colorMap: colors,
       colorSeed: "fixed",
       showIcons: false,
       showGroups: false,
+      mouseControls: true,
+      keyboardControls: true,
       dateCounter: "date",
       controlButtons: "all",
+      overlays: "all",
       theme: "dark",
-      height: "560px",
+      height: "640px",
+      injectStyles: true,
+      labelsWidth: 220,         // espaço pros nomes longos
+      marginLeft: 16,
+      marginRight: 30,
+      marginTop: 60,
+      marginBottom: 60,
     });
 
     return () => {
