@@ -1,6 +1,8 @@
 import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import SiteNav from "@/components/SiteNav";
 import HeaderNavBar from "@/components/HeaderNavBar";
 import LangSwitcher from "@/components/LangSwitcher";
@@ -152,6 +154,9 @@ export default async function RootLayout({
             __html: `if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}`,
           }}
         />
+
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
