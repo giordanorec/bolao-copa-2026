@@ -3,8 +3,10 @@ import path from "path";
 import CorridaTopDown from "./CorridaTopDown";
 import BarRaceTemporal from "./BarRaceTemporal";
 import BarRaceCustom from "./BarRaceCustom";
-import GraficoEstatico from "./GraficoEstatico";
-import GraficoDistancia from "./GraficoDistancia";
+import {
+  GraficoEstaticoComSelector,
+  GraficoDistanciaComSelector,
+} from "./GraficosComSelector";
 
 type IA = {
   slug: string;
@@ -128,18 +130,10 @@ export default async function CorridaDasIAsPage() {
     ),
   }));
 
-  // Pra C/D: top 25 contenders (todos com >= 5 pts no fim, capped em 25)
-  const ias25 = topIas
-    .filter((ia) => ia.pontos >= 5)
-    .slice(0, 25);
-  const ias25Slugs = new Set(ias25.map((ia) => ia.slug));
-  const framesTop25 = frames.map((f) => ({
-    jogoNum: f.jogoNum,
-    rotulo: f.rotulo,
-    pts: Object.fromEntries(
-      Object.entries(f.pts).filter(([s]) => ias25Slugs.has(s)),
-    ),
-  }));
+  // Pra C/D: TODAS as IAs (default seleciona todas; user pode filtrar)
+  const iasAll = topIas; // ja ordenadas por pts desc
+  // frames com TODAS as IAs (selector faz o filtro client-side)
+  const framesAll = frames;
 
   return (
     <div style={{ marginTop: 24, marginBottom: 64 }}>
@@ -182,20 +176,20 @@ export default async function CorridaDasIAsPage() {
       <section style={{ marginBottom: 56 }}>
         <h2 style={{ marginBottom: 4, fontSize: 26 }}>📈 Modo C — Gráfico de linhas (absoluto)</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Y = pontos absolutos. Eixo X = rodadas. Top {ias25.length} contenders
-          (todas as IAs com ≥ 5 pts), uma linha cada, cor da marca.
+          Y = pontos absolutos. Eixo X = rodadas. Mostra TODAS as {iasAll.length}{" "}
+          IAs por padrão — use o seletor pra filtrar grupos ou IAs específicas.
         </p>
-        <GraficoEstatico ias={ias25} frames={framesTop25} />
+        <GraficoEstaticoComSelector ias={iasAll} frames={framesAll} />
       </section>
 
       <section style={{ marginBottom: 32 }}>
         <h2 style={{ marginBottom: 4, fontSize: 26 }}>🎯 Modo D — Posição relativa</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
           Y centrado em 50. Líder de cada rodada vai pra 90, último vai pra 10,
-          meio do pelotão fica no meio. Mostra quem subiu/caiu em relação ao
-          grupo — não estica nem comprime tudo numa direção só.
+          meio do pelotão fica no meio. TODAS as {iasAll.length} IAs por padrão
+          — use o seletor pra focar.
         </p>
-        <GraficoDistancia ias={ias25} frames={framesTop25} />
+        <GraficoDistanciaComSelector ias={iasAll} frames={framesAll} />
       </section>
     </div>
   );

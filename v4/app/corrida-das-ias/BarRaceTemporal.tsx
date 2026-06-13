@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useId } from "react";
-import { race } from "racing-bars";
+/// <reference types="racing-bars/racing-bars" />
+// @ts-expect-error — racing-bars expoe types via module-augment, mas package.json nao mapeia "./react" pros types
+import RacingBars from "racing-bars/react";
 import { marcaDe } from "@/lib/ias";
 
 type IA = {
@@ -21,7 +22,6 @@ type RaceRow = {
   name: string;
   value: number;
   category: string;
-  icon?: string;
 };
 
 export default function BarRaceTemporal({
@@ -31,104 +31,74 @@ export default function BarRaceTemporal({
   ias: IA[];
   frames: Frame[];
 }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const idAuto = useId();
-  const containerId = `racing-bars-${idAuto.replace(/[:]/g, "")}`;
+  // Filtra IAs com 0 pts no fim (não aparecem no race)
+  const iasComPts = ias.filter((ia) => {
+    const ult = frames[frames.length - 1];
+    return (ult?.pts[ia.slug] ?? 0) > 0;
+  });
 
-  useEffect(() => {
-    if (!containerRef.current || frames.length === 0) return;
-
-    // Filtra IAs que terminaram com 0 pts (nao aparecem no race)
-    const iasComPts = ias.filter((ia) => {
-      const ult = frames[frames.length - 1];
-      return (ult?.pts[ia.slug] ?? 0) > 0;
-    });
-
-    // Constroi o dataset no formato esperado pela lib racing-bars:
-    // [{ date, name, value, category }, ...]
-    const data: RaceRow[] = [];
-    for (const f of frames) {
-      const date = f.jogoNum === 0
-        ? "00 · Antes da Copa"
-        : `${String(f.jogoNum).padStart(2, "0")} · ${f.rotulo.replace(/^Jogo \d+: /, "")}`;
-      for (const ia of iasComPts) {
-        const pts = f.pts[ia.slug] ?? 0;
-        const marca = marcaDe(ia.slug);
-        data.push({
-          date,
-          name: ia.nome_display,
-          value: pts,
-          category: marca.nome,
-        });
-      }
-    }
-
-    // Cores por categoria (marca) — racing-bars aceita um objeto categoria -> cor
-    const colors: Record<string, string> = {};
-    for (const ia of ias) {
+  // Constroi o dataset
+  // Datas precisam ser sortáveis lexicograficamente
+  const data: RaceRow[] = [];
+  for (let frameIdx = 0; frameIdx < frames.length; frameIdx++) {
+    const f = frames[frameIdx];
+    const date = `Jogo ${String(frameIdx).padStart(2, "0")}`;
+    for (const ia of iasComPts) {
+      const pts = f.pts[ia.slug] ?? 0;
       const marca = marcaDe(ia.slug);
-      colors[marca.nome] = marca.cor;
-    }
-
-    let cancelled = false;
-    const racePromise = race(data, `#${containerId}`, {
-      title: "Corrida das IAs · Copa 2026",
-      subTitle: "Top 10 pontos cumulativos por jogo apurado",
-      caption: "bolao.arenadasias.com.br",
-      labelsPosition: "outside",
-      topN: 10,
-      tickDuration: 4000,       // 4s por frame — bem mais lento, dá pra acompanhar
-      loop: true,
-      autorun: true,
-      colorMap: colors,
-      colorSeed: "fixed",
-      showIcons: false,
-      showGroups: false,
-      mouseControls: true,
-      keyboardControls: true,
-      dateCounter: "date",
-      controlButtons: "all",
-      overlays: "all",
-      theme: "dark",
-      height: "640px",
-      injectStyles: true,
-      labelsWidth: 220,         // espaço pros nomes longos
-      marginLeft: 16,
-      marginRight: 30,
-      marginTop: 60,
-      marginBottom: 60,
-    });
-
-    return () => {
-      cancelled = true;
-      racePromise.then((ctrl) => {
-        if (!cancelled) return;
-        try {
-          (ctrl as unknown as { destroy?: () => void })?.destroy?.();
-        } catch {
-          if (containerRef.current) containerRef.current.innerHTML = "";
-        }
-      }).catch(() => {
-        if (containerRef.current) containerRef.current.innerHTML = "";
+      data.push({
+        date,
+        name: ia.nome_display,
+        value: pts,
+        category: marca.nome,
       });
-    };
-  }, [containerId, frames, ias]);
+    }
+  }
+
+  // Mapeia cores por marca
+  const colorMap: Record<string, string> = {};
+  for (const ia of iasComPts) {
+    const marca = marcaDe(ia.slug);
+    colorMap[marca.nome] = marca.cor;
+  }
 
   return (
-    <div className="brt-wrap">
-      <div id={containerId} ref={containerRef} />
-      <style>{`
-        .brt-wrap {
-          background: #0f0a26;
-          border: 2px solid rgba(168, 85, 247, 0.4);
-          border-radius: var(--r-l);
-          padding: 12px;
-          overflow: hidden;
-        }
-        .brt-wrap :global(.racing-bars) {
-          font-family: var(--ff-display);
-        }
-      `}</style>
+    <div
+      style={{
+        background: "#0f0a26",
+        border: "2px solid rgba(168, 85, 247, 0.4)",
+        borderRadius: "var(--r-l)",
+        padding: 12,
+      }}
+    >
+      <RacingBars
+        data={data}
+        title="Corrida das IAs · Copa 2026"
+        subTitle="Top 10 pontos cumulativos por jogo apurado"
+        caption="bolao.arenadasias.com.br"
+        labelsPosition="outside"
+        topN={10}
+        tickDuration={4000}
+        loop={true}
+        autorun={true}
+        colorMap={colorMap}
+        colorSeed="fixed"
+        showIcons={false}
+        showGroups={false}
+        mouseControls={true}
+        keyboardControls={true}
+        dateCounter="date"
+        controlButtons="all"
+        overlays="all"
+        theme="dark"
+        height={640}
+        injectStyles={true}
+        labelsWidth={220}
+        marginLeft={16}
+        marginRight={30}
+        marginTop={60}
+        marginBottom={60}
+      />
     </div>
   );
 }
