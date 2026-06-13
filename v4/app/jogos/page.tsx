@@ -89,6 +89,17 @@ export default async function JogosPage() {
                     )
                     .slice(0, 3)
                 : [];
+              // grau de confianca = % de IAs que apostaram no placar mais votado
+              const confiancaPct = bola && totalVotos
+                ? Math.round((bola.votos / totalVotos) * 100)
+                : 0;
+              const confiancaTier = confiancaPct >= 40 ? "forte"
+                : confiancaPct >= 20 ? "medio"
+                : "fraco";
+              const confiancaLbl = locale === "en" ? "Confidence"
+                : locale === "es" ? "Confianza"
+                : locale === "fr" ? "Confiance"
+                : "Confiança";
               return (
                 <JogoModal
                   key={j.numero}
@@ -139,6 +150,15 @@ export default async function JogosPage() {
                           {totalVotos > 3 && (
                             <span className="mais-ias">+{totalVotos - 3}</span>
                           )}
+                        </div>
+                      )}
+                      {bola && (
+                        <div className={`confianca-meter ${confiancaTier}`}>
+                          <span className="label">🔮 {confiancaLbl}</span>
+                          <div className="bar">
+                            <div className="fill" style={{ width: `${confiancaPct}%` }} />
+                          </div>
+                          <span className="pct">{confiancaPct}%</span>
                         </div>
                       )}
                       <div className="jogo-card-acao">
