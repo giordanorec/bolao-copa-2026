@@ -38,10 +38,28 @@ export default async function JogosPage() {
     : locale === "fr" ? "Chaque match avec le consensus de 122 IA."
     : "Cada jogo com o consenso das 122 IAs.";
 
-  // agrupa por fase
-  const porFase: Record<string, typeof jogos> = {};
-  for (const j of jogos) {
-    (porFase[j.fase] ??= []).push(j);
+  // ordena por data + hora e agrupa por data
+  const jogosOrdenados = [...jogos].sort((a, b) => {
+    if (a.data !== b.data) return a.data.localeCompare(b.data);
+    return a.hora.localeCompare(b.hora);
+  });
+  const porData: Record<string, typeof jogos> = {};
+  for (const j of jogosOrdenados) {
+    (porData[j.data] ??= []).push(j);
+  }
+
+  // formata "2026-06-11" -> "Qui, 11/06" (PT) etc.
+  function formataDia(data: string): string {
+    const [, mes, dia] = data.split("-");
+    const dt = new Date(`${data}T12:00:00Z`);
+    const diasSemana: Record<string, Record<number, string>> = {
+      pt: { 0: "Dom", 1: "Seg", 2: "Ter", 3: "Qua", 4: "Qui", 5: "Sex", 6: "Sáb" },
+      en: { 0: "Sun", 1: "Mon", 2: "Tue", 3: "Wed", 4: "Thu", 5: "Fri", 6: "Sat" },
+      es: { 0: "Dom", 1: "Lun", 2: "Mar", 3: "Mié", 4: "Jue", 5: "Vie", 6: "Sáb" },
+      fr: { 0: "Dim", 1: "Lun", 2: "Mar", 3: "Mer", 4: "Jeu", 5: "Ven", 6: "Sam" },
+    };
+    const dia_semana = diasSemana[locale]?.[dt.getUTCDay()] ?? "";
+    return `${dia_semana}, ${dia}/${mes}`;
   }
 
   return (
@@ -53,9 +71,9 @@ export default async function JogosPage() {
 
       <ColaboracaoBanner variante="ias" locale={locale} />
 
-      {Object.entries(porFase).map(([fase, lista]) => (
-        <section key={fase} style={{ marginBottom: 32 }}>
-          <h2 className="fase-titulo">{fase}</h2>
+      {Object.entries(porData).map(([data, lista]) => (
+        <section key={data} style={{ marginBottom: 32 }}>
+          <h2 className="fase-titulo">{formataDia(data)}</h2>
           <div className="jogos-lista-grid">
             {lista.map((j) => {
               const dados = palpitesIAs[String(j.numero)];

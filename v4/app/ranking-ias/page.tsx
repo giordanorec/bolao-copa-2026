@@ -5,13 +5,7 @@ import IconeIA from "@/components/IconeIA";
 import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 import SerieA from "@/components/SerieA";
 import { resolverLocale } from "@/lib/locale-server";
-import {
-  marcaDe,
-  scorePopularidade,
-  MARCAS,
-  ORDEM_POPULARIDADE,
-  type FamiliaIA,
-} from "@/lib/ias";
+import { scorePopularidade } from "@/lib/ias";
 
 type IA = {
   slug: string;
@@ -72,22 +66,14 @@ export default async function IAsPage() {
   const es = locale === "es";
   const fr = locale === "fr";
 
-  const desafiantes = ias.filter((ia) => !SLUGS_SERIE_A.has(ia.slug));
-
-  // agrupa por família + ordena dentro
-  const porFamilia: Record<string, IA[]> = {};
-  for (const ia of desafiantes) {
-    const fam = marcaDe(ia.slug).familia;
-    (porFamilia[fam] ??= []).push(ia);
-  }
-  const familiasOrdenadas = ORDEM_POPULARIDADE
-    .map((fam) => ({
-      familia: fam,
-      lista: (porFamilia[fam] ?? []).sort(
-        (a, b) => scorePopularidade(a.slug) - scorePopularidade(b.slug),
-      ),
-    }))
-    .filter((f) => f.lista.length > 0);
+  const desafiantes = ias
+    .filter((ia) => !SLUGS_SERIE_A.has(ia.slug))
+    .sort(
+      (a, b) =>
+        b.pontos - a.pontos ||
+        b.placares_exatos - a.placares_exatos ||
+        scorePopularidade(a.slug) - scorePopularidade(b.slug),
+    );
 
   const tit = en
     ? `🤖 The ${ias.length} AIs`
@@ -152,94 +138,82 @@ export default async function IAsPage() {
           }}
         >
           {en
-            ? "Models grouped by maker, in order of popularity."
+            ? "Ranked by total points."
             : es
-              ? "Modelos agrupados por marca, por orden de popularidad."
+              ? "Ordenados por puntos totales."
               : fr
-                ? "Modèles par marque, par ordre de popularité."
-                : "Modelos agrupados por empresa, em ordem de popularidade."}
+                ? "Classés par points totaux."
+                : "Ordenados por pontos totais."}
         </p>
 
-        {familiasOrdenadas.map(({ familia, lista }) => {
-          const marca = MARCAS[familia as FamiliaIA];
-          return (
-            <div key={familia} className="familia-bloco">
-              <div className="familia-head">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={marca.logo}
-                  alt={marca.nome}
+        <div className="ias-mini-grid">
+          {desafiantes.map((ia, idx) => (
+            <Link
+              key={ia.slug}
+              href={`/ia/${encodeURIComponent(ia.slug)}`}
+              className="ia-mini"
+              id={ia.slug}
+            >
+              <span
+                style={{
+                  fontFamily: "var(--ff-mono)",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  color: "var(--fg-muted)",
+                  minWidth: 32,
+                  textAlign: "right",
+                }}
+              >
+                {idx + 1}º
+              </span>
+              <IconeIA slug={ia.slug} size={36} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <strong>{ia.nome}</strong>
+                <small
                   style={{
-                    width: 40,
-                    height: 40,
-                    objectFit: "contain",
-                    flexShrink: 0,
+                    display: "block",
+                    fontSize: 11,
+                    color: "var(--fg-muted)",
+                    fontFamily: "var(--ff-mono)",
+                    marginTop: 2,
                   }}
-                />
-                <strong>{marca.nome}</strong>
-                <span className="familia-count">
-                  {lista.length} {lista.length === 1 ? "modelo" : "modelos"}
+                >
+                  {ia.jogos_palpitados} {en ? "predictions" : es ? "pronósticos" : fr ? "pronostics" : "palpites"}
+                </small>
+              </div>
+              <div
+                style={{
+                  textAlign: "right",
+                  flexShrink: 0,
+                }}
+              >
+                <strong
+                  style={{
+                    fontFamily: "var(--ff-display)",
+                    fontSize: 22,
+                    color: "var(--secondary)",
+                    lineHeight: 1,
+                  }}
+                >
+                  {ia.pontos}
+                </strong>
+                <span
+                  style={{
+                    display: "block",
+                    fontFamily: "var(--ff-mono)",
+                    fontSize: 10,
+                    color: "var(--fg-muted)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                    marginTop: 1,
+                  }}
+                >
+                  pts
                 </span>
               </div>
-              <div className="ias-mini-grid">
-                {lista.map((ia) => (
-                  <Link
-                    key={ia.slug}
-                    href={`/ia/${encodeURIComponent(ia.slug)}`}
-                    className="ia-mini"
-                    id={ia.slug}
-                  >
-                    <IconeIA slug={ia.slug} size={36} />
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <strong>{ia.nome}</strong>
-                      <small
-                        style={{
-                          display: "block",
-                          fontSize: 11,
-                          color: "var(--fg-muted)",
-                          fontFamily: "var(--ff-mono)",
-                          marginTop: 2,
-                        }}
-                      >
-                        {ia.jogos_palpitados} {en ? "predictions" : es ? "pronósticos" : fr ? "pronostics" : "palpites"}
-                      </small>
-                    </div>
-                    <div
-                      style={{
-                        textAlign: "right",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <strong
-                        style={{
-                          fontFamily: "var(--ff-display)",
-                          fontSize: 22,
-                          color: "var(--secondary)",
-                          lineHeight: 1,
-                        }}
-                      >
-                        {ia.pontos}
-                      </strong>
-                      <span
-                        style={{
-                          display: "block",
-                          fontFamily: "var(--ff-mono)",
-                          fontSize: 10,
-                          color: "var(--fg-muted)",
-                          textTransform: "uppercase",
-                          letterSpacing: "0.08em",
-                          marginTop: 1,
-                        }}
-                      >
-                        pts
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          );
-        })}
+            </Link>
+          ))}
+        </div>
       </section>
 
       <div
