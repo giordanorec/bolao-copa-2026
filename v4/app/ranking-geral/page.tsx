@@ -17,22 +17,28 @@ async function carregarIAs(): Promise<Linha[]> {
     const filePath = path.join(process.cwd(), "public", "ranking-ias.json");
     const raw = await fs.readFile(filePath, "utf-8");
     const data = JSON.parse(raw);
-    return (data.ias ?? []).map(
-      (
-        ia: {
-          nome_display?: string;
-          slug?: string;
-          pontos?: number;
-          palpites_preenchidos?: number;
-        },
-      ) => ({
-        tipo:
-          ia.slug === "bola-de-cristal" ? ("cristal" as const) : ("ia" as const),
-        nome: ia.nome_display ?? ia.slug ?? "?",
-        pontos: ia.pontos ?? 0,
-        preenchidos: ia.palpites_preenchidos ?? 104,
-      }),
-    );
+    return (data.ias ?? [])
+      .filter(
+        // Esconde IAs que nunca palpitaram (placeholders sem coleta)
+        (ia: { slug?: string; palpites_total?: number }) =>
+          ia.slug === "bola-de-cristal" || (ia.palpites_total ?? 0) > 0,
+      )
+      .map(
+        (
+          ia: {
+            nome_display?: string;
+            slug?: string;
+            pontos?: number;
+            palpites_total?: number;
+          },
+        ) => ({
+          tipo:
+            ia.slug === "bola-de-cristal" ? ("cristal" as const) : ("ia" as const),
+          nome: ia.nome_display ?? ia.slug ?? "?",
+          pontos: ia.pontos ?? 0,
+          preenchidos: ia.palpites_total ?? 104,
+        }),
+      );
   } catch {
     return [];
   }

@@ -196,6 +196,7 @@ def _cmd_ranking(_args: argparse.Namespace) -> int:
                 "placares_exatos": r["placares_exatos"],
                 "vencedores_acertados": r["vencedores_acertados"],
                 "jogos_palpitados": r["jogos_palpitados"],
+                "palpites_total": r["palpites_total"],
                 "rank": rank,
             }
         )

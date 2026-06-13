@@ -4,7 +4,7 @@
 <!-- url: https://pi.ai -->
 <!-- modo: api -->
 <!-- modelo: inflection/inflection-3-pi -->
-<!-- coletado_em: 2026-06-06T12:59:30-03:00 -->
+<!-- coletado_em: 2026-06-13T00:27:14-03:00 -->
 <!-- status: palpitou via api -->
 
 # Palpite — Inflection Pi (via OpenRouter)

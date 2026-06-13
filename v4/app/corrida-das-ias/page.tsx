@@ -2,7 +2,6 @@ import { promises as fs } from "fs";
 import path from "path";
 import CorridaTopDown from "./CorridaTopDown";
 import BarRaceTemporal from "./BarRaceTemporal";
-import BarRaceCustom from "./BarRaceCustom";
 import { GraficoDistanciaComSelector } from "./GraficosComSelector";
 
 type IA = {
@@ -137,8 +136,7 @@ export default async function CorridaDasIAsPage() {
       <header style={{ textAlign: "center", marginBottom: 28 }}>
         <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)" }}>🏁 Corrida das IAs</h1>
         <p className="lede" style={{ marginTop: 10, maxWidth: 640, marginInline: "auto" }}>
-          3 formas de visualizar o ranking. Cada modo mostra os dados de um
-          ângulo diferente.
+          3 formas de visualizar a corrida das IAs ao longo dos jogos.
         </p>
       </header>
 
@@ -153,25 +151,16 @@ export default async function CorridaDasIAsPage() {
       </section>
 
       <section style={{ marginBottom: 56 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📊 Modo B1 — Bar Race (custom)</h2>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📊 Modo B — Bar Race</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Versão custom — todas as 15 IAs sempre visíveis, posicionadas por
-          rank, transições suaves. Mais fácil de seguir uma IA específica.
-        </p>
-        <BarRaceCustom ias={ias15} frames={framesTop15} />
-      </section>
-
-      <section style={{ marginBottom: 56 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📊 Modo B2 — Bar Race (lib racing-bars)</h2>
-        <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Versão da biblioteca <code>racing-bars</code> — só top 10 visíveis,
-          IAs entram e saem do quadro como nos vídeos do YouTube.
+          Top 10 IAs subindo e descendo a cada jogo apurado. IAs entram
+          desbaixo e saem por baixo quando passam dos top 10.
         </p>
         <BarRaceTemporal ias={ias15} frames={framesTop15} />
       </section>
 
       <section style={{ marginBottom: 32 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>🎯 Modo D — Posição relativa</h2>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>🎯 Modo C — Posição relativa</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
           Y centrado em 50. Líder de cada rodada vai pra 90, último vai pra 10,
           meio do pelotão fica no meio. Use os presets pra escolher quais IAs

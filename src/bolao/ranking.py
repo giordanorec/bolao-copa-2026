@@ -36,6 +36,7 @@ class IAStats(TypedDict):
     placares_exatos: int
     vencedores_acertados: int
     jogos_palpitados: int
+    palpites_total: int
 
 
 class RankingRow(TypedDict):
@@ -44,6 +45,7 @@ class RankingRow(TypedDict):
     placares_exatos: int
     vencedores_acertados: int
     jogos_palpitados: int
+    palpites_total: int
 
 
 def _vencedor_acertou(palpite: Palpite, resultado: Resultado) -> bool:
@@ -75,6 +77,7 @@ def pontos_por_ia(
         placares_exatos = 0
         vencedores_acertados = 0
         jogos_palpitados = 0
+        palpites_total = len(lista)
 
         for p in lista:
             resultado = res_por_numero.get(p.jogo_numero)
@@ -95,6 +98,7 @@ def pontos_por_ia(
             placares_exatos=placares_exatos,
             vencedores_acertados=vencedores_acertados,
             jogos_palpitados=jogos_palpitados,
+            palpites_total=palpites_total,
         )
 
     return out
@@ -114,6 +118,7 @@ def ranking_geral(
             placares_exatos=m["placares_exatos"],
             vencedores_acertados=m["vencedores_acertados"],
             jogos_palpitados=m["jogos_palpitados"],
+            palpites_total=m["palpites_total"],
         )
         for ia, m in agregado.items()
     ]

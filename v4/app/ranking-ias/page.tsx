@@ -33,21 +33,27 @@ async function carregarIAs(): Promise<IA[]> {
   try {
     const raw = await fs.readFile(filePath, "utf-8");
     const data = JSON.parse(raw);
-    return (data.ias ?? []).map(
-      (ia: {
-        slug?: string;
-        nome_display?: string;
-        pontos?: number;
-        placares_exatos?: number;
-        jogos_palpitados?: number;
-      }) => ({
-        slug: ia.slug ?? "",
-        nome: ia.nome_display ?? ia.slug ?? "",
-        pontos: ia.pontos ?? 0,
-        placares_exatos: ia.placares_exatos ?? 0,
-        jogos_palpitados: ia.jogos_palpitados ?? 0,
-      }),
-    );
+    return (data.ias ?? [])
+      .filter(
+        // Esconde IAs que nunca palpitaram (placeholders sem coleta)
+        (ia: { slug?: string; palpites_total?: number }) =>
+          ia.slug === "bola-de-cristal" || (ia.palpites_total ?? 0) > 0,
+      )
+      .map(
+        (ia: {
+          slug?: string;
+          nome_display?: string;
+          pontos?: number;
+          placares_exatos?: number;
+          jogos_palpitados?: number;
+        }) => ({
+          slug: ia.slug ?? "",
+          nome: ia.nome_display ?? ia.slug ?? "",
+          pontos: ia.pontos ?? 0,
+          placares_exatos: ia.placares_exatos ?? 0,
+          jogos_palpitados: ia.jogos_palpitados ?? 0,
+        }),
+      );
   } catch {
     return [];
   }
@@ -120,12 +126,12 @@ export default async function IAsPage() {
       <section style={{ marginTop: 40 }}>
         <h2 style={{ textAlign: "center", marginBottom: 8 }}>
           {en
-            ? "+ Other 112 challengers"
+            ? `+ Other ${desafiantes.length} challengers`
             : es
-              ? "+ Otros 112 desafiantes"
+              ? `+ Otros ${desafiantes.length} desafiantes`
               : fr
-                ? "+ 112 autres challengers"
-                : "+ Outros 112 desafiantes"}
+                ? `+ ${desafiantes.length} autres challengers`
+                : `+ Outros ${desafiantes.length} desafiantes`}
         </h2>
         <p
           style={{
