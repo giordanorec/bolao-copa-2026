@@ -3,6 +3,7 @@
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import posthog from "posthog-js";
 import { createClient } from "@/lib/supabase-browser";
 import { useLocale } from "@/lib/use-locale";
 import { t } from "@/lib/i18n";
@@ -39,6 +40,14 @@ function SignupForm() {
       setErro(error.message);
       setLoading(false);
       return;
+    }
+    if (data.user) {
+      posthog.identify(data.user.id, { email });
+      posthog.capture("signup_completo", {
+        veio_de_convite: !!slugConvite,
+        tem_instagram: !!instagram,
+        tem_whatsapp: !!whatsapp,
+      });
     }
     // Atualiza profile com instagram/whatsapp (trigger criou com display_name)
     if (data.user && (instagram || whatsapp)) {

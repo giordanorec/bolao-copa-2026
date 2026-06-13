@@ -2,6 +2,7 @@
 
 import { useState, useRef, useMemo, useEffect } from "react";
 import Link from "next/link";
+import posthog from "posthog-js";
 import { createClient } from "@/lib/supabase-browser";
 import type { Jogo } from "@/lib/types";
 import type { DadosPorJogo, PalpiteIA, PaisIA } from "@/lib/palpites-ias";
@@ -180,6 +181,11 @@ export default function PalpitarForm({
       setErroSalvar(`Erro ao salvar jogo #${numero}: ${error.message}`);
     } else {
       setErroSalvar(null);
+      posthog.capture("palpitou", {
+        bolao: bolaoSlug,
+        jogo: numero,
+        placar: `${valor.gols_a}x${valor.gols_b}`,
+      });
     }
     setSalvando((s) => {
       const n = new Set(s);

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import posthog from "posthog-js";
 
 type Props = {
   url: string;
@@ -67,6 +68,7 @@ export default function ShareButtons({
   }
 
   async function shareNativo() {
+    posthog.capture("share", { canal: "native", url });
     if (navigator.share) {
       try {
         await navigator.share({ title: texto, text: texto, url: urlFull });
@@ -92,13 +94,17 @@ export default function ShareButtons({
         target="_blank"
         rel="noopener noreferrer"
         className="btn-share btn-share-whatsapp"
+        onClick={() => posthog.capture("share", { canal: "whatsapp", url })}
       >
         <span>💬</span>
         {tx.whatsapp}
       </a>
       <button
         type="button"
-        onClick={() => copiar(`${texto}\n\n${urlFull}\n\n#BolaoDasIAs #Copa2026`)}
+        onClick={() => {
+          posthog.capture("share", { canal: "instagram", url });
+          copiar(`${texto}\n\n${urlFull}\n\n#BolaoDasIAs #Copa2026`);
+        }}
         className="btn-share btn-share-insta"
       >
         <span>📸</span>
@@ -106,7 +112,10 @@ export default function ShareButtons({
       </button>
       <button
         type="button"
-        onClick={() => copiar(urlFull)}
+        onClick={() => {
+          posthog.capture("share", { canal: "copy_link", url });
+          copiar(urlFull);
+        }}
         className={`btn-share btn-share-link ${copiado ? "copiado" : ""}`}
       >
         <span>{copiado ? "✓" : "🔗"}</span>

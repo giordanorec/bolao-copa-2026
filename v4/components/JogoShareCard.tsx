@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import posthog from "posthog-js";
 
 type Props = {
   jogoNumero: number;
@@ -20,6 +21,7 @@ export default function JogoShareCard({
   const whatsUrl = `https://wa.me/?text=${encodeURIComponent(whatsMsg)}`;
 
   async function nativeShare() {
+    posthog.capture("share_jogo", { jogo: jogoNumero, canal: "auto" });
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({ text: whatsMsg, url });

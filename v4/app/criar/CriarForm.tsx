@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { nanoid } from "nanoid";
+import posthog from "posthog-js";
 import { createClient } from "@/lib/supabase-browser";
 
 export default function CriarForm() {
@@ -48,6 +49,7 @@ export default function CriarForm() {
         .from("bolao_membro")
         .insert({ bolao_id: novoBolao.id, user_id: user.id });
     }
+    posthog.capture("criou_bolao", { slug, tem_descricao: !!descricao.trim() });
     router.push(`/bolao/${slug}`);
     router.refresh();
   }

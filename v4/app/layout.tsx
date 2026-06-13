@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import PostHogProvider from "@/components/PostHogProvider";
 import SiteNav from "@/components/SiteNav";
 import HeaderNavBar from "@/components/HeaderNavBar";
 import LangSwitcher from "@/components/LangSwitcher";
@@ -68,6 +69,7 @@ export default async function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body data-theme={tema}>
+        <PostHogProvider>
         <header className="site-header">
           <div className="container header-inner">
             <Link href="/" className="brand">
@@ -157,6 +159,7 @@ export default async function RootLayout({
 
         <Analytics />
         <SpeedInsights />
+        </PostHogProvider>
       </body>
     </html>
   );

@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import posthog from "posthog-js";
 import { createClient } from "@/lib/supabase-browser";
 import { useLocale } from "@/lib/use-locale";
 import { t } from "@/lib/i18n";
@@ -94,6 +95,10 @@ function LoginForm() {
     try {
       localStorage.setItem("v4-ultimo-email", email);
     } catch {}
+    if (data.user) {
+      posthog.identify(data.user.id, { email });
+      posthog.capture("login", { veio_de_convite: !!slugConvite });
+    }
     if (slugConvite && data.user) {
       const { data: bolao } = await supabase
         .from("bolao")
