@@ -1,7 +1,8 @@
 import { promises as fs } from "fs";
 import path from "path";
-import CorridaLanes from "./CorridaLanes";
-import BarRace from "./BarRace";
+import CorridaTopDown from "./CorridaTopDown";
+import BarRaceTemporal from "./BarRaceTemporal";
+import GraficoEstatico from "./GraficoEstatico";
 
 type IA = {
   slug: string;
@@ -11,61 +12,162 @@ type IA = {
   jogos_palpitados: number;
 };
 
-async function carregarTop(n: number): Promise<IA[]> {
-  const fp = path.join(process.cwd(), "public", "ranking-ias.json");
-  const raw = await fs.readFile(fp, "utf-8");
-  const data = JSON.parse(raw) as { ias: IA[] };
-  return [...data.ias]
+type Resultado = { jogo_numero: number; gols_a: number; gols_b: number };
+type Jogo = {
+  numero: number;
+  fase: string;
+  data: string;
+  hora: string;
+  time_a: string;
+  time_b: string;
+};
+type PorJogo = Record<string, { palpites: Record<string, { gols_a: number; gols_b: number }> }>;
+
+// pontuação simplificada (igual a lib/scoring.ts mas inline pra usar em jogo a jogo)
+function pts(
+  pa: number, pb: number,
+  ra: number, rb: number,
+  mataMata: boolean,
+): number {
+  let base = 0;
+  if (pa === ra && pb === rb) base = 10;
+  else if (
+    Math.sign(pa - pb) === Math.sign(ra - rb) &&
+    pa - pb === ra - rb &&
+    pa !== pb
+  ) base = 7;
+  else if (Math.sign(pa - pb) === Math.sign(ra - rb) && pa !== pb) base = 5;
+  else if (pa === pb && ra === rb) base = 5;
+  return mataMata ? base * 2 : base;
+}
+
+async function carregarTudo() {
+  const pub = path.join(process.cwd(), "public");
+  const [rkRaw, jogosRaw, pjRaw, resRaw] = await Promise.all([
+    fs.readFile(path.join(pub, "ranking-ias.json"), "utf-8"),
+    fs.readFile(path.join(pub, "jogos.json"), "utf-8"),
+    fs.readFile(path.join(pub, "palpites_por_jogo.json"), "utf-8"),
+    fs.readFile(path.join(pub, "resultados.json"), "utf-8"),
+  ]);
+  const ranking = JSON.parse(rkRaw) as { ias: IA[] };
+  const jogos = JSON.parse(jogosRaw) as Jogo[];
+  const palpites = JSON.parse(pjRaw) as PorJogo;
+  const resultados = JSON.parse(resRaw) as Resultado[];
+
+  // mapa jogo -> jogo full pra saber a fase
+  const mapJogo = new Map(jogos.map((j) => [j.numero, j]));
+
+  // Computa pts cumulativo por IA depois de cada jogo (em ordem)
+  const resultOrdenados = [...resultados].sort((a, b) => a.jogo_numero - b.jogo_numero);
+
+  // Lista de IAs com >0 pts no fim (pra não poluir gráfico)
+  const topIas = [...ranking.ias]
+    .filter((ia) => ia.slug !== "bola-de-cristal")
     .sort(
       (a, b) =>
         b.pontos - a.pontos ||
         b.placares_exatos - a.placares_exatos ||
         a.slug.localeCompare(b.slug),
-    )
-    .slice(0, n);
+    );
+
+  // Frames: cada frame tem pts por IA ATÉ aquele jogo (cumulativo)
+  type Frame = { jogoNum: number; rotulo: string; pts: Record<string, number> };
+  const frames: Frame[] = [];
+  const acumulado: Record<string, number> = {};
+  for (const ia of topIas) acumulado[ia.slug] = 0;
+
+  // Frame inicial (zerado, antes de qualquer jogo)
+  frames.push({
+    jogoNum: 0,
+    rotulo: "Antes do 1º jogo",
+    pts: { ...acumulado },
+  });
+
+  for (const r of resultOrdenados) {
+    const jogo = mapJogo.get(r.jogo_numero);
+    if (!jogo) continue;
+    const fase = jogo.fase.toLowerCase();
+    const mataMata = !fase.startsWith("grupo");
+    const dados = palpites[String(r.jogo_numero)];
+    if (!dados) continue;
+    for (const [slug, p] of Object.entries(dados.palpites)) {
+      const ganho = pts(p.gols_a, p.gols_b, r.gols_a, r.gols_b, mataMata);
+      acumulado[slug] = (acumulado[slug] ?? 0) + ganho;
+    }
+    frames.push({
+      jogoNum: r.jogo_numero,
+      rotulo: `Jogo ${r.jogo_numero}: ${jogo.time_a} ${r.gols_a}×${r.gols_b} ${jogo.time_b}`,
+      pts: { ...acumulado },
+    });
+  }
+
+  return { topIas, frames };
 }
 
 export const metadata = {
   title: "🏁 Corrida das IAs · Bolão das IAs",
-  description:
-    "Visualizações animadas do ranking. Veja as IAs correndo em tempo real.",
+  description: "Visualizações animadas do ranking das IAs.",
 };
 
 export default async function CorridaDasIAsPage() {
-  const top = await carregarTop(15);
+  const { topIas, frames } = await carregarTudo();
+
+  // Pra corrida top-down: usa as 50 primeiras pra dar movimento
+  const ias50 = topIas.slice(0, 50);
+
+  // Pra bar race: 15 que estão no topo HOJE
+  const ias15 = topIas.slice(0, 15);
+  // Filtra frames pra incluir só as 15 que vamos mostrar
+  const ias15Slugs = new Set(ias15.map((ia) => ia.slug));
+  const framesFiltrados = frames.map((f) => ({
+    jogoNum: f.jogoNum,
+    rotulo: f.rotulo,
+    pts: Object.fromEntries(
+      Object.entries(f.pts).filter(([s]) => ias15Slugs.has(s)),
+    ),
+  }));
+
+  // Pra gráfico estático: top 30
+  const ias30 = topIas.slice(0, 30);
 
   return (
     <div style={{ marginTop: 24, marginBottom: 64 }}>
       <header style={{ textAlign: "center", marginBottom: 28 }}>
         <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)" }}>🏁 Corrida das IAs</h1>
         <p className="lede" style={{ marginTop: 10, maxWidth: 640, marginInline: "auto" }}>
-          Duas formas de visualizar o ranking das 15 IAs líderes. Cada animação
-          roda por ~6s, pausa 3s no fim, e recomeça.
+          3 formas de visualizar o ranking. Cada modo mostra os dados de um
+          ângulo diferente.
         </p>
       </header>
 
-      <section style={{ marginBottom: 48 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>🏃 Modo Corrida — pista horizontal</h2>
+      <section style={{ marginBottom: 56 }}>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>🏃 Modo A — Corrida vista de cima</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Cada IA tem uma raia. A distância corrida é proporcional aos pontos.
-          Quem tem mais pts cobre mais pista.
+          50 IAs correndo num campo aberto. Líderes na frente, retardatários
+          atrás. Algoritmo de empacotamento distribui as IAs em raias virtuais
+          pra evitar sobreposição. Nome segue o ícone.
         </p>
-        <CorridaLanes ias={top} />
+        <CorridaTopDown ias={ias50} />
       </section>
 
-      <section style={{ marginBottom: 48 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📊 Modo Bar Race — barras crescentes</h2>
+      <section style={{ marginBottom: 56 }}>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📊 Modo B — Bar Race temporal</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Barras horizontais crescem até o valor final. As linhas se reordenam
-          pela posição na chegada.
+          Top 15 ao longo dos {frames.length - 1} jogos já apurados. A cada
+          frame as barras se reordenam, tipo bar chart race do YouTube. Quando
+          uma IA passa outra, ela sobe no ranking.
         </p>
-        <BarRace ias={top} />
+        <BarRaceTemporal ias={ias15} frames={framesFiltrados} />
       </section>
 
-      <div className="card" style={{ padding: 18, textAlign: "center", fontSize: 14, color: "var(--fg-mid)" }}>
-        💡 Página de teste. Avisa qual visualização você prefere — daí integro
-        na home ou em página dedicada com mais polish.
-      </div>
+      <section style={{ marginBottom: 32 }}>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📈 Modo C — Gráfico estático</h2>
+        <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
+          Top 30 IAs em barras horizontais, sem animação. Útil pra ver o
+          estado atual de uma vez só, sem precisar esperar ciclo.
+        </p>
+        <GraficoEstatico ias={ias30} />
+      </section>
     </div>
   );
 }
