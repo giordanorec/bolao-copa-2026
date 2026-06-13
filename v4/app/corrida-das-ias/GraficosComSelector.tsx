@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import IASelector from "./IASelector";
-import GraficoEstatico from "./GraficoEstatico";
 import GraficoDistancia from "./GraficoDistancia";
 
 type IA = {
@@ -17,22 +16,19 @@ type Frame = {
   pts: Record<string, number>;
 };
 
-export function GraficoEstaticoComSelector({
-  ias,
-  frames,
-}: {
-  ias: IA[];
-  frames: Frame[];
-}) {
-  return (
-    <ChartWithSelector
-      ias={ias}
-      frames={frames}
-      modo="C"
-      Chart={GraficoEstatico}
-    />
-  );
-}
+const SLUGS_SERIE_A = new Set([
+  "chatgpt-5-thinking-web",
+  "claude-opus-4-8-web",
+  "gemini-2-5-pro-web",
+  "grok-4-heavy-web",
+  "deepseek-r1-web",
+  "copilot-microsoft-web",
+  "perplexity-sonar-pro-web",
+  "meta-llama-4-web",
+  "le-chat-mistral-web",
+  "qwen-3-max-web",
+  "claude-fable-5",
+]);
 
 export function GraficoDistanciaComSelector({
   ias,
@@ -40,27 +36,6 @@ export function GraficoDistanciaComSelector({
 }: {
   ias: IA[];
   frames: Frame[];
-}) {
-  return (
-    <ChartWithSelector
-      ias={ias}
-      frames={frames}
-      modo="D"
-      Chart={GraficoDistancia}
-    />
-  );
-}
-
-function ChartWithSelector({
-  ias,
-  frames,
-  modo,
-  Chart,
-}: {
-  ias: IA[];
-  frames: Frame[];
-  modo: "C" | "D";
-  Chart: React.ComponentType<{ ias: IA[]; frames: Frame[] }>;
 }) {
   // Default: TODAS as IAs marcadas
   const [selecionadas, setSelecionadas] = useState<Set<string>>(
@@ -80,12 +55,14 @@ function ChartWithSelector({
     setSelecionadas(new Set(ias.map((ia) => ia.slug)));
   }
 
-  function clearAll() {
-    setSelecionadas(new Set());
+  function selectTop10() {
+    setSelecionadas(new Set(ias.slice(0, 10).map((ia) => ia.slug)));
   }
 
-  function topN(n: number) {
-    setSelecionadas(new Set(ias.slice(0, n).map((ia) => ia.slug)));
+  function selectSerieA() {
+    setSelecionadas(
+      new Set(ias.filter((ia) => SLUGS_SERIE_A.has(ia.slug)).map((ia) => ia.slug)),
+    );
   }
 
   // Filtra IAs visiveis no chart
@@ -114,9 +91,8 @@ function ChartWithSelector({
         selecionadas={selecionadas}
         onToggle={toggle}
         onAll={selectAll}
-        onClear={clearAll}
-        onTopN={topN}
-        modo={modo}
+        onTop10={selectTop10}
+        onSerieA={selectSerieA}
       />
       {visiveis.length === 0 ? (
         <div
@@ -129,11 +105,10 @@ function ChartWithSelector({
             borderRadius: "var(--r-m)",
           }}
         >
-          Nenhuma IA selecionada. Use os presets ou clique em uma IA pra
-          adicionar ao gráfico.
+          Nenhuma IA selecionada. Use um dos presets acima.
         </div>
       ) : (
-        <Chart ias={visiveis} frames={framesFiltrados} />
+        <GraficoDistancia ias={visiveis} frames={framesFiltrados} />
       )}
     </>
   );

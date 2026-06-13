@@ -11,3 +11,4 @@ no cálculo de pontuação.
 | 1 | Grupo A | Qui 11/06 | 16h00 | Cidade do México | México | 2 | 0 | África do Sul |
 | 2 | Grupo A | Qui 11/06 | 23h00 | Guadalajara | Coreia do Sul | 2 | 1 | República Tcheca |
 | 3 | Grupo B | Sex 12/06 | 16h00 | Toronto | Canadá | 1 | 1 | Bósnia-Herzegovina |
+| 4 | Grupo D | Sex 12/06 | 22h00 | Los Angeles | Estados Unidos | 4 | 1 | Paraguai |

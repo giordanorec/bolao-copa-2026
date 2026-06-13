@@ -14,17 +14,15 @@ export default function IASelector({
   selecionadas,
   onToggle,
   onAll,
-  onClear,
-  onTopN,
-  modo,
+  onTop10,
+  onSerieA,
 }: {
   ias: IAOption[];
   selecionadas: Set<string>;
   onToggle: (slug: string) => void;
   onAll: () => void;
-  onClear: () => void;
-  onTopN: (n: number) => void;
-  modo: "C" | "D";
+  onTop10: () => void;
+  onSerieA: () => void;
 }) {
   const [aberto, setAberto] = useState(false);
   const [busca, setBusca] = useState("");
@@ -64,10 +62,9 @@ export default function IASelector({
           {aberto ? "🔽" : "🔼"} {selecionadas.size} de {ias.length} selecionadas
         </button>
         <div className="ias-selector-presets">
+          <button onClick={onSerieA} className="ias-preset">🏆 Série A</button>
+          <button onClick={onTop10} className="ias-preset">Top 10 atuais</button>
           <button onClick={onAll} className="ias-preset">Todas</button>
-          <button onClick={() => onTopN(10)} className="ias-preset">Top 10</button>
-          <button onClick={() => onTopN(25)} className="ias-preset">Top 25</button>
-          <button onClick={onClear} className="ias-preset ias-preset-danger">Limpar</button>
         </div>
       </div>
 

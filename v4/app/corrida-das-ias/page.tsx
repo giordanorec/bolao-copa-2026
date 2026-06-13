@@ -3,10 +3,7 @@ import path from "path";
 import CorridaTopDown from "./CorridaTopDown";
 import BarRaceTemporal from "./BarRaceTemporal";
 import BarRaceCustom from "./BarRaceCustom";
-import {
-  GraficoEstaticoComSelector,
-  GraficoDistanciaComSelector,
-} from "./GraficosComSelector";
+import { GraficoDistanciaComSelector } from "./GraficosComSelector";
 
 type IA = {
   slug: string;
@@ -173,21 +170,12 @@ export default async function CorridaDasIAsPage() {
         <BarRaceTemporal ias={ias15} frames={framesTop15} />
       </section>
 
-      <section style={{ marginBottom: 56 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📈 Modo C — Gráfico de linhas (absoluto)</h2>
-        <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Y = pontos absolutos. Eixo X = rodadas. Mostra TODAS as {iasAll.length}{" "}
-          IAs por padrão — use o seletor pra filtrar grupos ou IAs específicas.
-        </p>
-        <GraficoEstaticoComSelector ias={iasAll} frames={framesAll} />
-      </section>
-
       <section style={{ marginBottom: 32 }}>
         <h2 style={{ marginBottom: 4, fontSize: 26 }}>🎯 Modo D — Posição relativa</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
           Y centrado em 50. Líder de cada rodada vai pra 90, último vai pra 10,
-          meio do pelotão fica no meio. TODAS as {iasAll.length} IAs por padrão
-          — use o seletor pra focar.
+          meio do pelotão fica no meio. Use os presets pra escolher quais IAs
+          exibir.
         </p>
         <GraficoDistanciaComSelector ias={iasAll} frames={framesAll} />
       </section>
