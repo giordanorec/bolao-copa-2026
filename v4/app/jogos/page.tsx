@@ -10,6 +10,7 @@ import { t } from "@/lib/i18n";
 import IconeIA from "@/components/IconeIA";
 import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 import JogoModal from "@/components/JogoModal";
+import ScrollProximoJogo from "@/components/ScrollProximoJogo";
 import TimeLink from "@/components/TimeLink";
 import { scorePopularidade } from "@/lib/ias";
 
@@ -71,6 +72,8 @@ export default async function JogosPage() {
 
       <ColaboracaoBanner variante="ias" locale={locale} />
 
+      <ScrollProximoJogo />
+
       {Object.entries(porData).map(([data, lista]) => (
         <section key={data} style={{ marginBottom: 32 }}>
           <h2 className="fase-titulo">{formataDia(data)}</h2>
@@ -114,6 +117,8 @@ export default async function JogosPage() {
                   dados={dados}
                   iasDict={iasDict}
                   locale={locale}
+                  domId={String(j.numero)}
+                  kickoff={`${j.data}T${j.hora}:00-03:00`}
                   trigger={
                     <div className="jogo-card">
                       <div className="jogo-card-head">

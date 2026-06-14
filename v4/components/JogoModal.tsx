@@ -30,6 +30,8 @@ export default function JogoModal({
   iasDict,
   locale,
   bolaoSlug,
+  domId,
+  kickoff,
   trigger,
 }: {
   jogoNumero: number;
@@ -44,6 +46,8 @@ export default function JogoModal({
   iasDict: Record<string, string>;
   locale: Locale;
   bolaoSlug?: string; // se passado, mostra botão "Usar esse" pra integrar com palpitar
+  domId?: string; // âncora pra deep-link e auto-scroll
+  kickoff?: string; // ISO do início do jogo (BRT) pra achar o "próximo jogo"
   trigger: React.ReactNode;
 }) {
   const [aberto, setAberto] = useState(false);
@@ -304,6 +308,9 @@ export default function JogoModal({
   return (
     <>
       <div
+        id={domId}
+        data-kickoff={kickoff}
+        style={domId ? { scrollMarginTop: 90 } : undefined}
         role="button"
         tabIndex={0}
         onClick={() => setAberto(true)}
