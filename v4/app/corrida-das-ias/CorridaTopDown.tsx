@@ -190,11 +190,11 @@ export default function CorridaTopDown({
                 ["--cor" as string]: marca.cor,
               }}
             >
+              <span className="cn-nome">{ia.nome_display}</span>
+              <span className="cn-pts">{pts}</span>
               <div className="cn-icon">
                 <IconeIA slug={ia.slug} size={ICON - 6} />
               </div>
-              <span className="cn-nome">{ia.nome_display}</span>
-              <span className="cn-pts">{pts}</span>
             </div>
           );
         })}
@@ -299,7 +299,7 @@ export default function CorridaTopDown({
         }
         .cn-runner {
           position: absolute;
-          transform: translateY(-50%);
+          transform: translate(-100%, -50%);
           display: flex; align-items: center; gap: 4px;
           white-space: nowrap;
           pointer-events: auto;

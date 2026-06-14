@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
-import CorridaTopDown from "./CorridaTopDown";
+import CorridaComSelector from "./CorridaComSelector";
 import BarRaceTemporal from "./BarRaceTemporal";
 import { GraficoDistanciaComSelector } from "./GraficosComSelector";
 import { ehSerieA, slugWebSerieA, nomeSerieA } from "@/lib/serie-a";
@@ -136,9 +136,6 @@ export const metadata = {
 export default async function CorridaDasIAsPage() {
   const { topIas, frames } = await carregarTudo();
 
-  // Pra corrida top-down: top 24 (uma raia por IA, movimento jogo a jogo)
-  const iasCorrida = topIas.slice(0, 24);
-
   // Pra bar races: top 15
   const ias15 = topIas.slice(0, 15);
   const ias15Slugs = new Set(ias15.map((ia) => ia.slug));
@@ -167,11 +164,11 @@ export default async function CorridaDasIAsPage() {
       <section style={{ marginBottom: 56 }}>
         <h2 style={{ marginBottom: 4, fontSize: 26 }}>🏃 Modo A — Corrida vista de cima</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          As 24 primeiras IAs, uma raia cada, avançando jogo a jogo. A posição
-          de cada uma em cada rodada é a pontuação real acumulada até ali — não
-          uma aproximação linear da posição final.
+          Cada IA avança jogo a jogo; a posição em cada rodada é a pontuação
+          real acumulada até ali — não uma aproximação linear da posição final.
+          Use os presets (Série A, Top 10, Todas) pra escolher quais exibir.
         </p>
-        <CorridaTopDown ias={iasCorrida} frames={frames} />
+        <CorridaComSelector ias={iasAll} frames={framesAll} />
       </section>
 
       <section style={{ marginBottom: 56 }}>

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import IASelector from "./IASelector";
-import GraficoDistancia from "./GraficoDistancia";
+import CorridaTopDown from "./CorridaTopDown";
 import { SLUGS_SERIE_A as SLUGS_SERIE_A_LISTA } from "@/lib/serie-a";
 
 type IA = {
@@ -19,18 +19,22 @@ type Frame = {
 
 const SLUGS_SERIE_A = new Set(SLUGS_SERIE_A_LISTA);
 
-export function GraficoDistanciaComSelector({
+function serieADe(ias: IA[]): Set<string> {
+  return new Set(
+    ias.filter((ia) => SLUGS_SERIE_A.has(ia.slug)).map((ia) => ia.slug),
+  );
+}
+
+export default function CorridaComSelector({
   ias,
   frames,
 }: {
   ias: IA[];
   frames: Frame[];
 }) {
-  // Default: só a Série A (no celular em pé, "todas" vira milhões de linhas)
+  // Default: só a Série A (no celular em pé, "todas" vira um emaranhado)
   const [selecionadas, setSelecionadas] = useState<Set<string>>(() => {
-    const sa = new Set(
-      ias.filter((ia) => SLUGS_SERIE_A.has(ia.slug)).map((ia) => ia.slug),
-    );
+    const sa = serieADe(ias);
     return sa.size > 0 ? sa : new Set(ias.slice(0, 10).map((ia) => ia.slug));
   });
 
@@ -52,18 +56,14 @@ export function GraficoDistanciaComSelector({
   }
 
   function selectSerieA() {
-    setSelecionadas(
-      new Set(ias.filter((ia) => SLUGS_SERIE_A.has(ia.slug)).map((ia) => ia.slug)),
-    );
+    setSelecionadas(serieADe(ias));
   }
 
-  // Filtra IAs visiveis no chart
   const visiveis = useMemo(
     () => ias.filter((ia) => selecionadas.has(ia.slug)),
     [ias, selecionadas],
   );
 
-  // Filtra frames pra incluir só as IAs visiveis
   const framesFiltrados = useMemo(
     () =>
       frames.map((f) => ({
@@ -100,7 +100,7 @@ export function GraficoDistanciaComSelector({
           Nenhuma IA selecionada. Use um dos presets acima.
         </div>
       ) : (
-        <GraficoDistancia ias={visiveis} frames={framesFiltrados} />
+        <CorridaTopDown ias={visiveis} frames={framesFiltrados} />
       )}
     </>
   );
