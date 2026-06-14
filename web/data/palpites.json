@@ -5079,7 +5079,263 @@
     }
   ],
   "copilot-microsoft-web": [],
-  "copilot-microsoft": [],
+  "copilot-microsoft": [
+    {
+      "jogo_numero": 6,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 10,
+      "gols_a": 3,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 11,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 9,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 12,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 14,
+      "gols_a": 3,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 16,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 13,
+      "gols_a": 0,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 15,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 17,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 18,
+      "gols_a": 0,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 19,
+      "gols_a": 3,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 20,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 23,
+      "gols_a": 3,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 22,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 21,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 24,
+      "gols_a": 0,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 25,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 26,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 27,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 28,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 32,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 30,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 29,
+      "gols_a": 3,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 31,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 35,
+      "gols_a": 2,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 33,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 34,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 36,
+      "gols_a": 0,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 38,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 39,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 37,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 40,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 43,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 42,
+      "gols_a": 3,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 41,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 44,
+      "gols_a": 0,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 47,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 45,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 46,
+      "gols_a": 0,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 48,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 51,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 52,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 50,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 49,
+      "gols_a": 0,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 53,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 54,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 55,
+      "gols_a": 0,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 56,
+      "gols_a": 0,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 57,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 58,
+      "gols_a": 0,
+      "gols_b": 2
+    }
+  ],
   "dbrx-instruct": [],
   "deepseek-r1-web": [],
   "deepseek-r1": [
