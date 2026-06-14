@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import IconeIA from "@/components/IconeIA";
 import { marcaDe } from "@/lib/ias";
 
@@ -21,8 +21,8 @@ const ICON = 20;
 const SPAN = 78; // % da pista usada pra mapear pontos (deixa margem p/ fan + chegada)
 const START_PX = 34; // offset da linha de largada
 const MIN_GAP = 6; // distância % mínima entre dois ícones na MESMA raia (final limpo)
-const DURACAO_FRAME_MS = 2200;
-const PAUSA_FINAL_MS = 4500;
+const SEG_MS = 1500; // tempo pra animar UM jogo (segmento) — movimento contínuo
+const PAUSA_FINAL_MS = 4000;
 
 const clamp = (v: number, lo: number, hi: number) =>
   Math.max(lo, Math.min(hi, v));
@@ -34,8 +34,24 @@ export default function CorridaTopDown({
   ias: IA[];
   frames: Frame[];
 }) {
-  const [idx, setIdx] = useState(0);
+  // pos é um índice de frame CONTÍNUO (float). Entre dois frames inteiros a
+  // posição é interpolada → corrida fluida, sem "anda e para". Cada inteiro
+  // pousa exatamente na pontuação real daquele jogo (nada de trajetória falsa).
+  const [pos, setPos] = useState(0);
   const [pausado, setPausado] = useState(false);
+  const posRef = useRef(0);
+  const lastRef = useRef(0);
+  const rafRef = useRef(0);
+  const esperandoFimRef = useRef(false);
+
+  const ultimo = frames.length - 1;
+
+  const irPara = (i: number) => {
+    posRef.current = i;
+    setPos(i);
+    lastRef.current = performance.now();
+    esperandoFimRef.current = false;
+  };
 
   const ordenadas = useMemo(
     () =>
@@ -119,23 +135,44 @@ export default function CorridaTopDown({
   }, [ordenadas, finalFrame, fanOffset, maxPts]);
 
   useEffect(() => {
-    if (pausado) return;
-    const ehUltimo = idx === frames.length - 1;
-    const t = ehUltimo ? PAUSA_FINAL_MS : DURACAO_FRAME_MS;
-    const id = setTimeout(() => setIdx((i) => (i + 1) % frames.length), t);
-    return () => clearTimeout(id);
-  }, [idx, frames.length, pausado]);
+    if (pausado || ultimo <= 0) return;
+    lastRef.current = performance.now();
+    const tick = (now: number) => {
+      const dt = Math.min(now - lastRef.current, 60); // ignora saltos (aba oculta)
+      lastRef.current = now;
+      if (!esperandoFimRef.current) {
+        let np = posRef.current + dt / SEG_MS;
+        if (np >= ultimo) {
+          np = ultimo;
+          esperandoFimRef.current = true;
+          window.setTimeout(() => irPara(0), PAUSA_FINAL_MS);
+        }
+        posRef.current = np;
+        setPos(np);
+      }
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pausado, ultimo]);
 
-  const f = frames[idx];
+  // Frame inteiro corrente (fA) e o próximo (fB); frac = progresso no segmento.
+  const fA = Math.min(Math.floor(pos), ultimo);
+  const fB = Math.min(fA + 1, ultimo);
+  const frac = pos - fA;
+  const emMovimento = fB > fA;
+  // Rótulo: enquanto anima um segmento, mostra o jogo que está sendo apurado.
+  const idxRotulo = emMovimento && frac > 0.001 ? fB : fA;
+  const f = frames[idxRotulo];
   const alturaPista = numLanes * LANE_H + 14;
-  const semTransicao = idx === 0;
 
   return (
     <div className="cn-card">
       <div className="cn-header">
         <div className="cn-frame-info">
           <span className="cn-frame-lbl">
-            {idx === 0 ? "INÍCIO" : `JOGO ${f?.jogoNum}`}
+            {idxRotulo === 0 ? "INÍCIO" : `JOGO ${f?.jogoNum}`}
           </span>
           <span className="cn-frame-rotulo">{f?.rotulo ?? ""}</span>
         </div>
@@ -143,7 +180,7 @@ export default function CorridaTopDown({
           <button onClick={() => setPausado((p) => !p)} className="cn-btn">
             {pausado ? "▶ Tocar" : "⏸ Pausar"}
           </button>
-          <button onClick={() => setIdx(0)} className="cn-btn">
+          <button onClick={() => irPara(0)} className="cn-btn">
             ⟲ Início
           </button>
         </div>
@@ -153,8 +190,8 @@ export default function CorridaTopDown({
         {frames.map((fr, i) => (
           <button
             key={i}
-            className={`cn-progress-tick ${i <= idx ? "ativo" : ""}`}
-            onClick={() => setIdx(i)}
+            className={`cn-progress-tick ${i <= pos ? "ativo" : ""}`}
+            onClick={() => irPara(i)}
             title={fr.rotulo}
             aria-label={`Pular para ${fr.rotulo}`}
           />
@@ -171,27 +208,31 @@ export default function CorridaTopDown({
         ))}
 
         {ordenadas.map((ia) => {
-          const pts = f?.pts[ia.slug] ?? 0;
-          const x = xDe(ia.slug, pts);
+          const ptsA = frames[fA]?.pts[ia.slug] ?? 0;
+          const ptsB = frames[fB]?.pts[ia.slug] ?? 0;
+          // posição interpolada (linear = velocidade constante, sem freadas)
+          const ptsNow = ptsA + (ptsB - ptsA) * frac;
+          const ptsLabel = Math.round(ptsNow);
+          const x = xDe(ia.slug, ptsNow);
           const lane = laneOf[ia.slug] ?? 0;
           const marca = marcaDe(ia.slug);
+          // "Bateu": errou completamente o jogo em apuração (ganhou 0 ponto).
+          const bateu = emMovimento && ptsB - ptsA === 0;
           return (
             <div
               key={ia.slug}
-              className="cn-runner"
-              title={`${ia.nome_display} — ${pts} pts`}
+              className={`cn-runner${bateu ? " batendo" : ""}`}
+              title={`${ia.nome_display} — ${ptsLabel} pts`}
               style={{
                 top: `${lane * LANE_H + LANE_H / 2 + 6}px`,
                 left: `calc(${START_PX}px + ${x}%)`,
-                zIndex: Math.round(pts) + 1,
-                transition: semTransicao
-                  ? "none"
-                  : "left 1.9s cubic-bezier(0.34, 1.2, 0.4, 1)",
+                zIndex: Math.round(ptsNow) + 1,
                 ["--cor" as string]: marca.cor,
               }}
             >
+              {bateu && <span className="cn-fumaca" aria-hidden>💨</span>}
               <span className="cn-nome">{ia.nome_display}</span>
-              <span className="cn-pts">{pts}</span>
+              <span className="cn-pts">{ptsLabel}</span>
               <div className="cn-icon">
                 <IconeIA slug={ia.slug} size={ICON - 6} />
               </div>
@@ -335,6 +376,33 @@ export default function CorridaTopDown({
           font-size: 11px;
           color: rgba(255,255,255,0.5);
           line-height: 1.5;
+        }
+        @keyframes cn-rodopio {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes cn-fumacinha {
+          0%   { opacity: 0;   transform: translate(0, 0) scale(0.4); }
+          25%  { opacity: 0.9; }
+          100% { opacity: 0;   transform: translate(-12px, -14px) scale(1.5); }
+        }
+        @keyframes cn-tremor {
+          0%, 100% { margin-top: 0; }
+          25% { margin-top: -1px; }
+          75% { margin-top: 1px; }
+        }
+        .cn-runner.batendo { animation: cn-tremor 0.18s linear infinite; }
+        .cn-runner.batendo .cn-icon {
+          animation: cn-rodopio 0.5s linear infinite;
+          box-shadow: 0 1px 5px rgba(0,0,0,0.5), 0 0 0 2px #ef4444;
+        }
+        .cn-fumaca {
+          position: absolute;
+          left: -4px; top: -10px;
+          font-size: 14px;
+          pointer-events: none;
+          z-index: 4;
+          animation: cn-fumacinha 0.7s ease-out infinite;
         }
       `}</style>
     </div>
