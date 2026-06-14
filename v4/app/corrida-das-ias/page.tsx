@@ -3,14 +3,23 @@ import path from "path";
 import CorridaTopDown from "./CorridaTopDown";
 import BarRaceTemporal from "./BarRaceTemporal";
 import { GraficoDistanciaComSelector } from "./GraficosComSelector";
+import { ehSerieA, slugWebSerieA, nomeSerieA } from "@/lib/serie-a";
 
-type IA = {
+type IARanking = {
   slug: string;
   nome_display: string;
   pontos: number;
   placares_exatos: number;
   jogos_palpitados: number;
 };
+
+type IA = {
+  slug: string;
+  nome_display: string;
+  pontos: number;
+};
+
+export type Frame = { jogoNum: number; rotulo: string; pts: Record<string, number> };
 
 type Resultado = { jogo_numero: number; gols_a: number; gols_b: number };
 type Jogo = {
@@ -49,7 +58,7 @@ async function carregarTudo() {
     fs.readFile(path.join(pub, "palpites_por_jogo.json"), "utf-8"),
     fs.readFile(path.join(pub, "resultados.json"), "utf-8"),
   ]);
-  const ranking = JSON.parse(rkRaw) as { ias: IA[] };
+  const ranking = JSON.parse(rkRaw) as { ias: IARanking[] };
   const jogos = JSON.parse(jogosRaw) as Jogo[];
   const palpites = JSON.parse(pjRaw) as PorJogo;
   const resultados = JSON.parse(resRaw) as Resultado[];
@@ -57,24 +66,28 @@ async function carregarTudo() {
   // mapa jogo -> jogo full pra saber a fase
   const mapJogo = new Map(jogos.map((j) => [j.numero, j]));
 
+  // Série A é colhida via interface web, mas os palpites são salvos sob o slug
+  // "irmão" (sem -web). Canonicalizamos pro slug -web pra cada modelo da Série A
+  // aparecer UMA vez, com a marca certa e os pontos reais. (Sem isso, o preset
+  // Série A seleciona os -web vazios e o gráfico vira 2 linhas chapadas.)
+  const canonical = (slug: string): string =>
+    ehSerieA(slug) ? slugWebSerieA(slug) : slug;
+  const nomePorSlug = new Map(ranking.ias.map((ia) => [ia.slug, ia.nome_display]));
+  const nomeDe = (canon: string): string =>
+    nomeSerieA(canon) ?? nomePorSlug.get(canon) ?? canon;
+
   // Computa pts cumulativo por IA depois de cada jogo (em ordem)
   const resultOrdenados = [...resultados].sort((a, b) => a.jogo_numero - b.jogo_numero);
 
-  // Lista de IAs com >0 pts no fim (pra não poluir gráfico)
-  const topIas = [...ranking.ias]
-    .filter((ia) => ia.slug !== "bola-de-cristal")
-    .sort(
-      (a, b) =>
-        b.pontos - a.pontos ||
-        b.placares_exatos - a.placares_exatos ||
-        a.slug.localeCompare(b.slug),
-    );
+  // Acumulado por slug canônico (irmãos da Série A já fundidos no -web)
+  const acumulado: Record<string, number> = {};
+  for (const ia of ranking.ias) {
+    if (ia.slug === "bola-de-cristal") continue;
+    acumulado[canonical(ia.slug)] = 0;
+  }
 
   // Frames: cada frame tem pts por IA ATÉ aquele jogo (cumulativo)
-  type Frame = { jogoNum: number; rotulo: string; pts: Record<string, number> };
   const frames: Frame[] = [];
-  const acumulado: Record<string, number> = {};
-  for (const ia of topIas) acumulado[ia.slug] = 0;
 
   // Frame inicial (zerado, antes de qualquer jogo)
   frames.push({
@@ -92,7 +105,8 @@ async function carregarTudo() {
     if (!dados) continue;
     for (const [slug, p] of Object.entries(dados.palpites)) {
       const ganho = pts(p.gols_a, p.gols_b, r.gols_a, r.gols_b, mataMata);
-      acumulado[slug] = (acumulado[slug] ?? 0) + ganho;
+      const c = canonical(slug);
+      acumulado[c] = (acumulado[c] ?? 0) + ganho;
     }
     frames.push({
       jogoNum: r.jogo_numero,
@@ -100,6 +114,16 @@ async function carregarTudo() {
       pts: { ...acumulado },
     });
   }
+
+  // Lista de IAs (slug canônico), pontos = acumulado final, ordenada por pts desc
+  const finalFrame = frames[frames.length - 1].pts;
+  const topIas: IA[] = Object.keys(acumulado)
+    .map((slug) => ({
+      slug,
+      nome_display: nomeDe(slug),
+      pontos: finalFrame[slug] ?? 0,
+    }))
+    .sort((a, b) => b.pontos - a.pontos || a.slug.localeCompare(b.slug));
 
   return { topIas, frames };
 }
@@ -112,8 +136,8 @@ export const metadata = {
 export default async function CorridaDasIAsPage() {
   const { topIas, frames } = await carregarTudo();
 
-  // Pra corrida top-down: usa as 50 primeiras pra dar movimento
-  const ias50 = topIas.slice(0, 50);
+  // Pra corrida top-down: top 24 (uma raia por IA, movimento jogo a jogo)
+  const iasCorrida = topIas.slice(0, 24);
 
   // Pra bar races: top 15
   const ias15 = topIas.slice(0, 15);
@@ -143,11 +167,11 @@ export default async function CorridaDasIAsPage() {
       <section style={{ marginBottom: 56 }}>
         <h2 style={{ marginBottom: 4, fontSize: 26 }}>🏃 Modo A — Corrida vista de cima</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          50 IAs correndo num campo aberto. Líderes na frente, retardatários
-          atrás. Algoritmo de empacotamento distribui as IAs em raias virtuais
-          pra evitar sobreposição. Nome segue o ícone.
+          As 24 primeiras IAs, uma raia cada, avançando jogo a jogo. A posição
+          de cada uma em cada rodada é a pontuação real acumulada até ali — não
+          uma aproximação linear da posição final.
         </p>
-        <CorridaTopDown ias={ias50} />
+        <CorridaTopDown ias={iasCorrida} frames={frames} />
       </section>
 
       <section style={{ marginBottom: 56 }}>
@@ -160,11 +184,10 @@ export default async function CorridaDasIAsPage() {
       </section>
 
       <section style={{ marginBottom: 32 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>🎯 Modo C — Posição relativa</h2>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>🎯 Modo C — Pontos acumulados</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Y centrado em 50. Líder de cada rodada vai pra 90, último vai pra 10,
-          meio do pelotão fica no meio. Use os presets pra escolher quais IAs
-          exibir.
+          Pontuação real de cada IA acumulada jogo a jogo. Use os presets
+          (Série A, Top 10, Todas) pra escolher quais exibir.
         </p>
         <GraficoDistanciaComSelector ias={iasAll} frames={framesAll} />
       </section>

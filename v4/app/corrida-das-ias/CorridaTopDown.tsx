@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import IconeIA from "@/components/IconeIA";
+import { marcaDe } from "@/lib/ias";
 
 type IA = {
   slug: string;
@@ -9,102 +10,128 @@ type IA = {
   pontos: number;
 };
 
-const DURACAO_MS = 7000;
-const PAUSA_MS = 3000;
-const CICLO_MS = DURACAO_MS + PAUSA_MS;
+type Frame = {
+  jogoNum: number;
+  rotulo: string;
+  pts: Record<string, number>;
+};
 
-const NUM_LANES = 22;
-const MIN_DIST_X_PCT = 12; // 12% de distancia minima na mesma raia
-const NOME_LARGURA_APROX_PCT = 11; // nome ocupa ~11% de largura — packing leva isso em conta
+const LANE_H = 30; // altura de cada raia
+const DURACAO_FRAME_MS = 2200; // tempo entre jogos (a glide acontece dentro)
+const PAUSA_FINAL_MS = 4500;
 
-type Posicionada = IA & { x: number; lane: number };
+export default function CorridaTopDown({
+  ias,
+  frames,
+}: {
+  ias: IA[];
+  frames: Frame[];
+}) {
+  const [idx, setIdx] = useState(0);
+  const [pausado, setPausado] = useState(false);
 
-/**
- * Empacota IAs em raias virtuais.
- * - Sort por pts desc
- * - Pra cada IA, calcula X em % baseado nos pts
- * - Procura a primeira raia onde nenhuma IA ja-posicionada esta a menos de
- *   MIN_DIST_X_PCT em X. Se nenhuma raia livre, cai na que tem o "vizinho" mais distante.
- */
-function packLanes(ias: IA[]): Posicionada[] {
-  const maxPts = Math.max(1, ...ias.map((ia) => ia.pontos));
-  const out: Posicionada[] = [];
-  // Pra cada raia, lista de X ja ocupados (precisamos checar ALL, nao so o ultimo)
-  const ocupados: number[][] = Array.from({ length: NUM_LANES }, () => []);
+  // Raia fixa por IA, ordenada pela pontuação final (líder no topo).
+  const ordenadas = useMemo(
+    () =>
+      [...ias].sort(
+        (a, b) => b.pontos - a.pontos || a.slug.localeCompare(b.slug),
+      ),
+    [ias],
+  );
 
-  for (const ia of ias) {
-    const x = (ia.pontos / maxPts) * 90; // 90% pra deixar margem na chegada
-
-    let bestLane = 0;
-    let bestGap = -Infinity;
-    for (let l = 0; l < NUM_LANES; l++) {
-      // calcula menor distancia desta IA pra qualquer outra ja na raia l
-      let menorGap = Infinity;
-      for (const xOutro of ocupados[l]) {
-        const g = Math.abs(x - xOutro);
-        if (g < menorGap) menorGap = g;
-      }
-      // espaco minimo: nome ocupa NOME_LARGURA_APROX_PCT, entao 2 IAs precisam
-      // estar pelo menos NOME_LARGURA_APROX_PCT + ~icone (5%) afastadas
-      const minDist = NOME_LARGURA_APROX_PCT + 5;
-      if (menorGap >= Math.max(MIN_DIST_X_PCT, minDist)) {
-        bestLane = l;
-        ocupados[l].push(x);
-        out.push({ ...ia, x, lane: l });
-        break;
-      }
-      if (menorGap > bestGap) {
-        bestGap = menorGap;
-        bestLane = l;
-      }
-    }
-    // se nenhuma raia atendeu (out.length nao mudou nesse loop), cai no bestLane
-    if (out.length === 0 || out[out.length - 1].slug !== ia.slug) {
-      ocupados[bestLane].push(x);
-      out.push({ ...ia, x, lane: bestLane });
-    }
-  }
-  return out;
-}
-
-export default function CorridaTopDown({ ias }: { ias: IA[] }) {
-  const [ciclo, setCiclo] = useState(0);
-  const posicionadas = useMemo(() => packLanes(ias), [ias]);
+  // Maior pontuação alcançada em qualquer frame — escala fixa do eixo X,
+  // pra que a posição não "estique" conforme o líder cresce.
+  const maxPts = useMemo(
+    () =>
+      Math.max(
+        1,
+        ...frames.flatMap((f) => ordenadas.map((ia) => f.pts[ia.slug] ?? 0)),
+      ),
+    [frames, ordenadas],
+  );
 
   useEffect(() => {
-    const id = setInterval(() => setCiclo((c) => c + 1), CICLO_MS);
-    return () => clearInterval(id);
-  }, []);
+    if (pausado) return;
+    const ehUltimo = idx === frames.length - 1;
+    const t = ehUltimo ? PAUSA_FINAL_MS : DURACAO_FRAME_MS;
+    const id = setTimeout(
+      () => setIdx((i) => (i + 1) % frames.length),
+      t,
+    );
+    return () => clearTimeout(id);
+  }, [idx, frames.length, pausado]);
+
+  const f = frames[idx];
+  const alturaPista = ordenadas.length * LANE_H + 16;
+  // Ao dar loop pro início, corta a transição (senão tudo desliza de volta).
+  const semTransicao = idx === 0;
 
   return (
     <div className="cn-card">
-      <div className="cn-pista" key={ciclo}>
+      <div className="cn-header">
+        <div className="cn-frame-info">
+          <span className="cn-frame-lbl">
+            {idx === 0 ? "INÍCIO" : `JOGO ${f?.jogoNum}`}
+          </span>
+          <span className="cn-frame-rotulo">{f?.rotulo ?? ""}</span>
+        </div>
+        <div className="cn-controles">
+          <button onClick={() => setPausado((p) => !p)} className="cn-btn">
+            {pausado ? "▶ Tocar" : "⏸ Pausar"}
+          </button>
+          <button onClick={() => setIdx(0)} className="cn-btn">
+            ⟲ Início
+          </button>
+        </div>
+      </div>
+
+      <div className="cn-progress">
+        {frames.map((fr, i) => (
+          <button
+            key={i}
+            className={`cn-progress-tick ${i <= idx ? "ativo" : ""}`}
+            onClick={() => setIdx(i)}
+            title={fr.rotulo}
+            aria-label={`Pular para ${fr.rotulo}`}
+          />
+        ))}
+      </div>
+
+      <div className="cn-pista" style={{ height: alturaPista }}>
         {/* linhas guia das raias */}
-        {Array.from({ length: NUM_LANES }, (_, i) => (
+        {ordenadas.map((_, i) => (
           <div
             key={i}
             className="cn-raia"
-            style={{ top: `${(i + 0.5) * (100 / NUM_LANES)}%` }}
+            style={{ top: `${i * LANE_H + LANE_H / 2 + 8}px` }}
           />
         ))}
 
-        {posicionadas.map((p, i) => (
-          <div
-            key={p.slug}
-            className="cn-runner"
-            style={{
-              top: `${(p.lane + 0.5) * (100 / NUM_LANES)}%`,
-              ["--target-x" as string]: `${p.x}%`,
-              ["--delay" as string]: `${(i % 8) * 0.03}s`,
-            }}
-          >
-            <span className="cn-nome">{p.nome_display}</span>
-            <div className="cn-icon">
-              <IconeIA slug={p.slug} size={22} />
+        {ordenadas.map((ia, i) => {
+          const pts = f?.pts[ia.slug] ?? 0;
+          const x = (pts / maxPts) * 90; // 90% deixa margem pra chegada
+          const marca = marcaDe(ia.slug);
+          return (
+            <div
+              key={ia.slug}
+              className="cn-runner"
+              style={{
+                top: `${i * LANE_H + LANE_H / 2 + 8}px`,
+                left: `calc(36px + ${x}%)`,
+                transition: semTransicao
+                  ? "none"
+                  : "left 1.9s cubic-bezier(0.34, 1.2, 0.4, 1)",
+                ["--cor" as string]: marca.cor,
+              }}
+            >
+              <span className="cn-nome">{ia.nome_display}</span>
+              <div className="cn-icon">
+                <IconeIA slug={ia.slug} size={20} />
+              </div>
+              <span className="cn-pts">{pts}</span>
             </div>
-            <span className="cn-pts">{p.pontos}</span>
-          </div>
-        ))}
+          );
+        })}
 
         {/* linha de partida */}
         <div className="cn-largada">
@@ -123,10 +150,47 @@ export default function CorridaTopDown({ ias }: { ias: IA[] }) {
           padding: 18px;
           overflow: hidden;
         }
+        .cn-header {
+          display: flex; align-items: center; justify-content: space-between;
+          gap: 14px; flex-wrap: wrap; margin-bottom: 12px;
+        }
+        .cn-frame-info { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+        .cn-frame-lbl {
+          font-family: var(--ff-mono);
+          font-size: 11px; font-weight: 900;
+          color: #c084fc;
+          letter-spacing: 0.1em;
+        }
+        .cn-frame-rotulo {
+          font-family: var(--ff-display);
+          font-size: 17px; font-weight: 800;
+          color: #fff;
+          overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+        .cn-controles { display: flex; gap: 8px; }
+        .cn-btn {
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.15);
+          padding: 8px 14px;
+          font-size: 12px; font-weight: 700;
+          color: rgba(255,255,255,0.85);
+          border-radius: var(--r-s);
+          cursor: pointer;
+        }
+        .cn-btn:hover { background: rgba(255,255,255,0.12); }
+        .cn-progress { display: flex; gap: 3px; margin-bottom: 14px; }
+        .cn-progress-tick {
+          flex: 1; height: 6px;
+          background: rgba(255,255,255,0.08);
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 3px;
+          cursor: pointer; padding: 0;
+          transition: background 0.3s;
+        }
+        .cn-progress-tick.ativo { background: #a855f7; border-color: #a855f7; }
         .cn-pista {
           position: relative;
           width: 100%;
-          height: 720px;
           background:
             repeating-linear-gradient(
               90deg,
@@ -141,71 +205,49 @@ export default function CorridaTopDown({ ias }: { ias: IA[] }) {
           position: absolute;
           left: 0; right: 0;
           height: 1px;
-          background: rgba(255,255,255,0.05);
           border-top: 1px dashed rgba(255,255,255,0.06);
+          transform: translateY(-50%);
         }
         .cn-largada {
           position: absolute;
           left: 0; top: 0; bottom: 0;
           width: 32px;
           background: linear-gradient(90deg, rgba(0,156,59,0.25), transparent);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 22px;
-          z-index: 1;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 20px; z-index: 1;
         }
         .cn-chegada {
           position: absolute;
           right: 0; top: 0; bottom: 0;
           width: 8px;
-          background: repeating-linear-gradient(
-            45deg,
-            #fff 0 6px,
-            #000 6px 12px
-          );
-          opacity: 0.5;
-          z-index: 1;
+          background: repeating-linear-gradient(45deg, #fff 0 6px, #000 6px 12px);
+          opacity: 0.5; z-index: 1;
         }
         .cn-bandeira {
           position: absolute;
           right: -2px; top: -8px;
-          font-size: 28px;
-          z-index: 3;
+          font-size: 26px; z-index: 3;
         }
         .cn-runner {
           position: absolute;
-          left: 36px;
           transform: translate(0, -50%);
-          /* container vazio, icone serve de ancora; nome e pts sao absolute */
           width: 0; height: 0;
-          animation: avancar ${DURACAO_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-          animation-delay: var(--delay);
           z-index: 2;
-        }
-        @keyframes avancar {
-          0%  { left: 36px; }
-          100% { left: var(--target-x); }
         }
         .cn-icon {
           position: absolute;
-          top: -12px; left: -12px;
-          width: 24px; height: 24px;
+          top: -10px; left: -10px;
+          width: 20px; height: 20px;
           border-radius: 50%;
           background: #fff;
           display: flex; align-items: center; justify-content: center;
-          box-shadow: 0 3px 10px rgba(168,85,247,0.5), 0 0 0 2px rgba(168,85,247,0.3);
-          animation: bob 0.45s ease-in-out infinite alternate;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 0 2px var(--cor, rgba(168,85,247,0.4));
           z-index: 2;
-        }
-        @keyframes bob {
-          0% { transform: translateY(0) rotate(-2deg); }
-          100% { transform: translateY(-2px) rotate(2deg); }
         }
         .cn-nome {
           position: absolute;
           top: 50%;
-          right: calc(100% + 18px); /* nome flutua a ESQUERDA do icone */
+          right: calc(100% + 16px);
           transform: translateY(-50%);
           font-family: var(--ff-display);
           font-weight: 800;
@@ -213,24 +255,20 @@ export default function CorridaTopDown({ ias }: { ias: IA[] }) {
           color: rgba(255,255,255,0.95);
           text-shadow: 0 1px 3px #000, 0 0 8px rgba(168,85,247,0.6);
           letter-spacing: -0.01em;
-          max-width: 110px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+          max-width: 120px;
+          overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
           z-index: 1;
         }
         .cn-pts {
           position: absolute;
           top: 50%;
-          left: calc(100% + 18px); /* pts a DIREITA do icone */
+          left: calc(100% + 14px);
           transform: translateY(-50%);
           font-family: var(--ff-mono);
-          font-size: 11px;
-          font-weight: 800;
+          font-size: 11px; font-weight: 800;
           color: #fbbf24;
           background: rgba(0,0,0,0.7);
-          padding: 1px 6px;
-          border-radius: 6px;
+          padding: 1px 6px; border-radius: 6px;
           z-index: 1;
         }
       `}</style>

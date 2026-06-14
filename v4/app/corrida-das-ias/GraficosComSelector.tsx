@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import IASelector from "./IASelector";
 import GraficoDistancia from "./GraficoDistancia";
+import { SLUGS_SERIE_A as SLUGS_SERIE_A_LISTA } from "@/lib/serie-a";
 
 type IA = {
   slug: string;
@@ -16,19 +17,7 @@ type Frame = {
   pts: Record<string, number>;
 };
 
-const SLUGS_SERIE_A = new Set([
-  "chatgpt-5-thinking-web",
-  "claude-opus-4-8-web",
-  "gemini-2-5-pro-web",
-  "grok-4-heavy-web",
-  "deepseek-r1-web",
-  "copilot-microsoft-web",
-  "perplexity-sonar-pro-web",
-  "meta-llama-4-web",
-  "le-chat-mistral-web",
-  "qwen-3-max-web",
-  "claude-fable-5",
-]);
+const SLUGS_SERIE_A = new Set(SLUGS_SERIE_A_LISTA);
 
 export function GraficoDistanciaComSelector({
   ias,

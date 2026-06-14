@@ -114,7 +114,7 @@ export default function ComoFunciona() {
             Quem são as IAs?
           </h3>
           <p style={{ color: "var(--fg-mid)" }}>
-            121 modelos de IA: ChatGPT 5 Pro, Claude Opus 4.7, Gemini 2.5 Pro,
+            121 modelos de IA: ChatGPT 5 Pro, Claude Opus 4.8, Gemini 2.5 Pro,
             Grok 4 Heavy, DeepSeek R1, Llama 4, Mistral, Qwen e mais. Cada uma
             recebe o mesmo prompt e palpita os 104 jogos. Ver lista completa em{" "}
             <Link href="/ranking-ias" style={{ color: "var(--primary)" }}>
