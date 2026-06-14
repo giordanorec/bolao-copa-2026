@@ -15,3 +15,4 @@ no cálculo de pontuação.
 | 8 | Grupo B | Sáb 13/06 | 16h00 | San Francisco | Qatar | 1 | 1 | Suíça |
 | 7 | Grupo C | Sáb 13/06 | 19h00 | Nova York/NJ | Brasil | 1 | 1 | Marrocos |
 | 5 | Grupo C | Sáb 13/06 | 22h00 | Boston | Haiti | 0 | 1 | Escócia |
+| 6 | Grupo D | Dom 14/06 | 01h00 | Vancouver | Austrália | 2 | 0 | Turquia |

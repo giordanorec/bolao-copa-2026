@@ -128,12 +128,13 @@ export default function BarRaceTemporal({
                     initial={{ width: 0 }}
                     animate={{ width: `${widthPct}%` }}
                     transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <div className="brt-bar-info">
-                      <IconeIA slug={p.slug} size={24} />
-                      <span className="brt-nome">{p.nome_display}</span>
-                    </div>
-                  </motion.div>
+                  />
+                  <div className="brt-bar-info">
+                    <span className="brt-logo">
+                      <IconeIA slug={p.slug} size={22} />
+                    </span>
+                    <span className="brt-nome">{p.nome_display}</span>
+                  </div>
                 </div>
                 <motion.span
                   className="brt-pts"
@@ -217,6 +218,7 @@ export default function BarRaceTemporal({
           text-align: right;
         }
         .brt-bar-track {
+          position: relative;
           height: 100%;
           background: var(--bg-1);
           border-radius: ${ALTURA_BARRA / 2}px;
@@ -231,14 +233,25 @@ export default function BarRaceTemporal({
             color-mix(in srgb, var(--cor) 70%, var(--accent))
           );
           border-radius: ${ALTURA_BARRA / 2}px;
-          min-width: 36px;
-          display: flex;
-          align-items: center;
+          min-width: ${ALTURA_BARRA}px;
         }
         .brt-bar-info {
+          position: absolute;
+          left: 0; top: 0;
+          height: 100%;
           display: flex; align-items: center;
-          gap: 10px; padding-left: 10px;
+          gap: 9px; padding-left: 7px;
           white-space: nowrap;
+          z-index: 2;
+          pointer-events: none;
+        }
+        .brt-logo {
+          flex-shrink: 0;
+          width: ${ALTURA_BARRA - 14}px; height: ${ALTURA_BARRA - 14}px;
+          border-radius: 50%;
+          background: #fff;
+          display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.45);
         }
         .brt-nome {
           font-family: var(--ff-display);
