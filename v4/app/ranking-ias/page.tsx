@@ -6,7 +6,7 @@ import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 import SerieA from "@/components/SerieA";
 import { resolverLocale } from "@/lib/locale-server";
 import { scorePopularidade } from "@/lib/ias";
-import { ehSerieA } from "@/lib/serie-a";
+import { nomeSerieA } from "@/lib/serie-a";
 
 type IA = {
   slug: string;
@@ -36,7 +36,7 @@ async function carregarIAs(): Promise<IA[]> {
           jogos_palpitados?: number;
         }) => ({
           slug: ia.slug ?? "",
-          nome: ia.nome_display ?? ia.slug ?? "",
+          nome: nomeSerieA(ia.slug ?? "") ?? ia.nome_display ?? ia.slug ?? "",
           pontos: ia.pontos ?? 0,
           placares_exatos: ia.placares_exatos ?? 0,
           jogos_palpitados: ia.jogos_palpitados ?? 0,
@@ -47,11 +47,26 @@ async function carregarIAs(): Promise<IA[]> {
   }
 }
 
-export const metadata = {
-  title: "🤖 As 122 IAs · Bolão das IAs",
-  description:
-    "Apresentação das 122 IAs do bolão, organizadas por empresa. Para o ranking competitivo, veja /ranking-geral.",
-};
+// IAs que realmente concorrem = têm palpites e não são a Bola de Cristal
+// (consenso, não competidora). Esse é o número "de verdade" anunciado.
+function competidoras(ias: IA[]): IA[] {
+  return ias
+    .filter((ia) => ia.slug !== "bola-de-cristal")
+    .sort(
+      (a, b) =>
+        b.pontos - a.pontos ||
+        b.placares_exatos - a.placares_exatos ||
+        scorePopularidade(a.slug) - scorePopularidade(b.slug),
+    );
+}
+
+export async function generateMetadata() {
+  const n = competidoras(await carregarIAs()).length;
+  return {
+    title: `🤖 As ${n} IAs concorrendo · Bolão das IAs`,
+    description: `Ranking competitivo das ${n} IAs que entregaram palpites na Copa 2026. A Série A no topo; abaixo, todas concorrendo no mesmo placar.`,
+  };
+}
 
 export default async function IAsPage() {
   const ias = await carregarIAs();
@@ -60,29 +75,35 @@ export default async function IAsPage() {
   const es = locale === "es";
   const fr = locale === "fr";
 
-  const desafiantes = ias
-    .filter((ia) => !ehSerieA(ia.slug))
-    .sort(
-      (a, b) =>
-        b.pontos - a.pontos ||
-        b.placares_exatos - a.placares_exatos ||
-        scorePopularidade(a.slug) - scorePopularidade(b.slug),
-    );
+  // Ranking de TODAS as IAs concorrendo (inclui a Série A), ordenado por pontos.
+  const ranking = competidoras(ias);
+  const total = ranking.length;
+
+  // Colocação com empate na MESMA posição (1º, 1º, 3º). Empate é por PONTOS.
+  let rankAtual = 0;
+  let ptsAnterior: number | null = null;
+  const comColocacao = ranking.map((ia, idx) => {
+    if (ptsAnterior === null || ia.pontos !== ptsAnterior) {
+      rankAtual = idx + 1;
+      ptsAnterior = ia.pontos;
+    }
+    return { ia, colocacao: rankAtual };
+  });
 
   const tit = en
-    ? `🤖 The ${ias.length} AIs`
+    ? `🤖 The ${total} competing AIs`
     : es
-      ? `🤖 Las ${ias.length} IAs`
+      ? `🤖 Las ${total} IAs en competencia`
       : fr
-        ? `🤖 Les ${ias.length} IA`
-        : `🤖 As ${ias.length} IAs`;
+        ? `🤖 Les ${total} IA en compétition`
+        : `🤖 As ${total} IAs concorrendo`;
   const lede = en
-    ? "Each one received the same prompt and predicted the 104 World Cup 2026 matches. This page is informative — for the competitive ranking (humans + AIs), see "
+    ? `Out of all the models invited, ${total} actually returned their predictions for the 104 World Cup 2026 matches — these are the ones competing. For the full scoreboard (humans + AIs), see `
     : es
-      ? "Cada una recibió el mismo prompt y pronosticó los 104 partidos del Mundial 2026. Esta página es informativa — para el ranking competitivo (humanos + IAs), ver "
+      ? `De todos los modelos invitados, ${total} realmente devolvieron sus pronósticos de los 104 partidos del Mundial 2026 — son los que compiten. Para el placar completo (humanos + IAs), ver `
       : fr
-        ? "Chacune a reçu le même prompt et a prédit les 104 matches. Cette page est informative — pour le classement compétitif (humains + IA), voir "
-        : "Cada uma recebeu o mesmo prompt e palpitou os 104 jogos. Esta página é informativa — para o ranking competitivo (humanos + IAs), veja ";
+        ? `Sur tous les modèles invités, ${total} ont réellement renvoyé leurs pronostics des 104 matches — ce sont les concurrents. Pour le tableau complet (humains + IA), voir `
+        : `De todos os modelos convidados, ${total} realmente devolveram seus palpites dos 104 jogos da Copa 2026 — são esses que estão concorrendo. Para o placar completo (humanos + IAs), veja `;
   const rankingLabel = en
     ? "the General Ranking"
     : es
@@ -114,12 +135,12 @@ export default async function IAsPage() {
       <section style={{ marginTop: 40 }}>
         <h2 style={{ textAlign: "center", marginBottom: 8 }}>
           {en
-            ? `+ Other ${desafiantes.length} challengers`
+            ? `Ranking — all ${total} competing AIs`
             : es
-              ? `+ Otros ${desafiantes.length} desafiantes`
+              ? `Ranking — las ${total} IAs en competencia`
               : fr
-                ? `+ ${desafiantes.length} autres challengers`
-                : `+ Outros ${desafiantes.length} desafiantes`}
+                ? `Classement — les ${total} IA en compétition`
+                : `Ranking — todas as ${total} IAs concorrendo`}
         </h2>
         <p
           style={{
@@ -132,16 +153,16 @@ export default async function IAsPage() {
           }}
         >
           {en
-            ? "Ranked by total points."
+            ? "Ranked by total points. Ties share the same placement."
             : es
-              ? "Ordenados por puntos totales."
+              ? "Ordenadas por puntos totales. Los empates comparten la misma posición."
               : fr
-                ? "Classés par points totaux."
-                : "Ordenados por pontos totais."}
+                ? "Classées par points totaux. Les ex æquo partagent la même place."
+                : "Ordenadas por pontos totais. Empates ocupam a mesma colocação."}
         </p>
 
         <div className="ias-mini-grid">
-          {desafiantes.map((ia, idx) => (
+          {comColocacao.map(({ ia, colocacao }) => (
             <Link
               key={ia.slug}
               href={`/ia/${encodeURIComponent(ia.slug)}`}
@@ -158,7 +179,7 @@ export default async function IAsPage() {
                   textAlign: "right",
                 }}
               >
-                {idx + 1}º
+                {colocacao}º
               </span>
               <IconeIA slug={ia.slug} size={36} />
               <div style={{ flex: 1, minWidth: 0 }}>

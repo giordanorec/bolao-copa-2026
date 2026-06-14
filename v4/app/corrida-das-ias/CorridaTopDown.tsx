@@ -43,6 +43,7 @@ export default function CorridaTopDown({
   const lastRef = useRef(0);
   const rafRef = useRef(0);
   const esperandoFimRef = useRef(false);
+  const segFastRef = useRef<boolean[]>([]);
 
   const ultimo = frames.length - 1;
 
@@ -75,6 +76,21 @@ export default function CorridaTopDown({
     () => frames[frames.length - 1]?.pts ?? {},
     [frames],
   );
+
+  // Segmento "rápido": jogo em que NINGUÉM pontuou (todos erraram) — anima na
+  // metade do tempo. segFast[s] cobre a transição do frame s → s+1.
+  const segFast = useMemo(() => {
+    const arr: boolean[] = [];
+    for (let s = 0; s < frames.length - 1; s++) {
+      const a = frames[s].pts;
+      const b = frames[s + 1].pts;
+      arr[s] = ordenadas.every(
+        (ia) => (b[ia.slug] ?? 0) === (a[ia.slug] ?? 0),
+      );
+    }
+    return arr;
+  }, [frames, ordenadas]);
+  segFastRef.current = segFast;
 
   // Fan: IAs empatadas (mesma pontuação final) caem no MESMO X. Pra não
   // empilharem, damos um deslocamento horizontal constante (mesmo em todos os
@@ -141,7 +157,9 @@ export default function CorridaTopDown({
       const dt = Math.min(now - lastRef.current, 60); // ignora saltos (aba oculta)
       lastRef.current = now;
       if (!esperandoFimRef.current) {
-        let np = posRef.current + dt / SEG_MS;
+        const seg = Math.min(Math.floor(posRef.current), ultimo - 1);
+        const segDur = segFastRef.current[seg] ? SEG_MS / 2 : SEG_MS;
+        let np = posRef.current + dt / segDur;
         if (np >= ultimo) {
           np = ultimo;
           esperandoFimRef.current = true;

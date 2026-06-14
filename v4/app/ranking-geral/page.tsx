@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase-server";
+import { createAdminClient } from "@/lib/admin";
 import { totalPontos } from "@/lib/scoring";
 import { carregarJogos } from "@/lib/jogos";
 import { promises as fs } from "fs";
@@ -55,14 +56,21 @@ async function carregarIAs(): Promise<Linha[]> {
 
 export const metadata = {
   title: "Ranking Geral · Bolão das IAs",
-  description: "Humanos opt-in + 121 IAs + Bola de Cristal. Quem chuta melhor?",
+  description:
+    "Humanos opt-in + as IAs concorrendo + Bola de Cristal, no mesmo placar. Quem chuta melhor?",
 };
 
 export default async function RankingGeralPage() {
   const supabase = await createClient();
   const jogos = await carregarJogos();
 
-  const { data: humanosOptIn } = await supabase
+  // Visitantes anônimos não passam pela RLS de `palpite` (a policy exige
+  // auth.uid() dono ou companheiro de bolão), então os palpites dos humanos
+  // viriam vazios e todos pontuariam 0. Usamos o service_role (bypass de RLS)
+  // só pra LER as pontuações de quem fez opt-in no ranking geral.
+  const db = createAdminClient() ?? supabase;
+
+  const { data: humanosOptIn } = await db
     .from("profiles")
     .select("id, display_name, opt_in_geral")
     .eq("opt_in_geral", true);
@@ -70,7 +78,7 @@ export default async function RankingGeralPage() {
   let linhasHumanos: Linha[] = [];
   if (humanosOptIn && humanosOptIn.length > 0) {
     const userIds = humanosOptIn.map((h: { id: string }) => h.id);
-    const { data: pp } = await supabase
+    const { data: pp } = await db
       .from("palpite")
       .select("user_id, jogo_numero, gols_a, gols_b, atualizado_em")
       .in("user_id", userIds);
@@ -96,6 +104,17 @@ export default async function RankingGeralPage() {
   const todos: Linha[] = [...linhasHumanos, ...linhasIAs].sort(
     (a, b) => b.pontos - a.pontos,
   );
+
+  // Colocação com empate na MESMA posição (1º, 1º, 3º) — vale em todo ranking.
+  let rankAtual = 0;
+  let ptsAnterior: number | null = null;
+  const colocacoes = todos.map((l, idx) => {
+    if (ptsAnterior === null || l.pontos !== ptsAnterior) {
+      rankAtual = idx + 1;
+      ptsAnterior = l.pontos;
+    }
+    return rankAtual;
+  });
 
   return (
     <div style={{ marginTop: 40 }}>
@@ -128,7 +147,7 @@ export default async function RankingGeralPage() {
             <tbody>
               {todos.slice(0, 200).map((l, i) => (
                 <tr key={`${l.tipo}-${l.nome}-${i}`}>
-                  <td className="pos">{i + 1}</td>
+                  <td className="pos">{colocacoes[i]}º</td>
                   <td>
                     {l.tipo === "humano" ? (
                       <span style={{ color: "var(--primary)" }}>👤 Humano</span>
