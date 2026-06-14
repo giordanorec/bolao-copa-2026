@@ -4,12 +4,14 @@ import { carregarJogos } from "@/lib/jogos";
 import { promises as fs } from "fs";
 import path from "path";
 import type { Palpite } from "@/lib/types";
+import { ehSerieA, nomeSerieA } from "@/lib/serie-a";
 
 type Linha = {
   tipo: "humano" | "ia" | "cristal";
   nome: string;
   pontos: number;
   preenchidos: number;
+  serieA?: boolean;
 };
 
 async function carregarIAs(): Promise<Linha[]> {
@@ -31,13 +33,20 @@ async function carregarIAs(): Promise<Linha[]> {
             pontos?: number;
             palpites_total?: number;
           },
-        ) => ({
-          tipo:
-            ia.slug === "bola-de-cristal" ? ("cristal" as const) : ("ia" as const),
-          nome: ia.nome_display ?? ia.slug ?? "?",
-          pontos: ia.pontos ?? 0,
-          preenchidos: ia.palpites_total ?? 104,
-        }),
+        ) => {
+          const slug = ia.slug ?? "";
+          const serieA = ehSerieA(slug);
+          return {
+            tipo:
+              slug === "bola-de-cristal"
+                ? ("cristal" as const)
+                : ("ia" as const),
+            nome: nomeSerieA(slug) ?? ia.nome_display ?? slug ?? "?",
+            pontos: ia.pontos ?? 0,
+            preenchidos: ia.palpites_total ?? 104,
+            serieA,
+          };
+        },
       );
   } catch {
     return [];
@@ -126,6 +135,10 @@ export default async function RankingGeralPage() {
                       <span style={{ color: "var(--primary)" }}>👤 Humano</span>
                     ) : l.tipo === "cristal" ? (
                       <span style={{ color: "var(--accent)" }}>🔮 Cristal</span>
+                    ) : l.serieA ? (
+                      <span style={{ color: "var(--secondary)", fontWeight: 700 }}>
+                        🏆 Série A
+                      </span>
                     ) : (
                       <span style={{ color: "var(--fg-muted)" }}>🤖 IA</span>
                     )}

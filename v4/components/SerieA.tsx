@@ -2,6 +2,12 @@ import { promises as fs } from "fs";
 import path from "path";
 import { t, type Locale } from "@/lib/i18n";
 import { marcaDe, scorePopularidade } from "@/lib/ias";
+import {
+  SLUG_FABLE,
+  SLUGS_SERIE_A,
+  APELIDOS_SERIE_A as APELIDOS,
+  FALLBACK_NAO_WEB,
+} from "@/lib/serie-a";
 import IconeIA from "@/components/IconeIA";
 
 type IA = {
@@ -11,51 +17,6 @@ type IA = {
   placares_exatos: number;
   jogos_palpitados: number;
   rank: number;
-};
-
-const SLUG_FABLE = "claude-fable-5";
-
-const SLUGS_SERIE_A = [
-  "chatgpt-5-thinking-web",
-  "claude-opus-4-8-web",
-  "gemini-2-5-pro-web",
-  "grok-4-heavy-web",
-  "deepseek-r1-web",
-  "copilot-microsoft-web",
-  "perplexity-sonar-pro-web",
-  "meta-llama-4-web",
-  "le-chat-mistral-web",
-  "qwen-3-max-web",
-  SLUG_FABLE,
-];
-
-const APELIDOS: Record<string, { nome: string; modelo: string }> = {
-  "chatgpt-5-thinking-web": { nome: "ChatGPT 5 Thinking", modelo: "GPT-5 Pro (Thinking)" },
-  "claude-opus-4-8-web": { nome: "Claude Opus 4.8", modelo: "Anthropic Opus 4.8" },
-  "gemini-2-5-pro-web": { nome: "Gemini 2.5 Pro", modelo: "Google Gemini 2.5 Pro" },
-  "grok-4-heavy-web": { nome: "Grok 4 Heavy", modelo: "xAI Grok 4 Heavy" },
-  "deepseek-r1-web": { nome: "DeepSeek R1", modelo: "DeepSeek R1 Reasoning" },
-  "copilot-microsoft-web": { nome: "Microsoft Copilot", modelo: "Copilot (GPT-5 base)" },
-  "perplexity-sonar-pro-web": { nome: "Perplexity Sonar", modelo: "Sonar Pro w/ search" },
-  "meta-llama-4-web": { nome: "Meta Llama 4", modelo: "Llama 4 Maverick" },
-  "le-chat-mistral-web": { nome: "Le Chat Mistral", modelo: "Mistral Large 2" },
-  "qwen-3-max-web": { nome: "Qwen 3 Max", modelo: "Alibaba Qwen 3 Max" },
-  [SLUG_FABLE]: { nome: "Anthropic Fable", modelo: "Claude Fable 5 · novo" },
-};
-
-// Pra cada slug "-web" da Série A, qual o irmão sem "-web" pra fallback
-// quando o web ainda não tem palpites coletados.
-const FALLBACK_NAO_WEB: Record<string, string> = {
-  "chatgpt-5-thinking-web": "chatgpt-5-thinking",
-  "claude-opus-4-8-web": "claude-opus-4-7",
-  "gemini-2-5-pro-web": "gemini-2-5-pro",
-  "grok-4-heavy-web": "grok-4-heavy",
-  "deepseek-r1-web": "deepseek-r1",
-  "copilot-microsoft-web": "copilot-microsoft",
-  "perplexity-sonar-pro-web": "perplexity-sonar-pro",
-  "meta-llama-4-web": "meta-llama-4",
-  "le-chat-mistral-web": "le-chat-mistral",
-  "qwen-3-max-web": "qwen-3-max",
 };
 
 async function carregarSerieA(): Promise<IA[]> {

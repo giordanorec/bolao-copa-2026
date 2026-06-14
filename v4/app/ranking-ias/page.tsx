@@ -6,6 +6,7 @@ import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 import SerieA from "@/components/SerieA";
 import { resolverLocale } from "@/lib/locale-server";
 import { scorePopularidade } from "@/lib/ias";
+import { ehSerieA } from "@/lib/serie-a";
 
 type IA = {
   slug: string;
@@ -14,19 +15,6 @@ type IA = {
   placares_exatos: number;
   jogos_palpitados: number;
 };
-
-const SLUGS_SERIE_A = new Set([
-  "chatgpt-5-thinking-web",
-  "claude-opus-4-8-web",
-  "gemini-2-5-pro-web",
-  "grok-4-heavy-web",
-  "deepseek-r1-web",
-  "copilot-microsoft-web",
-  "perplexity-sonar-pro-web",
-  "meta-llama-4-web",
-  "le-chat-mistral-web",
-  "qwen-3-max-web",
-]);
 
 async function carregarIAs(): Promise<IA[]> {
   const filePath = path.join(process.cwd(), "public", "ranking-ias.json");
@@ -73,7 +61,7 @@ export default async function IAsPage() {
   const fr = locale === "fr";
 
   const desafiantes = ias
-    .filter((ia) => !SLUGS_SERIE_A.has(ia.slug))
+    .filter((ia) => !ehSerieA(ia.slug))
     .sort(
       (a, b) =>
         b.pontos - a.pontos ||
