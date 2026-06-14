@@ -101,6 +101,16 @@ export default async function RootLayout({
                   {t(locale, "footer.bolao.criar")}
                 </Link>
               </p>
+              <a
+                href="https://instagram.com/arena.das.ias"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ig-btn"
+                style={{ marginTop: 16 }}
+              >
+                📸 {t(locale, "footer.instagram")}
+                <span className="ig-handle">@arena.das.ias</span>
+              </a>
             </div>
             <div className="footer-col">
               <h4>{t(locale, "footer.disclaimers.titulo")}</h4>

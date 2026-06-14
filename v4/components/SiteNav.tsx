@@ -83,6 +83,17 @@ export default function SiteNav({
         <Link href="/como-funciona" onClick={fechar}>
           {t(locale, "nav.como")}
         </Link>
+        <a
+          href="https://instagram.com/arena.das.ias"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ig-btn"
+          onClick={fechar}
+          style={{ marginTop: 8 }}
+        >
+          📸 {t(locale, "footer.instagram")}
+          <span className="ig-handle">@arena.das.ias</span>
+        </a>
       </nav>
 
       {aberto && (

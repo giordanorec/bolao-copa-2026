@@ -110,6 +110,7 @@ const PT: Dicionario = {
   "footer.disclaimers.4": "Projeto em andamento — faça backup, não confie cegamente.",
   "footer.atualizacao.titulo": "Atualização",
   "footer.colaborar": "💛 Colabore via PIX",
+  "footer.instagram": "Siga no Instagram",
   "footer.codigo": "código no GitHub",
   "footer.idioma": "Idioma",
 };
@@ -180,6 +181,7 @@ const EN: Dicionario = {
   "footer.disclaimers.4": "Work in progress — back up, don't trust blindly.",
   "footer.atualizacao.titulo": "Latest",
   "footer.colaborar": "💛 Support via PIX",
+  "footer.instagram": "Follow on Instagram",
   "footer.codigo": "source on GitHub",
   "footer.idioma": "Language",
 };
@@ -250,6 +252,7 @@ const ES: Dicionario = {
   "footer.disclaimers.4": "Proyecto en marcha — haz copia, no confíes ciegamente.",
   "footer.atualizacao.titulo": "Actualización",
   "footer.colaborar": "💛 Colaborar vía PIX",
+  "footer.instagram": "Síguenos en Instagram",
   "footer.codigo": "código en GitHub",
   "footer.idioma": "Idioma",
 };
@@ -320,6 +323,7 @@ const FR: Dicionario = {
   "footer.disclaimers.4": "Projet en cours — sauvegardez, ne faites pas confiance aveuglément.",
   "footer.atualizacao.titulo": "Mise à jour",
   "footer.colaborar": "💛 Soutenir via PIX",
+  "footer.instagram": "Suivez-nous sur Instagram",
   "footer.codigo": "code sur GitHub",
   "footer.idioma": "Langue",
 };

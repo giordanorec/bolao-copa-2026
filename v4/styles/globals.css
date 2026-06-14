@@ -332,6 +332,28 @@ body { font-family: var(--ff-sans); }
 .btn.block { width: 100%; justify-content: center; }
 .btn.small { padding: 8px 14px; font-size: 13px; }
 
+/* ─── Botão Instagram ─── */
+.ig-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 800; font-size: 14px;
+    color: #fff !important;
+    background: linear-gradient(135deg, #F58529, #DD2A7B 55%, #8134AF);
+    box-shadow: 0 3px 12px rgba(221, 42, 123, 0.35);
+    text-decoration: none;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.ig-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 18px rgba(221, 42, 123, 0.5);
+}
+.ig-btn .ig-handle { font-family: var(--ff-mono); }
+.ig-btn-header {
+    padding: 7px 12px; font-size: 12px;
+    box-shadow: 0 2px 8px rgba(221, 42, 123, 0.35);
+}
+
 /* ─── Mobile específico v4 ─── */
 @media (max-width: 720px) {
     .form-card { margin: 24px auto; padding: 28px; }
