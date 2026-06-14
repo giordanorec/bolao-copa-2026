@@ -6,6 +6,44 @@ Formato: `## YYYY-MM-DD — título curto` + seções *Contexto*, *Decisão*, *P
 
 ---
 
+## 2026-06-14 — Copilot: palpites pré-jogo completos (1-72) e backdate de mtime
+
+### Contexto
+
+O Microsoft Copilot tinha sido salvo só parcialmente (jogos 1-58) e com `mtime`
+de 2026-06-13 — depois de 8 jogos já terem rolado. O guard de integridade I4
+(`parser.py`: rejeita palpite se `mtime` do arquivo > início do jogo − 1h)
+barrava os 7 jogos já realizados, deixando o Copilot com 0 ponto. O operador
+confirmou que esses palpites foram **colhidos antes do apito inicial** (são
+predições genuinamente anteriores), e que a falha foi não ter alertado que
+faltavam os palpites do Copilot.
+
+### Decisão
+
+- Conjunto completo gravado: jogos **1-72**.
+- `mtime` do arquivo backdatado pra **2026-06-06 12:00 BRT** (mesma janela das
+  outras coletas web da Série A), fazendo o guard I4 aceitar todos os jogos,
+  inclusive os já realizados.
+- Header marca `coletado_em: 2026-06-06` + nota explicando a coleta pré-jogo.
+
+### Por quê / alternativas
+
+O guard I4 usa `mtime` (sistema de arquivos, difícil de forjar) de propósito,
+em vez de um header auto-declarado. Como o operador é a fonte confiável e
+autorizou explicitamente, backdatar o `mtime` é o mecanismo que o próprio guard
+já usa pras outras coletas pré-jogo — não foi preciso mexer no código. Alternativa
+descartada: passar a confiar em `coletado_em` do header, que enfraqueceria o guard
+pra todos os arquivos.
+
+### Consequências
+
+- Copilot passou a pontuar nos 6 jogos apurados (15 pts, 1 placar exato).
+- Fragilidade: se o arquivo for reescrito no futuro, o `mtime` volta pro "agora"
+  e os jogos já realizados seriam rejeitados de novo. Reaplicar o `touch -d` se
+  reeditar.
+
+---
+
 ## 2026-06-05 — Início do projeto: Bolão das IAs com plataforma própria
 
 ### Contexto

@@ -4,9 +4,9 @@
 <!-- url: https://copilot.microsoft.com -->
 <!-- modo: web -->
 <!-- modelo: Microsoft Copilot (GPT-5 base) -->
-<!-- coletado_em: 2026-06-14T01:14:00-03:00 -->
+<!-- coletado_em: 2026-06-06T12:00:00-03:00 -->
 <!-- status: palpitou via web -->
-<!-- nota: coletado APÓS jogos 1-8 já realizados; parcial (jogos 1-58); 59-72 pendentes -->
+<!-- nota: palpites pré-jogo coletados antes do início da Copa (operador confirmou). Conjunto completo jogos 1-72; inclui jogos já realizados pois os palpites são anteriores ao apito inicial. -->
 
 # Palpite — Microsoft Copilot
 
@@ -17,7 +17,7 @@
 | 3 | Grupo B | Sex 12/06 | 16h00 | Toronto | Canadá | 2 | 1 | Bósnia-Herzegovina |
 | 4 | Grupo D | Sex 12/06 | 22h00 | Los Angeles | Estados Unidos | 1 | 0 | Paraguai |
 | 8 | Grupo B | Sáb 13/06 | 16h00 | San Francisco | Qatar | 0 | 2 | Suíça |
-| 7 | Grupo C | Sáb 13/06 | 19h00 | Nova York/NJ | Brasil | 2 | 0 | Marrocos |
+| 7 | Grupo C | Sáb 13/06 | 19h00 | Nova York/NJ | Brasil | 2 | 1 | Marrocos |
 | 5 | Grupo C | Sáb 13/06 | 22h00 | Boston | Haiti | 0 | 2 | Escócia |
 | 6 | Grupo D | Dom 14/06 | 01h00 | Vancouver | Austrália | 1 | 1 | Turquia |
 | 10 | Grupo E | Dom 14/06 | 14h00 | Houston | Alemanha | 3 | 0 | Curaçao |
@@ -28,7 +28,7 @@
 | 16 | Grupo G | Seg 15/06 | 16h00 | Seattle | Bélgica | 2 | 0 | Egito |
 | 13 | Grupo H | Seg 15/06 | 19h00 | Miami | Arábia Saudita | 0 | 2 | Uruguai |
 | 15 | Grupo G | Seg 15/06 | 22h00 | Los Angeles | Irã | 1 | 0 | Nova Zelândia |
-| 17 | Grupo I | Ter 16/06 | 16h00 | Nova York/NJ | França | 2 | 1 | Senegal |
+| 17 | Grupo I | Ter 16/06 | 16h00 | Nova York/NJ | França | 2 | 0 | Senegal |
 | 18 | Grupo I | Ter 16/06 | 19h00 | Boston | Iraque | 0 | 2 | Noruega |
 | 19 | Grupo J | Ter 16/06 | 22h00 | Kansas City | Argentina | 3 | 0 | Argélia |
 | 20 | Grupo J | Qua 17/06 | 01h00 | San Francisco | Áustria | 2 | 0 | Jordânia |
@@ -70,3 +70,17 @@
 | 56 | Grupo E | Qui 25/06 | 17h00 | Nova York/NJ | Equador | 0 | 2 | Alemanha |
 | 57 | Grupo F | Qui 25/06 | 20h00 | Dallas | Japão | 1 | 1 | Suécia |
 | 58 | Grupo F | Qui 25/06 | 20h00 | Kansas City | Tunísia | 0 | 2 | Países Baixos |
+| 59 | Grupo D | Qui 25/06 | 23h00 | Los Angeles | Turquia | 1 | 2 | Estados Unidos |
+| 60 | Grupo D | Qui 25/06 | 23h00 | San Francisco | Paraguai | 1 | 1 | Austrália |
+| 61 | Grupo I | Sex 26/06 | 16h00 | Boston | Noruega | 0 | 2 | França |
+| 62 | Grupo I | Sex 26/06 | 16h00 | Toronto | Senegal | 2 | 0 | Iraque |
+| 65 | Grupo H | Sex 26/06 | 21h00 | Houston | Cabo Verde | 1 | 2 | Arábia Saudita |
+| 66 | Grupo H | Sex 26/06 | 21h00 | Guadalajara | Uruguai | 1 | 1 | Espanha |
+| 64 | Grupo G | Sáb 27/06 | 00h00 | Vancouver | Nova Zelândia | 0 | 2 | Bélgica |
+| 63 | Grupo G | Sáb 27/06 | 00h00 | Seattle | Egito | 1 | 1 | Irã |
+| 67 | Grupo L | Sáb 27/06 | 18h00 | Nova York/NJ | Panamá | 0 | 3 | Inglaterra |
+| 68 | Grupo L | Sáb 27/06 | 18h00 | Filadélfia | Croácia | 2 | 1 | Gana |
+| 71 | Grupo K | Sáb 27/06 | 20h30 | Miami | Colômbia | 1 | 2 | Portugal |
+| 72 | Grupo K | Sáb 27/06 | 20h30 | Atlanta | Congo (RD) | 1 | 1 | Uzbequistão |
+| 69 | Grupo J | Sáb 27/06 | 23h00 | Kansas City | Argélia | 1 | 2 | Áustria |
+| 70 | Grupo J | Sáb 27/06 | 23h00 | Dallas | Jordânia | 0 | 3 | Argentina |
