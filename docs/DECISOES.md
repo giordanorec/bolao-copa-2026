@@ -6,6 +6,49 @@ Formato: `## YYYY-MM-DD — título curto` + seções *Contexto*, *Decisão*, *P
 
 ---
 
+## 2026-06-14 — Consolidação das decisões de produto em especificação
+
+### Contexto
+
+Ao longo da sessão o usuário percebeu que decisões já firmadas estavam sendo
+esquecidas/revertidas (exemplo citado: "empates aparecem na mesma colocação").
+Pediu que toda a sessão fosse relida e que as decisões fossem gravadas em
+documentação permanente — especificação do sistema + `CLAUDE.md` (+ memória e
+`AGENTS.md` se fizesse sentido) — para a gestão melhorar e nada mais ser desfeito.
+
+### Decisão
+
+- Criado **`docs/11_ESPECIFICACAO_PRODUTO.md`** como fonte de verdade de
+  produto/UX (ranking, páginas, Série A & mascotes, corrida/visualizações,
+  UI/mobile, marketing, tom/idioma, runbook de resultado, deploy).
+- **`CLAUDE.md`** ganhou seção "⚠️ Antes de mexer: decisões firmadas" + contexto
+  do v4 + runbook de registrar resultado, e passou a apontar a especificação como
+  leitura obrigatória antes do DECISOES.
+- Criado **`AGENTS.md`** na raiz apontando para CLAUDE.md + especificação (regra
+  cardinal: não reverter decisão firmada sem perguntar).
+- Memória `project_decisoes_v4.md` atualizada com as decisões novas da sessão.
+
+### Decisões novas firmadas nesta sessão (antes dispersas)
+
+- Mascotes **só concorrem na Série A**; cards/prompts de imagem usam só o ranking
+  da Série A. Estética dos mascotes = **pelúcia realista, nada de cartoon**.
+- Conta Instagram oficial **@arena.das.ias** com botão visível (header/drawer/footer).
+- Conceito visual de marketing: taça + campo + placar do ranking da Série A atrás.
+- Prompts de imagem/vídeo entregues em **formato copiável**.
+- Resultado de jogo é informado em linguagem natural → assistente roda o
+  **runbook** completo (inclui conferir ordem Time A × Time B e atualizar animações).
+- Claude via web = **"Opus 4.8"** (sem resíduo de 4.7).
+- `/corrida-das-ias` default = Série A; Modo A com movimentação real + batida +
+  nome à esquerda; bar race com logo de cada IA.
+
+### Consequências
+
+- Próximas sessões devem ler `11_ESPECIFICACAO_PRODUTO.md` antes de mexer em
+  ranking/páginas/animações/mascotes. Conflito → especificação ganha.
+- Toda decisão nova: registrar aqui (datado) **e** refletir na especificação.
+
+---
+
 ## 2026-06-14 — Copilot: palpites pré-jogo completos (1-72) e backdate de mtime
 
 ### Contexto
