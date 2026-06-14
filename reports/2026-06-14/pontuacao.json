@@ -170,8 +170,8 @@
   "cohere-command-r-plus": {
     "jogos_palpitados": 10,
     "palpites_total": 72,
-    "placares_exatos": 1,
-    "pontos": 30,
+    "placares_exatos": 0,
+    "pontos": 25,
     "vencedores_acertados": 5
   },
   "copilot-microsoft": {
@@ -366,8 +366,8 @@
   "gpt-4-1": {
     "jogos_palpitados": 10,
     "palpites_total": 72,
-    "placares_exatos": 3,
-    "pontos": 40,
+    "placares_exatos": 2,
+    "pontos": 35,
     "vencedores_acertados": 5
   },
   "gpt-4o": {

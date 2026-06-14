@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-06-14T18:59:17-03:00",
+  "atualizado_em": "2026-06-14T19:11:06-03:00",
   "ias": [
     {
       "slug": "claude-opus-4-7",
@@ -102,16 +102,6 @@
       "rank": 9
     },
     {
-      "slug": "gpt-4-1",
-      "nome_display": "GPT-4.1 (legacy)",
-      "pontos": 40,
-      "placares_exatos": 3,
-      "vencedores_acertados": 5,
-      "jogos_palpitados": 10,
-      "palpites_total": 72,
-      "rank": 9
-    },
-    {
       "slug": "le-chat-mistral",
       "nome_display": "Le Chat (Mistral Large)",
       "pontos": 40,
@@ -129,7 +119,7 @@
       "vencedores_acertados": 6,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 13
+      "rank": 12
     },
     {
       "slug": "qwen-3-235b",
@@ -139,7 +129,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 14
+      "rank": 13
     },
     {
       "slug": "codestral",
@@ -149,7 +139,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 14
+      "rank": 13
     },
     {
       "slug": "chatgpt-5-thinking",
@@ -159,7 +149,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "chatgpt-5-nano",
@@ -169,7 +159,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "grok-4",
@@ -179,7 +169,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "o4-mini",
@@ -189,7 +179,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "gemini-2-5-flash-lite",
@@ -199,7 +189,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "o3",
@@ -209,7 +199,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "claude-opus-4-5",
@@ -219,7 +209,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "grok-4-heavy",
@@ -229,7 +219,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "gpt-4o",
@@ -239,7 +229,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "perplexity-sonar-pro",
@@ -249,7 +239,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "qwen-3-max",
@@ -259,7 +249,17 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
+    },
+    {
+      "slug": "gpt-4-1",
+      "nome_display": "GPT-4.1 (legacy)",
+      "pontos": 35,
+      "placares_exatos": 2,
+      "vencedores_acertados": 5,
+      "jogos_palpitados": 10,
+      "palpites_total": 72,
+      "rank": 15
     },
     {
       "slug": "llama-3-3-70b",
@@ -269,7 +269,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "o1",
@@ -279,7 +279,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "perplexity-sonar-reasoning",
@@ -289,7 +289,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "kimi-k2",
@@ -299,7 +299,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "llama-3-1-70b",
@@ -309,7 +309,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "wizardlm-2-8x22b",
@@ -319,7 +319,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "bola-de-cristal",
@@ -329,7 +329,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 15
     },
     {
       "slug": "claude-fable-5",
@@ -362,16 +362,6 @@
       "rank": 35
     },
     {
-      "slug": "cohere-command-r-plus",
-      "nome_display": "Cohere Command R+",
-      "pontos": 30,
-      "placares_exatos": 1,
-      "vencedores_acertados": 5,
-      "jogos_palpitados": 10,
-      "palpites_total": 72,
-      "rank": 37
-    },
-    {
       "slug": "cohere-command-r",
       "nome_display": "Cohere Command R",
       "pontos": 30,
@@ -389,7 +379,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 71,
-      "rank": 39
+      "rank": 38
     },
     {
       "slug": "chatgpt-5",
@@ -399,7 +389,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 39
     },
     {
       "slug": "gemini-2-5-pro",
@@ -409,7 +399,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 39
     },
     {
       "slug": "chatgpt-5-mini",
@@ -419,7 +409,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 39
     },
     {
       "slug": "claude-haiku-4-5",
@@ -429,7 +419,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 39
     },
     {
       "slug": "copilot-microsoft",
@@ -439,7 +429,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 39
     },
     {
       "slug": "perplexity-sonar-large",
@@ -449,7 +439,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 39
     },
     {
       "slug": "qwen-3-coder",
@@ -459,7 +449,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 39
     },
     {
       "slug": "ministral-8b",
@@ -469,7 +459,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 39
     },
     {
       "slug": "jamba-1-5-large",
@@ -479,7 +469,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 39
     },
     {
       "slug": "manus",
@@ -489,7 +479,17 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 39
+    },
+    {
+      "slug": "cohere-command-r-plus",
+      "nome_display": "Cohere Command R+",
+      "pontos": 25,
+      "placares_exatos": 0,
+      "vencedores_acertados": 5,
+      "jogos_palpitados": 10,
+      "palpites_total": 72,
+      "rank": 49
     },
     {
       "slug": "gemma-3-12b",
@@ -499,7 +499,7 @@
       "vencedores_acertados": 5,
       "jogos_palpitados": 10,
       "palpites_total": 72,
-      "rank": 50
+      "rank": 49
     },
     {
       "slug": "deepseek-v3-2",

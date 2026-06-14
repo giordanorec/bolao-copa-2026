@@ -17,4 +17,4 @@ no cálculo de pontuação.
 | 5 | Grupo C | Sáb 13/06 | 22h00 | Boston | Haiti | 0 | 1 | Escócia |
 | 6 | Grupo D | Dom 14/06 | 01h00 | Vancouver | Austrália | 2 | 0 | Turquia |
 | 10 | Grupo E | Dom 14/06 | 14h00 | Houston | Alemanha | 7 | 1 | Curaçao |
-| 11 | Grupo F | Dom 14/06 | 17h00 | Dallas | Países Baixos | 1 | 1 | Japão |
+| 11 | Grupo F | Dom 14/06 | 17h00 | Dallas | Países Baixos | 2 | 2 | Japão |
