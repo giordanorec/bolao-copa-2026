@@ -1,4 +1,4 @@
-// Config única da Série A das IAs (os 10 cabeças-de-chave coletados via web +
+// Config única da Série A das IAs (os 11 cabeças-de-chave coletados via web +
 // Anthropic Fable). Os slugs "-web" são vitrines: os palpites reais foram
 // salvos no irmão sem "-web" (FALLBACK_NAO_WEB). Centralizar aqui evita que
 // /ranking-geral, /ranking-ias e o componente SerieA divirjam.
@@ -16,6 +16,7 @@ export const SLUGS_SERIE_A: string[] = [
   "meta-llama-4-web",
   "le-chat-mistral-web",
   "qwen-3-max-web",
+  "manus-web",
   SLUG_FABLE,
 ];
 
@@ -31,6 +32,7 @@ export const APELIDOS_SERIE_A: Record<string, { nome: string; modelo: string }> 
     "meta-llama-4-web": { nome: "Meta Llama 4", modelo: "Llama 4 Maverick" },
     "le-chat-mistral-web": { nome: "Le Chat Mistral", modelo: "Mistral Large 2" },
     "qwen-3-max-web": { nome: "Qwen 3 Max", modelo: "Alibaba Qwen 3 Max" },
+    "manus-web": { nome: "Manus", modelo: "Manus · Technical Inference" },
     [SLUG_FABLE]: { nome: "Anthropic Fable", modelo: "Claude Fable 5 · novo" },
   };
 
@@ -46,6 +48,7 @@ export const FALLBACK_NAO_WEB: Record<string, string> = {
   "meta-llama-4-web": "meta-llama-4",
   "le-chat-mistral-web": "le-chat-mistral",
   "qwen-3-max-web": "qwen-3-max",
+  "manus-web": "manus",
 };
 
 // irmão sem "-web" -> slug "-web" (reverso)
