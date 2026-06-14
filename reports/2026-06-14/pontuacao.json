@@ -552,6 +552,13 @@
     "pontos": 35,
     "vencedores_acertados": 5
   },
+  "manus": {
+    "jogos_palpitados": 7,
+    "palpites_total": 72,
+    "placares_exatos": 1,
+    "pontos": 20,
+    "vencedores_acertados": 3
+  },
   "mathstral": {
     "jogos_palpitados": 0,
     "palpites_total": 0,

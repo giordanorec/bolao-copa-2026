@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-06-14T00:37:33-03:00",
+  "atualizado_em": "2026-06-14T10:01:38-03:00",
   "ias": [
     {
       "slug": "claude-opus-4-7",
@@ -462,6 +462,16 @@
       "rank": 38
     },
     {
+      "slug": "manus",
+      "nome_display": "Manus",
+      "pontos": 20,
+      "placares_exatos": 1,
+      "vencedores_acertados": 3,
+      "jogos_palpitados": 7,
+      "palpites_total": 72,
+      "rank": 38
+    },
+    {
       "slug": "gemma-3-12b",
       "nome_display": "Gemma 3 12B",
       "pontos": 20,
@@ -469,7 +479,7 @@
       "vencedores_acertados": 4,
       "jogos_palpitados": 7,
       "palpites_total": 72,
-      "rank": 47
+      "rank": 48
     },
     {
       "slug": "phi-4-mini",
@@ -479,7 +489,7 @@
       "vencedores_acertados": 3,
       "jogos_palpitados": 7,
       "palpites_total": 71,
-      "rank": 48
+      "rank": 49
     },
     {
       "slug": "deepseek-v3-2",
@@ -489,7 +499,7 @@
       "vencedores_acertados": 2,
       "jogos_palpitados": 5,
       "palpites_total": 67,
-      "rank": 49
+      "rank": 50
     },
     {
       "slug": "gemma-3-27b",
@@ -499,7 +509,7 @@
       "vencedores_acertados": 3,
       "jogos_palpitados": 7,
       "palpites_total": 72,
-      "rank": 50
+      "rank": 51
     },
     {
       "slug": "mixtral-8x22b",
@@ -509,7 +519,7 @@
       "vencedores_acertados": 3,
       "jogos_palpitados": 7,
       "palpites_total": 72,
-      "rank": 50
+      "rank": 51
     },
     {
       "slug": "cohere-command-r-plus",
@@ -519,7 +529,7 @@
       "vencedores_acertados": 3,
       "jogos_palpitados": 7,
       "palpites_total": 72,
-      "rank": 50
+      "rank": 51
     },
     {
       "slug": "meta-llama-4",
@@ -529,7 +539,7 @@
       "vencedores_acertados": 2,
       "jogos_palpitados": 7,
       "palpites_total": 72,
-      "rank": 53
+      "rank": 54
     },
     {
       "slug": "llama-4-maverick",
@@ -539,7 +549,7 @@
       "vencedores_acertados": 2,
       "jogos_palpitados": 7,
       "palpites_total": 72,
-      "rank": 53
+      "rank": 54
     },
     {
       "slug": "chatgpt-5-thinking-web",
@@ -549,7 +559,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "gemini-2-5-pro-web",
@@ -559,7 +569,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "grok-4-heavy-web",
@@ -569,7 +579,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "deepseek-r1-web",
@@ -579,7 +589,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "copilot-microsoft-web",
@@ -589,7 +599,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "perplexity-sonar-pro-web",
@@ -599,7 +609,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "meta-llama-4-web",
@@ -609,7 +619,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "le-chat-mistral-web",
@@ -619,7 +629,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "qwen-3-max-web",
@@ -629,7 +639,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "gemini-2-0-pro",
@@ -639,7 +649,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "claude-sonnet-3-7",
@@ -649,7 +659,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "claude-sonnet-3-5",
@@ -659,7 +669,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "grok-3",
@@ -669,7 +679,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "llama-3-1-405b",
@@ -679,7 +689,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "claude-opus-3",
@@ -689,7 +699,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "llama-3-70b",
@@ -699,7 +709,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "cohere-command-a",
@@ -709,7 +719,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "phi-4",
@@ -719,7 +729,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "gemma-2-27b",
@@ -729,7 +739,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "inflection-3",
@@ -739,7 +749,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "inflection-pi",
@@ -749,7 +759,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "lfm-40b",
@@ -759,7 +769,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "baichuan-4",
@@ -769,7 +779,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "chatgpt-5-web",
@@ -779,7 +789,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "claude-haiku-4-5-web",
@@ -789,7 +799,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "claude-opus-4-8-web",
@@ -799,7 +809,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "claude-sonnet-4-6-web",
@@ -809,7 +819,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "cohere-aya-expanse",
@@ -819,7 +829,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "dbrx-instruct",
@@ -829,7 +839,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "deepseek-v3-1-web",
@@ -839,7 +849,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "doubao",
@@ -849,7 +859,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "ernie-4-5",
@@ -859,7 +869,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "falcon-180b",
@@ -869,7 +879,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "falcon-3-10b",
@@ -879,7 +889,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "gemini-1-5-flash",
@@ -889,7 +899,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "gemini-1-5-pro",
@@ -899,7 +909,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "gemini-2-0-flash",
@@ -909,7 +919,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "gemini-2-5-flash-web",
@@ -919,7 +929,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "glm-4-5",
@@ -929,7 +939,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "glm-4-5-air",
@@ -939,7 +949,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "grok-2",
@@ -949,7 +959,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "grok-3-mini",
@@ -959,7 +969,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "grok-4-web",
@@ -969,7 +979,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "hunyuan",
@@ -979,7 +989,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "ibm-granite-3-1-8b",
@@ -989,7 +999,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "lfm-7b",
@@ -999,7 +1009,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "llama-3-2-90b-vision",
@@ -1009,7 +1019,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "mathstral",
@@ -1019,7 +1029,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "minimax-abab",
@@ -1029,7 +1039,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "mixtral-8x7b",
@@ -1039,7 +1049,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "molmo-72b",
@@ -1049,7 +1059,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "nemotron-340b",
@@ -1059,7 +1069,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "nemotron-70b",
@@ -1069,7 +1079,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "nous-hermes-3",
@@ -1079,7 +1089,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "olmo-2-32b",
@@ -1089,7 +1099,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "pixtral-12b",
@@ -1099,7 +1109,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "pixtral-large",
@@ -1109,7 +1119,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "qwen-vl-max",
@@ -1119,7 +1129,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "qwq-32b",
@@ -1129,7 +1139,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "reka-core",
@@ -1139,7 +1149,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "reka-flash",
@@ -1149,7 +1159,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "sensechat",
@@ -1159,7 +1169,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "snowflake-arctic",
@@ -1169,7 +1179,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "spark-4-ultra",
@@ -1179,7 +1189,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "stablelm-2-12b",
@@ -1189,7 +1199,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "step-2",
@@ -1199,7 +1209,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "tulu-3-405b",
@@ -1209,7 +1219,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "yi-large",
@@ -1219,7 +1229,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     },
     {
       "slug": "yi-lightning",
@@ -1229,7 +1239,7 @@
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
       "palpites_total": 0,
-      "rank": 55
+      "rank": 56
     }
   ],
   "jogos_apurados": 7,
