@@ -13,3 +13,4 @@ no cálculo de pontuação.
 | 3 | Grupo B | Sex 12/06 | 16h00 | Toronto | Canadá | 1 | 1 | Bósnia-Herzegovina |
 | 4 | Grupo D | Sex 12/06 | 22h00 | Los Angeles | Estados Unidos | 4 | 1 | Paraguai |
 | 8 | Grupo B | Sáb 13/06 | 16h00 | San Francisco | Qatar | 1 | 1 | Suíça |
+| 7 | Grupo C | Sáb 13/06 | 19h00 | Nova York/NJ | Brasil | 1 | 1 | Marrocos |
