@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import IconeIA from "@/components/IconeIA";
 import { resolverLocale } from "@/lib/locale-server";
 import { marcaDe } from "@/lib/ias";
+import { FALLBACK_NAO_WEB } from "@/lib/serie-a";
 
 type Jogo = {
   numero: number;
@@ -50,9 +51,11 @@ async function carregarTudo(slug: string): Promise<{
     const pj = JSON.parse(pjRaw) as PorJogo;
 
     const ia = rk.ias.find((i) => i.slug === slug) ?? null;
+    // Série A "-web" são vitrines: os palpites reais vivem no irmão sem "-web".
+    const fonteSlug = FALLBACK_NAO_WEB[slug] ?? slug;
     const palpites: Record<number, Palpite> = {};
     for (const [numStr, entry] of Object.entries(pj)) {
-      const p = entry.palpites?.[slug];
+      const p = entry.palpites?.[fonteSlug];
       if (p) palpites[Number(numStr)] = p;
     }
     return { ia, jogos, palpites };

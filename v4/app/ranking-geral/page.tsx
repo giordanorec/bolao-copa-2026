@@ -122,7 +122,6 @@ export default async function RankingGeralPage() {
                 <th className="pos">#</th>
                 <th>Tipo</th>
                 <th>Quem</th>
-                <th>Palpitou</th>
                 <th style={{ textAlign: "right" }}>Pontos</th>
               </tr>
             </thead>
@@ -144,7 +143,6 @@ export default async function RankingGeralPage() {
                     )}
                   </td>
                   <td className="nome">{l.nome}</td>
-                  <td className="muted">{l.preenchidos}/104</td>
                   <td className="pts">{l.pontos}</td>
                 </tr>
               ))}

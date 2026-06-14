@@ -36,6 +36,7 @@ export type FamiliaIA =
   | "stability"
   | "stepfun"
   | "allenai"
+  | "manus"
   | "cristal"
   | "outra";
 
@@ -81,6 +82,7 @@ export const MARCAS: Record<FamiliaIA, MarcaIA> = {
   stability: { familia: "stability", nome: "Stability AI", cor: "#FF6B6B", logo: "/logos/stability.svg" },
   stepfun: { familia: "stepfun", nome: "StepFun", cor: "#0066CC", logo: "/logos/stepfun.svg" },
   allenai: { familia: "allenai", nome: "Allen AI", cor: "#F4623C", logo: "/logos/allenai.svg" },
+  manus: { familia: "manus", nome: "Manus", cor: "#34322D", logo: "/logos/manus.svg" },
   cristal: { familia: "cristal", nome: "Bola de Cristal", cor: "#A855F7", logo: "/logos/cristal.svg" },
   outra: { familia: "outra", nome: "IA", cor: "#888888", logo: "/logos/cristal.svg" },
 };
@@ -93,6 +95,7 @@ export const ORDEM_POPULARIDADE: FamiliaIA[] = [
   "ai21", "inflection", "reka", "moonshot", "01ai", "minimax",
   "baichuan", "bytedance", "baidu", "tii", "zhipu", "tencent",
   "liquid", "nous", "sensetime", "iflytek", "stability", "stepfun", "allenai",
+  "manus",
   "cristal", "outra",
 ];
 
@@ -148,6 +151,7 @@ export function familiaDe(slug: string): FamiliaIA {
   if (s.startsWith("step-") || s.includes("stepfun")) return "stepfun";
   if (s.startsWith("molmo") || s.startsWith("olmo") || s.startsWith("tulu") ||
       s.includes("allenai") || s.includes("allen-")) return "allenai";
+  if (s.startsWith("manus")) return "manus";
   return "outra";
 }
 
