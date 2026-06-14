@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  ReferenceLine,
 } from "recharts";
 import { marcaDe } from "@/lib/ias";
 
@@ -31,21 +32,33 @@ export default function GraficoDistancia({
   ias: IA[];
   frames: Frame[];
 }) {
-  // Cada ponto do gráfico = pontuação real acumulada de cada IA naquele jogo.
+  // Pra cada frame:
+  // - calcula min e max dos pts entre as IAs mostradas
+  // - mid = (min + max) / 2
+  // - range = (max - min) / 2  (com floor de 1 pra evitar /0)
+  // - Y = 50 + ((pts - mid) / range) * 40
+  //   -> pts == max  -> Y = 90
+  //   -> pts == mid  -> Y = 50
+  //   -> pts == min  -> Y = 10
   const data = frames.map((f) => {
+    const ptsFrame = ias.map((ia) => f.pts[ia.slug] ?? 0);
+    const min = Math.min(...ptsFrame);
+    const max = Math.max(...ptsFrame);
+    const mid = (min + max) / 2;
+    const range = Math.max(1, (max - min) / 2);
     const ponto: Record<string, string | number> = {
       rodada: f.jogoNum === 0 ? "Início" : `Jogo ${f.jogoNum}`,
+      _max: max,
+      _min: min,
     };
     for (const ia of ias) {
-      ponto[ia.nome_display] = f.pts[ia.slug] ?? 0;
+      const pts = f.pts[ia.slug] ?? 0;
+      const y = 50 + ((pts - mid) / range) * 40;
+      ponto[ia.nome_display] = Math.round(y * 10) / 10;
+      ponto[`__pts_${ia.nome_display}`] = pts;
     }
     return ponto;
   });
-
-  const maxPts = Math.max(
-    1,
-    ...frames.flatMap((f) => ias.map((ia) => f.pts[ia.slug] ?? 0)),
-  );
 
   return (
     <div
@@ -64,8 +77,9 @@ export default function GraficoDistancia({
           fontFamily: "var(--ff-mono)",
         }}
       >
-        Pontos acumulados de cada IA, jogo a jogo. Quanto mais alto, mais pontos.
-        Linhas que se cruzam = ultrapassagens reais no ranking.
+        Y centrado em 50. Líder do frame fica em 90, último em 10, meio do
+        pelotão fica no centro. As linhas se espalham pra mostrar quem subiu e
+        quem caiu em relação ao pelotão da rodada.
       </div>
       <div style={{ width: "100%", height: 480 }}>
         <ResponsiveContainer width="100%" height="100%">
@@ -89,8 +103,7 @@ export default function GraficoDistancia({
               axisLine={{ stroke: "var(--line)" }}
             />
             <YAxis
-              domain={[0, Math.ceil(maxPts / 5) * 5]}
-              allowDecimals={false}
+              domain={[0, 100]}
               tick={{
                 fill: "var(--fg-mid)",
                 fontSize: 12,
@@ -99,7 +112,7 @@ export default function GraficoDistancia({
               tickLine={{ stroke: "var(--line)" }}
               axisLine={{ stroke: "var(--line)" }}
               label={{
-                value: "Pontos",
+                value: "Posição relativa",
                 angle: -90,
                 position: "insideLeft",
                 offset: 16,
@@ -112,6 +125,18 @@ export default function GraficoDistancia({
                 },
               }}
             />
+            <ReferenceLine
+              y={50}
+              stroke="var(--line-strong)"
+              strokeDasharray="4 4"
+              label={{
+                value: "MEIO DO PELOTÃO",
+                fill: "var(--fg-muted)",
+                fontSize: 10,
+                fontFamily: "var(--ff-mono)",
+                position: "insideTopRight",
+              }}
+            />
             <Tooltip
               contentStyle={{
                 background: "var(--bg-1)",
@@ -121,7 +146,12 @@ export default function GraficoDistancia({
               }}
               labelStyle={{ color: "var(--fg)", fontWeight: 700 }}
               itemStyle={{ color: "var(--fg-mid)" }}
-              formatter={(value, name) => [`${value} pts`, name as string]}
+              formatter={(value, name, item) => {
+                // recharts passa item.payload com todos os dados do ponto
+                const ptsKey = `__pts_${name}`;
+                const pts = (item.payload as Record<string, number>)?.[ptsKey];
+                return [`${value}  ·  ${pts} pts`, name as string];
+              }}
             />
             <Legend
               wrapperStyle={{
