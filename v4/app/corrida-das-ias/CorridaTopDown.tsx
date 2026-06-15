@@ -3,6 +3,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import IconeIA from "@/components/IconeIA";
 import { marcaDe } from "@/lib/ias";
+import { SLUGS_SERIE_A } from "@/lib/serie-a";
+
+// Slugs que têm arquivo de mascote em /public/mascots/<slug>.png (= Série A).
+const COM_MASCOTE = new Set(SLUGS_SERIE_A);
 
 type IA = {
   slug: string;
@@ -30,9 +34,11 @@ const clamp = (v: number, lo: number, hi: number) =>
 export default function CorridaTopDown({
   ias,
   frames,
+  usarMascote = false,
 }: {
   ias: IA[];
   frames: Frame[];
+  usarMascote?: boolean;
 }) {
   // pos é um índice de frame CONTÍNUO (float). Entre dois frames inteiros a
   // posição é interpolada → corrida fluida, sem "anda e para". Cada inteiro
@@ -234,6 +240,7 @@ export default function CorridaTopDown({
           const x = xDe(ia.slug, ptsNow);
           const lane = laneOf[ia.slug] ?? 0;
           const marca = marcaDe(ia.slug);
+          const mostraMascote = usarMascote && COM_MASCOTE.has(ia.slug);
           // "Bateu": errou completamente o jogo em apuração (ganhou 0 ponto).
           const bateu = emMovimento && ptsB - ptsA === 0;
           return (
@@ -251,9 +258,18 @@ export default function CorridaTopDown({
               {bateu && <span className="cn-fumaca" aria-hidden>💨</span>}
               <span className="cn-nome">{ia.nome_display}</span>
               <span className="cn-pts">{ptsLabel}</span>
-              <div className="cn-icon">
-                <IconeIA slug={ia.slug} size={ICON - 6} />
-              </div>
+              {mostraMascote ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  className="cn-mascote"
+                  src={`/mascots/${ia.slug}.png`}
+                  alt={ia.nome_display}
+                />
+              ) : (
+                <div className="cn-icon">
+                  <IconeIA slug={ia.slug} size={ICON - 6} />
+                </div>
+              )}
             </div>
           );
         })}
@@ -370,6 +386,18 @@ export default function CorridaTopDown({
           background: #fff;
           display: flex; align-items: center; justify-content: center;
           box-shadow: 0 1px 5px rgba(0,0,0,0.5), 0 0 0 2px var(--cor, rgba(168,85,247,0.4));
+        }
+        .cn-mascote {
+          flex-shrink: 0;
+          width: 34px; height: 34px;
+          border-radius: 50%;
+          object-fit: cover;
+          background: rgba(255,255,255,0.06);
+          box-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 0 0 2px var(--cor, rgba(168,85,247,0.5));
+        }
+        .cn-runner.batendo .cn-mascote {
+          animation: cn-rodopio 0.5s linear infinite;
+          box-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 0 0 2px #ef4444;
         }
         .cn-nome {
           font-family: var(--ff-display);

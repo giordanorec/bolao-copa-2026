@@ -38,6 +38,19 @@ export default function CorridaComSelector({
     return sa.size > 0 ? sa : new Set(ias.slice(0, 10).map((ia) => ia.slug));
   });
 
+  // Modo de exibição do corredor: ícone da marca (default) ou mascote (só Série A).
+  const [usarMascote, setUsarMascote] = useState(false);
+
+  function modoIcone() {
+    setUsarMascote(false);
+  }
+
+  function modoMascote() {
+    // Mascotes só existem pra Série A → ao ligar, mostra só a Série A.
+    setUsarMascote(true);
+    setSelecionadas(serieADe(ias));
+  }
+
   function toggle(slug: string) {
     setSelecionadas((s) => {
       const n = new Set(s);
@@ -86,6 +99,51 @@ export default function CorridaComSelector({
         onTop10={selectTop10}
         onSerieA={selectSerieA}
       />
+
+      <div className="cn-modo">
+        <span className="cn-modo-lbl">Mostrar como:</span>
+        <div className="cn-modo-switch">
+          <button
+            type="button"
+            className={`cn-modo-btn${usarMascote ? "" : " ativo"}`}
+            onClick={modoIcone}
+          >
+            🎨 Ícone
+          </button>
+          <button
+            type="button"
+            className={`cn-modo-btn${usarMascote ? " ativo" : ""}`}
+            onClick={modoMascote}
+          >
+            🧸 Mascote (Série A)
+          </button>
+        </div>
+        <style>{`
+          .cn-modo {
+            display: flex; align-items: center; gap: 10px;
+            flex-wrap: wrap; margin-bottom: 14px;
+          }
+          .cn-modo-lbl {
+            font-family: var(--ff-mono); font-size: 12px; font-weight: 700;
+            color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em;
+          }
+          .cn-modo-switch {
+            display: inline-flex; gap: 4px;
+            background: var(--bg-1); border: 1px solid var(--line);
+            border-radius: var(--r-s); padding: 3px;
+          }
+          .cn-modo-btn {
+            background: transparent; border: none;
+            padding: 6px 12px; font-size: 13px; font-weight: 700;
+            color: var(--fg-muted); border-radius: calc(var(--r-s) - 2px);
+            cursor: pointer;
+          }
+          .cn-modo-btn.ativo {
+            background: var(--primary); color: #fff;
+          }
+        `}</style>
+      </div>
+
       {visiveis.length === 0 ? (
         <div
           style={{
@@ -100,7 +158,11 @@ export default function CorridaComSelector({
           Nenhuma IA selecionada. Use um dos presets acima.
         </div>
       ) : (
-        <CorridaTopDown ias={visiveis} frames={framesFiltrados} />
+        <CorridaTopDown
+          ias={visiveis}
+          frames={framesFiltrados}
+          usarMascote={usarMascote}
+        />
       )}
     </>
   );
