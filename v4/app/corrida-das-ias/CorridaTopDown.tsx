@@ -389,15 +389,17 @@ export default function CorridaTopDown({
         }
         .cn-mascote {
           flex-shrink: 0;
-          width: 34px; height: 34px;
-          border-radius: 50%;
-          object-fit: cover;
-          background: rgba(255,255,255,0.06);
-          box-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 0 0 2px var(--cor, rgba(168,85,247,0.5));
+          width: 38px; height: 38px;
+          object-fit: contain;
+          background: transparent;
+          border: none;
+          /* sombra suave por baixo, sem moldura */
+          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.55));
         }
         .cn-runner.batendo .cn-mascote {
           animation: cn-rodopio 0.5s linear infinite;
-          box-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 0 0 2px #ef4444;
+          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.55))
+                  drop-shadow(0 0 6px #ef4444);
         }
         .cn-nome {
           font-family: var(--ff-display);

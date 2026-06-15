@@ -11,6 +11,7 @@ type IARanking = {
   pontos: number;
   placares_exatos: number;
   jogos_palpitados: number;
+  palpites_total?: number;
 };
 
 type IA = {
@@ -79,10 +80,14 @@ async function carregarTudo() {
   // Computa pts cumulativo por IA depois de cada jogo (em ordem)
   const resultOrdenados = [...resultados].sort((a, b) => a.jogo_numero - b.jogo_numero);
 
-  // Acumulado por slug canônico (irmãos da Série A já fundidos no -web)
+  // Acumulado por slug canônico (irmãos da Série A já fundidos no -web).
+  // Só inclui IAs que de fato entregaram palpite (palpites_total > 0); a
+  // Série A entra via o sibling não-web (que tem palpites). Quem nunca
+  // palpitou some da corrida — não polui a vista de cima.
   const acumulado: Record<string, number> = {};
   for (const ia of ranking.ias) {
     if (ia.slug === "bola-de-cristal") continue;
+    if ((ia.palpites_total ?? 0) === 0) continue;
     acumulado[canonical(ia.slug)] = 0;
   }
 
