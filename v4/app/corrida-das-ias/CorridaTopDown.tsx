@@ -217,7 +217,7 @@ export default function CorridaTopDown({
           />
         ))}
 
-        {ordenadas.map((ia) => {
+        {ordenadas.map((ia, idx) => {
           const ptsA = frames[fA]?.pts[ia.slug] ?? 0;
           const ptsB = frames[fB]?.pts[ia.slug] ?? 0;
           // posição interpolada (linear = velocidade constante, sem freadas)
@@ -229,16 +229,21 @@ export default function CorridaTopDown({
           const temMascote = COM_MASCOTE.has(ia.slug);
           // "Bateu": errou completamente o jogo em apuração (ganhou 0 ponto).
           const bateu = emMovimento && ptsB - ptsA === 0;
+          // Cada IA ganha um delay próprio pra não saltitar em uníssono.
+          const swingDelay = `-${(idx * 0.137) % 0.9}s`;
           return (
             <div
               key={ia.slug}
-              className={`cn-runner${bateu ? " batendo" : ""}`}
+              className={`cn-runner${bateu ? " batendo" : ""}${
+                emMovimento && !pausado ? " correndo" : ""
+              }`}
               title={`${ia.nome_display} — ${ptsLabel} pts`}
               style={{
                 top: `${lane * LANE_H + LANE_H / 2 + 6}px`,
                 left: `calc(${START_PX}px + ${x}%)`,
                 zIndex: Math.round(ptsNow) + 1,
                 ["--cor" as string]: marca.cor,
+                ["--swing-delay" as string]: swingDelay,
               }}
             >
               {bateu && <span className="cn-fumaca" aria-hidden>💨</span>}
@@ -431,6 +436,21 @@ export default function CorridaTopDown({
         @keyframes cn-rodopio {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
+        }
+        /* Gait sutil: saltita um pouquinho enquanto pendula. Cada IA recebe
+           um animation-delay próprio via --swing-delay pra ficar desencontrado. */
+        @keyframes cn-trote {
+          0%   { transform: translateY(0)   rotate(-2deg); }
+          25%  { transform: translateY(-1.5px) rotate(0deg); }
+          50%  { transform: translateY(0)   rotate(2deg); }
+          75%  { transform: translateY(-1.5px) rotate(0deg); }
+          100% { transform: translateY(0)   rotate(-2deg); }
+        }
+        .cn-runner.correndo:not(.batendo) .cn-mascote,
+        .cn-runner.correndo:not(.batendo) .cn-marca {
+          animation: cn-trote 0.62s ease-in-out infinite;
+          animation-delay: var(--swing-delay, 0s);
+          transform-origin: 50% 85%;
         }
         @keyframes cn-fumacinha {
           0%   { opacity: 0;   transform: translate(0, 0) scale(0.4); }
