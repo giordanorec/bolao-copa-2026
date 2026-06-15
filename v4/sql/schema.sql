@@ -136,17 +136,35 @@ create policy palpite_select_meu_ou_companheiro on public.palpite
         )
     );
 
+-- Insert/update/delete só pra si MESMO e ANTES do kickoff. O bloqueio
+-- após o início do jogo é server-side (RLS lê o now() do Postgres,
+-- não confia no relógio do cliente). Função e tabela jogo definidas
+-- na migration `migrations/2026-06-15_lock_palpites_apos_kickoff.sql`.
 drop policy if exists palpite_insert_self on public.palpite;
 create policy palpite_insert_self on public.palpite
-    for insert with check (auth.uid() = user_id);
+    for insert with check (
+        auth.uid() = user_id
+        and public.palpite_aberto(jogo_numero)
+    );
 
 drop policy if exists palpite_update_self on public.palpite;
 create policy palpite_update_self on public.palpite
-    for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
+    for update
+    using (
+        auth.uid() = user_id
+        and public.palpite_aberto(jogo_numero)
+    )
+    with check (
+        auth.uid() = user_id
+        and public.palpite_aberto(jogo_numero)
+    );
 
 drop policy if exists palpite_delete_self on public.palpite;
 create policy palpite_delete_self on public.palpite
-    for delete using (auth.uid() = user_id);
+    for delete using (
+        auth.uid() = user_id
+        and public.palpite_aberto(jogo_numero)
+    );
 
 -- =============================================================
 -- View: ranking por bolão (computa pontos na hora)

@@ -6,6 +6,53 @@ Formato: `## YYYY-MM-DD — título curto` + seções *Contexto*, *Decisão*, *P
 
 ---
 
+## 2026-06-15 — Trava de palpite após kickoff (server-side via RLS)
+
+### Contexto
+
+**Bug grave de produto:** no `/bolao/[slug]/palpitar` o usuário conseguia
+alterar/apagar palpite de jogo que **já tinha terminado**. A RLS antiga
+(`auth.uid() = user_id`) protegia "quem é o dono", mas não havia gate de
+**tempo**. O cliente fazia upsert direto no Supabase via anon key — não
+passava por server route — então qualquer trava só no React seria teatro
+de segurança (basta abrir DevTools).
+
+### Decisão
+
+- Criada tabela `public.jogo (numero PK, kickoff timestamptz)` com os 104
+  jogos. Migration: `v4/sql/migrations/2026-06-15_lock_palpites_apos_kickoff.sql`.
+- Criada função `public.palpite_aberto(int)` que retorna `now() < kickoff`
+  (fail-closed: se jogo não existir, retorna false).
+- Reescritas as policies `palpite_insert_self/update_self/delete_self` pra
+  exigir `auth.uid() = user_id AND palpite_aberto(jogo_numero)`.
+- `schema.sql` atualizado pra refletir o estado pós-migration.
+- UI (`PalpitarForm`): inputs ficam `disabled` em jogos bloqueados, com
+  badge "🔒 Travado". Não dispara save. "Apagar todos" só apaga os abertos
+  (msg do confirm avisa). `aplicarLote` pula bloqueados.
+- §8.1 da especificação documenta a regra e o "por que servidor, não cliente".
+
+### Por quê / alternativas
+
+Alternativa rejeitada: validar só no front-end + chamar uma API route.
+Validar só no front quebra com 30s de DevTools. Uma API route adicionaria
+um proxy entre o cliente e o Supabase, mas a complexidade extra não vale —
+RLS direto no banco é a defesa correta e mais simples (uma policy bem
+escrita > N endpoints com checks duplicados).
+
+Alternativa rejeitada: usar a coluna `data`/`hora` direto na função.
+`data`/`hora` está em strings e timezone implícito. Tabela separada com
+`timestamptz` é tipo certo, idempotente, e queryável.
+
+### Consequências
+
+- Precisa rodar a migration **uma vez** em prod (Supabase SQL editor) —
+  procedimento documentado na própria migration e em §8.1 da especificação.
+- Qualquer alteração futura no horário de um jogo deve `update jogo set
+  kickoff = ... where numero = X` via service_role (admin).
+- Bloqueio é absoluto: nem o próprio dono consegue burlar.
+
+---
+
 ## 2026-06-15 — Regra do "palpite × resultado real" em toda tela de palpite
 
 ### Contexto

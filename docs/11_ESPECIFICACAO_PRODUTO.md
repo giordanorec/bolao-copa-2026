@@ -179,6 +179,38 @@ Curaçao"), **atualizar TUDO**:
 **Confirmar placares suspeitos** antes de propagar. Corrigir quando o usuário
 apontar erro (ex.: era 2×2, não 1×1) refazendo do passo 2.
 
+## 8.1 Trava de palpite após o kickoff (SEGURANÇA)
+
+**Regra absoluta:** ninguém pode criar, alterar ou apagar um palpite **depois
+que o jogo começou**. A hora usada é a do **servidor Postgres** (`now()` em
+UTC) — nunca o relógio do cliente. Não dá pra burlar trocando hora do
+computador.
+
+**Como está implementado:**
+
+- Tabela `public.jogo (numero, kickoff timestamptz)` com a hora de cada jogo
+  (104 linhas, americas/Sao_Paulo).
+- Função `public.palpite_aberto(p_numero int) returns boolean` retorna
+  `now() < kickoff` (e `false` se o jogo não existir — fail-closed).
+- RLS policies `palpite_insert_self`, `palpite_update_self` e
+  `palpite_delete_self` exigem `auth.uid() = user_id AND palpite_aberto(jogo_numero)`.
+- Migration: `v4/sql/migrations/2026-06-15_lock_palpites_apos_kickoff.sql`.
+  `v4/sql/schema.sql` reflete o estado atual.
+- UI (`/bolao/[slug]/palpitar`): inputs ficam **disabled** nos jogos bloqueados,
+  com badge "🔒 Travado". O server-side é o que de fato protege; a UI é só
+  feedback.
+- O `service_role` (admin) continua passando por cima de RLS. Não usar pra
+  alterar palpites de usuários comuns.
+
+**Por que tem que ser servidor:** o relógio do cliente é manipulável (basta
+abrir DevTools ou trocar a hora do sistema). Validar só na UI é teatro de
+segurança.
+
+**Quando rodar a migration:** ao subir o schema num ambiente novo, rodar
+**schema.sql** primeiro e depois cada migration em `v4/sql/migrations/`
+em ordem cronológica. Em produção, rodar a migration nova no SQL editor do
+Supabase Dashboard.
+
 ## 9. Workflow / Processo
 
 - **Resultados entram em linguagem natural**; o assistente faz o resto (runbook §8).

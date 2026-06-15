@@ -279,6 +279,30 @@ body { font-family: var(--ff-sans); }
     border-color: var(--line-strong);
     transform: translateY(-1px);
 }
+.jogo-linha.travado {
+    opacity: 0.55;
+    background: var(--bg-soft);
+    border-style: dashed;
+}
+.jogo-linha.travado:hover {
+    transform: none;
+    border-color: var(--line);
+}
+.jogo-linha.travado .jogo-input {
+    cursor: not-allowed;
+    background: transparent;
+    color: var(--fg-muted);
+}
+.jogo-travado {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    font-weight: 800;
+    color: #ef4444;
+    background: color-mix(in srgb, #ef4444 12%, transparent);
+    padding: 2px 8px;
+    border-radius: 999px;
+    letter-spacing: 0.06em;
+}
 .jogo-num {
     font-family: var(--ff-mono);
     font-size: 11px;

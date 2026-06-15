@@ -22,6 +22,7 @@ export default function PalpitarForm({
   iasDict,
   paises,
   mapaPaises,
+  bloqueados,
 }: {
   bolaoNome: string;
   bolaoSlug: string;
@@ -31,7 +32,9 @@ export default function PalpitarForm({
   iasDict: Record<string, string>;
   paises: Record<string, PaisIA>;
   mapaPaises: Record<string, string>;
+  bloqueados: number[];
 }) {
+  const bloqueadosSet = useMemo(() => new Set(bloqueados), [bloqueados]);
   const [palpites, setPalpites] = useState<Estado>(palpitesIniciais);
   const [salvando, setSalvando] = useState<Set<number>>(new Set());
   const [erroSalvar, setErroSalvar] = useState<string | null>(null);
@@ -90,6 +93,7 @@ export default function PalpitarForm({
     const novos: Estado = { ...palpitesRef.current };
     const jogoNumeros: number[] = [];
     for (const j of jogos) {
+      if (bloqueadosSet.has(j.numero)) continue; // jogo já começou
       const ja = palpitesRef.current[j.numero];
       if (modo === "vazios" && ja) continue;
       const p = getPalpiteIA(slug, j.numero);
@@ -125,6 +129,7 @@ export default function PalpitarForm({
   }
 
   function aplicarSugestao(numero: number, gols_a: number, gols_b: number) {
+    if (bloqueadosSet.has(numero)) return; // jogo já começou
     const novo = { gols_a, gols_b };
     palpitesRef.current = { ...palpitesRef.current, [numero]: novo };
     setPalpites(palpitesRef.current);
@@ -137,6 +142,7 @@ export default function PalpitarForm({
     campo: "gols_a" | "gols_b",
     valor: number,
   ) {
+    if (bloqueadosSet.has(numero)) return; // jogo já começou
     const atual = palpitesRef.current[numero] ?? { gols_a: 0, gols_b: 0 };
     const novo = { ...atual, [campo]: valor };
     palpitesRef.current = { ...palpitesRef.current, [numero]: novo };
@@ -195,6 +201,7 @@ export default function PalpitarForm({
   }
 
   async function removerPalpite(numero: number) {
+    if (bloqueadosSet.has(numero)) return; // jogo já começou
     // Remove do estado local
     const novos = { ...palpitesRef.current };
     delete novos[numero];
@@ -218,13 +225,15 @@ export default function PalpitarForm({
   async function removerTodos() {
     if (
       !confirm(
-        "Tem certeza? Vai apagar TODOS os seus palpites (em todos os bolões em que você está). Não dá pra desfazer.",
+        "Tem certeza? Vai apagar seus palpites de jogos AINDA NÃO INICIADOS (em todos os bolões em que você está). Palpites de jogos que já começaram ficam travados pelo servidor. Não dá pra desfazer.",
       )
     )
       return;
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
+    // O servidor (RLS) só deixa apagar jogos com kickoff > now(); a query
+    // pode pedir tudo, mas o efeito é restringido aos não-bloqueados.
     const { error } = await supabase
       .from("palpite")
       .delete()
@@ -233,8 +242,15 @@ export default function PalpitarForm({
       setErroSalvar(`Erro ao apagar palpites: ${error.message}`);
       return;
     }
-    palpitesRef.current = {};
-    setPalpites({});
+    // Mantém localmente só os palpites de jogos já bloqueados (o resto
+    // foi de fato apagado no banco).
+    const sobreviventes: Estado = {};
+    for (const numStr of Object.keys(palpitesRef.current)) {
+      const n = Number(numStr);
+      if (bloqueadosSet.has(n)) sobreviventes[n] = palpitesRef.current[n];
+    }
+    palpitesRef.current = sobreviventes;
+    setPalpites(sobreviventes);
     Object.keys(timers.current).forEach((n) => {
       const t = timers.current[Number(n)];
       if (t) clearTimeout(t);
@@ -328,8 +344,12 @@ export default function PalpitarForm({
             const dados = palpitesIAs[String(j.numero)] ?? null;
             const isoA = mapaPaises[j.time_a];
             const isoB = mapaPaises[j.time_b];
+            const travado = bloqueadosSet.has(j.numero);
             return (
-              <div key={j.numero} className="jogo-linha">
+              <div
+                key={j.numero}
+                className={`jogo-linha${travado ? " travado" : ""}`}
+              >
                 <div className="jogo-meta">
                   <span className="jogo-num">#{j.numero}</span>
                   <span className="jogo-data">
@@ -338,6 +358,14 @@ export default function PalpitarForm({
                   {j.local && (
                     <span className="jogo-local" title={j.local}>
                       📍 {j.local}
+                    </span>
+                  )}
+                  {travado && (
+                    <span
+                      className="jogo-travado"
+                      title="Jogo já começou — palpite travado pelo servidor"
+                    >
+                      🔒 Travado
                     </span>
                   )}
                 </div>
@@ -350,11 +378,13 @@ export default function PalpitarForm({
                     <InputGol
                       valor={palp?.gols_a}
                       onChange={(v) => atualizar(j.numero, "gols_a", v)}
+                      disabled={travado}
                     />
                     <span className="jogo-x">×</span>
                     <InputGol
                       valor={palp?.gols_b}
                       onChange={(v) => atualizar(j.numero, "gols_b", v)}
+                      disabled={travado}
                     />
                   </div>
                   <div className="jogo-time-bloco dir">
@@ -363,18 +393,20 @@ export default function PalpitarForm({
                   </div>
                 </div>
                 <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-                  <SugestaoIA
-                    jogoNumero={j.numero}
-                    timeA={j.time_a}
-                    timeB={j.time_b}
-                    isoA={isoA}
-                    isoB={isoB}
-                    dados={dados}
-                    iasDict={iasDict}
-                    paises={paises}
-                    onPick={(a, b) => aplicarSugestao(j.numero, a, b)}
-                  />
-                  {palp && (
+                  {!travado && (
+                    <SugestaoIA
+                      jogoNumero={j.numero}
+                      timeA={j.time_a}
+                      timeB={j.time_b}
+                      isoA={isoA}
+                      isoB={isoB}
+                      dados={dados}
+                      iasDict={iasDict}
+                      paises={paises}
+                      onPick={(a, b) => aplicarSugestao(j.numero, a, b)}
+                    />
+                  )}
+                  {palp && !travado && (
                     <button
                       type="button"
                       onClick={() => removerPalpite(j.numero)}
@@ -443,9 +475,11 @@ export default function PalpitarForm({
 function InputGol({
   valor,
   onChange,
+  disabled,
 }: {
   valor: number | undefined;
   onChange: (v: number) => void;
+  disabled?: boolean;
 }) {
   const display = valor !== undefined && valor !== null ? String(valor) : "";
   return (
@@ -457,7 +491,11 @@ function InputGol({
       className="jogo-input"
       value={display}
       placeholder="-"
+      disabled={disabled}
+      readOnly={disabled}
+      aria-disabled={disabled}
       onChange={(e) => {
+        if (disabled) return;
         const raw = e.target.value.replace(/\D/g, "");
         if (raw === "") {
           onChange(0);

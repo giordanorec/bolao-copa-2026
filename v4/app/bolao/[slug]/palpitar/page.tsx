@@ -50,6 +50,15 @@ export default async function PalpitarPage({
     palpitesMap[p.jogo_numero] = { gols_a: p.gols_a, gols_b: p.gols_b };
   });
 
+  // Bloqueio server-side: jogos cujo kickoff já passou estão TRAVADOS.
+  // O usuário NÃO pode mais inserir/alterar/apagar palpite desses (RLS no
+  // banco recusa, e a UI desabilita os inputs). A hora vem do servidor,
+  // nunca do relógio do cliente.
+  const agora = Date.now();
+  const bloqueadosArr = jogos
+    .filter((j) => new Date(`${j.data}T${j.hora}:00-03:00`).getTime() <= agora)
+    .map((j) => j.numero);
+
   return (
     <div style={{ marginTop: 40 }}>
       <PalpitarForm
@@ -61,6 +70,7 @@ export default async function PalpitarPage({
         iasDict={iasDict}
         paises={paises}
         mapaPaises={mapaPaises}
+        bloqueados={bloqueadosArr}
       />
     </div>
   );
