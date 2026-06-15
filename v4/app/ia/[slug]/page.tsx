@@ -6,6 +6,8 @@ import IconeIA from "@/components/IconeIA";
 import { resolverLocale } from "@/lib/locale-server";
 import { marcaDe } from "@/lib/ias";
 import { FALLBACK_NAO_WEB } from "@/lib/serie-a";
+import { pontosJogo } from "@/lib/scoring";
+import type { Jogo as JogoFull, Palpite as PalpiteFull } from "@/lib/types";
 
 type Jogo = {
   numero: number;
@@ -15,6 +17,8 @@ type Jogo = {
   local: string;
   time_a: string;
   time_b: string;
+  gols_a: number | null;
+  gols_b: number | null;
 };
 
 type Palpite = { gols_a: number; gols_b: number };
@@ -108,6 +112,9 @@ export default async function IADetalhePage({
     pts: "pts",
     jogos_h2: en ? "Match-by-match predictions" : es ? "Pronósticos partido por partido" : fr ? "Pronostics match par match" : "Palpites jogo a jogo",
     semPalpite: en ? "no prediction" : es ? "sin pronóstico" : fr ? "pas de pronostic" : "sem palpite",
+    palpiteAbrev: en ? "pick" : es ? "pron" : fr ? "pron" : "palpite",
+    resultadoAbrev: en ? "result" : es ? "result" : fr ? "réel" : "real",
+    ft: en ? "FT" : "FIM",
   };
 
   return (
@@ -205,11 +212,20 @@ export default async function IADetalhePage({
       <div className="palpites-lista">
         {jogos.map((jogo) => {
           const p = palpites[jogo.numero];
+          const encerrado = jogo.gols_a != null && jogo.gols_b != null;
+          // pontosJogo aceita o Jogo completo + palpite
+          const pts = encerrado && p
+            ? pontosJogo(p as PalpiteFull, jogo as JogoFull)
+            : null;
+          const tier =
+            pts == null ? "" : pts >= 10 ? "exato" : pts >= 5 ? "venc" : "zero";
           return (
             <Link
               key={jogo.numero}
-              href={`/jogos#jogo-${jogo.numero}`}
-              className="palpite-row"
+              href={`/jogo/${jogo.numero}`}
+              className={`palpite-row${encerrado ? " encerrado" : ""}${
+                pts != null && pts >= 10 ? " cravou" : ""
+              }`}
             >
               <div className="palpite-meta">
                 <span className="palpite-num">#{jogo.numero}</span>
@@ -217,28 +233,41 @@ export default async function IADetalhePage({
                 <span className="palpite-data">
                   {formatDataBR(jogo.data, jogo.hora)}
                 </span>
+                {encerrado && (
+                  <span className="palpite-ft">✓ {tx.ft}</span>
+                )}
               </div>
               <div className="palpite-jogo">
                 <span className="palpite-time">{jogo.time_a}</span>
-                <span className="palpite-placar">
-                  {p ? (
-                    <>
-                      <strong>{p.gols_a}</strong>
-                      <span style={{ opacity: 0.5, margin: "0 6px" }}>×</span>
-                      <strong>{p.gols_b}</strong>
-                    </>
-                  ) : (
-                    <em
-                      style={{
-                        color: "var(--fg-muted)",
-                        fontSize: 13,
-                        fontStyle: "italic",
-                      }}
-                    >
-                      {tx.semPalpite}
-                    </em>
+                <div className="palpite-placares">
+                  <span className="placar-bloco palpite">
+                    <span className="placar-lbl">{tx.palpiteAbrev}</span>
+                    {p ? (
+                      <span className="placar-num">
+                        <strong>{p.gols_a}</strong>
+                        <span style={{ opacity: 0.5, margin: "0 4px" }}>×</span>
+                        <strong>{p.gols_b}</strong>
+                      </span>
+                    ) : (
+                      <em className="placar-vazio">{tx.semPalpite}</em>
+                    )}
+                  </span>
+                  {encerrado && (
+                    <span className="placar-bloco real">
+                      <span className="placar-lbl">{tx.resultadoAbrev}</span>
+                      <span className="placar-num">
+                        <strong>{jogo.gols_a}</strong>
+                        <span style={{ opacity: 0.5, margin: "0 4px" }}>×</span>
+                        <strong>{jogo.gols_b}</strong>
+                      </span>
+                    </span>
                   )}
-                </span>
+                  {pts != null && (
+                    <span className="palpite-pts" data-tier={tier}>
+                      {pts}
+                    </span>
+                  )}
+                </div>
                 <span className="palpite-time palpite-time-b">{jogo.time_b}</span>
               </div>
             </Link>
@@ -290,15 +319,70 @@ export default async function IADetalhePage({
           text-align: right;
         }
         .palpite-time-b { text-align: left; }
-        .palpite-placar {
+        .palpite-placares {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          justify-content: center;
+        }
+        .placar-bloco {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2px;
+          line-height: 1;
+        }
+        .placar-lbl {
+          font-family: var(--ff-mono);
+          font-size: 9px;
+          font-weight: 700;
+          color: var(--fg-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+        }
+        .placar-bloco.real .placar-lbl { color: #10b981; }
+        .placar-num {
           font-family: var(--ff-display);
-          font-size: 22px;
+          font-size: 20px;
           color: var(--secondary);
           white-space: nowrap;
         }
+        .placar-bloco.real .placar-num { color: #10b981; font-weight: 800; }
+        .placar-vazio {
+          color: var(--fg-muted);
+          font-size: 11px;
+          font-style: italic;
+        }
+        .palpite-ft {
+          font-family: var(--ff-mono);
+          font-size: 10px;
+          font-weight: 800;
+          color: #10b981;
+          padding: 1px 6px;
+          background: color-mix(in srgb, #10b981 15%, transparent);
+          border-radius: 999px;
+          letter-spacing: 0.05em;
+        }
+        .palpite-pts {
+          font-family: var(--ff-mono);
+          font-size: 12px;
+          font-weight: 800;
+          padding: 3px 9px;
+          border-radius: 999px;
+          white-space: nowrap;
+          align-self: center;
+        }
+        .palpite-pts[data-tier="exato"] { background: #10b981; color: #fff; }
+        .palpite-pts[data-tier="venc"]  { background: #d4d4d4; color: #1a2657; }
+        .palpite-pts[data-tier="zero"]  { background: var(--bg-soft); color: var(--fg-muted); }
+        .palpite-row.cravou {
+          background: color-mix(in srgb, #10b981 10%, var(--bg-1));
+          border-color: #10b981;
+        }
         @media (max-width: 520px) {
-          .palpite-jogo { font-size: 13px; gap: 8px; }
-          .palpite-placar { font-size: 18px; }
+          .palpite-jogo { font-size: 13px; gap: 6px; }
+          .palpite-placares { gap: 6px; }
+          .placar-num { font-size: 16px; }
         }
       `}</style>
     </div>

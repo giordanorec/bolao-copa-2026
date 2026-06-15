@@ -49,6 +49,41 @@ Regras de pontuação detalhadas (casos de borda) ficam em `docs/02_REGRAS_DE_NE
 - **Mudança global = todas as páginas.** Nunca aplicar uma mudança só na home;
   replicar em todas as rotas e nos 4 idiomas.
 
+### 2.1 Regra do "palpite × resultado real" (TODA tela que mostra palpite)
+
+**Qualquer tela que liste palpites de um jogo já encerrado tem que mostrar,
+lado a lado:**
+
+1. **O placar palpitado** (de cada IA, humano, ou Bola de Cristal).
+2. **O placar real** da partida.
+3. **Os pontos ganhos** naquele palpite (pill 10/7/5/0 — verde quando cravou).
+4. Marcador visual de "✓ FIM" / linha verde quando o jogo terminou; destaque
+   especial (`cravou`) quando o palpite foi exato.
+
+**Onde isso vale (mantém todas em sincronia):**
+
+| Página | Como faz |
+|---|---|
+| `/ia/[slug]` | Cada linha de palpite mostra `palpite × real × pts`. Linha fica verde no placar exato. |
+| `/jogo/[numero]` | Cabeçalho mostra o placar real; cada IA na grade tem pill de pts e destaque verde se cravou. |
+| `/jogos` | Card de jogo encerrado mostra **placar real em destaque** (verde, grande) no lugar do consenso, com strip "X cravaram" e a previsão da Bola de Cristal marcada se acertou. |
+| `/bolao/[slug]` | Cada membro do bolão abre num `<details>` mostrando, jogo a jogo (só encerrados), `palpite × real × pts`. |
+| `/bolao/[slug]/palpitar` | Quando aplicável, exibe pts do palpite do próprio usuário em jogos já encerrados. |
+| Hall da Fama, ranking-ias, ranking-geral | Já mostram pts totais; o **drill-down** (clicar na linha) é que abre a página com `palpite × real × pts`. |
+
+**Helpers a reusar (não duplicar lógica):**
+- `pontosJogo(palpite, jogo)` em `v4/lib/scoring.ts` — recebe o Jogo com
+  `gols_a`/`gols_b` (populados pelo `v4_sync.py` quando o jogo encerra) e o
+  palpite. Retorna 0 se faltar o resultado. Mata-mata 2× tratado lá dentro.
+- `jogos.json` (gerado pelo pipeline) já carrega `gols_a`/`gols_b` por jogo —
+  qualquer página que importa `carregarJogos()` recebe os resultados juntos.
+- `resultados.json` tem só os jogos encerrados (lookup rápido).
+
+**Quando um novo jogo é registrado** (runbook §8), o pipeline + `v4_sync.py`
+atualizam `jogos.json`/`resultados.json` — todas as páginas acima passam a
+mostrar o placar real + pts automaticamente, sem código novo. Se uma página
+nova que mostre palpite for criada, ela **tem** que seguir esse padrão.
+
 ## 3. Série A & Mascotes
 
 - **Série A = grupo de elite (12 modelos) com mascotes.** Os mascotes

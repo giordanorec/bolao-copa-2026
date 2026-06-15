@@ -6,6 +6,54 @@ Formato: `## YYYY-MM-DD — título curto` + seções *Contexto*, *Decisão*, *P
 
 ---
 
+## 2026-06-15 — Regra do "palpite × resultado real" em toda tela de palpite
+
+### Contexto
+
+Usuário pediu para que, nas telas que listam palpites (ex.: `/ia/claude-sonnet-4-5`,
+`/jogos`, páginas de bolão), apareça não só o placar palpitado mas também o
+**resultado real** depois que o jogo terminou, **quem acertou**, **quantos pts**
+fez, e quem errou. Sem essa visão, ver o palpite isolado pós-jogo é frustrante.
+
+### Decisão
+
+- `/ia/[slug]`: cada linha de palpite agora mostra `palpite × real × pts` (pill
+  10/7/5/0). Linha em verde quando o palpite foi exato; badge "✓ FIM" no header
+  da linha quando o jogo encerrou.
+- `/jogos`: card de jogo encerrado troca o "consenso da Bola de Cristal" pelo
+  **placar real em destaque** (verde, grande) e adiciona strip "X cravaram /
+  totalIAs · 🔮 X×Y" indicando quantas IAs acertaram e o palpite da Bola de
+  Cristal (verde se acertou). Jogo não encerrado segue como estava (consenso +
+  topIAs + grau de confiança).
+- `/jogo/[numero]`: já mostrava placar real + pts por IA; nada a mudar.
+- `/bolao/[slug]`: `RankingDoBolao` refatorado — tabela virou lista de
+  `<details>` por membro. Resumo (rank, nome, palpitou, pts) sempre visível;
+  abrir mostra cada jogo encerrado com `palpite × real × pts`. Aplica a regra de
+  empate = mesma colocação que já vale nas outras páginas.
+- **§2.1 da especificação** documenta a regra, a tabela de páginas afetadas, e
+  os helpers a reusar (`pontosJogo` + `jogos.json` com `gols_a`/`gols_b`).
+- Memória do projeto atualizada com a regra resumida.
+
+### Por quê / alternativas
+
+Alternativa rejeitada: criar uma rota `/bolao/[slug]/membro/[uid]` para drill-down.
+Mais "limpo" arquiteturalmente mas adiciona route + RLS extra; o `<details>` em
+HTML resolve com zero JS e os dados já estavam carregados em
+`RankingDoBolao`. Cabia perfeitamente.
+
+Outra alternativa rejeitada: criar um componente compartilhado
+`<PalpiteLinha>`. Cada página tem layout próprio (lista vertical, grid de cards,
+linha de tabela) — abstrair agora seria prematuro. O helper compartilhado é o
+`pontosJogo` (já existia em `v4/lib/scoring.ts`).
+
+### Consequências
+
+- Novo jogo registrado → pipeline + `v4_sync.py` atualizam `jogos.json` →
+  todas as telas acima já refletem o placar real + pts sem código novo.
+- Páginas de palpite criadas no futuro **devem** seguir o padrão da §2.1.
+
+---
+
 ## 2026-06-14 — Consolidação das decisões de produto em especificação
 
 ### Contexto

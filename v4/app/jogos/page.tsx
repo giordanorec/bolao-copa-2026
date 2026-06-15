@@ -92,6 +92,24 @@ export default async function JogosPage() {
                     )
                     .slice(0, 3)
                 : [];
+              // jogo encerrado? quantos cravaram o placar exato?
+              const encerrado = j.gols_a != null && j.gols_b != null;
+              const cravadas = encerrado && dados
+                ? Object.values(dados.palpites).filter(
+                    (p) => p.gols_a === j.gols_a && p.gols_b === j.gols_b,
+                  ).length
+                : 0;
+              const cristalCravou = encerrado && bola
+                ? bola.gols_a === j.gols_a && bola.gols_b === j.gols_b
+                : false;
+              const ftLbl = locale === "en" ? "FT"
+                : locale === "es" ? "FIN"
+                : locale === "fr" ? "FIN"
+                : "FIM";
+              const cravLbl = locale === "en" ? "AIs nailed the score"
+                : locale === "es" ? "IAs cravaron el marcador"
+                : locale === "fr" ? "IA ont visé juste"
+                : "IAs cravaram o placar";
               // grau de confianca = % de IAs que apostaram no placar mais votado
               const confiancaPct = bola && totalVotos
                 ? Math.round((bola.votos / totalVotos) * 100)
@@ -120,15 +138,23 @@ export default async function JogosPage() {
                   domId={String(j.numero)}
                   kickoff={`${j.data}T${j.hora}:00-03:00`}
                   trigger={
-                    <div className="jogo-card">
+                    <div className={`jogo-card${encerrado ? " encerrado" : ""}`}>
                       <div className="jogo-card-head">
                         <span className="jogo-num">#{j.numero}</span>
                         <span className="jogo-data">{j.data} · {j.hora}</span>
+                        {encerrado && <span className="jogo-ft">✓ {ftLbl}</span>}
                       </div>
                       <div className="jogo-card-times">
                         <TimeLink nome={j.time_a} iso={mapaPaises[j.time_a]} size={32} />
                         <div className="jogo-card-vs">
-                          {bola ? (
+                          {encerrado ? (
+                            <>
+                              <div className="placar-real">
+                                {j.gols_a}×{j.gols_b}
+                              </div>
+                              <small className="placar-real-lbl">{ftLbl}</small>
+                            </>
+                          ) : bola ? (
                             <>
                               <div className="placar-consenso">
                                 {bola.gols_a}×{bola.gols_b}
@@ -141,6 +167,21 @@ export default async function JogosPage() {
                         </div>
                         <TimeLink nome={j.time_b} iso={mapaPaises[j.time_b]} size={32} />
                       </div>
+                      {encerrado && (
+                        <div className="cravadas-strip">
+                          <strong>{cravadas}</strong>
+                          <span>/{totalVotos} {cravLbl}</span>
+                          {bola && (
+                            <span
+                              className="cristal-mini"
+                              data-cravou={cristalCravou ? "1" : "0"}
+                              title={`Bola de Cristal: ${bola.gols_a}×${bola.gols_b}`}
+                            >
+                              🔮 {bola.gols_a}×{bola.gols_b}
+                            </span>
+                          )}
+                        </div>
+                      )}
                       {topIas.length > 0 && (
                         <div className="jogo-card-ias">
                           {topIas.map((s) => {
