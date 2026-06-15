@@ -34,17 +34,18 @@ const clamp = (v: number, lo: number, hi: number) =>
 export default function CorridaTopDown({
   ias,
   frames,
-  usarMascote = false,
 }: {
   ias: IA[];
   frames: Frame[];
-  usarMascote?: boolean;
 }) {
   // pos é um índice de frame CONTÍNUO (float). Entre dois frames inteiros a
   // posição é interpolada → corrida fluida, sem "anda e para". Cada inteiro
   // pousa exatamente na pontuação real daquele jogo (nada de trajetória falsa).
   const [pos, setPos] = useState(0);
   const [pausado, setPausado] = useState(false);
+  // Nome ao lado do mascote: default escondido (só os bichinhos ficam mais
+  // limpos visualmente). Usuário pode ligar via checkbox.
+  const [mostrarNome, setMostrarNome] = useState(false);
   const posRef = useRef(0);
   const lastRef = useRef(0);
   const rafRef = useRef(0);
@@ -98,36 +99,13 @@ export default function CorridaTopDown({
   }, [frames, ordenadas]);
   segFastRef.current = segFast;
 
-  // Fan: IAs empatadas (mesma pontuação final) caem no MESMO X. Pra não
-  // empilharem, damos um deslocamento horizontal constante (mesmo em todos os
-  // frames — é só um nudge visual, a progressão real continua intacta).
-  const fanOffset = useMemo(() => {
-    const porPts: Record<number, IA[]> = {};
-    for (const ia of ordenadas) {
-      const p = finalFrame[ia.slug] ?? 0;
-      (porPts[p] ??= []).push(ia);
-    }
-    const off: Record<string, number> = {};
-    for (const k of Object.keys(porPts)) {
-      const grp = porPts[Number(k)]
-        .slice()
-        .sort((a, b) => a.slug.localeCompare(b.slug));
-      const n = grp.length;
-      if (n === 1) {
-        off[grp[0].slug] = 0;
-        continue;
-      }
-      const win = Math.min((n - 1) * 4.5, 24); // largura total da janela (%)
-      const step = win / (n - 1);
-      grp.forEach((ia, i) => {
-        off[ia.slug] = (i - (n - 1) / 2) * step;
-      });
-    }
-    return off;
-  }, [ordenadas, finalFrame]);
-
-  const xDe = (slug: string, pts: number) =>
-    clamp((pts / maxPts) * SPAN + (fanOffset[slug] ?? 0), 0, SPAN);
+  // Posição X só por pontos — sem offset por empate. IAs empatadas no mesmo X
+  // são desempilhadas pelo lane packing (raias diferentes em Y). Antes existia
+  // um "fan" que espalhava as empatadas no eixo X, mas isso podia fazer uma
+  // IA com menos pontos visualmente ultrapassar outra com mais (quando o fan
+  // somava mais que a folga em X entre dois grupos vizinhos).
+  const xDe = (_slug: string, pts: number) =>
+    clamp((pts / maxPts) * SPAN, 0, SPAN);
 
   // Empacota IAs em poucas raias: first-fit por X final desc; reaproveita a raia
   // se o último ocupante estiver a >= MIN_GAP de distância.
@@ -154,7 +132,7 @@ export default function CorridaTopDown({
     }
     return { laneOf: lane, numLanes: lanesLast.length };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ordenadas, finalFrame, fanOffset, maxPts]);
+  }, [ordenadas, finalFrame, maxPts]);
 
   useEffect(() => {
     if (pausado || ultimo <= 0) return;
@@ -201,6 +179,14 @@ export default function CorridaTopDown({
           <span className="cn-frame-rotulo">{f?.rotulo ?? ""}</span>
         </div>
         <div className="cn-controles">
+          <label className="cn-check" title="Mostrar nome ao lado de cada IA">
+            <input
+              type="checkbox"
+              checked={mostrarNome}
+              onChange={(e) => setMostrarNome(e.target.checked)}
+            />
+            <span>nome</span>
+          </label>
           <button onClick={() => setPausado((p) => !p)} className="cn-btn">
             {pausado ? "▶ Tocar" : "⏸ Pausar"}
           </button>
@@ -240,7 +226,7 @@ export default function CorridaTopDown({
           const x = xDe(ia.slug, ptsNow);
           const lane = laneOf[ia.slug] ?? 0;
           const marca = marcaDe(ia.slug);
-          const mostraMascote = usarMascote && COM_MASCOTE.has(ia.slug);
+          const temMascote = COM_MASCOTE.has(ia.slug);
           // "Bateu": errou completamente o jogo em apuração (ganhou 0 ponto).
           const bateu = emMovimento && ptsB - ptsA === 0;
           return (
@@ -256,9 +242,11 @@ export default function CorridaTopDown({
               }}
             >
               {bateu && <span className="cn-fumaca" aria-hidden>💨</span>}
-              <span className="cn-nome">{ia.nome_display}</span>
+              {mostrarNome && (
+                <span className="cn-nome">{ia.nome_display}</span>
+              )}
               <span className="cn-pts">{ptsLabel}</span>
-              {mostraMascote ? (
+              {temMascote ? (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
                   className="cn-mascote"
@@ -266,9 +254,9 @@ export default function CorridaTopDown({
                   alt={ia.nome_display}
                 />
               ) : (
-                <div className="cn-icon">
-                  <IconeIA slug={ia.slug} size={ICON - 6} />
-                </div>
+                <span className="cn-marca">
+                  <IconeIA slug={ia.slug} size={26} />
+                </span>
               )}
             </div>
           );
@@ -322,6 +310,19 @@ export default function CorridaTopDown({
           cursor: pointer;
         }
         .cn-btn:hover { background: rgba(255,255,255,0.12); }
+        .cn-check {
+          display: inline-flex; align-items: center; gap: 5px;
+          padding: 6px 10px;
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: var(--r-s);
+          font-family: var(--ff-mono);
+          font-size: 11px; font-weight: 700;
+          color: rgba(255,255,255,0.75);
+          cursor: pointer;
+          user-select: none;
+        }
+        .cn-check input { margin: 0; accent-color: #a855f7; cursor: pointer; }
         .cn-progress { display: flex; gap: 3px; margin-bottom: 12px; }
         .cn-progress-tick {
           flex: 1; height: 6px;
@@ -374,18 +375,20 @@ export default function CorridaTopDown({
         }
         .cn-runner {
           position: absolute;
-          transform: translate(-100%, -50%);
+          transform: translate3d(-100%, -50%, 0);
+          will-change: left, top;
+          backface-visibility: hidden;
           display: flex; align-items: center; gap: 4px;
           white-space: nowrap;
           pointer-events: auto;
         }
-        .cn-icon {
+        .cn-marca {
           flex-shrink: 0;
-          width: ${ICON}px; height: ${ICON}px;
-          border-radius: 50%;
-          background: #fff;
-          display: flex; align-items: center; justify-content: center;
-          box-shadow: 0 1px 5px rgba(0,0,0,0.5), 0 0 0 2px var(--cor, rgba(168,85,247,0.4));
+          width: ${ICON + 6}px; height: ${ICON + 6}px;
+          display: inline-flex;
+          align-items: center; justify-content: center;
+          background: transparent;
+          filter: drop-shadow(0 2px 3px rgba(0,0,0,0.55));
         }
         .cn-mascote {
           flex-shrink: 0;
@@ -440,9 +443,10 @@ export default function CorridaTopDown({
           75% { margin-top: 1px; }
         }
         .cn-runner.batendo { animation: cn-tremor 0.18s linear infinite; }
-        .cn-runner.batendo .cn-icon {
+        .cn-runner.batendo .cn-marca {
           animation: cn-rodopio 0.5s linear infinite;
-          box-shadow: 0 1px 5px rgba(0,0,0,0.5), 0 0 0 2px #ef4444;
+          filter: drop-shadow(0 2px 3px rgba(0,0,0,0.55))
+                  drop-shadow(0 0 6px #ef4444);
         }
         .cn-fumaca {
           position: absolute;
