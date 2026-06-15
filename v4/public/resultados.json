@@ -58,5 +58,10 @@
     "jogo_numero": 12,
     "gols_a": 5,
     "gols_b": 1
+  },
+  {
+    "jogo_numero": 14,
+    "gols_a": 0,
+    "gols_b": 0
   }
 ]
