@@ -18,3 +18,4 @@ no cálculo de pontuação.
 | 6 | Grupo D | Dom 14/06 | 01h00 | Vancouver | Austrália | 2 | 0 | Turquia |
 | 10 | Grupo E | Dom 14/06 | 14h00 | Houston | Alemanha | 7 | 1 | Curaçao |
 | 11 | Grupo F | Dom 14/06 | 17h00 | Dallas | Países Baixos | 2 | 2 | Japão |
+| 9 | Grupo E | Dom 14/06 | 20h00 | Filadélfia | Costa do Marfim | 1 | 0 | Equador |
