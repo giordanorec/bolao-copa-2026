@@ -92,13 +92,26 @@ export default async function JogosPage() {
                     )
                     .slice(0, 3)
                 : [];
-              // jogo encerrado? quantos cravaram o placar exato?
+              // jogo encerrado? quebra dos acertos por categoria
               const encerrado = j.gols_a != null && j.gols_b != null;
-              const cravadas = encerrado && dados
-                ? Object.values(dados.palpites).filter(
-                    (p) => p.gols_a === j.gols_a && p.gols_b === j.gols_b,
-                  ).length
-                : 0;
+              let cravadas = 0, saldoOk = 0, venceuOk = 0, empateOk = 0, errou = 0;
+              if (encerrado && dados) {
+                const ra = j.gols_a as number, rb = j.gols_b as number;
+                for (const p of Object.values(dados.palpites)) {
+                  if (p.gols_a === ra && p.gols_b === rb) cravadas++;
+                  else if (p.gols_a === p.gols_b && ra === rb) empateOk++;
+                  else if (
+                    Math.sign(p.gols_a - p.gols_b) === Math.sign(ra - rb) &&
+                    p.gols_a !== p.gols_b &&
+                    p.gols_a - p.gols_b === ra - rb
+                  ) saldoOk++;
+                  else if (
+                    Math.sign(p.gols_a - p.gols_b) === Math.sign(ra - rb) &&
+                    p.gols_a !== p.gols_b
+                  ) venceuOk++;
+                  else errou++;
+                }
+              }
               const cristalCravou = encerrado && bola
                 ? bola.gols_a === j.gols_a && bola.gols_b === j.gols_b
                 : false;
@@ -106,10 +119,13 @@ export default async function JogosPage() {
                 : locale === "es" ? "FIN"
                 : locale === "fr" ? "FIN"
                 : "FIM";
-              const cravLbl = locale === "en" ? "AIs nailed the score"
-                : locale === "es" ? "IAs cravaron el marcador"
-                : locale === "fr" ? "IA ont visé juste"
-                : "IAs cravaram o placar";
+              const lbl = locale === "en"
+                ? { exato: "exact", saldo: "diff", venc: "winner", emp: "draw", err: "wrong" }
+                : locale === "es"
+                  ? { exato: "exacto", saldo: "saldo", venc: "ganador", emp: "empate", err: "fallo" }
+                  : locale === "fr"
+                    ? { exato: "exact", saldo: "écart", venc: "vainq.", emp: "nul", err: "faux" }
+                    : { exato: "exato", saldo: "saldo", venc: "vencedor", emp: "empate", err: "errou" };
               // grau de confianca = % de IAs que apostaram no placar mais votado
               const confiancaPct = bola && totalVotos
                 ? Math.round((bola.votos / totalVotos) * 100)
@@ -168,9 +184,26 @@ export default async function JogosPage() {
                         <TimeLink nome={j.time_b} iso={mapaPaises[j.time_b]} size={32} />
                       </div>
                       {encerrado && (
-                        <div className="cravadas-strip">
-                          <strong>{cravadas}</strong>
-                          <span>/{totalVotos} {cravLbl}</span>
+                        <div className="breakdown-strip">
+                          <div className="breakdown-pills">
+                            <span className="bd-pill bd-exato" title={`${cravadas} ${lbl.exato} (10 pts)`}>
+                              🎯 <strong>{cravadas}</strong> <span>{lbl.exato}</span>
+                            </span>
+                            <span className="bd-pill bd-saldo" title={`${saldoOk} ${lbl.saldo} (7 pts)`}>
+                              📊 <strong>{saldoOk}</strong> <span>{lbl.saldo}</span>
+                            </span>
+                            <span className="bd-pill bd-venc" title={`${venceuOk} ${lbl.venc} (5 pts)`}>
+                              ✅ <strong>{venceuOk}</strong> <span>{lbl.venc}</span>
+                            </span>
+                            {empateOk > 0 && (
+                              <span className="bd-pill bd-emp" title={`${empateOk} ${lbl.emp} (5 pts)`}>
+                                🤝 <strong>{empateOk}</strong> <span>{lbl.emp}</span>
+                              </span>
+                            )}
+                            <span className="bd-pill bd-err" title={`${errou} ${lbl.err} (0 pts)`}>
+                              ❌ <strong>{errou}</strong> <span>{lbl.err}</span>
+                            </span>
+                          </div>
                           {bola && (
                             <span
                               className="cristal-mini"
