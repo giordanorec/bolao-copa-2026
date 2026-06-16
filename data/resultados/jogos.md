@@ -22,3 +22,4 @@ no cálculo de pontuação.
 | 12 | Grupo F | Dom 14/06 | 23h00 | Monterrey | Suécia | 5 | 1 | Tunísia |
 | 14 | Grupo H | Seg 15/06 | 13h00 | Atlanta | Espanha | 0 | 0 | Cabo Verde |
 | 16 | Grupo G | Seg 15/06 | 16h00 | Seattle | Bélgica | 1 | 1 | Egito |
+| 13 | Grupo H | Seg 15/06 | 19h00 | Miami | Arábia Saudita | 1 | 1 | Uruguai |
