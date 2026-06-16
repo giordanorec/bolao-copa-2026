@@ -23,3 +23,4 @@ no cálculo de pontuação.
 | 14 | Grupo H | Seg 15/06 | 13h00 | Atlanta | Espanha | 0 | 0 | Cabo Verde |
 | 16 | Grupo G | Seg 15/06 | 16h00 | Seattle | Bélgica | 1 | 1 | Egito |
 | 13 | Grupo H | Seg 15/06 | 19h00 | Miami | Arábia Saudita | 1 | 1 | Uruguai |
+| 15 | Grupo G | Seg 15/06 | 22h00 | Los Angeles | Irã | 2 | 2 | Nova Zelândia |
