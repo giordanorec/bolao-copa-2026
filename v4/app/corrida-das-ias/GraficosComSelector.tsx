@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import IASelector from "./IASelector";
 import GraficoDistancia from "./GraficoDistancia";
 import { SLUGS_SERIE_A as SLUGS_SERIE_A_LISTA } from "@/lib/serie-a";
+import { track } from "@/lib/analytics";
 
 type IA = {
   slug: string;
@@ -34,24 +35,38 @@ export function GraficoDistanciaComSelector({
     return sa.size > 0 ? sa : new Set(ias.slice(0, 10).map((ia) => ia.slug));
   });
 
+  // Disparo único ao montar — engagement com Modo C.
+  useEffect(() => {
+    track("corrida_view", { modo: "C", ias_visiveis: ias.length });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function toggle(slug: string) {
     setSelecionadas((s) => {
       const n = new Set(s);
-      if (n.has(slug)) n.delete(slug);
-      else n.add(slug);
+      if (n.has(slug)) {
+        n.delete(slug);
+        track("corrida_ia_toggle", { modo: "C", slug, ligado: false });
+      } else {
+        n.add(slug);
+        track("corrida_ia_toggle", { modo: "C", slug, ligado: true });
+      }
       return n;
     });
   }
 
   function selectAll() {
+    track("corrida_preset", { modo: "C", preset: "todas" });
     setSelecionadas(new Set(ias.map((ia) => ia.slug)));
   }
 
   function selectTop10() {
+    track("corrida_preset", { modo: "C", preset: "top10" });
     setSelecionadas(new Set(ias.slice(0, 10).map((ia) => ia.slug)));
   }
 
   function selectSerieA() {
+    track("corrida_preset", { modo: "C", preset: "serie_a" });
     setSelecionadas(
       new Set(ias.filter((ia) => SLUGS_SERIE_A.has(ia.slug)).map((ia) => ia.slug)),
     );

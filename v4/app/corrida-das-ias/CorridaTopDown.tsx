@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import IconeIA from "@/components/IconeIA";
 import { marcaDe } from "@/lib/ias";
 import { SLUGS_SERIE_A } from "@/lib/serie-a";
+import { track } from "@/lib/analytics";
 
 // Slugs que têm arquivo de mascote em /public/mascots/<slug>.png (= Série A).
 const COM_MASCOTE = new Set(SLUGS_SERIE_A);
@@ -46,6 +47,12 @@ export default function CorridaTopDown({
   // Nome ao lado do mascote: default escondido (só os bichinhos ficam mais
   // limpos visualmente). Usuário pode ligar via checkbox.
   const [mostrarNome, setMostrarNome] = useState(false);
+
+  // Disparo único ao montar — engagement com Modo A.
+  useEffect(() => {
+    track("corrida_view", { modo: "A", ias_visiveis: ias.length });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const posRef = useRef(0);
   const lastRef = useRef(0);
   const rafRef = useRef(0);
@@ -183,14 +190,34 @@ export default function CorridaTopDown({
             <input
               type="checkbox"
               checked={mostrarNome}
-              onChange={(e) => setMostrarNome(e.target.checked)}
+              onChange={(e) => {
+                setMostrarNome(e.target.checked);
+                track("corrida_toggle_nome", {
+                  modo: "A",
+                  ligado: e.target.checked,
+                });
+              }}
             />
             <span>nome</span>
           </label>
-          <button onClick={() => setPausado((p) => !p)} className="cn-btn">
+          <button
+            onClick={() => {
+              setPausado((p) => {
+                track(p ? "corrida_play" : "corrida_pause", { modo: "A" });
+                return !p;
+              });
+            }}
+            className="cn-btn"
+          >
             {pausado ? "▶ Tocar" : "⏸ Pausar"}
           </button>
-          <button onClick={() => irPara(0)} className="cn-btn">
+          <button
+            onClick={() => {
+              track("corrida_restart", { modo: "A" });
+              irPara(0);
+            }}
+            className="cn-btn"
+          >
             ⟲ Início
           </button>
         </div>

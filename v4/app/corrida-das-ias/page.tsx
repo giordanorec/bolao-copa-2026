@@ -3,6 +3,7 @@ import path from "path";
 import CorridaComSelector from "./CorridaComSelector";
 import BarRaceTemporal from "./BarRaceTemporal";
 import { GraficoDistanciaComSelector } from "./GraficosComSelector";
+import PageVisitTracker from "./PageVisitTracker";
 import { ehSerieA, slugWebSerieA, nomeSerieA } from "@/lib/serie-a";
 
 type IARanking = {
@@ -159,6 +160,7 @@ export default async function CorridaDasIAsPage() {
 
   return (
     <div style={{ marginTop: 24, marginBottom: 64 }}>
+      <PageVisitTracker />
       <header style={{ textAlign: "center", marginBottom: 28 }}>
         <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)" }}>🏁 Corrida das IAs</h1>
         <p className="lede" style={{ marginTop: 10, maxWidth: 640, marginInline: "auto" }}>

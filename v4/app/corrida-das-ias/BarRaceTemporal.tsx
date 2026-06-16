@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import IconeIA from "@/components/IconeIA";
 import { marcaDe } from "@/lib/ias";
+import { track } from "@/lib/analytics";
 
 type IA = {
   slug: string;
@@ -34,6 +35,12 @@ export default function BarRaceTemporal({
 }) {
   const [frameIdx, setFrameIdx] = useState(0);
   const [pausado, setPausado] = useState(false);
+
+  // Disparo único ao montar — engagement com Modo B.
+  useEffect(() => {
+    track("corrida_view", { modo: "B", ias_visiveis: ias.length });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // top N do frame atual, calculado em cada render
   const topNDoFrame = useMemo<Posicionada[]>(() => {

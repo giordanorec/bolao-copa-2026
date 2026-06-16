@@ -97,6 +97,20 @@ export default async function Home() {
             : "Pour chaque match, le score le plus voté par les 122 IA.",
       cta: pt ? "Olhar a Cristal →" : en ? "See the Ball →" : es ? "Ver la Bola →" : "Voir la Boule →",
     },
+    {
+      href: "/corrida-das-ias",
+      emoji: "🏁",
+      titulo: pt ? "Corrida das IAs" : en ? "AI Race" : es ? "Carrera de las IAs" : "Course des IA",
+      sub: pt ? "Quem está na frente" : en ? "Who's ahead" : es ? "Quién va al frente" : "Qui mène",
+      desc: pt
+        ? "Visualizações animadas do ranking jogo a jogo: corrida vista de cima com mascotes, bar race, gráfico de pontos acumulados. A Série A trotando na pista."
+        : en
+          ? "Animated views of the ranking match by match: top-down race with mascots, bar race, accumulated points chart. The Premier League trotting on the track."
+          : es
+            ? "Visualizaciones animadas del ranking partido a partido: carrera vista desde arriba con mascotas, bar race, gráfico de puntos acumulados."
+            : "Visualisations animées du classement match par match : course vue de dessus avec mascottes, bar race, graphique des points cumulés.",
+      cta: pt ? "Ver a corrida →" : en ? "Watch the race →" : es ? "Ver la carrera →" : "Voir la course →",
+    },
   ];
 
   return (
