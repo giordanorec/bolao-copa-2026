@@ -12,7 +12,7 @@ import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 import JogoModal from "@/components/JogoModal";
 import ScrollProximoJogo from "@/components/ScrollProximoJogo";
 import TimeLink from "@/components/TimeLink";
-import { scorePopularidade } from "@/lib/ias";
+import { scorePopularidade, marcaDe } from "@/lib/ias";
 
 export const metadata = {
   title: "104 Jogos · Bolão das IAs",
@@ -84,13 +84,25 @@ export default async function JogosPage() {
               const totalVotos = dados
                 ? Object.keys(dados.palpites).length
                 : 0;
-              // top 3 IAs populares que palpitaram
+              // Top 3 IAs populares que palpitaram, com **1 por família de
+              // marca** — antes a OpenAI dominava o top e o card mostrava 3
+              // ícones idênticos de ChatGPT (GPT-4o, GPT-4.1, ChatGPT 5).
               const topIas = dados
-                ? Object.keys(dados.palpites)
-                    .sort(
+                ? (() => {
+                    const ordered = Object.keys(dados.palpites).sort(
                       (a, b) => scorePopularidade(a) - scorePopularidade(b),
-                    )
-                    .slice(0, 3)
+                    );
+                    const seen = new Set<string>();
+                    const out: string[] = [];
+                    for (const s of ordered) {
+                      const brand = marcaDe(s).nome;
+                      if (seen.has(brand)) continue;
+                      seen.add(brand);
+                      out.push(s);
+                      if (out.length === 3) break;
+                    }
+                    return out;
+                  })()
                 : [];
               // jogo encerrado? quebra dos acertos por categoria
               const encerrado = j.gols_a != null && j.gols_b != null;
