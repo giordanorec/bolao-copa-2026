@@ -27,3 +27,4 @@ no cálculo de pontuação.
 | 17 | Grupo I | Ter 16/06 | 16h00 | Nova York/NJ | França | 3 | 1 | Senegal |
 | 18 | Grupo I | Ter 16/06 | 19h00 | Boston | Iraque | 1 | 4 | Noruega |
 | 19 | Grupo J | Ter 16/06 | 22h00 | Kansas City | Argentina | 3 | 0 | Argélia |
+| 20 | Grupo J | Qua 17/06 | 01h00 | San Francisco | Áustria | 3 | 1 | Jordânia |
