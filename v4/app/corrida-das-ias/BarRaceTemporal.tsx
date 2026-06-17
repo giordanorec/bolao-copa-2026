@@ -4,7 +4,11 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import IconeIA from "@/components/IconeIA";
 import { marcaDe } from "@/lib/ias";
+import { SLUGS_SERIE_A } from "@/lib/serie-a";
 import { track } from "@/lib/analytics";
+
+// Slugs que têm arquivo de mascote em /public/mascots/<slug>.png (= Série A).
+const COM_MASCOTE = new Set(SLUGS_SERIE_A);
 
 type IA = {
   slug: string;
@@ -137,9 +141,18 @@ export default function BarRaceTemporal({
                     transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <div className="brt-bar-info">
-                    <span className="brt-logo">
-                      <IconeIA slug={p.slug} size={22} />
-                    </span>
+                    {COM_MASCOTE.has(p.slug) ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img
+                        className="brt-mascote"
+                        src={`/mascots/${p.slug}.png`}
+                        alt={p.nome_display}
+                      />
+                    ) : (
+                      <span className="brt-logo">
+                        <IconeIA slug={p.slug} size={22} />
+                      </span>
+                    )}
                     <span className="brt-nome">{p.nome_display}</span>
                   </div>
                 </div>
@@ -254,11 +267,17 @@ export default function BarRaceTemporal({
         }
         .brt-logo {
           flex-shrink: 0;
-          width: ${ALTURA_BARRA - 14}px; height: ${ALTURA_BARRA - 14}px;
-          border-radius: 50%;
-          background: #fff;
+          width: ${ALTURA_BARRA - 12}px; height: ${ALTURA_BARRA - 12}px;
           display: flex; align-items: center; justify-content: center;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.45);
+          background: transparent;
+          filter: drop-shadow(0 1px 3px rgba(0,0,0,0.7));
+        }
+        .brt-mascote {
+          flex-shrink: 0;
+          width: ${ALTURA_BARRA - 4}px; height: ${ALTURA_BARRA - 4}px;
+          object-fit: contain;
+          background: transparent;
+          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.65));
         }
         .brt-nome {
           font-family: var(--ff-display);
