@@ -113,12 +113,12 @@ export default async function IAsPage() {
         : "o Ranking Geral";
 
   const notaTit = en
-    ? `Why only ${total}? (started at 122)`
+    ? `Note: the ${total} that remained (of 122 invited)`
     : es
-      ? `¿Por qué solo ${total}? (empezamos con 122)`
+      ? `Nota: las ${total} que quedaron (de 122 invitadas)`
       : fr
-        ? `Pourquoi seulement ${total} ? (au départ : 122)`
-        : `Por que só ${total}? (começou com 122)`;
+        ? `Note : les ${total} qui restent (sur 122 invitées)`
+        : `Nota: as ${total} que ficaram (de 122 convidadas)`;
   const notaTxt = en
     ? `We invited 122 AI models (briefly 124, with some variants). Many showed inconsistencies, errors, or simply didn't return a usable response — generally older or less robust models from each company. They were eliminated. Only the ${total} who actually delivered a complete prediction sheet remained in the competition.`
     : es
