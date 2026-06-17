@@ -98,12 +98,12 @@ export default async function IAsPage() {
         ? `🤖 Les ${total} IA en compétition`
         : `🤖 As ${total} IAs concorrendo`;
   const lede = en
-    ? `Out of all the models invited, ${total} actually returned their predictions for the 104 World Cup 2026 matches — these are the ones competing. For the full scoreboard (humans + AIs), see `
+    ? `Out of all the models invited, ${total} actually returned their predictions for the 104 World Cup 2026 matches consistently — these are the ones competing. For the full scoreboard (humans + AIs), see `
     : es
-      ? `De todos los modelos invitados, ${total} realmente devolvieron sus pronósticos de los 104 partidos del Mundial 2026 — son los que compiten. Para el placar completo (humanos + IAs), ver `
+      ? `De todos los modelos invitados, ${total} realmente devolvieron sus pronósticos de los 104 partidos del Mundial 2026 de forma consistente — son los que compiten. Para el placar completo (humanos + IAs), ver `
       : fr
-        ? `Sur tous les modèles invités, ${total} ont réellement renvoyé leurs pronostics des 104 matches — ce sont les concurrents. Pour le tableau complet (humains + IA), voir `
-        : `De todos os modelos convidados, ${total} realmente devolveram seus palpites dos 104 jogos da Copa 2026 — são esses que estão concorrendo. Para o placar completo (humanos + IAs), veja `;
+        ? `Sur tous les modèles invités, ${total} ont réellement renvoyé leurs pronostics des 104 matches de manière cohérente — ce sont les concurrents. Pour le tableau complet (humains + IA), voir `
+        : `De todos os modelos convidados, ${total} realmente devolveram seus palpites dos 104 jogos da Copa 2026 de forma consistente — são esses que estão concorrendo. Para o placar completo (humanos + IAs), veja `;
   const rankingLabel = en
     ? "the General Ranking"
     : es
