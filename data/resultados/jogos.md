@@ -26,3 +26,4 @@ no cálculo de pontuação.
 | 15 | Grupo G | Seg 15/06 | 22h00 | Los Angeles | Irã | 2 | 2 | Nova Zelândia |
 | 17 | Grupo I | Ter 16/06 | 16h00 | Nova York/NJ | França | 3 | 1 | Senegal |
 | 18 | Grupo I | Ter 16/06 | 19h00 | Boston | Iraque | 1 | 4 | Noruega |
+| 19 | Grupo J | Ter 16/06 | 22h00 | Kansas City | Argentina | 3 | 0 | Argélia |
