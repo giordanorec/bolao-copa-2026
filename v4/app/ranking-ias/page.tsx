@@ -112,6 +112,21 @@ export default async function IAsPage() {
         ? "le Classement Général"
         : "o Ranking Geral";
 
+  const notaTit = en
+    ? `Why only ${total}? (started at 122)`
+    : es
+      ? `¿Por qué solo ${total}? (empezamos con 122)`
+      : fr
+        ? `Pourquoi seulement ${total} ? (au départ : 122)`
+        : `Por que só ${total}? (começou com 122)`;
+  const notaTxt = en
+    ? `We invited 122 AI models (briefly 124, with some variants). Many showed inconsistencies, errors, or simply didn't return a usable response — generally older or less robust models from each company. They were eliminated. Only the ${total} who actually delivered a complete prediction sheet remained in the competition.`
+    : es
+      ? `Invitamos a 122 modelos de IA (llegamos a 124 con algunas variantes). Muchos presentaron inconsistencias, errores o simplemente no respondieron — en general modelos más antiguos o menos robustos de cada empresa. Fueron eliminados. Quedaron ${total}, los que realmente entregaron una tabla completa de pronósticos.`
+      : fr
+        ? `Nous avons invité 122 modèles d'IA (jusqu'à 124 avec quelques variantes). Beaucoup ont montré des incohérences, des erreurs ou n'ont tout simplement pas répondu — généralement les modèles plus anciens ou moins robustes. Ils ont été éliminés. Il reste les ${total} qui ont réellement livré une feuille de pronostics complète.`
+        : `Convidamos 122 modelos de IA (chegou a 124 contando algumas variantes). Vários apresentaram inconsistências, erros, ou simplesmente não devolveram um palpite válido — em geral modelos mais antigos ou menos robustos de cada empresa. Foram desclassificados. Sobraram ${total} — só essas entregaram um cartão completo de palpites e estão de fato concorrendo.`;
+
   return (
     <div style={{ marginTop: 32, marginBottom: 64 }}>
       <header style={{ textAlign: "center", marginBottom: 24 }}>
@@ -126,7 +141,46 @@ export default async function IAsPage() {
           </Link>
           .
         </p>
+        <details className="nota-122">
+          <summary>{notaTit}</summary>
+          <p>{notaTxt}</p>
+        </details>
       </header>
+
+      <style>{`
+        .nota-122 {
+          max-width: 700px;
+          margin: 14px auto 0;
+          padding: 8px 14px;
+          background: var(--bg-1);
+          border: 1px dashed var(--line);
+          border-radius: var(--r-s);
+          text-align: left;
+        }
+        .nota-122 summary {
+          font-family: var(--ff-mono);
+          font-size: 12px;
+          font-weight: 700;
+          color: var(--fg-mid);
+          cursor: pointer;
+          list-style: none;
+          padding: 4px 0;
+          letter-spacing: 0.02em;
+        }
+        .nota-122 summary::-webkit-details-marker { display: none; }
+        .nota-122 summary::before {
+          content: "ℹ ";
+          color: var(--primary);
+          font-weight: 800;
+        }
+        .nota-122[open] summary { color: var(--fg); }
+        .nota-122 p {
+          margin: 8px 0 4px;
+          font-size: 13px;
+          color: var(--fg-mid);
+          line-height: 1.5;
+        }
+      `}</style>
 
       <SerieA locale={locale} />
 
