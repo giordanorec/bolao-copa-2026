@@ -1,7 +1,6 @@
 import Link from "next/link";
 import SerieA from "@/components/SerieA";
 import HeroCTAs from "@/components/HeroCTAs";
-import DiasDeZebra from "@/components/DiasDeZebra";
 import FimDeRodada from "@/components/FimDeRodada";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
@@ -112,6 +111,20 @@ export default async function Home() {
             : "Visualisations animées du classement match par match : course vue de dessus avec mascottes, bar race, graphique des points cumulés.",
       cta: pt ? "Ver a corrida →" : en ? "Watch the race →" : es ? "Ver la carrera →" : "Voir la course →",
     },
+    {
+      href: "/zebras",
+      emoji: "🦓",
+      titulo: pt ? "Placar das Zebras" : en ? "Upset Scoreboard" : es ? "Placar de las Zebras" : "Tableau des Surprises",
+      sub: pt ? "Quando o esperado falha" : en ? "When the expected fails" : es ? "Cuando lo esperado falla" : "Quand l'attendu rate",
+      desc: pt
+        ? "Lista dos jogos em que ≥ 70% das IAs erraram tudo. As maiores surpresas da Copa contadas pelo placar e por quantas IAs comeram poeira em cada uma."
+        : en
+          ? "Matches where ≥ 70% of AIs got it all wrong. The biggest upsets of the World Cup, counted by score and by how many AIs ate dust."
+          : es
+            ? "Partidos donde ≥ 70% de las IAs fallaron todo. Las mayores sorpresas del Mundial."
+            : "Matches où ≥ 70% des IA ont tout faux. Les plus grosses surprises de la Coupe.",
+      cta: pt ? "Ver as zebras →" : en ? "See the upsets →" : es ? "Ver las zebras →" : "Voir les surprises →",
+    },
   ];
 
   return (
@@ -156,8 +169,6 @@ export default async function Home() {
       </section>
 
       <FimDeRodada locale={locale} />
-
-      <DiasDeZebra locale={locale} />
 
       <SerieA locale={locale} variante="destaque" />
 
