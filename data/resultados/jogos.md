@@ -32,3 +32,4 @@ no cálculo de pontuação.
 | 22 | Grupo L | Qua 17/06 | 17h00 | Dallas | Inglaterra | 4 | 2 | Croácia |
 | 21 | Grupo L | Qua 17/06 | 20h00 | Toronto | Gana | 1 | 0 | Panamá |
 | 24 | Grupo K | Qua 17/06 | 23h00 | Cidade do México | Uzbequistão | 1 | 3 | Colômbia |
+| 25 | Grupo A | Qui 18/06 | 13h00 | Atlanta | República Tcheca | 1 | 1 | África do Sul |
