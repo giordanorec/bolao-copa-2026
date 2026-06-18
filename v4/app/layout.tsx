@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import PostHogProvider from "@/components/PostHogProvider";
 import SiteNav from "@/components/SiteNav";
+import AvisoDesclassificacao from "@/components/AvisoDesclassificacao";
 import HeaderNavBar from "@/components/HeaderNavBar";
 import LangSwitcher from "@/components/LangSwitcher";
 import { resolverLocale } from "@/lib/locale-server";
@@ -83,6 +84,8 @@ export default async function RootLayout({
             <SiteNav locale={locale} tema={tema} />
           </div>
         </header>
+
+        <AvisoDesclassificacao />
 
         <main>
           <div className="container">{children}</div>
