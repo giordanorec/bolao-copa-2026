@@ -136,6 +136,17 @@ create policy palpite_select_meu_ou_companheiro on public.palpite
         )
     );
 
+-- palpite: SELECT público pra quem fez opt_in_geral=true (Hall da Fama).
+-- Definido na migration `migrations/2026-06-17_palpite_publico_se_opt_in.sql`.
+drop policy if exists palpite_select_opt_in_publico on public.palpite;
+create policy palpite_select_opt_in_publico on public.palpite
+    for select using (
+        exists (
+            select 1 from public.profiles p
+            where p.id = palpite.user_id and p.opt_in_geral = true
+        )
+    );
+
 -- Insert/update/delete só pra si MESMO e ANTES do kickoff. O bloqueio
 -- após o início do jogo é server-side (RLS lê o now() do Postgres,
 -- não confia no relógio do cliente). Função e tabela jogo definidas

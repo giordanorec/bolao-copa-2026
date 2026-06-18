@@ -179,6 +179,24 @@ Curaçao"), **atualizar TUDO**:
 **Confirmar placares suspeitos** antes de propagar. Corrigir quando o usuário
 apontar erro (ex.: era 2×2, não 1×1) refazendo do passo 2.
 
+## 8.2 Palpite público quando opt_in_geral=true
+
+**Regra:** quem marca `opt_in_geral = true` no perfil **autoriza qualquer
+visitante** (anônimo inclusive) a ver seus palpites no Hall da Fama. Quem
+não marca, palpite só é legível pelo dono e por companheiros de bolão.
+
+**Implementação:** RLS policy `palpite_select_opt_in_publico` em
+`public.palpite` permite SELECT quando o `user_id` corresponde a um
+`profiles` com `opt_in_geral=true`. Convive (via OR) com a policy
+anterior `palpite_select_meu_ou_companheiro` que protege quem NÃO fez
+opt-in. Migration:
+`v4/sql/migrations/2026-06-17_palpite_publico_se_opt_in.sql`.
+
+A página `/ranking-geral` continua usando `createAdminClient() ?? supabase`
+como fallback (caso a service_role esteja disponível, bypassa RLS direto),
+mas hoje funciona puramente via essa policy — não precisa de service_role
+em produção.
+
 ## 8.1 Trava de palpite após o kickoff (SEGURANÇA)
 
 **Regra absoluta:** ninguém pode criar, alterar ou apagar um palpite **depois
