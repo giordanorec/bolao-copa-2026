@@ -31,3 +31,4 @@ no cálculo de pontuação.
 | 23 | Grupo K | Qua 17/06 | 14h00 | Houston | Portugal | 1 | 1 | Congo (RD) |
 | 22 | Grupo L | Qua 17/06 | 17h00 | Dallas | Inglaterra | 4 | 2 | Croácia |
 | 21 | Grupo L | Qua 17/06 | 20h00 | Toronto | Gana | 1 | 0 | Panamá |
+| 24 | Grupo K | Qua 17/06 | 23h00 | Cidade do México | Uzbequistão | 1 | 3 | Colômbia |
