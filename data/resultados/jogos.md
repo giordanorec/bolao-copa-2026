@@ -30,3 +30,4 @@ no cálculo de pontuação.
 | 20 | Grupo J | Qua 17/06 | 01h00 | San Francisco | Áustria | 3 | 1 | Jordânia |
 | 23 | Grupo K | Qua 17/06 | 14h00 | Houston | Portugal | 1 | 1 | Congo (RD) |
 | 22 | Grupo L | Qua 17/06 | 17h00 | Dallas | Inglaterra | 4 | 2 | Croácia |
+| 21 | Grupo L | Qua 17/06 | 20h00 | Toronto | Gana | 1 | 0 | Panamá |
