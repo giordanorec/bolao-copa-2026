@@ -1,0 +1,78 @@
+import Link from "next/link";
+import CorridaComSelector from "@/app/corrida-das-ias/CorridaComSelector";
+import { carregarCorrida } from "@/lib/corrida-frames";
+import type { Locale } from "@/lib/i18n";
+
+// Renderiza o MESMO CorridaComSelector (Modo A vista de cima) da página
+// /corrida-das-ias na home. Fonte de dados ÚNICA via carregarCorrida().
+// Qualquer mudança no componente, no scoring ou na trilha de pontos
+// reflete nos dois lugares automaticamente.
+
+const TX: Record<
+  Locale,
+  { titulo: string; lede: string; cta: string }
+> = {
+  pt: {
+    titulo: "🏃 A corrida das IAs",
+    lede: "Cada IA avança jogo a jogo; a posição é a pontuação real acumulada. Default: Série A. Use os presets pra ver todas.",
+    cta: "Ver mais visualizações (bar race + gráfico) →",
+  },
+  en: {
+    titulo: "🏃 The AI Race",
+    lede: "Each AI advances match by match; position is the real cumulative score. Default: Premier League. Use the presets to see all.",
+    cta: "See more views (bar race + chart) →",
+  },
+  es: {
+    titulo: "🏃 La carrera de las IAs",
+    lede: "Cada IA avanza partido a partido; la posición es el puntaje real acumulado. Por defecto: Liga A. Usa los presets para ver todas.",
+    cta: "Ver más visualizaciones (bar race + gráfico) →",
+  },
+  fr: {
+    titulo: "🏃 La course des IA",
+    lede: "Chaque IA avance match par match ; la position est le score réel cumulé. Par défaut : Ligue 1. Utilisez les présets pour tout voir.",
+    cta: "Voir plus de visualisations (bar race + graphique) →",
+  },
+};
+
+export default async function CorridaHome({
+  locale = "pt",
+}: {
+  locale?: Locale;
+}) {
+  const { topIas, frames } = await carregarCorrida();
+  if (topIas.length === 0 || frames.length <= 1) return null;
+  const tx = TX[locale];
+
+  return (
+    <section className="section" style={{ paddingTop: 12, paddingBottom: 12 }}>
+      <div className="container">
+        <div style={{ marginBottom: 16, textAlign: "center" }}>
+          <h2 style={{ marginBottom: 6, fontSize: "clamp(22px, 4vw, 30px)" }}>
+            {tx.titulo}
+          </h2>
+          <p
+            style={{
+              color: "var(--fg-mid)",
+              fontSize: 14,
+              maxWidth: 600,
+              marginInline: "auto",
+            }}
+          >
+            {tx.lede}
+          </p>
+        </div>
+
+        <CorridaComSelector ias={topIas} frames={frames} />
+
+        <div style={{ marginTop: 18, textAlign: "center" }}>
+          <Link
+            href="/corrida-das-ias"
+            style={{ color: "var(--primary)", fontWeight: 700, fontSize: 14 }}
+          >
+            {tx.cta}
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import SerieA from "@/components/SerieA";
 import HeroCTAs from "@/components/HeroCTAs";
 import SeguirInstagram from "@/components/SeguirInstagram";
+import CorridaHome from "@/components/CorridaHome";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 
@@ -171,6 +172,8 @@ export default async function Home() {
       <SeguirInstagram locale={locale} />
 
       <SerieA locale={locale} variante="destaque" />
+
+      <CorridaHome locale={locale} />
 
       <section className="section">
         <div className="container">
