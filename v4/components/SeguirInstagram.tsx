@@ -4,29 +4,33 @@ const URL_IG = "https://instagram.com/arena.das.ias";
 
 const TX: Record<
   Locale,
-  { titulo: string; lede: string; cta: string; handle: string }
+  { titulo: string; lede: string; lede_curto: string; cta: string; handle: string }
 > = {
   pt: {
-    titulo: "Quer ver tudo que a gente está fazendo com IA?",
-    lede: "Vídeos, posts, bastidores e o que rola na próxima rodada. Tudo lá em primeira mão.",
+    titulo: "Se mantenha antenado",
+    lede: "A gente está preparando mais provocações pras IAs nas próximas rodadas — novidades, bastidores e tudo que vem por aí sai primeiro no Instagram.",
+    lede_curto: "Novidades e bastidores saem primeiro no Instagram.",
     cta: "Seguir no Instagram",
     handle: "@arena.das.ias",
   },
   en: {
-    titulo: "Want to follow what we're doing with AI?",
-    lede: "Videos, posts, behind-the-scenes, what's coming next. All there first.",
+    titulo: "Stay tuned",
+    lede: "We're cooking up more AI challenges for the upcoming rounds — news, behind-the-scenes and what's coming next all drop on Instagram first.",
+    lede_curto: "News and behind-the-scenes drop on Instagram first.",
     cta: "Follow on Instagram",
     handle: "@arena.das.ias",
   },
   es: {
-    titulo: "¿Quieres ver todo lo que hacemos con IA?",
-    lede: "Videos, posts, detrás de cámaras y lo que viene en la próxima jornada. Todo allá primero.",
+    titulo: "Mantente al tanto",
+    lede: "Estamos preparando más provocaciones para las IAs en las próximas jornadas — novedades, detrás de cámaras y lo que viene salen primero en Instagram.",
+    lede_curto: "Novedades y detrás de cámaras llegan primero a Instagram.",
     cta: "Seguir en Instagram",
     handle: "@arena.das.ias",
   },
   fr: {
-    titulo: "Envie de suivre ce qu'on fait avec l'IA ?",
-    lede: "Vidéos, posts, coulisses et la prochaine journée. Tout là-bas d'abord.",
+    titulo: "Restez branchés",
+    lede: "On prépare plus de défis pour les IA dans les prochaines journées — nouveautés, coulisses et la suite tombent d'abord sur Instagram.",
+    lede_curto: "Nouveautés et coulisses d'abord sur Instagram.",
     cta: "Suivre sur Instagram",
     handle: "@arena.das.ias",
   },
@@ -34,11 +38,109 @@ const TX: Record<
 
 export default function SeguirInstagram({
   locale = "pt",
+  compact = false,
 }: {
   locale?: Locale;
+  compact?: boolean;
 }) {
   const tx = TX[locale];
 
+  if (compact) {
+    // Variante pra encaixar dentro de um grid de cards (auto-fill 340px+).
+    // Tudo apertado, sem ring de stories, fonte menor.
+    return (
+      <a
+        className="seg-ig-mini"
+        href={URL_IG}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div className="seg-ig-mini-glow" aria-hidden />
+        <div className="seg-ig-mini-body">
+          <div className="seg-ig-mini-top">
+            <svg
+              width="26" height="26" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" strokeWidth="2"
+              strokeLinecap="round" strokeLinejoin="round" aria-hidden
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <strong className="seg-ig-mini-handle">{tx.handle}</strong>
+          </div>
+          <h3 className="seg-ig-mini-titulo">{tx.titulo}</h3>
+          <p className="seg-ig-mini-lede">{tx.lede_curto}</p>
+          <span className="seg-ig-mini-cta">{tx.cta} →</span>
+        </div>
+
+        <style>{`
+          .seg-ig-mini {
+            position: relative; display: block; overflow: hidden;
+            background: linear-gradient(135deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%);
+            border-radius: var(--r-l);
+            padding: 18px 18px 18px;
+            color: #fff; text-decoration: none;
+            min-height: 220px;
+            box-shadow: 0 8px 24px rgba(238, 42, 123, 0.30), 0 4px 14px rgba(0,0,0,0.30);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+          }
+          .seg-ig-mini:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(238, 42, 123, 0.40), 0 6px 18px rgba(0,0,0,0.35);
+          }
+          .seg-ig-mini-glow {
+            position: absolute; inset: 0; pointer-events: none;
+            background:
+              radial-gradient(circle at 85% 15%, rgba(255,255,255,0.28), transparent 50%),
+              radial-gradient(circle at 5% 95%, rgba(255,255,255,0.12), transparent 40%);
+          }
+          .seg-ig-mini-body {
+            position: relative; z-index: 1;
+            display: flex; flex-direction: column;
+            height: 100%; gap: 6px;
+          }
+          .seg-ig-mini-top {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 6px;
+          }
+          .seg-ig-mini-top svg { color: #fff; }
+          .seg-ig-mini-handle {
+            font-family: var(--ff-display);
+            font-weight: 800; font-size: 14px;
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.25);
+          }
+          .seg-ig-mini-titulo {
+            font-family: var(--ff-display);
+            font-size: 22px; font-weight: 900;
+            line-height: 1.15; margin: 0;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+          }
+          .seg-ig-mini-lede {
+            font-size: 13px; line-height: 1.45;
+            margin: 0; color: rgba(255,255,255,0.95);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.18);
+            flex: 1;
+          }
+          .seg-ig-mini-cta {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 9px 14px;
+            background: #fff; color: #6228d7;
+            border-radius: 999px;
+            font-family: var(--ff-display);
+            font-weight: 800; font-size: 13px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.22);
+            align-self: flex-start;
+          }
+        `}</style>
+      </a>
+    );
+  }
+
+  // Variante grande (home).
   return (
     <section className="section seg-ig">
       <div className="container">
@@ -58,15 +160,9 @@ export default function SeguirInstagram({
               rel="noopener noreferrer"
             >
               <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden
+                width="22" height="22" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" strokeWidth="2"
+                strokeLinecap="round" strokeLinejoin="round" aria-hidden
               >
                 <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -89,14 +185,12 @@ export default function SeguirInstagram({
           color: #fff; max-width: 900px; margin: 0 auto;
           box-shadow: 0 18px 50px rgba(238, 42, 123, 0.30), 0 6px 20px rgba(0,0,0,0.35);
         }
-        /* Glow sutil pra dar profundidade */
         .seg-ig-glow {
           position: absolute; inset: 0; pointer-events: none;
           background:
             radial-gradient(circle at 80% 20%, rgba(255,255,255,0.30), transparent 50%),
             radial-gradient(circle at 10% 90%, rgba(255,255,255,0.15), transparent 40%);
         }
-        /* Ring de stories no topo do card — referência visual ao IG */
         .seg-ig-stories {
           display: flex; gap: 10px; margin-bottom: 18px;
           position: relative; z-index: 1;
@@ -116,9 +210,7 @@ export default function SeguirInstagram({
           display: flex; flex-direction: column; gap: 10px;
           max-width: 640px;
         }
-        .seg-ig-emoji {
-          font-size: 36px; line-height: 1; margin-bottom: 4px;
-        }
+        .seg-ig-emoji { font-size: 36px; line-height: 1; margin-bottom: 4px; }
         .seg-ig-titulo {
           font-family: var(--ff-display);
           font-size: clamp(22px, 3.6vw, 32px);
@@ -149,9 +241,7 @@ export default function SeguirInstagram({
           transform: translateY(-2px) scale(1.02);
           box-shadow: 0 10px 26px rgba(0,0,0,0.32);
         }
-        .seg-ig-cta svg {
-          color: #ee2a7b; flex-shrink: 0;
-        }
+        .seg-ig-cta svg { color: #ee2a7b; flex-shrink: 0; }
         .seg-ig-handle {
           padding: 4px 10px;
           background: linear-gradient(135deg, #f9ce34, #ee2a7b);

@@ -50,6 +50,24 @@ export default async function JogosPage() {
     (porData[j.data] ??= []).push(j);
   }
 
+  // Dia do próximo jogo — usado pra injetar o card "Se mantenha antenado"
+  // exatamente na seção pra onde o ScrollProximoJogo vai rolar a página.
+  // Mesma regra do componente: kickoff + 2h30 ≥ agora. Se a Copa acabou,
+  // usa o último jogo.
+  const agora = Date.now();
+  const GRACE_MS = 2.5 * 60 * 60 * 1000;
+  let dataProximoJogo: string | null = null;
+  for (const j of jogosOrdenados) {
+    const ts = Date.parse(`${j.data}T${j.hora}:00-03:00`);
+    if (Number.isFinite(ts) && ts + GRACE_MS >= agora) {
+      dataProximoJogo = j.data;
+      break;
+    }
+  }
+  if (!dataProximoJogo && jogosOrdenados.length > 0) {
+    dataProximoJogo = jogosOrdenados[jogosOrdenados.length - 1].data;
+  }
+
   // formata "2026-06-11" -> "Qui, 11/06" (PT) etc.
   function formataDia(data: string): string {
     const [, mes, dia] = data.split("-");
@@ -70,8 +88,6 @@ export default async function JogosPage() {
         <h1 style={{ fontSize: "clamp(28px, 5vw, 48px)" }}>⚽ {titulo}</h1>
         <p className="lede" style={{ marginTop: 8 }}>{sub}</p>
       </header>
-
-      <SeguirInstagram locale={locale} />
 
       <ColaboracaoBanner variante="ias" locale={locale} />
 
@@ -266,6 +282,9 @@ export default async function JogosPage() {
                 />
               );
             })}
+            {data === dataProximoJogo && (
+              <SeguirInstagram locale={locale} compact />
+            )}
           </div>
         </section>
       ))}
