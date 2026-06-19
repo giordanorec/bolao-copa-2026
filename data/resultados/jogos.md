@@ -33,3 +33,5 @@ no cálculo de pontuação.
 | 21 | Grupo L | Qua 17/06 | 20h00 | Toronto | Gana | 1 | 0 | Panamá |
 | 24 | Grupo K | Qua 17/06 | 23h00 | Cidade do México | Uzbequistão | 1 | 3 | Colômbia |
 | 25 | Grupo A | Qui 18/06 | 13h00 | Atlanta | República Tcheca | 1 | 1 | África do Sul |
+| 26 | Grupo B | Qui 18/06 | 16h00 | Los Angeles | Suíça | 4 | 1 | Bósnia-Herzegovina |
+| 27 | Grupo B | Qui 18/06 | 19h00 | Vancouver | Canadá | 6 | 0 | Qatar |
