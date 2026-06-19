@@ -35,3 +35,4 @@ no cálculo de pontuação.
 | 25 | Grupo A | Qui 18/06 | 13h00 | Atlanta | República Tcheca | 1 | 1 | África do Sul |
 | 26 | Grupo B | Qui 18/06 | 16h00 | Los Angeles | Suíça | 4 | 1 | Bósnia-Herzegovina |
 | 27 | Grupo B | Qui 18/06 | 19h00 | Vancouver | Canadá | 6 | 0 | Qatar |
+| 28 | Grupo A | Qui 18/06 | 22h00 | Guadalajara | México | 1 | 0 | Coreia do Sul |
