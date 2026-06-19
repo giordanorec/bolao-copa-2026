@@ -71,9 +71,9 @@ export default async function JogosPage() {
         <p className="lede" style={{ marginTop: 8 }}>{sub}</p>
       </header>
 
-      <ColaboracaoBanner variante="ias" locale={locale} />
-
       <SeguirInstagram locale={locale} />
+
+      <ColaboracaoBanner variante="ias" locale={locale} />
 
       <ScrollProximoJogo />
 
