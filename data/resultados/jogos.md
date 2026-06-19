@@ -36,3 +36,4 @@ no cálculo de pontuação.
 | 26 | Grupo B | Qui 18/06 | 16h00 | Los Angeles | Suíça | 4 | 1 | Bósnia-Herzegovina |
 | 27 | Grupo B | Qui 18/06 | 19h00 | Vancouver | Canadá | 6 | 0 | Qatar |
 | 28 | Grupo A | Qui 18/06 | 22h00 | Guadalajara | México | 1 | 0 | Coreia do Sul |
+| 32 | Grupo D | Sex 19/06 | 16h00 | Seattle | Estados Unidos | 2 | 0 | Austrália |
