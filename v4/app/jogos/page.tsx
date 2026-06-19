@@ -9,6 +9,7 @@ import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 import IconeIA from "@/components/IconeIA";
 import ColaboracaoBanner from "@/components/ColaboracaoBanner";
+import SeguirInstagram from "@/components/SeguirInstagram";
 import JogoModal from "@/components/JogoModal";
 import ScrollProximoJogo from "@/components/ScrollProximoJogo";
 import TimeLink from "@/components/TimeLink";
@@ -71,6 +72,8 @@ export default async function JogosPage() {
       </header>
 
       <ColaboracaoBanner variante="ias" locale={locale} />
+
+      <SeguirInstagram locale={locale} />
 
       <ScrollProximoJogo />
 
