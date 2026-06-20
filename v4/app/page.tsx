@@ -3,6 +3,7 @@ import SerieA from "@/components/SerieA";
 import HeroCTAs from "@/components/HeroCTAs";
 import SeguirInstagram from "@/components/SeguirInstagram";
 import CorridaHome from "@/components/CorridaHome";
+import CaixaDeSugestao from "@/components/CaixaDeSugestao";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 
@@ -274,6 +275,12 @@ export default async function Home() {
               .
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <CaixaDeSugestao locale={locale} />
         </div>
       </section>
     </>

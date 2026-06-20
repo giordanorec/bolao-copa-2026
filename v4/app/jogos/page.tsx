@@ -10,6 +10,7 @@ import { t } from "@/lib/i18n";
 import IconeIA from "@/components/IconeIA";
 import ColaboracaoBanner from "@/components/ColaboracaoBanner";
 import SeguirInstagram from "@/components/SeguirInstagram";
+import CaixaDeSugestao from "@/components/CaixaDeSugestao";
 import JogoModal from "@/components/JogoModal";
 import ScrollProximoJogo from "@/components/ScrollProximoJogo";
 import TimeLink from "@/components/TimeLink";
@@ -303,6 +304,8 @@ export default async function JogosPage() {
           {t(locale, "login.criar")} →
         </Link>
       </div>
+
+      <CaixaDeSugestao locale={locale} />
     </div>
   );
 }
