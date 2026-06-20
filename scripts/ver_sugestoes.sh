@@ -25,21 +25,23 @@ RESP=$(curl -sS --max-time 10 -X POST \
 
 echo "$RESP" | python -c '
 import sys, json
+raw = sys.stdin.read()
 try:
-    rows = json.load(sys.stdin)
-except Exception as e:
-    print("[sugestoes] resposta inesperada:", sys.stdin.read()[:200]); sys.exit(0)
+    rows = json.loads(raw)
+except Exception:
+    print("[sugestoes] resposta inesperada:", raw[:200]); sys.exit(0)
 if not isinstance(rows, list):
     print("[sugestoes] resposta inesperada:", str(rows)[:200]); sys.exit(0)
 if not rows:
     print("[sugestoes] 0 nao lidas"); sys.exit(0)
-print(f"[sugestoes] {len(rows)} nao lida(s):\n")
+print("[sugestoes] {} nao lida(s):\n".format(len(rows)))
 for i, r in enumerate(rows, 1):
-    print(f"--- #{i}  ({r.get(\"criada_em\",\"\")}) ---")
-    print(r.get("conteudo","").strip())
-    c = (r.get("contato") or "").strip()
-    if c:
-        print(f"contato: {c}")
+    quando = r.get("criada_em", "")
+    print("--- #{}  ({}) ---".format(i, quando))
+    print((r.get("conteudo") or "").strip())
+    contato = (r.get("contato") or "").strip()
+    if contato:
+        print("contato: " + contato)
     print()
 '
 
