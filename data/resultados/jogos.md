@@ -38,3 +38,4 @@ no cálculo de pontuação.
 | 28 | Grupo A | Qui 18/06 | 22h00 | Guadalajara | México | 1 | 0 | Coreia do Sul |
 | 32 | Grupo D | Sex 19/06 | 16h00 | Seattle | Estados Unidos | 2 | 0 | Austrália |
 | 30 | Grupo C | Sex 19/06 | 19h00 | Boston | Escócia | 0 | 1 | Marrocos |
+| 29 | Grupo C | Sex 19/06 | 21h30 | Filadélfia | Brasil | 3 | 0 | Haiti |
