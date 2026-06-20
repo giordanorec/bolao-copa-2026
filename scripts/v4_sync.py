@@ -278,6 +278,28 @@ def main() -> None:
     resumo = ", ".join(f"{c}={n}" for c, n in contagem_pais.most_common())
     print(f"paises: {resumo} -> {out_paises.name}")
 
+    # 7. analise.json — features + clusters + similaridade (página /analise)
+    try:
+        import subprocess
+        import sys
+
+        analise_script = ROOT / "scripts" / "analise.py"
+        if analise_script.exists():
+            r = subprocess.run(
+                [sys.executable, str(analise_script)],
+                capture_output=True,
+                text=True,
+                cwd=str(ROOT),
+            )
+            if r.returncode == 0:
+                lines = r.stdout.strip().splitlines()
+                last = lines[-1] if lines else "ok"
+                print(f"analise: {last}")
+            else:
+                print(f"analise: ERRO ({r.returncode}) {r.stderr.strip()[:200]}")
+    except Exception as e:
+        print(f"analise: pulou ({e})")
+
 
 if __name__ == "__main__":
     main()
