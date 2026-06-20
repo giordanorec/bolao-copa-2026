@@ -170,6 +170,12 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="section" style={{ paddingTop: 8 }}>
+        <div className="container">
+          <CaixaDeSugestao locale={locale} />
+        </div>
+      </section>
+
       <SeguirInstagram locale={locale} />
 
       <SerieA locale={locale} variante="destaque" />
@@ -275,12 +281,6 @@ export default async function Home() {
               .
             </p>
           </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <CaixaDeSugestao locale={locale} />
         </div>
       </section>
     </>

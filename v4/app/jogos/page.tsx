@@ -90,6 +90,8 @@ export default async function JogosPage() {
         <p className="lede" style={{ marginTop: 8 }}>{sub}</p>
       </header>
 
+      <CaixaDeSugestao locale={locale} variante="jogos" />
+
       <ColaboracaoBanner variante="ias" locale={locale} />
 
       <ScrollProximoJogo />
@@ -304,8 +306,6 @@ export default async function JogosPage() {
           {t(locale, "login.criar")} →
         </Link>
       </div>
-
-      <CaixaDeSugestao locale={locale} />
     </div>
   );
 }

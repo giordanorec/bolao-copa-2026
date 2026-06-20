@@ -5,22 +5,21 @@ import { createClient } from "@/lib/supabase-browser";
 import { track } from "@/lib/analytics";
 import type { Locale } from "@/lib/i18n";
 
-const TX: Record<
-  Locale,
-  {
-    titulo: string;
-    lede: string;
-    placeholder: string;
-    contato: string;
-    contato_hint: string;
-    enviar: string;
-    enviando: string;
-    sucesso: string;
-    erro_curto: string;
-    erro_generico: string;
-    obrigado: string;
-  }
-> = {
+type Txt = {
+  titulo: string;
+  lede: string;
+  placeholder: string;
+  contato: string;
+  contato_hint: string;
+  enviar: string;
+  enviando: string;
+  sucesso: string;
+  erro_curto: string;
+  erro_generico: string;
+  obrigado: string;
+};
+
+const TX: Record<Locale, Txt> = {
   pt: {
     titulo: "Tem alguma sugestão? Algo pra acrescentar?",
     lede: "Ainda dá tempo! A gente está cozinhando coisas pras próximas rodadas. Sua ideia entra na fila — quanto mais cedo, mais chance de virar feature.",
@@ -75,12 +74,34 @@ const TX: Record<
   },
 };
 
+// Sobrescreve só título + lede quando o card aparece na página de jogos.
+const TX_JOGOS: Record<Locale, Pick<Txt, "titulo" | "lede">> = {
+  pt: {
+    titulo: "Faltou algum dado, gráfico ou jogo aqui?",
+    lede: "Tem uma estatística, uma IA ou uma visão que você queria ver nesta página? Manda a ideia — ainda dá tempo de entrar nas próximas rodadas.",
+  },
+  en: {
+    titulo: "Missing some data, chart or game here?",
+    lede: "A stat, an AI or a view you'd like to see on this page? Send the idea — still time to make the next rounds.",
+  },
+  es: {
+    titulo: "¿Falta algún dato, gráfico o partido aquí?",
+    lede: "¿Una estadística, una IA o una vista que te gustaría ver en esta página? Manda la idea — aún hay tiempo para las próximas jornadas.",
+  },
+  fr: {
+    titulo: "Il manque une donnée, un graphique ou un match ici ?",
+    lede: "Une stat, une IA ou une vue que vous aimeriez voir sur cette page ? Envoyez l'idée — encore le temps pour les prochaines journées.",
+  },
+};
+
 export default function CaixaDeSugestao({
   locale = "pt",
+  variante = "home",
 }: {
   locale?: Locale;
+  variante?: "home" | "jogos";
 }) {
-  const tx = TX[locale];
+  const tx = variante === "jogos" ? { ...TX[locale], ...TX_JOGOS[locale] } : TX[locale];
   const [conteudo, setConteudo] = useState("");
   const [contato, setContato] = useState("");
   const [status, setStatus] = useState<"idle" | "enviando" | "ok" | "erro">("idle");
