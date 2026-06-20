@@ -40,3 +40,4 @@ no cálculo de pontuação.
 | 30 | Grupo C | Sex 19/06 | 19h00 | Boston | Escócia | 0 | 1 | Marrocos |
 | 29 | Grupo C | Sex 19/06 | 21h30 | Filadélfia | Brasil | 3 | 0 | Haiti |
 | 31 | Grupo D | Sáb 20/06 | 00h00 | San Francisco | Turquia | 0 | 1 | Paraguai |
+| 35 | Grupo F | Sáb 20/06 | 14h00 | Houston | Países Baixos | 5 | 1 | Suécia |
