@@ -96,7 +96,7 @@ def pontos(pa: int, pb: int, ra: int, rb: int, mata_mata: bool) -> int:
         base = 10
     elif (pa > pb) == (ra > rb) and pa - pb == ra - rb and pa != pb:
         base = 7
-    elif (pa > pb) == (ra > rb) and pa != pb or pa == pb and ra == rb:
+    elif ((pa > pb) == (ra > rb) and pa != pb) or (pa == pb and ra == rb):
         base = 5
     return base * 2 if mata_mata else base
 
@@ -498,7 +498,7 @@ def main() -> None:
         for p in perfis
     ]
     vetores = normalizar(vetores_brutos)
-    cluster_id, centroids = kmeans(vetores, k=4, seed=42)
+    cluster_id, _centroids = kmeans(vetores, k=4, seed=42)
     for p, c in zip(perfis, cluster_id, strict=False):
         p["cluster"] = int(c)
 
@@ -526,49 +526,107 @@ def main() -> None:
             ],
         }
 
-    # Rótulo automático pra cada cluster (descritivo)
-    def rotular(c: dict[str, float]) -> tuple[str, str]:
-        traits = []
-        if c["pct_empates_palpitados"] > 0.30:
-            traits.append("apostam muito em empates")
-        elif c["pct_empates_palpitados"] < 0.15:
-            traits.append("quase nunca apostam em empate")
-        if c["avg_gols_total"] >= 3.0:
-            traits.append("preveem jogos com muitos gols")
-        elif c["avg_gols_total"] <= 2.2:
-            traits.append("preveem placares enxutos")
-        if c["concordancia_cristal"] >= 0.45:
-            traits.append("alinhadas com a maioria")
-        elif c["concordancia_cristal"] <= 0.25:
-            traits.append("contrarian — fogem da manada")
-        if c["taxa_exato"] >= 0.18:
-            traits.append("alta taxa de placares exatos")
-        elif c["taxa_exato"] < 0.08:
-            traits.append("raramente cravam o placar")
-        if not traits:
-            traits.append("comportamento medio")
-        descr = " · ".join(traits)
-        # nickname curto
-        if c["pct_empates_palpitados"] > 0.30:
-            nick = "Empatistas"
-        elif c["avg_gols_total"] >= 3.0:
-            nick = "Goleadeiras"
-        elif c["concordancia_cristal"] <= 0.25:
-            nick = "Contrarian"
-        elif c["taxa_exato"] >= 0.18:
-            nick = "Precisas"
-        else:
-            nick = "Médias"
-        return nick, descr
+    # Rotulagem por RANK RELATIVO entre clusters. Cada cluster recebe
+    # identidade do traço em que é mais EXTREMO (mais alto OU mais baixo
+    # comparado aos outros clusters), garantindo nomes únicos e punchy.
+
+    # Catálogo de personalidades — (feat, polo, prioridade, emoji, nick, frase_curta).
+    # polo = "alto" significa rank 1 (maior valor); "baixo" significa rank k (menor).
+    # Prioridade maior = identidade mais "vendável". Resolve ambiguidades.
+    PERSONA = [
+        # (feat, polo, prio, emoji, nick, frase)
+        ("taxa_exato", "alto", 6, "🎯", "Os Sniper", "alta taxa de placares exatos"),
+        (
+            "concordancia_cristal",
+            "baixo",
+            5,
+            "🦓",
+            "Os Rebeldes",
+            "fogem da manada — apostam no improvável",
+        ),
+        ("pct_empates_palpitados", "alto", 5, "🤝", "Os Pacifistas", "apostam muito em empate"),
+        ("avg_gols_total", "alto", 4, "🔥", "Os Goleadeiros", "preveem placares elásticos"),
+        ("avg_gols_total", "baixo", 4, "🔒", "Os Cadeados", "placares enxutos, defesa em cima"),
+        (
+            "concordancia_cristal",
+            "alto",
+            3,
+            "🐑",
+            "A Manada",
+            "alinhadas com o consenso das massas",
+        ),
+        (
+            "pct_empates_palpitados",
+            "baixo",
+            3,
+            "⚔️",
+            "Os Decididos",
+            "quase nunca apostam em empate",
+        ),
+        ("taxa_exato", "baixo", 2, "🎲", "Os Chutões", "raramente cravam o placar"),
+    ]
+
+    # Ranking de cada feature entre os clusters
+    feats = ["pct_empates_palpitados", "avg_gols_total", "concordancia_cristal", "taxa_exato"]
+    cluster_ids_ord = sorted(cluster_perfil.keys())
+    ranks: dict[int, dict[str, dict[str, int]]] = {c: {} for c in cluster_ids_ord}
+    for f in feats:
+        ordem = sorted(cluster_ids_ord, key=lambda cid: cluster_perfil[cid][f], reverse=True)
+        for r, cid in enumerate(ordem):
+            ranks[cid][f] = {"alto": r + 1, "baixo": len(ordem) - r}
+
+    # Para cada cluster, escolhe a primeira persona da lista onde ele é #1 no polo
+    usadas: set[str] = set()
+
+    def atribuir(cid: int) -> tuple[str, str, str]:
+        for feat, polo, _prio, emoji, nick, frase in PERSONA:
+            if nick in usadas:
+                continue
+            if ranks[cid][feat][polo] == 1:
+                usadas.add(nick)
+                return emoji, nick, frase
+        # Fallback: pega o nicho disponível com menor #
+        for _feat, _polo, _prio, emoji, nick, frase in PERSONA:
+            if nick in usadas:
+                continue
+            usadas.add(nick)
+            return emoji, nick, frase
+        return "🤖", f"Cluster {cid}", "perfil intermediário"
+
+    # Ordem: clusters maiores primeiro (mais "definem" identidade)
+    ordem_atribuicao = sorted(
+        cluster_ids_ord,
+        key=lambda cid: -cluster_perfil[cid]["n_ias"],
+    )
+    nomes_atribuidos: dict[int, tuple[str, str, str]] = {}
+    for cid in ordem_atribuicao:
+        nomes_atribuidos[cid] = atribuir(cid)
+
+    # Cluster líder = maior media_pontos
+    lider_cluster = max(cluster_ids_ord, key=lambda cid: cluster_perfil[cid]["media_pontos"])
 
     clusters_out = []
-    for c, perf in sorted(cluster_perfil.items()):
-        nick, descr = rotular(perf)
+    for cid in cluster_ids_ord:
+        emoji, nick, frase = nomes_atribuidos[cid]
+        perf = cluster_perfil[cid]
+        # Descrição: frase + 1-2 stats que justifiquem
+        stats_extra = []
+        if perf["pct_empates_palpitados"] >= 0.25:
+            stats_extra.append(f"{int(perf['pct_empates_palpitados']*100)}% dos palpites em empate")
+        elif perf["pct_empates_palpitados"] <= 0.10:
+            stats_extra.append(f"só {int(perf['pct_empates_palpitados']*100)}% empates")
+        if perf["avg_gols_total"] >= 2.7:
+            stats_extra.append(f"média {perf['avg_gols_total']:.1f} gols/jogo")
+        elif perf["avg_gols_total"] <= 2.1:
+            stats_extra.append(f"média só {perf['avg_gols_total']:.1f} gols/jogo")
+        descricao = frase + (". " + " · ".join(stats_extra) if stats_extra else ".")
         clusters_out.append(
             {
-                "id": c,
+                "id": cid,
+                "emoji": emoji,
                 "nome": nick,
-                "descricao": descr,
+                "descricao": descricao,
+                "eh_lider": cid == lider_cluster,
                 **perf,
             }
         )

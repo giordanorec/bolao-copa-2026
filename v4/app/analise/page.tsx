@@ -63,8 +63,10 @@ type Perfil = {
 
 type Cluster = {
   id: number;
+  emoji: string;
   nome: string;
   descricao: string;
+  eh_lider: boolean;
   n_ias: number;
   pct_empates_palpitados: number;
   avg_gols_total: number;
@@ -159,21 +161,27 @@ export default async function AnalisePage() {
       <section style={{ marginBottom: 48 }}>
         <h2 style={{ marginBottom: 4, fontSize: 26 }}>🧩 Famílias de comportamento</h2>
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 18 }}>
-          K-means (k=4) sobre vetor de estilo (empates, gols, saldo) + comportamento
-          (concordância com a Bola de Cristal, taxa de placar exato, desempenho em
-          jogos equilibrados). Cada IA cai num grupo; o gráfico mostra a galeria.
+          K-means (k=4) sobre vetor de estilo (empates, gols, saldo) +
+          comportamento (concordância com a Bola de Cristal, taxa de placar
+          exato, desempenho em jogos equilibrados). Cada IA cai num grupo. O
+          que tem badge 🏆 é o que pontua melhor em média no bolão.
         </p>
         <div className="clusters-grid">
           {a.clusters.map((c) => (
             <div
               key={c.id}
-              className="cluster-card"
+              className={`cluster-card${c.eh_lider ? " lider" : ""}`}
               style={{ ["--cor" as string]: CORES_CLUSTER[c.id % CORES_CLUSTER.length] }}
             >
+              {c.eh_lider && (
+                <span className="cluster-badge" title="Melhor média de pontos no bolão">🏆 Líder</span>
+              )}
               <div className="cluster-head">
-                <span className="cluster-dot" />
-                <strong>{c.nome}</strong>
-                <span className="cluster-n">{c.n_ias} IAs</span>
+                <span className="cluster-emoji" aria-hidden>{c.emoji}</span>
+                <div className="cluster-head-text">
+                  <strong>{c.nome}</strong>
+                  <span className="cluster-n">{c.n_ias} IAs · {Math.round(c.media_pontos)} pts médios</span>
+                </div>
               </div>
               <p className="cluster-desc">{c.descricao}</p>
               <div className="cluster-stats">
@@ -195,7 +203,16 @@ export default async function AnalisePage() {
         </div>
       </section>
 
-      <ScatterClusters perfis={a.perfis} cores={CORES_CLUSTER} />
+      <ScatterClusters
+        perfis={a.perfis}
+        cores={CORES_CLUSTER}
+        clusters={a.clusters.map((c) => ({
+          id: c.id,
+          emoji: c.emoji,
+          nome: c.nome,
+          eh_lider: c.eh_lider,
+        }))}
+      />
 
       {/* RANKINGS */}
       <section style={{ marginTop: 48, marginBottom: 48 }}>
@@ -298,29 +315,54 @@ export default async function AnalisePage() {
           gap: 14px;
         }
         .cluster-card {
+          position: relative;
           background: var(--bg-1);
           border: 1px solid var(--line);
           border-left: 4px solid var(--cor, var(--primary));
           border-radius: var(--r-m);
           padding: 16px;
+          overflow: hidden;
+        }
+        .cluster-card.lider {
+          border: 2px solid var(--cor, var(--primary));
+          box-shadow: 0 8px 24px color-mix(in srgb, var(--cor, var(--primary)) 25%, transparent);
+          background:
+            linear-gradient(135deg, color-mix(in srgb, var(--cor, var(--primary)) 6%, var(--bg-1)), var(--bg-1));
+        }
+        .cluster-badge {
+          position: absolute;
+          top: 10px; right: 10px;
+          padding: 4px 10px;
+          background: linear-gradient(135deg, #facc15, #f59e0b);
+          color: #1a1300;
+          border-radius: 999px;
+          font-family: var(--ff-mono);
+          font-size: 10px; font-weight: 900;
+          letter-spacing: 0.05em;
+          box-shadow: 0 4px 12px rgba(245, 158, 11, 0.45);
         }
         .cluster-head {
-          display: flex; align-items: center; gap: 8px;
-          margin-bottom: 8px;
+          display: flex; align-items: center; gap: 10px;
+          margin-bottom: 10px;
         }
-        .cluster-dot {
-          width: 12px; height: 12px; border-radius: 50%;
-          background: var(--cor, var(--primary));
+        .cluster-emoji {
+          font-size: 32px; line-height: 1;
+          flex-shrink: 0;
         }
-        .cluster-head strong {
+        .cluster-head-text {
+          display: flex; flex-direction: column;
+          min-width: 0;
+        }
+        .cluster-head-text strong {
           font-family: var(--ff-display);
           font-size: 20px; font-weight: 900;
           color: var(--cor, var(--primary));
+          line-height: 1.1;
         }
         .cluster-n {
-          margin-left: auto;
           font-family: var(--ff-mono);
           font-size: 11px; color: var(--fg-muted);
+          margin-top: 2px;
         }
         .cluster-desc {
           margin: 0 0 12px;
