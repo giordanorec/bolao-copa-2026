@@ -26,8 +26,8 @@ RESP=$(curl -sS --max-time 10 -X POST \
   -d '{}' 2>&1) || { echo "[sugestoes] erro curl: $RESP"; exit 0; }
 
 # Parse simples: extrai n_novas e ultima_em do JSON [{"n_novas":N,"ultima_em":...}]
-N=$(echo "$RESP" | grep -oE '"n_novas":[0-9]+' | head -1 | cut -d: -f2)
-U=$(echo "$RESP" | grep -oE '"ultima_em":"[^"]*"' | head -1 | cut -d'"' -f4)
+N=$(echo "$RESP" | grep -oE '"n_novas":[0-9]+' | head -1 | cut -d: -f2 || true)
+U=$(echo "$RESP" | grep -oE '"ultima_em":"[^"]*"' | head -1 | cut -d'"' -f4 || true)
 
 if [ -z "$N" ]; then
   echo "[sugestoes] resposta inesperada: ${RESP:0:200}"
