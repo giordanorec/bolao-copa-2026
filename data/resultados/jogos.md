@@ -44,3 +44,4 @@ no cálculo de pontuação.
 | 33 | Grupo E | Sáb 20/06 | 17h00 | Toronto | Alemanha | 2 | 1 | Costa do Marfim |
 | 34 | Grupo E | Sáb 20/06 | 21h00 | Kansas City | Equador | 0 | 0 | Curaçao |
 | 36 | Grupo F | Dom 21/06 | 01h00 | Monterrey | Tunísia | 0 | 4 | Japão |
+| 38 | Grupo H | Dom 21/06 | 13h00 | Atlanta | Espanha | 3 | 0 | Arábia Saudita |

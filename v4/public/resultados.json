@@ -178,5 +178,10 @@
     "jogo_numero": 36,
     "gols_a": 0,
     "gols_b": 4
+  },
+  {
+    "jogo_numero": 38,
+    "gols_a": 3,
+    "gols_b": 0
   }
 ]
