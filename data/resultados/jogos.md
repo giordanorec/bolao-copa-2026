@@ -42,3 +42,5 @@ no cálculo de pontuação.
 | 31 | Grupo D | Sáb 20/06 | 00h00 | San Francisco | Turquia | 0 | 1 | Paraguai |
 | 35 | Grupo F | Sáb 20/06 | 14h00 | Houston | Países Baixos | 5 | 1 | Suécia |
 | 33 | Grupo E | Sáb 20/06 | 17h00 | Toronto | Alemanha | 2 | 1 | Costa do Marfim |
+| 34 | Grupo E | Sáb 20/06 | 21h00 | Kansas City | Equador | 0 | 0 | Curaçao |
+| 36 | Grupo F | Dom 21/06 | 01h00 | Monterrey | Tunísia | 0 | 4 | Japão |
