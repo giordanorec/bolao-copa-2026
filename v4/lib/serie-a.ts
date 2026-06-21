@@ -33,7 +33,7 @@ export const APELIDOS_SERIE_A: Record<string, { nome: string; modelo: string }> 
     "le-chat-mistral-web": { nome: "Le Chat Mistral", modelo: "Mistral Large 2" },
     "qwen-3-max-web": { nome: "Qwen 3 Max", modelo: "Alibaba Qwen 3 Max" },
     "manus-web": { nome: "Manus", modelo: "Manus · Technical Inference" },
-    [SLUG_FABLE]: { nome: "Anthropic Fable", modelo: "Claude Fable 5" },
+    [SLUG_FABLE]: { nome: "Claude Fable", modelo: "Anthropic Fable 5" },
   };
 
 // slug "-web" -> irmão sem "-web" (onde os palpites realmente estão)
