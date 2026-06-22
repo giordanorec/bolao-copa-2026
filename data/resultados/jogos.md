@@ -47,3 +47,4 @@ no cálculo de pontuação.
 | 38 | Grupo H | Dom 21/06 | 13h00 | Atlanta | Espanha | 4 | 0 | Arábia Saudita |
 | 39 | Grupo G | Dom 21/06 | 16h00 | Los Angeles | Bélgica | 0 | 0 | Irã |
 | 37 | Grupo H | Dom 21/06 | 19h00 | Miami | Uruguai | 2 | 2 | Cabo Verde |
+| 40 | Grupo G | Dom 21/06 | 22h00 | Vancouver | Nova Zelândia | 1 | 3 | Egito |
