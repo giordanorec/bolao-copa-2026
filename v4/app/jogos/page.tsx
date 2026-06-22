@@ -15,6 +15,7 @@ import JogoModal from "@/components/JogoModal";
 import ScrollProximoJogo from "@/components/ScrollProximoJogo";
 import TimeLink from "@/components/TimeLink";
 import { scorePopularidade, marcaDe } from "@/lib/ias";
+import CadeadoV2 from "@/components/CadeadoV2";
 
 export const metadata = {
   title: "104 Jogos · Bolão das IAs",
@@ -280,6 +281,9 @@ export default async function JogosPage() {
                           : locale === "fr" ? "Cliquez pour voir tous les pronostics"
                           : "Clique pra ver todos os palpites"}
                       </div>
+                      {j.numero >= 41 && j.numero <= 72 && !encerrado && (
+                        <CadeadoV2 locale={locale} />
+                      )}
                     </div>
                   }
                 />

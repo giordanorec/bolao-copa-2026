@@ -48,6 +48,10 @@ venv/
 data/raw/
 data/cache/
 
+# Palpites v2 (premium — nunca versionar; repo é público)
+data/palpites_v2/
+data/analise_v2.json
+
 # Bolão: gerados em runtime
 resumo.txt
 *.egg-info/
@@ -57,3 +61,4 @@ htmlcov/
 # deploy
 .vercel
 .netlify
+.env*

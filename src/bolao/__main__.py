@@ -1,13 +1,15 @@
 """CLI entry point: ``python -m bolao <subcomando>``.
 
 Subcomandos:
-    parse    valida e parseia jogos/palpites/resultados
-    score    grava reports/<YYYY-MM-DD>/pontuacao.json
-    ranking  grava web/data/ranking.json (HTML fica com frontend-dev)
-    resumo   gera resumo.txt pronto pra WhatsApp
-    rodada   parse + score + ranking + resumo
-    serve    python -m http.server em web/ na porta 8000
-    coletar  chama OpenRouter pra preencher data/palpites_ias/<slug>.md
+    parse       valida e parseia jogos/palpites/resultados
+    score       grava reports/<YYYY-MM-DD>/pontuacao.json
+    ranking     grava web/data/ranking.json (HTML fica com frontend-dev)
+    resumo      gera resumo.txt pronto pra WhatsApp
+    rodada      parse + score + ranking + resumo
+    serve       python -m http.server em web/ na porta 8000
+    coletar     chama OpenRouter pra preencher data/palpites_ias/<slug>.md
+    coletar-v2  coleta palpites v2 (jogos 41-72 abertos) em data/palpites_v2/
+    comparar-v2 compara v1 x v2 nos jogos 41-72 encerrados -> data/analise_v2.json
 """
 
 from __future__ import annotations
@@ -414,6 +416,18 @@ def _cmd_coletar(args: argparse.Namespace) -> int:
     return 0 if ok == len(resultados) else 1
 
 
+def _cmd_coletar_v2(args: argparse.Namespace) -> int:
+    from .v2 import coletar_v2_cmd
+
+    return coletar_v2_cmd(args, ROOT)
+
+
+def _cmd_comparar_v2(args: argparse.Namespace) -> int:
+    from .v2 import comparar_v2_cmd
+
+    return comparar_v2_cmd(args, ROOT)
+
+
 def _cmd_serve(_args: argparse.Namespace) -> int:
     WEB_DIR.mkdir(parents=True, exist_ok=True)
     os.chdir(WEB_DIR)
@@ -448,10 +462,18 @@ def main(argv: list[str] | None = None) -> int:
             "chama OpenRouter pra coletar palpites das IAs API",
             _cmd_coletar,
         ),
+        "coletar-v2": (
+            "coleta palpites v2 (jogos 41-72 abertos) em data/palpites_v2/",
+            _cmd_coletar_v2,
+        ),
+        "comparar-v2": (
+            "compara v1 x v2 nos jogos 41-72 encerrados -> data/analise_v2.json",
+            _cmd_comparar_v2,
+        ),
     }
     for name, (help_, _) in handlers.items():
         sp = sub.add_parser(name, help=help_)
-        if name == "coletar":
+        if name in ("coletar", "coletar-v2"):
             sp.add_argument(
                 "--tier",
                 default=None,
@@ -465,7 +487,7 @@ def main(argv: list[str] | None = None) -> int:
             sp.add_argument(
                 "--dossie",
                 default=None,
-                help="path do dossiê .md (default: último em data/dossie/)",
+                help="path do dossiê .md (default: último em data/dossie/ com prefixo v2-)",
             )
             sp.add_argument(
                 "--dry-run",
@@ -473,15 +495,16 @@ def main(argv: list[str] | None = None) -> int:
                 help="lista IAs alvo, não chama API",
             )
             sp.add_argument(
-                "--apply",
-                action="store_true",
-                help="(no-op) explicita intenção de chamar a API; default já chama",
-            )
-            sp.add_argument(
                 "--max-paralelo",
                 type=int,
                 default=5,
                 help="máximo de requisições paralelas (default 5)",
+            )
+        if name == "coletar":
+            sp.add_argument(
+                "--apply",
+                action="store_true",
+                help="(no-op) explicita intenção de chamar a API; default já chama",
             )
 
     args = parser.parse_args(argv)

@@ -247,3 +247,38 @@ Supabase Dashboard.
   redirecionado pro domínio novo.
 - **O pipeline de deploy já está montado — não quebrar.** Mudanças de
   config de deploy só com confirmação.
+
+## 11. Palpites Atualizados (v2) — premium
+
+> Contrato técnico detalhado: `specs/F-palpites-v2-atualizados.md`. Decidido por
+> Giordano em 2026-06-22. Esta seção é o resumo de produto.
+
+Uma **segunda leva de palpites das IAs** ("v2"), feita após as rodadas 1 e 2 da
+fase de grupos, incorporando informação nova (classificação parcial, forma,
+lesões, suspensões, odds atualizadas). Dois propósitos: recompensar quem
+contribui financeiramente (conteúdo exclusivo por senha) e análise estatística
+(v1 pré-Copa × v2 informado nos mesmos jogos).
+
+**Decisões firmadas (não reverter sem perguntar):**
+
+1. **Bifurcação única, só nesta janela.** v2 cobre **apenas os jogos 41–72** da
+   fase de grupos que **ainda não começaram** no momento da coleta (≤ 32 jogos).
+   Acabada a fase de grupos, não há mais bifurcação — o mata-mata é palpitado por
+   todos numa versão única.
+2. **v2 NÃO entra no bolão.** Ranking/pontuação oficiais continuam usando **só o
+   v1**. v2 é artefato paralelo, isolado. Proibido tocar em `data/palpites_ias/`,
+   no scoring/ranking oficiais ou nos JSONs públicos.
+3. **Sem mata-mata no v2.**
+4. **Gating por senha única.** Repo é público → v2 vive no **Supabase** (tabela
+   `palpite_v2`, RLS sem policy de SELECT pública), servido server-side só após a
+   senha. **Nada de palpite v2 commitado nem em `v4/public/`.**
+5. **Todas as IAs.** API (OpenRouter, automático) + as 12 da Série A (web, manual).
+6. **Página `/analise-v2`** (gated por senha; cookie httpOnly com token = sha256
+   da senha, não forjável). **Link no menu só depois** de a fase de grupos acabar;
+   até lá, acesso só por quem tem URL + senha.
+7. **Cadeado público** nos cards dos jogos 41–72 não encerrados: selo "🔒 Palpite
+   atualizado disponível" + CTA pra `/colaborar` (contribuir via Pix com e-mail no
+   comentário; seguir @arena.das.ias pra receber a senha). Não expõe palpite.
+
+**Pipeline:** `python -m bolao coletar-v2` e `python -m bolao comparar-v2`
+(isolados; sem efeito no fluxo `rodada`). Upload: `scripts/upload_v2_supabase.py`.

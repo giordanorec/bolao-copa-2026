@@ -1039,3 +1039,128 @@ body[data-theme="festivo-br"] {
     from { transform: translateY(20%); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
+
+/* ─── CADEADO V2 (jogos 41-72, palpites premium) ─── */
+.cadeado-v2 {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: color-mix(in srgb, var(--secondary) 7%, transparent);
+    border: 1.5px solid color-mix(in srgb, var(--secondary) 22%, transparent);
+    border-radius: var(--r-m);
+    font-size: 12px;
+    line-height: 1.4;
+}
+.cadeado-v2-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: color-mix(in srgb, var(--secondary) 15%, transparent);
+    color: var(--secondary);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    padding: 3px 8px;
+    border-radius: var(--r-s);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+.cadeado-v2-icon { font-style: normal; }
+.cadeado-v2-titulo {
+    font-weight: 700;
+    color: var(--fg);
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+.cadeado-v2-desc {
+    color: var(--fg-muted);
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+.cadeado-v2-cta {
+    display: inline-block;
+    background: var(--secondary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: var(--r-s);
+    text-decoration: none;
+    transition: opacity 0.15s;
+}
+.cadeado-v2-cta:hover { opacity: 0.85; color: #fff; }
+
+/* ─── PÁGINA /ANALISE ─── */
+.analise-gate {
+    max-width: 420px;
+    margin: 80px auto;
+    padding: 40px;
+}
+.analise-gate h1 {
+    font-family: var(--ff-display);
+    font-variation-settings: var(--ff-display-vs);
+    font-weight: var(--ff-display-weight);
+    font-size: 36px;
+    color: var(--secondary);
+    margin-bottom: 10px;
+    letter-spacing: var(--letterspacing-display);
+}
+.analise-gate .analise-gate-desc {
+    color: var(--fg-muted);
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+.analise-gate-err {
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    color: var(--primary);
+    border: 1px solid color-mix(in srgb, var(--primary) 22%, transparent);
+    border-radius: var(--r-m);
+    padding: 10px 14px;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+.analise-page {
+    max-width: 900px;
+    margin: 40px auto;
+}
+.analise-page h1 {
+    font-family: var(--ff-display);
+    font-variation-settings: var(--ff-display-vs);
+    font-weight: var(--ff-display-weight);
+    font-size: clamp(28px, 5vw, 44px);
+    color: var(--secondary);
+    margin-bottom: 6px;
+    letter-spacing: var(--letterspacing-display);
+}
+.analise-page .analise-lede {
+    color: var(--fg-muted);
+    font-size: 15px;
+    margin-bottom: 32px;
+}
+.analise-jogo-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 40px;
+}
+.analise-jogo-table th {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--line-strong);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fg-muted);
+    font-family: var(--ff-mono);
+}
+.analise-jogo-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+}
+.analise-jogo-table tr:hover td { background: var(--bg-soft); }
+.analise-empty {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--fg-muted);
+    font-size: 15px;
+}

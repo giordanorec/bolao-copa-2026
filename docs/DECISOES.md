@@ -6,6 +6,68 @@ Formato: `## YYYY-MM-DD — título curto` + seções *Contexto*, *Decisão*, *P
 
 ---
 
+## 2026-06-22 — Palpites Atualizados (v2): bifurcação premium informada
+
+### Contexto
+
+Já passaram ~2 rodadas da fase de grupos e o público cobra atualização. Giordano
+quer oferecer uma **segunda leva de palpites das IAs** ("v2"), feita agora com
+informação nova (classificação parcial, forma, lesões, suspensões, odds), como
+**recompensa a quem contribui financeiramente** e como **análise estatística**
+(v1 pré-Copa × v2 informado). Risco central: o repo é **público** — qualquer
+arquivo/JSON commitado vaza o conteúdo premium. E não pode poluir nem quebrar o
+bolão oficial que já está no ar.
+
+### Decisão
+
+- **Escopo:** v2 = jogos **41–72** da fase de grupos ainda não iniciados (≤ 32).
+  Sem mata-mata (versão única depois). v2 **não entra no ranking/scoring oficiais**.
+- **Isolamento absoluto:** comandos v2 não tocam `data/palpites_ias/` (v1),
+  `web/data/*.json`, `v4/public/*.json`, ranking, cristal nem o fluxo `rodada`.
+- **Armazenamento + gate:** tabela Supabase `palpite_v2` com RLS habilitado e
+  **sem policy de SELECT** (só `service_role` lê, server-side). Página
+  `/analise-v2` valida senha (`ANALISE_SENHA`), seta cookie httpOnly cujo valor é
+  **sha256(`analise-v2:${senha}`)** — não forjável. Cadeado público nos cards
+  41–72 com CTA pra `/colaborar` (Pix + e-mail no comentário + seguir
+  @arena.das.ias pra receber a senha). Link de menu pra `/analise-v2` só após a
+  fase de grupos.
+- **Coleta:** todas as IAs. API via OpenRouter (`python -m bolao coletar-v2`,
+  prompt `config/prompts/ia-palpiteira-v2.md`); as 12 da Série A manualmente via
+  web (prompt `-v2-web.md`, guia em `docs/GUIA_COLETA_V2_WEB.md`). Comparação:
+  `python -m bolao comparar-v2` → `data/analise_v2.json` (gitignored).
+- **Arquivos gitignored:** `data/palpites_v2/`, `data/analise_v2.json`.
+- **Processo:** seguido o fluxo multiagentes_giordano — discovery → especificação
+  (`specs/F-palpites-v2-atualizados.md`) → orquestração de 6+ agentes em paralelo
+  (dossiê, prompts, pipeline, dba/Supabase, frontend, docs) com o arquiteto
+  integrando. Agentes não commitam.
+
+### Por quê / alternativas
+
+- **Supabase em vez de arquivo/JSON commitado:** num repo público, "senha" só
+  significa algo se o dado nunca sai do servidor sem ela. RLS sem SELECT público
+  + service_role server-side é o único gate real.
+- **Cookie = hash da senha, não valor fixo:** um cookie `"ok"` seria burlável por
+  qualquer um que o setasse no DevTools/curl. O hash exige conhecer a senha.
+- **Rota `/analise-v2` separada da `/analise` existente:** `/analise` já é um
+  painel exploratório público em produção; não dá pra colidir nem expor v2 nele.
+
+### Consequências
+
+- v1 e o bolão oficial intactos. v2 é artefato paralelo, premium, isolado.
+- Fase 2 (aberto): métrica/visual final da comparação na `/analise-v2`; rotação
+  de senha por lote de contribuintes.
+
+### Housekeeping desta sessão (docs internos de marketing, não commitados a pedido)
+
+- **Mascotes (carrosséis Instagram):** corrigida a lore em
+  `marketing/scripts/brainstorm/mascotes_carrossel.js` e
+  `marketing/brainstorming_instagram/ideacao/MASCOTES_CONCEITOS.md` —
+  Meta Llama (nome vem de LLM; destacar óculos VR Meta Quest), Le Chat (Mistral é
+  empresa **francesa**, daí as referências à França), Manus (o ícone é uma mão
+  estalando os dedos), Fable (irmão do **Claude Opus**, não "do Claude").
+
+---
+
 ## 2026-06-15 — Trava de palpite após kickoff (server-side via RLS)
 
 ### Contexto

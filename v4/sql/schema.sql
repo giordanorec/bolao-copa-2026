@@ -178,6 +178,26 @@ create policy palpite_delete_self on public.palpite
     );
 
 -- =============================================================
+-- palpite_v2 — palpites premium da segunda leva (jogos 41-72)
+-- =============================================================
+-- Conteúdo premium. Repo público → sem policy SELECT para
+-- anon/authenticated. Leitura só via service_role (server-side),
+-- após validação de senha. Ver migration 2026-06-22_palpite_v2.sql.
+-- =============================================================
+create table if not exists public.palpite_v2 (
+    slug         text        not null,
+    jogo_numero  int         not null,
+    gols_a       int         not null,
+    gols_b       int         not null,
+    modo         text        not null default 'api',  -- 'api' | 'web'
+    coletado_em  timestamptz not null default now(),
+    primary key (slug, jogo_numero)
+);
+
+alter table public.palpite_v2 enable row level security;
+-- Nenhuma policy de SELECT: só service_role lê.
+
+-- =============================================================
 -- View: ranking por bolão (computa pontos na hora)
 -- =============================================================
 -- (resultados ficam fora do Supabase — vêm do JSON gerado pelo v1)
