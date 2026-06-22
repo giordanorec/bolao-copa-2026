@@ -1,14 +1,14 @@
 {
-  "gerado_em": "2026-06-21T21:12:09.172398Z",
+  "gerado_em": "2026-06-22T00:06:34.089872Z",
   "n_ias": 54,
-  "n_jogos_encerrados": 38,
+  "n_jogos_encerrados": 39,
   "perfis": [
     {
       "slug": "grok-4-fast",
       "nome_display": "Grok 4 Fast Reasoning",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.125,
       "avg_gols_total": 2.0,
       "avg_saldo_abs": 1.44,
@@ -25,27 +25,21 @@
       "saldo_acertados": 6,
       "venc_acertados": 13,
       "emp_acertados": 0,
-      "erros": 10,
-      "taxa_acerto": 0.737,
-      "taxa_exato": 0.237,
+      "erros": 11,
+      "taxa_acerto": 0.718,
+      "taxa_exato": 0.231,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 82,
-          "media_pts": 5.86,
-          "taxa_acerto": 0.714
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 77,
           "media_pts": 7.0,
           "taxa_acerto": 0.909
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 63,
-          "media_pts": 4.2,
-          "taxa_acerto": 0.733
+          "pts": 82,
+          "media_pts": 5.47,
+          "taxa_acerto": 0.667
         },
         "UEFA": {
           "jogos": 23,
@@ -53,11 +47,17 @@
           "media_pts": 5.35,
           "taxa_acerto": 0.739
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 63,
+          "media_pts": 4.2,
+          "taxa_acerto": 0.733
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 32,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
+          "media_pts": 3.2,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -67,20 +67,20 @@
         }
       },
       "concordancia_cristal": 0.625,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 177,
-      "media_pts_jogos_com_favorito": 4.92,
+      "media_pts_jogos_com_favorito": 4.78,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 20,
       "media_pts_jogos_equilibrados": 10.0,
-      "cluster": 3
+      "cluster": 1
     },
     {
       "slug": "mistral-small-3",
       "nome_display": "Mistral Small 3",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.125,
       "avg_gols_total": 2.64,
       "avg_saldo_abs": 1.42,
@@ -97,27 +97,21 @@
       "saldo_acertados": 4,
       "venc_acertados": 16,
       "emp_acertados": 1,
-      "erros": 11,
-      "taxa_acerto": 0.711,
-      "taxa_exato": 0.158,
+      "erros": 12,
+      "taxa_acerto": 0.692,
+      "taxa_exato": 0.154,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 62,
-          "media_pts": 4.43,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.909
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 64,
-          "media_pts": 4.27,
-          "taxa_acerto": 0.8
+          "pts": 62,
+          "media_pts": 4.13,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -125,11 +119,17 @@
           "media_pts": 4.17,
           "taxa_acerto": 0.652
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 64,
+          "media_pts": 4.27,
+          "taxa_acerto": 0.8
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 35,
-          "media_pts": 3.89,
-          "taxa_acerto": 0.556
+          "media_pts": 3.5,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -139,20 +139,20 @@
         }
       },
       "concordancia_cristal": 0.583,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 156,
-      "media_pts_jogos_com_favorito": 4.33,
+      "media_pts_jogos_com_favorito": 4.22,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 17,
       "media_pts_jogos_equilibrados": 8.5,
-      "cluster": 3
+      "cluster": 1
     },
     {
       "slug": "claude-haiku-3-5",
       "nome_display": "Claude Haiku 3.5 (legacy)",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.54,
       "avg_saldo_abs": 1.38,
@@ -169,27 +169,21 @@
       "saldo_acertados": 5,
       "venc_acertados": 14,
       "emp_acertados": 3,
-      "erros": 11,
-      "taxa_acerto": 0.711,
-      "taxa_exato": 0.132,
+      "erros": 12,
+      "taxa_acerto": 0.692,
+      "taxa_exato": 0.128,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 49,
-          "media_pts": 3.5,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 69,
-          "media_pts": 4.6,
-          "taxa_acerto": 0.8
+          "pts": 49,
+          "media_pts": 3.27,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -197,11 +191,17 @@
           "media_pts": 4.78,
           "taxa_acerto": 0.696
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 69,
+          "media_pts": 4.6,
+          "taxa_acerto": 0.8
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 35,
-          "media_pts": 3.89,
-          "taxa_acerto": 0.667
+          "media_pts": 3.5,
+          "taxa_acerto": 0.6
         },
         "OFC": {
           "jogos": 1,
@@ -211,20 +211,20 @@
         }
       },
       "concordancia_cristal": 0.472,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 160,
-      "media_pts_jogos_com_favorito": 4.44,
+      "media_pts_jogos_com_favorito": 4.32,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "claude-opus-4-7",
       "nome_display": "Claude Opus 4.7",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.264,
       "avg_gols_total": 2.06,
       "avg_saldo_abs": 1.25,
@@ -241,26 +241,20 @@
       "saldo_acertados": 2,
       "venc_acertados": 15,
       "emp_acertados": 0,
-      "erros": 13,
-      "taxa_acerto": 0.658,
-      "taxa_exato": 0.211,
+      "erros": 14,
+      "taxa_acerto": 0.641,
+      "taxa_exato": 0.205,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 70,
-          "media_pts": 5.0,
-          "taxa_acerto": 0.643
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 49,
-          "media_pts": 3.27,
+          "pts": 70,
+          "media_pts": 4.67,
           "taxa_acerto": 0.6
         },
         "UEFA": {
@@ -269,11 +263,17 @@
           "media_pts": 4.52,
           "taxa_acerto": 0.652
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 49,
+          "media_pts": 3.27,
+          "taxa_acerto": 0.6
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 40,
-          "media_pts": 4.44,
-          "taxa_acerto": 0.667
+          "media_pts": 4.0,
+          "taxa_acerto": 0.6
         },
         "OFC": {
           "jogos": 1,
@@ -283,20 +283,20 @@
         }
       },
       "concordancia_cristal": 0.639,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 159,
-      "media_pts_jogos_com_favorito": 4.42,
+      "media_pts_jogos_com_favorito": 4.3,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "gpt-4-1",
       "nome_display": "GPT-4.1 (legacy)",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.181,
       "avg_gols_total": 2.4,
       "avg_saldo_abs": 1.26,
@@ -313,27 +313,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 15,
       "emp_acertados": 2,
-      "erros": 12,
-      "taxa_acerto": 0.684,
-      "taxa_exato": 0.184,
+      "erros": 13,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.179,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 57,
-          "media_pts": 4.07,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 65,
           "media_pts": 5.91,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 72,
-          "media_pts": 4.8,
-          "taxa_acerto": 0.8
+          "pts": 57,
+          "media_pts": 3.8,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -341,11 +335,17 @@
           "media_pts": 4.3,
           "taxa_acerto": 0.696
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 72,
+          "media_pts": 4.8,
+          "taxa_acerto": 0.8
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -355,20 +355,20 @@
         }
       },
       "concordancia_cristal": 0.583,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 169,
-      "media_pts_jogos_com_favorito": 4.69,
+      "media_pts_jogos_com_favorito": 4.57,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "gemini-2-5-flash",
       "nome_display": "Gemini 2.5 Flash",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.139,
       "avg_gols_total": 2.15,
       "avg_saldo_abs": 1.38,
@@ -385,27 +385,21 @@
       "saldo_acertados": 4,
       "venc_acertados": 13,
       "emp_acertados": 1,
-      "erros": 13,
-      "taxa_acerto": 0.658,
-      "taxa_exato": 0.184,
+      "erros": 14,
+      "taxa_acerto": 0.641,
+      "taxa_exato": 0.179,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 52,
-          "media_pts": 3.71,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 72,
           "media_pts": 6.55,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 66,
-          "media_pts": 4.4,
-          "taxa_acerto": 0.733
+          "pts": 52,
+          "media_pts": 3.47,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -413,11 +407,17 @@
           "media_pts": 4.17,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 66,
+          "media_pts": 4.4,
+          "taxa_acerto": 0.733
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -427,20 +427,20 @@
         }
       },
       "concordancia_cristal": 0.667,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 158,
-      "media_pts_jogos_com_favorito": 4.39,
+      "media_pts_jogos_com_favorito": 4.27,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "claude-opus-4-5",
       "nome_display": "Claude Opus 4.5",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.181,
       "avg_gols_total": 2.15,
       "avg_saldo_abs": 1.4,
@@ -457,27 +457,21 @@
       "saldo_acertados": 1,
       "venc_acertados": 16,
       "emp_acertados": 0,
-      "erros": 13,
-      "taxa_acerto": 0.658,
-      "taxa_exato": 0.211,
+      "erros": 14,
+      "taxa_acerto": 0.641,
+      "taxa_exato": 0.205,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 65,
-          "media_pts": 4.64,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 75,
           "media_pts": 6.82,
           "taxa_acerto": 0.909
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 50,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.6
+          "pts": 65,
+          "media_pts": 4.33,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -485,11 +479,17 @@
           "media_pts": 4.22,
           "taxa_acerto": 0.652
         },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 30,
+        "AFC": {
+          "jogos": 15,
+          "pts": 50,
           "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "taxa_acerto": 0.6
+        },
+        "CONMEBOL": {
+          "jogos": 10,
+          "pts": 30,
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -499,20 +499,20 @@
         }
       },
       "concordancia_cristal": 0.708,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 147,
-      "media_pts_jogos_com_favorito": 4.08,
+      "media_pts_jogos_com_favorito": 3.97,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 20,
       "media_pts_jogos_equilibrados": 10.0,
-      "cluster": 3
+      "cluster": 1
     },
     {
       "slug": "o4-mini",
       "nome_display": "OpenAI o4-mini",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.194,
       "avg_gols_total": 2.33,
       "avg_saldo_abs": 1.39,
@@ -529,27 +529,21 @@
       "saldo_acertados": 5,
       "venc_acertados": 14,
       "emp_acertados": 0,
-      "erros": 13,
-      "taxa_acerto": 0.658,
-      "taxa_exato": 0.158,
+      "erros": 14,
+      "taxa_acerto": 0.641,
+      "taxa_exato": 0.154,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 69,
-          "media_pts": 4.93,
-          "taxa_acerto": 0.643
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 59,
-          "media_pts": 3.93,
-          "taxa_acerto": 0.667
+          "pts": 69,
+          "media_pts": 4.6,
+          "taxa_acerto": 0.6
         },
         "UEFA": {
           "jogos": 23,
@@ -557,11 +551,17 @@
           "media_pts": 3.39,
           "taxa_acerto": 0.565
         },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 40,
-          "media_pts": 4.44,
+        "AFC": {
+          "jogos": 15,
+          "pts": 59,
+          "media_pts": 3.93,
           "taxa_acerto": 0.667
+        },
+        "CONMEBOL": {
+          "jogos": 10,
+          "pts": 40,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.6
         },
         "OFC": {
           "jogos": 1,
@@ -571,20 +571,92 @@
         }
       },
       "concordancia_cristal": 0.583,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 155,
-      "media_pts_jogos_com_favorito": 4.31,
+      "media_pts_jogos_com_favorito": 4.19,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
+    },
+    {
+      "slug": "mistral-medium-3",
+      "nome_display": "Mistral Medium 3",
+      "serie_a": false,
+      "n_palpites": 72,
+      "n_encerrados_palpitou": 39,
+      "pct_empates_palpitados": 0.236,
+      "avg_gols_total": 2.38,
+      "avg_saldo_abs": 1.35,
+      "tendencia_continente": {
+        "CONCACAF": 0.278,
+        "CAF": 0.167,
+        "AFC": 0.185,
+        "UEFA": 0.725,
+        "CONMEBOL": 0.389,
+        "OFC": 0.0
+      },
+      "pontos": 163,
+      "exatos": 5,
+      "saldo_acertados": 4,
+      "venc_acertados": 13,
+      "emp_acertados": 4,
+      "erros": 13,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.128,
+      "acerto_por_continente": {
+        "CONCACAF": {
+          "jogos": 11,
+          "pts": 55,
+          "media_pts": 5.0,
+          "taxa_acerto": 0.727
+        },
+        "CAF": {
+          "jogos": 15,
+          "pts": 57,
+          "media_pts": 3.8,
+          "taxa_acerto": 0.533
+        },
+        "UEFA": {
+          "jogos": 23,
+          "pts": 86,
+          "media_pts": 3.74,
+          "taxa_acerto": 0.609
+        },
+        "AFC": {
+          "jogos": 15,
+          "pts": 54,
+          "media_pts": 3.6,
+          "taxa_acerto": 0.667
+        },
+        "CONMEBOL": {
+          "jogos": 10,
+          "pts": 52,
+          "media_pts": 5.2,
+          "taxa_acerto": 0.8
+        },
+        "OFC": {
+          "jogos": 1,
+          "pts": 5,
+          "media_pts": 5.0,
+          "taxa_acerto": 1.0
+        }
+      },
+      "concordancia_cristal": 0.611,
+      "jogos_com_favorito": 37,
+      "pts_em_jogos_com_favorito": 153,
+      "media_pts_jogos_com_favorito": 4.14,
+      "jogos_equilibrados": 2,
+      "pts_em_jogos_equilibrados": 10,
+      "media_pts_jogos_equilibrados": 5.0,
+      "cluster": 0
     },
     {
       "slug": "o3",
       "nome_display": "OpenAI o3",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.194,
       "avg_gols_total": 2.28,
       "avg_saldo_abs": 1.31,
@@ -601,27 +673,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 14,
       "emp_acertados": 0,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.184,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.179,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 60,
-          "media_pts": 4.29,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 77,
           "media_pts": 7.0,
           "taxa_acerto": 0.909
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 61,
-          "media_pts": 4.07,
-          "taxa_acerto": 0.667
+          "pts": 60,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -629,11 +695,17 @@
           "media_pts": 3.65,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 61,
+          "media_pts": 4.07,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -643,20 +715,20 @@
         }
       },
       "concordancia_cristal": 0.708,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 141,
-      "media_pts_jogos_com_favorito": 3.92,
+      "media_pts_jogos_com_favorito": 3.81,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 20,
       "media_pts_jogos_equilibrados": 10.0,
-      "cluster": 3
+      "cluster": 1
     },
     {
       "slug": "qwen-3-235b",
       "nome_display": "Qwen 3 235B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.083,
       "avg_gols_total": 2.03,
       "avg_saldo_abs": 1.39,
@@ -673,27 +745,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 14,
       "emp_acertados": 0,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.184,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.179,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 62,
-          "media_pts": 4.43,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 64,
-          "media_pts": 4.27,
-          "taxa_acerto": 0.667
+          "pts": 62,
+          "media_pts": 4.13,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -701,11 +767,17 @@
           "media_pts": 3.96,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 64,
+          "media_pts": 4.27,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -715,20 +787,20 @@
         }
       },
       "concordancia_cristal": 0.264,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 151,
-      "media_pts_jogos_com_favorito": 4.19,
+      "media_pts_jogos_com_favorito": 4.08,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "wizardlm-2-8x22b",
       "nome_display": "WizardLM 2 8x22B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.25,
       "avg_saldo_abs": 1.56,
@@ -745,27 +817,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 13,
       "emp_acertados": 1,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.184,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.179,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 50,
-          "media_pts": 3.57,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 64,
-          "media_pts": 4.27,
-          "taxa_acerto": 0.667
+          "pts": 50,
+          "media_pts": 3.33,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -773,11 +839,17 @@
           "media_pts": 4.39,
           "taxa_acerto": 0.652
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 64,
+          "media_pts": 4.27,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -787,20 +859,20 @@
         }
       },
       "concordancia_cristal": 0.694,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 151,
-      "media_pts_jogos_com_favorito": 4.19,
+      "media_pts_jogos_com_favorito": 4.08,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "deepseek-v3-1",
       "nome_display": "DeepSeek V3.1",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.139,
       "avg_gols_total": 2.26,
       "avg_saldo_abs": 1.57,
@@ -817,27 +889,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 17,
       "emp_acertados": 0,
-      "erros": 13,
-      "taxa_acerto": 0.658,
-      "taxa_exato": 0.158,
+      "erros": 14,
+      "taxa_acerto": 0.641,
+      "taxa_exato": 0.154,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 65,
-          "media_pts": 4.64,
-          "taxa_acerto": 0.714
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 54,
-          "media_pts": 3.6,
-          "taxa_acerto": 0.6
+          "pts": 65,
+          "media_pts": 4.33,
+          "taxa_acerto": 0.667
         },
         "UEFA": {
           "jogos": 23,
@@ -845,11 +911,17 @@
           "media_pts": 3.87,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 54,
+          "media_pts": 3.6,
+          "taxa_acerto": 0.6
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 40,
-          "media_pts": 4.44,
-          "taxa_acerto": 0.667
+          "media_pts": 4.0,
+          "taxa_acerto": 0.6
         },
         "OFC": {
           "jogos": 1,
@@ -859,20 +931,20 @@
         }
       },
       "concordancia_cristal": 0.431,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 154,
-      "media_pts_jogos_com_favorito": 4.28,
+      "media_pts_jogos_com_favorito": 4.16,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
-      "cluster": 1
+      "cluster": 3
     },
     {
       "slug": "claude-sonnet-4-6",
       "nome_display": "Claude Sonnet 4.6",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.153,
       "avg_gols_total": 2.08,
       "avg_saldo_abs": 1.42,
@@ -889,27 +961,21 @@
       "saldo_acertados": 4,
       "venc_acertados": 12,
       "emp_acertados": 0,
-      "erros": 15,
-      "taxa_acerto": 0.605,
-      "taxa_exato": 0.184,
+      "erros": 16,
+      "taxa_acerto": 0.59,
+      "taxa_exato": 0.179,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 52,
-          "media_pts": 3.71,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 65,
           "media_pts": 5.91,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 64,
-          "media_pts": 4.27,
-          "taxa_acerto": 0.667
+          "pts": 52,
+          "media_pts": 3.47,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -917,11 +983,17 @@
           "media_pts": 3.74,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 64,
+          "media_pts": 4.27,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 32,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
+          "media_pts": 3.2,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -931,92 +1003,20 @@
         }
       },
       "concordancia_cristal": 0.736,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 158,
-      "media_pts_jogos_com_favorito": 4.39,
+      "media_pts_jogos_com_favorito": 4.27,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 1
-    },
-    {
-      "slug": "mistral-medium-3",
-      "nome_display": "Mistral Medium 3",
-      "serie_a": false,
-      "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
-      "pct_empates_palpitados": 0.236,
-      "avg_gols_total": 2.38,
-      "avg_saldo_abs": 1.35,
-      "tendencia_continente": {
-        "CONCACAF": 0.278,
-        "CAF": 0.167,
-        "AFC": 0.185,
-        "UEFA": 0.725,
-        "CONMEBOL": 0.389,
-        "OFC": 0.0
-      },
-      "pontos": 158,
-      "exatos": 5,
-      "saldo_acertados": 4,
-      "venc_acertados": 13,
-      "emp_acertados": 3,
-      "erros": 13,
-      "taxa_acerto": 0.658,
-      "taxa_exato": 0.132,
-      "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 52,
-          "media_pts": 3.71,
-          "taxa_acerto": 0.5
-        },
-        "CONCACAF": {
-          "jogos": 11,
-          "pts": 55,
-          "media_pts": 5.0,
-          "taxa_acerto": 0.727
-        },
-        "AFC": {
-          "jogos": 15,
-          "pts": 54,
-          "media_pts": 3.6,
-          "taxa_acerto": 0.667
-        },
-        "UEFA": {
-          "jogos": 23,
-          "pts": 86,
-          "media_pts": 3.74,
-          "taxa_acerto": 0.609
-        },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 47,
-          "media_pts": 5.22,
-          "taxa_acerto": 0.778
-        },
-        "OFC": {
-          "jogos": 1,
-          "pts": 5,
-          "media_pts": 5.0,
-          "taxa_acerto": 1.0
-        }
-      },
-      "concordancia_cristal": 0.611,
-      "jogos_com_favorito": 36,
-      "pts_em_jogos_com_favorito": 148,
-      "media_pts_jogos_com_favorito": 4.11,
-      "jogos_equilibrados": 2,
-      "pts_em_jogos_equilibrados": 10,
-      "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "o1",
       "nome_display": "OpenAI o1 (legacy)",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.125,
       "avg_gols_total": 2.33,
       "avg_saldo_abs": 1.47,
@@ -1033,27 +1033,21 @@
       "saldo_acertados": 1,
       "venc_acertados": 18,
       "emp_acertados": 0,
-      "erros": 13,
-      "taxa_acerto": 0.658,
-      "taxa_exato": 0.158,
+      "erros": 14,
+      "taxa_acerto": 0.641,
+      "taxa_exato": 0.154,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 55,
-          "media_pts": 3.93,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 77,
           "media_pts": 7.0,
           "taxa_acerto": 0.909
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 57,
-          "media_pts": 3.8,
-          "taxa_acerto": 0.667
+          "pts": 55,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -1061,11 +1055,17 @@
           "media_pts": 3.48,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 57,
+          "media_pts": 3.8,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -1075,20 +1075,20 @@
         }
       },
       "concordancia_cristal": 0.625,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 137,
-      "media_pts_jogos_com_favorito": 3.81,
+      "media_pts_jogos_com_favorito": 3.7,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 20,
       "media_pts_jogos_equilibrados": 10.0,
-      "cluster": 3
+      "cluster": 1
     },
     {
       "slug": "gemma-3-12b",
       "nome_display": "Gemma 3 12B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.083,
       "avg_gols_total": 1.56,
       "avg_saldo_abs": 1.36,
@@ -1105,27 +1105,21 @@
       "saldo_acertados": 0,
       "venc_acertados": 21,
       "emp_acertados": 2,
-      "erros": 11,
-      "taxa_acerto": 0.711,
-      "taxa_exato": 0.105,
+      "erros": 12,
+      "taxa_acerto": 0.692,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 60,
-          "media_pts": 4.29,
-          "taxa_acerto": 0.643
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.909
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 50,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.667
+          "pts": 60,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.6
         },
         "UEFA": {
           "jogos": 23,
@@ -1133,11 +1127,17 @@
           "media_pts": 3.7,
           "taxa_acerto": 0.652
         },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 40,
-          "media_pts": 4.44,
+        "AFC": {
+          "jogos": 15,
+          "pts": 50,
+          "media_pts": 3.33,
           "taxa_acerto": 0.667
+        },
+        "CONMEBOL": {
+          "jogos": 10,
+          "pts": 40,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.6
         },
         "OFC": {
           "jogos": 1,
@@ -1147,9 +1147,9 @@
         }
       },
       "concordancia_cristal": 0.194,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 150,
-      "media_pts_jogos_com_favorito": 4.17,
+      "media_pts_jogos_com_favorito": 4.05,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -1160,7 +1160,7 @@
       "nome_display": "Grok 4 Heavy",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.125,
       "avg_gols_total": 2.25,
       "avg_saldo_abs": 1.47,
@@ -1177,27 +1177,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 16,
       "emp_acertados": 0,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.158,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.154,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 47,
-          "media_pts": 3.36,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 70,
           "media_pts": 6.36,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 62,
-          "media_pts": 4.13,
-          "taxa_acerto": 0.667
+          "pts": 47,
+          "media_pts": 3.13,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -1205,11 +1199,17 @@
           "media_pts": 3.65,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 62,
+          "media_pts": 4.13,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -1219,20 +1219,20 @@
         }
       },
       "concordancia_cristal": 0.625,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 144,
-      "media_pts_jogos_com_favorito": 4.0,
+      "media_pts_jogos_com_favorito": 3.89,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "claude-fable-5",
       "nome_display": "Claude Fable 5",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.097,
       "avg_gols_total": 1.81,
       "avg_saldo_abs": 1.31,
@@ -1249,27 +1249,21 @@
       "saldo_acertados": 4,
       "venc_acertados": 15,
       "emp_acertados": 0,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.132,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.128,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 50,
-          "media_pts": 3.57,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 57,
           "media_pts": 5.18,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 66,
-          "media_pts": 4.4,
-          "taxa_acerto": 0.733
+          "pts": 50,
+          "media_pts": 3.33,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -1277,11 +1271,17 @@
           "media_pts": 3.74,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 66,
+          "media_pts": 4.4,
+          "taxa_acerto": 0.733
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 32,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
+          "media_pts": 3.2,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -1291,20 +1291,20 @@
         }
       },
       "concordancia_cristal": 0.444,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 153,
-      "media_pts_jogos_com_favorito": 4.25,
+      "media_pts_jogos_com_favorito": 4.14,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "deepseek-v3",
       "nome_display": "DeepSeek V3 (legacy)",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.36,
       "avg_saldo_abs": 1.56,
@@ -1321,27 +1321,21 @@
       "saldo_acertados": 1,
       "venc_acertados": 16,
       "emp_acertados": 1,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.158,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.154,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 55,
-          "media_pts": 3.93,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 52,
-          "media_pts": 3.47,
-          "taxa_acerto": 0.6
+          "pts": 55,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -1349,11 +1343,17 @@
           "media_pts": 3.91,
           "taxa_acerto": 0.652
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 52,
+          "media_pts": 3.47,
+          "taxa_acerto": 0.6
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 37,
-          "media_pts": 4.11,
-          "taxa_acerto": 0.667
+          "media_pts": 3.7,
+          "taxa_acerto": 0.6
         },
         "OFC": {
           "jogos": 1,
@@ -1363,20 +1363,20 @@
         }
       },
       "concordancia_cristal": 0.556,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 142,
-      "media_pts_jogos_com_favorito": 3.94,
+      "media_pts_jogos_com_favorito": 3.84,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "grok-4",
       "nome_display": "Grok 4",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.222,
       "avg_gols_total": 2.22,
       "avg_saldo_abs": 1.31,
@@ -1393,27 +1393,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 15,
       "emp_acertados": 1,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.132,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.128,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 42,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 64,
-          "media_pts": 4.27,
-          "taxa_acerto": 0.733
+          "pts": 42,
+          "media_pts": 2.8,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -1421,11 +1415,17 @@
           "media_pts": 3.65,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 64,
+          "media_pts": 4.27,
+          "taxa_acerto": 0.733
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -1435,20 +1435,20 @@
         }
       },
       "concordancia_cristal": 0.694,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 141,
-      "media_pts_jogos_com_favorito": 3.92,
+      "media_pts_jogos_com_favorito": 3.81,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "qwen-3-max",
       "nome_display": "Qwen 3 Max",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.53,
       "avg_saldo_abs": 1.5,
@@ -1465,27 +1465,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 13,
       "emp_acertados": 0,
-      "erros": 16,
-      "taxa_acerto": 0.579,
-      "taxa_exato": 0.184,
+      "erros": 17,
+      "taxa_acerto": 0.564,
+      "taxa_exato": 0.179,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 50,
-          "media_pts": 3.57,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 47,
-          "media_pts": 3.13,
-          "taxa_acerto": 0.533
+          "pts": 50,
+          "media_pts": 3.33,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -1493,11 +1487,17 @@
           "media_pts": 4.09,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 47,
+          "media_pts": 3.13,
+          "taxa_acerto": 0.533
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -1507,20 +1507,20 @@
         }
       },
       "concordancia_cristal": 0.611,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 139,
-      "media_pts_jogos_com_favorito": 3.86,
+      "media_pts_jogos_com_favorito": 3.76,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "ministral-8b",
       "nome_display": "Ministral 8B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.097,
       "avg_gols_total": 1.44,
       "avg_saldo_abs": 1.22,
@@ -1537,27 +1537,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 21,
       "emp_acertados": 0,
-      "erros": 11,
-      "taxa_acerto": 0.711,
-      "taxa_exato": 0.105,
+      "erros": 12,
+      "taxa_acerto": 0.692,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 65,
-          "media_pts": 4.64,
-          "taxa_acerto": 0.643
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 50,
           "media_pts": 4.55,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 59,
-          "media_pts": 3.93,
-          "taxa_acerto": 0.733
+          "pts": 65,
+          "media_pts": 4.33,
+          "taxa_acerto": 0.6
         },
         "UEFA": {
           "jogos": 23,
@@ -1565,11 +1559,17 @@
           "media_pts": 4.22,
           "taxa_acerto": 0.696
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 59,
+          "media_pts": 3.93,
+          "taxa_acerto": 0.733
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 27,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.556
+          "media_pts": 2.7,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -1579,9 +1579,9 @@
         }
       },
       "concordancia_cristal": 0.264,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 154,
-      "media_pts_jogos_com_favorito": 4.28,
+      "media_pts_jogos_com_favorito": 4.16,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -1592,7 +1592,7 @@
       "nome_display": "Le Chat (Mistral Large)",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.278,
       "avg_gols_total": 2.33,
       "avg_saldo_abs": 1.39,
@@ -1609,27 +1609,21 @@
       "saldo_acertados": 1,
       "venc_acertados": 14,
       "emp_acertados": 2,
-      "erros": 15,
-      "taxa_acerto": 0.605,
-      "taxa_exato": 0.158,
+      "erros": 16,
+      "taxa_acerto": 0.59,
+      "taxa_exato": 0.154,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 50,
-          "media_pts": 3.57,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.636
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 45,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.6
+          "pts": 50,
+          "media_pts": 3.33,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -1637,11 +1631,17 @@
           "media_pts": 4.22,
           "taxa_acerto": 0.652
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 45,
+          "media_pts": 3.0,
+          "taxa_acerto": 0.6
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -1651,20 +1651,20 @@
         }
       },
       "concordancia_cristal": 0.681,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 137,
-      "media_pts_jogos_com_favorito": 3.81,
+      "media_pts_jogos_com_favorito": 3.7,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "manus",
       "nome_display": "Manus",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.0,
       "avg_gols_total": 1.83,
       "avg_saldo_abs": 1.25,
@@ -1681,27 +1681,21 @@
       "saldo_acertados": 1,
       "venc_acertados": 18,
       "emp_acertados": 0,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.132,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.128,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 55,
-          "media_pts": 3.93,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 62,
           "media_pts": 5.64,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 52,
-          "media_pts": 3.47,
-          "taxa_acerto": 0.667
+          "pts": 55,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -1709,11 +1703,17 @@
           "media_pts": 3.48,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 52,
+          "media_pts": 3.47,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -1723,20 +1723,20 @@
         }
       },
       "concordancia_cristal": 0.389,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 137,
-      "media_pts_jogos_com_favorito": 3.81,
+      "media_pts_jogos_com_favorito": 3.7,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "perplexity-sonar-pro",
       "nome_display": "Perplexity Sonar Pro",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.222,
       "avg_gols_total": 2.4,
       "avg_saldo_abs": 1.24,
@@ -1753,27 +1753,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 17,
       "emp_acertados": 1,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.105,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 37,
-          "media_pts": 2.64,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 62,
-          "media_pts": 4.13,
-          "taxa_acerto": 0.733
+          "pts": 37,
+          "media_pts": 2.47,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -1781,11 +1775,17 @@
           "media_pts": 3.13,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 62,
+          "media_pts": 4.13,
+          "taxa_acerto": 0.733
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -1795,20 +1795,20 @@
         }
       },
       "concordancia_cristal": 0.625,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 134,
-      "media_pts_jogos_com_favorito": 3.72,
+      "media_pts_jogos_com_favorito": 3.62,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "codestral",
       "nome_display": "Codestral",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.222,
       "avg_gols_total": 1.86,
       "avg_saldo_abs": 1.14,
@@ -1825,27 +1825,21 @@
       "saldo_acertados": 4,
       "venc_acertados": 14,
       "emp_acertados": 1,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.132,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.128,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 47,
-          "media_pts": 3.36,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 59,
-          "media_pts": 3.93,
-          "taxa_acerto": 0.667
+          "pts": 47,
+          "media_pts": 3.13,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -1853,11 +1847,17 @@
           "media_pts": 3.74,
           "taxa_acerto": 0.565
         },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 32,
-          "media_pts": 3.56,
+        "AFC": {
+          "jogos": 15,
+          "pts": 59,
+          "media_pts": 3.93,
           "taxa_acerto": 0.667
+        },
+        "CONMEBOL": {
+          "jogos": 10,
+          "pts": 32,
+          "media_pts": 3.2,
+          "taxa_acerto": 0.6
         },
         "OFC": {
           "jogos": 1,
@@ -1867,9 +1867,9 @@
         }
       },
       "concordancia_cristal": 0.333,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 148,
-      "media_pts_jogos_com_favorito": 4.11,
+      "media_pts_jogos_com_favorito": 4.0,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -1880,7 +1880,7 @@
       "nome_display": "ChatGPT 5 Thinking",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.208,
       "avg_gols_total": 2.12,
       "avg_saldo_abs": 1.35,
@@ -1897,27 +1897,21 @@
       "saldo_acertados": 4,
       "venc_acertados": 15,
       "emp_acertados": 0,
-      "erros": 15,
-      "taxa_acerto": 0.605,
-      "taxa_exato": 0.105,
+      "erros": 16,
+      "taxa_acerto": 0.59,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 35,
-          "media_pts": 2.5,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 58,
-          "media_pts": 3.87,
-          "taxa_acerto": 0.6
+          "pts": 35,
+          "media_pts": 2.33,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -1925,11 +1919,17 @@
           "media_pts": 3.43,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 58,
+          "media_pts": 3.87,
+          "taxa_acerto": 0.6
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 32,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
+          "media_pts": 3.2,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -1939,20 +1939,20 @@
         }
       },
       "concordancia_cristal": 0.722,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 133,
-      "media_pts_jogos_com_favorito": 3.69,
+      "media_pts_jogos_com_favorito": 3.59,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "perplexity-sonar-reasoning",
       "nome_display": "Perplexity Sonar Reasoning",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.194,
       "avg_gols_total": 2.38,
       "avg_saldo_abs": 1.38,
@@ -1969,27 +1969,21 @@
       "saldo_acertados": 4,
       "venc_acertados": 15,
       "emp_acertados": 0,
-      "erros": 15,
-      "taxa_acerto": 0.605,
-      "taxa_exato": 0.105,
+      "erros": 16,
+      "taxa_acerto": 0.59,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 42,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 61,
-          "media_pts": 4.07,
-          "taxa_acerto": 0.667
+          "pts": 42,
+          "media_pts": 2.8,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -1997,11 +1991,17 @@
           "media_pts": 3.22,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 61,
+          "media_pts": 4.07,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 32,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
+          "media_pts": 3.2,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -2011,20 +2011,20 @@
         }
       },
       "concordancia_cristal": 0.75,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 133,
-      "media_pts_jogos_com_favorito": 3.69,
+      "media_pts_jogos_com_favorito": 3.59,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "gemini-2-5-flash-lite",
       "nome_display": "Gemini 2.5 Flash-Lite",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.181,
       "avg_gols_total": 2.56,
       "avg_saldo_abs": 1.47,
@@ -2041,27 +2041,21 @@
       "saldo_acertados": 1,
       "venc_acertados": 16,
       "emp_acertados": 0,
-      "erros": 15,
-      "taxa_acerto": 0.605,
-      "taxa_exato": 0.158,
+      "erros": 16,
+      "taxa_acerto": 0.59,
+      "taxa_exato": 0.154,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 55,
-          "media_pts": 3.93,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 40,
           "media_pts": 3.64,
           "taxa_acerto": 0.636
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
           "pts": 55,
           "media_pts": 3.67,
-          "taxa_acerto": 0.6
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -2069,11 +2063,17 @@
           "media_pts": 3.78,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 55,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.6
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 40,
-          "media_pts": 4.44,
-          "taxa_acerto": 0.556
+          "media_pts": 4.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -2083,20 +2083,20 @@
         }
       },
       "concordancia_cristal": 0.444,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 142,
-      "media_pts_jogos_com_favorito": 3.94,
+      "media_pts_jogos_com_favorito": 3.84,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "deepseek-v3-2",
       "nome_display": "DeepSeek V3.2",
       "serie_a": false,
       "n_palpites": 67,
-      "n_encerrados_palpitou": 34,
+      "n_encerrados_palpitou": 35,
       "pct_empates_palpitados": 0.194,
       "avg_gols_total": 2.31,
       "avg_saldo_abs": 1.48,
@@ -2113,27 +2113,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 12,
       "emp_acertados": 0,
-      "erros": 13,
-      "taxa_acerto": 0.618,
-      "taxa_exato": 0.176,
+      "erros": 14,
+      "taxa_acerto": 0.6,
+      "taxa_exato": 0.171,
       "acerto_por_continente": {
-        "AFC": {
-          "jogos": 15,
-          "pts": 54,
-          "media_pts": 3.6,
-          "taxa_acerto": 0.6
-        },
         "UEFA": {
           "jogos": 20,
           "pts": 84,
           "media_pts": 4.2,
           "taxa_acerto": 0.6
         },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 25,
-          "media_pts": 2.78,
-          "taxa_acerto": 0.556
+        "AFC": {
+          "jogos": 15,
+          "pts": 54,
+          "media_pts": 3.6,
+          "taxa_acerto": 0.6
         },
         "CONCACAF": {
           "jogos": 9,
@@ -2141,11 +2135,17 @@
           "media_pts": 6.33,
           "taxa_acerto": 0.889
         },
+        "CONMEBOL": {
+          "jogos": 10,
+          "pts": 25,
+          "media_pts": 2.5,
+          "taxa_acerto": 0.5
+        },
         "CAF": {
-          "jogos": 12,
+          "jogos": 13,
           "pts": 57,
-          "media_pts": 4.75,
-          "taxa_acerto": 0.583
+          "media_pts": 4.38,
+          "taxa_acerto": 0.538
         },
         "OFC": {
           "jogos": 1,
@@ -2155,20 +2155,20 @@
         }
       },
       "concordancia_cristal": 0.642,
-      "jogos_com_favorito": 33,
+      "jogos_com_favorito": 34,
       "pts_em_jogos_com_favorito": 131,
-      "media_pts_jogos_com_favorito": 3.97,
+      "media_pts_jogos_com_favorito": 3.85,
       "jogos_equilibrados": 1,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 10.0,
-      "cluster": 3
+      "cluster": 1
     },
     {
       "slug": "chatgpt-5",
       "nome_display": "ChatGPT 5",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.07,
       "avg_saldo_abs": 1.4,
@@ -2185,27 +2185,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 14,
       "emp_acertados": 0,
-      "erros": 16,
-      "taxa_acerto": 0.579,
-      "taxa_exato": 0.132,
+      "erros": 17,
+      "taxa_acerto": 0.564,
+      "taxa_exato": 0.128,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 40,
-          "media_pts": 2.86,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 66,
-          "media_pts": 4.4,
-          "taxa_acerto": 0.667
+          "pts": 40,
+          "media_pts": 2.67,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -2213,11 +2207,17 @@
           "media_pts": 3.0,
           "taxa_acerto": 0.522
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 66,
+          "media_pts": 4.4,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 32,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
+          "media_pts": 3.2,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -2227,20 +2227,20 @@
         }
       },
       "concordancia_cristal": 0.736,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 141,
-      "media_pts_jogos_com_favorito": 3.92,
+      "media_pts_jogos_com_favorito": 3.81,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "chatgpt-5-nano",
       "nome_display": "ChatGPT 5 nano",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.014,
       "avg_gols_total": 2.26,
       "avg_saldo_abs": 1.6,
@@ -2257,27 +2257,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 13,
       "emp_acertados": 0,
-      "erros": 17,
-      "taxa_acerto": 0.553,
-      "taxa_exato": 0.132,
+      "erros": 18,
+      "taxa_acerto": 0.538,
+      "taxa_exato": 0.128,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 42,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 62,
           "media_pts": 5.64,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 54,
-          "media_pts": 3.6,
-          "taxa_acerto": 0.533
+          "pts": 42,
+          "media_pts": 2.8,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -2285,11 +2279,17 @@
           "media_pts": 3.13,
           "taxa_acerto": 0.522
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 54,
+          "media_pts": 3.6,
+          "taxa_acerto": 0.533
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 27,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.444
+          "media_pts": 2.7,
+          "taxa_acerto": 0.4
         },
         "OFC": {
           "jogos": 1,
@@ -2299,20 +2299,20 @@
         }
       },
       "concordancia_cristal": 0.431,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 131,
-      "media_pts_jogos_com_favorito": 3.64,
+      "media_pts_jogos_com_favorito": 3.54,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
-      "cluster": 0
+      "cluster": 3
     },
     {
       "slug": "deepseek-r1",
       "nome_display": "DeepSeek R1",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.208,
       "avg_gols_total": 2.24,
       "avg_saldo_abs": 1.49,
@@ -2329,27 +2329,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 14,
       "emp_acertados": 0,
-      "erros": 16,
-      "taxa_acerto": 0.579,
-      "taxa_exato": 0.132,
+      "erros": 17,
+      "taxa_acerto": 0.564,
+      "taxa_exato": 0.128,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 50,
-          "media_pts": 3.57,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 50,
           "media_pts": 4.55,
           "taxa_acerto": 0.636
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 44,
-          "media_pts": 2.93,
-          "taxa_acerto": 0.533
+          "pts": 50,
+          "media_pts": 3.33,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -2357,11 +2351,17 @@
           "media_pts": 3.87,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 44,
+          "media_pts": 2.93,
+          "taxa_acerto": 0.533
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 32,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
+          "media_pts": 3.2,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -2371,20 +2371,20 @@
         }
       },
       "concordancia_cristal": 0.514,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 131,
-      "media_pts_jogos_com_favorito": 3.64,
+      "media_pts_jogos_com_favorito": 3.54,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "claude-haiku-4-5",
       "nome_display": "Claude Haiku 4.5",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.125,
       "avg_gols_total": 2.08,
       "avg_saldo_abs": 1.5,
@@ -2401,27 +2401,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 13,
       "emp_acertados": 1,
-      "erros": 16,
-      "taxa_acerto": 0.579,
-      "taxa_exato": 0.132,
+      "erros": 17,
+      "taxa_acerto": 0.564,
+      "taxa_exato": 0.128,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 50,
-          "media_pts": 3.57,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 52,
           "media_pts": 4.73,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 49,
-          "media_pts": 3.27,
-          "taxa_acerto": 0.6
+          "pts": 50,
+          "media_pts": 3.33,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -2429,11 +2423,17 @@
           "media_pts": 3.43,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 49,
+          "media_pts": 3.27,
+          "taxa_acerto": 0.6
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.444
+          "media_pts": 3.0,
+          "taxa_acerto": 0.4
         },
         "OFC": {
           "jogos": 1,
@@ -2443,20 +2443,20 @@
         }
       },
       "concordancia_cristal": 0.389,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 141,
-      "media_pts_jogos_com_favorito": 3.92,
+      "media_pts_jogos_com_favorito": 3.81,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "kimi-k2",
       "nome_display": "Kimi K2",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.097,
       "avg_gols_total": 2.36,
       "avg_saldo_abs": 1.58,
@@ -2473,27 +2473,21 @@
       "saldo_acertados": 5,
       "venc_acertados": 13,
       "emp_acertados": 0,
-      "erros": 16,
-      "taxa_acerto": 0.579,
-      "taxa_exato": 0.105,
+      "erros": 17,
+      "taxa_acerto": 0.564,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 57,
-          "media_pts": 4.07,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 35,
           "media_pts": 3.18,
           "taxa_acerto": 0.545
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 56,
-          "media_pts": 3.73,
-          "taxa_acerto": 0.6
+          "pts": 57,
+          "media_pts": 3.8,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -2501,11 +2495,17 @@
           "media_pts": 4.04,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 56,
+          "media_pts": 3.73,
+          "taxa_acerto": 0.6
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 27,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.556
+          "media_pts": 2.7,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -2515,20 +2515,20 @@
         }
       },
       "concordancia_cristal": 0.528,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 140,
-      "media_pts_jogos_com_favorito": 3.89,
+      "media_pts_jogos_com_favorito": 3.78,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 0
+      "cluster": 3
     },
     {
       "slug": "chatgpt-5-mini",
       "nome_display": "ChatGPT 5 mini",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.056,
       "avg_gols_total": 2.22,
       "avg_saldo_abs": 1.78,
@@ -2545,27 +2545,21 @@
       "saldo_acertados": 5,
       "venc_acertados": 17,
       "emp_acertados": 0,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.053,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.051,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 52,
-          "media_pts": 3.71,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 52,
           "media_pts": 4.73,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 58,
-          "media_pts": 3.87,
-          "taxa_acerto": 0.667
+          "pts": 52,
+          "media_pts": 3.47,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -2573,11 +2567,17 @@
           "media_pts": 3.3,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 58,
+          "media_pts": 3.87,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 27,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.556
+          "media_pts": 2.7,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -2587,20 +2587,20 @@
         }
       },
       "concordancia_cristal": 0.528,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 135,
-      "media_pts_jogos_com_favorito": 3.75,
+      "media_pts_jogos_com_favorito": 3.65,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
-      "cluster": 0
+      "cluster": 3
     },
     {
       "slug": "qwen-2-5-72b",
       "nome_display": "Qwen 2.5 72B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.111,
       "avg_gols_total": 2.12,
       "avg_saldo_abs": 1.38,
@@ -2617,27 +2617,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 17,
       "emp_acertados": 0,
-      "erros": 15,
-      "taxa_acerto": 0.605,
-      "taxa_exato": 0.105,
+      "erros": 16,
+      "taxa_acerto": 0.59,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 52,
-          "media_pts": 3.71,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 57,
           "media_pts": 5.18,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 47,
-          "media_pts": 3.13,
-          "taxa_acerto": 0.6
+          "pts": 52,
+          "media_pts": 3.47,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -2645,11 +2639,17 @@
           "media_pts": 3.78,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 47,
+          "media_pts": 3.13,
+          "taxa_acerto": 0.6
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 25,
-          "media_pts": 2.78,
-          "taxa_acerto": 0.556
+          "media_pts": 2.5,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -2659,20 +2659,20 @@
         }
       },
       "concordancia_cristal": 0.333,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 122,
-      "media_pts_jogos_com_favorito": 3.39,
+      "media_pts_jogos_com_favorito": 3.3,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 17,
       "media_pts_jogos_equilibrados": 8.5,
-      "cluster": 3
+      "cluster": 1
     },
     {
       "slug": "copilot-microsoft",
       "nome_display": "Microsoft Copilot",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.208,
       "avg_gols_total": 2.22,
       "avg_saldo_abs": 1.42,
@@ -2689,27 +2689,21 @@
       "saldo_acertados": 4,
       "venc_acertados": 14,
       "emp_acertados": 0,
-      "erros": 16,
-      "taxa_acerto": 0.579,
-      "taxa_exato": 0.105,
+      "erros": 17,
+      "taxa_acerto": 0.564,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 52,
-          "media_pts": 3.71,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 62,
           "media_pts": 5.64,
           "taxa_acerto": 0.818
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 56,
-          "media_pts": 3.73,
-          "taxa_acerto": 0.667
+          "pts": 52,
+          "media_pts": 3.47,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -2717,11 +2711,17 @@
           "media_pts": 2.57,
           "taxa_acerto": 0.478
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 56,
+          "media_pts": 3.73,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 37,
-          "media_pts": 4.11,
-          "taxa_acerto": 0.556
+          "media_pts": 3.7,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -2731,20 +2731,92 @@
         }
       },
       "concordancia_cristal": 0.556,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 128,
-      "media_pts_jogos_com_favorito": 3.56,
+      "media_pts_jogos_com_favorito": 3.46,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
+    },
+    {
+      "slug": "mixtral-8x22b",
+      "nome_display": "Mixtral 8x22B",
+      "serie_a": false,
+      "n_palpites": 72,
+      "n_encerrados_palpitou": 39,
+      "pct_empates_palpitados": 0.111,
+      "avg_gols_total": 2.67,
+      "avg_saldo_abs": 1.69,
+      "tendencia_continente": {
+        "CONCACAF": 0.333,
+        "CAF": 0.2,
+        "AFC": 0.296,
+        "UEFA": 0.725,
+        "CONMEBOL": 0.667,
+        "OFC": 0.0
+      },
+      "pontos": 137,
+      "exatos": 5,
+      "saldo_acertados": 1,
+      "venc_acertados": 15,
+      "emp_acertados": 1,
+      "erros": 17,
+      "taxa_acerto": 0.564,
+      "taxa_exato": 0.128,
+      "acerto_por_continente": {
+        "CONCACAF": {
+          "jogos": 11,
+          "pts": 40,
+          "media_pts": 3.64,
+          "taxa_acerto": 0.545
+        },
+        "CAF": {
+          "jogos": 15,
+          "pts": 50,
+          "media_pts": 3.33,
+          "taxa_acerto": 0.533
+        },
+        "UEFA": {
+          "jogos": 23,
+          "pts": 82,
+          "media_pts": 3.57,
+          "taxa_acerto": 0.565
+        },
+        "AFC": {
+          "jogos": 15,
+          "pts": 50,
+          "media_pts": 3.33,
+          "taxa_acerto": 0.533
+        },
+        "CONMEBOL": {
+          "jogos": 10,
+          "pts": 35,
+          "media_pts": 3.5,
+          "taxa_acerto": 0.6
+        },
+        "OFC": {
+          "jogos": 1,
+          "pts": 0,
+          "media_pts": 0.0,
+          "taxa_acerto": 0.0
+        }
+      },
+      "concordancia_cristal": 0.403,
+      "jogos_com_favorito": 37,
+      "pts_em_jogos_com_favorito": 137,
+      "media_pts_jogos_com_favorito": 3.7,
+      "jogos_equilibrados": 2,
+      "pts_em_jogos_equilibrados": 0,
+      "media_pts_jogos_equilibrados": 0.0,
+      "cluster": 3
     },
     {
       "slug": "perplexity-sonar-large",
       "nome_display": "Perplexity Sonar Large",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.03,
       "avg_saldo_abs": 1.28,
@@ -2761,27 +2833,21 @@
       "saldo_acertados": 1,
       "venc_acertados": 17,
       "emp_acertados": 1,
-      "erros": 15,
-      "taxa_acerto": 0.605,
-      "taxa_exato": 0.105,
+      "erros": 16,
+      "taxa_acerto": 0.59,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 45,
-          "media_pts": 3.21,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 50,
           "media_pts": 4.55,
           "taxa_acerto": 0.636
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 57,
-          "media_pts": 3.8,
-          "taxa_acerto": 0.667
+          "pts": 45,
+          "media_pts": 3.0,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -2789,11 +2855,17 @@
           "media_pts": 3.13,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 57,
+          "media_pts": 3.8,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -2803,20 +2875,20 @@
         }
       },
       "concordancia_cristal": 0.528,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 137,
-      "media_pts_jogos_com_favorito": 3.81,
+      "media_pts_jogos_com_favorito": 3.7,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "gpt-4o",
       "nome_display": "GPT-4o (legacy)",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.153,
       "avg_gols_total": 2.29,
       "avg_saldo_abs": 1.43,
@@ -2833,27 +2905,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 16,
       "emp_acertados": 0,
-      "erros": 15,
-      "taxa_acerto": 0.605,
-      "taxa_exato": 0.105,
+      "erros": 16,
+      "taxa_acerto": 0.59,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 42,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 54,
-          "media_pts": 3.6,
-          "taxa_acerto": 0.667
+          "pts": 42,
+          "media_pts": 2.8,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -2861,11 +2927,17 @@
           "media_pts": 3.43,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 54,
+          "media_pts": 3.6,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 32,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
+          "media_pts": 3.2,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -2875,20 +2947,20 @@
         }
       },
       "concordancia_cristal": 0.583,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 131,
-      "media_pts_jogos_com_favorito": 3.64,
+      "media_pts_jogos_com_favorito": 3.54,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "jamba-1-5-large",
       "nome_display": "AI21 Jamba 1.5 Large",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.069,
       "avg_gols_total": 2.25,
       "avg_saldo_abs": 1.75,
@@ -2905,27 +2977,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 21,
       "emp_acertados": 0,
-      "erros": 11,
-      "taxa_acerto": 0.711,
-      "taxa_exato": 0.079,
+      "erros": 12,
+      "taxa_acerto": 0.692,
+      "taxa_exato": 0.077,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 55,
-          "media_pts": 3.93,
-          "taxa_acerto": 0.643
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.909
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 56,
-          "media_pts": 3.73,
-          "taxa_acerto": 0.667
+          "pts": 55,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.6
         },
         "UEFA": {
           "jogos": 23,
@@ -2933,11 +2999,17 @@
           "media_pts": 3.35,
           "taxa_acerto": 0.652
         },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 37,
-          "media_pts": 4.11,
+        "AFC": {
+          "jogos": 15,
+          "pts": 56,
+          "media_pts": 3.73,
           "taxa_acerto": 0.667
+        },
+        "CONMEBOL": {
+          "jogos": 10,
+          "pts": 37,
+          "media_pts": 3.7,
+          "taxa_acerto": 0.6
         },
         "OFC": {
           "jogos": 1,
@@ -2947,20 +3019,20 @@
         }
       },
       "concordancia_cristal": 0.417,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 141,
-      "media_pts_jogos_com_favorito": 3.92,
+      "media_pts_jogos_com_favorito": 3.81,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 15,
       "media_pts_jogos_equilibrados": 7.5,
-      "cluster": 0
+      "cluster": 1
     },
     {
       "slug": "claude-sonnet-4-5",
       "nome_display": "Claude Sonnet 4.5",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.222,
       "avg_gols_total": 2.28,
       "avg_saldo_abs": 1.28,
@@ -2977,27 +3049,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 14,
       "emp_acertados": 0,
-      "erros": 17,
-      "taxa_acerto": 0.553,
-      "taxa_exato": 0.132,
+      "erros": 18,
+      "taxa_acerto": 0.538,
+      "taxa_exato": 0.128,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 47,
-          "media_pts": 3.36,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.636
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 42,
-          "media_pts": 2.8,
-          "taxa_acerto": 0.533
+          "pts": 47,
+          "media_pts": 3.13,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -3005,11 +3071,17 @@
           "media_pts": 3.22,
           "taxa_acerto": 0.522
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 42,
+          "media_pts": 2.8,
+          "taxa_acerto": 0.533
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 40,
-          "media_pts": 4.44,
-          "taxa_acerto": 0.667
+          "media_pts": 4.0,
+          "taxa_acerto": 0.6
         },
         "OFC": {
           "jogos": 1,
@@ -3019,20 +3091,20 @@
         }
       },
       "concordancia_cristal": 0.681,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 124,
-      "media_pts_jogos_com_favorito": 3.44,
+      "media_pts_jogos_com_favorito": 3.35,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "cohere-command-r",
       "nome_display": "Cohere Command R",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.056,
       "avg_gols_total": 1.72,
       "avg_saldo_abs": 1.42,
@@ -3049,27 +3121,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 20,
       "emp_acertados": 0,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.053,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.051,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 49,
-          "media_pts": 3.5,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 45,
           "media_pts": 4.09,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 45,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.6
+          "pts": 49,
+          "media_pts": 3.27,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -3077,11 +3143,17 @@
           "media_pts": 3.78,
           "taxa_acerto": 0.652
         },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 27,
+        "AFC": {
+          "jogos": 15,
+          "pts": 45,
           "media_pts": 3.0,
-          "taxa_acerto": 0.556
+          "taxa_acerto": 0.6
+        },
+        "CONMEBOL": {
+          "jogos": 10,
+          "pts": 27,
+          "media_pts": 2.7,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -3091,20 +3163,20 @@
         }
       },
       "concordancia_cristal": 0.25,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 134,
-      "media_pts_jogos_com_favorito": 3.72,
+      "media_pts_jogos_com_favorito": 3.62,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "qwen-3-coder",
       "nome_display": "Qwen 3 Coder",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.097,
       "avg_gols_total": 2.61,
       "avg_saldo_abs": 1.5,
@@ -3121,27 +3193,21 @@
       "saldo_acertados": 4,
       "venc_acertados": 17,
       "emp_acertados": 1,
-      "erros": 14,
-      "taxa_acerto": 0.632,
-      "taxa_exato": 0.053,
+      "erros": 15,
+      "taxa_acerto": 0.615,
+      "taxa_exato": 0.051,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 47,
-          "media_pts": 3.36,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 47,
           "media_pts": 4.27,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 52,
-          "media_pts": 3.47,
-          "taxa_acerto": 0.667
+          "pts": 47,
+          "media_pts": 3.13,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -3149,11 +3215,17 @@
           "media_pts": 3.52,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 52,
+          "media_pts": 3.47,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 25,
-          "media_pts": 2.78,
-          "taxa_acerto": 0.556
+          "media_pts": 2.5,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -3163,92 +3235,20 @@
         }
       },
       "concordancia_cristal": 0.431,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 133,
-      "media_pts_jogos_com_favorito": 3.69,
+      "media_pts_jogos_com_favorito": 3.59,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
-      "cluster": 0
-    },
-    {
-      "slug": "mixtral-8x22b",
-      "nome_display": "Mixtral 8x22B",
-      "serie_a": false,
-      "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
-      "pct_empates_palpitados": 0.111,
-      "avg_gols_total": 2.67,
-      "avg_saldo_abs": 1.69,
-      "tendencia_continente": {
-        "CONCACAF": 0.333,
-        "CAF": 0.2,
-        "AFC": 0.296,
-        "UEFA": 0.725,
-        "CONMEBOL": 0.667,
-        "OFC": 0.0
-      },
-      "pontos": 132,
-      "exatos": 5,
-      "saldo_acertados": 1,
-      "venc_acertados": 15,
-      "emp_acertados": 0,
-      "erros": 17,
-      "taxa_acerto": 0.553,
-      "taxa_exato": 0.132,
-      "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 45,
-          "media_pts": 3.21,
-          "taxa_acerto": 0.5
-        },
-        "CONCACAF": {
-          "jogos": 11,
-          "pts": 40,
-          "media_pts": 3.64,
-          "taxa_acerto": 0.545
-        },
-        "AFC": {
-          "jogos": 15,
-          "pts": 50,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.533
-        },
-        "UEFA": {
-          "jogos": 23,
-          "pts": 82,
-          "media_pts": 3.57,
-          "taxa_acerto": 0.565
-        },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
-        },
-        "OFC": {
-          "jogos": 1,
-          "pts": 0,
-          "media_pts": 0.0,
-          "taxa_acerto": 0.0
-        }
-      },
-      "concordancia_cristal": 0.403,
-      "jogos_com_favorito": 36,
-      "pts_em_jogos_com_favorito": 132,
-      "media_pts_jogos_com_favorito": 3.67,
-      "jogos_equilibrados": 2,
-      "pts_em_jogos_equilibrados": 0,
-      "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 0
+      "cluster": 3
     },
     {
       "slug": "gemini-2-5-pro",
       "nome_display": "Gemini 2.5 Pro",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.181,
       "avg_gols_total": 2.25,
       "avg_saldo_abs": 1.5,
@@ -3265,27 +3265,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 14,
       "emp_acertados": 0,
-      "erros": 17,
-      "taxa_acerto": 0.553,
-      "taxa_exato": 0.105,
+      "erros": 18,
+      "taxa_acerto": 0.538,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 40,
-          "media_pts": 2.86,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 45,
           "media_pts": 4.09,
           "taxa_acerto": 0.636
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 56,
-          "media_pts": 3.73,
-          "taxa_acerto": 0.533
+          "pts": 40,
+          "media_pts": 2.67,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -3293,11 +3287,17 @@
           "media_pts": 3.43,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 56,
+          "media_pts": 3.73,
+          "taxa_acerto": 0.533
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 27,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.556
+          "media_pts": 2.7,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -3307,20 +3307,20 @@
         }
       },
       "concordancia_cristal": 0.653,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 131,
-      "media_pts_jogos_com_favorito": 3.64,
+      "media_pts_jogos_com_favorito": 3.54,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 1
+      "cluster": 0
     },
     {
       "slug": "llama-3-3-70b",
       "nome_display": "Llama 3.3 70B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.194,
       "avg_gols_total": 2.1,
       "avg_saldo_abs": 1.32,
@@ -3337,27 +3337,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 15,
       "emp_acertados": 0,
-      "erros": 16,
-      "taxa_acerto": 0.579,
-      "taxa_exato": 0.105,
+      "erros": 17,
+      "taxa_acerto": 0.564,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 37,
-          "media_pts": 2.64,
-          "taxa_acerto": 0.357
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 57,
           "media_pts": 5.18,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 42,
-          "media_pts": 2.8,
-          "taxa_acerto": 0.533
+          "pts": 37,
+          "media_pts": 2.47,
+          "taxa_acerto": 0.333
         },
         "UEFA": {
           "jogos": 23,
@@ -3365,11 +3359,17 @@
           "media_pts": 3.65,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 42,
+          "media_pts": 2.8,
+          "taxa_acerto": 0.533
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 32,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
+          "media_pts": 3.2,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -3379,20 +3379,20 @@
         }
       },
       "concordancia_cristal": 0.347,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 126,
-      "media_pts_jogos_com_favorito": 3.5,
+      "media_pts_jogos_com_favorito": 3.41,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 2
+      "cluster": 0
     },
     {
       "slug": "llama-3-1-70b",
       "nome_display": "Llama 3.1 70B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.236,
       "avg_gols_total": 1.51,
       "avg_saldo_abs": 1.1,
@@ -3409,27 +3409,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 15,
       "emp_acertados": 1,
-      "erros": 16,
-      "taxa_acerto": 0.579,
-      "taxa_exato": 0.079,
+      "erros": 17,
+      "taxa_acerto": 0.564,
+      "taxa_exato": 0.077,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 46,
-          "media_pts": 3.29,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 35,
           "media_pts": 3.18,
           "taxa_acerto": 0.545
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 55,
-          "media_pts": 3.67,
-          "taxa_acerto": 0.667
+          "pts": 46,
+          "media_pts": 3.07,
+          "taxa_acerto": 0.467
         },
         "UEFA": {
           "jogos": 23,
@@ -3437,11 +3431,17 @@
           "media_pts": 3.09,
           "taxa_acerto": 0.522
         },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 40,
-          "media_pts": 4.44,
+        "AFC": {
+          "jogos": 15,
+          "pts": 55,
+          "media_pts": 3.67,
           "taxa_acerto": 0.667
+        },
+        "CONMEBOL": {
+          "jogos": 10,
+          "pts": 40,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.6
         },
         "OFC": {
           "jogos": 1,
@@ -3451,9 +3451,9 @@
         }
       },
       "concordancia_cristal": 0.236,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 131,
-      "media_pts_jogos_com_favorito": 3.64,
+      "media_pts_jogos_com_favorito": 3.54,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
@@ -3464,7 +3464,7 @@
       "nome_display": "Gemma 3 27B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.083,
       "avg_gols_total": 2.56,
       "avg_saldo_abs": 1.89,
@@ -3481,27 +3481,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 20,
       "emp_acertados": 0,
-      "erros": 13,
-      "taxa_acerto": 0.658,
-      "taxa_exato": 0.079,
+      "erros": 14,
+      "taxa_acerto": 0.641,
+      "taxa_exato": 0.077,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 47,
-          "media_pts": 3.36,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 40,
           "media_pts": 3.64,
           "taxa_acerto": 0.727
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 60,
-          "media_pts": 4.0,
-          "taxa_acerto": 0.667
+          "pts": 47,
+          "media_pts": 3.13,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -3509,11 +3503,17 @@
           "media_pts": 3.87,
           "taxa_acerto": 0.652
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 60,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 30,
-          "media_pts": 3.33,
-          "taxa_acerto": 0.556
+          "media_pts": 3.0,
+          "taxa_acerto": 0.5
         },
         "OFC": {
           "jogos": 1,
@@ -3523,20 +3523,20 @@
         }
       },
       "concordancia_cristal": 0.222,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 139,
-      "media_pts_jogos_com_favorito": 3.86,
+      "media_pts_jogos_com_favorito": 3.76,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
-      "cluster": 0
+      "cluster": 3
     },
     {
       "slug": "phi-4-mini",
       "nome_display": "Phi-4 mini",
       "serie_a": false,
       "n_palpites": 71,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.268,
       "avg_gols_total": 1.92,
       "avg_saldo_abs": 1.04,
@@ -3553,27 +3553,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 13,
       "emp_acertados": 4,
-      "erros": 15,
-      "taxa_acerto": 0.605,
-      "taxa_exato": 0.079,
+      "erros": 16,
+      "taxa_acerto": 0.59,
+      "taxa_exato": 0.077,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 52,
-          "media_pts": 3.71,
-          "taxa_acerto": 0.571
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 35,
           "media_pts": 3.18,
           "taxa_acerto": 0.636
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 57,
-          "media_pts": 3.8,
-          "taxa_acerto": 0.667
+          "pts": 52,
+          "media_pts": 3.47,
+          "taxa_acerto": 0.533
         },
         "UEFA": {
           "jogos": 23,
@@ -3581,11 +3575,17 @@
           "media_pts": 3.96,
           "taxa_acerto": 0.609
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 57,
+          "media_pts": 3.8,
+          "taxa_acerto": 0.667
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 20,
-          "media_pts": 2.22,
-          "taxa_acerto": 0.444
+          "media_pts": 2.0,
+          "taxa_acerto": 0.4
         },
         "OFC": {
           "jogos": 1,
@@ -3595,9 +3595,9 @@
         }
       },
       "concordancia_cristal": 0.07,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 126,
-      "media_pts_jogos_com_favorito": 3.5,
+      "media_pts_jogos_com_favorito": 3.41,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -3608,7 +3608,7 @@
       "nome_display": "Llama 4 Maverick",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 1.96,
       "avg_saldo_abs": 1.4,
@@ -3625,27 +3625,21 @@
       "saldo_acertados": 3,
       "venc_acertados": 13,
       "emp_acertados": 0,
-      "erros": 18,
-      "taxa_acerto": 0.526,
-      "taxa_exato": 0.105,
+      "erros": 19,
+      "taxa_acerto": 0.513,
+      "taxa_exato": 0.103,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 42,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 40,
           "media_pts": 3.64,
           "taxa_acerto": 0.545
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 47,
-          "media_pts": 3.13,
-          "taxa_acerto": 0.533
+          "pts": 42,
+          "media_pts": 2.8,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -3653,11 +3647,17 @@
           "media_pts": 3.52,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 47,
+          "media_pts": 3.13,
+          "taxa_acerto": 0.533
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 25,
-          "media_pts": 2.78,
-          "taxa_acerto": 0.444
+          "media_pts": 2.5,
+          "taxa_acerto": 0.4
         },
         "OFC": {
           "jogos": 1,
@@ -3667,20 +3667,20 @@
         }
       },
       "concordancia_cristal": 0.458,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 121,
-      "media_pts_jogos_com_favorito": 3.36,
+      "media_pts_jogos_com_favorito": 3.27,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "cohere-command-r-plus",
       "nome_display": "Cohere Command R+",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.26,
       "avg_saldo_abs": 1.4,
@@ -3697,27 +3697,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 15,
       "emp_acertados": 1,
-      "erros": 18,
-      "taxa_acerto": 0.526,
-      "taxa_exato": 0.053,
+      "erros": 19,
+      "taxa_acerto": 0.513,
+      "taxa_exato": 0.051,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 35,
-          "media_pts": 2.5,
-          "taxa_acerto": 0.357
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 30,
           "media_pts": 2.73,
           "taxa_acerto": 0.545
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 57,
-          "media_pts": 3.8,
-          "taxa_acerto": 0.733
+          "pts": 35,
+          "media_pts": 2.33,
+          "taxa_acerto": 0.333
         },
         "UEFA": {
           "jogos": 23,
@@ -3725,11 +3719,17 @@
           "media_pts": 3.43,
           "taxa_acerto": 0.565
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 57,
+          "media_pts": 3.8,
+          "taxa_acerto": 0.733
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 20,
-          "media_pts": 2.22,
-          "taxa_acerto": 0.444
+          "media_pts": 2.0,
+          "taxa_acerto": 0.4
         },
         "OFC": {
           "jogos": 1,
@@ -3739,20 +3739,20 @@
         }
       },
       "concordancia_cristal": 0.139,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 114,
-      "media_pts_jogos_com_favorito": 3.17,
+      "media_pts_jogos_com_favorito": 3.08,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "meta-llama-4",
       "nome_display": "Meta AI (Llama 4)",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 38,
+      "n_encerrados_palpitou": 39,
       "pct_empates_palpitados": 0.153,
       "avg_gols_total": 1.93,
       "avg_saldo_abs": 1.49,
@@ -3769,27 +3769,21 @@
       "saldo_acertados": 2,
       "venc_acertados": 17,
       "emp_acertados": 0,
-      "erros": 18,
-      "taxa_acerto": 0.526,
+      "erros": 19,
+      "taxa_acerto": 0.513,
       "taxa_exato": 0.026,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 14,
-          "pts": 34,
-          "media_pts": 2.43,
-          "taxa_acerto": 0.429
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 40,
           "media_pts": 3.64,
           "taxa_acerto": 0.636
         },
-        "AFC": {
+        "CAF": {
           "jogos": 15,
-          "pts": 40,
-          "media_pts": 2.67,
-          "taxa_acerto": 0.533
+          "pts": 34,
+          "media_pts": 2.27,
+          "taxa_acerto": 0.4
         },
         "UEFA": {
           "jogos": 23,
@@ -3797,11 +3791,17 @@
           "media_pts": 2.78,
           "taxa_acerto": 0.522
         },
+        "AFC": {
+          "jogos": 15,
+          "pts": 40,
+          "media_pts": 2.67,
+          "taxa_acerto": 0.533
+        },
         "CONMEBOL": {
-          "jogos": 9,
+          "jogos": 10,
           "pts": 25,
-          "media_pts": 2.78,
-          "taxa_acerto": 0.444
+          "media_pts": 2.5,
+          "taxa_acerto": 0.4
         },
         "OFC": {
           "jogos": 1,
@@ -3811,13 +3811,13 @@
         }
       },
       "concordancia_cristal": 0.389,
-      "jogos_com_favorito": 36,
+      "jogos_com_favorito": 37,
       "pts_em_jogos_com_favorito": 104,
-      "media_pts_jogos_com_favorito": 2.89,
+      "media_pts_jogos_com_favorito": 2.81,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "llama-4-scout",
@@ -3845,29 +3845,29 @@
       "taxa_acerto": 0.65,
       "taxa_exato": 0.1,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 8,
-          "pts": 15,
-          "media_pts": 1.88,
-          "taxa_acerto": 0.375
-        },
         "CONCACAF": {
           "jogos": 5,
           "pts": 30,
           "media_pts": 6.0,
           "taxa_acerto": 1.0
         },
-        "AFC": {
+        "CAF": {
           "jogos": 8,
-          "pts": 35,
-          "media_pts": 4.38,
-          "taxa_acerto": 0.75
+          "pts": 15,
+          "media_pts": 1.88,
+          "taxa_acerto": 0.375
         },
         "UEFA": {
           "jogos": 13,
           "pts": 55,
           "media_pts": 4.23,
           "taxa_acerto": 0.692
+        },
+        "AFC": {
+          "jogos": 8,
+          "pts": 35,
+          "media_pts": 4.38,
+          "taxa_acerto": 0.75
         },
         "CONMEBOL": {
           "jogos": 5,
@@ -3889,7 +3889,7 @@
       "jogos_equilibrados": 1,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 10.0,
-      "cluster": 0
+      "cluster": 1
     }
   ],
   "similaridade": {
@@ -3902,12 +3902,12 @@
       "gemini-2-5-flash": 0.444,
       "claude-opus-4-5": 0.583,
       "o4-mini": 0.375,
+      "mistral-medium-3": 0.444,
       "o3": 0.486,
       "qwen-3-235b": 0.431,
       "wizardlm-2-8x22b": 0.542,
       "deepseek-v3-1": 0.417,
       "claude-sonnet-4-6": 0.597,
-      "mistral-medium-3": 0.444,
       "o1": 0.514,
       "gemma-3-12b": 0.25,
       "grok-4-heavy": 0.444,
@@ -3932,13 +3932,13 @@
       "chatgpt-5-mini": 0.417,
       "qwen-2-5-72b": 0.333,
       "copilot-microsoft": 0.486,
+      "mixtral-8x22b": 0.236,
       "perplexity-sonar-large": 0.361,
       "gpt-4o": 0.417,
       "jamba-1-5-large": 0.389,
       "claude-sonnet-4-5": 0.5,
       "cohere-command-r": 0.25,
       "qwen-3-coder": 0.264,
-      "mixtral-8x22b": 0.236,
       "gemini-2-5-pro": 0.444,
       "llama-3-3-70b": 0.333,
       "llama-3-1-70b": 0.319,
@@ -3958,12 +3958,12 @@
       "gemini-2-5-flash": 0.431,
       "claude-opus-4-5": 0.431,
       "o4-mini": 0.361,
+      "mistral-medium-3": 0.569,
       "o3": 0.514,
       "qwen-3-235b": 0.194,
       "wizardlm-2-8x22b": 0.417,
       "deepseek-v3-1": 0.292,
       "claude-sonnet-4-6": 0.431,
-      "mistral-medium-3": 0.569,
       "o1": 0.431,
       "gemma-3-12b": 0.181,
       "grok-4-heavy": 0.458,
@@ -3988,13 +3988,13 @@
       "chatgpt-5-mini": 0.389,
       "qwen-2-5-72b": 0.333,
       "copilot-microsoft": 0.403,
+      "mixtral-8x22b": 0.403,
       "perplexity-sonar-large": 0.431,
       "gpt-4o": 0.403,
       "jamba-1-5-large": 0.264,
       "claude-sonnet-4-5": 0.472,
       "cohere-command-r": 0.181,
       "qwen-3-coder": 0.389,
-      "mixtral-8x22b": 0.403,
       "gemini-2-5-pro": 0.431,
       "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.139,
@@ -4014,12 +4014,12 @@
       "gemini-2-5-flash": 0.375,
       "claude-opus-4-5": 0.361,
       "o4-mini": 0.361,
+      "mistral-medium-3": 0.528,
       "o3": 0.361,
       "qwen-3-235b": 0.236,
       "wizardlm-2-8x22b": 0.389,
       "deepseek-v3-1": 0.264,
       "claude-sonnet-4-6": 0.403,
-      "mistral-medium-3": 0.528,
       "o1": 0.347,
       "gemma-3-12b": 0.278,
       "grok-4-heavy": 0.319,
@@ -4044,13 +4044,13 @@
       "chatgpt-5-mini": 0.361,
       "qwen-2-5-72b": 0.361,
       "copilot-microsoft": 0.361,
+      "mixtral-8x22b": 0.403,
       "perplexity-sonar-large": 0.347,
       "gpt-4o": 0.319,
       "jamba-1-5-large": 0.278,
       "claude-sonnet-4-5": 0.417,
       "cohere-command-r": 0.236,
       "qwen-3-coder": 0.333,
-      "mixtral-8x22b": 0.403,
       "gemini-2-5-pro": 0.333,
       "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.236,
@@ -4070,12 +4070,12 @@
       "gemini-2-5-flash": 0.556,
       "claude-opus-4-5": 0.556,
       "o4-mini": 0.458,
+      "mistral-medium-3": 0.431,
       "o3": 0.569,
       "qwen-3-235b": 0.319,
       "wizardlm-2-8x22b": 0.528,
       "deepseek-v3-1": 0.431,
       "claude-sonnet-4-6": 0.639,
-      "mistral-medium-3": 0.431,
       "o1": 0.556,
       "gemma-3-12b": 0.25,
       "grok-4-heavy": 0.486,
@@ -4100,13 +4100,13 @@
       "chatgpt-5-mini": 0.389,
       "qwen-2-5-72b": 0.333,
       "copilot-microsoft": 0.5,
+      "mixtral-8x22b": 0.278,
       "perplexity-sonar-large": 0.514,
       "gpt-4o": 0.403,
       "jamba-1-5-large": 0.319,
       "claude-sonnet-4-5": 0.625,
       "cohere-command-r": 0.292,
       "qwen-3-coder": 0.292,
-      "mixtral-8x22b": 0.278,
       "gemini-2-5-pro": 0.583,
       "llama-3-3-70b": 0.333,
       "llama-3-1-70b": 0.292,
@@ -4126,12 +4126,12 @@
       "gemini-2-5-flash": 0.458,
       "claude-opus-4-5": 0.514,
       "o4-mini": 0.431,
+      "mistral-medium-3": 0.444,
       "o3": 0.569,
       "qwen-3-235b": 0.278,
       "wizardlm-2-8x22b": 0.417,
       "deepseek-v3-1": 0.375,
       "claude-sonnet-4-6": 0.528,
-      "mistral-medium-3": 0.444,
       "o1": 0.472,
       "gemma-3-12b": 0.208,
       "grok-4-heavy": 0.458,
@@ -4156,13 +4156,13 @@
       "chatgpt-5-mini": 0.306,
       "qwen-2-5-72b": 0.194,
       "copilot-microsoft": 0.444,
+      "mixtral-8x22b": 0.333,
       "perplexity-sonar-large": 0.403,
       "gpt-4o": 0.458,
       "jamba-1-5-large": 0.264,
       "claude-sonnet-4-5": 0.444,
       "cohere-command-r": 0.181,
       "qwen-3-coder": 0.347,
-      "mixtral-8x22b": 0.333,
       "gemini-2-5-pro": 0.486,
       "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.194,
@@ -4182,12 +4182,12 @@
       "gemini-2-5-flash": 1.0,
       "claude-opus-4-5": 0.472,
       "o4-mini": 0.472,
+      "mistral-medium-3": 0.431,
       "o3": 0.569,
       "qwen-3-235b": 0.306,
       "wizardlm-2-8x22b": 0.486,
       "deepseek-v3-1": 0.361,
       "claude-sonnet-4-6": 0.569,
-      "mistral-medium-3": 0.431,
       "o1": 0.514,
       "gemma-3-12b": 0.208,
       "grok-4-heavy": 0.514,
@@ -4212,13 +4212,13 @@
       "chatgpt-5-mini": 0.403,
       "qwen-2-5-72b": 0.278,
       "copilot-microsoft": 0.458,
+      "mixtral-8x22b": 0.306,
       "perplexity-sonar-large": 0.597,
       "gpt-4o": 0.486,
       "jamba-1-5-large": 0.292,
       "claude-sonnet-4-5": 0.542,
       "cohere-command-r": 0.264,
       "qwen-3-coder": 0.319,
-      "mixtral-8x22b": 0.306,
       "gemini-2-5-pro": 0.486,
       "llama-3-3-70b": 0.375,
       "llama-3-1-70b": 0.222,
@@ -4238,12 +4238,12 @@
       "gemini-2-5-flash": 0.472,
       "claude-opus-4-5": 1.0,
       "o4-mini": 0.472,
+      "mistral-medium-3": 0.458,
       "o3": 0.583,
       "qwen-3-235b": 0.236,
       "wizardlm-2-8x22b": 0.597,
       "deepseek-v3-1": 0.375,
       "claude-sonnet-4-6": 0.611,
-      "mistral-medium-3": 0.458,
       "o1": 0.583,
       "gemma-3-12b": 0.194,
       "grok-4-heavy": 0.528,
@@ -4268,13 +4268,13 @@
       "chatgpt-5-mini": 0.431,
       "qwen-2-5-72b": 0.347,
       "copilot-microsoft": 0.444,
+      "mixtral-8x22b": 0.347,
       "perplexity-sonar-large": 0.403,
       "gpt-4o": 0.486,
       "jamba-1-5-large": 0.333,
       "claude-sonnet-4-5": 0.542,
       "cohere-command-r": 0.25,
       "qwen-3-coder": 0.361,
-      "mixtral-8x22b": 0.347,
       "gemini-2-5-pro": 0.597,
       "llama-3-3-70b": 0.236,
       "llama-3-1-70b": 0.208,
@@ -4294,12 +4294,12 @@
       "gemini-2-5-flash": 0.472,
       "claude-opus-4-5": 0.472,
       "o4-mini": 1.0,
+      "mistral-medium-3": 0.375,
       "o3": 0.542,
       "qwen-3-235b": 0.264,
       "wizardlm-2-8x22b": 0.514,
       "deepseek-v3-1": 0.458,
       "claude-sonnet-4-6": 0.556,
-      "mistral-medium-3": 0.375,
       "o1": 0.375,
       "gemma-3-12b": 0.153,
       "grok-4-heavy": 0.431,
@@ -4324,13 +4324,13 @@
       "chatgpt-5-mini": 0.389,
       "qwen-2-5-72b": 0.222,
       "copilot-microsoft": 0.472,
+      "mixtral-8x22b": 0.389,
       "perplexity-sonar-large": 0.333,
       "gpt-4o": 0.403,
       "jamba-1-5-large": 0.264,
       "claude-sonnet-4-5": 0.431,
       "cohere-command-r": 0.25,
       "qwen-3-coder": 0.319,
-      "mixtral-8x22b": 0.389,
       "gemini-2-5-pro": 0.431,
       "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.208,
@@ -4341,286 +4341,6 @@
       "meta-llama-4": 0.236,
       "llama-4-scout": 0.1
     },
-    "o3": {
-      "grok-4-fast": 0.486,
-      "mistral-small-3": 0.514,
-      "claude-haiku-3-5": 0.361,
-      "claude-opus-4-7": 0.569,
-      "gpt-4-1": 0.569,
-      "gemini-2-5-flash": 0.569,
-      "claude-opus-4-5": 0.583,
-      "o4-mini": 0.542,
-      "o3": 1.0,
-      "qwen-3-235b": 0.333,
-      "wizardlm-2-8x22b": 0.542,
-      "deepseek-v3-1": 0.458,
-      "claude-sonnet-4-6": 0.597,
-      "mistral-medium-3": 0.444,
-      "o1": 0.597,
-      "gemma-3-12b": 0.194,
-      "grok-4-heavy": 0.542,
-      "claude-fable-5": 0.431,
-      "deepseek-v3": 0.486,
-      "grok-4": 0.569,
-      "qwen-3-max": 0.458,
-      "ministral-8b": 0.25,
-      "le-chat-mistral": 0.597,
-      "manus": 0.431,
-      "perplexity-sonar-pro": 0.639,
-      "codestral": 0.292,
-      "chatgpt-5-thinking": 0.681,
-      "perplexity-sonar-reasoning": 0.708,
-      "gemini-2-5-flash-lite": 0.347,
-      "deepseek-v3-2": 0.507,
-      "chatgpt-5": 0.681,
-      "chatgpt-5-nano": 0.333,
-      "deepseek-r1": 0.444,
-      "claude-haiku-4-5": 0.264,
-      "kimi-k2": 0.375,
-      "chatgpt-5-mini": 0.417,
-      "qwen-2-5-72b": 0.333,
-      "copilot-microsoft": 0.486,
-      "perplexity-sonar-large": 0.444,
-      "gpt-4o": 0.458,
-      "jamba-1-5-large": 0.333,
-      "claude-sonnet-4-5": 0.528,
-      "cohere-command-r": 0.264,
-      "qwen-3-coder": 0.347,
-      "mixtral-8x22b": 0.306,
-      "gemini-2-5-pro": 0.611,
-      "llama-3-3-70b": 0.292,
-      "llama-3-1-70b": 0.194,
-      "gemma-3-27b": 0.167,
-      "phi-4-mini": 0.056,
-      "llama-4-maverick": 0.347,
-      "cohere-command-r-plus": 0.167,
-      "meta-llama-4": 0.236,
-      "llama-4-scout": 0.35
-    },
-    "qwen-3-235b": {
-      "grok-4-fast": 0.431,
-      "mistral-small-3": 0.194,
-      "claude-haiku-3-5": 0.236,
-      "claude-opus-4-7": 0.319,
-      "gpt-4-1": 0.278,
-      "gemini-2-5-flash": 0.306,
-      "claude-opus-4-5": 0.236,
-      "o4-mini": 0.264,
-      "o3": 0.333,
-      "qwen-3-235b": 1.0,
-      "wizardlm-2-8x22b": 0.222,
-      "deepseek-v3-1": 0.319,
-      "claude-sonnet-4-6": 0.361,
-      "mistral-medium-3": 0.264,
-      "o1": 0.278,
-      "gemma-3-12b": 0.25,
-      "grok-4-heavy": 0.319,
-      "claude-fable-5": 0.306,
-      "deepseek-v3": 0.292,
-      "grok-4": 0.208,
-      "qwen-3-max": 0.292,
-      "ministral-8b": 0.278,
-      "le-chat-mistral": 0.222,
-      "manus": 0.333,
-      "perplexity-sonar-pro": 0.333,
-      "codestral": 0.375,
-      "chatgpt-5-thinking": 0.278,
-      "perplexity-sonar-reasoning": 0.236,
-      "gemini-2-5-flash-lite": 0.181,
-      "deepseek-v3-2": 0.224,
-      "chatgpt-5": 0.389,
-      "chatgpt-5-nano": 0.236,
-      "deepseek-r1": 0.208,
-      "claude-haiku-4-5": 0.167,
-      "kimi-k2": 0.208,
-      "chatgpt-5-mini": 0.319,
-      "qwen-2-5-72b": 0.222,
-      "copilot-microsoft": 0.292,
-      "perplexity-sonar-large": 0.278,
-      "gpt-4o": 0.181,
-      "jamba-1-5-large": 0.306,
-      "claude-sonnet-4-5": 0.264,
-      "cohere-command-r": 0.208,
-      "qwen-3-coder": 0.236,
-      "mixtral-8x22b": 0.236,
-      "gemini-2-5-pro": 0.306,
-      "llama-3-3-70b": 0.194,
-      "llama-3-1-70b": 0.264,
-      "gemma-3-27b": 0.236,
-      "phi-4-mini": 0.127,
-      "llama-4-maverick": 0.181,
-      "cohere-command-r-plus": 0.236,
-      "meta-llama-4": 0.167,
-      "llama-4-scout": 0.3
-    },
-    "wizardlm-2-8x22b": {
-      "grok-4-fast": 0.542,
-      "mistral-small-3": 0.417,
-      "claude-haiku-3-5": 0.389,
-      "claude-opus-4-7": 0.528,
-      "gpt-4-1": 0.417,
-      "gemini-2-5-flash": 0.486,
-      "claude-opus-4-5": 0.597,
-      "o4-mini": 0.514,
-      "o3": 0.542,
-      "qwen-3-235b": 0.222,
-      "wizardlm-2-8x22b": 1.0,
-      "deepseek-v3-1": 0.5,
-      "claude-sonnet-4-6": 0.528,
-      "mistral-medium-3": 0.458,
-      "o1": 0.514,
-      "gemma-3-12b": 0.208,
-      "grok-4-heavy": 0.528,
-      "claude-fable-5": 0.403,
-      "deepseek-v3": 0.569,
-      "grok-4": 0.5,
-      "qwen-3-max": 0.583,
-      "ministral-8b": 0.278,
-      "le-chat-mistral": 0.556,
-      "manus": 0.319,
-      "perplexity-sonar-pro": 0.5,
-      "codestral": 0.292,
-      "chatgpt-5-thinking": 0.569,
-      "perplexity-sonar-reasoning": 0.528,
-      "gemini-2-5-flash-lite": 0.319,
-      "deepseek-v3-2": 0.567,
-      "chatgpt-5": 0.597,
-      "chatgpt-5-nano": 0.347,
-      "deepseek-r1": 0.514,
-      "claude-haiku-4-5": 0.306,
-      "kimi-k2": 0.431,
-      "chatgpt-5-mini": 0.444,
-      "qwen-2-5-72b": 0.264,
-      "copilot-microsoft": 0.417,
-      "perplexity-sonar-large": 0.375,
-      "gpt-4o": 0.417,
-      "jamba-1-5-large": 0.306,
-      "claude-sonnet-4-5": 0.542,
-      "cohere-command-r": 0.222,
-      "qwen-3-coder": 0.278,
-      "mixtral-8x22b": 0.306,
-      "gemini-2-5-pro": 0.528,
-      "llama-3-3-70b": 0.25,
-      "llama-3-1-70b": 0.194,
-      "gemma-3-27b": 0.278,
-      "phi-4-mini": 0.085,
-      "llama-4-maverick": 0.375,
-      "cohere-command-r-plus": 0.139,
-      "meta-llama-4": 0.278,
-      "llama-4-scout": 0.35
-    },
-    "deepseek-v3-1": {
-      "grok-4-fast": 0.417,
-      "mistral-small-3": 0.292,
-      "claude-haiku-3-5": 0.264,
-      "claude-opus-4-7": 0.431,
-      "gpt-4-1": 0.375,
-      "gemini-2-5-flash": 0.361,
-      "claude-opus-4-5": 0.375,
-      "o4-mini": 0.458,
-      "o3": 0.458,
-      "qwen-3-235b": 0.319,
-      "wizardlm-2-8x22b": 0.5,
-      "deepseek-v3-1": 1.0,
-      "claude-sonnet-4-6": 0.431,
-      "mistral-medium-3": 0.389,
-      "o1": 0.333,
-      "gemma-3-12b": 0.208,
-      "grok-4-heavy": 0.403,
-      "claude-fable-5": 0.319,
-      "deepseek-v3": 0.514,
-      "grok-4": 0.375,
-      "qwen-3-max": 0.389,
-      "ministral-8b": 0.278,
-      "le-chat-mistral": 0.431,
-      "manus": 0.236,
-      "perplexity-sonar-pro": 0.361,
-      "codestral": 0.25,
-      "chatgpt-5-thinking": 0.431,
-      "perplexity-sonar-reasoning": 0.417,
-      "gemini-2-5-flash-lite": 0.264,
-      "deepseek-v3-2": 0.522,
-      "chatgpt-5": 0.472,
-      "chatgpt-5-nano": 0.319,
-      "deepseek-r1": 0.444,
-      "claude-haiku-4-5": 0.264,
-      "kimi-k2": 0.333,
-      "chatgpt-5-mini": 0.514,
-      "qwen-2-5-72b": 0.278,
-      "copilot-microsoft": 0.333,
-      "perplexity-sonar-large": 0.319,
-      "gpt-4o": 0.361,
-      "jamba-1-5-large": 0.292,
-      "claude-sonnet-4-5": 0.431,
-      "cohere-command-r": 0.208,
-      "qwen-3-coder": 0.167,
-      "mixtral-8x22b": 0.319,
-      "gemini-2-5-pro": 0.458,
-      "llama-3-3-70b": 0.208,
-      "llama-3-1-70b": 0.194,
-      "gemma-3-27b": 0.208,
-      "phi-4-mini": 0.113,
-      "llama-4-maverick": 0.278,
-      "cohere-command-r-plus": 0.111,
-      "meta-llama-4": 0.25,
-      "llama-4-scout": 0.2
-    },
-    "claude-sonnet-4-6": {
-      "grok-4-fast": 0.597,
-      "mistral-small-3": 0.431,
-      "claude-haiku-3-5": 0.403,
-      "claude-opus-4-7": 0.639,
-      "gpt-4-1": 0.528,
-      "gemini-2-5-flash": 0.569,
-      "claude-opus-4-5": 0.611,
-      "o4-mini": 0.556,
-      "o3": 0.597,
-      "qwen-3-235b": 0.361,
-      "wizardlm-2-8x22b": 0.528,
-      "deepseek-v3-1": 0.431,
-      "claude-sonnet-4-6": 1.0,
-      "mistral-medium-3": 0.5,
-      "o1": 0.514,
-      "gemma-3-12b": 0.264,
-      "grok-4-heavy": 0.597,
-      "claude-fable-5": 0.514,
-      "deepseek-v3": 0.5,
-      "grok-4": 0.569,
-      "qwen-3-max": 0.5,
-      "ministral-8b": 0.333,
-      "le-chat-mistral": 0.542,
-      "manus": 0.403,
-      "perplexity-sonar-pro": 0.569,
-      "codestral": 0.375,
-      "chatgpt-5-thinking": 0.694,
-      "perplexity-sonar-reasoning": 0.597,
-      "gemini-2-5-flash-lite": 0.361,
-      "deepseek-v3-2": 0.537,
-      "chatgpt-5": 0.722,
-      "chatgpt-5-nano": 0.403,
-      "deepseek-r1": 0.444,
-      "claude-haiku-4-5": 0.278,
-      "kimi-k2": 0.472,
-      "chatgpt-5-mini": 0.514,
-      "qwen-2-5-72b": 0.306,
-      "copilot-microsoft": 0.528,
-      "perplexity-sonar-large": 0.458,
-      "gpt-4o": 0.556,
-      "jamba-1-5-large": 0.333,
-      "claude-sonnet-4-5": 0.625,
-      "cohere-command-r": 0.319,
-      "qwen-3-coder": 0.347,
-      "mixtral-8x22b": 0.333,
-      "gemini-2-5-pro": 0.583,
-      "llama-3-3-70b": 0.278,
-      "llama-3-1-70b": 0.264,
-      "gemma-3-27b": 0.208,
-      "phi-4-mini": 0.07,
-      "llama-4-maverick": 0.375,
-      "cohere-command-r-plus": 0.125,
-      "meta-llama-4": 0.306,
-      "llama-4-scout": 0.25
-    },
     "mistral-medium-3": {
       "grok-4-fast": 0.444,
       "mistral-small-3": 0.569,
@@ -4630,12 +4350,12 @@
       "gemini-2-5-flash": 0.431,
       "claude-opus-4-5": 0.458,
       "o4-mini": 0.375,
+      "mistral-medium-3": 1.0,
       "o3": 0.444,
       "qwen-3-235b": 0.264,
       "wizardlm-2-8x22b": 0.458,
       "deepseek-v3-1": 0.389,
       "claude-sonnet-4-6": 0.5,
-      "mistral-medium-3": 1.0,
       "o1": 0.486,
       "gemma-3-12b": 0.167,
       "grok-4-heavy": 0.486,
@@ -4660,13 +4380,13 @@
       "chatgpt-5-mini": 0.444,
       "qwen-2-5-72b": 0.292,
       "copilot-microsoft": 0.431,
+      "mixtral-8x22b": 0.472,
       "perplexity-sonar-large": 0.319,
       "gpt-4o": 0.458,
       "jamba-1-5-large": 0.389,
       "claude-sonnet-4-5": 0.611,
       "cohere-command-r": 0.167,
       "qwen-3-coder": 0.472,
-      "mixtral-8x22b": 0.472,
       "gemini-2-5-pro": 0.486,
       "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.167,
@@ -4677,6 +4397,286 @@
       "meta-llama-4": 0.333,
       "llama-4-scout": 0.35
     },
+    "o3": {
+      "grok-4-fast": 0.486,
+      "mistral-small-3": 0.514,
+      "claude-haiku-3-5": 0.361,
+      "claude-opus-4-7": 0.569,
+      "gpt-4-1": 0.569,
+      "gemini-2-5-flash": 0.569,
+      "claude-opus-4-5": 0.583,
+      "o4-mini": 0.542,
+      "mistral-medium-3": 0.444,
+      "o3": 1.0,
+      "qwen-3-235b": 0.333,
+      "wizardlm-2-8x22b": 0.542,
+      "deepseek-v3-1": 0.458,
+      "claude-sonnet-4-6": 0.597,
+      "o1": 0.597,
+      "gemma-3-12b": 0.194,
+      "grok-4-heavy": 0.542,
+      "claude-fable-5": 0.431,
+      "deepseek-v3": 0.486,
+      "grok-4": 0.569,
+      "qwen-3-max": 0.458,
+      "ministral-8b": 0.25,
+      "le-chat-mistral": 0.597,
+      "manus": 0.431,
+      "perplexity-sonar-pro": 0.639,
+      "codestral": 0.292,
+      "chatgpt-5-thinking": 0.681,
+      "perplexity-sonar-reasoning": 0.708,
+      "gemini-2-5-flash-lite": 0.347,
+      "deepseek-v3-2": 0.507,
+      "chatgpt-5": 0.681,
+      "chatgpt-5-nano": 0.333,
+      "deepseek-r1": 0.444,
+      "claude-haiku-4-5": 0.264,
+      "kimi-k2": 0.375,
+      "chatgpt-5-mini": 0.417,
+      "qwen-2-5-72b": 0.333,
+      "copilot-microsoft": 0.486,
+      "mixtral-8x22b": 0.306,
+      "perplexity-sonar-large": 0.444,
+      "gpt-4o": 0.458,
+      "jamba-1-5-large": 0.333,
+      "claude-sonnet-4-5": 0.528,
+      "cohere-command-r": 0.264,
+      "qwen-3-coder": 0.347,
+      "gemini-2-5-pro": 0.611,
+      "llama-3-3-70b": 0.292,
+      "llama-3-1-70b": 0.194,
+      "gemma-3-27b": 0.167,
+      "phi-4-mini": 0.056,
+      "llama-4-maverick": 0.347,
+      "cohere-command-r-plus": 0.167,
+      "meta-llama-4": 0.236,
+      "llama-4-scout": 0.35
+    },
+    "qwen-3-235b": {
+      "grok-4-fast": 0.431,
+      "mistral-small-3": 0.194,
+      "claude-haiku-3-5": 0.236,
+      "claude-opus-4-7": 0.319,
+      "gpt-4-1": 0.278,
+      "gemini-2-5-flash": 0.306,
+      "claude-opus-4-5": 0.236,
+      "o4-mini": 0.264,
+      "mistral-medium-3": 0.264,
+      "o3": 0.333,
+      "qwen-3-235b": 1.0,
+      "wizardlm-2-8x22b": 0.222,
+      "deepseek-v3-1": 0.319,
+      "claude-sonnet-4-6": 0.361,
+      "o1": 0.278,
+      "gemma-3-12b": 0.25,
+      "grok-4-heavy": 0.319,
+      "claude-fable-5": 0.306,
+      "deepseek-v3": 0.292,
+      "grok-4": 0.208,
+      "qwen-3-max": 0.292,
+      "ministral-8b": 0.278,
+      "le-chat-mistral": 0.222,
+      "manus": 0.333,
+      "perplexity-sonar-pro": 0.333,
+      "codestral": 0.375,
+      "chatgpt-5-thinking": 0.278,
+      "perplexity-sonar-reasoning": 0.236,
+      "gemini-2-5-flash-lite": 0.181,
+      "deepseek-v3-2": 0.224,
+      "chatgpt-5": 0.389,
+      "chatgpt-5-nano": 0.236,
+      "deepseek-r1": 0.208,
+      "claude-haiku-4-5": 0.167,
+      "kimi-k2": 0.208,
+      "chatgpt-5-mini": 0.319,
+      "qwen-2-5-72b": 0.222,
+      "copilot-microsoft": 0.292,
+      "mixtral-8x22b": 0.236,
+      "perplexity-sonar-large": 0.278,
+      "gpt-4o": 0.181,
+      "jamba-1-5-large": 0.306,
+      "claude-sonnet-4-5": 0.264,
+      "cohere-command-r": 0.208,
+      "qwen-3-coder": 0.236,
+      "gemini-2-5-pro": 0.306,
+      "llama-3-3-70b": 0.194,
+      "llama-3-1-70b": 0.264,
+      "gemma-3-27b": 0.236,
+      "phi-4-mini": 0.127,
+      "llama-4-maverick": 0.181,
+      "cohere-command-r-plus": 0.236,
+      "meta-llama-4": 0.167,
+      "llama-4-scout": 0.3
+    },
+    "wizardlm-2-8x22b": {
+      "grok-4-fast": 0.542,
+      "mistral-small-3": 0.417,
+      "claude-haiku-3-5": 0.389,
+      "claude-opus-4-7": 0.528,
+      "gpt-4-1": 0.417,
+      "gemini-2-5-flash": 0.486,
+      "claude-opus-4-5": 0.597,
+      "o4-mini": 0.514,
+      "mistral-medium-3": 0.458,
+      "o3": 0.542,
+      "qwen-3-235b": 0.222,
+      "wizardlm-2-8x22b": 1.0,
+      "deepseek-v3-1": 0.5,
+      "claude-sonnet-4-6": 0.528,
+      "o1": 0.514,
+      "gemma-3-12b": 0.208,
+      "grok-4-heavy": 0.528,
+      "claude-fable-5": 0.403,
+      "deepseek-v3": 0.569,
+      "grok-4": 0.5,
+      "qwen-3-max": 0.583,
+      "ministral-8b": 0.278,
+      "le-chat-mistral": 0.556,
+      "manus": 0.319,
+      "perplexity-sonar-pro": 0.5,
+      "codestral": 0.292,
+      "chatgpt-5-thinking": 0.569,
+      "perplexity-sonar-reasoning": 0.528,
+      "gemini-2-5-flash-lite": 0.319,
+      "deepseek-v3-2": 0.567,
+      "chatgpt-5": 0.597,
+      "chatgpt-5-nano": 0.347,
+      "deepseek-r1": 0.514,
+      "claude-haiku-4-5": 0.306,
+      "kimi-k2": 0.431,
+      "chatgpt-5-mini": 0.444,
+      "qwen-2-5-72b": 0.264,
+      "copilot-microsoft": 0.417,
+      "mixtral-8x22b": 0.306,
+      "perplexity-sonar-large": 0.375,
+      "gpt-4o": 0.417,
+      "jamba-1-5-large": 0.306,
+      "claude-sonnet-4-5": 0.542,
+      "cohere-command-r": 0.222,
+      "qwen-3-coder": 0.278,
+      "gemini-2-5-pro": 0.528,
+      "llama-3-3-70b": 0.25,
+      "llama-3-1-70b": 0.194,
+      "gemma-3-27b": 0.278,
+      "phi-4-mini": 0.085,
+      "llama-4-maverick": 0.375,
+      "cohere-command-r-plus": 0.139,
+      "meta-llama-4": 0.278,
+      "llama-4-scout": 0.35
+    },
+    "deepseek-v3-1": {
+      "grok-4-fast": 0.417,
+      "mistral-small-3": 0.292,
+      "claude-haiku-3-5": 0.264,
+      "claude-opus-4-7": 0.431,
+      "gpt-4-1": 0.375,
+      "gemini-2-5-flash": 0.361,
+      "claude-opus-4-5": 0.375,
+      "o4-mini": 0.458,
+      "mistral-medium-3": 0.389,
+      "o3": 0.458,
+      "qwen-3-235b": 0.319,
+      "wizardlm-2-8x22b": 0.5,
+      "deepseek-v3-1": 1.0,
+      "claude-sonnet-4-6": 0.431,
+      "o1": 0.333,
+      "gemma-3-12b": 0.208,
+      "grok-4-heavy": 0.403,
+      "claude-fable-5": 0.319,
+      "deepseek-v3": 0.514,
+      "grok-4": 0.375,
+      "qwen-3-max": 0.389,
+      "ministral-8b": 0.278,
+      "le-chat-mistral": 0.431,
+      "manus": 0.236,
+      "perplexity-sonar-pro": 0.361,
+      "codestral": 0.25,
+      "chatgpt-5-thinking": 0.431,
+      "perplexity-sonar-reasoning": 0.417,
+      "gemini-2-5-flash-lite": 0.264,
+      "deepseek-v3-2": 0.522,
+      "chatgpt-5": 0.472,
+      "chatgpt-5-nano": 0.319,
+      "deepseek-r1": 0.444,
+      "claude-haiku-4-5": 0.264,
+      "kimi-k2": 0.333,
+      "chatgpt-5-mini": 0.514,
+      "qwen-2-5-72b": 0.278,
+      "copilot-microsoft": 0.333,
+      "mixtral-8x22b": 0.319,
+      "perplexity-sonar-large": 0.319,
+      "gpt-4o": 0.361,
+      "jamba-1-5-large": 0.292,
+      "claude-sonnet-4-5": 0.431,
+      "cohere-command-r": 0.208,
+      "qwen-3-coder": 0.167,
+      "gemini-2-5-pro": 0.458,
+      "llama-3-3-70b": 0.208,
+      "llama-3-1-70b": 0.194,
+      "gemma-3-27b": 0.208,
+      "phi-4-mini": 0.113,
+      "llama-4-maverick": 0.278,
+      "cohere-command-r-plus": 0.111,
+      "meta-llama-4": 0.25,
+      "llama-4-scout": 0.2
+    },
+    "claude-sonnet-4-6": {
+      "grok-4-fast": 0.597,
+      "mistral-small-3": 0.431,
+      "claude-haiku-3-5": 0.403,
+      "claude-opus-4-7": 0.639,
+      "gpt-4-1": 0.528,
+      "gemini-2-5-flash": 0.569,
+      "claude-opus-4-5": 0.611,
+      "o4-mini": 0.556,
+      "mistral-medium-3": 0.5,
+      "o3": 0.597,
+      "qwen-3-235b": 0.361,
+      "wizardlm-2-8x22b": 0.528,
+      "deepseek-v3-1": 0.431,
+      "claude-sonnet-4-6": 1.0,
+      "o1": 0.514,
+      "gemma-3-12b": 0.264,
+      "grok-4-heavy": 0.597,
+      "claude-fable-5": 0.514,
+      "deepseek-v3": 0.5,
+      "grok-4": 0.569,
+      "qwen-3-max": 0.5,
+      "ministral-8b": 0.333,
+      "le-chat-mistral": 0.542,
+      "manus": 0.403,
+      "perplexity-sonar-pro": 0.569,
+      "codestral": 0.375,
+      "chatgpt-5-thinking": 0.694,
+      "perplexity-sonar-reasoning": 0.597,
+      "gemini-2-5-flash-lite": 0.361,
+      "deepseek-v3-2": 0.537,
+      "chatgpt-5": 0.722,
+      "chatgpt-5-nano": 0.403,
+      "deepseek-r1": 0.444,
+      "claude-haiku-4-5": 0.278,
+      "kimi-k2": 0.472,
+      "chatgpt-5-mini": 0.514,
+      "qwen-2-5-72b": 0.306,
+      "copilot-microsoft": 0.528,
+      "mixtral-8x22b": 0.333,
+      "perplexity-sonar-large": 0.458,
+      "gpt-4o": 0.556,
+      "jamba-1-5-large": 0.333,
+      "claude-sonnet-4-5": 0.625,
+      "cohere-command-r": 0.319,
+      "qwen-3-coder": 0.347,
+      "gemini-2-5-pro": 0.583,
+      "llama-3-3-70b": 0.278,
+      "llama-3-1-70b": 0.264,
+      "gemma-3-27b": 0.208,
+      "phi-4-mini": 0.07,
+      "llama-4-maverick": 0.375,
+      "cohere-command-r-plus": 0.125,
+      "meta-llama-4": 0.306,
+      "llama-4-scout": 0.25
+    },
     "o1": {
       "grok-4-fast": 0.514,
       "mistral-small-3": 0.431,
@@ -4686,12 +4686,12 @@
       "gemini-2-5-flash": 0.514,
       "claude-opus-4-5": 0.583,
       "o4-mini": 0.375,
+      "mistral-medium-3": 0.486,
       "o3": 0.597,
       "qwen-3-235b": 0.278,
       "wizardlm-2-8x22b": 0.514,
       "deepseek-v3-1": 0.333,
       "claude-sonnet-4-6": 0.514,
-      "mistral-medium-3": 0.486,
       "o1": 1.0,
       "gemma-3-12b": 0.181,
       "grok-4-heavy": 0.472,
@@ -4716,13 +4716,13 @@
       "chatgpt-5-mini": 0.403,
       "qwen-2-5-72b": 0.278,
       "copilot-microsoft": 0.5,
+      "mixtral-8x22b": 0.306,
       "perplexity-sonar-large": 0.431,
       "gpt-4o": 0.403,
       "jamba-1-5-large": 0.361,
       "claude-sonnet-4-5": 0.5,
       "cohere-command-r": 0.208,
       "qwen-3-coder": 0.375,
-      "mixtral-8x22b": 0.306,
       "gemini-2-5-pro": 0.611,
       "llama-3-3-70b": 0.361,
       "llama-3-1-70b": 0.208,
@@ -4742,12 +4742,12 @@
       "gemini-2-5-flash": 0.208,
       "claude-opus-4-5": 0.194,
       "o4-mini": 0.153,
+      "mistral-medium-3": 0.167,
       "o3": 0.194,
       "qwen-3-235b": 0.25,
       "wizardlm-2-8x22b": 0.208,
       "deepseek-v3-1": 0.208,
       "claude-sonnet-4-6": 0.264,
-      "mistral-medium-3": 0.167,
       "o1": 0.181,
       "gemma-3-12b": 1.0,
       "grok-4-heavy": 0.236,
@@ -4772,13 +4772,13 @@
       "chatgpt-5-mini": 0.236,
       "qwen-2-5-72b": 0.222,
       "copilot-microsoft": 0.167,
+      "mixtral-8x22b": 0.181,
       "perplexity-sonar-large": 0.319,
       "gpt-4o": 0.236,
       "jamba-1-5-large": 0.25,
       "claude-sonnet-4-5": 0.167,
       "cohere-command-r": 0.333,
       "qwen-3-coder": 0.167,
-      "mixtral-8x22b": 0.181,
       "gemini-2-5-pro": 0.194,
       "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.306,
@@ -4798,12 +4798,12 @@
       "gemini-2-5-flash": 0.514,
       "claude-opus-4-5": 0.528,
       "o4-mini": 0.431,
+      "mistral-medium-3": 0.486,
       "o3": 0.542,
       "qwen-3-235b": 0.319,
       "wizardlm-2-8x22b": 0.528,
       "deepseek-v3-1": 0.403,
       "claude-sonnet-4-6": 0.597,
-      "mistral-medium-3": 0.486,
       "o1": 0.472,
       "gemma-3-12b": 0.236,
       "grok-4-heavy": 1.0,
@@ -4828,13 +4828,13 @@
       "chatgpt-5-mini": 0.514,
       "qwen-2-5-72b": 0.292,
       "copilot-microsoft": 0.417,
+      "mixtral-8x22b": 0.306,
       "perplexity-sonar-large": 0.444,
       "gpt-4o": 0.583,
       "jamba-1-5-large": 0.306,
       "claude-sonnet-4-5": 0.444,
       "cohere-command-r": 0.167,
       "qwen-3-coder": 0.389,
-      "mixtral-8x22b": 0.306,
       "gemini-2-5-pro": 0.583,
       "llama-3-3-70b": 0.306,
       "llama-3-1-70b": 0.222,
@@ -4854,12 +4854,12 @@
       "gemini-2-5-flash": 0.486,
       "claude-opus-4-5": 0.375,
       "o4-mini": 0.361,
+      "mistral-medium-3": 0.25,
       "o3": 0.431,
       "qwen-3-235b": 0.306,
       "wizardlm-2-8x22b": 0.403,
       "deepseek-v3-1": 0.319,
       "claude-sonnet-4-6": 0.514,
-      "mistral-medium-3": 0.25,
       "o1": 0.375,
       "gemma-3-12b": 0.306,
       "grok-4-heavy": 0.361,
@@ -4884,13 +4884,13 @@
       "chatgpt-5-mini": 0.333,
       "qwen-2-5-72b": 0.347,
       "copilot-microsoft": 0.417,
+      "mixtral-8x22b": 0.194,
       "perplexity-sonar-large": 0.417,
       "gpt-4o": 0.319,
       "jamba-1-5-large": 0.264,
       "claude-sonnet-4-5": 0.375,
       "cohere-command-r": 0.306,
       "qwen-3-coder": 0.139,
-      "mixtral-8x22b": 0.194,
       "gemini-2-5-pro": 0.389,
       "llama-3-3-70b": 0.333,
       "llama-3-1-70b": 0.306,
@@ -4910,12 +4910,12 @@
       "gemini-2-5-flash": 0.361,
       "claude-opus-4-5": 0.486,
       "o4-mini": 0.444,
+      "mistral-medium-3": 0.431,
       "o3": 0.486,
       "qwen-3-235b": 0.292,
       "wizardlm-2-8x22b": 0.569,
       "deepseek-v3-1": 0.514,
       "claude-sonnet-4-6": 0.5,
-      "mistral-medium-3": 0.431,
       "o1": 0.528,
       "gemma-3-12b": 0.208,
       "grok-4-heavy": 0.389,
@@ -4940,13 +4940,13 @@
       "chatgpt-5-mini": 0.5,
       "qwen-2-5-72b": 0.25,
       "copilot-microsoft": 0.319,
+      "mixtral-8x22b": 0.333,
       "perplexity-sonar-large": 0.375,
       "gpt-4o": 0.431,
       "jamba-1-5-large": 0.347,
       "claude-sonnet-4-5": 0.486,
       "cohere-command-r": 0.208,
       "qwen-3-coder": 0.319,
-      "mixtral-8x22b": 0.333,
       "gemini-2-5-pro": 0.597,
       "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.194,
@@ -4966,12 +4966,12 @@
       "gemini-2-5-flash": 0.528,
       "claude-opus-4-5": 0.5,
       "o4-mini": 0.528,
+      "mistral-medium-3": 0.486,
       "o3": 0.569,
       "qwen-3-235b": 0.208,
       "wizardlm-2-8x22b": 0.5,
       "deepseek-v3-1": 0.375,
       "claude-sonnet-4-6": 0.569,
-      "mistral-medium-3": 0.486,
       "o1": 0.431,
       "gemma-3-12b": 0.222,
       "grok-4-heavy": 0.653,
@@ -4996,13 +4996,13 @@
       "chatgpt-5-mini": 0.5,
       "qwen-2-5-72b": 0.333,
       "copilot-microsoft": 0.472,
+      "mixtral-8x22b": 0.306,
       "perplexity-sonar-large": 0.458,
       "gpt-4o": 0.528,
       "jamba-1-5-large": 0.319,
       "claude-sonnet-4-5": 0.528,
       "cohere-command-r": 0.208,
       "qwen-3-coder": 0.389,
-      "mixtral-8x22b": 0.306,
       "gemini-2-5-pro": 0.486,
       "llama-3-3-70b": 0.347,
       "llama-3-1-70b": 0.264,
@@ -5022,12 +5022,12 @@
       "gemini-2-5-flash": 0.472,
       "claude-opus-4-5": 0.514,
       "o4-mini": 0.458,
+      "mistral-medium-3": 0.403,
       "o3": 0.458,
       "qwen-3-235b": 0.292,
       "wizardlm-2-8x22b": 0.583,
       "deepseek-v3-1": 0.389,
       "claude-sonnet-4-6": 0.5,
-      "mistral-medium-3": 0.403,
       "o1": 0.542,
       "gemma-3-12b": 0.153,
       "grok-4-heavy": 0.5,
@@ -5052,13 +5052,13 @@
       "chatgpt-5-mini": 0.375,
       "qwen-2-5-72b": 0.25,
       "copilot-microsoft": 0.431,
+      "mixtral-8x22b": 0.361,
       "perplexity-sonar-large": 0.389,
       "gpt-4o": 0.444,
       "jamba-1-5-large": 0.25,
       "claude-sonnet-4-5": 0.472,
       "cohere-command-r": 0.139,
       "qwen-3-coder": 0.417,
-      "mixtral-8x22b": 0.361,
       "gemini-2-5-pro": 0.569,
       "llama-3-3-70b": 0.264,
       "llama-3-1-70b": 0.153,
@@ -5078,12 +5078,12 @@
       "gemini-2-5-flash": 0.278,
       "claude-opus-4-5": 0.292,
       "o4-mini": 0.222,
+      "mistral-medium-3": 0.222,
       "o3": 0.25,
       "qwen-3-235b": 0.278,
       "wizardlm-2-8x22b": 0.278,
       "deepseek-v3-1": 0.278,
       "claude-sonnet-4-6": 0.333,
-      "mistral-medium-3": 0.222,
       "o1": 0.181,
       "gemma-3-12b": 0.528,
       "grok-4-heavy": 0.264,
@@ -5108,13 +5108,13 @@
       "chatgpt-5-mini": 0.319,
       "qwen-2-5-72b": 0.264,
       "copilot-microsoft": 0.264,
+      "mixtral-8x22b": 0.111,
       "perplexity-sonar-large": 0.389,
       "gpt-4o": 0.278,
       "jamba-1-5-large": 0.361,
       "claude-sonnet-4-5": 0.236,
       "cohere-command-r": 0.375,
       "qwen-3-coder": 0.208,
-      "mixtral-8x22b": 0.111,
       "gemini-2-5-pro": 0.264,
       "llama-3-3-70b": 0.319,
       "llama-3-1-70b": 0.417,
@@ -5134,12 +5134,12 @@
       "gemini-2-5-flash": 0.5,
       "claude-opus-4-5": 0.556,
       "o4-mini": 0.486,
+      "mistral-medium-3": 0.569,
       "o3": 0.597,
       "qwen-3-235b": 0.222,
       "wizardlm-2-8x22b": 0.556,
       "deepseek-v3-1": 0.431,
       "claude-sonnet-4-6": 0.542,
-      "mistral-medium-3": 0.569,
       "o1": 0.444,
       "gemma-3-12b": 0.153,
       "grok-4-heavy": 0.472,
@@ -5164,13 +5164,13 @@
       "chatgpt-5-mini": 0.403,
       "qwen-2-5-72b": 0.347,
       "copilot-microsoft": 0.389,
+      "mixtral-8x22b": 0.417,
       "perplexity-sonar-large": 0.389,
       "gpt-4o": 0.431,
       "jamba-1-5-large": 0.333,
       "claude-sonnet-4-5": 0.569,
       "cohere-command-r": 0.264,
       "qwen-3-coder": 0.333,
-      "mixtral-8x22b": 0.417,
       "gemini-2-5-pro": 0.514,
       "llama-3-3-70b": 0.292,
       "llama-3-1-70b": 0.167,
@@ -5190,12 +5190,12 @@
       "gemini-2-5-flash": 0.431,
       "claude-opus-4-5": 0.306,
       "o4-mini": 0.264,
+      "mistral-medium-3": 0.292,
       "o3": 0.431,
       "qwen-3-235b": 0.333,
       "wizardlm-2-8x22b": 0.319,
       "deepseek-v3-1": 0.236,
       "claude-sonnet-4-6": 0.403,
-      "mistral-medium-3": 0.292,
       "o1": 0.375,
       "gemma-3-12b": 0.361,
       "grok-4-heavy": 0.347,
@@ -5220,13 +5220,13 @@
       "chatgpt-5-mini": 0.292,
       "qwen-2-5-72b": 0.25,
       "copilot-microsoft": 0.333,
+      "mixtral-8x22b": 0.222,
       "perplexity-sonar-large": 0.389,
       "gpt-4o": 0.333,
       "jamba-1-5-large": 0.278,
       "claude-sonnet-4-5": 0.333,
       "cohere-command-r": 0.347,
       "qwen-3-coder": 0.236,
-      "mixtral-8x22b": 0.222,
       "gemini-2-5-pro": 0.319,
       "llama-3-3-70b": 0.264,
       "llama-3-1-70b": 0.25,
@@ -5246,12 +5246,12 @@
       "gemini-2-5-flash": 0.486,
       "claude-opus-4-5": 0.528,
       "o4-mini": 0.514,
+      "mistral-medium-3": 0.514,
       "o3": 0.639,
       "qwen-3-235b": 0.333,
       "wizardlm-2-8x22b": 0.5,
       "deepseek-v3-1": 0.361,
       "claude-sonnet-4-6": 0.569,
-      "mistral-medium-3": 0.514,
       "o1": 0.597,
       "gemma-3-12b": 0.208,
       "grok-4-heavy": 0.528,
@@ -5276,13 +5276,13 @@
       "chatgpt-5-mini": 0.361,
       "qwen-2-5-72b": 0.264,
       "copilot-microsoft": 0.542,
+      "mixtral-8x22b": 0.278,
       "perplexity-sonar-large": 0.361,
       "gpt-4o": 0.431,
       "jamba-1-5-large": 0.306,
       "claude-sonnet-4-5": 0.528,
       "cohere-command-r": 0.236,
       "qwen-3-coder": 0.375,
-      "mixtral-8x22b": 0.278,
       "gemini-2-5-pro": 0.542,
       "llama-3-3-70b": 0.306,
       "llama-3-1-70b": 0.194,
@@ -5302,12 +5302,12 @@
       "gemini-2-5-flash": 0.278,
       "claude-opus-4-5": 0.236,
       "o4-mini": 0.264,
+      "mistral-medium-3": 0.361,
       "o3": 0.292,
       "qwen-3-235b": 0.375,
       "wizardlm-2-8x22b": 0.292,
       "deepseek-v3-1": 0.25,
       "claude-sonnet-4-6": 0.375,
-      "mistral-medium-3": 0.361,
       "o1": 0.25,
       "gemma-3-12b": 0.333,
       "grok-4-heavy": 0.264,
@@ -5332,13 +5332,13 @@
       "chatgpt-5-mini": 0.222,
       "qwen-2-5-72b": 0.333,
       "copilot-microsoft": 0.222,
+      "mixtral-8x22b": 0.236,
       "perplexity-sonar-large": 0.292,
       "gpt-4o": 0.25,
       "jamba-1-5-large": 0.347,
       "claude-sonnet-4-5": 0.319,
       "cohere-command-r": 0.194,
       "qwen-3-coder": 0.208,
-      "mixtral-8x22b": 0.236,
       "gemini-2-5-pro": 0.25,
       "llama-3-3-70b": 0.236,
       "llama-3-1-70b": 0.319,
@@ -5358,12 +5358,12 @@
       "gemini-2-5-flash": 0.528,
       "claude-opus-4-5": 0.653,
       "o4-mini": 0.486,
+      "mistral-medium-3": 0.472,
       "o3": 0.681,
       "qwen-3-235b": 0.278,
       "wizardlm-2-8x22b": 0.569,
       "deepseek-v3-1": 0.431,
       "claude-sonnet-4-6": 0.694,
-      "mistral-medium-3": 0.472,
       "o1": 0.569,
       "gemma-3-12b": 0.181,
       "grok-4-heavy": 0.583,
@@ -5388,13 +5388,13 @@
       "chatgpt-5-mini": 0.486,
       "qwen-2-5-72b": 0.347,
       "copilot-microsoft": 0.569,
+      "mixtral-8x22b": 0.292,
       "perplexity-sonar-large": 0.472,
       "gpt-4o": 0.514,
       "jamba-1-5-large": 0.347,
       "claude-sonnet-4-5": 0.597,
       "cohere-command-r": 0.292,
       "qwen-3-coder": 0.347,
-      "mixtral-8x22b": 0.292,
       "gemini-2-5-pro": 0.694,
       "llama-3-3-70b": 0.319,
       "llama-3-1-70b": 0.278,
@@ -5414,12 +5414,12 @@
       "gemini-2-5-flash": 0.542,
       "claude-opus-4-5": 0.611,
       "o4-mini": 0.472,
+      "mistral-medium-3": 0.556,
       "o3": 0.708,
       "qwen-3-235b": 0.236,
       "wizardlm-2-8x22b": 0.528,
       "deepseek-v3-1": 0.417,
       "claude-sonnet-4-6": 0.597,
-      "mistral-medium-3": 0.556,
       "o1": 0.639,
       "gemma-3-12b": 0.153,
       "grok-4-heavy": 0.583,
@@ -5444,13 +5444,13 @@
       "chatgpt-5-mini": 0.472,
       "qwen-2-5-72b": 0.264,
       "copilot-microsoft": 0.528,
+      "mixtral-8x22b": 0.361,
       "perplexity-sonar-large": 0.431,
       "gpt-4o": 0.528,
       "jamba-1-5-large": 0.361,
       "claude-sonnet-4-5": 0.583,
       "cohere-command-r": 0.222,
       "qwen-3-coder": 0.403,
-      "mixtral-8x22b": 0.361,
       "gemini-2-5-pro": 0.694,
       "llama-3-3-70b": 0.319,
       "llama-3-1-70b": 0.222,
@@ -5470,12 +5470,12 @@
       "gemini-2-5-flash": 0.278,
       "claude-opus-4-5": 0.333,
       "o4-mini": 0.319,
+      "mistral-medium-3": 0.375,
       "o3": 0.347,
       "qwen-3-235b": 0.181,
       "wizardlm-2-8x22b": 0.319,
       "deepseek-v3-1": 0.264,
       "claude-sonnet-4-6": 0.361,
-      "mistral-medium-3": 0.375,
       "o1": 0.278,
       "gemma-3-12b": 0.181,
       "grok-4-heavy": 0.361,
@@ -5500,13 +5500,13 @@
       "chatgpt-5-mini": 0.306,
       "qwen-2-5-72b": 0.222,
       "copilot-microsoft": 0.278,
+      "mixtral-8x22b": 0.333,
       "perplexity-sonar-large": 0.264,
       "gpt-4o": 0.375,
       "jamba-1-5-large": 0.319,
       "claude-sonnet-4-5": 0.375,
       "cohere-command-r": 0.167,
       "qwen-3-coder": 0.306,
-      "mixtral-8x22b": 0.333,
       "gemini-2-5-pro": 0.319,
       "llama-3-3-70b": 0.125,
       "llama-3-1-70b": 0.264,
@@ -5526,12 +5526,12 @@
       "gemini-2-5-flash": 0.433,
       "claude-opus-4-5": 0.567,
       "o4-mini": 0.463,
+      "mistral-medium-3": 0.403,
       "o3": 0.507,
       "qwen-3-235b": 0.224,
       "wizardlm-2-8x22b": 0.567,
       "deepseek-v3-1": 0.522,
       "claude-sonnet-4-6": 0.537,
-      "mistral-medium-3": 0.403,
       "o1": 0.537,
       "gemma-3-12b": 0.209,
       "grok-4-heavy": 0.433,
@@ -5556,13 +5556,13 @@
       "chatgpt-5-mini": 0.522,
       "qwen-2-5-72b": 0.269,
       "copilot-microsoft": 0.403,
+      "mixtral-8x22b": 0.269,
       "perplexity-sonar-large": 0.358,
       "gpt-4o": 0.418,
       "jamba-1-5-large": 0.328,
       "claude-sonnet-4-5": 0.567,
       "cohere-command-r": 0.194,
       "qwen-3-coder": 0.269,
-      "mixtral-8x22b": 0.269,
       "gemini-2-5-pro": 0.582,
       "llama-3-3-70b": 0.299,
       "llama-3-1-70b": 0.224,
@@ -5582,12 +5582,12 @@
       "gemini-2-5-flash": 0.583,
       "claude-opus-4-5": 0.611,
       "o4-mini": 0.5,
+      "mistral-medium-3": 0.514,
       "o3": 0.681,
       "qwen-3-235b": 0.389,
       "wizardlm-2-8x22b": 0.597,
       "deepseek-v3-1": 0.472,
       "claude-sonnet-4-6": 0.722,
-      "mistral-medium-3": 0.514,
       "o1": 0.569,
       "gemma-3-12b": 0.236,
       "grok-4-heavy": 0.569,
@@ -5612,13 +5612,13 @@
       "chatgpt-5-mini": 0.472,
       "qwen-2-5-72b": 0.333,
       "copilot-microsoft": 0.556,
+      "mixtral-8x22b": 0.347,
       "perplexity-sonar-large": 0.5,
       "gpt-4o": 0.444,
       "jamba-1-5-large": 0.306,
       "claude-sonnet-4-5": 0.597,
       "cohere-command-r": 0.264,
       "qwen-3-coder": 0.361,
-      "mixtral-8x22b": 0.347,
       "gemini-2-5-pro": 0.736,
       "llama-3-3-70b": 0.292,
       "llama-3-1-70b": 0.236,
@@ -5638,12 +5638,12 @@
       "gemini-2-5-flash": 0.361,
       "claude-opus-4-5": 0.333,
       "o4-mini": 0.319,
+      "mistral-medium-3": 0.375,
       "o3": 0.333,
       "qwen-3-235b": 0.236,
       "wizardlm-2-8x22b": 0.347,
       "deepseek-v3-1": 0.319,
       "claude-sonnet-4-6": 0.403,
-      "mistral-medium-3": 0.375,
       "o1": 0.389,
       "gemma-3-12b": 0.236,
       "grok-4-heavy": 0.389,
@@ -5668,13 +5668,13 @@
       "chatgpt-5-mini": 0.361,
       "qwen-2-5-72b": 0.236,
       "copilot-microsoft": 0.292,
+      "mixtral-8x22b": 0.264,
       "perplexity-sonar-large": 0.347,
       "gpt-4o": 0.389,
       "jamba-1-5-large": 0.236,
       "claude-sonnet-4-5": 0.319,
       "cohere-command-r": 0.222,
       "qwen-3-coder": 0.222,
-      "mixtral-8x22b": 0.264,
       "gemini-2-5-pro": 0.306,
       "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.264,
@@ -5694,12 +5694,12 @@
       "gemini-2-5-flash": 0.403,
       "claude-opus-4-5": 0.458,
       "o4-mini": 0.333,
+      "mistral-medium-3": 0.389,
       "o3": 0.444,
       "qwen-3-235b": 0.208,
       "wizardlm-2-8x22b": 0.514,
       "deepseek-v3-1": 0.444,
       "claude-sonnet-4-6": 0.444,
-      "mistral-medium-3": 0.389,
       "o1": 0.431,
       "gemma-3-12b": 0.167,
       "grok-4-heavy": 0.347,
@@ -5724,13 +5724,13 @@
       "chatgpt-5-mini": 0.375,
       "qwen-2-5-72b": 0.25,
       "copilot-microsoft": 0.347,
+      "mixtral-8x22b": 0.264,
       "perplexity-sonar-large": 0.361,
       "gpt-4o": 0.389,
       "jamba-1-5-large": 0.347,
       "claude-sonnet-4-5": 0.444,
       "cohere-command-r": 0.194,
       "qwen-3-coder": 0.264,
-      "mixtral-8x22b": 0.264,
       "gemini-2-5-pro": 0.528,
       "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.222,
@@ -5750,12 +5750,12 @@
       "gemini-2-5-flash": 0.361,
       "claude-opus-4-5": 0.361,
       "o4-mini": 0.347,
+      "mistral-medium-3": 0.347,
       "o3": 0.264,
       "qwen-3-235b": 0.167,
       "wizardlm-2-8x22b": 0.306,
       "deepseek-v3-1": 0.264,
       "claude-sonnet-4-6": 0.278,
-      "mistral-medium-3": 0.347,
       "o1": 0.306,
       "gemma-3-12b": 0.292,
       "grok-4-heavy": 0.292,
@@ -5780,13 +5780,13 @@
       "chatgpt-5-mini": 0.292,
       "qwen-2-5-72b": 0.292,
       "copilot-microsoft": 0.361,
+      "mixtral-8x22b": 0.403,
       "perplexity-sonar-large": 0.292,
       "gpt-4o": 0.347,
       "jamba-1-5-large": 0.403,
       "claude-sonnet-4-5": 0.264,
       "cohere-command-r": 0.236,
       "qwen-3-coder": 0.306,
-      "mixtral-8x22b": 0.403,
       "gemini-2-5-pro": 0.306,
       "llama-3-3-70b": 0.306,
       "llama-3-1-70b": 0.264,
@@ -5806,12 +5806,12 @@
       "gemini-2-5-flash": 0.444,
       "claude-opus-4-5": 0.431,
       "o4-mini": 0.403,
+      "mistral-medium-3": 0.458,
       "o3": 0.375,
       "qwen-3-235b": 0.208,
       "wizardlm-2-8x22b": 0.431,
       "deepseek-v3-1": 0.333,
       "claude-sonnet-4-6": 0.472,
-      "mistral-medium-3": 0.458,
       "o1": 0.444,
       "gemma-3-12b": 0.097,
       "grok-4-heavy": 0.361,
@@ -5836,13 +5836,13 @@
       "chatgpt-5-mini": 0.431,
       "qwen-2-5-72b": 0.278,
       "copilot-microsoft": 0.486,
+      "mixtral-8x22b": 0.333,
       "perplexity-sonar-large": 0.333,
       "gpt-4o": 0.403,
       "jamba-1-5-large": 0.306,
       "claude-sonnet-4-5": 0.458,
       "cohere-command-r": 0.208,
       "qwen-3-coder": 0.306,
-      "mixtral-8x22b": 0.333,
       "gemini-2-5-pro": 0.472,
       "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.181,
@@ -5862,12 +5862,12 @@
       "gemini-2-5-flash": 0.403,
       "claude-opus-4-5": 0.431,
       "o4-mini": 0.389,
+      "mistral-medium-3": 0.444,
       "o3": 0.417,
       "qwen-3-235b": 0.319,
       "wizardlm-2-8x22b": 0.444,
       "deepseek-v3-1": 0.514,
       "claude-sonnet-4-6": 0.514,
-      "mistral-medium-3": 0.444,
       "o1": 0.403,
       "gemma-3-12b": 0.236,
       "grok-4-heavy": 0.514,
@@ -5892,13 +5892,13 @@
       "chatgpt-5-mini": 1.0,
       "qwen-2-5-72b": 0.278,
       "copilot-microsoft": 0.458,
+      "mixtral-8x22b": 0.319,
       "perplexity-sonar-large": 0.403,
       "gpt-4o": 0.431,
       "jamba-1-5-large": 0.444,
       "claude-sonnet-4-5": 0.389,
       "cohere-command-r": 0.194,
       "qwen-3-coder": 0.361,
-      "mixtral-8x22b": 0.319,
       "gemini-2-5-pro": 0.556,
       "llama-3-3-70b": 0.306,
       "llama-3-1-70b": 0.236,
@@ -5918,12 +5918,12 @@
       "gemini-2-5-flash": 0.278,
       "claude-opus-4-5": 0.347,
       "o4-mini": 0.222,
+      "mistral-medium-3": 0.292,
       "o3": 0.333,
       "qwen-3-235b": 0.222,
       "wizardlm-2-8x22b": 0.264,
       "deepseek-v3-1": 0.278,
       "claude-sonnet-4-6": 0.306,
-      "mistral-medium-3": 0.292,
       "o1": 0.278,
       "gemma-3-12b": 0.222,
       "grok-4-heavy": 0.292,
@@ -5948,13 +5948,13 @@
       "chatgpt-5-mini": 0.278,
       "qwen-2-5-72b": 1.0,
       "copilot-microsoft": 0.236,
+      "mixtral-8x22b": 0.194,
       "perplexity-sonar-large": 0.361,
       "gpt-4o": 0.264,
       "jamba-1-5-large": 0.208,
       "claude-sonnet-4-5": 0.347,
       "cohere-command-r": 0.25,
       "qwen-3-coder": 0.236,
-      "mixtral-8x22b": 0.194,
       "gemini-2-5-pro": 0.319,
       "llama-3-3-70b": 0.222,
       "llama-3-1-70b": 0.222,
@@ -5974,12 +5974,12 @@
       "gemini-2-5-flash": 0.458,
       "claude-opus-4-5": 0.444,
       "o4-mini": 0.472,
+      "mistral-medium-3": 0.431,
       "o3": 0.486,
       "qwen-3-235b": 0.292,
       "wizardlm-2-8x22b": 0.417,
       "deepseek-v3-1": 0.333,
       "claude-sonnet-4-6": 0.528,
-      "mistral-medium-3": 0.431,
       "o1": 0.5,
       "gemma-3-12b": 0.167,
       "grok-4-heavy": 0.417,
@@ -6004,13 +6004,13 @@
       "chatgpt-5-mini": 0.458,
       "qwen-2-5-72b": 0.236,
       "copilot-microsoft": 1.0,
+      "mixtral-8x22b": 0.264,
       "perplexity-sonar-large": 0.264,
       "gpt-4o": 0.417,
       "jamba-1-5-large": 0.333,
       "claude-sonnet-4-5": 0.417,
       "cohere-command-r": 0.222,
       "qwen-3-coder": 0.292,
-      "mixtral-8x22b": 0.264,
       "gemini-2-5-pro": 0.5,
       "llama-3-3-70b": 0.236,
       "llama-3-1-70b": 0.25,
@@ -6021,342 +6021,6 @@
       "meta-llama-4": 0.292,
       "llama-4-scout": 0.25
     },
-    "perplexity-sonar-large": {
-      "grok-4-fast": 0.361,
-      "mistral-small-3": 0.431,
-      "claude-haiku-3-5": 0.347,
-      "claude-opus-4-7": 0.514,
-      "gpt-4-1": 0.403,
-      "gemini-2-5-flash": 0.597,
-      "claude-opus-4-5": 0.403,
-      "o4-mini": 0.333,
-      "o3": 0.444,
-      "qwen-3-235b": 0.278,
-      "wizardlm-2-8x22b": 0.375,
-      "deepseek-v3-1": 0.319,
-      "claude-sonnet-4-6": 0.458,
-      "mistral-medium-3": 0.319,
-      "o1": 0.431,
-      "gemma-3-12b": 0.319,
-      "grok-4-heavy": 0.444,
-      "claude-fable-5": 0.417,
-      "deepseek-v3": 0.375,
-      "grok-4": 0.458,
-      "qwen-3-max": 0.389,
-      "ministral-8b": 0.389,
-      "le-chat-mistral": 0.389,
-      "manus": 0.389,
-      "perplexity-sonar-pro": 0.361,
-      "codestral": 0.292,
-      "chatgpt-5-thinking": 0.472,
-      "perplexity-sonar-reasoning": 0.431,
-      "gemini-2-5-flash-lite": 0.264,
-      "deepseek-v3-2": 0.358,
-      "chatgpt-5": 0.5,
-      "chatgpt-5-nano": 0.347,
-      "deepseek-r1": 0.361,
-      "claude-haiku-4-5": 0.292,
-      "kimi-k2": 0.333,
-      "chatgpt-5-mini": 0.403,
-      "qwen-2-5-72b": 0.361,
-      "copilot-microsoft": 0.264,
-      "perplexity-sonar-large": 1.0,
-      "gpt-4o": 0.361,
-      "jamba-1-5-large": 0.333,
-      "claude-sonnet-4-5": 0.389,
-      "cohere-command-r": 0.208,
-      "qwen-3-coder": 0.347,
-      "mixtral-8x22b": 0.25,
-      "gemini-2-5-pro": 0.486,
-      "llama-3-3-70b": 0.403,
-      "llama-3-1-70b": 0.306,
-      "gemma-3-27b": 0.139,
-      "phi-4-mini": 0.085,
-      "llama-4-maverick": 0.361,
-      "cohere-command-r-plus": 0.125,
-      "meta-llama-4": 0.292,
-      "llama-4-scout": 0.3
-    },
-    "gpt-4o": {
-      "grok-4-fast": 0.417,
-      "mistral-small-3": 0.403,
-      "claude-haiku-3-5": 0.319,
-      "claude-opus-4-7": 0.403,
-      "gpt-4-1": 0.458,
-      "gemini-2-5-flash": 0.486,
-      "claude-opus-4-5": 0.486,
-      "o4-mini": 0.403,
-      "o3": 0.458,
-      "qwen-3-235b": 0.181,
-      "wizardlm-2-8x22b": 0.417,
-      "deepseek-v3-1": 0.361,
-      "claude-sonnet-4-6": 0.556,
-      "mistral-medium-3": 0.458,
-      "o1": 0.403,
-      "gemma-3-12b": 0.236,
-      "grok-4-heavy": 0.583,
-      "claude-fable-5": 0.319,
-      "deepseek-v3": 0.431,
-      "grok-4": 0.528,
-      "qwen-3-max": 0.444,
-      "ministral-8b": 0.278,
-      "le-chat-mistral": 0.431,
-      "manus": 0.333,
-      "perplexity-sonar-pro": 0.431,
-      "codestral": 0.25,
-      "chatgpt-5-thinking": 0.514,
-      "perplexity-sonar-reasoning": 0.528,
-      "gemini-2-5-flash-lite": 0.375,
-      "deepseek-v3-2": 0.418,
-      "chatgpt-5": 0.444,
-      "chatgpt-5-nano": 0.389,
-      "deepseek-r1": 0.389,
-      "claude-haiku-4-5": 0.347,
-      "kimi-k2": 0.403,
-      "chatgpt-5-mini": 0.431,
-      "qwen-2-5-72b": 0.264,
-      "copilot-microsoft": 0.417,
-      "perplexity-sonar-large": 0.361,
-      "gpt-4o": 1.0,
-      "jamba-1-5-large": 0.292,
-      "claude-sonnet-4-5": 0.403,
-      "cohere-command-r": 0.181,
-      "qwen-3-coder": 0.306,
-      "mixtral-8x22b": 0.264,
-      "gemini-2-5-pro": 0.514,
-      "llama-3-3-70b": 0.278,
-      "llama-3-1-70b": 0.236,
-      "gemma-3-27b": 0.236,
-      "phi-4-mini": 0.155,
-      "llama-4-maverick": 0.333,
-      "cohere-command-r-plus": 0.083,
-      "meta-llama-4": 0.319,
-      "llama-4-scout": 0.25
-    },
-    "jamba-1-5-large": {
-      "grok-4-fast": 0.389,
-      "mistral-small-3": 0.264,
-      "claude-haiku-3-5": 0.278,
-      "claude-opus-4-7": 0.319,
-      "gpt-4-1": 0.264,
-      "gemini-2-5-flash": 0.292,
-      "claude-opus-4-5": 0.333,
-      "o4-mini": 0.264,
-      "o3": 0.333,
-      "qwen-3-235b": 0.306,
-      "wizardlm-2-8x22b": 0.306,
-      "deepseek-v3-1": 0.292,
-      "claude-sonnet-4-6": 0.333,
-      "mistral-medium-3": 0.389,
-      "o1": 0.361,
-      "gemma-3-12b": 0.25,
-      "grok-4-heavy": 0.306,
-      "claude-fable-5": 0.264,
-      "deepseek-v3": 0.347,
-      "grok-4": 0.319,
-      "qwen-3-max": 0.25,
-      "ministral-8b": 0.361,
-      "le-chat-mistral": 0.333,
-      "manus": 0.278,
-      "perplexity-sonar-pro": 0.306,
-      "codestral": 0.347,
-      "chatgpt-5-thinking": 0.347,
-      "perplexity-sonar-reasoning": 0.361,
-      "gemini-2-5-flash-lite": 0.319,
-      "deepseek-v3-2": 0.328,
-      "chatgpt-5": 0.306,
-      "chatgpt-5-nano": 0.236,
-      "deepseek-r1": 0.347,
-      "claude-haiku-4-5": 0.403,
-      "kimi-k2": 0.306,
-      "chatgpt-5-mini": 0.444,
-      "qwen-2-5-72b": 0.208,
-      "copilot-microsoft": 0.333,
-      "perplexity-sonar-large": 0.333,
-      "gpt-4o": 0.292,
-      "jamba-1-5-large": 1.0,
-      "claude-sonnet-4-5": 0.319,
-      "cohere-command-r": 0.194,
-      "qwen-3-coder": 0.292,
-      "mixtral-8x22b": 0.319,
-      "gemini-2-5-pro": 0.333,
-      "llama-3-3-70b": 0.333,
-      "llama-3-1-70b": 0.236,
-      "gemma-3-27b": 0.236,
-      "phi-4-mini": 0.07,
-      "llama-4-maverick": 0.306,
-      "cohere-command-r-plus": 0.167,
-      "meta-llama-4": 0.333,
-      "llama-4-scout": 0.25
-    },
-    "claude-sonnet-4-5": {
-      "grok-4-fast": 0.5,
-      "mistral-small-3": 0.472,
-      "claude-haiku-3-5": 0.417,
-      "claude-opus-4-7": 0.625,
-      "gpt-4-1": 0.444,
-      "gemini-2-5-flash": 0.542,
-      "claude-opus-4-5": 0.542,
-      "o4-mini": 0.431,
-      "o3": 0.528,
-      "qwen-3-235b": 0.264,
-      "wizardlm-2-8x22b": 0.542,
-      "deepseek-v3-1": 0.431,
-      "claude-sonnet-4-6": 0.625,
-      "mistral-medium-3": 0.611,
-      "o1": 0.5,
-      "gemma-3-12b": 0.167,
-      "grok-4-heavy": 0.444,
-      "claude-fable-5": 0.375,
-      "deepseek-v3": 0.486,
-      "grok-4": 0.528,
-      "qwen-3-max": 0.472,
-      "ministral-8b": 0.236,
-      "le-chat-mistral": 0.569,
-      "manus": 0.333,
-      "perplexity-sonar-pro": 0.528,
-      "codestral": 0.319,
-      "chatgpt-5-thinking": 0.597,
-      "perplexity-sonar-reasoning": 0.583,
-      "gemini-2-5-flash-lite": 0.375,
-      "deepseek-v3-2": 0.567,
-      "chatgpt-5": 0.597,
-      "chatgpt-5-nano": 0.319,
-      "deepseek-r1": 0.444,
-      "claude-haiku-4-5": 0.264,
-      "kimi-k2": 0.458,
-      "chatgpt-5-mini": 0.389,
-      "qwen-2-5-72b": 0.347,
-      "copilot-microsoft": 0.417,
-      "perplexity-sonar-large": 0.389,
-      "gpt-4o": 0.403,
-      "jamba-1-5-large": 0.319,
-      "claude-sonnet-4-5": 1.0,
-      "cohere-command-r": 0.236,
-      "qwen-3-coder": 0.417,
-      "mixtral-8x22b": 0.347,
-      "gemini-2-5-pro": 0.472,
-      "llama-3-3-70b": 0.306,
-      "llama-3-1-70b": 0.278,
-      "gemma-3-27b": 0.236,
-      "phi-4-mini": 0.056,
-      "llama-4-maverick": 0.347,
-      "cohere-command-r-plus": 0.069,
-      "meta-llama-4": 0.333,
-      "llama-4-scout": 0.4
-    },
-    "cohere-command-r": {
-      "grok-4-fast": 0.25,
-      "mistral-small-3": 0.181,
-      "claude-haiku-3-5": 0.236,
-      "claude-opus-4-7": 0.292,
-      "gpt-4-1": 0.181,
-      "gemini-2-5-flash": 0.264,
-      "claude-opus-4-5": 0.25,
-      "o4-mini": 0.25,
-      "o3": 0.264,
-      "qwen-3-235b": 0.208,
-      "wizardlm-2-8x22b": 0.222,
-      "deepseek-v3-1": 0.208,
-      "claude-sonnet-4-6": 0.319,
-      "mistral-medium-3": 0.167,
-      "o1": 0.208,
-      "gemma-3-12b": 0.333,
-      "grok-4-heavy": 0.167,
-      "claude-fable-5": 0.306,
-      "deepseek-v3": 0.208,
-      "grok-4": 0.208,
-      "qwen-3-max": 0.139,
-      "ministral-8b": 0.375,
-      "le-chat-mistral": 0.264,
-      "manus": 0.347,
-      "perplexity-sonar-pro": 0.236,
-      "codestral": 0.194,
-      "chatgpt-5-thinking": 0.292,
-      "perplexity-sonar-reasoning": 0.222,
-      "gemini-2-5-flash-lite": 0.167,
-      "deepseek-v3-2": 0.194,
-      "chatgpt-5": 0.264,
-      "chatgpt-5-nano": 0.222,
-      "deepseek-r1": 0.194,
-      "claude-haiku-4-5": 0.236,
-      "kimi-k2": 0.208,
-      "chatgpt-5-mini": 0.194,
-      "qwen-2-5-72b": 0.25,
-      "copilot-microsoft": 0.222,
-      "perplexity-sonar-large": 0.208,
-      "gpt-4o": 0.181,
-      "jamba-1-5-large": 0.194,
-      "claude-sonnet-4-5": 0.236,
-      "cohere-command-r": 1.0,
-      "qwen-3-coder": 0.097,
-      "mixtral-8x22b": 0.181,
-      "gemini-2-5-pro": 0.208,
-      "llama-3-3-70b": 0.222,
-      "llama-3-1-70b": 0.375,
-      "gemma-3-27b": 0.194,
-      "phi-4-mini": 0.155,
-      "llama-4-maverick": 0.236,
-      "cohere-command-r-plus": 0.153,
-      "meta-llama-4": 0.167,
-      "llama-4-scout": 0.2
-    },
-    "qwen-3-coder": {
-      "grok-4-fast": 0.264,
-      "mistral-small-3": 0.389,
-      "claude-haiku-3-5": 0.333,
-      "claude-opus-4-7": 0.292,
-      "gpt-4-1": 0.347,
-      "gemini-2-5-flash": 0.319,
-      "claude-opus-4-5": 0.361,
-      "o4-mini": 0.319,
-      "o3": 0.347,
-      "qwen-3-235b": 0.236,
-      "wizardlm-2-8x22b": 0.278,
-      "deepseek-v3-1": 0.167,
-      "claude-sonnet-4-6": 0.347,
-      "mistral-medium-3": 0.472,
-      "o1": 0.375,
-      "gemma-3-12b": 0.167,
-      "grok-4-heavy": 0.389,
-      "claude-fable-5": 0.139,
-      "deepseek-v3": 0.319,
-      "grok-4": 0.389,
-      "qwen-3-max": 0.417,
-      "ministral-8b": 0.208,
-      "le-chat-mistral": 0.333,
-      "manus": 0.236,
-      "perplexity-sonar-pro": 0.375,
-      "codestral": 0.208,
-      "chatgpt-5-thinking": 0.347,
-      "perplexity-sonar-reasoning": 0.403,
-      "gemini-2-5-flash-lite": 0.306,
-      "deepseek-v3-2": 0.269,
-      "chatgpt-5": 0.361,
-      "chatgpt-5-nano": 0.222,
-      "deepseek-r1": 0.264,
-      "claude-haiku-4-5": 0.306,
-      "kimi-k2": 0.306,
-      "chatgpt-5-mini": 0.361,
-      "qwen-2-5-72b": 0.236,
-      "copilot-microsoft": 0.292,
-      "perplexity-sonar-large": 0.347,
-      "gpt-4o": 0.306,
-      "jamba-1-5-large": 0.292,
-      "claude-sonnet-4-5": 0.417,
-      "cohere-command-r": 0.097,
-      "qwen-3-coder": 1.0,
-      "mixtral-8x22b": 0.361,
-      "gemini-2-5-pro": 0.375,
-      "llama-3-3-70b": 0.236,
-      "llama-3-1-70b": 0.125,
-      "gemma-3-27b": 0.25,
-      "phi-4-mini": 0.07,
-      "llama-4-maverick": 0.278,
-      "cohere-command-r-plus": 0.097,
-      "meta-llama-4": 0.292,
-      "llama-4-scout": 0.15
-    },
     "mixtral-8x22b": {
       "grok-4-fast": 0.236,
       "mistral-small-3": 0.403,
@@ -6366,12 +6030,12 @@
       "gemini-2-5-flash": 0.306,
       "claude-opus-4-5": 0.347,
       "o4-mini": 0.389,
+      "mistral-medium-3": 0.472,
       "o3": 0.306,
       "qwen-3-235b": 0.236,
       "wizardlm-2-8x22b": 0.306,
       "deepseek-v3-1": 0.319,
       "claude-sonnet-4-6": 0.333,
-      "mistral-medium-3": 0.472,
       "o1": 0.306,
       "gemma-3-12b": 0.181,
       "grok-4-heavy": 0.306,
@@ -6396,13 +6060,13 @@
       "chatgpt-5-mini": 0.319,
       "qwen-2-5-72b": 0.194,
       "copilot-microsoft": 0.264,
+      "mixtral-8x22b": 1.0,
       "perplexity-sonar-large": 0.25,
       "gpt-4o": 0.264,
       "jamba-1-5-large": 0.319,
       "claude-sonnet-4-5": 0.347,
       "cohere-command-r": 0.181,
       "qwen-3-coder": 0.361,
-      "mixtral-8x22b": 1.0,
       "gemini-2-5-pro": 0.319,
       "llama-3-3-70b": 0.292,
       "llama-3-1-70b": 0.097,
@@ -6413,6 +6077,342 @@
       "meta-llama-4": 0.25,
       "llama-4-scout": 0.2
     },
+    "perplexity-sonar-large": {
+      "grok-4-fast": 0.361,
+      "mistral-small-3": 0.431,
+      "claude-haiku-3-5": 0.347,
+      "claude-opus-4-7": 0.514,
+      "gpt-4-1": 0.403,
+      "gemini-2-5-flash": 0.597,
+      "claude-opus-4-5": 0.403,
+      "o4-mini": 0.333,
+      "mistral-medium-3": 0.319,
+      "o3": 0.444,
+      "qwen-3-235b": 0.278,
+      "wizardlm-2-8x22b": 0.375,
+      "deepseek-v3-1": 0.319,
+      "claude-sonnet-4-6": 0.458,
+      "o1": 0.431,
+      "gemma-3-12b": 0.319,
+      "grok-4-heavy": 0.444,
+      "claude-fable-5": 0.417,
+      "deepseek-v3": 0.375,
+      "grok-4": 0.458,
+      "qwen-3-max": 0.389,
+      "ministral-8b": 0.389,
+      "le-chat-mistral": 0.389,
+      "manus": 0.389,
+      "perplexity-sonar-pro": 0.361,
+      "codestral": 0.292,
+      "chatgpt-5-thinking": 0.472,
+      "perplexity-sonar-reasoning": 0.431,
+      "gemini-2-5-flash-lite": 0.264,
+      "deepseek-v3-2": 0.358,
+      "chatgpt-5": 0.5,
+      "chatgpt-5-nano": 0.347,
+      "deepseek-r1": 0.361,
+      "claude-haiku-4-5": 0.292,
+      "kimi-k2": 0.333,
+      "chatgpt-5-mini": 0.403,
+      "qwen-2-5-72b": 0.361,
+      "copilot-microsoft": 0.264,
+      "mixtral-8x22b": 0.25,
+      "perplexity-sonar-large": 1.0,
+      "gpt-4o": 0.361,
+      "jamba-1-5-large": 0.333,
+      "claude-sonnet-4-5": 0.389,
+      "cohere-command-r": 0.208,
+      "qwen-3-coder": 0.347,
+      "gemini-2-5-pro": 0.486,
+      "llama-3-3-70b": 0.403,
+      "llama-3-1-70b": 0.306,
+      "gemma-3-27b": 0.139,
+      "phi-4-mini": 0.085,
+      "llama-4-maverick": 0.361,
+      "cohere-command-r-plus": 0.125,
+      "meta-llama-4": 0.292,
+      "llama-4-scout": 0.3
+    },
+    "gpt-4o": {
+      "grok-4-fast": 0.417,
+      "mistral-small-3": 0.403,
+      "claude-haiku-3-5": 0.319,
+      "claude-opus-4-7": 0.403,
+      "gpt-4-1": 0.458,
+      "gemini-2-5-flash": 0.486,
+      "claude-opus-4-5": 0.486,
+      "o4-mini": 0.403,
+      "mistral-medium-3": 0.458,
+      "o3": 0.458,
+      "qwen-3-235b": 0.181,
+      "wizardlm-2-8x22b": 0.417,
+      "deepseek-v3-1": 0.361,
+      "claude-sonnet-4-6": 0.556,
+      "o1": 0.403,
+      "gemma-3-12b": 0.236,
+      "grok-4-heavy": 0.583,
+      "claude-fable-5": 0.319,
+      "deepseek-v3": 0.431,
+      "grok-4": 0.528,
+      "qwen-3-max": 0.444,
+      "ministral-8b": 0.278,
+      "le-chat-mistral": 0.431,
+      "manus": 0.333,
+      "perplexity-sonar-pro": 0.431,
+      "codestral": 0.25,
+      "chatgpt-5-thinking": 0.514,
+      "perplexity-sonar-reasoning": 0.528,
+      "gemini-2-5-flash-lite": 0.375,
+      "deepseek-v3-2": 0.418,
+      "chatgpt-5": 0.444,
+      "chatgpt-5-nano": 0.389,
+      "deepseek-r1": 0.389,
+      "claude-haiku-4-5": 0.347,
+      "kimi-k2": 0.403,
+      "chatgpt-5-mini": 0.431,
+      "qwen-2-5-72b": 0.264,
+      "copilot-microsoft": 0.417,
+      "mixtral-8x22b": 0.264,
+      "perplexity-sonar-large": 0.361,
+      "gpt-4o": 1.0,
+      "jamba-1-5-large": 0.292,
+      "claude-sonnet-4-5": 0.403,
+      "cohere-command-r": 0.181,
+      "qwen-3-coder": 0.306,
+      "gemini-2-5-pro": 0.514,
+      "llama-3-3-70b": 0.278,
+      "llama-3-1-70b": 0.236,
+      "gemma-3-27b": 0.236,
+      "phi-4-mini": 0.155,
+      "llama-4-maverick": 0.333,
+      "cohere-command-r-plus": 0.083,
+      "meta-llama-4": 0.319,
+      "llama-4-scout": 0.25
+    },
+    "jamba-1-5-large": {
+      "grok-4-fast": 0.389,
+      "mistral-small-3": 0.264,
+      "claude-haiku-3-5": 0.278,
+      "claude-opus-4-7": 0.319,
+      "gpt-4-1": 0.264,
+      "gemini-2-5-flash": 0.292,
+      "claude-opus-4-5": 0.333,
+      "o4-mini": 0.264,
+      "mistral-medium-3": 0.389,
+      "o3": 0.333,
+      "qwen-3-235b": 0.306,
+      "wizardlm-2-8x22b": 0.306,
+      "deepseek-v3-1": 0.292,
+      "claude-sonnet-4-6": 0.333,
+      "o1": 0.361,
+      "gemma-3-12b": 0.25,
+      "grok-4-heavy": 0.306,
+      "claude-fable-5": 0.264,
+      "deepseek-v3": 0.347,
+      "grok-4": 0.319,
+      "qwen-3-max": 0.25,
+      "ministral-8b": 0.361,
+      "le-chat-mistral": 0.333,
+      "manus": 0.278,
+      "perplexity-sonar-pro": 0.306,
+      "codestral": 0.347,
+      "chatgpt-5-thinking": 0.347,
+      "perplexity-sonar-reasoning": 0.361,
+      "gemini-2-5-flash-lite": 0.319,
+      "deepseek-v3-2": 0.328,
+      "chatgpt-5": 0.306,
+      "chatgpt-5-nano": 0.236,
+      "deepseek-r1": 0.347,
+      "claude-haiku-4-5": 0.403,
+      "kimi-k2": 0.306,
+      "chatgpt-5-mini": 0.444,
+      "qwen-2-5-72b": 0.208,
+      "copilot-microsoft": 0.333,
+      "mixtral-8x22b": 0.319,
+      "perplexity-sonar-large": 0.333,
+      "gpt-4o": 0.292,
+      "jamba-1-5-large": 1.0,
+      "claude-sonnet-4-5": 0.319,
+      "cohere-command-r": 0.194,
+      "qwen-3-coder": 0.292,
+      "gemini-2-5-pro": 0.333,
+      "llama-3-3-70b": 0.333,
+      "llama-3-1-70b": 0.236,
+      "gemma-3-27b": 0.236,
+      "phi-4-mini": 0.07,
+      "llama-4-maverick": 0.306,
+      "cohere-command-r-plus": 0.167,
+      "meta-llama-4": 0.333,
+      "llama-4-scout": 0.25
+    },
+    "claude-sonnet-4-5": {
+      "grok-4-fast": 0.5,
+      "mistral-small-3": 0.472,
+      "claude-haiku-3-5": 0.417,
+      "claude-opus-4-7": 0.625,
+      "gpt-4-1": 0.444,
+      "gemini-2-5-flash": 0.542,
+      "claude-opus-4-5": 0.542,
+      "o4-mini": 0.431,
+      "mistral-medium-3": 0.611,
+      "o3": 0.528,
+      "qwen-3-235b": 0.264,
+      "wizardlm-2-8x22b": 0.542,
+      "deepseek-v3-1": 0.431,
+      "claude-sonnet-4-6": 0.625,
+      "o1": 0.5,
+      "gemma-3-12b": 0.167,
+      "grok-4-heavy": 0.444,
+      "claude-fable-5": 0.375,
+      "deepseek-v3": 0.486,
+      "grok-4": 0.528,
+      "qwen-3-max": 0.472,
+      "ministral-8b": 0.236,
+      "le-chat-mistral": 0.569,
+      "manus": 0.333,
+      "perplexity-sonar-pro": 0.528,
+      "codestral": 0.319,
+      "chatgpt-5-thinking": 0.597,
+      "perplexity-sonar-reasoning": 0.583,
+      "gemini-2-5-flash-lite": 0.375,
+      "deepseek-v3-2": 0.567,
+      "chatgpt-5": 0.597,
+      "chatgpt-5-nano": 0.319,
+      "deepseek-r1": 0.444,
+      "claude-haiku-4-5": 0.264,
+      "kimi-k2": 0.458,
+      "chatgpt-5-mini": 0.389,
+      "qwen-2-5-72b": 0.347,
+      "copilot-microsoft": 0.417,
+      "mixtral-8x22b": 0.347,
+      "perplexity-sonar-large": 0.389,
+      "gpt-4o": 0.403,
+      "jamba-1-5-large": 0.319,
+      "claude-sonnet-4-5": 1.0,
+      "cohere-command-r": 0.236,
+      "qwen-3-coder": 0.417,
+      "gemini-2-5-pro": 0.472,
+      "llama-3-3-70b": 0.306,
+      "llama-3-1-70b": 0.278,
+      "gemma-3-27b": 0.236,
+      "phi-4-mini": 0.056,
+      "llama-4-maverick": 0.347,
+      "cohere-command-r-plus": 0.069,
+      "meta-llama-4": 0.333,
+      "llama-4-scout": 0.4
+    },
+    "cohere-command-r": {
+      "grok-4-fast": 0.25,
+      "mistral-small-3": 0.181,
+      "claude-haiku-3-5": 0.236,
+      "claude-opus-4-7": 0.292,
+      "gpt-4-1": 0.181,
+      "gemini-2-5-flash": 0.264,
+      "claude-opus-4-5": 0.25,
+      "o4-mini": 0.25,
+      "mistral-medium-3": 0.167,
+      "o3": 0.264,
+      "qwen-3-235b": 0.208,
+      "wizardlm-2-8x22b": 0.222,
+      "deepseek-v3-1": 0.208,
+      "claude-sonnet-4-6": 0.319,
+      "o1": 0.208,
+      "gemma-3-12b": 0.333,
+      "grok-4-heavy": 0.167,
+      "claude-fable-5": 0.306,
+      "deepseek-v3": 0.208,
+      "grok-4": 0.208,
+      "qwen-3-max": 0.139,
+      "ministral-8b": 0.375,
+      "le-chat-mistral": 0.264,
+      "manus": 0.347,
+      "perplexity-sonar-pro": 0.236,
+      "codestral": 0.194,
+      "chatgpt-5-thinking": 0.292,
+      "perplexity-sonar-reasoning": 0.222,
+      "gemini-2-5-flash-lite": 0.167,
+      "deepseek-v3-2": 0.194,
+      "chatgpt-5": 0.264,
+      "chatgpt-5-nano": 0.222,
+      "deepseek-r1": 0.194,
+      "claude-haiku-4-5": 0.236,
+      "kimi-k2": 0.208,
+      "chatgpt-5-mini": 0.194,
+      "qwen-2-5-72b": 0.25,
+      "copilot-microsoft": 0.222,
+      "mixtral-8x22b": 0.181,
+      "perplexity-sonar-large": 0.208,
+      "gpt-4o": 0.181,
+      "jamba-1-5-large": 0.194,
+      "claude-sonnet-4-5": 0.236,
+      "cohere-command-r": 1.0,
+      "qwen-3-coder": 0.097,
+      "gemini-2-5-pro": 0.208,
+      "llama-3-3-70b": 0.222,
+      "llama-3-1-70b": 0.375,
+      "gemma-3-27b": 0.194,
+      "phi-4-mini": 0.155,
+      "llama-4-maverick": 0.236,
+      "cohere-command-r-plus": 0.153,
+      "meta-llama-4": 0.167,
+      "llama-4-scout": 0.2
+    },
+    "qwen-3-coder": {
+      "grok-4-fast": 0.264,
+      "mistral-small-3": 0.389,
+      "claude-haiku-3-5": 0.333,
+      "claude-opus-4-7": 0.292,
+      "gpt-4-1": 0.347,
+      "gemini-2-5-flash": 0.319,
+      "claude-opus-4-5": 0.361,
+      "o4-mini": 0.319,
+      "mistral-medium-3": 0.472,
+      "o3": 0.347,
+      "qwen-3-235b": 0.236,
+      "wizardlm-2-8x22b": 0.278,
+      "deepseek-v3-1": 0.167,
+      "claude-sonnet-4-6": 0.347,
+      "o1": 0.375,
+      "gemma-3-12b": 0.167,
+      "grok-4-heavy": 0.389,
+      "claude-fable-5": 0.139,
+      "deepseek-v3": 0.319,
+      "grok-4": 0.389,
+      "qwen-3-max": 0.417,
+      "ministral-8b": 0.208,
+      "le-chat-mistral": 0.333,
+      "manus": 0.236,
+      "perplexity-sonar-pro": 0.375,
+      "codestral": 0.208,
+      "chatgpt-5-thinking": 0.347,
+      "perplexity-sonar-reasoning": 0.403,
+      "gemini-2-5-flash-lite": 0.306,
+      "deepseek-v3-2": 0.269,
+      "chatgpt-5": 0.361,
+      "chatgpt-5-nano": 0.222,
+      "deepseek-r1": 0.264,
+      "claude-haiku-4-5": 0.306,
+      "kimi-k2": 0.306,
+      "chatgpt-5-mini": 0.361,
+      "qwen-2-5-72b": 0.236,
+      "copilot-microsoft": 0.292,
+      "mixtral-8x22b": 0.361,
+      "perplexity-sonar-large": 0.347,
+      "gpt-4o": 0.306,
+      "jamba-1-5-large": 0.292,
+      "claude-sonnet-4-5": 0.417,
+      "cohere-command-r": 0.097,
+      "qwen-3-coder": 1.0,
+      "gemini-2-5-pro": 0.375,
+      "llama-3-3-70b": 0.236,
+      "llama-3-1-70b": 0.125,
+      "gemma-3-27b": 0.25,
+      "phi-4-mini": 0.07,
+      "llama-4-maverick": 0.278,
+      "cohere-command-r-plus": 0.097,
+      "meta-llama-4": 0.292,
+      "llama-4-scout": 0.15
+    },
     "gemini-2-5-pro": {
       "grok-4-fast": 0.444,
       "mistral-small-3": 0.431,
@@ -6422,12 +6422,12 @@
       "gemini-2-5-flash": 0.486,
       "claude-opus-4-5": 0.597,
       "o4-mini": 0.431,
+      "mistral-medium-3": 0.486,
       "o3": 0.611,
       "qwen-3-235b": 0.306,
       "wizardlm-2-8x22b": 0.528,
       "deepseek-v3-1": 0.458,
       "claude-sonnet-4-6": 0.583,
-      "mistral-medium-3": 0.486,
       "o1": 0.611,
       "gemma-3-12b": 0.194,
       "grok-4-heavy": 0.583,
@@ -6452,13 +6452,13 @@
       "chatgpt-5-mini": 0.556,
       "qwen-2-5-72b": 0.319,
       "copilot-microsoft": 0.5,
+      "mixtral-8x22b": 0.319,
       "perplexity-sonar-large": 0.486,
       "gpt-4o": 0.514,
       "jamba-1-5-large": 0.333,
       "claude-sonnet-4-5": 0.472,
       "cohere-command-r": 0.208,
       "qwen-3-coder": 0.375,
-      "mixtral-8x22b": 0.319,
       "gemini-2-5-pro": 1.0,
       "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.153,
@@ -6478,12 +6478,12 @@
       "gemini-2-5-flash": 0.375,
       "claude-opus-4-5": 0.236,
       "o4-mini": 0.25,
+      "mistral-medium-3": 0.278,
       "o3": 0.292,
       "qwen-3-235b": 0.194,
       "wizardlm-2-8x22b": 0.25,
       "deepseek-v3-1": 0.208,
       "claude-sonnet-4-6": 0.278,
-      "mistral-medium-3": 0.278,
       "o1": 0.361,
       "gemma-3-12b": 0.278,
       "grok-4-heavy": 0.306,
@@ -6508,13 +6508,13 @@
       "chatgpt-5-mini": 0.306,
       "qwen-2-5-72b": 0.222,
       "copilot-microsoft": 0.236,
+      "mixtral-8x22b": 0.292,
       "perplexity-sonar-large": 0.403,
       "gpt-4o": 0.278,
       "jamba-1-5-large": 0.333,
       "claude-sonnet-4-5": 0.306,
       "cohere-command-r": 0.222,
       "qwen-3-coder": 0.236,
-      "mixtral-8x22b": 0.292,
       "gemini-2-5-pro": 0.278,
       "llama-3-3-70b": 1.0,
       "llama-3-1-70b": 0.292,
@@ -6534,12 +6534,12 @@
       "gemini-2-5-flash": 0.222,
       "claude-opus-4-5": 0.208,
       "o4-mini": 0.208,
+      "mistral-medium-3": 0.167,
       "o3": 0.194,
       "qwen-3-235b": 0.264,
       "wizardlm-2-8x22b": 0.194,
       "deepseek-v3-1": 0.194,
       "claude-sonnet-4-6": 0.264,
-      "mistral-medium-3": 0.167,
       "o1": 0.208,
       "gemma-3-12b": 0.306,
       "grok-4-heavy": 0.222,
@@ -6564,13 +6564,13 @@
       "chatgpt-5-mini": 0.236,
       "qwen-2-5-72b": 0.222,
       "copilot-microsoft": 0.25,
+      "mixtral-8x22b": 0.097,
       "perplexity-sonar-large": 0.306,
       "gpt-4o": 0.236,
       "jamba-1-5-large": 0.236,
       "claude-sonnet-4-5": 0.278,
       "cohere-command-r": 0.375,
       "qwen-3-coder": 0.125,
-      "mixtral-8x22b": 0.097,
       "gemini-2-5-pro": 0.153,
       "llama-3-3-70b": 0.292,
       "llama-3-1-70b": 1.0,
@@ -6590,12 +6590,12 @@
       "gemini-2-5-flash": 0.194,
       "claude-opus-4-5": 0.25,
       "o4-mini": 0.194,
+      "mistral-medium-3": 0.264,
       "o3": 0.167,
       "qwen-3-235b": 0.236,
       "wizardlm-2-8x22b": 0.278,
       "deepseek-v3-1": 0.208,
       "claude-sonnet-4-6": 0.208,
-      "mistral-medium-3": 0.264,
       "o1": 0.222,
       "gemma-3-12b": 0.194,
       "grok-4-heavy": 0.181,
@@ -6620,13 +6620,13 @@
       "chatgpt-5-mini": 0.222,
       "qwen-2-5-72b": 0.167,
       "copilot-microsoft": 0.194,
+      "mixtral-8x22b": 0.25,
       "perplexity-sonar-large": 0.139,
       "gpt-4o": 0.236,
       "jamba-1-5-large": 0.236,
       "claude-sonnet-4-5": 0.236,
       "cohere-command-r": 0.194,
       "qwen-3-coder": 0.25,
-      "mixtral-8x22b": 0.25,
       "gemini-2-5-pro": 0.181,
       "llama-3-3-70b": 0.222,
       "llama-3-1-70b": 0.194,
@@ -6646,12 +6646,12 @@
       "gemini-2-5-flash": 0.127,
       "claude-opus-4-5": 0.07,
       "o4-mini": 0.07,
+      "mistral-medium-3": 0.127,
       "o3": 0.056,
       "qwen-3-235b": 0.127,
       "wizardlm-2-8x22b": 0.085,
       "deepseek-v3-1": 0.113,
       "claude-sonnet-4-6": 0.07,
-      "mistral-medium-3": 0.127,
       "o1": 0.056,
       "gemma-3-12b": 0.099,
       "grok-4-heavy": 0.07,
@@ -6676,13 +6676,13 @@
       "chatgpt-5-mini": 0.099,
       "qwen-2-5-72b": 0.085,
       "copilot-microsoft": 0.127,
+      "mixtral-8x22b": 0.056,
       "perplexity-sonar-large": 0.085,
       "gpt-4o": 0.155,
       "jamba-1-5-large": 0.07,
       "claude-sonnet-4-5": 0.056,
       "cohere-command-r": 0.155,
       "qwen-3-coder": 0.07,
-      "mixtral-8x22b": 0.056,
       "gemini-2-5-pro": 0.056,
       "llama-3-3-70b": 0.085,
       "llama-3-1-70b": 0.197,
@@ -6702,12 +6702,12 @@
       "gemini-2-5-flash": 0.375,
       "claude-opus-4-5": 0.403,
       "o4-mini": 0.319,
+      "mistral-medium-3": 0.306,
       "o3": 0.347,
       "qwen-3-235b": 0.181,
       "wizardlm-2-8x22b": 0.375,
       "deepseek-v3-1": 0.278,
       "claude-sonnet-4-6": 0.375,
-      "mistral-medium-3": 0.306,
       "o1": 0.347,
       "gemma-3-12b": 0.292,
       "grok-4-heavy": 0.389,
@@ -6732,13 +6732,13 @@
       "chatgpt-5-mini": 0.361,
       "qwen-2-5-72b": 0.25,
       "copilot-microsoft": 0.25,
+      "mixtral-8x22b": 0.222,
       "perplexity-sonar-large": 0.361,
       "gpt-4o": 0.333,
       "jamba-1-5-large": 0.306,
       "claude-sonnet-4-5": 0.347,
       "cohere-command-r": 0.236,
       "qwen-3-coder": 0.278,
-      "mixtral-8x22b": 0.222,
       "gemini-2-5-pro": 0.389,
       "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.347,
@@ -6758,12 +6758,12 @@
       "gemini-2-5-flash": 0.097,
       "claude-opus-4-5": 0.167,
       "o4-mini": 0.097,
+      "mistral-medium-3": 0.097,
       "o3": 0.167,
       "qwen-3-235b": 0.236,
       "wizardlm-2-8x22b": 0.139,
       "deepseek-v3-1": 0.111,
       "claude-sonnet-4-6": 0.125,
-      "mistral-medium-3": 0.097,
       "o1": 0.153,
       "gemma-3-12b": 0.167,
       "grok-4-heavy": 0.194,
@@ -6788,13 +6788,13 @@
       "chatgpt-5-mini": 0.139,
       "qwen-2-5-72b": 0.153,
       "copilot-microsoft": 0.139,
+      "mixtral-8x22b": 0.153,
       "perplexity-sonar-large": 0.125,
       "gpt-4o": 0.083,
       "jamba-1-5-large": 0.167,
       "claude-sonnet-4-5": 0.069,
       "cohere-command-r": 0.153,
       "qwen-3-coder": 0.097,
-      "mixtral-8x22b": 0.153,
       "gemini-2-5-pro": 0.167,
       "llama-3-3-70b": 0.153,
       "llama-3-1-70b": 0.153,
@@ -6814,12 +6814,12 @@
       "gemini-2-5-flash": 0.333,
       "claude-opus-4-5": 0.333,
       "o4-mini": 0.236,
+      "mistral-medium-3": 0.333,
       "o3": 0.236,
       "qwen-3-235b": 0.167,
       "wizardlm-2-8x22b": 0.278,
       "deepseek-v3-1": 0.25,
       "claude-sonnet-4-6": 0.306,
-      "mistral-medium-3": 0.333,
       "o1": 0.361,
       "gemma-3-12b": 0.194,
       "grok-4-heavy": 0.333,
@@ -6844,13 +6844,13 @@
       "chatgpt-5-mini": 0.319,
       "qwen-2-5-72b": 0.208,
       "copilot-microsoft": 0.292,
+      "mixtral-8x22b": 0.25,
       "perplexity-sonar-large": 0.292,
       "gpt-4o": 0.319,
       "jamba-1-5-large": 0.333,
       "claude-sonnet-4-5": 0.333,
       "cohere-command-r": 0.167,
       "qwen-3-coder": 0.292,
-      "mixtral-8x22b": 0.25,
       "gemini-2-5-pro": 0.333,
       "llama-3-3-70b": 0.347,
       "llama-3-1-70b": 0.292,
@@ -6870,12 +6870,12 @@
       "gemini-2-5-flash": 0.15,
       "claude-opus-4-5": 0.4,
       "o4-mini": 0.1,
+      "mistral-medium-3": 0.35,
       "o3": 0.35,
       "qwen-3-235b": 0.3,
       "wizardlm-2-8x22b": 0.35,
       "deepseek-v3-1": 0.2,
       "claude-sonnet-4-6": 0.25,
-      "mistral-medium-3": 0.35,
       "o1": 0.45,
       "gemma-3-12b": 0.3,
       "grok-4-heavy": 0.3,
@@ -6900,13 +6900,13 @@
       "chatgpt-5-mini": 0.3,
       "qwen-2-5-72b": 0.3,
       "copilot-microsoft": 0.25,
+      "mixtral-8x22b": 0.2,
       "perplexity-sonar-large": 0.3,
       "gpt-4o": 0.25,
       "jamba-1-5-large": 0.25,
       "claude-sonnet-4-5": 0.4,
       "cohere-command-r": 0.2,
       "qwen-3-coder": 0.15,
-      "mixtral-8x22b": 0.2,
       "gemini-2-5-pro": 0.3,
       "llama-3-3-70b": 0.35,
       "llama-3-1-70b": 0.4,
@@ -6921,40 +6921,18 @@
   "clusters": [
     {
       "id": 0,
-      "emoji": "🔥",
-      "nome": "Os Goleadeiros",
-      "descricao": "preveem placares elásticos. só 7% empates",
-      "eh_lider": false,
-      "n_ias": 8,
-      "pct_empates_palpitados": 0.078,
-      "avg_gols_total": 2.42,
-      "avg_saldo_abs": 1.71,
-      "concordancia_cristal": 0.42,
-      "taxa_exato": 0.092,
-      "taxa_acerto": 0.621,
-      "media_pontos": 132.6,
-      "ias_exemplo": [
-        "AI21 Jamba 1.5 Large",
-        "Gemma 3 27B",
-        "Kimi K2",
-        "ChatGPT 5 mini",
-        "Qwen 3 Coder"
-      ]
-    },
-    {
-      "id": 1,
       "emoji": "🤝",
       "nome": "Os Pacifistas",
       "descricao": "apostam muito em empate.",
       "eh_lider": false,
       "n_ias": 24,
-      "pct_empates_palpitados": 0.189,
-      "avg_gols_total": 2.29,
-      "avg_saldo_abs": 1.41,
-      "concordancia_cristal": 0.619,
-      "taxa_exato": 0.146,
-      "taxa_acerto": 0.621,
-      "media_pontos": 151.4,
+      "pct_empates_palpitados": 0.192,
+      "avg_gols_total": 2.28,
+      "avg_saldo_abs": 1.4,
+      "concordancia_cristal": 0.615,
+      "taxa_exato": 0.14,
+      "taxa_acerto": 0.602,
+      "media_pontos": 150.6,
       "ias_exemplo": [
         "Claude Haiku 3.5 (legacy)",
         "Claude Opus 4.7",
@@ -6964,47 +6942,69 @@
       ]
     },
     {
-      "id": 2,
-      "emoji": "🦓",
-      "nome": "Os Rebeldes",
-      "descricao": "fogem da manada — apostam no improvável. média só 1.9 gols/jogo",
-      "eh_lider": false,
-      "n_ias": 15,
-      "pct_empates_palpitados": 0.141,
-      "avg_gols_total": 1.87,
-      "avg_saldo_abs": 1.31,
-      "concordancia_cristal": 0.313,
-      "taxa_exato": 0.102,
-      "taxa_acerto": 0.607,
-      "media_pontos": 139.5,
-      "ias_exemplo": [
-        "Qwen 3 235B",
-        "Ministral 8B",
-        "Gemma 3 12B",
-        "Claude Fable 5",
-        "Codestral"
-      ]
-    },
-    {
-      "id": 3,
+      "id": 1,
       "emoji": "🎯",
       "nome": "Os Sniper",
       "descricao": "alta taxa de placares exatos.",
       "eh_lider": true,
-      "n_ias": 7,
-      "pct_empates_palpitados": 0.151,
-      "avg_gols_total": 2.26,
-      "avg_saldo_abs": 1.41,
-      "concordancia_cristal": 0.603,
-      "taxa_exato": 0.176,
-      "taxa_acerto": 0.66,
-      "media_pontos": 162.1,
+      "n_ias": 9,
+      "pct_empates_palpitados": 0.136,
+      "avg_gols_total": 2.28,
+      "avg_saldo_abs": 1.51,
+      "concordancia_cristal": 0.56,
+      "taxa_exato": 0.153,
+      "taxa_acerto": 0.649,
+      "media_pontos": 151.8,
       "ias_exemplo": [
         "Grok 4 Fast Reasoning",
         "Mistral Small 3",
         "Claude Opus 4.5",
         "OpenAI o3",
         "OpenAI o1 (legacy)"
+      ]
+    },
+    {
+      "id": 2,
+      "emoji": "🦓",
+      "nome": "Os Rebeldes",
+      "descricao": "fogem da manada — apostam no improvável. média só 1.7 gols/jogo",
+      "eh_lider": false,
+      "n_ias": 5,
+      "pct_empates_palpitados": 0.181,
+      "avg_gols_total": 1.66,
+      "avg_saldo_abs": 1.17,
+      "concordancia_cristal": 0.219,
+      "taxa_exato": 0.098,
+      "taxa_acerto": 0.631,
+      "media_pontos": 146.8,
+      "ias_exemplo": [
+        "Ministral 8B",
+        "Gemma 3 12B",
+        "Codestral",
+        "Phi-4 mini",
+        "Llama 3.1 70B"
+      ]
+    },
+    {
+      "id": 3,
+      "emoji": "⚔️",
+      "nome": "Os Decididos",
+      "descricao": "quase nunca apostam em empate.",
+      "eh_lider": false,
+      "n_ias": 16,
+      "pct_empates_palpitados": 0.101,
+      "avg_gols_total": 2.16,
+      "avg_saldo_abs": 1.5,
+      "concordancia_cristal": 0.389,
+      "taxa_exato": 0.099,
+      "taxa_acerto": 0.583,
+      "media_pontos": 138.5,
+      "ias_exemplo": [
+        "Qwen 3 235B",
+        "DeepSeek V3.1",
+        "Claude Fable 5",
+        "Manus",
+        "Gemma 3 27B"
       ]
     }
   ],
@@ -7175,27 +7175,27 @@
       {
         "slug": "grok-4-fast",
         "nome": "Grok 4 Fast Reasoning",
-        "valor": 0.237
+        "valor": 0.231
       },
       {
         "slug": "claude-opus-4-7",
         "nome": "Claude Opus 4.7",
-        "valor": 0.211
+        "valor": 0.205
       },
       {
         "slug": "claude-opus-4-5",
         "nome": "Claude Opus 4.5",
-        "valor": 0.211
+        "valor": 0.205
       },
       {
         "slug": "gpt-4-1",
         "nome": "GPT-4.1 (legacy)",
-        "valor": 0.184
+        "valor": 0.179
       },
       {
         "slug": "gemini-2-5-flash",
         "nome": "Gemini 2.5 Flash",
-        "valor": 0.184
+        "valor": 0.179
       }
     ],
     "melhor_em_jogos_equilibrados": [
