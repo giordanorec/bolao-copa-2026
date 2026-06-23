@@ -33,15 +33,15 @@ export default function V2Revelado({
       : locale === "fr" ? "Pronostic mis à jour disponible"
       : "Palpite atualizado disponível",
     consenso:
-      locale === "en" ? "v2 consensus"
-      : locale === "es" ? "consenso v2"
-      : locale === "fr" ? "consensus v2"
-      : "consenso v2",
+      locale === "en" ? "new consensus"
+      : locale === "es" ? "nuevo consenso"
+      : locale === "fr" ? "nouveau consensus"
+      : "novo consenso",
     cta:
-      locale === "en" ? "See v1 → v2"
-      : locale === "es" ? "Ver v1 → v2"
-      : locale === "fr" ? "Voir v1 → v2"
-      : "Ver v1 → v2",
+      locale === "en" ? "See the breakdown"
+      : locale === "es" ? "Ver el análisis"
+      : locale === "fr" ? "Voir l'analyse"
+      : "Ver o raio-x",
   };
   return (
     <div className="v2-revelado">

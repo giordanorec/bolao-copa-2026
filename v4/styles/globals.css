@@ -1121,18 +1121,27 @@ body[data-theme="festivo-br"] {
     margin-top: 2px;
 }
 .v2-revelado-cta {
-    display: inline-block;
-    margin-top: 8px;
-    background: var(--secondary);
-    color: #000;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    background: color-mix(in srgb, var(--secondary) 12%, transparent);
+    color: var(--secondary);
     font-weight: 700;
     font-size: 11px;
-    padding: 5px 12px;
-    border-radius: var(--r-s);
+    letter-spacing: 0.01em;
+    padding: 6px 14px;
+    border: 1.5px solid color-mix(in srgb, var(--secondary) 45%, transparent);
+    border-radius: 999px;
     text-decoration: none;
-    transition: opacity 0.15s;
+    transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
 }
-.v2-revelado-cta:hover { opacity: 0.85; color: #000; }
+.v2-revelado-cta:hover {
+    background: var(--secondary);
+    border-color: var(--secondary);
+    color: #000;
+    transform: translateY(-1px);
+}
 
 /* ─── PALPITES ATUALIZADOS · hero da página ─── */
 .pa-hero {
