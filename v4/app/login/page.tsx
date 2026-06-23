@@ -214,6 +214,9 @@ function LoginForm() {
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
           />
+          <p className="alt" style={{ marginTop: 6, textAlign: "right" }}>
+            <Link href="/esqueci-senha">{t(locale, "login.esqueceu")}</Link>
+          </p>
         </div>
         {erro && <p className="err">{erro}</p>}
         <button
