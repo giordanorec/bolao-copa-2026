@@ -4,7 +4,7 @@
  *
  * Server component: lê o usuário logado e checa a allowlist server-side
  * (service_role, RLS bypass). Não renderiza nada para visitantes comuns.
- * Linka direto pra Análise v2.
+ * Linka direto pros Palpites Atualizados.
  */
 
 import Link from "next/link";
@@ -14,27 +14,31 @@ import type { Locale } from "@/lib/i18n";
 
 const TX: Record<
   Locale,
-  { ola: string; texto: string; cta: string }
+  { kicker: string; ola: string; texto: string; cta: string }
 > = {
   pt: {
+    kicker: "Acesso de contribuinte",
     ola: "Obrigado por contribuir",
-    texto: "Seus palpites v2 estão liberados na sua conta.",
-    cta: "Ver Análise v2 →",
+    texto: "Os Palpites Atualizados das IAs já estão liberados na sua conta.",
+    cta: "Ver Palpites Atualizados",
   },
   en: {
+    kicker: "Supporter access",
     ola: "Thanks for contributing",
-    texto: "Your v2 picks are unlocked on your account.",
-    cta: "See v2 Analysis →",
+    texto: "The AIs' Updated Picks are unlocked on your account.",
+    cta: "See Updated Picks",
   },
   es: {
+    kicker: "Acceso de colaborador",
     ola: "Gracias por colaborar",
-    texto: "Tus pronósticos v2 están habilitados en tu cuenta.",
-    cta: "Ver Análisis v2 →",
+    texto: "Los Pronósticos Actualizados de las IAs están habilitados en tu cuenta.",
+    cta: "Ver Pronósticos Actualizados",
   },
   fr: {
+    kicker: "Accès soutien",
     ola: "Merci pour votre soutien",
-    texto: "Vos pronostics v2 sont débloqués sur votre compte.",
-    cta: "Voir l'Analyse v2 →",
+    texto: "Les Pronostics Mis à Jour des IA sont débloqués sur votre compte.",
+    cta: "Voir les Pronostics Mis à Jour",
   },
 };
 
@@ -63,30 +67,21 @@ export default async function AgradecimentoContribuinte({
   return (
     <section className="section" style={{ paddingTop: 16, paddingBottom: 0 }}>
       <div className="container">
-        <Link
-          href="/analise-v2"
-          className="card hoverable"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-            justifyContent: "center",
-            flexWrap: "wrap",
-            border: "1px solid var(--secondary)",
-            textAlign: "center",
-          }}
-        >
-          <span style={{ fontSize: 28, lineHeight: 1 }}>💛</span>
-          <span>
-            <strong style={{ color: "var(--secondary)" }}>
+        <Link href="/analise-v2" className="pa-callout">
+          <div className="pa-callout-glow" aria-hidden="true" />
+          <div className="pa-callout-icon" aria-hidden="true">
+            <span className="pa-callout-spark">✨</span>
+            💛
+          </div>
+          <div className="pa-callout-body">
+            <span className="pa-callout-kicker">{tx.kicker}</span>
+            <strong className="pa-callout-titulo">
               {tx.ola}
               {nome ? `, ${nome}` : ""}!
-            </strong>{" "}
-            {tx.texto}
-          </span>
-          <span style={{ color: "var(--primary)", fontWeight: 700 }}>
-            {tx.cta}
-          </span>
+            </strong>
+            <span className="pa-callout-texto">{tx.texto}</span>
+          </div>
+          <span className="pa-callout-cta">{tx.cta} →</span>
         </Link>
       </div>
     </section>

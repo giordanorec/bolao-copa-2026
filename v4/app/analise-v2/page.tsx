@@ -34,9 +34,9 @@ import type { LinhaComparacao, ConsensoSimples } from "@/components/ComparacaoV2
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Palpites v2 · Análise Premium · Bolão das IAs",
+  title: "Palpites Atualizados · Bolão das IAs",
   description:
-    "Comparação dos palpites v1 × v2 das IAs — acesso exclusivo para contribuintes.",
+    "Os palpites das IAs refeitos com a Copa em andamento — acesso exclusivo para contribuintes.",
   robots: { index: false, follow: false },
 };
 
@@ -159,7 +159,7 @@ type TxKeys =
 
 const STRINGS: Record<Locale, Record<TxKeys, string>> = {
   pt: {
-    "gate.titulo": "Análise v2",
+    "gate.titulo": "Palpites Atualizados",
     "gate.desc":
       "Conteúdo exclusivo para contribuintes. Digite a senha recebida pelo Instagram @arena.das.ias.",
     "gate.placeholder": "Senha",
@@ -177,9 +177,9 @@ const STRINGS: Record<Locale, Record<TxKeys, string>> = {
     "acesso.naolib_btn": "💛 Colaborar via Pix",
     "acesso.ou_senha": "ou use a senha de contribuinte",
     "obrigado.banner": "Obrigado por contribuir 💛 Acesso liberado na sua conta.",
-    "page.titulo": "Análise v2 · Palpites Atualizados",
+    "page.titulo": "Palpites Atualizados",
     "page.lede":
-      "Comparação v1 (pré-Copa) × v2 (informado, jogos 41–72). Dados lidos server-side; não aparecem no HTML sem a senha.",
+      "Os palpites das IAs refeitos com a Copa rolando — informados por classificação, forma, lesões e odds (jogos 41–72). Compare o antes (v1) e o agora (v2).",
     "page.vazio":
       "Nenhum palpite v2 coletado ainda. Volte após a coleta.",
     "page.jogo": "Jogo",
@@ -192,7 +192,7 @@ const STRINGS: Record<Locale, Record<TxKeys, string>> = {
     "page.jogos_cobertos": "Jogos cobertos",
   },
   en: {
-    "gate.titulo": "Analysis v2",
+    "gate.titulo": "Updated Picks",
     "gate.desc":
       "Exclusive content for supporters. Enter the password received via @arena.das.ias on Instagram.",
     "gate.placeholder": "Password",
@@ -210,9 +210,9 @@ const STRINGS: Record<Locale, Record<TxKeys, string>> = {
     "acesso.naolib_btn": "💛 Support via Pix",
     "acesso.ou_senha": "or use the supporter password",
     "obrigado.banner": "Thanks for contributing 💛 Access unlocked on your account.",
-    "page.titulo": "v2 Analysis · Updated Picks",
+    "page.titulo": "Updated Picks",
     "page.lede":
-      "v1 (pre-tournament) × v2 (informed, games 41–72). Data is server-rendered; it doesn't appear in HTML without the password.",
+      "The AIs' picks redone mid-tournament — informed by standings, form, injuries and odds (games 41–72). Compare before (v1) and now (v2).",
     "page.vazio":
       "No v2 picks collected yet. Come back after collection.",
     "page.jogo": "Match",
@@ -225,7 +225,7 @@ const STRINGS: Record<Locale, Record<TxKeys, string>> = {
     "page.jogos_cobertos": "Matches covered",
   },
   es: {
-    "gate.titulo": "Análisis v2",
+    "gate.titulo": "Pronósticos Actualizados",
     "gate.desc":
       "Contenido exclusivo para colaboradores. Introduce la contraseña recibida en @arena.das.ias.",
     "gate.placeholder": "Contraseña",
@@ -243,9 +243,9 @@ const STRINGS: Record<Locale, Record<TxKeys, string>> = {
     "acesso.naolib_btn": "💛 Colaborar vía Pix",
     "acesso.ou_senha": "o usa la contraseña de colaborador",
     "obrigado.banner": "Gracias por colaborar 💛 Acceso habilitado en tu cuenta.",
-    "page.titulo": "Análisis v2 · Pronósticos actualizados",
+    "page.titulo": "Pronósticos Actualizados",
     "page.lede":
-      "v1 (antes del torneo) × v2 (informados, partidos 41–72). Datos renderizados en el servidor; no aparecen en el HTML sin la contraseña.",
+      "Los pronósticos de las IAs rehechos con el Mundial en marcha — informados por clasificación, forma, lesiones y cuotas (partidos 41–72). Compara el antes (v1) y el ahora (v2).",
     "page.vazio":
       "Todavía no hay pronósticos v2. Vuelve después de la recopilación.",
     "page.jogo": "Partido",
@@ -258,7 +258,7 @@ const STRINGS: Record<Locale, Record<TxKeys, string>> = {
     "page.jogos_cobertos": "Partidos cubiertos",
   },
   fr: {
-    "gate.titulo": "Analyse v2",
+    "gate.titulo": "Pronostics Mis à Jour",
     "gate.desc":
       "Contenu exclusif pour les soutiens. Entrez le mot de passe reçu via @arena.das.ias.",
     "gate.placeholder": "Mot de passe",
@@ -277,9 +277,9 @@ const STRINGS: Record<Locale, Record<TxKeys, string>> = {
     "acesso.naolib_btn": "💛 Soutenir via Pix",
     "acesso.ou_senha": "ou utilisez le mot de passe de soutien",
     "obrigado.banner": "Merci pour votre soutien 💛 Accès débloqué sur votre compte.",
-    "page.titulo": "Analyse v2 · Pronostics mis à jour",
+    "page.titulo": "Pronostics Mis à Jour",
     "page.lede":
-      "v1 (avant le tournoi) × v2 (informés, matchs 41–72). Données rendues côté serveur ; elles n'apparaissent pas dans le HTML sans mot de passe.",
+      "Les pronostics des IA refaits en cours de tournoi — informés par le classement, la forme, les blessures et les cotes (matchs 41–72). Comparez l'avant (v1) et le maintenant (v2).",
     "page.vazio":
       "Aucun pronostic v2 collecté pour l'instant. Revenez après la collecte.",
     "page.jogo": "Match",
@@ -574,13 +574,17 @@ function ConteudoPage({
           {tx(locale, "obrigado.banner")}
         </div>
       )}
-      <header style={{ textAlign: "center", marginBottom: 24 }}>
-        <h1 style={{ fontSize: "clamp(28px, 5vw, 48px)" }}>
-          ✨ {tx(locale, "page.titulo")}
-        </h1>
-        <p className="lede" style={{ marginTop: 8 }}>
-          {tx(locale, "page.lede")}
-        </p>
+      <header className="pa-hero">
+        <div className="pa-hero-glow" aria-hidden="true" />
+        <div className="pa-hero-spark" aria-hidden="true">✨</div>
+        <span className="pa-hero-badge">
+          {locale === "en" ? "Exclusive · v1 → v2"
+          : locale === "es" ? "Exclusivo · v1 → v2"
+          : locale === "fr" ? "Exclusif · v1 → v2"
+          : "Exclusivo · v1 → v2"}
+        </span>
+        <h1 className="pa-hero-title">{tx(locale, "page.titulo")}</h1>
+        <p className="pa-hero-lede">{tx(locale, "page.lede")}</p>
       </header>
 
       {/* Resumo estatístico */}

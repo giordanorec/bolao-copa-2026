@@ -28,10 +28,10 @@ export default function V2Revelado({
 }) {
   const tx = {
     badge:
-      locale === "en" ? "v2 pick unlocked"
-      : locale === "es" ? "pronóstico v2 desbloqueado"
-      : locale === "fr" ? "pronostic v2 débloqué"
-      : "palpite v2 liberado",
+      locale === "en" ? "Updated pick available"
+      : locale === "es" ? "Pronóstico actualizado disponible"
+      : locale === "fr" ? "Pronostic mis à jour disponible"
+      : "Palpite atualizado disponível",
     consenso:
       locale === "en" ? "v2 consensus"
       : locale === "es" ? "consenso v2"

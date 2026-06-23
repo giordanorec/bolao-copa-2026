@@ -1134,6 +1134,165 @@ body[data-theme="festivo-br"] {
 }
 .v2-revelado-cta:hover { opacity: 0.85; color: #000; }
 
+/* ─── PALPITES ATUALIZADOS · hero da página ─── */
+.pa-hero {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 760px;
+    margin: 8px auto 32px;
+    padding: 44px 28px 40px;
+    border-radius: var(--r-l);
+    background:
+        radial-gradient(120% 90% at 50% -10%,
+            color-mix(in srgb, var(--secondary) 22%, transparent),
+            transparent 60%),
+        linear-gradient(150deg,
+            color-mix(in srgb, var(--secondary) 12%, #fff),
+            color-mix(in srgb, var(--accent) 8%, #fff));
+    border: 1.5px solid color-mix(in srgb, var(--secondary) 35%, transparent);
+    box-shadow: 0 18px 50px color-mix(in srgb, var(--secondary) 14%, transparent);
+}
+.pa-hero-glow {
+    position: absolute;
+    inset: -40% 30% auto;
+    height: 200px;
+    background: radial-gradient(closest-side,
+        color-mix(in srgb, var(--secondary) 40%, transparent), transparent);
+    filter: blur(30px);
+    pointer-events: none;
+}
+.pa-hero-spark {
+    position: relative;
+    font-size: 40px;
+    line-height: 1;
+    display: inline-block;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 4px 12px color-mix(in srgb, var(--secondary) 45%, transparent));
+    animation: pa-float 4s ease-in-out infinite;
+}
+@keyframes pa-float {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50%      { transform: translateY(-8px) rotate(4deg); }
+}
+.pa-hero-badge {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: var(--secondary);
+    color: #000;
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.pa-hero-title {
+    position: relative;
+    font-family: var(--ff-display);
+    font-variation-settings: var(--ff-display-vs);
+    font-weight: var(--ff-display-weight);
+    letter-spacing: var(--letterspacing-display);
+    font-size: clamp(30px, 6vw, 52px);
+    line-height: 1.05;
+    margin: 0 0 12px;
+    background: linear-gradient(120deg, var(--secondary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.pa-hero-lede {
+    position: relative;
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--fg-mid);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ─── PALPITES ATUALIZADOS · callout na home (contribuinte) ─── */
+.pa-callout {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 20px 24px;
+    border-radius: var(--r-l);
+    text-decoration: none;
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--secondary) 14%, #fff),
+        color-mix(in srgb, var(--accent) 9%, #fff));
+    border: 1.5px solid color-mix(in srgb, var(--secondary) 38%, transparent);
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--secondary) 12%, transparent);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.pa-callout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--secondary) 20%, transparent);
+}
+.pa-callout-glow {
+    position: absolute;
+    inset: -60% 55% auto -10%;
+    height: 200px;
+    background: radial-gradient(closest-side,
+        color-mix(in srgb, var(--secondary) 38%, transparent), transparent);
+    filter: blur(26px);
+    pointer-events: none;
+}
+.pa-callout-icon {
+    position: relative;
+    font-size: 34px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.pa-callout-spark {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    font-size: 18px;
+    animation: pa-float 4s ease-in-out infinite;
+}
+.pa-callout-body {
+    position: relative;
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.pa-callout-kicker {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--secondary);
+}
+.pa-callout-titulo {
+    font-size: 17px;
+    color: var(--fg);
+    line-height: 1.2;
+}
+.pa-callout-texto {
+    font-size: 14px;
+    color: var(--fg-mid);
+    line-height: 1.45;
+}
+.pa-callout-cta {
+    position: relative;
+    flex-shrink: 0;
+    background: var(--secondary);
+    color: #000;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
 /* ─── PÁGINA /ANALISE ─── */
 .analise-gate {
     max-width: 420px;
