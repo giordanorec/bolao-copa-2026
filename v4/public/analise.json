@@ -1,14 +1,14 @@
 {
-  "gerado_em": "2026-06-23T17:30:13.281364Z",
+  "gerado_em": "2026-06-23T19:04:29.095717Z",
   "n_ias": 54,
-  "n_jogos_encerrados": 44,
+  "n_jogos_encerrados": 45,
   "perfis": [
     {
       "slug": "grok-4-fast",
       "nome_display": "Grok 4 Fast Reasoning",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.125,
       "avg_gols_total": 2.0,
       "avg_saldo_abs": 1.44,
@@ -20,38 +20,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 233,
+      "pontos": 238,
       "exatos": 10,
       "saldo_acertados": 9,
-      "venc_acertados": 14,
+      "venc_acertados": 15,
       "emp_acertados": 0,
       "erros": 11,
-      "taxa_acerto": 0.75,
-      "taxa_exato": 0.227,
+      "taxa_acerto": 0.756,
+      "taxa_exato": 0.222,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 103,
-          "media_pts": 5.72,
-          "taxa_acerto": 0.722
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 77,
           "media_pts": 7.0,
           "taxa_acerto": 0.909
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 145,
-          "media_pts": 5.58,
-          "taxa_acerto": 0.769
+        "CAF": {
+          "jogos": 18,
+          "pts": 103,
+          "media_pts": 5.72,
+          "taxa_acerto": 0.722
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 80,
-          "media_pts": 4.71,
-          "taxa_acerto": 0.765
+          "jogos": 18,
+          "pts": 85,
+          "media_pts": 4.72,
+          "taxa_acerto": 0.778
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 150,
+          "media_pts": 5.56,
+          "taxa_acerto": 0.778
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -67,8 +67,8 @@
         }
       },
       "concordancia_cristal": 0.625,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 213,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 218,
       "media_pts_jogos_com_favorito": 5.07,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 20,
@@ -80,7 +80,7 @@
       "nome_display": "Mistral Small 3",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.125,
       "avg_gols_total": 2.64,
       "avg_saldo_abs": 1.42,
@@ -92,38 +92,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 212,
+      "pontos": 217,
       "exatos": 8,
       "saldo_acertados": 6,
-      "venc_acertados": 17,
+      "venc_acertados": 18,
       "emp_acertados": 1,
       "erros": 12,
-      "taxa_acerto": 0.727,
-      "taxa_exato": 0.182,
+      "taxa_acerto": 0.733,
+      "taxa_exato": 0.178,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 86,
-          "media_pts": 4.78,
-          "taxa_acerto": 0.611
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.909
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 118,
-          "media_pts": 4.54,
-          "taxa_acerto": 0.692
+        "CAF": {
+          "jogos": 18,
+          "pts": 86,
+          "media_pts": 4.78,
+          "taxa_acerto": 0.611
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 84,
+          "jogos": 18,
+          "pts": 89,
           "media_pts": 4.94,
-          "taxa_acerto": 0.824
+          "taxa_acerto": 0.833
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 123,
+          "media_pts": 4.56,
+          "taxa_acerto": 0.704
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -139,9 +139,9 @@
         }
       },
       "concordancia_cristal": 0.583,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 195,
-      "media_pts_jogos_com_favorito": 4.64,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 200,
+      "media_pts_jogos_com_favorito": 4.65,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 17,
       "media_pts_jogos_equilibrados": 8.5,
@@ -152,7 +152,7 @@
       "nome_display": "Claude Haiku 3.5 (legacy)",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.54,
       "avg_saldo_abs": 1.38,
@@ -164,38 +164,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 204,
+      "pontos": 209,
       "exatos": 6,
       "saldo_acertados": 7,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 3,
       "erros": 12,
-      "taxa_acerto": 0.727,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.733,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 68,
-          "media_pts": 3.78,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 132,
-          "media_pts": 5.08,
-          "taxa_acerto": 0.731
+        "CAF": {
+          "jogos": 18,
+          "pts": 68,
+          "media_pts": 3.78,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 84,
+          "jogos": 18,
+          "pts": 89,
           "media_pts": 4.94,
-          "taxa_acerto": 0.824
+          "taxa_acerto": 0.833
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 137,
+          "media_pts": 5.07,
+          "taxa_acerto": 0.741
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -211,9 +211,9 @@
         }
       },
       "concordancia_cristal": 0.472,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 194,
-      "media_pts_jogos_com_favorito": 4.62,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 199,
+      "media_pts_jogos_com_favorito": 4.63,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -224,7 +224,7 @@
       "nome_display": "OpenAI o4-mini",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.194,
       "avg_gols_total": 2.33,
       "avg_saldo_abs": 1.39,
@@ -236,38 +236,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.0
       },
-      "pontos": 202,
+      "pontos": 207,
       "exatos": 8,
       "saldo_acertados": 6,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 0,
       "erros": 14,
-      "taxa_acerto": 0.682,
-      "taxa_exato": 0.182,
+      "taxa_acerto": 0.689,
+      "taxa_exato": 0.178,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 91,
-          "media_pts": 5.06,
-          "taxa_acerto": 0.667
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 100,
-          "media_pts": 3.85,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 91,
+          "media_pts": 5.06,
+          "taxa_acerto": 0.667
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 79,
-          "media_pts": 4.65,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 84,
+          "media_pts": 4.67,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 105,
+          "media_pts": 3.89,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -283,9 +283,9 @@
         }
       },
       "concordancia_cristal": 0.583,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 192,
-      "media_pts_jogos_com_favorito": 4.57,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 197,
+      "media_pts_jogos_com_favorito": 4.58,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -296,7 +296,7 @@
       "nome_display": "GPT-4.1 (legacy)",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.181,
       "avg_gols_total": 2.4,
       "avg_saldo_abs": 1.26,
@@ -308,38 +308,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.0
       },
-      "pontos": 201,
+      "pontos": 206,
       "exatos": 9,
       "saldo_acertados": 3,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 2,
       "erros": 14,
-      "taxa_acerto": 0.682,
-      "taxa_exato": 0.205,
+      "taxa_acerto": 0.689,
+      "taxa_exato": 0.2,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 74,
-          "media_pts": 4.11,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 65,
           "media_pts": 5.91,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 114,
-          "media_pts": 4.38,
-          "taxa_acerto": 0.692
+        "CAF": {
+          "jogos": 18,
+          "pts": 74,
+          "media_pts": 4.11,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 92,
-          "media_pts": 5.41,
-          "taxa_acerto": 0.824
+          "jogos": 18,
+          "pts": 97,
+          "media_pts": 5.39,
+          "taxa_acerto": 0.833
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 119,
+          "media_pts": 4.41,
+          "taxa_acerto": 0.704
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -355,8 +355,8 @@
         }
       },
       "concordancia_cristal": 0.583,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 201,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 206,
       "media_pts_jogos_com_favorito": 4.79,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
@@ -368,7 +368,7 @@
       "nome_display": "Gemini 2.5 Flash",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.139,
       "avg_gols_total": 2.15,
       "avg_saldo_abs": 1.38,
@@ -380,38 +380,38 @@
         "CONMEBOL": 0.722,
         "OFC": 0.0
       },
-      "pontos": 200,
+      "pontos": 205,
       "exatos": 9,
       "saldo_acertados": 5,
-      "venc_acertados": 14,
+      "venc_acertados": 15,
       "emp_acertados": 1,
       "erros": 15,
-      "taxa_acerto": 0.659,
-      "taxa_exato": 0.205,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.2,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 64,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 72,
           "media_pts": 6.55,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 123,
-          "media_pts": 4.73,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 64,
+          "media_pts": 3.56,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 76,
-          "media_pts": 4.47,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 81,
+          "media_pts": 4.5,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 128,
+          "media_pts": 4.74,
+          "taxa_acerto": 0.667
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -427,9 +427,9 @@
         }
       },
       "concordancia_cristal": 0.667,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 190,
-      "media_pts_jogos_com_favorito": 4.52,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 195,
+      "media_pts_jogos_com_favorito": 4.53,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -440,7 +440,7 @@
       "nome_display": "Claude Opus 4.7",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.264,
       "avg_gols_total": 2.06,
       "avg_saldo_abs": 1.25,
@@ -452,38 +452,38 @@
         "CONMEBOL": 0.556,
         "OFC": 0.0
       },
-      "pontos": 200,
+      "pontos": 205,
       "exatos": 9,
       "saldo_acertados": 5,
-      "venc_acertados": 15,
+      "venc_acertados": 16,
       "emp_acertados": 0,
       "erros": 15,
-      "taxa_acerto": 0.659,
-      "taxa_exato": 0.205,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.2,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 91,
-          "media_pts": 5.06,
-          "taxa_acerto": 0.667
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 121,
-          "media_pts": 4.65,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 91,
+          "media_pts": 5.06,
+          "taxa_acerto": 0.667
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 66,
-          "media_pts": 3.88,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 71,
+          "media_pts": 3.94,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 126,
+          "media_pts": 4.67,
+          "taxa_acerto": 0.667
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -499,9 +499,9 @@
         }
       },
       "concordancia_cristal": 0.639,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 190,
-      "media_pts_jogos_com_favorito": 4.52,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 195,
+      "media_pts_jogos_com_favorito": 4.53,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -512,7 +512,7 @@
       "nome_display": "Claude Sonnet 4.6",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.153,
       "avg_gols_total": 2.08,
       "avg_saldo_abs": 1.42,
@@ -524,38 +524,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 197,
+      "pontos": 202,
       "exatos": 9,
       "saldo_acertados": 6,
-      "venc_acertados": 13,
+      "venc_acertados": 14,
       "emp_acertados": 0,
       "erros": 16,
-      "taxa_acerto": 0.636,
-      "taxa_exato": 0.205,
+      "taxa_acerto": 0.644,
+      "taxa_exato": 0.2,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 76,
-          "media_pts": 4.22,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 65,
           "media_pts": 5.91,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 108,
-          "media_pts": 4.15,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 76,
+          "media_pts": 4.22,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 84,
+          "jogos": 18,
+          "pts": 89,
           "media_pts": 4.94,
-          "taxa_acerto": 0.706
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 113,
+          "media_pts": 4.19,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -571,9 +571,9 @@
         }
       },
       "concordancia_cristal": 0.736,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 197,
-      "media_pts_jogos_com_favorito": 4.69,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 202,
+      "media_pts_jogos_com_favorito": 4.7,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
@@ -584,7 +584,7 @@
       "nome_display": "Mistral Medium 3",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.236,
       "avg_gols_total": 2.38,
       "avg_saldo_abs": 1.35,
@@ -596,38 +596,38 @@
         "CONMEBOL": 0.389,
         "OFC": 0.0
       },
-      "pontos": 197,
+      "pontos": 202,
       "exatos": 6,
       "saldo_acertados": 6,
-      "venc_acertados": 15,
+      "venc_acertados": 16,
       "emp_acertados": 4,
       "erros": 13,
-      "taxa_acerto": 0.705,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.711,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 76,
-          "media_pts": 4.22,
-          "taxa_acerto": 0.611
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 108,
-          "media_pts": 4.15,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 76,
+          "media_pts": 4.22,
+          "taxa_acerto": 0.611
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 69,
-          "media_pts": 4.06,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 74,
+          "media_pts": 4.11,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 113,
+          "media_pts": 4.19,
+          "taxa_acerto": 0.667
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -643,9 +643,9 @@
         }
       },
       "concordancia_cristal": 0.611,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 187,
-      "media_pts_jogos_com_favorito": 4.45,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 192,
+      "media_pts_jogos_com_favorito": 4.47,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -656,7 +656,7 @@
       "nome_display": "WizardLM 2 8x22B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.25,
       "avg_saldo_abs": 1.56,
@@ -668,38 +668,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 195,
+      "pontos": 200,
       "exatos": 8,
       "saldo_acertados": 5,
-      "venc_acertados": 15,
+      "venc_acertados": 16,
       "emp_acertados": 1,
       "erros": 15,
-      "taxa_acerto": 0.659,
-      "taxa_exato": 0.182,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.178,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 74,
-          "media_pts": 4.11,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 118,
-          "media_pts": 4.54,
-          "taxa_acerto": 0.692
+        "CAF": {
+          "jogos": 18,
+          "pts": 74,
+          "media_pts": 4.11,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 79,
-          "media_pts": 4.65,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 84,
+          "media_pts": 4.67,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 123,
+          "media_pts": 4.56,
+          "taxa_acerto": 0.704
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -715,9 +715,9 @@
         }
       },
       "concordancia_cristal": 0.694,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 185,
-      "media_pts_jogos_com_favorito": 4.4,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 190,
+      "media_pts_jogos_com_favorito": 4.42,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -728,7 +728,7 @@
       "nome_display": "OpenAI o1 (legacy)",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.125,
       "avg_gols_total": 2.33,
       "avg_saldo_abs": 1.47,
@@ -740,38 +740,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 194,
+      "pontos": 199,
       "exatos": 8,
       "saldo_acertados": 2,
-      "venc_acertados": 20,
+      "venc_acertados": 21,
       "emp_acertados": 0,
       "erros": 14,
-      "taxa_acerto": 0.682,
-      "taxa_exato": 0.182,
+      "taxa_acerto": 0.689,
+      "taxa_exato": 0.178,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 72,
-          "media_pts": 4.0,
-          "taxa_acerto": 0.611
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 77,
           "media_pts": 7.0,
           "taxa_acerto": 0.909
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 107,
-          "media_pts": 4.12,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 72,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.611
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 72,
-          "media_pts": 4.24,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 77,
+          "media_pts": 4.28,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 112,
+          "media_pts": 4.15,
+          "taxa_acerto": 0.667
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -787,9 +787,9 @@
         }
       },
       "concordancia_cristal": 0.625,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 174,
-      "media_pts_jogos_com_favorito": 4.14,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 179,
+      "media_pts_jogos_com_favorito": 4.16,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 20,
       "media_pts_jogos_equilibrados": 10.0,
@@ -800,7 +800,7 @@
       "nome_display": "OpenAI o3",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.194,
       "avg_gols_total": 2.28,
       "avg_saldo_abs": 1.31,
@@ -812,38 +812,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.0
       },
-      "pontos": 193,
+      "pontos": 198,
       "exatos": 9,
       "saldo_acertados": 4,
-      "venc_acertados": 15,
+      "venc_acertados": 16,
       "emp_acertados": 0,
       "erros": 16,
-      "taxa_acerto": 0.636,
-      "taxa_exato": 0.205,
+      "taxa_acerto": 0.644,
+      "taxa_exato": 0.2,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 77,
-          "media_pts": 4.28,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 77,
           "media_pts": 7.0,
           "taxa_acerto": 0.909
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 99,
-          "media_pts": 3.81,
-          "taxa_acerto": 0.577
+        "CAF": {
+          "jogos": 18,
+          "pts": 77,
+          "media_pts": 4.28,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 81,
-          "media_pts": 4.76,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 86,
+          "media_pts": 4.78,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 104,
+          "media_pts": 3.85,
+          "taxa_acerto": 0.593
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -859,9 +859,9 @@
         }
       },
       "concordancia_cristal": 0.708,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 173,
-      "media_pts_jogos_com_favorito": 4.12,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 178,
+      "media_pts_jogos_com_favorito": 4.14,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 20,
       "media_pts_jogos_equilibrados": 10.0,
@@ -872,7 +872,7 @@
       "nome_display": "Claude Opus 4.5",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.181,
       "avg_gols_total": 2.15,
       "avg_saldo_abs": 1.4,
@@ -884,38 +884,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 189,
+      "pontos": 194,
       "exatos": 9,
       "saldo_acertados": 2,
-      "venc_acertados": 17,
+      "venc_acertados": 18,
       "emp_acertados": 0,
       "erros": 16,
-      "taxa_acerto": 0.636,
-      "taxa_exato": 0.205,
+      "taxa_acerto": 0.644,
+      "taxa_exato": 0.2,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 72,
-          "media_pts": 4.0,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 75,
           "media_pts": 6.82,
           "taxa_acerto": 0.909
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 112,
-          "media_pts": 4.31,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 72,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 60,
-          "media_pts": 3.53,
-          "taxa_acerto": 0.588
+          "jogos": 18,
+          "pts": 65,
+          "media_pts": 3.61,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 117,
+          "media_pts": 4.33,
+          "taxa_acerto": 0.667
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -931,9 +931,9 @@
         }
       },
       "concordancia_cristal": 0.708,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 169,
-      "media_pts_jogos_com_favorito": 4.02,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 174,
+      "media_pts_jogos_com_favorito": 4.05,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 20,
       "media_pts_jogos_equilibrados": 10.0,
@@ -944,7 +944,7 @@
       "nome_display": "DeepSeek V3 (legacy)",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.36,
       "avg_saldo_abs": 1.56,
@@ -956,38 +956,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.0
       },
-      "pontos": 186,
+      "pontos": 191,
       "exatos": 7,
       "saldo_acertados": 3,
-      "venc_acertados": 18,
+      "venc_acertados": 19,
       "emp_acertados": 1,
       "erros": 15,
-      "taxa_acerto": 0.659,
-      "taxa_exato": 0.159,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.156,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 79,
-          "media_pts": 4.39,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 107,
-          "media_pts": 4.12,
-          "taxa_acerto": 0.692
+        "CAF": {
+          "jogos": 18,
+          "pts": 79,
+          "media_pts": 4.39,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 67,
-          "media_pts": 3.94,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 72,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 112,
+          "media_pts": 4.15,
+          "taxa_acerto": 0.704
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1003,9 +1003,9 @@
         }
       },
       "concordancia_cristal": 0.556,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 176,
-      "media_pts_jogos_com_favorito": 4.19,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 181,
+      "media_pts_jogos_com_favorito": 4.21,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -1016,7 +1016,7 @@
       "nome_display": "ChatGPT 5 nano",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.014,
       "avg_gols_total": 2.26,
       "avg_saldo_abs": 1.6,
@@ -1028,38 +1028,38 @@
         "CONMEBOL": 0.722,
         "OFC": 0.0
       },
-      "pontos": 180,
+      "pontos": 185,
       "exatos": 8,
       "saldo_acertados": 5,
-      "venc_acertados": 13,
+      "venc_acertados": 14,
       "emp_acertados": 0,
       "erros": 18,
-      "taxa_acerto": 0.591,
-      "taxa_exato": 0.182,
+      "taxa_acerto": 0.6,
+      "taxa_exato": 0.178,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 66,
-          "media_pts": 3.67,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 62,
           "media_pts": 5.64,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 99,
-          "media_pts": 3.81,
-          "taxa_acerto": 0.577
+        "CAF": {
+          "jogos": 18,
+          "pts": 66,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 74,
-          "media_pts": 4.35,
-          "taxa_acerto": 0.588
+          "jogos": 18,
+          "pts": 79,
+          "media_pts": 4.39,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 104,
+          "media_pts": 3.85,
+          "taxa_acerto": 0.593
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1075,9 +1075,9 @@
         }
       },
       "concordancia_cristal": 0.431,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 175,
-      "media_pts_jogos_com_favorito": 4.17,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 180,
+      "media_pts_jogos_com_favorito": 4.19,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -1088,7 +1088,7 @@
       "nome_display": "Qwen 3 Max",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.53,
       "avg_saldo_abs": 1.5,
@@ -1100,38 +1100,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 184,
+      "pontos": 189,
       "exatos": 9,
       "saldo_acertados": 2,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 0,
       "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.205,
+      "taxa_acerto": 0.622,
+      "taxa_exato": 0.2,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 70,
-          "media_pts": 3.89,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 114,
-          "media_pts": 4.38,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 70,
+          "media_pts": 3.89,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 62,
-          "media_pts": 3.65,
-          "taxa_acerto": 0.588
+          "jogos": 18,
+          "pts": 67,
+          "media_pts": 3.72,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 119,
+          "media_pts": 4.41,
+          "taxa_acerto": 0.667
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1147,9 +1147,9 @@
         }
       },
       "concordancia_cristal": 0.611,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 174,
-      "media_pts_jogos_com_favorito": 4.14,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 179,
+      "media_pts_jogos_com_favorito": 4.16,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -1160,7 +1160,7 @@
       "nome_display": "Gemma 3 12B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.083,
       "avg_gols_total": 1.56,
       "avg_saldo_abs": 1.36,
@@ -1172,38 +1172,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.0
       },
-      "pontos": 184,
+      "pontos": 189,
       "exatos": 4,
       "saldo_acertados": 2,
-      "venc_acertados": 24,
+      "venc_acertados": 25,
       "emp_acertados": 2,
       "erros": 12,
-      "taxa_acerto": 0.727,
-      "taxa_exato": 0.091,
+      "taxa_acerto": 0.733,
+      "taxa_exato": 0.089,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 79,
-          "media_pts": 4.39,
-          "taxa_acerto": 0.667
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.909
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 102,
-          "media_pts": 3.92,
-          "taxa_acerto": 0.692
+        "CAF": {
+          "jogos": 18,
+          "pts": 79,
+          "media_pts": 4.39,
+          "taxa_acerto": 0.667
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 60,
-          "media_pts": 3.53,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 65,
+          "media_pts": 3.61,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 107,
+          "media_pts": 3.96,
+          "taxa_acerto": 0.704
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1219,9 +1219,9 @@
         }
       },
       "concordancia_cristal": 0.194,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 179,
-      "media_pts_jogos_com_favorito": 4.26,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 184,
+      "media_pts_jogos_com_favorito": 4.28,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -1232,7 +1232,7 @@
       "nome_display": "Qwen 3 235B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.083,
       "avg_gols_total": 2.03,
       "avg_saldo_abs": 1.39,
@@ -1244,38 +1244,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 183,
+      "pontos": 188,
       "exatos": 8,
       "saldo_acertados": 4,
-      "venc_acertados": 15,
+      "venc_acertados": 16,
       "emp_acertados": 0,
       "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.182,
+      "taxa_acerto": 0.622,
+      "taxa_exato": 0.178,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 69,
-          "media_pts": 3.83,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 106,
-          "media_pts": 4.08,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 69,
+          "media_pts": 3.83,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 69,
-          "media_pts": 4.06,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 74,
+          "media_pts": 4.11,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 111,
+          "media_pts": 4.11,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1291,9 +1291,9 @@
         }
       },
       "concordancia_cristal": 0.264,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 173,
-      "media_pts_jogos_com_favorito": 4.12,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 178,
+      "media_pts_jogos_com_favorito": 4.14,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -1304,7 +1304,7 @@
       "nome_display": "DeepSeek V3.1",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.139,
       "avg_gols_total": 2.26,
       "avg_saldo_abs": 1.57,
@@ -1316,38 +1316,38 @@
         "CONMEBOL": 0.556,
         "OFC": 0.0
       },
-      "pontos": 183,
+      "pontos": 188,
       "exatos": 6,
       "saldo_acertados": 4,
-      "venc_acertados": 19,
+      "venc_acertados": 20,
       "emp_acertados": 0,
       "erros": 15,
-      "taxa_acerto": 0.659,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 84,
-          "media_pts": 4.67,
-          "taxa_acerto": 0.722
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 101,
-          "media_pts": 3.88,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 84,
+          "media_pts": 4.67,
+          "taxa_acerto": 0.722
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 64,
-          "media_pts": 3.76,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 69,
+          "media_pts": 3.83,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 106,
+          "media_pts": 3.93,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1363,9 +1363,9 @@
         }
       },
       "concordancia_cristal": 0.431,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 178,
-      "media_pts_jogos_com_favorito": 4.24,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 183,
+      "media_pts_jogos_com_favorito": 4.26,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -1376,7 +1376,7 @@
       "nome_display": "Claude Fable 5",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.097,
       "avg_gols_total": 1.81,
       "avg_saldo_abs": 1.31,
@@ -1388,38 +1388,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 182,
+      "pontos": 187,
       "exatos": 5,
       "saldo_acertados": 6,
-      "venc_acertados": 18,
+      "venc_acertados": 19,
       "emp_acertados": 0,
       "erros": 15,
-      "taxa_acerto": 0.659,
-      "taxa_exato": 0.114,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.111,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 69,
-          "media_pts": 3.83,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 57,
           "media_pts": 5.18,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 103,
-          "media_pts": 3.96,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 69,
+          "media_pts": 3.83,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 78,
-          "media_pts": 4.59,
-          "taxa_acerto": 0.765
+          "jogos": 18,
+          "pts": 83,
+          "media_pts": 4.61,
+          "taxa_acerto": 0.778
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 108,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.667
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1435,9 +1435,9 @@
         }
       },
       "concordancia_cristal": 0.444,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 182,
-      "media_pts_jogos_com_favorito": 4.33,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 187,
+      "media_pts_jogos_com_favorito": 4.35,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
@@ -1448,7 +1448,7 @@
       "nome_display": "Grok 4 Heavy",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.125,
       "avg_gols_total": 2.25,
       "avg_saldo_abs": 1.47,
@@ -1460,38 +1460,38 @@
         "CONMEBOL": 0.722,
         "OFC": 0.0
       },
-      "pontos": 181,
+      "pontos": 186,
       "exatos": 7,
       "saldo_acertados": 3,
-      "venc_acertados": 18,
+      "venc_acertados": 19,
       "emp_acertados": 0,
       "erros": 16,
-      "taxa_acerto": 0.636,
-      "taxa_exato": 0.159,
+      "taxa_acerto": 0.644,
+      "taxa_exato": 0.156,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 64,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 70,
           "media_pts": 6.36,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 94,
-          "media_pts": 3.62,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 64,
+          "media_pts": 3.56,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 77,
-          "media_pts": 4.53,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 82,
+          "media_pts": 4.56,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 99,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1507,9 +1507,9 @@
         }
       },
       "concordancia_cristal": 0.625,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 171,
-      "media_pts_jogos_com_favorito": 4.07,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 176,
+      "media_pts_jogos_com_favorito": 4.09,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -1520,7 +1520,7 @@
       "nome_display": "Le Chat (Mistral Large)",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.278,
       "avg_gols_total": 2.33,
       "avg_saldo_abs": 1.39,
@@ -1532,38 +1532,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.0
       },
-      "pontos": 181,
+      "pontos": 186,
       "exatos": 7,
       "saldo_acertados": 3,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 2,
       "erros": 16,
-      "taxa_acerto": 0.636,
-      "taxa_exato": 0.159,
+      "taxa_acerto": 0.644,
+      "taxa_exato": 0.156,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 74,
-          "media_pts": 4.11,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.636
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 114,
-          "media_pts": 4.38,
-          "taxa_acerto": 0.692
+        "CAF": {
+          "jogos": 18,
+          "pts": 74,
+          "media_pts": 4.11,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 60,
-          "media_pts": 3.53,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 65,
+          "media_pts": 3.61,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 119,
+          "media_pts": 4.41,
+          "taxa_acerto": 0.704
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1579,9 +1579,9 @@
         }
       },
       "concordancia_cristal": 0.681,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 171,
-      "media_pts_jogos_com_favorito": 4.07,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 176,
+      "media_pts_jogos_com_favorito": 4.09,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -1592,7 +1592,7 @@
       "nome_display": "Kimi K2",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.097,
       "avg_gols_total": 2.36,
       "avg_saldo_abs": 1.58,
@@ -1604,38 +1604,38 @@
         "CONMEBOL": 0.722,
         "OFC": 0.0
       },
-      "pontos": 179,
+      "pontos": 184,
       "exatos": 6,
       "saldo_acertados": 7,
-      "venc_acertados": 14,
+      "venc_acertados": 15,
       "emp_acertados": 0,
       "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.622,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 76,
-          "media_pts": 4.22,
-          "taxa_acerto": 0.611
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 35,
           "media_pts": 3.18,
           "taxa_acerto": 0.545
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 120,
-          "media_pts": 4.62,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 76,
+          "media_pts": 4.22,
+          "taxa_acerto": 0.611
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 73,
-          "media_pts": 4.29,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 78,
+          "media_pts": 4.33,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 125,
+          "media_pts": 4.63,
+          "taxa_acerto": 0.667
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1651,9 +1651,9 @@
         }
       },
       "concordancia_cristal": 0.528,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 179,
-      "media_pts_jogos_com_favorito": 4.26,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 184,
+      "media_pts_jogos_com_favorito": 4.28,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
@@ -1664,7 +1664,7 @@
       "nome_display": "Codestral",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.222,
       "avg_gols_total": 1.86,
       "avg_saldo_abs": 1.14,
@@ -1676,38 +1676,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.333
       },
-      "pontos": 187,
+      "pontos": 192,
       "exatos": 6,
       "saldo_acertados": 6,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 1,
       "erros": 15,
-      "taxa_acerto": 0.659,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 66,
-          "media_pts": 3.67,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 108,
-          "media_pts": 4.15,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 66,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 69,
-          "media_pts": 4.06,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 74,
+          "media_pts": 4.11,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 113,
+          "media_pts": 4.19,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1723,9 +1723,9 @@
         }
       },
       "concordancia_cristal": 0.333,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 182,
-      "media_pts_jogos_com_favorito": 4.33,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 187,
+      "media_pts_jogos_com_favorito": 4.35,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -1736,7 +1736,7 @@
       "nome_display": "Grok 4",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.222,
       "avg_gols_total": 2.22,
       "avg_saldo_abs": 1.31,
@@ -1748,38 +1748,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 176,
+      "pontos": 181,
       "exatos": 6,
       "saldo_acertados": 3,
-      "venc_acertados": 18,
+      "venc_acertados": 19,
       "emp_acertados": 1,
       "erros": 16,
-      "taxa_acerto": 0.636,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.644,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 57,
-          "media_pts": 3.17,
-          "taxa_acerto": 0.444
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 94,
-          "media_pts": 3.62,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 57,
+          "media_pts": 3.17,
+          "taxa_acerto": 0.444
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 79,
-          "media_pts": 4.65,
-          "taxa_acerto": 0.765
+          "jogos": 18,
+          "pts": 84,
+          "media_pts": 4.67,
+          "taxa_acerto": 0.778
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 99,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1795,9 +1795,9 @@
         }
       },
       "concordancia_cristal": 0.694,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 166,
-      "media_pts_jogos_com_favorito": 3.95,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 171,
+      "media_pts_jogos_com_favorito": 3.98,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -1808,7 +1808,7 @@
       "nome_display": "Perplexity Sonar Pro",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.222,
       "avg_gols_total": 2.4,
       "avg_saldo_abs": 1.24,
@@ -1820,38 +1820,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 176,
+      "pontos": 181,
       "exatos": 6,
       "saldo_acertados": 3,
-      "venc_acertados": 18,
+      "venc_acertados": 19,
       "emp_acertados": 1,
       "erros": 16,
-      "taxa_acerto": 0.636,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.644,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 54,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.444
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 87,
-          "media_pts": 3.35,
-          "taxa_acerto": 0.577
+        "CAF": {
+          "jogos": 18,
+          "pts": 54,
+          "media_pts": 3.0,
+          "taxa_acerto": 0.444
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 82,
-          "media_pts": 4.82,
-          "taxa_acerto": 0.765
+          "jogos": 18,
+          "pts": 87,
+          "media_pts": 4.83,
+          "taxa_acerto": 0.778
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 92,
+          "media_pts": 3.41,
+          "taxa_acerto": 0.593
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1867,9 +1867,9 @@
         }
       },
       "concordancia_cristal": 0.625,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 166,
-      "media_pts_jogos_com_favorito": 3.95,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 171,
+      "media_pts_jogos_com_favorito": 3.98,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -1880,7 +1880,7 @@
       "nome_display": "Manus",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.0,
       "avg_gols_total": 1.83,
       "avg_saldo_abs": 1.25,
@@ -1892,38 +1892,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 176,
+      "pontos": 181,
       "exatos": 5,
       "saldo_acertados": 3,
-      "venc_acertados": 21,
+      "venc_acertados": 22,
       "emp_acertados": 0,
       "erros": 15,
-      "taxa_acerto": 0.659,
-      "taxa_exato": 0.114,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.111,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 74,
-          "media_pts": 4.11,
-          "taxa_acerto": 0.611
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 62,
           "media_pts": 5.64,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 97,
-          "media_pts": 3.73,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 74,
+          "media_pts": 4.11,
+          "taxa_acerto": 0.611
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 64,
-          "media_pts": 3.76,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 69,
+          "media_pts": 3.83,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 102,
+          "media_pts": 3.78,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -1939,9 +1939,9 @@
         }
       },
       "concordancia_cristal": 0.389,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 166,
-      "media_pts_jogos_com_favorito": 3.95,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 171,
+      "media_pts_jogos_com_favorito": 3.98,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -1952,7 +1952,7 @@
       "nome_display": "Ministral 8B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.097,
       "avg_gols_total": 1.44,
       "avg_saldo_abs": 1.22,
@@ -1964,38 +1964,38 @@
         "CONMEBOL": 0.722,
         "OFC": 0.333
       },
-      "pontos": 186,
+      "pontos": 191,
       "exatos": 4,
       "saldo_acertados": 3,
-      "venc_acertados": 25,
+      "venc_acertados": 26,
       "emp_acertados": 0,
       "erros": 12,
-      "taxa_acerto": 0.727,
-      "taxa_exato": 0.091,
+      "taxa_acerto": 0.733,
+      "taxa_exato": 0.089,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 82,
-          "media_pts": 4.56,
-          "taxa_acerto": 0.667
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 50,
           "media_pts": 4.55,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 112,
-          "media_pts": 4.31,
-          "taxa_acerto": 0.731
+        "CAF": {
+          "jogos": 18,
+          "pts": 82,
+          "media_pts": 4.56,
+          "taxa_acerto": 0.667
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 71,
-          "media_pts": 4.18,
-          "taxa_acerto": 0.765
+          "jogos": 18,
+          "pts": 76,
+          "media_pts": 4.22,
+          "taxa_acerto": 0.778
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 117,
+          "media_pts": 4.33,
+          "taxa_acerto": 0.741
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2011,9 +2011,9 @@
         }
       },
       "concordancia_cristal": 0.264,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 181,
-      "media_pts_jogos_com_favorito": 4.31,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 186,
+      "media_pts_jogos_com_favorito": 4.33,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -2024,7 +2024,7 @@
       "nome_display": "ChatGPT 5 Thinking",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.208,
       "avg_gols_total": 2.12,
       "avg_saldo_abs": 1.35,
@@ -2036,38 +2036,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 175,
+      "pontos": 180,
       "exatos": 6,
       "saldo_acertados": 5,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 0,
       "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.622,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 52,
-          "media_pts": 2.89,
-          "taxa_acerto": 0.444
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 94,
-          "media_pts": 3.62,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 52,
+          "media_pts": 2.89,
+          "taxa_acerto": 0.444
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 78,
-          "media_pts": 4.59,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 83,
+          "media_pts": 4.61,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 99,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2083,9 +2083,9 @@
         }
       },
       "concordancia_cristal": 0.722,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 165,
-      "media_pts_jogos_com_favorito": 3.93,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 170,
+      "media_pts_jogos_com_favorito": 3.95,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -2096,7 +2096,7 @@
       "nome_display": "Perplexity Sonar Reasoning",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.194,
       "avg_gols_total": 2.38,
       "avg_saldo_abs": 1.38,
@@ -2108,38 +2108,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 175,
+      "pontos": 180,
       "exatos": 6,
       "saldo_acertados": 5,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 0,
       "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.622,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 59,
-          "media_pts": 3.28,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 89,
-          "media_pts": 3.42,
-          "taxa_acerto": 0.577
+        "CAF": {
+          "jogos": 18,
+          "pts": 59,
+          "media_pts": 3.28,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 81,
-          "media_pts": 4.76,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 86,
+          "media_pts": 4.78,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 94,
+          "media_pts": 3.48,
+          "taxa_acerto": 0.593
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2155,9 +2155,9 @@
         }
       },
       "concordancia_cristal": 0.75,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 165,
-      "media_pts_jogos_com_favorito": 3.93,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 170,
+      "media_pts_jogos_com_favorito": 3.95,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -2168,7 +2168,7 @@
       "nome_display": "Gemini 2.5 Flash-Lite",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.181,
       "avg_gols_total": 2.56,
       "avg_saldo_abs": 1.47,
@@ -2180,38 +2180,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.0
       },
-      "pontos": 176,
+      "pontos": 181,
       "exatos": 7,
       "saldo_acertados": 3,
-      "venc_acertados": 17,
+      "venc_acertados": 18,
       "emp_acertados": 0,
       "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.159,
+      "taxa_acerto": 0.622,
+      "taxa_exato": 0.156,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 70,
-          "media_pts": 3.89,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 40,
           "media_pts": 3.64,
           "taxa_acerto": 0.636
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 101,
-          "media_pts": 3.88,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 70,
+          "media_pts": 3.89,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 72,
-          "media_pts": 4.24,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 77,
+          "media_pts": 4.28,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 106,
+          "media_pts": 3.93,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2227,9 +2227,9 @@
         }
       },
       "concordancia_cristal": 0.444,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 171,
-      "media_pts_jogos_com_favorito": 4.07,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 176,
+      "media_pts_jogos_com_favorito": 4.09,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -2240,7 +2240,7 @@
       "nome_display": "Claude Haiku 4.5",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.125,
       "avg_gols_total": 2.08,
       "avg_saldo_abs": 1.5,
@@ -2252,38 +2252,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 171,
+      "pontos": 176,
       "exatos": 6,
       "saldo_acertados": 3,
-      "venc_acertados": 17,
+      "venc_acertados": 18,
       "emp_acertados": 1,
       "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.622,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 65,
-          "media_pts": 3.61,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 52,
           "media_pts": 4.73,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 99,
-          "media_pts": 3.81,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 65,
+          "media_pts": 3.61,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 59,
-          "media_pts": 3.47,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 64,
+          "media_pts": 3.56,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 104,
+          "media_pts": 3.85,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2299,9 +2299,9 @@
         }
       },
       "concordancia_cristal": 0.389,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 171,
-      "media_pts_jogos_com_favorito": 4.07,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 176,
+      "media_pts_jogos_com_favorito": 4.09,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
@@ -2312,7 +2312,7 @@
       "nome_display": "DeepSeek V3.2",
       "serie_a": false,
       "n_palpites": 67,
-      "n_encerrados_palpitou": 40,
+      "n_encerrados_palpitou": 41,
       "pct_empates_palpitados": 0.194,
       "avg_gols_total": 2.31,
       "avg_saldo_abs": 1.48,
@@ -2324,26 +2324,26 @@
         "CAF": 0.296,
         "OFC": 0.0
       },
-      "pontos": 170,
+      "pontos": 175,
       "exatos": 7,
       "saldo_acertados": 5,
-      "venc_acertados": 13,
+      "venc_acertados": 14,
       "emp_acertados": 0,
       "erros": 15,
-      "taxa_acerto": 0.625,
-      "taxa_exato": 0.175,
+      "taxa_acerto": 0.634,
+      "taxa_exato": 0.171,
       "acerto_por_continente": {
-        "UEFA": {
-          "jogos": 23,
-          "pts": 96,
-          "media_pts": 4.17,
-          "taxa_acerto": 0.609
-        },
         "AFC": {
-          "jogos": 17,
-          "pts": 69,
-          "media_pts": 4.06,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 74,
+          "media_pts": 4.11,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 24,
+          "pts": 101,
+          "media_pts": 4.21,
+          "taxa_acerto": 0.625
         },
         "CONCACAF": {
           "jogos": 9,
@@ -2371,9 +2371,9 @@
         }
       },
       "concordancia_cristal": 0.642,
-      "jogos_com_favorito": 39,
-      "pts_em_jogos_com_favorito": 160,
-      "media_pts_jogos_com_favorito": 4.1,
+      "jogos_com_favorito": 40,
+      "pts_em_jogos_com_favorito": 165,
+      "media_pts_jogos_com_favorito": 4.12,
       "jogos_equilibrados": 1,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 10.0,
@@ -2384,7 +2384,7 @@
       "nome_display": "AI21 Jamba 1.5 Large",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.069,
       "avg_gols_total": 2.25,
       "avg_saldo_abs": 1.75,
@@ -2396,38 +2396,38 @@
         "CONMEBOL": 0.556,
         "OFC": 0.333
       },
-      "pontos": 189,
+      "pontos": 194,
       "exatos": 3,
       "saldo_acertados": 7,
-      "venc_acertados": 22,
+      "venc_acertados": 23,
       "emp_acertados": 0,
       "erros": 12,
-      "taxa_acerto": 0.727,
-      "taxa_exato": 0.068,
+      "taxa_acerto": 0.733,
+      "taxa_exato": 0.067,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 76,
-          "media_pts": 4.22,
-          "taxa_acerto": 0.667
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 67,
           "media_pts": 6.09,
           "taxa_acerto": 0.909
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 96,
-          "media_pts": 3.69,
-          "taxa_acerto": 0.692
+        "CAF": {
+          "jogos": 18,
+          "pts": 76,
+          "media_pts": 4.22,
+          "taxa_acerto": 0.667
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 68,
-          "media_pts": 4.0,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 73,
+          "media_pts": 4.06,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 101,
+          "media_pts": 3.74,
+          "taxa_acerto": 0.704
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2443,9 +2443,9 @@
         }
       },
       "concordancia_cristal": 0.417,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 174,
-      "media_pts_jogos_com_favorito": 4.14,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 179,
+      "media_pts_jogos_com_favorito": 4.16,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 15,
       "media_pts_jogos_equilibrados": 7.5,
@@ -2456,7 +2456,7 @@
       "nome_display": "ChatGPT 5",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.07,
       "avg_saldo_abs": 1.4,
@@ -2468,38 +2468,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 168,
+      "pontos": 173,
       "exatos": 6,
       "saldo_acertados": 4,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 0,
       "erros": 18,
-      "taxa_acerto": 0.591,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.6,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 52,
-          "media_pts": 2.89,
-          "taxa_acerto": 0.444
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 60,
           "media_pts": 5.45,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 84,
-          "media_pts": 3.23,
-          "taxa_acerto": 0.538
+        "CAF": {
+          "jogos": 18,
+          "pts": 52,
+          "media_pts": 2.89,
+          "taxa_acerto": 0.444
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 81,
-          "media_pts": 4.76,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 86,
+          "media_pts": 4.78,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 89,
+          "media_pts": 3.3,
+          "taxa_acerto": 0.556
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2515,9 +2515,9 @@
         }
       },
       "concordancia_cristal": 0.736,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 168,
-      "media_pts_jogos_com_favorito": 4.0,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 173,
+      "media_pts_jogos_com_favorito": 4.02,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
@@ -2528,7 +2528,7 @@
       "nome_display": "ChatGPT 5 mini",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.056,
       "avg_gols_total": 2.22,
       "avg_saldo_abs": 1.78,
@@ -2540,38 +2540,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.0
       },
-      "pontos": 167,
+      "pontos": 172,
       "exatos": 2,
       "saldo_acertados": 6,
-      "venc_acertados": 21,
+      "venc_acertados": 22,
       "emp_acertados": 0,
       "erros": 15,
-      "taxa_acerto": 0.659,
-      "taxa_exato": 0.045,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.044,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 69,
-          "media_pts": 3.83,
-          "taxa_acerto": 0.611
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 52,
           "media_pts": 4.73,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 93,
-          "media_pts": 3.58,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 69,
+          "media_pts": 3.83,
+          "taxa_acerto": 0.611
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 68,
-          "media_pts": 4.0,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 73,
+          "media_pts": 4.06,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 98,
+          "media_pts": 3.63,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2587,9 +2587,9 @@
         }
       },
       "concordancia_cristal": 0.528,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 162,
-      "media_pts_jogos_com_favorito": 3.86,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 167,
+      "media_pts_jogos_com_favorito": 3.88,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -2600,7 +2600,7 @@
       "nome_display": "GPT-4o (legacy)",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.153,
       "avg_gols_total": 2.29,
       "avg_saldo_abs": 1.43,
@@ -2612,38 +2612,38 @@
         "CONMEBOL": 0.722,
         "OFC": 0.333
       },
-      "pontos": 171,
+      "pontos": 176,
       "exatos": 6,
       "saldo_acertados": 3,
-      "venc_acertados": 18,
+      "venc_acertados": 19,
       "emp_acertados": 0,
       "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.622,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 57,
-          "media_pts": 3.17,
-          "taxa_acerto": 0.444
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 94,
-          "media_pts": 3.62,
-          "taxa_acerto": 0.577
+        "CAF": {
+          "jogos": 18,
+          "pts": 57,
+          "media_pts": 3.17,
+          "taxa_acerto": 0.444
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 74,
-          "media_pts": 4.35,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 79,
+          "media_pts": 4.39,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 99,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.593
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2659,9 +2659,9 @@
         }
       },
       "concordancia_cristal": 0.583,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 161,
-      "media_pts_jogos_com_favorito": 3.83,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 166,
+      "media_pts_jogos_com_favorito": 3.86,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -2672,7 +2672,7 @@
       "nome_display": "Qwen 2.5 72B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.111,
       "avg_gols_total": 2.12,
       "avg_saldo_abs": 1.38,
@@ -2684,38 +2684,38 @@
         "CONMEBOL": 0.833,
         "OFC": 0.0
       },
-      "pontos": 166,
+      "pontos": 171,
       "exatos": 4,
       "saldo_acertados": 3,
-      "venc_acertados": 21,
+      "venc_acertados": 22,
       "emp_acertados": 0,
       "erros": 16,
-      "taxa_acerto": 0.636,
-      "taxa_exato": 0.091,
+      "taxa_acerto": 0.644,
+      "taxa_exato": 0.089,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 69,
-          "media_pts": 3.83,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 57,
           "media_pts": 5.18,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 104,
-          "media_pts": 4.0,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 69,
+          "media_pts": 3.83,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 57,
-          "media_pts": 3.35,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 62,
+          "media_pts": 3.44,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 109,
+          "media_pts": 4.04,
+          "taxa_acerto": 0.667
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2731,9 +2731,9 @@
         }
       },
       "concordancia_cristal": 0.333,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 149,
-      "media_pts_jogos_com_favorito": 3.55,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 154,
+      "media_pts_jogos_com_favorito": 3.58,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 17,
       "media_pts_jogos_equilibrados": 8.5,
@@ -2744,7 +2744,7 @@
       "nome_display": "Microsoft Copilot",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.208,
       "avg_gols_total": 2.22,
       "avg_saldo_abs": 1.42,
@@ -2756,38 +2756,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.0
       },
-      "pontos": 165,
+      "pontos": 170,
       "exatos": 6,
       "saldo_acertados": 5,
-      "venc_acertados": 14,
+      "venc_acertados": 15,
       "emp_acertados": 0,
       "erros": 19,
-      "taxa_acerto": 0.568,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.578,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 59,
-          "media_pts": 3.28,
-          "taxa_acerto": 0.444
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 62,
           "media_pts": 5.64,
           "taxa_acerto": 0.818
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 79,
-          "media_pts": 3.04,
-          "taxa_acerto": 0.5
+        "CAF": {
+          "jogos": 18,
+          "pts": 59,
+          "media_pts": 3.28,
+          "taxa_acerto": 0.444
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 73,
-          "media_pts": 4.29,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 78,
+          "media_pts": 4.33,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 84,
+          "media_pts": 3.11,
+          "taxa_acerto": 0.519
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2803,9 +2803,9 @@
         }
       },
       "concordancia_cristal": 0.556,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 155,
-      "media_pts_jogos_com_favorito": 3.69,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 160,
+      "media_pts_jogos_com_favorito": 3.72,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -2816,7 +2816,7 @@
       "nome_display": "DeepSeek R1",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.208,
       "avg_gols_total": 2.24,
       "avg_saldo_abs": 1.49,
@@ -2828,38 +2828,38 @@
         "CONMEBOL": 0.611,
         "OFC": 0.0
       },
-      "pontos": 165,
+      "pontos": 170,
       "exatos": 5,
       "saldo_acertados": 5,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 0,
       "erros": 18,
-      "taxa_acerto": 0.591,
-      "taxa_exato": 0.114,
+      "taxa_acerto": 0.6,
+      "taxa_exato": 0.111,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 64,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 50,
           "media_pts": 4.55,
           "taxa_acerto": 0.636
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 99,
-          "media_pts": 3.81,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 64,
+          "media_pts": 3.56,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 56,
-          "media_pts": 3.29,
-          "taxa_acerto": 0.588
+          "jogos": 18,
+          "pts": 61,
+          "media_pts": 3.39,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 104,
+          "media_pts": 3.85,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2875,9 +2875,9 @@
         }
       },
       "concordancia_cristal": 0.514,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 155,
-      "media_pts_jogos_com_favorito": 3.69,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 160,
+      "media_pts_jogos_com_favorito": 3.72,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -2888,7 +2888,7 @@
       "nome_display": "Qwen 3 Coder",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.097,
       "avg_gols_total": 2.61,
       "avg_saldo_abs": 1.5,
@@ -2900,38 +2900,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 170,
+      "pontos": 175,
       "exatos": 3,
       "saldo_acertados": 5,
-      "venc_acertados": 20,
+      "venc_acertados": 21,
       "emp_acertados": 1,
       "erros": 15,
-      "taxa_acerto": 0.659,
-      "taxa_exato": 0.068,
+      "taxa_acerto": 0.667,
+      "taxa_exato": 0.067,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 64,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 47,
           "media_pts": 4.27,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 101,
-          "media_pts": 3.88,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 64,
+          "media_pts": 3.56,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 67,
-          "media_pts": 3.94,
-          "taxa_acerto": 0.706
+          "jogos": 18,
+          "pts": 72,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 106,
+          "media_pts": 3.93,
+          "taxa_acerto": 0.667
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -2947,9 +2947,9 @@
         }
       },
       "concordancia_cristal": 0.431,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 165,
-      "media_pts_jogos_com_favorito": 3.93,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 170,
+      "media_pts_jogos_com_favorito": 3.95,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -2960,7 +2960,7 @@
       "nome_display": "Perplexity Sonar Large",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.03,
       "avg_saldo_abs": 1.28,
@@ -2972,38 +2972,38 @@
         "CONMEBOL": 0.722,
         "OFC": 0.0
       },
-      "pontos": 164,
+      "pontos": 169,
       "exatos": 5,
       "saldo_acertados": 2,
-      "venc_acertados": 19,
+      "venc_acertados": 20,
       "emp_acertados": 1,
       "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.114,
+      "taxa_acerto": 0.622,
+      "taxa_exato": 0.111,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 57,
-          "media_pts": 3.17,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 50,
           "media_pts": 4.55,
           "taxa_acerto": 0.636
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 94,
-          "media_pts": 3.62,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 57,
+          "media_pts": 3.17,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 67,
-          "media_pts": 3.94,
-          "taxa_acerto": 0.647
+          "jogos": 18,
+          "pts": 72,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 99,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -3019,9 +3019,9 @@
         }
       },
       "concordancia_cristal": 0.528,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 164,
-      "media_pts_jogos_com_favorito": 3.9,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 169,
+      "media_pts_jogos_com_favorito": 3.93,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
@@ -3032,7 +3032,7 @@
       "nome_display": "Claude Sonnet 4.5",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.222,
       "avg_gols_total": 2.28,
       "avg_saldo_abs": 1.28,
@@ -3044,38 +3044,38 @@
         "CONMEBOL": 0.5,
         "OFC": 0.0
       },
-      "pontos": 163,
+      "pontos": 168,
       "exatos": 6,
       "saldo_acertados": 4,
-      "venc_acertados": 15,
+      "venc_acertados": 16,
       "emp_acertados": 0,
       "erros": 19,
-      "taxa_acerto": 0.568,
-      "taxa_exato": 0.136,
+      "taxa_acerto": 0.578,
+      "taxa_exato": 0.133,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 71,
-          "media_pts": 3.94,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 55,
           "media_pts": 5.0,
           "taxa_acerto": 0.636
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 86,
-          "media_pts": 3.31,
-          "taxa_acerto": 0.538
+        "CAF": {
+          "jogos": 18,
+          "pts": 71,
+          "media_pts": 3.94,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 57,
-          "media_pts": 3.35,
-          "taxa_acerto": 0.588
+          "jogos": 18,
+          "pts": 62,
+          "media_pts": 3.44,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 91,
+          "media_pts": 3.37,
+          "taxa_acerto": 0.556
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -3091,9 +3091,9 @@
         }
       },
       "concordancia_cristal": 0.681,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 153,
-      "media_pts_jogos_com_favorito": 3.64,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 158,
+      "media_pts_jogos_com_favorito": 3.67,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -3104,7 +3104,7 @@
       "nome_display": "Mixtral 8x22B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.111,
       "avg_gols_total": 2.67,
       "avg_saldo_abs": 1.69,
@@ -3116,38 +3116,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 162,
+      "pontos": 167,
       "exatos": 5,
       "saldo_acertados": 1,
-      "venc_acertados": 20,
+      "venc_acertados": 21,
       "emp_acertados": 1,
       "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.114,
+      "taxa_acerto": 0.622,
+      "taxa_exato": 0.111,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 65,
-          "media_pts": 3.61,
-          "taxa_acerto": 0.611
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 40,
           "media_pts": 3.64,
           "taxa_acerto": 0.545
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 97,
-          "media_pts": 3.73,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 65,
+          "media_pts": 3.61,
+          "taxa_acerto": 0.611
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 60,
-          "media_pts": 3.53,
-          "taxa_acerto": 0.588
+          "jogos": 18,
+          "pts": 65,
+          "media_pts": 3.61,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 102,
+          "media_pts": 3.78,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -3163,9 +3163,9 @@
         }
       },
       "concordancia_cristal": 0.403,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 162,
-      "media_pts_jogos_com_favorito": 3.86,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 167,
+      "media_pts_jogos_com_favorito": 3.88,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
@@ -3176,7 +3176,7 @@
       "nome_display": "Gemini 2.5 Pro",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.181,
       "avg_gols_total": 2.25,
       "avg_saldo_abs": 1.5,
@@ -3188,38 +3188,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 158,
+      "pontos": 163,
       "exatos": 5,
       "saldo_acertados": 4,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 0,
       "erros": 19,
-      "taxa_acerto": 0.568,
-      "taxa_exato": 0.114,
+      "taxa_acerto": 0.578,
+      "taxa_exato": 0.111,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 52,
-          "media_pts": 2.89,
-          "taxa_acerto": 0.444
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 45,
           "media_pts": 4.09,
           "taxa_acerto": 0.636
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 94,
-          "media_pts": 3.62,
-          "taxa_acerto": 0.577
+        "CAF": {
+          "jogos": 18,
+          "pts": 52,
+          "media_pts": 2.89,
+          "taxa_acerto": 0.444
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 71,
-          "media_pts": 4.18,
-          "taxa_acerto": 0.588
+          "jogos": 18,
+          "pts": 76,
+          "media_pts": 4.22,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 99,
+          "media_pts": 3.67,
+          "taxa_acerto": 0.593
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -3235,20 +3235,236 @@
         }
       },
       "concordancia_cristal": 0.653,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 158,
-      "media_pts_jogos_com_favorito": 3.76,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 163,
+      "media_pts_jogos_com_favorito": 3.79,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
       "cluster": 1
     },
     {
+      "slug": "llama-3-1-70b",
+      "nome_display": "Llama 3.1 70B",
+      "serie_a": false,
+      "n_palpites": 72,
+      "n_encerrados_palpitou": 45,
+      "pct_empates_palpitados": 0.236,
+      "avg_gols_total": 1.51,
+      "avg_saldo_abs": 1.1,
+      "tendencia_continente": {
+        "CONCACAF": 0.389,
+        "CAF": 0.2,
+        "AFC": 0.148,
+        "UEFA": 0.625,
+        "CONMEBOL": 0.611,
+        "OFC": 0.0
+      },
+      "pontos": 163,
+      "exatos": 4,
+      "saldo_acertados": 4,
+      "venc_acertados": 18,
+      "emp_acertados": 1,
+      "erros": 18,
+      "taxa_acerto": 0.6,
+      "taxa_exato": 0.089,
+      "acerto_por_continente": {
+        "CONCACAF": {
+          "jogos": 11,
+          "pts": 35,
+          "media_pts": 3.18,
+          "taxa_acerto": 0.545
+        },
+        "CAF": {
+          "jogos": 18,
+          "pts": 58,
+          "media_pts": 3.22,
+          "taxa_acerto": 0.5
+        },
+        "AFC": {
+          "jogos": 18,
+          "pts": 72,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 91,
+          "media_pts": 3.37,
+          "taxa_acerto": 0.556
+        },
+        "CONMEBOL": {
+          "jogos": 11,
+          "pts": 50,
+          "media_pts": 4.55,
+          "taxa_acerto": 0.636
+        },
+        "OFC": {
+          "jogos": 2,
+          "pts": 10,
+          "media_pts": 5.0,
+          "taxa_acerto": 1.0
+        }
+      },
+      "concordancia_cristal": 0.236,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 163,
+      "media_pts_jogos_com_favorito": 3.79,
+      "jogos_equilibrados": 2,
+      "pts_em_jogos_equilibrados": 0,
+      "media_pts_jogos_equilibrados": 0.0,
+      "cluster": 2
+    },
+    {
+      "slug": "gemma-3-27b",
+      "nome_display": "Gemma 3 27B",
+      "serie_a": false,
+      "n_palpites": 72,
+      "n_encerrados_palpitou": 45,
+      "pct_empates_palpitados": 0.083,
+      "avg_gols_total": 2.56,
+      "avg_saldo_abs": 1.89,
+      "tendencia_continente": {
+        "CONCACAF": 0.278,
+        "CAF": 0.233,
+        "AFC": 0.259,
+        "UEFA": 0.7,
+        "CONMEBOL": 0.778,
+        "OFC": 0.333
+      },
+      "pontos": 176,
+      "exatos": 3,
+      "saldo_acertados": 3,
+      "venc_acertados": 25,
+      "emp_acertados": 0,
+      "erros": 14,
+      "taxa_acerto": 0.689,
+      "taxa_exato": 0.067,
+      "acerto_por_continente": {
+        "CONCACAF": {
+          "jogos": 11,
+          "pts": 40,
+          "media_pts": 3.64,
+          "taxa_acerto": 0.727
+        },
+        "CAF": {
+          "jogos": 18,
+          "pts": 64,
+          "media_pts": 3.56,
+          "taxa_acerto": 0.611
+        },
+        "AFC": {
+          "jogos": 18,
+          "pts": 75,
+          "media_pts": 4.17,
+          "taxa_acerto": 0.722
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 109,
+          "media_pts": 4.04,
+          "taxa_acerto": 0.704
+        },
+        "CONMEBOL": {
+          "jogos": 11,
+          "pts": 35,
+          "media_pts": 3.18,
+          "taxa_acerto": 0.545
+        },
+        "OFC": {
+          "jogos": 2,
+          "pts": 12,
+          "media_pts": 6.0,
+          "taxa_acerto": 1.0
+        }
+      },
+      "concordancia_cristal": 0.222,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 171,
+      "media_pts_jogos_com_favorito": 3.98,
+      "jogos_equilibrados": 2,
+      "pts_em_jogos_equilibrados": 5,
+      "media_pts_jogos_equilibrados": 2.5,
+      "cluster": 0
+    },
+    {
+      "slug": "cohere-command-r",
+      "nome_display": "Cohere Command R",
+      "serie_a": false,
+      "n_palpites": 72,
+      "n_encerrados_palpitou": 45,
+      "pct_empates_palpitados": 0.056,
+      "avg_gols_total": 1.72,
+      "avg_saldo_abs": 1.42,
+      "tendencia_continente": {
+        "CONCACAF": 0.556,
+        "CAF": 0.267,
+        "AFC": 0.333,
+        "UEFA": 0.6,
+        "CONMEBOL": 0.778,
+        "OFC": 0.0
+      },
+      "pontos": 161,
+      "exatos": 2,
+      "saldo_acertados": 3,
+      "venc_acertados": 24,
+      "emp_acertados": 0,
+      "erros": 16,
+      "taxa_acerto": 0.644,
+      "taxa_exato": 0.044,
+      "acerto_por_continente": {
+        "CONCACAF": {
+          "jogos": 11,
+          "pts": 45,
+          "media_pts": 4.09,
+          "taxa_acerto": 0.727
+        },
+        "CAF": {
+          "jogos": 18,
+          "pts": 61,
+          "media_pts": 3.39,
+          "taxa_acerto": 0.556
+        },
+        "AFC": {
+          "jogos": 18,
+          "pts": 55,
+          "media_pts": 3.06,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 109,
+          "media_pts": 4.04,
+          "taxa_acerto": 0.704
+        },
+        "CONMEBOL": {
+          "jogos": 11,
+          "pts": 32,
+          "media_pts": 2.91,
+          "taxa_acerto": 0.545
+        },
+        "OFC": {
+          "jogos": 2,
+          "pts": 5,
+          "media_pts": 2.5,
+          "taxa_acerto": 0.5
+        }
+      },
+      "concordancia_cristal": 0.25,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 161,
+      "media_pts_jogos_com_favorito": 3.74,
+      "jogos_equilibrados": 2,
+      "pts_em_jogos_equilibrados": 0,
+      "media_pts_jogos_equilibrados": 0.0,
+      "cluster": 2
+    },
+    {
       "slug": "llama-3-3-70b",
       "nome_display": "Llama 3.3 70B",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.194,
       "avg_gols_total": 2.1,
       "avg_saldo_abs": 1.32,
@@ -3265,33 +3481,33 @@
       "saldo_acertados": 4,
       "venc_acertados": 19,
       "emp_acertados": 0,
-      "erros": 17,
-      "taxa_acerto": 0.614,
-      "taxa_exato": 0.091,
+      "erros": 18,
+      "taxa_acerto": 0.6,
+      "taxa_exato": 0.089,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 54,
-          "media_pts": 3.0,
-          "taxa_acerto": 0.444
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 57,
           "media_pts": 5.18,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 101,
-          "media_pts": 3.88,
-          "taxa_acerto": 0.654
+        "CAF": {
+          "jogos": 18,
+          "pts": 54,
+          "media_pts": 3.0,
+          "taxa_acerto": 0.444
         },
         "AFC": {
-          "jogos": 17,
+          "jogos": 18,
           "pts": 52,
-          "media_pts": 3.06,
-          "taxa_acerto": 0.588
+          "media_pts": 2.89,
+          "taxa_acerto": 0.556
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 101,
+          "media_pts": 3.74,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -3307,228 +3523,12 @@
         }
       },
       "concordancia_cristal": 0.347,
-      "jogos_com_favorito": 42,
+      "jogos_com_favorito": 43,
       "pts_em_jogos_com_favorito": 153,
-      "media_pts_jogos_com_favorito": 3.64,
+      "media_pts_jogos_com_favorito": 3.56,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 2
-    },
-    {
-      "slug": "llama-3-1-70b",
-      "nome_display": "Llama 3.1 70B",
-      "serie_a": false,
-      "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
-      "pct_empates_palpitados": 0.236,
-      "avg_gols_total": 1.51,
-      "avg_saldo_abs": 1.1,
-      "tendencia_continente": {
-        "CONCACAF": 0.389,
-        "CAF": 0.2,
-        "AFC": 0.148,
-        "UEFA": 0.625,
-        "CONMEBOL": 0.611,
-        "OFC": 0.0
-      },
-      "pontos": 158,
-      "exatos": 4,
-      "saldo_acertados": 4,
-      "venc_acertados": 17,
-      "emp_acertados": 1,
-      "erros": 18,
-      "taxa_acerto": 0.591,
-      "taxa_exato": 0.091,
-      "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 58,
-          "media_pts": 3.22,
-          "taxa_acerto": 0.5
-        },
-        "CONCACAF": {
-          "jogos": 11,
-          "pts": 35,
-          "media_pts": 3.18,
-          "taxa_acerto": 0.545
-        },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 86,
-          "media_pts": 3.31,
-          "taxa_acerto": 0.538
-        },
-        "AFC": {
-          "jogos": 17,
-          "pts": 67,
-          "media_pts": 3.94,
-          "taxa_acerto": 0.706
-        },
-        "CONMEBOL": {
-          "jogos": 11,
-          "pts": 50,
-          "media_pts": 4.55,
-          "taxa_acerto": 0.636
-        },
-        "OFC": {
-          "jogos": 2,
-          "pts": 10,
-          "media_pts": 5.0,
-          "taxa_acerto": 1.0
-        }
-      },
-      "concordancia_cristal": 0.236,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 158,
-      "media_pts_jogos_com_favorito": 3.76,
-      "jogos_equilibrados": 2,
-      "pts_em_jogos_equilibrados": 0,
-      "media_pts_jogos_equilibrados": 0.0,
-      "cluster": 2
-    },
-    {
-      "slug": "gemma-3-27b",
-      "nome_display": "Gemma 3 27B",
-      "serie_a": false,
-      "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
-      "pct_empates_palpitados": 0.083,
-      "avg_gols_total": 2.56,
-      "avg_saldo_abs": 1.89,
-      "tendencia_continente": {
-        "CONCACAF": 0.278,
-        "CAF": 0.233,
-        "AFC": 0.259,
-        "UEFA": 0.7,
-        "CONMEBOL": 0.778,
-        "OFC": 0.333
-      },
-      "pontos": 171,
-      "exatos": 3,
-      "saldo_acertados": 3,
-      "venc_acertados": 24,
-      "emp_acertados": 0,
-      "erros": 14,
-      "taxa_acerto": 0.682,
-      "taxa_exato": 0.068,
-      "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 64,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.611
-        },
-        "CONCACAF": {
-          "jogos": 11,
-          "pts": 40,
-          "media_pts": 3.64,
-          "taxa_acerto": 0.727
-        },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 104,
-          "media_pts": 4.0,
-          "taxa_acerto": 0.692
-        },
-        "AFC": {
-          "jogos": 17,
-          "pts": 70,
-          "media_pts": 4.12,
-          "taxa_acerto": 0.706
-        },
-        "CONMEBOL": {
-          "jogos": 11,
-          "pts": 35,
-          "media_pts": 3.18,
-          "taxa_acerto": 0.545
-        },
-        "OFC": {
-          "jogos": 2,
-          "pts": 12,
-          "media_pts": 6.0,
-          "taxa_acerto": 1.0
-        }
-      },
-      "concordancia_cristal": 0.222,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 166,
-      "media_pts_jogos_com_favorito": 3.95,
-      "jogos_equilibrados": 2,
-      "pts_em_jogos_equilibrados": 5,
-      "media_pts_jogos_equilibrados": 2.5,
-      "cluster": 0
-    },
-    {
-      "slug": "cohere-command-r",
-      "nome_display": "Cohere Command R",
-      "serie_a": false,
-      "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
-      "pct_empates_palpitados": 0.056,
-      "avg_gols_total": 1.72,
-      "avg_saldo_abs": 1.42,
-      "tendencia_continente": {
-        "CONCACAF": 0.556,
-        "CAF": 0.267,
-        "AFC": 0.333,
-        "UEFA": 0.6,
-        "CONMEBOL": 0.778,
-        "OFC": 0.0
-      },
-      "pontos": 156,
-      "exatos": 2,
-      "saldo_acertados": 3,
-      "venc_acertados": 23,
-      "emp_acertados": 0,
-      "erros": 16,
-      "taxa_acerto": 0.636,
-      "taxa_exato": 0.045,
-      "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 61,
-          "media_pts": 3.39,
-          "taxa_acerto": 0.556
-        },
-        "CONCACAF": {
-          "jogos": 11,
-          "pts": 45,
-          "media_pts": 4.09,
-          "taxa_acerto": 0.727
-        },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 104,
-          "media_pts": 4.0,
-          "taxa_acerto": 0.692
-        },
-        "AFC": {
-          "jogos": 17,
-          "pts": 50,
-          "media_pts": 2.94,
-          "taxa_acerto": 0.588
-        },
-        "CONMEBOL": {
-          "jogos": 11,
-          "pts": 32,
-          "media_pts": 2.91,
-          "taxa_acerto": 0.545
-        },
-        "OFC": {
-          "jogos": 2,
-          "pts": 5,
-          "media_pts": 2.5,
-          "taxa_acerto": 0.5
-        }
-      },
-      "concordancia_cristal": 0.25,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 156,
-      "media_pts_jogos_com_favorito": 3.71,
-      "jogos_equilibrados": 2,
-      "pts_em_jogos_equilibrados": 0,
-      "media_pts_jogos_equilibrados": 0.0,
       "cluster": 2
     },
     {
@@ -3536,7 +3536,7 @@
       "nome_display": "Llama 4 Maverick",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 1.96,
       "avg_saldo_abs": 1.4,
@@ -3548,38 +3548,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.333
       },
-      "pontos": 158,
+      "pontos": 163,
       "exatos": 5,
       "saldo_acertados": 4,
-      "venc_acertados": 16,
+      "venc_acertados": 17,
       "emp_acertados": 0,
       "erros": 19,
-      "taxa_acerto": 0.568,
-      "taxa_exato": 0.114,
+      "taxa_acerto": 0.578,
+      "taxa_exato": 0.111,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 59,
-          "media_pts": 3.28,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 40,
           "media_pts": 3.64,
           "taxa_acerto": 0.545
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 103,
-          "media_pts": 3.96,
-          "taxa_acerto": 0.615
+        "CAF": {
+          "jogos": 18,
+          "pts": 59,
+          "media_pts": 3.28,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 57,
-          "media_pts": 3.35,
-          "taxa_acerto": 0.588
+          "jogos": 18,
+          "pts": 62,
+          "media_pts": 3.44,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 108,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.63
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -3595,9 +3595,9 @@
         }
       },
       "concordancia_cristal": 0.458,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 153,
-      "media_pts_jogos_com_favorito": 3.64,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 158,
+      "media_pts_jogos_com_favorito": 3.67,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -3608,7 +3608,7 @@
       "nome_display": "Phi-4 mini",
       "serie_a": false,
       "n_palpites": 71,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.268,
       "avg_gols_total": 1.92,
       "avg_saldo_abs": 1.04,
@@ -3625,33 +3625,33 @@
       "saldo_acertados": 4,
       "venc_acertados": 14,
       "emp_acertados": 4,
-      "erros": 18,
-      "taxa_acerto": 0.591,
-      "taxa_exato": 0.091,
+      "erros": 19,
+      "taxa_acerto": 0.578,
+      "taxa_exato": 0.089,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 64,
-          "media_pts": 3.56,
-          "taxa_acerto": 0.556
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 35,
           "media_pts": 3.18,
           "taxa_acerto": 0.636
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 101,
-          "media_pts": 3.88,
-          "taxa_acerto": 0.577
+        "CAF": {
+          "jogos": 18,
+          "pts": 64,
+          "media_pts": 3.56,
+          "taxa_acerto": 0.556
         },
         "AFC": {
-          "jogos": 17,
+          "jogos": 18,
           "pts": 64,
-          "media_pts": 3.76,
-          "taxa_acerto": 0.647
+          "media_pts": 3.56,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 101,
+          "media_pts": 3.74,
+          "taxa_acerto": 0.556
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -3667,9 +3667,9 @@
         }
       },
       "concordancia_cristal": 0.07,
-      "jogos_com_favorito": 42,
+      "jogos_com_favorito": 43,
       "pts_em_jogos_com_favorito": 148,
-      "media_pts_jogos_com_favorito": 3.52,
+      "media_pts_jogos_com_favorito": 3.44,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
@@ -3680,7 +3680,7 @@
       "nome_display": "Cohere Command R+",
       "serie_a": false,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.167,
       "avg_gols_total": 2.26,
       "avg_saldo_abs": 1.4,
@@ -3692,38 +3692,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.0
       },
-      "pontos": 138,
+      "pontos": 143,
       "exatos": 2,
       "saldo_acertados": 4,
-      "venc_acertados": 17,
+      "venc_acertados": 18,
       "emp_acertados": 1,
       "erros": 20,
-      "taxa_acerto": 0.545,
-      "taxa_exato": 0.045,
+      "taxa_acerto": 0.556,
+      "taxa_exato": 0.044,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 47,
-          "media_pts": 2.61,
-          "taxa_acerto": 0.389
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 30,
           "media_pts": 2.73,
           "taxa_acerto": 0.545
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 91,
-          "media_pts": 3.5,
-          "taxa_acerto": 0.577
+        "CAF": {
+          "jogos": 18,
+          "pts": 47,
+          "media_pts": 2.61,
+          "taxa_acerto": 0.389
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 67,
-          "media_pts": 3.94,
-          "taxa_acerto": 0.765
+          "jogos": 18,
+          "pts": 72,
+          "media_pts": 4.0,
+          "taxa_acerto": 0.778
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 96,
+          "media_pts": 3.56,
+          "taxa_acerto": 0.593
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -3739,9 +3739,9 @@
         }
       },
       "concordancia_cristal": 0.139,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 138,
-      "media_pts_jogos_com_favorito": 3.29,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 143,
+      "media_pts_jogos_com_favorito": 3.33,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 0,
       "media_pts_jogos_equilibrados": 0.0,
@@ -3752,7 +3752,7 @@
       "nome_display": "Meta AI (Llama 4)",
       "serie_a": true,
       "n_palpites": 72,
-      "n_encerrados_palpitou": 44,
+      "n_encerrados_palpitou": 45,
       "pct_empates_palpitados": 0.153,
       "avg_gols_total": 1.93,
       "avg_saldo_abs": 1.49,
@@ -3764,38 +3764,38 @@
         "CONMEBOL": 0.667,
         "OFC": 0.333
       },
-      "pontos": 141,
+      "pontos": 146,
       "exatos": 2,
       "saldo_acertados": 3,
-      "venc_acertados": 20,
+      "venc_acertados": 21,
       "emp_acertados": 0,
       "erros": 19,
-      "taxa_acerto": 0.568,
-      "taxa_exato": 0.045,
+      "taxa_acerto": 0.578,
+      "taxa_exato": 0.044,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 18,
-          "pts": 51,
-          "media_pts": 2.83,
-          "taxa_acerto": 0.5
-        },
         "CONCACAF": {
           "jogos": 11,
           "pts": 40,
           "media_pts": 3.64,
           "taxa_acerto": 0.636
         },
-        "UEFA": {
-          "jogos": 26,
-          "pts": 86,
-          "media_pts": 3.31,
-          "taxa_acerto": 0.577
+        "CAF": {
+          "jogos": 18,
+          "pts": 51,
+          "media_pts": 2.83,
+          "taxa_acerto": 0.5
         },
         "AFC": {
-          "jogos": 17,
-          "pts": 50,
-          "media_pts": 2.94,
-          "taxa_acerto": 0.588
+          "jogos": 18,
+          "pts": 55,
+          "media_pts": 3.06,
+          "taxa_acerto": 0.611
+        },
+        "UEFA": {
+          "jogos": 27,
+          "pts": 91,
+          "media_pts": 3.37,
+          "taxa_acerto": 0.593
         },
         "CONMEBOL": {
           "jogos": 11,
@@ -3811,9 +3811,9 @@
         }
       },
       "concordancia_cristal": 0.389,
-      "jogos_com_favorito": 42,
-      "pts_em_jogos_com_favorito": 136,
-      "media_pts_jogos_com_favorito": 3.24,
+      "jogos_com_favorito": 43,
+      "pts_em_jogos_com_favorito": 141,
+      "media_pts_jogos_com_favorito": 3.28,
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 5,
       "media_pts_jogos_equilibrados": 2.5,
@@ -3845,29 +3845,29 @@
       "taxa_acerto": 0.65,
       "taxa_exato": 0.1,
       "acerto_por_continente": {
-        "CAF": {
-          "jogos": 8,
-          "pts": 15,
-          "media_pts": 1.88,
-          "taxa_acerto": 0.375
-        },
         "CONCACAF": {
           "jogos": 5,
           "pts": 30,
           "media_pts": 6.0,
           "taxa_acerto": 1.0
         },
-        "UEFA": {
-          "jogos": 13,
-          "pts": 55,
-          "media_pts": 4.23,
-          "taxa_acerto": 0.692
+        "CAF": {
+          "jogos": 8,
+          "pts": 15,
+          "media_pts": 1.88,
+          "taxa_acerto": 0.375
         },
         "AFC": {
           "jogos": 8,
           "pts": 35,
           "media_pts": 4.38,
           "taxa_acerto": 0.75
+        },
+        "UEFA": {
+          "jogos": 13,
+          "pts": 55,
+          "media_pts": 4.23,
+          "taxa_acerto": 0.692
         },
         "CONMEBOL": {
           "jogos": 5,
@@ -3939,10 +3939,10 @@
       "claude-sonnet-4-5": 0.5,
       "mixtral-8x22b": 0.236,
       "gemini-2-5-pro": 0.444,
-      "llama-3-3-70b": 0.333,
       "llama-3-1-70b": 0.319,
       "gemma-3-27b": 0.264,
       "cohere-command-r": 0.25,
+      "llama-3-3-70b": 0.333,
       "llama-4-maverick": 0.319,
       "phi-4-mini": 0.155,
       "cohere-command-r-plus": 0.167,
@@ -3995,10 +3995,10 @@
       "claude-sonnet-4-5": 0.472,
       "mixtral-8x22b": 0.403,
       "gemini-2-5-pro": 0.431,
-      "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.139,
       "gemma-3-27b": 0.236,
       "cohere-command-r": 0.181,
+      "llama-3-3-70b": 0.278,
       "llama-4-maverick": 0.264,
       "phi-4-mini": 0.099,
       "cohere-command-r-plus": 0.139,
@@ -4051,10 +4051,10 @@
       "claude-sonnet-4-5": 0.417,
       "mixtral-8x22b": 0.403,
       "gemini-2-5-pro": 0.333,
-      "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.236,
       "gemma-3-27b": 0.306,
       "cohere-command-r": 0.236,
+      "llama-3-3-70b": 0.25,
       "llama-4-maverick": 0.264,
       "phi-4-mini": 0.127,
       "cohere-command-r-plus": 0.153,
@@ -4107,10 +4107,10 @@
       "claude-sonnet-4-5": 0.431,
       "mixtral-8x22b": 0.389,
       "gemini-2-5-pro": 0.431,
-      "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.208,
       "gemma-3-27b": 0.194,
       "cohere-command-r": 0.25,
+      "llama-3-3-70b": 0.25,
       "llama-4-maverick": 0.319,
       "phi-4-mini": 0.07,
       "cohere-command-r-plus": 0.097,
@@ -4163,10 +4163,10 @@
       "claude-sonnet-4-5": 0.444,
       "mixtral-8x22b": 0.333,
       "gemini-2-5-pro": 0.486,
-      "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.194,
       "gemma-3-27b": 0.153,
       "cohere-command-r": 0.181,
+      "llama-3-3-70b": 0.25,
       "llama-4-maverick": 0.278,
       "phi-4-mini": 0.127,
       "cohere-command-r-plus": 0.153,
@@ -4219,10 +4219,10 @@
       "claude-sonnet-4-5": 0.542,
       "mixtral-8x22b": 0.306,
       "gemini-2-5-pro": 0.486,
-      "llama-3-3-70b": 0.375,
       "llama-3-1-70b": 0.222,
       "gemma-3-27b": 0.194,
       "cohere-command-r": 0.264,
+      "llama-3-3-70b": 0.375,
       "llama-4-maverick": 0.375,
       "phi-4-mini": 0.127,
       "cohere-command-r-plus": 0.097,
@@ -4275,10 +4275,10 @@
       "claude-sonnet-4-5": 0.625,
       "mixtral-8x22b": 0.278,
       "gemini-2-5-pro": 0.583,
-      "llama-3-3-70b": 0.333,
       "llama-3-1-70b": 0.292,
       "gemma-3-27b": 0.194,
       "cohere-command-r": 0.292,
+      "llama-3-3-70b": 0.333,
       "llama-4-maverick": 0.319,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 0.139,
@@ -4331,10 +4331,10 @@
       "claude-sonnet-4-5": 0.625,
       "mixtral-8x22b": 0.333,
       "gemini-2-5-pro": 0.583,
-      "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.264,
       "gemma-3-27b": 0.208,
       "cohere-command-r": 0.319,
+      "llama-3-3-70b": 0.278,
       "llama-4-maverick": 0.375,
       "phi-4-mini": 0.07,
       "cohere-command-r-plus": 0.125,
@@ -4387,10 +4387,10 @@
       "claude-sonnet-4-5": 0.611,
       "mixtral-8x22b": 0.472,
       "gemini-2-5-pro": 0.486,
-      "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.167,
       "gemma-3-27b": 0.264,
       "cohere-command-r": 0.167,
+      "llama-3-3-70b": 0.278,
       "llama-4-maverick": 0.306,
       "phi-4-mini": 0.127,
       "cohere-command-r-plus": 0.097,
@@ -4443,10 +4443,10 @@
       "claude-sonnet-4-5": 0.542,
       "mixtral-8x22b": 0.306,
       "gemini-2-5-pro": 0.528,
-      "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.194,
       "gemma-3-27b": 0.278,
       "cohere-command-r": 0.222,
+      "llama-3-3-70b": 0.25,
       "llama-4-maverick": 0.375,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 0.139,
@@ -4499,10 +4499,10 @@
       "claude-sonnet-4-5": 0.5,
       "mixtral-8x22b": 0.306,
       "gemini-2-5-pro": 0.611,
-      "llama-3-3-70b": 0.361,
       "llama-3-1-70b": 0.208,
       "gemma-3-27b": 0.222,
       "cohere-command-r": 0.208,
+      "llama-3-3-70b": 0.361,
       "llama-4-maverick": 0.347,
       "phi-4-mini": 0.056,
       "cohere-command-r-plus": 0.153,
@@ -4555,10 +4555,10 @@
       "claude-sonnet-4-5": 0.528,
       "mixtral-8x22b": 0.306,
       "gemini-2-5-pro": 0.611,
-      "llama-3-3-70b": 0.292,
       "llama-3-1-70b": 0.194,
       "gemma-3-27b": 0.167,
       "cohere-command-r": 0.264,
+      "llama-3-3-70b": 0.292,
       "llama-4-maverick": 0.347,
       "phi-4-mini": 0.056,
       "cohere-command-r-plus": 0.167,
@@ -4611,10 +4611,10 @@
       "claude-sonnet-4-5": 0.542,
       "mixtral-8x22b": 0.347,
       "gemini-2-5-pro": 0.597,
-      "llama-3-3-70b": 0.236,
       "llama-3-1-70b": 0.208,
       "gemma-3-27b": 0.25,
       "cohere-command-r": 0.25,
+      "llama-3-3-70b": 0.236,
       "llama-4-maverick": 0.403,
       "phi-4-mini": 0.07,
       "cohere-command-r-plus": 0.167,
@@ -4667,10 +4667,10 @@
       "claude-sonnet-4-5": 0.486,
       "mixtral-8x22b": 0.333,
       "gemini-2-5-pro": 0.597,
-      "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.194,
       "gemma-3-27b": 0.222,
       "cohere-command-r": 0.208,
+      "llama-3-3-70b": 0.25,
       "llama-4-maverick": 0.306,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 0.153,
@@ -4723,10 +4723,10 @@
       "claude-sonnet-4-5": 0.319,
       "mixtral-8x22b": 0.264,
       "gemini-2-5-pro": 0.306,
-      "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.264,
       "gemma-3-27b": 0.222,
       "cohere-command-r": 0.222,
+      "llama-3-3-70b": 0.25,
       "llama-4-maverick": 0.278,
       "phi-4-mini": 0.099,
       "cohere-command-r-plus": 0.111,
@@ -4779,10 +4779,10 @@
       "claude-sonnet-4-5": 0.472,
       "mixtral-8x22b": 0.361,
       "gemini-2-5-pro": 0.569,
-      "llama-3-3-70b": 0.264,
       "llama-3-1-70b": 0.153,
       "gemma-3-27b": 0.208,
       "cohere-command-r": 0.139,
+      "llama-3-3-70b": 0.264,
       "llama-4-maverick": 0.361,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 0.125,
@@ -4835,10 +4835,10 @@
       "claude-sonnet-4-5": 0.167,
       "mixtral-8x22b": 0.181,
       "gemini-2-5-pro": 0.194,
-      "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.306,
       "gemma-3-27b": 0.194,
       "cohere-command-r": 0.333,
+      "llama-3-3-70b": 0.278,
       "llama-4-maverick": 0.292,
       "phi-4-mini": 0.099,
       "cohere-command-r-plus": 0.167,
@@ -4891,10 +4891,10 @@
       "claude-sonnet-4-5": 0.264,
       "mixtral-8x22b": 0.236,
       "gemini-2-5-pro": 0.306,
-      "llama-3-3-70b": 0.194,
       "llama-3-1-70b": 0.264,
       "gemma-3-27b": 0.236,
       "cohere-command-r": 0.208,
+      "llama-3-3-70b": 0.194,
       "llama-4-maverick": 0.181,
       "phi-4-mini": 0.127,
       "cohere-command-r-plus": 0.236,
@@ -4947,10 +4947,10 @@
       "claude-sonnet-4-5": 0.431,
       "mixtral-8x22b": 0.319,
       "gemini-2-5-pro": 0.458,
-      "llama-3-3-70b": 0.208,
       "llama-3-1-70b": 0.194,
       "gemma-3-27b": 0.208,
       "cohere-command-r": 0.208,
+      "llama-3-3-70b": 0.208,
       "llama-4-maverick": 0.278,
       "phi-4-mini": 0.113,
       "cohere-command-r-plus": 0.111,
@@ -5003,10 +5003,10 @@
       "claude-sonnet-4-5": 0.375,
       "mixtral-8x22b": 0.194,
       "gemini-2-5-pro": 0.389,
-      "llama-3-3-70b": 0.333,
       "llama-3-1-70b": 0.306,
       "gemma-3-27b": 0.167,
       "cohere-command-r": 0.306,
+      "llama-3-3-70b": 0.333,
       "llama-4-maverick": 0.25,
       "phi-4-mini": 0.127,
       "cohere-command-r-plus": 0.181,
@@ -5059,10 +5059,10 @@
       "claude-sonnet-4-5": 0.444,
       "mixtral-8x22b": 0.306,
       "gemini-2-5-pro": 0.583,
-      "llama-3-3-70b": 0.306,
       "llama-3-1-70b": 0.222,
       "gemma-3-27b": 0.181,
       "cohere-command-r": 0.167,
+      "llama-3-3-70b": 0.306,
       "llama-4-maverick": 0.389,
       "phi-4-mini": 0.07,
       "cohere-command-r-plus": 0.194,
@@ -5115,10 +5115,10 @@
       "claude-sonnet-4-5": 0.569,
       "mixtral-8x22b": 0.417,
       "gemini-2-5-pro": 0.514,
-      "llama-3-3-70b": 0.292,
       "llama-3-1-70b": 0.167,
       "gemma-3-27b": 0.194,
       "cohere-command-r": 0.264,
+      "llama-3-3-70b": 0.292,
       "llama-4-maverick": 0.319,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 0.139,
@@ -5171,10 +5171,10 @@
       "claude-sonnet-4-5": 0.458,
       "mixtral-8x22b": 0.333,
       "gemini-2-5-pro": 0.472,
-      "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.181,
       "gemma-3-27b": 0.208,
       "cohere-command-r": 0.208,
+      "llama-3-3-70b": 0.278,
       "llama-4-maverick": 0.278,
       "phi-4-mini": 0.099,
       "cohere-command-r-plus": 0.153,
@@ -5227,10 +5227,10 @@
       "claude-sonnet-4-5": 0.319,
       "mixtral-8x22b": 0.236,
       "gemini-2-5-pro": 0.25,
-      "llama-3-3-70b": 0.236,
       "llama-3-1-70b": 0.319,
       "gemma-3-27b": 0.194,
       "cohere-command-r": 0.194,
+      "llama-3-3-70b": 0.236,
       "llama-4-maverick": 0.292,
       "phi-4-mini": 0.127,
       "cohere-command-r-plus": 0.139,
@@ -5283,10 +5283,10 @@
       "claude-sonnet-4-5": 0.528,
       "mixtral-8x22b": 0.306,
       "gemini-2-5-pro": 0.486,
-      "llama-3-3-70b": 0.347,
       "llama-3-1-70b": 0.264,
       "gemma-3-27b": 0.208,
       "cohere-command-r": 0.208,
+      "llama-3-3-70b": 0.347,
       "llama-4-maverick": 0.389,
       "phi-4-mini": 0.07,
       "cohere-command-r-plus": 0.111,
@@ -5339,10 +5339,10 @@
       "claude-sonnet-4-5": 0.528,
       "mixtral-8x22b": 0.278,
       "gemini-2-5-pro": 0.542,
-      "llama-3-3-70b": 0.306,
       "llama-3-1-70b": 0.194,
       "gemma-3-27b": 0.139,
       "cohere-command-r": 0.236,
+      "llama-3-3-70b": 0.306,
       "llama-4-maverick": 0.278,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 0.097,
@@ -5395,10 +5395,10 @@
       "claude-sonnet-4-5": 0.333,
       "mixtral-8x22b": 0.222,
       "gemini-2-5-pro": 0.319,
-      "llama-3-3-70b": 0.264,
       "llama-3-1-70b": 0.25,
       "gemma-3-27b": 0.153,
       "cohere-command-r": 0.347,
+      "llama-3-3-70b": 0.264,
       "llama-4-maverick": 0.25,
       "phi-4-mini": 0.141,
       "cohere-command-r-plus": 0.111,
@@ -5451,10 +5451,10 @@
       "claude-sonnet-4-5": 0.236,
       "mixtral-8x22b": 0.111,
       "gemini-2-5-pro": 0.264,
-      "llama-3-3-70b": 0.319,
       "llama-3-1-70b": 0.417,
       "gemma-3-27b": 0.222,
       "cohere-command-r": 0.375,
+      "llama-3-3-70b": 0.319,
       "llama-4-maverick": 0.306,
       "phi-4-mini": 0.127,
       "cohere-command-r-plus": 0.181,
@@ -5507,10 +5507,10 @@
       "claude-sonnet-4-5": 0.597,
       "mixtral-8x22b": 0.292,
       "gemini-2-5-pro": 0.694,
-      "llama-3-3-70b": 0.319,
       "llama-3-1-70b": 0.278,
       "gemma-3-27b": 0.181,
       "cohere-command-r": 0.292,
+      "llama-3-3-70b": 0.319,
       "llama-4-maverick": 0.347,
       "phi-4-mini": 0.056,
       "cohere-command-r-plus": 0.153,
@@ -5563,10 +5563,10 @@
       "claude-sonnet-4-5": 0.583,
       "mixtral-8x22b": 0.361,
       "gemini-2-5-pro": 0.694,
-      "llama-3-3-70b": 0.319,
       "llama-3-1-70b": 0.222,
       "gemma-3-27b": 0.208,
       "cohere-command-r": 0.222,
+      "llama-3-3-70b": 0.319,
       "llama-4-maverick": 0.319,
       "phi-4-mini": 0.07,
       "cohere-command-r-plus": 0.139,
@@ -5619,10 +5619,10 @@
       "claude-sonnet-4-5": 0.375,
       "mixtral-8x22b": 0.333,
       "gemini-2-5-pro": 0.319,
-      "llama-3-3-70b": 0.125,
       "llama-3-1-70b": 0.264,
       "gemma-3-27b": 0.236,
       "cohere-command-r": 0.167,
+      "llama-3-3-70b": 0.125,
       "llama-4-maverick": 0.306,
       "phi-4-mini": 0.07,
       "cohere-command-r-plus": 0.083,
@@ -5675,10 +5675,10 @@
       "claude-sonnet-4-5": 0.264,
       "mixtral-8x22b": 0.403,
       "gemini-2-5-pro": 0.306,
-      "llama-3-3-70b": 0.306,
       "llama-3-1-70b": 0.264,
       "gemma-3-27b": 0.208,
       "cohere-command-r": 0.236,
+      "llama-3-3-70b": 0.306,
       "llama-4-maverick": 0.264,
       "phi-4-mini": 0.141,
       "cohere-command-r-plus": 0.222,
@@ -5731,10 +5731,10 @@
       "claude-sonnet-4-5": 0.567,
       "mixtral-8x22b": 0.269,
       "gemini-2-5-pro": 0.582,
-      "llama-3-3-70b": 0.299,
       "llama-3-1-70b": 0.224,
       "gemma-3-27b": 0.209,
       "cohere-command-r": 0.194,
+      "llama-3-3-70b": 0.299,
       "llama-4-maverick": 0.403,
       "phi-4-mini": 0.091,
       "cohere-command-r-plus": 0.075,
@@ -5787,10 +5787,10 @@
       "claude-sonnet-4-5": 0.319,
       "mixtral-8x22b": 0.319,
       "gemini-2-5-pro": 0.333,
-      "llama-3-3-70b": 0.333,
       "llama-3-1-70b": 0.236,
       "gemma-3-27b": 0.236,
       "cohere-command-r": 0.194,
+      "llama-3-3-70b": 0.333,
       "llama-4-maverick": 0.306,
       "phi-4-mini": 0.07,
       "cohere-command-r-plus": 0.167,
@@ -5843,10 +5843,10 @@
       "claude-sonnet-4-5": 0.597,
       "mixtral-8x22b": 0.347,
       "gemini-2-5-pro": 0.736,
-      "llama-3-3-70b": 0.292,
       "llama-3-1-70b": 0.236,
       "gemma-3-27b": 0.181,
       "cohere-command-r": 0.264,
+      "llama-3-3-70b": 0.292,
       "llama-4-maverick": 0.347,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 0.181,
@@ -5899,10 +5899,10 @@
       "claude-sonnet-4-5": 0.389,
       "mixtral-8x22b": 0.319,
       "gemini-2-5-pro": 0.556,
-      "llama-3-3-70b": 0.306,
       "llama-3-1-70b": 0.236,
       "gemma-3-27b": 0.222,
       "cohere-command-r": 0.194,
+      "llama-3-3-70b": 0.306,
       "llama-4-maverick": 0.361,
       "phi-4-mini": 0.099,
       "cohere-command-r-plus": 0.139,
@@ -5955,10 +5955,10 @@
       "claude-sonnet-4-5": 0.403,
       "mixtral-8x22b": 0.264,
       "gemini-2-5-pro": 0.514,
-      "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.236,
       "gemma-3-27b": 0.236,
       "cohere-command-r": 0.181,
+      "llama-3-3-70b": 0.278,
       "llama-4-maverick": 0.333,
       "phi-4-mini": 0.155,
       "cohere-command-r-plus": 0.083,
@@ -6011,10 +6011,10 @@
       "claude-sonnet-4-5": 0.347,
       "mixtral-8x22b": 0.194,
       "gemini-2-5-pro": 0.319,
-      "llama-3-3-70b": 0.222,
       "llama-3-1-70b": 0.222,
       "gemma-3-27b": 0.167,
       "cohere-command-r": 0.25,
+      "llama-3-3-70b": 0.222,
       "llama-4-maverick": 0.25,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 0.153,
@@ -6067,10 +6067,10 @@
       "claude-sonnet-4-5": 0.417,
       "mixtral-8x22b": 0.264,
       "gemini-2-5-pro": 0.5,
-      "llama-3-3-70b": 0.236,
       "llama-3-1-70b": 0.25,
       "gemma-3-27b": 0.194,
       "cohere-command-r": 0.222,
+      "llama-3-3-70b": 0.236,
       "llama-4-maverick": 0.25,
       "phi-4-mini": 0.127,
       "cohere-command-r-plus": 0.139,
@@ -6123,10 +6123,10 @@
       "claude-sonnet-4-5": 0.444,
       "mixtral-8x22b": 0.264,
       "gemini-2-5-pro": 0.528,
-      "llama-3-3-70b": 0.25,
       "llama-3-1-70b": 0.222,
       "gemma-3-27b": 0.153,
       "cohere-command-r": 0.194,
+      "llama-3-3-70b": 0.25,
       "llama-4-maverick": 0.292,
       "phi-4-mini": 0.113,
       "cohere-command-r-plus": 0.097,
@@ -6179,10 +6179,10 @@
       "claude-sonnet-4-5": 0.417,
       "mixtral-8x22b": 0.361,
       "gemini-2-5-pro": 0.375,
-      "llama-3-3-70b": 0.236,
       "llama-3-1-70b": 0.125,
       "gemma-3-27b": 0.25,
       "cohere-command-r": 0.097,
+      "llama-3-3-70b": 0.236,
       "llama-4-maverick": 0.278,
       "phi-4-mini": 0.07,
       "cohere-command-r-plus": 0.097,
@@ -6235,10 +6235,10 @@
       "claude-sonnet-4-5": 0.389,
       "mixtral-8x22b": 0.25,
       "gemini-2-5-pro": 0.486,
-      "llama-3-3-70b": 0.403,
       "llama-3-1-70b": 0.306,
       "gemma-3-27b": 0.139,
       "cohere-command-r": 0.208,
+      "llama-3-3-70b": 0.403,
       "llama-4-maverick": 0.361,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 0.125,
@@ -6291,10 +6291,10 @@
       "claude-sonnet-4-5": 1.0,
       "mixtral-8x22b": 0.347,
       "gemini-2-5-pro": 0.472,
-      "llama-3-3-70b": 0.306,
       "llama-3-1-70b": 0.278,
       "gemma-3-27b": 0.236,
       "cohere-command-r": 0.236,
+      "llama-3-3-70b": 0.306,
       "llama-4-maverick": 0.347,
       "phi-4-mini": 0.056,
       "cohere-command-r-plus": 0.069,
@@ -6347,10 +6347,10 @@
       "claude-sonnet-4-5": 0.347,
       "mixtral-8x22b": 1.0,
       "gemini-2-5-pro": 0.319,
-      "llama-3-3-70b": 0.292,
       "llama-3-1-70b": 0.097,
       "gemma-3-27b": 0.25,
       "cohere-command-r": 0.181,
+      "llama-3-3-70b": 0.292,
       "llama-4-maverick": 0.222,
       "phi-4-mini": 0.056,
       "cohere-command-r-plus": 0.153,
@@ -6403,71 +6403,15 @@
       "claude-sonnet-4-5": 0.472,
       "mixtral-8x22b": 0.319,
       "gemini-2-5-pro": 1.0,
-      "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.153,
       "gemma-3-27b": 0.181,
       "cohere-command-r": 0.208,
+      "llama-3-3-70b": 0.278,
       "llama-4-maverick": 0.389,
       "phi-4-mini": 0.056,
       "cohere-command-r-plus": 0.167,
       "meta-llama-4": 0.333,
       "llama-4-scout": 0.3
-    },
-    "llama-3-3-70b": {
-      "grok-4-fast": 0.333,
-      "mistral-small-3": 0.278,
-      "claude-haiku-3-5": 0.25,
-      "o4-mini": 0.25,
-      "gpt-4-1": 0.25,
-      "gemini-2-5-flash": 0.375,
-      "claude-opus-4-7": 0.333,
-      "claude-sonnet-4-6": 0.278,
-      "mistral-medium-3": 0.278,
-      "wizardlm-2-8x22b": 0.25,
-      "o1": 0.361,
-      "o3": 0.292,
-      "claude-opus-4-5": 0.236,
-      "deepseek-v3": 0.25,
-      "chatgpt-5-nano": 0.25,
-      "qwen-3-max": 0.264,
-      "gemma-3-12b": 0.278,
-      "qwen-3-235b": 0.194,
-      "deepseek-v3-1": 0.208,
-      "claude-fable-5": 0.333,
-      "grok-4-heavy": 0.306,
-      "le-chat-mistral": 0.292,
-      "kimi-k2": 0.278,
-      "codestral": 0.236,
-      "grok-4": 0.347,
-      "perplexity-sonar-pro": 0.306,
-      "manus": 0.264,
-      "ministral-8b": 0.319,
-      "chatgpt-5-thinking": 0.319,
-      "perplexity-sonar-reasoning": 0.319,
-      "gemini-2-5-flash-lite": 0.125,
-      "claude-haiku-4-5": 0.306,
-      "deepseek-v3-2": 0.299,
-      "jamba-1-5-large": 0.333,
-      "chatgpt-5": 0.292,
-      "chatgpt-5-mini": 0.306,
-      "gpt-4o": 0.278,
-      "qwen-2-5-72b": 0.222,
-      "copilot-microsoft": 0.236,
-      "deepseek-r1": 0.25,
-      "qwen-3-coder": 0.236,
-      "perplexity-sonar-large": 0.403,
-      "claude-sonnet-4-5": 0.306,
-      "mixtral-8x22b": 0.292,
-      "gemini-2-5-pro": 0.278,
-      "llama-3-3-70b": 1.0,
-      "llama-3-1-70b": 0.292,
-      "gemma-3-27b": 0.222,
-      "cohere-command-r": 0.222,
-      "llama-4-maverick": 0.278,
-      "phi-4-mini": 0.085,
-      "cohere-command-r-plus": 0.153,
-      "meta-llama-4": 0.347,
-      "llama-4-scout": 0.35
     },
     "llama-3-1-70b": {
       "grok-4-fast": 0.319,
@@ -6515,10 +6459,10 @@
       "claude-sonnet-4-5": 0.278,
       "mixtral-8x22b": 0.097,
       "gemini-2-5-pro": 0.153,
-      "llama-3-3-70b": 0.292,
       "llama-3-1-70b": 1.0,
       "gemma-3-27b": 0.194,
       "cohere-command-r": 0.375,
+      "llama-3-3-70b": 0.292,
       "llama-4-maverick": 0.347,
       "phi-4-mini": 0.197,
       "cohere-command-r-plus": 0.153,
@@ -6571,10 +6515,10 @@
       "claude-sonnet-4-5": 0.236,
       "mixtral-8x22b": 0.25,
       "gemini-2-5-pro": 0.181,
-      "llama-3-3-70b": 0.222,
       "llama-3-1-70b": 0.194,
       "gemma-3-27b": 1.0,
       "cohere-command-r": 0.194,
+      "llama-3-3-70b": 0.222,
       "llama-4-maverick": 0.194,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 0.056,
@@ -6627,15 +6571,71 @@
       "claude-sonnet-4-5": 0.236,
       "mixtral-8x22b": 0.181,
       "gemini-2-5-pro": 0.208,
-      "llama-3-3-70b": 0.222,
       "llama-3-1-70b": 0.375,
       "gemma-3-27b": 0.194,
       "cohere-command-r": 1.0,
+      "llama-3-3-70b": 0.222,
       "llama-4-maverick": 0.236,
       "phi-4-mini": 0.155,
       "cohere-command-r-plus": 0.153,
       "meta-llama-4": 0.167,
       "llama-4-scout": 0.2
+    },
+    "llama-3-3-70b": {
+      "grok-4-fast": 0.333,
+      "mistral-small-3": 0.278,
+      "claude-haiku-3-5": 0.25,
+      "o4-mini": 0.25,
+      "gpt-4-1": 0.25,
+      "gemini-2-5-flash": 0.375,
+      "claude-opus-4-7": 0.333,
+      "claude-sonnet-4-6": 0.278,
+      "mistral-medium-3": 0.278,
+      "wizardlm-2-8x22b": 0.25,
+      "o1": 0.361,
+      "o3": 0.292,
+      "claude-opus-4-5": 0.236,
+      "deepseek-v3": 0.25,
+      "chatgpt-5-nano": 0.25,
+      "qwen-3-max": 0.264,
+      "gemma-3-12b": 0.278,
+      "qwen-3-235b": 0.194,
+      "deepseek-v3-1": 0.208,
+      "claude-fable-5": 0.333,
+      "grok-4-heavy": 0.306,
+      "le-chat-mistral": 0.292,
+      "kimi-k2": 0.278,
+      "codestral": 0.236,
+      "grok-4": 0.347,
+      "perplexity-sonar-pro": 0.306,
+      "manus": 0.264,
+      "ministral-8b": 0.319,
+      "chatgpt-5-thinking": 0.319,
+      "perplexity-sonar-reasoning": 0.319,
+      "gemini-2-5-flash-lite": 0.125,
+      "claude-haiku-4-5": 0.306,
+      "deepseek-v3-2": 0.299,
+      "jamba-1-5-large": 0.333,
+      "chatgpt-5": 0.292,
+      "chatgpt-5-mini": 0.306,
+      "gpt-4o": 0.278,
+      "qwen-2-5-72b": 0.222,
+      "copilot-microsoft": 0.236,
+      "deepseek-r1": 0.25,
+      "qwen-3-coder": 0.236,
+      "perplexity-sonar-large": 0.403,
+      "claude-sonnet-4-5": 0.306,
+      "mixtral-8x22b": 0.292,
+      "gemini-2-5-pro": 0.278,
+      "llama-3-1-70b": 0.292,
+      "gemma-3-27b": 0.222,
+      "cohere-command-r": 0.222,
+      "llama-3-3-70b": 1.0,
+      "llama-4-maverick": 0.278,
+      "phi-4-mini": 0.085,
+      "cohere-command-r-plus": 0.153,
+      "meta-llama-4": 0.347,
+      "llama-4-scout": 0.35
     },
     "llama-4-maverick": {
       "grok-4-fast": 0.319,
@@ -6683,10 +6683,10 @@
       "claude-sonnet-4-5": 0.347,
       "mixtral-8x22b": 0.222,
       "gemini-2-5-pro": 0.389,
-      "llama-3-3-70b": 0.278,
       "llama-3-1-70b": 0.347,
       "gemma-3-27b": 0.194,
       "cohere-command-r": 0.236,
+      "llama-3-3-70b": 0.278,
       "llama-4-maverick": 1.0,
       "phi-4-mini": 0.169,
       "cohere-command-r-plus": 0.153,
@@ -6739,10 +6739,10 @@
       "claude-sonnet-4-5": 0.056,
       "mixtral-8x22b": 0.056,
       "gemini-2-5-pro": 0.056,
-      "llama-3-3-70b": 0.085,
       "llama-3-1-70b": 0.197,
       "gemma-3-27b": 0.085,
       "cohere-command-r": 0.155,
+      "llama-3-3-70b": 0.085,
       "llama-4-maverick": 0.169,
       "phi-4-mini": 1.0,
       "cohere-command-r-plus": 0.085,
@@ -6795,10 +6795,10 @@
       "claude-sonnet-4-5": 0.069,
       "mixtral-8x22b": 0.153,
       "gemini-2-5-pro": 0.167,
-      "llama-3-3-70b": 0.153,
       "llama-3-1-70b": 0.153,
       "gemma-3-27b": 0.056,
       "cohere-command-r": 0.153,
+      "llama-3-3-70b": 0.153,
       "llama-4-maverick": 0.153,
       "phi-4-mini": 0.085,
       "cohere-command-r-plus": 1.0,
@@ -6851,10 +6851,10 @@
       "claude-sonnet-4-5": 0.333,
       "mixtral-8x22b": 0.25,
       "gemini-2-5-pro": 0.333,
-      "llama-3-3-70b": 0.347,
       "llama-3-1-70b": 0.292,
       "gemma-3-27b": 0.236,
       "cohere-command-r": 0.167,
+      "llama-3-3-70b": 0.347,
       "llama-4-maverick": 0.611,
       "phi-4-mini": 0.155,
       "cohere-command-r-plus": 0.153,
@@ -6907,10 +6907,10 @@
       "claude-sonnet-4-5": 0.4,
       "mixtral-8x22b": 0.2,
       "gemini-2-5-pro": 0.3,
-      "llama-3-3-70b": 0.35,
       "llama-3-1-70b": 0.4,
       "gemma-3-27b": 0.25,
       "cohere-command-r": 0.2,
+      "llama-3-3-70b": 0.35,
       "llama-4-maverick": 0.2,
       "phi-4-mini": 0.1,
       "cohere-command-r-plus": 0.1,
@@ -6930,9 +6930,9 @@
       "avg_gols_total": 2.42,
       "avg_saldo_abs": 1.73,
       "concordancia_cristal": 0.405,
-      "taxa_exato": 0.092,
-      "taxa_acerto": 0.655,
-      "media_pontos": 159.1,
+      "taxa_exato": 0.091,
+      "taxa_acerto": 0.661,
+      "media_pontos": 163.4,
       "ias_exemplo": [
         "AI21 Jamba 1.5 Large",
         "ChatGPT 5 nano",
@@ -6952,9 +6952,9 @@
       "avg_gols_total": 2.23,
       "avg_saldo_abs": 1.44,
       "concordancia_cristal": 0.559,
-      "taxa_exato": 0.149,
-      "taxa_acerto": 0.621,
-      "media_pontos": 177.4,
+      "taxa_exato": 0.146,
+      "taxa_acerto": 0.63,
+      "media_pontos": 182.4,
       "ias_exemplo": [
         "GPT-4.1 (legacy)",
         "Claude Sonnet 4.6",
@@ -6974,9 +6974,9 @@
       "avg_gols_total": 1.86,
       "avg_saldo_abs": 1.3,
       "concordancia_cristal": 0.294,
-      "taxa_exato": 0.096,
-      "taxa_acerto": 0.628,
-      "media_pontos": 166.9,
+      "taxa_exato": 0.094,
+      "taxa_acerto": 0.633,
+      "media_pontos": 171.1,
       "ias_exemplo": [
         "Codestral",
         "Ministral 8B",
@@ -6996,9 +6996,9 @@
       "avg_gols_total": 2.29,
       "avg_saldo_abs": 1.4,
       "concordancia_cristal": 0.631,
-      "taxa_exato": 0.165,
-      "taxa_acerto": 0.647,
-      "media_pontos": 187.0,
+      "taxa_exato": 0.162,
+      "taxa_acerto": 0.655,
+      "media_pontos": 192.0,
       "ias_exemplo": [
         "Grok 4 Fast Reasoning",
         "Mistral Small 3",
@@ -7175,27 +7175,27 @@
       {
         "slug": "grok-4-fast",
         "nome": "Grok 4 Fast Reasoning",
-        "valor": 0.227
+        "valor": 0.222
       },
       {
         "slug": "gpt-4-1",
         "nome": "GPT-4.1 (legacy)",
-        "valor": 0.205
+        "valor": 0.2
       },
       {
         "slug": "gemini-2-5-flash",
         "nome": "Gemini 2.5 Flash",
-        "valor": 0.205
+        "valor": 0.2
       },
       {
         "slug": "claude-opus-4-7",
         "nome": "Claude Opus 4.7",
-        "valor": 0.205
+        "valor": 0.2
       },
       {
         "slug": "claude-sonnet-4-6",
         "nome": "Claude Sonnet 4.6",
-        "valor": 0.205
+        "valor": 0.2
       }
     ],
     "melhor_em_jogos_equilibrados": [
