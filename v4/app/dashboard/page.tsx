@@ -60,6 +60,29 @@ export default async function Dashboard() {
         </Link>
       )}
 
+      {user.email?.toLowerCase() === "renanpglima@gmail.com" && (
+        <Link
+          href="/analise-v2"
+          className="card"
+          style={{
+            display: "block",
+            marginTop: 24,
+            textDecoration: "none",
+            background:
+              "linear-gradient(135deg, var(--accent), var(--accent-2))",
+            color: "var(--secondary)",
+            border: "none",
+          }}
+        >
+          <h3 style={{ marginBottom: 6, color: "var(--secondary)" }}>
+            🎁 Presentinho especial para Renan ;)
+          </h3>
+          <p style={{ color: "var(--secondary)", opacity: 0.85 }}>
+            Liberamos seu acesso à Análise v1 → v2. Aproveite! →
+          </p>
+        </Link>
+      )}
+
       <div className="actions">
         <Link href="/criar" className="btn primary">
           ➕ Criar bolão novo
