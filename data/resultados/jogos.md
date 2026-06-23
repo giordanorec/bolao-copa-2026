@@ -53,3 +53,4 @@ no cálculo de pontuação.
 | 41 | Grupo I | Seg 22/06 | 21h00 | Nova York/NJ | Noruega | 3 | 2 | Senegal |
 | 44 | Grupo J | Ter 23/06 | 00h00 | San Francisco | Jordânia | 1 | 2 | Argélia |
 | 47 | Grupo K | Ter 23/06 | 14h00 | Houston | Portugal | 5 | 0 | Uzbequistão |
+| 45 | Grupo L | Ter 23/06 | 17h00 | Boston | Inglaterra | 0 | 0 | Gana |
