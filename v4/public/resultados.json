@@ -200,6 +200,11 @@
     "gols_b": 3
   },
   {
+    "jogo_numero": 42,
+    "gols_a": 3,
+    "gols_b": 0
+  },
+  {
     "jogo_numero": 43,
     "gols_a": 2,
     "gols_b": 0
