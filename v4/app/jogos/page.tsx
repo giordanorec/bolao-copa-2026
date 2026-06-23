@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { carregarJogos } from "@/lib/jogos";
+import { carregarJogos, jogoComecou } from "@/lib/jogos";
 import {
   carregarPalpitesIAs,
   carregarDictIAs,
@@ -294,7 +294,7 @@ export default async function JogosPage() {
                           : locale === "fr" ? "Cliquez pour voir tous les pronostics"
                           : "Clique pra ver todos os palpites"}
                       </div>
-                      {j.numero >= 41 && j.numero <= 72 && !encerrado && (() => {
+                      {j.numero >= 41 && j.numero <= 72 && !jogoComecou(j) && (() => {
                         const v2map = v2PorJogo.get(j.numero);
                         if (ehContribuinte && v2map) {
                           const c = consensoV2(v2map);

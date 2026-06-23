@@ -22,7 +22,7 @@ import { createAdminClient, isContribuinte } from "@/lib/admin";
 import { createClient } from "@/lib/supabase-server";
 import { resolverLocale } from "@/lib/locale-server";
 import type { Locale } from "@/lib/i18n";
-import { carregarJogos } from "@/lib/jogos";
+import { carregarJogos, jogoComecou } from "@/lib/jogos";
 import { carregarDictIAs, carregarPalpitesIAs } from "@/lib/palpites-ias";
 import type { DadosPorJogo } from "@/lib/palpites-ias";
 import type { Jogo } from "@/lib/types";
@@ -523,9 +523,10 @@ function ConteudoPage({
   }
   const pctMudou = comparaveis ? Math.round((mudaramGlobal / comparaveis) * 100) : 0;
 
-  // só jogos que têm v2, ordenados por data + hora, agrupados por data
+  // só jogos que têm v2 e ainda não começaram (o palpite v2 não faz sentido
+  // depois da bola rolar), ordenados por data + hora, agrupados por data
   const jogosV2 = jogos
-    .filter((j) => v2PorJogo.has(j.numero))
+    .filter((j) => v2PorJogo.has(j.numero) && !jogoComecou(j))
     .sort((a, b) =>
       a.data !== b.data
         ? a.data.localeCompare(b.data)
@@ -686,7 +687,14 @@ function ConteudoPage({
                         <span className="jogo-data">
                           {j.data} · {j.hora}
                         </span>
-                        <span className="jogo-ft" style={{ background: "var(--secondary)", color: "#000" }}>
+                        <span
+                          className="jogo-ft"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, var(--accent), var(--accent-2))",
+                            color: "var(--secondary)",
+                          }}
+                        >
                           {badge}
                         </span>
                       </div>
