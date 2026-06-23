@@ -197,6 +197,184 @@ def _gerar_ranking_v2() -> dict | None:
     }
 
 
+def _gerar_analise_v2_publico() -> dict | None:
+    """Retrospectiva v1 x v2 PÚBLICA — só jogos JÁ ENCERRADOS (>= 41).
+
+    Comparação maçã-com-maçã: para cada IA com palpite v1 e v2 nos mesmos
+    jogos encerrados, pontua os dois e mede se a revisão melhorou. Como só
+    entra jogo que já aconteceu, nada de sensível vaza (o palpite v2 de
+    jogo futuro continua atrás do paywall em /analise-v2). À medida que os
+    jogos passam, eles entram aqui automaticamente.
+    """
+    import sys
+    from datetime import datetime
+
+    sys.path.insert(0, str(ROOT / "src"))
+    from bolao.parser import (  # type: ignore
+        carregar_jogos,
+        carregar_palpites,
+        carregar_resultados,
+    )
+    from bolao.scoring import pontuar  # type: ignore
+
+    jogos = carregar_jogos(ROOT / "data" / "jogos.md")
+    res_list = carregar_resultados(ROOT / "data" / "resultados" / "jogos.md")
+    res = {r.jogo_numero: r for r in res_list}
+    v1 = carregar_palpites(ROOT / "data" / "palpites_ias")
+    v2 = carregar_palpites(ROOT / "data" / "palpites_v2")
+
+    CORTE_V2 = 41
+    fase = {j.numero: j.fase for j in jogos}
+    meta = {j.numero: j for j in jogos}
+    fin = sorted(n for n in res if n >= CORTE_V2)
+    if not fin:
+        return None
+
+    ALIAS = {"claude-opus-4-8-web": "claude-opus-4-7"}
+
+    def _idx(pals: dict) -> dict:
+        return {slug: {p.jogo_numero: p for p in lista} for slug, lista in pals.items()}
+
+    v1i, v2i = _idx(v1), _idx(v2)
+
+    def _v1_para(slug: str, num: int):
+        cand = (v1i.get(slug) or {}).get(num)
+        if cand is None and slug.endswith("-web"):
+            cand = (v1i.get(slug[:-4]) or {}).get(num)
+        if cand is None and slug in ALIAS:
+            cand = (v1i.get(ALIAS[slug]) or {}).get(num)
+        return cand
+
+    nomes: dict[str, str] = {}
+    ranking_path = WEB_DATA / "ranking.json"
+    if ranking_path.is_file():
+        for ia in json.loads(ranking_path.read_text(encoding="utf-8")).get("ias", []):
+            if ia.get("slug"):
+                nomes[ia["slug"]] = ia.get("nome_display") or ia["slug"]
+
+    # acumuladores
+    pts_v1 = pts_v2 = 0
+    melhoraram = pioraram = iguais = 0
+    mudaram = comparacoes = exatos_v1 = exatos_v2 = 0
+    n_ias = 0
+    destaques: list[dict] = []
+    # consenso por jogo: contagem de placares v1 e v2
+    cont_v1: dict[int, Counter[str]] = {n: Counter() for n in fin}
+    cont_v2: dict[int, Counter[str]] = {n: Counter() for n in fin}
+    pts_jogo_v1: dict[int, int] = dict.fromkeys(fin, 0)
+    pts_jogo_v2: dict[int, int] = dict.fromkeys(fin, 0)
+    mudaram_jogo: dict[int, int] = dict.fromkeys(fin, 0)
+    total_jogo: dict[int, int] = dict.fromkeys(fin, 0)
+
+    for slug, jmap2 in v2i.items():
+        if not all(n in jmap2 for n in fin):
+            continue
+        got1 = {}
+        ok = True
+        for n in fin:
+            c = _v1_para(slug, n)
+            if c is None:
+                ok = False
+                break
+            got1[n] = c
+        if not ok:
+            continue
+        n_ias += 1
+        p1 = p2 = 0
+        for n in fin:
+            r = res[n]
+            f = fase[n]
+            a1 = pontuar(got1[n], r, f)
+            a2 = pontuar(jmap2[n], r, f)
+            p1 += a1
+            p2 += a2
+            pts_jogo_v1[n] += a1
+            pts_jogo_v2[n] += a2
+            cont_v1[n][f"{got1[n].gols_a}-{got1[n].gols_b}"] += 1
+            cont_v2[n][f"{jmap2[n].gols_a}-{jmap2[n].gols_b}"] += 1
+            if (got1[n].gols_a, got1[n].gols_b) == (r.gols_a, r.gols_b):
+                exatos_v1 += 1
+            if (jmap2[n].gols_a, jmap2[n].gols_b) == (r.gols_a, r.gols_b):
+                exatos_v2 += 1
+            comparacoes += 1
+            total_jogo[n] += 1
+            if (got1[n].gols_a, got1[n].gols_b) != (jmap2[n].gols_a, jmap2[n].gols_b):
+                mudaram += 1
+                mudaram_jogo[n] += 1
+        pts_v1 += p1
+        pts_v2 += p2
+        if p2 > p1:
+            melhoraram += 1
+        elif p2 < p1:
+            pioraram += 1
+        else:
+            iguais += 1
+        destaques.append(
+            {"slug": slug, "nome": nomes.get(slug, slug), "v1": p1, "v2": p2, "delta": p2 - p1}
+        )
+
+    if n_ias == 0:
+        return None
+
+    def _consenso(cont: Counter[str]):
+        if not cont:
+            return None
+        k, _ = cont.most_common(1)[0]
+        a, b = k.split("-")
+        return {"a": int(a), "b": int(b)}
+
+    por_jogo = []
+    for n in fin:
+        j = meta[n]
+        r = res[n]
+        por_jogo.append(
+            {
+                "numero": n,
+                "time_a": j.time_a,
+                "time_b": j.time_b,
+                "gols_a": r.gols_a,
+                "gols_b": r.gols_b,
+                "consenso_v1": _consenso(cont_v1[n]),
+                "consenso_v2": _consenso(cont_v2[n]),
+                "mudaram": mudaram_jogo[n],
+                "total": total_jogo[n],
+                "pts_v1": pts_jogo_v1[n],
+                "pts_v2": pts_jogo_v2[n],
+            }
+        )
+
+    destaques.sort(key=lambda d: d["delta"], reverse=True)
+
+    return {
+        "gerado_em": datetime.now(UTC).isoformat(),
+        "corte_v2": CORTE_V2,
+        "jogos": fin,
+        "n_ias": n_ias,
+        "agg": {
+            "comparacoes": comparacoes,
+            "mudaram": mudaram,
+            "pct_mudaram": round(100 * mudaram / comparacoes) if comparacoes else 0,
+            "pts_v1": pts_v1,
+            "pts_v2": pts_v2,
+            "delta": pts_v2 - pts_v1,
+            "delta_pct": round(100 * (pts_v2 - pts_v1) / pts_v1) if pts_v1 else 0,
+            "media_v1": round(pts_v1 / n_ias, 2),
+            "media_v2": round(pts_v2 / n_ias, 2),
+            "media_delta": round((pts_v2 - pts_v1) / n_ias, 2),
+            "melhoraram": melhoraram,
+            "pioraram": pioraram,
+            "iguais": iguais,
+            "exatos_v1": exatos_v1,
+            "exatos_v2": exatos_v2,
+            "total": comparacoes,
+            "pct_exato_v1": round(100 * exatos_v1 / comparacoes) if comparacoes else 0,
+            "pct_exato_v2": round(100 * exatos_v2 / comparacoes) if comparacoes else 0,
+        },
+        "por_jogo": por_jogo,
+        "destaques": destaques[:8],
+    }
+
+
 def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
     """Roda parser do v1 e agrega palpites por jogo + dict de IAs + paises."""
     import sys
@@ -320,6 +498,23 @@ def main() -> None:
             print(f"ranking IAs v2 (bifurcado): {len(rank_v2['ias'])} -> {dst_v2.name}")
     except Exception as e:
         print(f"ranking v2: pulou ({e})")
+
+    # 2c. analise-v2-publico.json — retrospectiva v1 x v2 só de jogos encerrados
+    #     (pública: alimenta a /analise e os números da home)
+    try:
+        av2 = _gerar_analise_v2_publico()
+        if av2:
+            dst_av2 = V4_PUB / "analise-v2-publico.json"
+            dst_av2.write_text(
+                json.dumps(av2, ensure_ascii=False, separators=(",", ":")),
+                encoding="utf-8",
+            )
+            print(
+                f"analise v2 publica: {av2['n_ias']} IAs, "
+                f"{len(av2['jogos'])} jogos, +{av2['agg']['delta']} pts -> {dst_av2.name}"
+            )
+    except Exception as e:
+        print(f"analise v2 publica: pulou ({e})")
 
     # 3. bola_de_cristal.json
     src_cristal = WEB_DATA / "bola_de_cristal.json"

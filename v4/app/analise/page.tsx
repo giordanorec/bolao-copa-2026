@@ -4,6 +4,8 @@ import Link from "next/link";
 import IconeIA from "@/components/IconeIA";
 import ScatterClusters from "./ScatterClusters";
 import HeatmapSimilaridade from "./HeatmapSimilaridade";
+import RetrospectivaV2 from "./RetrospectivaV2";
+import { carregarAnaliseV2Publico } from "@/lib/analise-v2-publico";
 
 export const metadata = {
   title: "🔬 Análise das IAs · Bolão das IAs",
@@ -101,7 +103,7 @@ async function carregar(): Promise<Analise | null> {
 }
 
 export default async function AnalisePage() {
-  const a = await carregar();
+  const [a, retroV2] = await Promise.all([carregar(), carregarAnaliseV2Publico()]);
   if (!a) {
     return (
       <div style={{ padding: 60, textAlign: "center" }}>
@@ -156,6 +158,8 @@ export default async function AnalisePage() {
           grupos parecidos.
         </p>
       </header>
+
+      {retroV2 && retroV2.n_ias > 0 && <RetrospectivaV2 a={retroV2} />}
 
       {/* CLUSTERS */}
       <section style={{ marginBottom: 48 }}>

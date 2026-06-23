@@ -7,9 +7,11 @@ import CaixaDeSugestao from "@/components/CaixaDeSugestao";
 import AgradecimentoContribuinte from "@/components/AgradecimentoContribuinte";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
+import { carregarAnaliseV2Publico } from "@/lib/analise-v2-publico";
 
 export default async function Home() {
   const locale = await resolverLocale();
+  const retroV2 = await carregarAnaliseV2Publico();
 
   const pt = locale === "pt";
   const en = locale === "en";
@@ -128,6 +130,20 @@ export default async function Home() {
             : "Matches où ≥ 70% des IA ont tout faux. Les plus grosses surprises de la Coupe.",
       cta: pt ? "Ver as zebras →" : en ? "See the upsets →" : es ? "Ver las zebras →" : "Voir les surprises →",
     },
+    {
+      href: "/analise",
+      emoji: "🔬",
+      titulo: pt ? "Análise das IAs" : en ? "AI Analysis" : es ? "Análisis de las IAs" : "Analyse des IA",
+      sub: pt ? "Como cada uma pensa" : en ? "How each one thinks" : es ? "Cómo piensa cada una" : "Comment chacune pense",
+      desc: pt
+        ? "Painel de dados: famílias de comportamento, quem acerta em qual continente, quem palpita parecido — e se as IAs melhoram quando revisam o palpite (v1 → v2)."
+        : en
+          ? "Data panel: behavior clusters, who nails which continent, who predicts alike — and whether AIs improve when they revise (v1 → v2)."
+          : es
+            ? "Panel de datos: familias de comportamiento, quién acierta en qué continente, y si las IAs mejoran al revisar (v1 → v2)."
+            : "Panneau de données : familles de comportement, qui réussit sur quel continent, et si les IA s'améliorent en révisant (v1 → v2).",
+      cta: pt ? "Abrir análise →" : en ? "Open analysis →" : es ? "Abrir análisis →" : "Ouvrir →",
+    },
   ];
 
   return (
@@ -184,6 +200,135 @@ export default async function Home() {
       <SerieA locale={locale} variante="destaque" />
 
       <CorridaHome locale={locale} />
+
+      {retroV2 && retroV2.n_ias > 0 && (
+        <section className="section" style={{ paddingTop: 8 }}>
+          <div className="container">
+            <Link
+              href="/analise"
+              className="card hoverable"
+              style={{
+                display: "block",
+                textDecoration: "none",
+                maxWidth: 880,
+                margin: "0 auto",
+                background:
+                  "linear-gradient(135deg, color-mix(in srgb, var(--secondary) 12%, transparent), color-mix(in srgb, var(--accent) 10%, transparent))",
+                border: "1px solid color-mix(in srgb, var(--secondary) 30%, transparent)",
+              }}
+            >
+              <p
+                style={{
+                  textAlign: "center",
+                  fontFamily: "var(--ff-mono)",
+                  fontSize: 12,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  color: "var(--secondary)",
+                  marginBottom: 4,
+                }}
+              >
+                {pt ? "✨ As IAs estão melhorando"
+                : en ? "✨ The AIs are improving"
+                : es ? "✨ Las IAs están mejorando"
+                : "✨ Les IA s'améliorent"}
+              </p>
+              <h2 style={{ textAlign: "center", marginBottom: 6, fontSize: 24 }}>
+                {pt ? "Quando revisam o palpite, acertam mais"
+                : en ? "When they revise their pick, they score more"
+                : es ? "Cuando revisan, aciertan más"
+                : "Quand elles révisent, elles marquent plus"}
+              </h2>
+              <p
+                style={{
+                  textAlign: "center",
+                  color: "var(--fg-mid)",
+                  fontSize: 14,
+                  maxWidth: 600,
+                  margin: "0 auto 18px",
+                }}
+              >
+                {pt
+                  ? `Nos ${retroV2.jogos.length} jogos já decididos em que as IAs refizeram o palpite com a Copa rolando (v2):`
+                  : en
+                    ? `Across the ${retroV2.jogos.length} decided matches where the AIs redid their pick mid-tournament (v2):`
+                    : es
+                      ? `En los ${retroV2.jogos.length} partidos decididos donde las IAs rehicieron el pronóstico (v2):`
+                      : `Sur les ${retroV2.jogos.length} matchs décidés où les IA ont refait leur pronostic (v2) :`}
+              </p>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+                  gap: 14,
+                }}
+              >
+                {[
+                  {
+                    valor: `+${retroV2.agg.delta_pct}%`,
+                    lbl: pt ? "mais pontos" : en ? "more points" : es ? "más puntos" : "de points",
+                    cor: "var(--ok, #16a34a)",
+                  },
+                  {
+                    valor: `${retroV2.agg.pct_exato_v1}%→${retroV2.agg.pct_exato_v2}%`,
+                    lbl: pt ? "placar exato" : en ? "exact score" : es ? "marcador exacto" : "score exact",
+                    cor: "var(--secondary)",
+                  },
+                  {
+                    valor: `${retroV2.agg.melhoraram}↑/${retroV2.agg.pioraram}↓`,
+                    lbl: pt ? `de ${retroV2.n_ias} IAs` : en ? `of ${retroV2.n_ias} AIs` : es ? `de ${retroV2.n_ias} IAs` : `sur ${retroV2.n_ias} IA`,
+                    cor: "var(--accent)",
+                  },
+                  {
+                    valor: `${retroV2.agg.pct_mudaram}%`,
+                    lbl: pt ? "palpites mudaram" : en ? "picks changed" : es ? "cambiaron" : "ont changé",
+                    cor: "var(--primary)",
+                  },
+                ].map((s) => (
+                  <div key={s.lbl} style={{ textAlign: "center" }}>
+                    <div
+                      style={{
+                        fontSize: 28,
+                        fontWeight: 900,
+                        fontFamily: "var(--ff-display)",
+                        color: s.cor,
+                      }}
+                    >
+                      {s.valor}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: 11,
+                        color: "var(--fg-muted)",
+                        fontFamily: "var(--ff-mono)",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.04em",
+                        marginTop: 4,
+                      }}
+                    >
+                      {s.lbl}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p
+                style={{
+                  textAlign: "center",
+                  marginTop: 18,
+                  color: "var(--secondary)",
+                  fontWeight: 700,
+                  fontSize: 14,
+                }}
+              >
+                {pt ? "Ver a análise completa →"
+                : en ? "See the full analysis →"
+                : es ? "Ver el análisis completo →"
+                : "Voir l'analyse complète →"}
+              </p>
+            </Link>
+          </div>
+        </section>
+      )}
 
       <section className="section">
         <div className="container">
