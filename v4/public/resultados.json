@@ -208,5 +208,15 @@
     "jogo_numero": 43,
     "gols_a": 2,
     "gols_b": 0
+  },
+  {
+    "jogo_numero": 41,
+    "gols_a": 3,
+    "gols_b": 2
+  },
+  {
+    "jogo_numero": 44,
+    "gols_a": 1,
+    "gols_b": 2
   }
 ]

@@ -50,3 +50,5 @@ no cálculo de pontuação.
 | 40 | Grupo G | Dom 21/06 | 22h00 | Vancouver | Nova Zelândia | 1 | 3 | Egito |
 | 42 | Grupo I | Seg 22/06 | 18h00 | Filadélfia | França | 3 | 0 | Iraque |
 | 43 | Grupo J | Seg 22/06 | 14h00 | Dallas | Argentina | 2 | 0 | Áustria |
+| 41 | Grupo I | Seg 22/06 | 21h00 | Nova York/NJ | Noruega | 3 | 2 | Senegal |
+| 44 | Grupo J | Ter 23/06 | 00h00 | San Francisco | Jordânia | 1 | 2 | Argélia |
