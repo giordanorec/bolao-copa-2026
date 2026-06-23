@@ -16,6 +16,10 @@ import ScrollProximoJogo from "@/components/ScrollProximoJogo";
 import TimeLink from "@/components/TimeLink";
 import { scorePopularidade, marcaDe } from "@/lib/ias";
 import CadeadoV2 from "@/components/CadeadoV2";
+import V2Revelado from "@/components/V2Revelado";
+import { createClient } from "@/lib/supabase-server";
+import { isContribuinte } from "@/lib/admin";
+import { carregarV2PorJogo, consensoV2 } from "@/lib/palpites-v2";
 
 export const metadata = {
   title: "104 Jogos · Bolão das IAs",
@@ -23,13 +27,22 @@ export const metadata = {
 };
 
 export default async function JogosPage() {
-  const [jogos, palpitesIAs, iasDict, mapaPaises, locale] = await Promise.all([
-    carregarJogos(),
-    carregarPalpitesIAs(),
-    carregarDictIAs(),
-    carregarMapaPaises(),
-    resolverLocale(),
-  ]);
+  const [jogos, palpitesIAs, iasDict, mapaPaises, locale, userRes] =
+    await Promise.all([
+      carregarJogos(),
+      carregarPalpitesIAs(),
+      carregarDictIAs(),
+      carregarMapaPaises(),
+      resolverLocale(),
+      createClient().then((c) => c.auth.getUser()),
+    ]);
+
+  // Contribuinte/admin logado vê os palpites v2 (jogos 41–72) destravados
+  // no lugar do cadeado. v2 só é lido server-side se o viewer tem direito.
+  const ehContribuinte = await isContribuinte(userRes.data.user?.email);
+  const v2PorJogo = ehContribuinte
+    ? await carregarV2PorJogo()
+    : new Map<number, Record<string, { gols_a: number; gols_b: number }>>();
 
   const titulo =
     locale === "en" ? "All 104 matches"
@@ -281,9 +294,26 @@ export default async function JogosPage() {
                           : locale === "fr" ? "Cliquez pour voir tous les pronostics"
                           : "Clique pra ver todos os palpites"}
                       </div>
-                      {j.numero >= 41 && j.numero <= 72 && !encerrado && (
-                        <CadeadoV2 locale={locale} />
-                      )}
+                      {j.numero >= 41 && j.numero <= 72 && !encerrado && (() => {
+                        const v2map = v2PorJogo.get(j.numero);
+                        if (ehContribuinte && v2map) {
+                          const c = consensoV2(v2map);
+                          if (c) {
+                            return (
+                              <V2Revelado
+                                locale={locale}
+                                jogoNumero={j.numero}
+                                golsA={c.gols_a}
+                                golsB={c.gols_b}
+                                votos={c.votos}
+                                total={c.total}
+                              />
+                            );
+                          }
+                        }
+                        // contribuinte sem v2 daquele jogo: não mostra nada
+                        return ehContribuinte ? null : <CadeadoV2 locale={locale} />;
+                      })()}
                     </div>
                   }
                 />

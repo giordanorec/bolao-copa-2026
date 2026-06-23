@@ -6,6 +6,95 @@ Formato: `## YYYY-MM-DD — título curto` + seções *Contexto*, *Decisão*, *P
 
 ---
 
+## 2026-06-22 — v2: acesso por conta (allowlist) + liberação inline na /jogos + unlock via Instagram
+
+### Contexto
+
+A v2 nasceu com gate por **senha compartilhada** (cookie = hash da senha). Senha
+única vaza fácil e não identifica quem contribuiu. Giordano quer amarrar o acesso
+à **conta** da pessoa e, no fluxo de contribuição, fazer o contribuinte **mandar o
+e-mail da conta pelo Instagram @arena.das.ias** — de propósito, pra puxar quem
+acessa o site a seguir/assinar a conta e manter o canal de comunicação por lá.
+
+### Decisão
+
+- **Allowlist por conta:** tabela `public.contribuintes` (`email` PK, lower/trim
+  por trigger; RLS sem policy de SELECT — só service_role). `isContribuinte(email)`
+  em `lib/admin.ts`: admin curto-circuita `true` (grec@cin.ufpe.br funciona sem a
+  tabela), demais consultam a allowlist. Fail-closed sem service_role.
+- **Gate /analise-v2:** liberado = autenticado-na-allowlist **ou** admin; **senha
+  permanece como fallback temporário** (divisor "ou use a senha"). Quem está
+  logado mas fora da allowlist vê CTA pra `/colaborar`; quem não está logado vê
+  CTA de login (`/login?redirect=/analise-v2`). Contribuinte logado vê banner de
+  agradecimento (na /analise-v2 e na home, via `AgradecimentoContribuinte`).
+- **/jogos inline:** pra contribuinte, jogos 41–72 não-encerrados trocam o
+  `CadeadoV2` por `V2Revelado` (consenso v2 no card + link pro raio-x
+  `/analise-v2#<jogo>`). v2 lido server-side só após confirmar direito
+  (`carregarV2PorJogo`/`consensoV2` em `lib/palpites-v2.ts`). v2 cobre só 41–72,
+  então **complementa** a /jogos (104 jogos), não a substitui.
+- **Bug "nova na v2" corrigido:** v1 usa slug base, v2 usa sufixo `-web`; resolver
+  `v1Para()` (exato → alias `claude-opus-4-8-web→claude-opus-4-7` → tira `-web`).
+  O modal de comparação agora **sempre** mostra o placar v2 (antes só quando mudava).
+- **/colaborar:** seção "Último passo: libere os palpites v2" com CTA pro
+  Instagram pedindo (1) quem contribuiu e (2) o **e-mail da conta** — sem senha.
+
+### Por quê / alternativas
+
+- Conta > senha: identifica o contribuinte, permite revogar individualmente e some
+  com o vazamento de senha única. Senha fica só como ponte até a allowlist encher.
+- Unlock por Instagram (não in-site): decisão de marketing — converter visitante
+  em seguidor pra comunicação contínua vale o atrito de um DM manual.
+
+### Consequências
+
+- Requer rodar `v4/sql/migrations/2026-06-22_contribuintes.sql` no Supabase pra
+  liberar e-mails não-admin. Liberação é manual (inserir e-mail na tabela após o DM).
+- Ler `cookies()`/`getUser()` torna /jogos e a home dinâmicas (custo aceito p/
+  conteúdo por-usuário).
+
+---
+
+## 2026-06-22 — v2: recall dos palpites v1 por IA + dossiê enriquecido
+
+### Contexto
+
+Antes de coletar a v2, Giordano pediu duas coisas: (1) **relembrar cada IA do que
+ela mesma palpitou na v1** (para reconsiderar à luz dos resultados), e (2) uma
+**super-varredura** de informação nova (lesões, suspensões, forma, odds) num MD
+rico para distribuir junto do prompt e também colar nas versões web.
+
+### Decisão
+
+- **Placeholder `{{PALPITES_V1}}`** nos dois prompts v2 (API e web). Na coleta API
+  (`coletar-v2`), é substituído **por IA**, dentro de `_processar`, pela tabela
+  dos palpites v1 daquela própria IA para os jogos 41–72 (helper
+  `_tabela_palpites_v1` em `src/bolao/v2.py`). `{{DOSSIE}}` e `{{RESULTADOS}}`
+  continuam globais (iguais p/ todas).
+- **Web:** `scripts/gerar_recall_v1.py` gera, por IA da Série A, o prompt web
+  completo já com o recall preenchido em `data/recall_v1/<slug>.web.md`. O v1 das
+  IAs web está nos slugs **sem** `-web` (a variante web era placeholder em v1);
+  override: `claude-opus-4-8-web → claude-opus-4-7` (Opus 4.8 nunca foi coletado
+  via API em v1, usa-se o Opus mais recente que palpitou).
+- **Dossiê** `data/dossie/v2-2026-06-22.md` enriquecido com dados reais por grupo
+  (lesões com fonte, odds de grupo/confronto), preservando "sem dado confiável"
+  onde não há fonte. Cartões de Eliminatórias **não** acumulam na Copa.
+
+### Por quê / alternativas
+
+- Injeção **por IA** (não global) porque cada IA só deve ver o próprio histórico —
+  mostrar o de todas viciaria/confundiria. Tom do prompt: "mantenha onde fizer
+  sentido, ajuste onde a info nova muda a leitura" (não mudar por mudar).
+- Gerar o prompt web inteiro por IA (vs. só o bloco de recall) deixa pronto pra
+  colar, reduzindo erro operacional na coleta manual das 12 da Série A.
+
+### Consequências
+
+- `coletar-v2` agora lê `data/palpites_ias/` (somente leitura) para o recall.
+  Continua sem tocar saídas públicas. Pre-commit (ruff+mypy --strict) e os testes
+  passam.
+
+---
+
 ## 2026-06-22 — Palpites Atualizados (v2): bifurcação premium informada
 
 ### Contexto

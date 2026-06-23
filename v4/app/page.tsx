@@ -4,6 +4,7 @@ import HeroCTAs from "@/components/HeroCTAs";
 import SeguirInstagram from "@/components/SeguirInstagram";
 import CorridaHome from "@/components/CorridaHome";
 import CaixaDeSugestao from "@/components/CaixaDeSugestao";
+import AgradecimentoContribuinte from "@/components/AgradecimentoContribuinte";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 
@@ -169,6 +170,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <AgradecimentoContribuinte locale={locale} />
 
       <section className="section" style={{ paddingTop: 8 }}>
         <div className="container">

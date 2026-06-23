@@ -228,6 +228,58 @@ export default async function ColaborarPage() {
       {/* Bloco principal de pagamento (ordem depende do país) */}
       {ordemPagamento}
 
+      {/* Passo pra liberar os palpites v2 — feito pelo Instagram de propósito,
+          pra que quem contribui passe a seguir a conta e a gente continue
+          se comunicando por lá. */}
+      <section className="colaborar-v2unlock">
+        <div className="colaborar-v2unlock-card">
+          <div className="colaborar-v2unlock-emoji">📲</div>
+          <h2>
+            {isBR
+              ? "Último passo: libere os palpites v2"
+              : "Last step: unlock the v2 picks"}
+          </h2>
+          <p>
+            {isBR
+              ? "Depois de contribuir, manda uma mensagem no nosso Instagram com duas coisas:"
+              : "After contributing, send us a DM on Instagram with two things:"}
+          </p>
+          <ol className="colaborar-v2unlock-passos">
+            <li>
+              {isBR
+                ? "Quem fez a contribuição (pra gente conferir o Pix/cartão);"
+                : "Who made the contribution (so we can match the Pix/card);"}
+            </li>
+            <li>
+              <strong>
+                {isBR
+                  ? "O e-mail da sua conta aqui no site."
+                  : "The email of your account here on the site."}
+              </strong>{" "}
+              {isBR
+                ? "É nele que a gente libera os palpites v2 atualizados — sem senha, direto na sua conta."
+                : "That's where we unlock the updated v2 picks — no password, straight on your account."}
+            </li>
+          </ol>
+          <a
+            href="https://instagram.com/arena.das.ias"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn primary block"
+            style={{ fontSize: 16, padding: "14px 28px", marginTop: 8 }}
+          >
+            {isBR
+              ? "📲 Falar com @arena.das.ias no Instagram →"
+              : "📲 Message @arena.das.ias on Instagram →"}
+          </a>
+          <small className="colaborar-v2unlock-nota">
+            {isBR
+              ? "Aproveita e segue a conta: é por lá que avisamos cada nova rodada de palpites. 💛"
+              : "While you're there, follow us: that's where we announce every new round of picks. 💛"}
+          </small>
+        </div>
+      </section>
+
       <section className="colaborar-onde">
         <h2>{isBR ? "Pra onde vai cada real" : "Where every cent goes"}</h2>
         <div className="colaborar-onde-grid">

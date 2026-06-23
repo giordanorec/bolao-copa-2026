@@ -39,3 +39,29 @@ export function createAdminClient() {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 }
+
+/**
+ * Allowlist por conta: e-mail liberado para a Análise v2 (tabela
+ * `contribuintes`). Checagem só server-side via service_role (RLS bypass).
+ * Admins entram automaticamente. Retorna false se a env var de service_role
+ * não estiver setada (fail-closed).
+ */
+export async function isContribuinte(
+  email: string | null | undefined,
+): Promise<boolean> {
+  if (!email) return false;
+  const alvo = email.toLowerCase().trim();
+  if (isAdminEmail(alvo)) return true;
+  const admin = createAdminClient();
+  if (!admin) return false;
+  const { data, error } = await admin
+    .from("contribuintes")
+    .select("email")
+    .eq("email", alvo)
+    .maybeSingle();
+  if (error) {
+    console.error("[contribuintes] erro ao checar allowlist:", error.message);
+    return false;
+  }
+  return !!data;
+}

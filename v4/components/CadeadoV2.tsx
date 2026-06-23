@@ -24,25 +24,25 @@ const TX: Record<
   pt: {
     badge: "Palpite atualizado disponível",
     titulo: "Palpites v2 — informados pela fase de grupos",
-    desc: "Contribua via Pix (e-mail no comentário) e siga @arena.das.ias pra receber a senha.",
+    desc: "Contribua via Pix e mande no @arena.das.ias quem fez a contribuição e seu e-mail (se tiver) pra receber a senha.",
     cta: "💛 Colaborar via Pix",
   },
   en: {
     badge: "Updated pick available",
     titulo: "v2 picks — informed by group-stage results",
-    desc: "Support via Pix (email in the note) and follow @arena.das.ias to receive the password.",
+    desc: "Support via Pix, then message @arena.das.ias telling us who made the contribution and your email (if any) to receive the password.",
     cta: "💛 Support via Pix",
   },
   es: {
     badge: "Pronóstico actualizado disponible",
     titulo: "Pronósticos v2 — informados por la fase de grupos",
-    desc: "Colabora vía Pix (e-mail en el comentario) y sigue @arena.das.ias para recibir la contraseña.",
+    desc: "Colabora vía Pix y escribe a @arena.das.ias indicando quién hizo la contribución y tu e-mail (si tienes) para recibir la contraseña.",
     cta: "💛 Colaborar vía Pix",
   },
   fr: {
     badge: "Pronostic mis à jour disponible",
     titulo: "Pronostics v2 — informés par la phase de groupes",
-    desc: "Soutenez via Pix (e-mail dans le commentaire) et suivez @arena.das.ias pour recevoir le mot de passe.",
+    desc: "Soutenez via Pix, puis écrivez à @arena.das.ias en indiquant qui a fait la contribution et votre e-mail (le cas échéant) pour recevoir le mot de passe.",
     cta: "💛 Soutenir via Pix",
   },
 };
