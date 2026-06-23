@@ -13,7 +13,7 @@ export default async function Dashboard() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("display_name")
+    .select("display_name, opt_in_geral")
     .eq("id", user.id)
     .single();
 
@@ -36,6 +36,30 @@ export default async function Dashboard() {
         <LogoutButton />
       </div>
 
+      {user.email?.toLowerCase() === "denilson-dgs@hotmail.com" && (
+        <Link
+          href="/analise-v2"
+          className="card"
+          style={{
+            display: "block",
+            marginTop: 24,
+            textDecoration: "none",
+            background:
+              "linear-gradient(135deg, var(--accent), var(--accent-2))",
+            color: "var(--secondary)",
+            border: "none",
+          }}
+        >
+          <h3 style={{ marginBottom: 6, color: "var(--secondary)" }}>
+            💛 Obrigado pela sugestão. Implementada.
+          </h3>
+          <p style={{ color: "var(--secondary)", opacity: 0.85 }}>
+            O seletor de IA já está no ar na Análise v1 → v2: escolha uma IA e
+            veja todas as mudanças dela de uma vez. →
+          </p>
+        </Link>
+      )}
+
       <div className="actions">
         <Link href="/criar" className="btn primary">
           ➕ Criar bolão novo
@@ -47,6 +71,30 @@ export default async function Dashboard() {
           🏆 Ranking geral
         </Link>
       </div>
+
+      {!profile?.opt_in_geral && (
+        <Link
+          href="/perfil"
+          className="card"
+          style={{
+            display: "block",
+            marginTop: 24,
+            textDecoration: "none",
+            background:
+              "linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, transparent), color-mix(in srgb, var(--primary) 10%, transparent))",
+            border: "1px solid color-mix(in srgb, var(--accent) 35%, transparent)",
+          }}
+        >
+          <h3 style={{ marginBottom: 6 }}>
+            🏆 Concorra no Hall da Fama
+          </h3>
+          <p style={{ color: "var(--fg-mid)" }}>
+            Seus palpites ainda são privados. Deixe-os públicos pra entrar no
+            Ranking Geral, onde humanos e IAs disputam a liderança no mesmo
+            placar. →
+          </p>
+        </Link>
+      )}
 
       {boloes.length === 0 ? (
         <div className="card empty">

@@ -30,6 +30,9 @@ import { carregarMapaPaises } from "@/lib/paises";
 import TimeLink from "@/components/TimeLink";
 import ComparacaoV2Modal from "@/components/ComparacaoV2Modal";
 import type { LinhaComparacao, ConsensoSimples } from "@/components/ComparacaoV2Modal";
+import SeletorIAV2 from "@/components/SeletorIAV2";
+import type { IAComparada, LinhaIA } from "@/components/SeletorIAV2";
+import { scorePopularidade } from "@/lib/ias";
 
 export const dynamic = "force-dynamic";
 
@@ -535,6 +538,36 @@ function ConteudoPage({
   const porData: Record<string, Jogo[]> = {};
   for (const j of jogosV2) (porData[j.data] ??= []).push(j);
 
+  // Visão IA-centrada (sugestão do Denilson): pra cada IA, suas linhas v1→v2
+  // em todos os jogos cobertos. Reusa jogosV2 (já ordenado por data+hora).
+  const linhasPorIA = new Map<string, LinhaIA[]>();
+  for (const j of jogosV2) {
+    const v2map = v2PorJogo.get(j.numero)!;
+    const v1pal = v1Dados[String(j.numero)]?.palpites ?? {};
+    for (const [slug, v2] of Object.entries(v2map)) {
+      const raw = v1Para(slug, v1pal);
+      const v1 = raw ? { gols_a: raw.gols_a, gols_b: raw.gols_b } : null;
+      const mudou = !!v1 && (v1.gols_a !== v2.gols_a || v1.gols_b !== v2.gols_b);
+      const arr = linhasPorIA.get(slug) ?? [];
+      arr.push({
+        jogo: j.numero,
+        timeA: j.time_a,
+        timeB: j.time_b,
+        isoA: mapaPaises[j.time_a],
+        isoB: mapaPaises[j.time_b],
+        data: j.data,
+        hora: j.hora,
+        v1,
+        v2,
+        mudou,
+      });
+      linhasPorIA.set(slug, arr);
+    }
+  }
+  const iasComparadas: IAComparada[] = [...linhasPorIA.entries()]
+    .map(([slug, linhas]) => ({ slug, nome: iasDict[slug] ?? slug, linhas }))
+    .sort((a, b) => scorePopularidade(a.slug) - scorePopularidade(b.slug));
+
   const badge =
     locale === "en" ? "✨ v1 → v2"
     : locale === "es" ? "✨ v1 → v2"
@@ -633,6 +666,10 @@ function ConteudoPage({
           </div>
         ))}
       </div>
+
+      {iasComparadas.length > 0 && (
+        <SeletorIAV2 ias={iasComparadas} locale={locale} />
+      )}
 
       {Object.entries(porData).map(([data, lista]) => (
         <section key={data} style={{ marginBottom: 32 }}>

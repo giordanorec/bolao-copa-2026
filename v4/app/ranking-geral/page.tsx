@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase-server";
-import { createAdminClient } from "@/lib/admin";
+import { createAdminClient, isContribuinte } from "@/lib/admin";
 import { totalPontos } from "@/lib/scoring";
 import { carregarJogos } from "@/lib/jogos";
 import { promises as fs } from "fs";
@@ -13,6 +13,8 @@ type Linha = {
   pontos: number;
   preenchidos: number;
   serieA?: boolean;
+  v2?: boolean;
+  delta?: number | null;
 };
 
 async function carregarIAs(): Promise<Linha[]> {
@@ -46,6 +48,48 @@ async function carregarIAs(): Promise<Linha[]> {
             pontos: ia.pontos ?? 0,
             preenchidos: ia.palpites_total ?? 104,
             serieA,
+          };
+        },
+      );
+  } catch {
+    return [];
+  }
+}
+
+// Linhas "IA v2" (bifurcação) — só pra contribuintes. Lê ranking-ias-v2.json
+// (v1 nos jogos 1-40 + v2 nos 41-72) e cruza com o original pra mostrar o delta.
+async function carregarIAsV2(): Promise<Linha[]> {
+  try {
+    const [rawV2, rawV1] = await Promise.all([
+      fs.readFile(path.join(process.cwd(), "public", "ranking-ias-v2.json"), "utf-8"),
+      fs.readFile(path.join(process.cwd(), "public", "ranking-ias.json"), "utf-8"),
+    ]);
+    const dataV2 = JSON.parse(rawV2);
+    const dataV1 = JSON.parse(rawV1);
+    const ptsV1 = new Map<string, number>();
+    for (const ia of dataV1.ias ?? []) ptsV1.set(ia.slug, ia.pontos ?? 0);
+
+    return (dataV2.ias ?? [])
+      .filter((ia: { tem_v2?: boolean }) => ia.tem_v2) // só IAs com palpite v2 real
+      .map(
+        (ia: {
+          nome_display?: string;
+          slug?: string;
+          pontos?: number;
+          palpites_total?: number;
+        }) => {
+          const slug = ia.slug ?? "";
+          const serieA = ehSerieA(slug);
+          const pts = ia.pontos ?? 0;
+          const orig = ptsV1.get(slug);
+          return {
+            tipo: "ia" as const,
+            nome: nomeSerieA(slug) ?? ia.nome_display ?? slug ?? "?",
+            pontos: pts,
+            preenchidos: ia.palpites_total ?? 72,
+            serieA,
+            v2: true,
+            delta: orig != null ? pts - orig : null,
           };
         },
       );
@@ -113,8 +157,17 @@ export default async function RankingGeralPage() {
     );
   }
 
+  // Contribuinte (allowlist/admin) vê o Hall bifurcado: cada IA com palpite v2
+  // aparece também na versão atualizada (v1 nos jogos 1-40 + v2 nos 41-72).
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const email = user?.email ?? null;
+  const contribuinte = email ? await isContribuinte(email) : false;
+
   const linhasIAs = await carregarIAs();
-  const todos: Linha[] = [...linhasHumanos, ...linhasIAs].sort(
+  const linhasV2 = contribuinte ? await carregarIAsV2() : [];
+  const todos: Linha[] = [...linhasHumanos, ...linhasIAs, ...linhasV2].sort(
     (a, b) => b.pontos - a.pontos,
   );
 
@@ -139,6 +192,18 @@ export default async function RankingGeralPage() {
           Humanos {linhasHumanos.length > 0 ? `(${linhasHumanos.length})` : ""}{" "}
           + {linhasIAs.length} IAs juntos. Quem chuta melhor?
         </p>
+        {contribuinte && linhasV2.length > 0 && (
+          <p
+            className="muted"
+            style={{ marginTop: 8, fontSize: 14, maxWidth: 640, marginInline: "auto" }}
+          >
+            🔓 Visão de colaborador: as linhas{" "}
+            <span style={{ fontWeight: 800, color: "var(--accent-3)" }}>v2 🔄</span>{" "}
+            são a versão atualizada de cada IA (palpites originais nos jogos 1–40 +
+            palpites revisados a partir do 41). O número verde/vermelho é o ganho/perda
+            de pontos vs. a versão original. Dá pra ver quem melhora com mais informação.
+          </p>
+        )}
       </div>
 
       <div className="card">
@@ -158,8 +223,15 @@ export default async function RankingGeralPage() {
               </tr>
             </thead>
             <tbody>
-              {todos.slice(0, 200).map((l, i) => (
-                <tr key={`${l.tipo}-${l.nome}-${i}`}>
+              {todos.slice(0, contribuinte ? 400 : 200).map((l, i) => (
+                <tr
+                  key={`${l.tipo}-${l.nome}-${l.v2 ? "v2" : "v1"}-${i}`}
+                  style={
+                    l.v2
+                      ? { background: "color-mix(in srgb, var(--accent) 9%, transparent)" }
+                      : undefined
+                  }
+                >
                   <td className="pos">{colocacoes[i]}º</td>
                   <td>
                     {l.tipo === "humano" ? (
@@ -174,7 +246,42 @@ export default async function RankingGeralPage() {
                       <span style={{ color: "var(--fg-muted)" }}>🤖 IA</span>
                     )}
                   </td>
-                  <td className="nome">{l.nome}</td>
+                  <td className="nome">
+                    {l.nome}
+                    {l.v2 && (
+                      <>
+                        {" "}
+                        <span
+                          style={{
+                            fontSize: 11,
+                            fontWeight: 800,
+                            padding: "1px 6px",
+                            borderRadius: 999,
+                            background:
+                              "linear-gradient(135deg, var(--accent), var(--accent-2))",
+                            color: "var(--secondary)",
+                          }}
+                        >
+                          v2 🔄
+                        </span>
+                        {l.delta != null && l.delta !== 0 && (
+                          <span
+                            style={{
+                              marginLeft: 6,
+                              fontSize: 12,
+                              fontWeight: 700,
+                              color:
+                                l.delta > 0
+                                  ? "var(--ok, #16a34a)"
+                                  : "var(--err, #dc2626)",
+                            }}
+                          >
+                            {l.delta > 0 ? `+${l.delta}` : l.delta}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </td>
                   <td className="pts">{l.pontos}</td>
                 </tr>
               ))}

@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import shutil
 from collections import Counter
+from datetime import UTC
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -121,6 +122,79 @@ def _mapear_pais(slug: str) -> dict:
     if s == "bola-de-cristal":
         return {"codigo": "cristal", "nome": "Consenso Global", "bandeira": "🔮"}
     return {"codigo": "xx", "nome": "Outro", "bandeira": "🏳️"}
+
+
+def _gerar_ranking_v2() -> dict | None:
+    """Ranking 'IA v2' (bifurcação): palpites v1 nos jogos 1-40 + v2 nos 41-72.
+
+    Mesma forma do ranking-ias.json, mas com a versão atualizada das IAs.
+    Pontua sobre TODOS os jogos encerrados — a diferença vs. a original só
+    aparece a partir do jogo 41 (onde existe palpite v2). Usado no Hall da
+    Fama bifurcado (só contribuintes).
+    """
+    import sys
+    from datetime import datetime
+
+    sys.path.insert(0, str(ROOT / "src"))
+    from bolao.models import Palpite  # type: ignore
+    from bolao.parser import (  # type: ignore
+        carregar_jogos,
+        carregar_palpites,
+        carregar_resultados,
+    )
+    from bolao.ranking import ranking_geral  # type: ignore
+
+    jogos = carregar_jogos(ROOT / "data" / "jogos.md")
+    resultados = carregar_resultados(ROOT / "data" / "resultados" / "jogos.md")
+    v1 = carregar_palpites(ROOT / "data" / "palpites_ias")
+    v2 = carregar_palpites(ROOT / "data" / "palpites_v2")
+
+    CORTE_V2 = 41  # jogos >= 41 usam v2 quando disponível
+    blended: dict[str, list[Palpite]] = {}
+    tem_v2: dict[str, bool] = {}
+    for slug, lista in v1.items():
+        v2map = {p.jogo_numero: p for p in v2.get(slug, [])}
+        nova: list[Palpite] = []
+        usou_v2 = False
+        for p in lista:
+            if p.jogo_numero >= CORTE_V2 and p.jogo_numero in v2map:
+                nova.append(v2map[p.jogo_numero])
+                usou_v2 = True
+            else:
+                nova.append(p)
+        blended[slug] = nova
+        tem_v2[slug] = usou_v2
+
+    # nomes
+    ias_dict: dict[str, str] = {}
+    ranking_path = WEB_DATA / "ranking.json"
+    if ranking_path.is_file():
+        for ia in json.loads(ranking_path.read_text(encoding="utf-8")).get("ias", []):
+            if ia.get("slug"):
+                ias_dict[ia["slug"]] = ia.get("nome_display") or ia["slug"]
+
+    linhas = ranking_geral(blended, resultados, jogos)
+    ias_out = []
+    for i, r in enumerate(linhas, start=1):
+        ias_out.append(
+            {
+                "slug": r["slug"],
+                "nome_display": ias_dict.get(r["slug"], r["slug"]),
+                "pontos": r["pontos"],
+                "placares_exatos": r["placares_exatos"],
+                "vencedores_acertados": r["vencedores_acertados"],
+                "jogos_palpitados": r["jogos_palpitados"],
+                "palpites_total": r["palpites_total"],
+                "rank": i,
+                "tem_v2": tem_v2.get(r["slug"], False),
+            }
+        )
+    return {
+        "atualizado_em": datetime.now(UTC).isoformat(),
+        "corte_v2": CORTE_V2,
+        "jogos_apurados": len(resultados),
+        "ias": ias_out,
+    }
 
 
 def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
@@ -233,6 +307,19 @@ def main() -> None:
         dst = V4_PUB / "ranking-ias.json"
         shutil.copy(src_rank, dst)
         print(f"ranking IAs -> {dst.name}")
+
+    # 2b. ranking-ias-v2.json (bifurcação: v1 nos jogos 1-40 + v2 nos 41-72)
+    try:
+        rank_v2 = _gerar_ranking_v2()
+        if rank_v2:
+            dst_v2 = V4_PUB / "ranking-ias-v2.json"
+            dst_v2.write_text(
+                json.dumps(rank_v2, ensure_ascii=False, separators=(",", ":")),
+                encoding="utf-8",
+            )
+            print(f"ranking IAs v2 (bifurcado): {len(rank_v2['ias'])} -> {dst_v2.name}")
+    except Exception as e:
+        print(f"ranking v2: pulou ({e})")
 
     # 3. bola_de_cristal.json
     src_cristal = WEB_DATA / "bola_de_cristal.json"
