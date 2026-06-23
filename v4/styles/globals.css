@@ -1093,15 +1093,15 @@ body[data-theme="festivo-br"] {
 .v2-revelado {
     margin-top: 10px;
     padding: 10px 12px;
-    background: color-mix(in srgb, var(--secondary) 10%, transparent);
-    border: 1.5px solid color-mix(in srgb, var(--secondary) 35%, transparent);
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    border: 1.5px solid color-mix(in srgb, var(--accent) 50%, transparent);
     border-radius: var(--r-m);
     text-align: center;
 }
 .v2-revelado-badge {
     display: inline-block;
-    color: var(--secondary);
-    font-weight: 700;
+    color: var(--fg);
+    font-weight: 800;
     font-size: 10px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -1111,7 +1111,7 @@ body[data-theme="festivo-br"] {
     font-family: var(--ff-display);
     font-weight: 900;
     font-size: 24px;
-    color: var(--secondary);
+    color: var(--fg);
     line-height: 1;
 }
 .v2-revelado-sub {
@@ -1125,22 +1125,22 @@ body[data-theme="festivo-br"] {
     align-items: center;
     gap: 6px;
     margin-top: 10px;
-    background: color-mix(in srgb, var(--secondary) 12%, transparent);
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
     color: var(--secondary);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 11px;
     letter-spacing: 0.01em;
-    padding: 6px 14px;
-    border: 1.5px solid color-mix(in srgb, var(--secondary) 45%, transparent);
+    padding: 7px 16px;
     border-radius: 999px;
     text-decoration: none;
-    transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: background 0.15s, color 0.15s, transform 0.15s, box-shadow 0.15s;
 }
 .v2-revelado-cta:hover {
-    background: var(--secondary);
-    border-color: var(--secondary);
-    color: #000;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+    color: var(--secondary-3);
     transform: translateY(-1px);
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 /* ─── PALPITES ATUALIZADOS · hero da página ─── */
@@ -1154,20 +1154,20 @@ body[data-theme="festivo-br"] {
     border-radius: var(--r-l);
     background:
         radial-gradient(120% 90% at 50% -10%,
-            color-mix(in srgb, var(--secondary) 22%, transparent),
-            transparent 60%),
+            color-mix(in srgb, var(--accent) 38%, transparent),
+            transparent 62%),
         linear-gradient(150deg,
-            color-mix(in srgb, var(--secondary) 12%, #fff),
-            color-mix(in srgb, var(--accent) 8%, #fff));
-    border: 1.5px solid color-mix(in srgb, var(--secondary) 35%, transparent);
-    box-shadow: 0 18px 50px color-mix(in srgb, var(--secondary) 14%, transparent);
+            color-mix(in srgb, var(--accent) 22%, var(--bg-2)),
+            color-mix(in srgb, var(--accent-2) 10%, var(--bg-2)));
+    border: 1.5px solid color-mix(in srgb, var(--accent) 55%, transparent);
+    box-shadow: 0 18px 50px color-mix(in srgb, var(--accent) 22%, transparent);
 }
 .pa-hero-glow {
     position: absolute;
     inset: -40% 30% auto;
     height: 200px;
     background: radial-gradient(closest-side,
-        color-mix(in srgb, var(--secondary) 40%, transparent), transparent);
+        color-mix(in srgb, var(--accent) 55%, transparent), transparent);
     filter: blur(30px);
     pointer-events: none;
 }
@@ -1177,7 +1177,7 @@ body[data-theme="festivo-br"] {
     line-height: 1;
     display: inline-block;
     margin-bottom: 6px;
-    filter: drop-shadow(0 4px 12px color-mix(in srgb, var(--secondary) 45%, transparent));
+    filter: drop-shadow(0 4px 12px color-mix(in srgb, var(--accent) 55%, transparent));
     animation: pa-float 4s ease-in-out infinite;
 }
 @keyframes pa-float {
@@ -1190,8 +1190,8 @@ body[data-theme="festivo-br"] {
     margin-bottom: 12px;
     padding: 5px 14px;
     border-radius: 999px;
-    background: var(--secondary);
-    color: #000;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: var(--secondary);
     font-family: var(--ff-mono);
     font-size: 11px;
     font-weight: 700;
@@ -1207,7 +1207,7 @@ body[data-theme="festivo-br"] {
     font-size: clamp(30px, 6vw, 52px);
     line-height: 1.05;
     margin: 0 0 12px;
-    background: linear-gradient(120deg, var(--secondary), var(--accent));
+    background: linear-gradient(120deg, var(--secondary), var(--accent-3));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -1233,22 +1233,22 @@ body[data-theme="festivo-br"] {
     border-radius: var(--r-l);
     text-decoration: none;
     background: linear-gradient(135deg,
-        color-mix(in srgb, var(--secondary) 14%, #fff),
-        color-mix(in srgb, var(--accent) 9%, #fff));
-    border: 1.5px solid color-mix(in srgb, var(--secondary) 38%, transparent);
-    box-shadow: 0 10px 30px color-mix(in srgb, var(--secondary) 12%, transparent);
+        color-mix(in srgb, var(--accent) 22%, var(--bg-2)),
+        color-mix(in srgb, var(--accent-2) 10%, var(--bg-2)));
+    border: 1.5px solid color-mix(in srgb, var(--accent) 55%, transparent);
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 18%, transparent);
     transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 .pa-callout:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 40px color-mix(in srgb, var(--secondary) 20%, transparent);
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 .pa-callout-glow {
     position: absolute;
     inset: -60% 55% auto -10%;
     height: 200px;
     background: radial-gradient(closest-side,
-        color-mix(in srgb, var(--secondary) 38%, transparent), transparent);
+        color-mix(in srgb, var(--accent) 55%, transparent), transparent);
     filter: blur(26px);
     pointer-events: none;
 }
@@ -1278,7 +1278,7 @@ body[data-theme="festivo-br"] {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--secondary);
+    color: var(--accent-3);
 }
 .pa-callout-titulo {
     font-size: 17px;
@@ -1293,13 +1293,19 @@ body[data-theme="festivo-br"] {
 .pa-callout-cta {
     position: relative;
     flex-shrink: 0;
-    background: var(--secondary);
-    color: #000;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: var(--secondary);
     font-weight: 800;
     font-size: 14px;
     padding: 10px 18px;
     border-radius: 999px;
     white-space: nowrap;
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.pa-callout:hover .pa-callout-cta {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 /* ─── PÁGINA /ANALISE ─── */
