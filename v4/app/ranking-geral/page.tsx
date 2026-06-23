@@ -78,12 +78,25 @@ export default async function RankingGeralPage() {
   let linhasHumanos: Linha[] = [];
   if (humanosOptIn && humanosOptIn.length > 0) {
     const userIds = humanosOptIn.map((h: { id: string }) => h.id);
-    const { data: pp } = await db
-      .from("palpite")
-      .select("user_id, jogo_numero, gols_a, gols_b, atualizado_em")
-      .in("user_id", userIds);
+    // PostgREST corta em 1000 linhas por requisição. Com ~72 palpites por
+    // pessoa, poucos usuários opt-in já estouram o limite e os palpites de
+    // quem fica além do corte sumiriam (pontuando 0). Por isso paginamos.
+    const PAGINA = 1000;
+    const pp: Palpite[] = [];
+    for (let inicio = 0; ; inicio += PAGINA) {
+      const { data: lote } = await db
+        .from("palpite")
+        .select("user_id, jogo_numero, gols_a, gols_b, atualizado_em")
+        .in("user_id", userIds)
+        .order("user_id", { ascending: true })
+        .order("jogo_numero", { ascending: true })
+        .range(inicio, inicio + PAGINA - 1);
+      const arr = (lote ?? []) as Palpite[];
+      pp.push(...arr);
+      if (arr.length < PAGINA) break;
+    }
     const porUser = new Map<string, Record<number, Palpite>>();
-    (pp ?? []).forEach((p) => {
+    pp.forEach((p) => {
       if (!porUser.has(p.user_id)) porUser.set(p.user_id, {});
       porUser.get(p.user_id)![p.jogo_numero] = p as Palpite;
     });
