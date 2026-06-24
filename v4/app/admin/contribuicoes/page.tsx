@@ -45,7 +45,21 @@ function brl(n: number): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
-export default async function ContribuicoesAdminPage() {
+// Nível (prestígio) por valor total contribuído. Só reconhecimento.
+function nivelDe(total: number): { label: string; badge: string; cls: string } {
+  if (total >= 50) return { label: "Padrinho", badge: "👑", cls: "cn-padrinho" };
+  if (total >= 25) return { label: "Mantenedor", badge: "🛟", cls: "cn-mantenedor" };
+  if (total >= 10) return { label: "Apoiador", badge: "💛", cls: "cn-apoiador" };
+  return { label: "Cortesia", badge: "🎁", cls: "cn-cortesia" };
+}
+
+export default async function ContribuicoesAdminPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ ordem?: string }>;
+}) {
+  const { ordem } = await searchParams;
+  const ordenarPorValor = ordem === "valor";
   const supabase = await createClient();
   const {
     data: { user },
@@ -174,7 +188,10 @@ export default async function ContribuicoesAdminPage() {
     );
   }
   const pessoas = Array.from(pessoasMap.values()).sort((a, b) =>
-    (a.nome ?? a.emails[0]).localeCompare(b.nome ?? b.emails[0]),
+    ordenarPorValor
+      ? b.total - a.total ||
+        (a.nome ?? a.emails[0]).localeCompare(b.nome ?? b.emails[0])
+      : (a.nome ?? a.emails[0]).localeCompare(b.nome ?? b.emails[0]),
   );
   // Cortesia = liberado mas sem contribuição registrada (total R$0).
   const totalCortesias = pessoas.filter((p) => p.total === 0).length;
@@ -384,10 +401,30 @@ export default async function ContribuicoesAdminPage() {
 
       {/* Allowlist (pessoas liberadas) */}
       <section className="cbox">
-        <h2 className="ctitle">🔓 Pessoas liberadas ({pessoas.length})</h2>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12, marginBottom: 8 }}>
+          <h2 className="ctitle" style={{ margin: 0 }}>
+            🔓 Pessoas liberadas ({pessoas.length})
+          </h2>
+          <div className="cordena">
+            <span className="cmuted" style={{ fontSize: 12 }}>Ordenar:</span>
+            <Link
+              href="/admin/contribuicoes"
+              className={!ordenarPorValor ? "cordena-on" : "cordena-off"}
+            >
+              A–Z
+            </Link>
+            <Link
+              href="/admin/contribuicoes?ordem=valor"
+              className={ordenarPorValor ? "cordena-on" : "cordena-off"}
+            >
+              Maior valor
+            </Link>
+          </div>
+        </div>
         <p style={{ fontSize: 13, color: "var(--fg-muted)", marginBottom: 14 }}>
           Emails da mesma pessoa agrupados; total soma todas as contribuições
-          dela. <strong>🎁 Cortesia</strong> = liberado sem contribuição (R$0).
+          dela. Nível: 💛 Apoiador (R$10+) · 🛟 Mantenedor (R$25+) · 👑 Padrinho
+          (R$50+) · 🎁 Cortesia (R$0).
         </p>
         {pessoas.length === 0 ? (
           <p style={{ color: "var(--fg-muted)", fontStyle: "italic" }}>
@@ -399,6 +436,7 @@ export default async function ContribuicoesAdminPage() {
               <thead>
                 <tr>
                   <th>Nome</th>
+                  <th>Nível</th>
                   <th>Email(s)</th>
                   <th>Total</th>
                   <th>Instagram (editar)</th>
@@ -407,15 +445,18 @@ export default async function ContribuicoesAdminPage() {
               <tbody>
                 {pessoas.map((p) => {
                   const cortesia = p.total === 0;
+                  const nivel = nivelDe(p.total);
                   const emailPrincipal =
                     p.emails.find(
                       (e) => (totalPorEmail.get(e.toLowerCase().trim()) ?? 0) > 0,
                     ) ?? p.emails[0];
                   return (
                     <tr key={p.emails[0]}>
+                      <td>{p.nome ?? <span className="cmuted">—</span>}</td>
                       <td>
-                        {p.nome ?? <span className="cmuted">—</span>}
-                        {cortesia && <span className="cbadge">🎁 Cortesia</span>}
+                        <span className={`cnivel ${nivel.cls}`}>
+                          {nivel.badge} {nivel.label}
+                        </span>
                       </td>
                       <td>
                         {p.emails.map((e) => (
@@ -520,6 +561,35 @@ function ContribStyle() {
         border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
         color: var(--fg); white-space: nowrap;
       }
+      .cnivel {
+        display: inline-block;
+        font-size: 12px; font-weight: 800;
+        padding: 3px 10px; border-radius: 999px;
+        white-space: nowrap; border: 1px solid transparent;
+      }
+      .cn-padrinho {
+        background: linear-gradient(135deg, color-mix(in srgb,#FFD700 28%,transparent), color-mix(in srgb,#FF8A00 22%,transparent));
+        border-color: color-mix(in srgb,#FF8A00 55%,transparent); color: var(--fg);
+      }
+      .cn-mantenedor {
+        background: color-mix(in srgb,#007AFF 18%,transparent);
+        border-color: color-mix(in srgb,#007AFF 45%,transparent); color: var(--fg);
+      }
+      .cn-apoiador {
+        background: color-mix(in srgb,#FFC700 20%,transparent);
+        border-color: color-mix(in srgb,#FFC700 50%,transparent); color: var(--fg);
+      }
+      .cn-cortesia {
+        background: var(--bg-soft);
+        border-color: var(--line); color: var(--fg-muted);
+      }
+      .cordena { display: flex; align-items: center; gap: 8px; }
+      .cordena-on, .cordena-off {
+        font-size: 13px; font-weight: 700; text-decoration: none;
+        padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line);
+      }
+      .cordena-on { background: var(--primary); color: #fff; border-color: var(--primary); }
+      .cordena-off { background: var(--bg-soft); color: var(--fg-mid); }
       .clink-del {
         border: 1px solid var(--line-strong);
         background: var(--bg-2); color: var(--fg-muted);
