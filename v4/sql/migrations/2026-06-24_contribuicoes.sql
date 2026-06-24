@@ -68,7 +68,7 @@ insert into public.contribuicoes (nome, email, valor, data, hora) values
   ('Thiago Simoes de Moraes', 'thiagosimoesdemoraes@gmail.com', 10.00, '2026-06-23', '05:42'),
   ('Rodrigo Prado Garcia', 'rpradogarcia@gmail.com', 10.00, '2026-06-23', '01:54'),
   ('Victor Hugo de Carvalho Caldas', 'v.hugocaldas@gmail.com', 25.00, '2026-06-22', '23:18'),
-  ('Sandoval Augusto Dias Aragao', NULL, 10.00, '2026-06-22', '23:15'),
+  ('Sandoval Augusto Dias Aragao', 'hakjisan@gmail.com', 10.00, '2026-06-22', '23:15'),
   ('Thiago Lima Ferreira', 'thiagulf1@gmail.com', 25.00, '2026-06-22', '23:13'),
   ('Bruno Dias Silva', 'bruno_diassilva@yahoo.com.br', 10.00, '2026-06-22', '23:03'),
   ('Bruno Olyntho de Almeida', 'bruno_olyntho@hotmail.com', 10.00, '2026-06-22', '23:00'),
