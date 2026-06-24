@@ -7,6 +7,8 @@ import { resolverLocale } from "@/lib/locale-server";
 import { marcaDe } from "@/lib/ias";
 import { FALLBACK_NAO_WEB } from "@/lib/serie-a";
 import { pontosJogo } from "@/lib/scoring";
+import { analiseLiberado } from "@/lib/analise-auth";
+import { carregarV2V3DoSlug, type PlacarV2 } from "@/lib/palpites-v2";
 import type { Jogo as JogoFull, Palpite as PalpiteFull } from "@/lib/types";
 
 type Jogo = {
@@ -102,6 +104,14 @@ export default async function IADetalhePage({
   const { ia, jogos, palpites } = await carregarTudo(slug);
   if (!ia) notFound();
 
+  // Palpites atualizados (premium). Match direto pelo slug. v2/v3 só são
+  // RENDERIZADOS quando `liberado`; o boolean temV2 (não vaza placar) decide o CTA.
+  const [{ liberado }, { v2, v3 }] = await Promise.all([
+    analiseLiberado(),
+    carregarV2V3DoSlug(slug),
+  ]);
+  const temV2 = Object.keys(v2).length > 0 || Object.keys(v3).length > 0;
+
   const marca = marcaDe(slug);
   const totalPalpites = Object.keys(palpites).length;
 
@@ -115,6 +125,27 @@ export default async function IADetalhePage({
     palpiteAbrev: en ? "pick" : es ? "pron" : fr ? "pron" : "palpite",
     resultadoAbrev: en ? "result" : es ? "result" : fr ? "réel" : "real",
     ft: en ? "FT" : "FIM",
+    v2Aviso: en
+      ? "✨ This AI redid its picks mid-tournament — the v1 → v2 (→ v3) trail is shown below."
+      : es
+      ? "✨ Esta IA rehízo sus pronósticos con el Mundial en marcha — abajo el camino v1 → v2 (→ v3)."
+      : fr
+      ? "✨ Cette IA a refait ses pronostics en cours de tournoi — le parcours v1 → v2 (→ v3) est ci-dessous."
+      : "✨ Esta IA refez os palpites com a Copa rolando — a trilha v1 → v2 (→ v3) aparece abaixo.",
+    v2Cta: en
+      ? "This AI updated its picks mid-tournament."
+      : es
+      ? "Esta IA actualizó sus pronósticos con el Mundial en marcha."
+      : fr
+      ? "Cette IA a mis à jour ses pronostics en cours de tournoi."
+      : "Esta IA atualizou os palpites com a Copa em andamento.",
+    v2CtaLink: en
+      ? "See the updated picks →"
+      : es
+      ? "Ver los pronósticos actualizados →"
+      : fr
+      ? "Voir les pronostics mis à jour →"
+      : "Ver os palpites atualizados →",
   };
 
   return (
@@ -207,11 +238,24 @@ export default async function IADetalhePage({
         </span>
       </div>
 
+      {temV2 && liberado && (
+        <div className="ia-v2-aviso">{tx.v2Aviso}</div>
+      )}
+      {temV2 && !liberado && (
+        <Link href="/analise-v2" className="ia-v2-cta">
+          <span>✨ {tx.v2Cta}</span>
+          <strong>{tx.v2CtaLink}</strong>
+        </Link>
+      )}
+
       <h2 style={{ marginBottom: 16 }}>{tx.jogos_h2}</h2>
 
       <div className="palpites-lista">
         {jogos.map((jogo) => {
           const p = palpites[jogo.numero];
+          const pv2: PlacarV2 | undefined = liberado ? v2[jogo.numero] : undefined;
+          const pv3: PlacarV2 | undefined = liberado ? v3[jogo.numero] : undefined;
+          const temTrail = !!(pv2 || pv3);
           const encerrado = jogo.gols_a != null && jogo.gols_b != null;
           // pontosJogo aceita o Jogo completo + palpite
           const pts = encerrado && p
@@ -241,7 +285,7 @@ export default async function IADetalhePage({
                 <span className="palpite-time">{jogo.time_a}</span>
                 <div className="palpite-placares">
                   <span className="placar-bloco palpite">
-                    <span className="placar-lbl">{tx.palpiteAbrev}</span>
+                    <span className="placar-lbl">{temTrail ? "v1" : tx.palpiteAbrev}</span>
                     {p ? (
                       <span className="placar-num">
                         <strong>{p.gols_a}</strong>
@@ -252,6 +296,32 @@ export default async function IADetalhePage({
                       <em className="placar-vazio">{tx.semPalpite}</em>
                     )}
                   </span>
+                  {pv2 && (
+                    <>
+                      <span className="placar-seta">→</span>
+                      <span className="placar-bloco v2">
+                        <span className="placar-lbl">v2</span>
+                        <span className="placar-num">
+                          <strong>{pv2.gols_a}</strong>
+                          <span style={{ opacity: 0.5, margin: "0 4px" }}>×</span>
+                          <strong>{pv2.gols_b}</strong>
+                        </span>
+                      </span>
+                    </>
+                  )}
+                  {pv3 && (
+                    <>
+                      <span className="placar-seta">→</span>
+                      <span className="placar-bloco v3">
+                        <span className="placar-lbl">v3</span>
+                        <span className="placar-num">
+                          <strong>{pv3.gols_a}</strong>
+                          <span style={{ opacity: 0.5, margin: "0 4px" }}>×</span>
+                          <strong>{pv3.gols_b}</strong>
+                        </span>
+                      </span>
+                    </>
+                  )}
                   {encerrado && (
                     <span className="placar-bloco real">
                       <span className="placar-lbl">{tx.resultadoAbrev}</span>
@@ -341,6 +411,8 @@ export default async function IADetalhePage({
           letter-spacing: 0.08em;
         }
         .placar-bloco.real .placar-lbl { color: #10b981; }
+        .placar-bloco.v2 .placar-lbl,
+        .placar-bloco.v3 .placar-lbl { color: var(--accent-2, #a855f7); }
         .placar-num {
           font-family: var(--ff-display);
           font-size: 20px;
@@ -348,6 +420,41 @@ export default async function IADetalhePage({
           white-space: nowrap;
         }
         .placar-bloco.real .placar-num { color: #10b981; font-weight: 800; }
+        .placar-bloco.v2 .placar-num,
+        .placar-bloco.v3 .placar-num { color: var(--accent-2, #a855f7); }
+        .placar-bloco.v3 .placar-num { font-weight: 800; }
+        .placar-seta {
+          color: var(--fg-muted);
+          font-size: 14px;
+          align-self: center;
+        }
+        .ia-v2-aviso {
+          margin-bottom: 20px;
+          padding: 10px 16px;
+          border-radius: var(--r-m);
+          background: color-mix(in srgb, var(--accent-2, #a855f7) 10%, transparent);
+          border: 1px solid color-mix(in srgb, var(--accent-2, #a855f7) 35%, transparent);
+          color: var(--fg-mid);
+          font-size: 14px;
+        }
+        .ia-v2-cta {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 6px 10px;
+          margin-bottom: 20px;
+          padding: 12px 18px;
+          border-radius: var(--r-m);
+          background: color-mix(in srgb, var(--accent-2, #a855f7) 8%, var(--bg-1));
+          border: 1px solid color-mix(in srgb, var(--accent-2, #a855f7) 30%, transparent);
+          color: var(--fg);
+          font-size: 14px;
+          transition: border-color 0.15s ease;
+        }
+        .ia-v2-cta:hover {
+          border-color: var(--accent-2, #a855f7);
+        }
+        .ia-v2-cta strong { color: var(--accent-2, #a855f7); }
         .placar-vazio {
           color: var(--fg-muted);
           font-size: 11px;

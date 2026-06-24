@@ -53,6 +53,42 @@ export async function carregarV2PorJogo(): Promise<
   return map;
 }
 
+/**
+ * Palpites v2 e v3 de UMA IA (por slug), indexados por jogo.
+ *
+ * Match direto pelo slug (sem reverse-alias): o slug da página /ia é o mesmo
+ * gravado em palpite_v2 (web usa "-web", API usa o slug base). Um slug tem ~32
+ * linhas no máximo — sem paginação. Só chame quando o viewer for liberado.
+ */
+export async function carregarV2V3DoSlug(slug: string): Promise<{
+  v2: Record<number, PlacarV2>;
+  v3: Record<number, PlacarV2>;
+}> {
+  const v2: Record<number, PlacarV2> = {};
+  const v3: Record<number, PlacarV2> = {};
+  const admin = createAdminClient();
+  if (!admin) return { v2, v3 };
+
+  const { data, error } = await admin
+    .from("palpite_v2")
+    .select("jogo_numero, gols_a, gols_b, versao")
+    .eq("slug", slug);
+  if (error) {
+    console.error("[palpites-v2] erro ao carregar slug:", error.message);
+    return { v2, v3 };
+  }
+  for (const r of (data ?? []) as {
+    jogo_numero: number;
+    gols_a: number;
+    gols_b: number;
+    versao: string;
+  }[]) {
+    const alvo = r.versao === "v3" ? v3 : v2;
+    alvo[r.jogo_numero] = { gols_a: r.gols_a, gols_b: r.gols_b };
+  }
+  return { v2, v3 };
+}
+
 /** Placar mais votado entre os palpites v2 de um jogo. */
 export function consensoV2(palpites: Record<string, PlacarV2>): ConsensoV2 {
   const total = Object.keys(palpites).length;

@@ -14,12 +14,15 @@
  * Link NÃO está no menu (decisão de produto: só após fase de grupos).
  */
 
-import { createHash } from "crypto";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { createAdminClient, isContribuinte } from "@/lib/admin";
-import { createClient } from "@/lib/supabase-server";
+import { createAdminClient } from "@/lib/admin";
+import {
+  ANALISE_COOKIE,
+  tokenEsperado,
+  analiseLiberado,
+} from "@/lib/analise-auth";
 import { resolverLocale } from "@/lib/locale-server";
 import type { Locale } from "@/lib/i18n";
 import { carregarJogos, jogoComecou } from "@/lib/jogos";
@@ -55,26 +58,6 @@ type PalpiteV2Row = {
   versao: string;
 };
 
-// ─── Verificação de cookie ──────────────────────────────────────
-
-const COOKIE_NAME = "analise_auth";
-
-// Token derivado da senha (não forjável): sem conhecer ANALISE_SENHA não dá pra
-// fabricar o valor do cookie. Cookie com valor fixo ("ok") seria burlável por
-// qualquer um que setasse o cookie na mão no DevTools/curl.
-function tokenEsperado(): string | null {
-  const senha = process.env.ANALISE_SENHA;
-  if (!senha) return null;
-  return createHash("sha256").update(`analise-v2:${senha}`).digest("hex");
-}
-
-async function isAutenticado(): Promise<boolean> {
-  const esperado = tokenEsperado();
-  if (!esperado) return false;
-  const cookieStore = await cookies();
-  return cookieStore.get(COOKIE_NAME)?.value === esperado;
-}
-
 // ─── Server Action: validar senha ───────────────────────────────
 
 async function autenticar(formData: FormData) {
@@ -92,7 +75,7 @@ async function autenticar(formData: FormData) {
   }
 
   const cookieStore = await cookies();
-  cookieStore.set(COOKIE_NAME, tokenEsperado()!, {
+  cookieStore.set(ANALISE_COOKIE, tokenEsperado()!, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
@@ -828,17 +811,13 @@ export default async function AnaliseV2Page({
 }: {
   searchParams: Promise<{ erro?: string }>;
 }) {
-  const [params, locale, autenticado, userRes] = await Promise.all([
+  const [params, locale, acesso] = await Promise.all([
     searchParams,
     resolverLocale(),
-    isAutenticado(),
-    createClient().then((c) => c.auth.getUser()),
+    analiseLiberado(),
   ]);
 
-  const email = userRes.data.user?.email ?? null;
-  // Acesso = senha (fallback temporário) OU conta na allowlist/admin
-  const contribuinte = email ? await isContribuinte(email) : false;
-  const liberado = autenticado || contribuinte;
+  const { liberado, email, contribuinte } = acesso;
 
   // 1. Sem acesso → gate (login com conta liberada ou senha)
   if (!liberado) {
