@@ -229,6 +229,7 @@ export default async function ContribuicoesAdminPage({
   const rascunhosOrd = sortRows(rascunhos, rcol, rdir, (c, k) => {
     if (k === "valor") return Number(c.valor);
     if (k === "email") return (c.email ?? "").toLowerCase();
+    if (k === "instagram") return (c.instagram ?? "").toLowerCase();
     if (k === "quando") return c.criado_em ?? "";
     return (c.nome ?? "").toLowerCase();
   });
@@ -285,7 +286,11 @@ export default async function ContribuicoesAdminPage({
     pcol,
     pdir,
     (p, k) =>
-      k === "total" ? p.total : (p.nome ?? p.emails[0] ?? "").toLowerCase(),
+      k === "total" || k === "nivel"
+        ? p.total
+        : k === "email"
+          ? (p.emails[0] ?? "").toLowerCase()
+          : (p.nome ?? p.emails[0] ?? "").toLowerCase(),
   );
   // Cortesia = liberado mas sem contribuição registrada (total R$0).
   const totalCortesias = pessoas.filter((p) => p.total === 0).length;
@@ -449,7 +454,7 @@ export default async function ContribuicoesAdminPage({
                   <Th label="Valor" href={hrefOrdenar("r", "valor", cur)} dir={rcol === "valor" ? rdir : null} align="right" />
                   <Th label="Email" href={hrefOrdenar("r", "email", cur)} dir={rcol === "email" ? rdir : null} />
                   <Th label="Quando" href={hrefOrdenar("r", "quando", cur)} dir={rcol === "quando" ? rdir : null} />
-                  <th>Instagram</th>
+                  <Th label="Instagram" href={hrefOrdenar("r", "instagram", cur)} dir={rcol === "instagram" ? rdir : null} />
                   <th>Pix</th>
                   <th></th>
                 </tr>
@@ -542,8 +547,8 @@ export default async function ContribuicoesAdminPage({
                 <tr>
                   <th style={{ textAlign: "right" }}>#</th>
                   <Th label="Nome" href={hrefOrdenar("p", "nome", cur)} dir={pcol === "nome" ? pdir : null} />
-                  <th>Nível</th>
-                  <th>Email(s)</th>
+                  <Th label="Nível" href={hrefOrdenar("p", "nivel", cur)} dir={pcol === "nivel" ? pdir : null} />
+                  <Th label="Email(s)" href={hrefOrdenar("p", "email", cur)} dir={pcol === "email" ? pdir : null} />
                   <Th label="Total" href={hrefOrdenar("p", "total", cur)} dir={pcol === "total" ? pdir : null} align="right" />
                   <th>Editar</th>
                 </tr>
