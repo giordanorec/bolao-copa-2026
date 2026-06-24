@@ -148,16 +148,29 @@ export async function removerContribuicao(formData: FormData) {
   revalidatePath("/admin");
 }
 
-/** Define/atualiza o Instagram diretamente na allowlist (contribuintes). */
-export async function definirInstagramContribuinte(formData: FormData) {
+/**
+ * Edita os dados de uma PESSOA na allowlist (nome / instagram / nota).
+ * Aplica em TODOS os emails dela (campo `emails` separado por vírgula),
+ * o que também consolida pessoas com vários emails sob o mesmo nome.
+ */
+export async function atualizarContribuinte(formData: FormData) {
   const admin = await requireAdmin();
-  const email = normEmail(formData.get("email") as string);
-  if (!email) throw new Error("Email obrigatório.");
-  const instagram = normInsta(formData.get("instagram") as string);
+  const emails = ((formData.get("emails") as string) ?? "")
+    .split(",")
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+  if (emails.length === 0) throw new Error("Email obrigatório.");
+
+  const patch: Record<string, unknown> = {};
+  if (formData.has("nome")) patch.nome = (formData.get("nome") as string)?.trim() || null;
+  if (formData.has("instagram")) patch.instagram = normInsta(formData.get("instagram") as string);
+  if (formData.has("nota")) patch.nota = (formData.get("nota") as string)?.trim() || null;
+  if (Object.keys(patch).length === 0) return;
+
   const { error } = await admin
     .from("contribuintes")
-    .update({ instagram })
-    .eq("email", email);
+    .update(patch)
+    .in("email", emails);
   if (error) throw new Error(error.message);
   revalidatePath("/admin/contribuicoes");
 }

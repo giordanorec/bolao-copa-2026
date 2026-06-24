@@ -7,7 +7,7 @@ import {
   processarRascunhos,
   atualizarContribuicao,
   removerContribuicao,
-  definirInstagramContribuinte,
+  atualizarContribuinte,
 } from "../actions";
 
 export const dynamic = "force-dynamic";
@@ -166,6 +166,7 @@ export default async function ContribuicoesAdminPage({
     nome: string | null;
     emails: string[];
     instagram: string | null;
+    nota: string | null;
     total: number;
   };
   const pessoasMap = new Map<string, Pessoa>();
@@ -174,12 +175,13 @@ export default async function ContribuicoesAdminPage({
     const key = nomeNorm || `email:${c.email.toLowerCase().trim()}`;
     let p = pessoasMap.get(key);
     if (!p) {
-      p = { nome: c.nome, emails: [], instagram: null, total: 0 };
+      p = { nome: c.nome, emails: [], instagram: null, nota: null, total: 0 };
       pessoasMap.set(key, p);
     }
     p.emails.push(c.email);
     if (!p.nome && c.nome) p.nome = c.nome;
     if (!p.instagram && c.instagram) p.instagram = c.instagram;
+    if (!p.nota && c.nota) p.nota = c.nota;
   }
   for (const p of pessoasMap.values()) {
     p.total = p.emails.reduce(
@@ -439,17 +441,13 @@ export default async function ContribuicoesAdminPage({
                   <th>Nível</th>
                   <th>Email(s)</th>
                   <th>Total</th>
-                  <th>Instagram (editar)</th>
+                  <th>Editar</th>
                 </tr>
               </thead>
               <tbody>
                 {pessoas.map((p) => {
                   const cortesia = p.total === 0;
                   const nivel = nivelDe(p.total);
-                  const emailPrincipal =
-                    p.emails.find(
-                      (e) => (totalPorEmail.get(e.toLowerCase().trim()) ?? 0) > 0,
-                    ) ?? p.emails[0];
                   return (
                     <tr key={p.emails[0]}>
                       <td>{p.nome ?? <span className="cmuted">—</span>}</td>
@@ -473,16 +471,36 @@ export default async function ContribuicoesAdminPage({
                         )}
                       </td>
                       <td>
-                        <form action={definirInstagramContribuinte} className="cig">
-                          <input type="hidden" name="email" value={emailPrincipal} />
-                          <input
-                            className="input"
-                            name="instagram"
-                            defaultValue={p.instagram ?? ""}
-                            placeholder="@usuario"
-                          />
-                          <button type="submit" className="btn small">OK</button>
-                        </form>
+                        <details className="cedit">
+                          <summary>✏️ editar</summary>
+                          <form action={atualizarContribuinte} className="cedit-form">
+                            <input type="hidden" name="emails" value={p.emails.join(",")} />
+                            <label>Nome</label>
+                            <input
+                              className="input"
+                              name="nome"
+                              defaultValue={p.nome ?? ""}
+                              placeholder="Nome completo"
+                            />
+                            <label>Instagram</label>
+                            <input
+                              className="input"
+                              name="instagram"
+                              defaultValue={p.instagram ?? ""}
+                              placeholder="@usuario"
+                            />
+                            <label>Nota (mensagem de agradecimento)</label>
+                            <input
+                              className="input"
+                              name="nota"
+                              defaultValue={p.nota ?? ""}
+                              placeholder="opcional"
+                            />
+                            <button type="submit" className="btn primary small">
+                              Salvar
+                            </button>
+                          </form>
+                        </details>
                       </td>
                     </tr>
                   );
@@ -609,6 +627,20 @@ function ContribStyle() {
       .cpend-nome { font-size: 14px; }
       .cig { display: flex; gap: 8px; align-items: center; }
       .cig .input { max-width: 220px; }
+      .cedit summary {
+        cursor: pointer; font-size: 13px; font-weight: 700;
+        color: var(--primary); list-style: none; white-space: nowrap;
+      }
+      .cedit summary::-webkit-details-marker { display: none; }
+      .cedit-form {
+        display: flex; flex-direction: column; gap: 6px;
+        margin-top: 10px; min-width: 240px;
+      }
+      .cedit-form label {
+        font-size: 11px; font-weight: 700; color: var(--fg-muted);
+        text-transform: uppercase; letter-spacing: .03em;
+      }
+      .cedit-form .btn { align-self: flex-start; margin-top: 4px; }
       @media (max-width: 720px) {
         .cform { grid-template-columns: 1fr; }
         .cpend { grid-template-columns: 1fr; }
