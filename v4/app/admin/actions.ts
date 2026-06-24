@@ -37,6 +37,33 @@ function normInsta(raw: string | null): string | null {
   return s ? "@" + s : null;
 }
 
+type Admin = NonNullable<ReturnType<typeof createAdminClient>>;
+
+/**
+ * Confirma que `email` corresponde a uma conta cadastrada (auth.users).
+ * Caminho rápido: RPC `email_tem_conta` (migration 2026-06-24). Se a RPC
+ * ainda não foi aplicada, cai no fallback que pagina o admin do auth.
+ */
+async function emailTemConta(admin: Admin, email: string): Promise<boolean> {
+  const alvo = email.trim().toLowerCase();
+  const { data, error } = await admin.rpc("email_tem_conta", { p_email: alvo });
+  if (!error) return data === true;
+
+  // Fallback: pagina auth.users e procura o email (RPC ausente/erro).
+  for (let page = 1; page <= 50; page++) {
+    const { data: lote, error: e2 } = await admin.auth.admin.listUsers({
+      page,
+      perPage: 200,
+    });
+    if (e2) throw new Error("Falha ao verificar conta: " + e2.message);
+    const users = lote?.users ?? [];
+    if (users.length === 0) break;
+    if (users.some((u) => (u.email ?? "").toLowerCase() === alvo)) return true;
+    if (users.length < 200) break;
+  }
+  return false;
+}
+
 /** Adiciona uma contribuição como RASCUNHO (vai pro banco só ao processar). */
 export async function adicionarContribuicao(formData: FormData) {
   const admin = await requireAdmin();
@@ -115,7 +142,12 @@ export async function adicionarFotoPix(formData: FormData) {
   revalidatePath("/admin/contribuicoes");
 }
 
-/** Processa TODOS os rascunhos: libera os emails na allowlist e marca processado. */
+/**
+ * Processa os rascunhos: libera na allowlist só os emails com conta
+ * cadastrada e marca processado. Rascunho com email SEM conta fica como
+ * rascunho (visível) pra você conferir — nunca some nem libera errado.
+ * Rascunho sem email vira pendente (processado sem email), como antes.
+ */
 export async function processarRascunhos() {
   const admin = await requireAdmin();
 
@@ -126,47 +158,86 @@ export async function processarRascunhos() {
   if (error) throw new Error(error.message);
   if (!rascunhos || rascunhos.length === 0) return;
 
-  // Libera (upsert) na allowlist os que têm email.
-  const comEmail = rascunhos.filter((r) => r.email);
-  if (comEmail.length > 0) {
-    const linhas = comEmail.map((r) => ({
-      email: r.email as string,
-      nome: r.nome as string,
-      instagram: (r.instagram as string | null) ?? null,
-    }));
+  // Verifica cada email; separa os que têm conta dos que não têm.
+  const aLiberar: { email: string; nome: string; instagram: string | null }[] = [];
+  const idsBloqueados = new Set<number>();
+  for (const r of rascunhos) {
+    if (!r.email) continue; // sem email vira pendente
+    if (await emailTemConta(admin, r.email as string)) {
+      aLiberar.push({
+        email: r.email as string,
+        nome: r.nome as string,
+        instagram: (r.instagram as string | null) ?? null,
+      });
+    } else {
+      idsBloqueados.add(r.id as number); // sem conta: não processa
+    }
+  }
+
+  if (aLiberar.length > 0) {
     const { error: upErr } = await admin
       .from("contribuintes")
-      .upsert(linhas, { onConflict: "email", ignoreDuplicates: false });
+      .upsert(aLiberar, { onConflict: "email", ignoreDuplicates: false });
     if (upErr) throw new Error("Falha ao liberar: " + upErr.message);
   }
 
-  const { error: stErr } = await admin
-    .from("contribuicoes")
-    .update({ status: "processado", processado_em: new Date().toISOString() })
-    .eq("status", "rascunho");
-  if (stErr) throw new Error(stErr.message);
+  // Marca processado todos os rascunhos MENOS os bloqueados (email sem conta).
+  const idsProcessar = rascunhos
+    .map((r) => r.id as number)
+    .filter((id) => !idsBloqueados.has(id));
+  if (idsProcessar.length > 0) {
+    const { error: stErr } = await admin
+      .from("contribuicoes")
+      .update({ status: "processado", processado_em: new Date().toISOString() })
+      .in("id", idsProcessar);
+    if (stErr) throw new Error(stErr.message);
+  }
   revalidatePath("/admin");
 }
 
-/** Atualiza email / instagram / nota / valor de uma contribuição (ex.: identificar pendente). */
-export async function atualizarContribuicao(formData: FormData) {
+/**
+ * Identifica um pagamento PENDENTE: grava o email, VERIFICA que ele tem
+ * conta cadastrada e — só então — libera na allowlist de uma vez.
+ * Fecha o buraco antigo em que salvar o email no pendente não liberava
+ * nada (e impede habilitar um email sem conta, digitado errado).
+ */
+export async function identificarPendente(formData: FormData) {
   const admin = await requireAdmin();
   const id = Number(formData.get("id"));
   if (!Number.isFinite(id)) throw new Error("ID inválido.");
 
-  const patch: Record<string, unknown> = {};
-  if (formData.has("email")) patch.email = normEmail(formData.get("email") as string);
-  if (formData.has("instagram")) patch.instagram = normInsta(formData.get("instagram") as string);
-  if (formData.has("nota")) patch.nota = (formData.get("nota") as string)?.trim() || null;
-  if (formData.has("valor")) {
-    const v = parseValor(formData.get("valor") as string);
-    if (v != null) patch.valor = v;
-  }
-  if (Object.keys(patch).length === 0) return;
+  const email = normEmail(formData.get("email") as string);
+  if (!email) throw new Error("Informe o email pra liberar este pagamento.");
+  const instagram = normInsta(formData.get("instagram") as string);
 
-  const { error } = await admin.from("contribuicoes").update(patch).eq("id", id);
-  if (error) throw new Error(error.message);
-  revalidatePath("/admin");
+  if (!(await emailTemConta(admin, email))) {
+    throw new Error(
+      `O email "${email}" não tem conta cadastrada — confira o endereço. Nada foi liberado.`,
+    );
+  }
+
+  // Pega nome do pagamento pra registrar na allowlist.
+  const { data: row } = await admin
+    .from("contribuicoes")
+    .select("nome")
+    .eq("id", id)
+    .maybeSingle();
+
+  const { error: upContrib } = await admin
+    .from("contribuicoes")
+    .update({ email, instagram })
+    .eq("id", id);
+  if (upContrib) throw new Error(upContrib.message);
+
+  const { error: upAllow } = await admin
+    .from("contribuintes")
+    .upsert(
+      { email, nome: (row?.nome as string) ?? null, instagram },
+      { onConflict: "email", ignoreDuplicates: false },
+    );
+  if (upAllow) throw new Error("Falha ao liberar: " + upAllow.message);
+
+  revalidatePath("/admin/contribuicoes");
 }
 
 /** Remove uma contribuição em rascunho (não mexe nas já processadas). */

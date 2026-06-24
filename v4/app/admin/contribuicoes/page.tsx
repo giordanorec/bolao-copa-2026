@@ -6,7 +6,7 @@ import {
   adicionarContribuicao,
   adicionarFotoPix,
   processarRascunhos,
-  atualizarContribuicao,
+  identificarPendente,
   removerContribuicao,
   removerPendente,
   atualizarContribuinte,
@@ -507,22 +507,33 @@ export default async function ContribuicoesAdminPage({
         <section className="cbox">
           <h2 className="ctitle">❓ Pendentes sem email ({pendentes.length})</h2>
           <p style={{ fontSize: 13, color: "var(--fg-muted)", marginBottom: 14 }}>
-            Já processados, mas sem email associado — preencha pra liberar no
-            próximo processamento.
+            Pagaram mas ainda não foram associados a uma conta. Preencha o email
+            e clique <strong>Liberar</strong>: o sistema confere que o email tem
+            conta cadastrada e libera na hora (recusa email sem conta).
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {pendentes.map((c) => (
-              <div key={c.id} className="cpend">
-                <form action={atualizarContribuicao} style={{ display: "contents" }}>
+              <div key={c.id} className="cpend cpend-alerta">
+                <form action={identificarPendente} style={{ display: "contents" }}>
                   <input type="hidden" name="id" value={c.id} />
                   <div className="cpend-nome">
                     <strong>{c.nome}</strong>
                     <span className="cmuted"> · {brl(Number(c.valor))}</span>
+                    {c.comprovante_url && signedMap.has(c.comprovante_url) && (
+                      <a
+                        href={signedMap.get(c.comprovante_url)}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ marginLeft: 8, fontSize: 12 }}
+                      >
+                        ver comprovante
+                      </a>
+                    )}
                   </div>
-                  <input className="input" name="email" type="email" placeholder="email@..." />
+                  <input className="input" name="email" type="email" placeholder="email@... (precisa ter conta)" />
                   <input className="input" name="instagram" placeholder="@instagram" />
-                  <button type="submit" className="btn small">
-                    Salvar
+                  <button type="submit" className="btn primary small">
+                    Liberar
                   </button>
                 </form>
                 <form action={removerPendente}>
@@ -760,6 +771,10 @@ function ContribStyle() {
         padding: 10px;
         border: 1px solid var(--line);
         border-radius: var(--r-s);
+      }
+      .cpend-alerta {
+        border-color: color-mix(in srgb, #f59e0b 55%, transparent);
+        background: color-mix(in srgb, #f59e0b 8%, transparent);
       }
       .cpend-nome { font-size: 14px; }
       .cig { display: flex; gap: 8px; align-items: center; }
