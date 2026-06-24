@@ -1814,27 +1814,61 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
 /* ─── BOLÃO PAGE (landing convidativa) ─── */
 .bolao-page { margin-top: 24px; margin-bottom: 64px; }
 .bolao-hero {
+    position: relative;
+    overflow: hidden;
     text-align: center;
-    padding: 56px 24px 48px;
-    background: linear-gradient(135deg,
-        color-mix(in srgb, var(--accent) 8%, transparent),
-        color-mix(in srgb, var(--primary) 6%, transparent),
-        color-mix(in srgb, var(--secondary) 4%, transparent));
+    padding: 60px 28px 52px;
+    background:
+        radial-gradient(130% 120% at 50% -20%,
+            color-mix(in srgb, var(--primary) 16%, transparent), transparent 58%),
+        linear-gradient(150deg,
+            color-mix(in srgb, var(--accent) 12%, transparent),
+            color-mix(in srgb, var(--primary) 8%, transparent) 55%,
+            color-mix(in srgb, var(--secondary) 5%, transparent));
     border-radius: var(--r-l);
-    border: 2px solid color-mix(in srgb, var(--primary) 30%, transparent);
+    border: 1.5px solid color-mix(in srgb, var(--primary) 26%, transparent);
+    box-shadow:
+        0 28px 64px -30px color-mix(in srgb, var(--primary) 50%, transparent),
+        inset 0 1px 0 color-mix(in srgb, #fff 35%, transparent);
     margin-bottom: 32px;
 }
-.bolao-hero-emojis {
-    font-size: 56px; line-height: 1; margin-bottom: 20px;
-    display: inline-flex; gap: 14px;
+/* listras de campo + brilho decorativo */
+.bolao-hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(90deg,
+        color-mix(in srgb, var(--secondary) 4%, transparent) 0 44px,
+        transparent 44px 88px);
+    opacity: .45; pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 45%, #000 72%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 45%, #000 72%, transparent);
 }
-.bolao-hero-emojis span { animation: float 4s ease-in-out infinite; }
-.bolao-hero-emojis span:nth-child(2) { animation-delay: 0.5s; }
-.bolao-hero-emojis span:nth-child(3) { animation-delay: 1s; }
+.bolao-hero::after {
+    content: ""; position: absolute; pointer-events: none;
+    width: 340px; height: 340px; border-radius: 50%;
+    top: -160px; right: -90px;
+    background: radial-gradient(circle,
+        color-mix(in srgb, var(--accent) 32%, transparent), transparent 70%);
+    filter: blur(14px); opacity: .55;
+}
+.bolao-hero > * { position: relative; z-index: 1; }
+
+.bolao-hero-badge {
+    width: 88px; height: 88px; margin: 0 auto 20px;
+    display: grid; place-items: center;
+    font-size: 44px; line-height: 1;
+    border-radius: 26px;
+    background: linear-gradient(150deg, var(--accent), var(--primary));
+    box-shadow:
+        0 16px 36px -10px color-mix(in srgb, var(--primary) 70%, transparent),
+        inset 0 2px 0 color-mix(in srgb, #fff 50%, transparent);
+    transform: rotate(-5deg);
+    animation: float 4s ease-in-out infinite;
+}
 .bolao-hero-kicker {
-    font-family: var(--ff-mono); font-size: 13px;
+    font-family: var(--ff-mono); font-size: 12px;
     color: var(--primary); text-transform: uppercase;
-    letter-spacing: 0.1em; font-weight: 700;
+    letter-spacing: 0.12em; font-weight: 700;
     margin-bottom: 12px;
 }
 .bolao-hero-titulo {
@@ -1842,31 +1876,73 @@ body.theme-switcher-closed .theme-switcher .toggle-btn { transform: translateX(-
     font-weight: var(--ff-display-weight);
     font-style: var(--ff-display-style);
     font-variation-settings: var(--ff-display-vs);
-    font-size: clamp(40px, 7vw, 80px);
-    color: var(--secondary);
+    font-size: clamp(40px, 7vw, 78px);
+    background: linear-gradient(120deg, var(--secondary), var(--primary) 75%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: var(--secondary);
     letter-spacing: -0.03em;
     line-height: 1.0;
     margin-bottom: 16px;
 }
 .bolao-hero-desc {
     font-size: 17px; color: var(--fg-mid);
-    max-width: 540px; margin: 0 auto 24px;
+    max-width: 540px; margin: 0 auto 22px;
     line-height: 1.5;
 }
+.bolao-hero-membros {
+    display: inline-flex; align-items: center; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+    margin-bottom: 18px;
+}
+.bolao-avatars { display: inline-flex; }
+.bolao-avatars span {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 14px; font-weight: 800; color: #fff;
+    font-family: var(--ff-sans);
+    border: 2px solid var(--bg-2);
+    margin-left: -10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+.bolao-avatars span:first-child { margin-left: 0; }
+.bolao-avatars-mais {
+    background: var(--bg-soft) !important;
+    color: var(--fg-mid) !important;
+    font-size: 12px !important;
+}
+.bolao-hero-criador { font-size: 14px; color: var(--fg-mid); }
+.bolao-hero-criador strong { color: var(--fg); font-weight: 800; }
+.bolao-hero-lider {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--accent) 24%, transparent),
+        color-mix(in srgb, var(--primary) 14%, transparent));
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    padding: 8px 16px; border-radius: 999px;
+    font-size: 14px; color: var(--fg); font-weight: 600;
+    margin-bottom: 22px;
+}
+.bolao-hero-lider strong { font-weight: 800; }
 .bolao-hero-meta {
-    display: flex; gap: 24px; flex-wrap: wrap;
+    display: flex; gap: 10px; flex-wrap: wrap;
     justify-content: center; margin-bottom: 28px;
-    font-size: 14px; color: var(--fg-mid);
+    font-size: 13px; color: var(--fg-mid);
     font-family: var(--ff-mono);
+}
+.bolao-hero-meta span {
+    background: color-mix(in srgb, var(--bg-2) 65%, transparent);
+    border: 1px solid var(--line);
+    padding: 7px 14px; border-radius: 999px;
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
 }
 .bolao-hero-meta strong { color: var(--fg); font-weight: 800; }
 .bolao-hero-cta {
     display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center;
 }
 @media (max-width: 600px) {
-    .bolao-hero { padding: 40px 16px 36px; }
-    .bolao-hero-emojis { font-size: 44px; gap: 10px; margin-bottom: 14px; }
-    .bolao-hero-meta { gap: 14px; font-size: 13px; }
+    .bolao-hero { padding: 44px 16px 38px; }
+    .bolao-hero-badge { width: 72px; height: 72px; font-size: 36px; margin-bottom: 16px; }
+    .bolao-hero-meta { gap: 8px; }
 }
 
 .bolao-explica { margin: 48px 0; }

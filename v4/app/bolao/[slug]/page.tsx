@@ -68,31 +68,78 @@ export default async function BolaoPage({
   const isAnon = !user;
   const isVisitante = !sou_membro;
 
+  const criadorNome =
+    membrosTyped.find((m) => m.user_id === bolao.criador_id)?.profiles
+      .display_name ?? null;
+  const lider =
+    rankingPraShare.length > 0 && rankingPraShare[0].pontos > 0
+      ? rankingPraShare[0]
+      : null;
+  const AVATAR_CORES = [
+    "linear-gradient(135deg,#009C3B,#00B040)",
+    "linear-gradient(135deg,#FFC700,#C99800)",
+    "linear-gradient(135deg,#007AFF,#0040DD)",
+    "linear-gradient(135deg,#FF385C,#E61E4D)",
+    "linear-gradient(135deg,#8134AF,#DD2A7B)",
+  ];
+  const avatares = membrosTyped.slice(0, 5).map((m, i) => ({
+    inicial: (m.profiles.display_name || "?").trim().charAt(0).toUpperCase(),
+    cor: AVATAR_CORES[i % AVATAR_CORES.length],
+  }));
+  const sobrando = membrosTyped.length - avatares.length;
+
   return (
     <div className="bolao-page">
       {/* ── HERO convite ── */}
       <section className="bolao-hero">
-        <div className="bolao-hero-emojis">
-          <span>🎯</span>
-          <span>⚽</span>
-          <span>🇧🇷</span>
+        <div className="bolao-hero-badge" aria-hidden>
+          🏆
         </div>
         <p className="bolao-hero-kicker">
           {isVisitante
-            ? "Você foi convidado pra um bolão de Copa do Mundo 2026"
-            : "Seu bolão"}
+            ? "Você foi convidado pra um bolão · Copa 2026"
+            : "Seu bolão · Copa 2026"}
         </p>
         <h1 className="bolao-hero-titulo">{bolao.nome}</h1>
         {bolao.descricao && (
           <p className="bolao-hero-desc">{bolao.descricao}</p>
         )}
+
+        {(avatares.length > 0 || criadorNome) && (
+          <div className="bolao-hero-membros">
+            {avatares.length > 0 && (
+              <div className="bolao-avatars">
+                {avatares.map((a, i) => (
+                  <span key={i} style={{ background: a.cor }}>
+                    {a.inicial}
+                  </span>
+                ))}
+                {sobrando > 0 && (
+                  <span className="bolao-avatars-mais">+{sobrando}</span>
+                )}
+              </div>
+            )}
+            {criadorNome && (
+              <span className="bolao-hero-criador">
+                criado por <strong>{criadorNome}</strong>
+              </span>
+            )}
+          </div>
+        )}
+
+        {lider && (
+          <div className="bolao-hero-lider">
+            🥇 <strong>{lider.nome}</strong> lidera com {lider.pontos} pts
+          </div>
+        )}
+
         <div className="bolao-hero-meta">
           <span>
             👥 <strong>{membrosTyped.length}</strong>{" "}
             {membrosTyped.length === 1 ? "membro" : "membros"}
           </span>
-          <span>⚽ 104 jogos da Copa 2026</span>
-          <span>🔮 122 IAs também estão palpitando</span>
+          <span>⚽ 104 jogos</span>
+          <span>🔮 122 IAs palpitando</span>
         </div>
 
         <div className="bolao-hero-cta">
