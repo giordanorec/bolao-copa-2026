@@ -184,6 +184,24 @@ export async function removerContribuicao(formData: FormData) {
 }
 
 /**
+ * Remove uma contribuição PENDENTE (já processada, mas sem email).
+ * Restrito a `email is null` pra nunca apagar um pagamento já identificado
+ * e liberado por engano.
+ */
+export async function removerPendente(formData: FormData) {
+  const admin = await requireAdmin();
+  const id = Number(formData.get("id"));
+  if (!Number.isFinite(id)) throw new Error("ID inválido.");
+  const { error } = await admin
+    .from("contribuicoes")
+    .delete()
+    .eq("id", id)
+    .is("email", null);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/contribuicoes");
+}
+
+/**
  * Edita os dados de uma PESSOA na allowlist (nome / instagram / nota).
  * Aplica em TODOS os emails dela (campo `emails` separado por vírgula),
  * o que também consolida pessoas com vários emails sob o mesmo nome.

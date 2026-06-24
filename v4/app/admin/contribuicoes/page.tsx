@@ -8,6 +8,7 @@ import {
   processarRascunhos,
   atualizarContribuicao,
   removerContribuicao,
+  removerPendente,
   atualizarContribuinte,
 } from "../actions";
 
@@ -511,18 +512,26 @@ export default async function ContribuicoesAdminPage({
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {pendentes.map((c) => (
-              <form key={c.id} action={atualizarContribuicao} className="cpend">
-                <input type="hidden" name="id" value={c.id} />
-                <div className="cpend-nome">
-                  <strong>{c.nome}</strong>
-                  <span className="cmuted"> · {brl(Number(c.valor))}</span>
-                </div>
-                <input className="input" name="email" type="email" placeholder="email@..." />
-                <input className="input" name="instagram" placeholder="@instagram" />
-                <button type="submit" className="btn small">
-                  Salvar
-                </button>
-              </form>
+              <div key={c.id} className="cpend">
+                <form action={atualizarContribuicao} style={{ display: "contents" }}>
+                  <input type="hidden" name="id" value={c.id} />
+                  <div className="cpend-nome">
+                    <strong>{c.nome}</strong>
+                    <span className="cmuted"> · {brl(Number(c.valor))}</span>
+                  </div>
+                  <input className="input" name="email" type="email" placeholder="email@..." />
+                  <input className="input" name="instagram" placeholder="@instagram" />
+                  <button type="submit" className="btn small">
+                    Salvar
+                  </button>
+                </form>
+                <form action={removerPendente}>
+                  <input type="hidden" name="id" value={c.id} />
+                  <button type="submit" className="clink-del" title="Deletar pendente">
+                    ✕
+                  </button>
+                </form>
+              </div>
             ))}
           </div>
         </section>
@@ -745,7 +754,7 @@ function ContribStyle() {
       .clink-del:hover { background: #fee2e2; color: #C0392B; border-color: #C0392B; }
       .cpend {
         display: grid;
-        grid-template-columns: 1.4fr 1.4fr 1fr auto;
+        grid-template-columns: 1.4fr 1.4fr 1fr auto auto;
         gap: 10px;
         align-items: center;
         padding: 10px;
