@@ -56,3 +56,5 @@ no cálculo de pontuação.
 | 45 | Grupo L | Ter 23/06 | 17h00 | Boston | Inglaterra | 0 | 0 | Gana |
 | 46 | Grupo L | Ter 23/06 | 20h00 | Toronto | Panamá | 0 | 1 | Croácia |
 | 48 | Grupo K | Ter 23/06 | 23h00 | Guadalajara | Colômbia | 1 | 0 | Congo (RD) |
+| 51 | Grupo B | Qua 24/06 | 16h00 | Vancouver | Suíça | 2 | 1 | Canadá |
+| 52 | Grupo B | Qua 24/06 | 16h00 | Seattle | Bósnia-Herzegovina | 3 | 1 | Qatar |
