@@ -45,6 +45,80 @@ function brl(n: number): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
+type Dir = "asc" | "desc";
+type SortState = { rcol: string; rdir: Dir; pcol: string; pdir: Dir };
+
+// Ordena uma cópia do array por uma chave extraída de cada linha.
+function sortRows<T>(
+  rows: T[],
+  col: string,
+  dir: Dir,
+  getVal: (row: T, col: string) => string | number,
+): T[] {
+  const mult = dir === "asc" ? 1 : -1;
+  return [...rows].sort((a, b) => {
+    const va = getVal(a, col);
+    const vb = getVal(b, col);
+    if (typeof va === "number" && typeof vb === "number") {
+      return (va - vb) * mult;
+    }
+    return String(va).localeCompare(String(vb), "pt-BR") * mult;
+  });
+}
+
+// Link de header que preserva a ordenação da outra tabela e alterna a direção.
+function hrefOrdenar(target: "r" | "p", col: string, cur: SortState): string {
+  const p = new URLSearchParams({
+    rord: cur.rcol,
+    rdir: cur.rdir,
+    pord: cur.pcol,
+    pdir: cur.pdir,
+  });
+  if (target === "r") {
+    p.set("rord", col);
+    p.set("rdir", cur.rcol === col && cur.rdir === "asc" ? "desc" : "asc");
+  } else {
+    p.set("pord", col);
+    p.set("pdir", cur.pcol === col && cur.pdir === "asc" ? "desc" : "asc");
+  }
+  return `/admin/contribuicoes?${p.toString()}`;
+}
+
+// dd/mm HH:MM no fuso de São Paulo (criado_em é UTC).
+function quandoBR(iso: string | null): string {
+  if (!iso) return "—";
+  return new Date(iso).toLocaleString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "America/Sao_Paulo",
+  });
+}
+
+// Cabeçalho clicável com seta (▲ asc · ▼ desc · ↕ inativo).
+function Th({
+  label,
+  href,
+  dir,
+  align,
+}: {
+  label: string;
+  href: string;
+  dir: Dir | null;
+  align?: "right";
+}) {
+  const arrow = dir === "asc" ? "▲" : dir === "desc" ? "▼" : "↕";
+  return (
+    <th style={align === "right" ? { textAlign: "right" } : undefined}>
+      <Link href={href} className="cth">
+        <span>{label}</span>
+        <span className={dir ? "cth-arr cth-arr-on" : "cth-arr"}>{arrow}</span>
+      </Link>
+    </th>
+  );
+}
+
 // Nível (prestígio) por valor total contribuído. Só reconhecimento.
 function nivelDe(total: number): { label: string; badge: string; cls: string } {
   if (total >= 50) return { label: "Padrinho", badge: "👑", cls: "cn-padrinho" };
@@ -56,10 +130,19 @@ function nivelDe(total: number): { label: string; badge: string; cls: string } {
 export default async function ContribuicoesAdminPage({
   searchParams,
 }: {
-  searchParams: Promise<{ ordem?: string }>;
+  searchParams: Promise<{
+    rord?: string;
+    rdir?: string;
+    pord?: string;
+    pdir?: string;
+  }>;
 }) {
-  const { ordem } = await searchParams;
-  const ordenarPorValor = ordem === "valor";
+  const sp = await searchParams;
+  const rcol = sp.rord ?? "quando";
+  const rdir: Dir = sp.rdir === "asc" ? "asc" : "desc";
+  const pcol = sp.pord ?? "nome";
+  const pdir: Dir = sp.pdir === "desc" ? "desc" : "asc";
+  const cur: SortState = { rcol, rdir, pcol, pdir };
   const supabase = await createClient();
   const {
     data: { user },
@@ -142,6 +225,13 @@ export default async function ContribuicoesAdminPage({
   const processados = contribs.filter((c) => c.status !== "rascunho");
   const pendentes = processados.filter((c) => !c.email);
 
+  const rascunhosOrd = sortRows(rascunhos, rcol, rdir, (c, k) => {
+    if (k === "valor") return Number(c.valor);
+    if (k === "email") return (c.email ?? "").toLowerCase();
+    if (k === "quando") return c.criado_em ?? "";
+    return (c.nome ?? "").toLowerCase();
+  });
+
   const totalProcessado = processados.reduce((s, c) => s + Number(c.valor), 0);
   const totalRascunho = rascunhos.reduce((s, c) => s + Number(c.valor), 0);
 
@@ -189,11 +279,12 @@ export default async function ContribuicoesAdminPage({
       0,
     );
   }
-  const pessoas = Array.from(pessoasMap.values()).sort((a, b) =>
-    ordenarPorValor
-      ? b.total - a.total ||
-        (a.nome ?? a.emails[0]).localeCompare(b.nome ?? b.emails[0])
-      : (a.nome ?? a.emails[0]).localeCompare(b.nome ?? b.emails[0]),
+  const pessoas = sortRows(
+    Array.from(pessoasMap.values()),
+    pcol,
+    pdir,
+    (p, k) =>
+      k === "total" ? p.total : (p.nome ?? p.emails[0] ?? "").toLowerCase(),
   );
   // Cortesia = liberado mas sem contribuição registrada (total R$0).
   const totalCortesias = pessoas.filter((p) => p.total === 0).length;
@@ -329,20 +420,24 @@ export default async function ContribuicoesAdminPage({
             <table className="ctable">
               <thead>
                 <tr>
-                  <th>Nome</th>
-                  <th>Valor</th>
-                  <th>Email</th>
+                  <Th label="Nome" href={hrefOrdenar("r", "nome", cur)} dir={rcol === "nome" ? rdir : null} />
+                  <Th label="Valor" href={hrefOrdenar("r", "valor", cur)} dir={rcol === "valor" ? rdir : null} align="right" />
+                  <Th label="Email" href={hrefOrdenar("r", "email", cur)} dir={rcol === "email" ? rdir : null} />
+                  <Th label="Quando" href={hrefOrdenar("r", "quando", cur)} dir={rcol === "quando" ? rdir : null} />
                   <th>Instagram</th>
                   <th>Pix</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                {rascunhos.map((c) => (
+                {rascunhosOrd.map((c) => (
                   <tr key={c.id}>
                     <td>{c.nome}</td>
                     <td className="cnum">{brl(Number(c.valor))}</td>
                     <td>{c.email ?? <span className="cmuted">—</span>}</td>
+                    <td className="cmuted" style={{ whiteSpace: "nowrap" }}>
+                      {quandoBR(c.criado_em)}
+                    </td>
                     <td>{c.instagram ?? <span className="cmuted">—</span>}</td>
                     <td>
                       {c.comprovante_url && signedMap.has(c.comprovante_url) ? (
@@ -403,26 +498,9 @@ export default async function ContribuicoesAdminPage({
 
       {/* Allowlist (pessoas liberadas) */}
       <section className="cbox">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12, marginBottom: 8 }}>
-          <h2 className="ctitle" style={{ margin: 0 }}>
-            🔓 Pessoas liberadas ({pessoas.length})
-          </h2>
-          <div className="cordena">
-            <span className="cmuted" style={{ fontSize: 12 }}>Ordenar:</span>
-            <Link
-              href="/admin/contribuicoes"
-              className={!ordenarPorValor ? "cordena-on" : "cordena-off"}
-            >
-              A–Z
-            </Link>
-            <Link
-              href="/admin/contribuicoes?ordem=valor"
-              className={ordenarPorValor ? "cordena-on" : "cordena-off"}
-            >
-              Maior valor
-            </Link>
-          </div>
-        </div>
+        <h2 className="ctitle">
+          🔓 Pessoas liberadas ({pessoas.length})
+        </h2>
         <p style={{ fontSize: 13, color: "var(--fg-muted)", marginBottom: 14 }}>
           Emails da mesma pessoa agrupados; total soma todas as contribuições
           dela. Nível: 💛 Apoiador (R$10+) · 🛟 Mantenedor (R$25+) · 👑 Padrinho
@@ -437,10 +515,10 @@ export default async function ContribuicoesAdminPage({
             <table className="ctable">
               <thead>
                 <tr>
-                  <th>Nome</th>
+                  <Th label="Nome" href={hrefOrdenar("p", "nome", cur)} dir={pcol === "nome" ? pdir : null} />
                   <th>Nível</th>
                   <th>Email(s)</th>
-                  <th>Total</th>
+                  <Th label="Total" href={hrefOrdenar("p", "total", cur)} dir={pcol === "total" ? pdir : null} align="right" />
                   <th>Editar</th>
                 </tr>
               </thead>
@@ -601,13 +679,13 @@ function ContribStyle() {
         background: var(--bg-soft);
         border-color: var(--line); color: var(--fg-muted);
       }
-      .cordena { display: flex; align-items: center; gap: 8px; }
-      .cordena-on, .cordena-off {
-        font-size: 13px; font-weight: 700; text-decoration: none;
-        padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line);
+      .cth {
+        display: inline-flex; align-items: center; gap: 5px;
+        text-decoration: none; color: inherit; cursor: pointer;
       }
-      .cordena-on { background: var(--primary); color: #fff; border-color: var(--primary); }
-      .cordena-off { background: var(--bg-soft); color: var(--fg-mid); }
+      .cth:hover { color: var(--fg); }
+      .cth-arr { font-size: 10px; opacity: .35; }
+      .cth-arr-on { opacity: 1; color: var(--primary); }
       .clink-del {
         border: 1px solid var(--line-strong);
         background: var(--bg-2); color: var(--fg-muted);
