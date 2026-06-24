@@ -44,7 +44,11 @@ export default function V2Revelado({
       : "Ver o raio-x",
   };
   return (
-    <div className="v2-revelado">
+    <Link
+      href={`/analise-v2#${jogoNumero}`}
+      className="v2-revelado"
+      onClick={(e) => e.stopPropagation()}
+    >
       <span className="v2-revelado-badge">✨ {tx.badge}</span>
       <div className="v2-revelado-placar">
         {golsA}×{golsB}
@@ -52,13 +56,7 @@ export default function V2Revelado({
       <small className="v2-revelado-sub">
         🔮 {tx.consenso} · {votos}/{total}
       </small>
-      <Link
-        href={`/analise-v2#${jogoNumero}`}
-        className="v2-revelado-cta"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {tx.cta} →
-      </Link>
-    </div>
+      <span className="v2-revelado-cta">{tx.cta} →</span>
+    </Link>
   );
 }

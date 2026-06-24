@@ -70,8 +70,20 @@ export default function ComparacaoV2Modal({
 }) {
   const [aberto, setAberto] = useState(false);
   const [montado, setMontado] = useState(false);
+  const [placarSel, setPlacarSel] = useState<string | null>(null);
 
   useEffect(() => setMontado(true), []);
+
+  // Deep-link: /analise-v2#<jogo> abre direto a comparação daquele jogo.
+  useEffect(() => {
+    if (!domId) return;
+    const check = () => {
+      if (window.location.hash === `#${domId}`) setAberto(true);
+    };
+    check();
+    window.addEventListener("hashchange", check);
+    return () => window.removeEventListener("hashchange", check);
+  }, [domId]);
 
   useEffect(() => {
     if (!aberto) return;
@@ -96,8 +108,31 @@ export default function ComparacaoV2Modal({
     mantiveram: locale === "en" ? "kept" : locale === "es" ? "mantuvieron" : locale === "fr" ? "ont gardé" : "mantiveram",
     porIA: locale === "en" ? "Pick by pick" : locale === "es" ? "Pronóstico por IA" : locale === "fr" ? "Pronostic par IA" : "Palpite por IA",
     novo: locale === "en" ? "new in v2" : locale === "es" ? "nuevo en v2" : locale === "fr" ? "nouveau en v2" : "novo na v2",
+    placares: locale === "en" ? "Updated scores" : locale === "es" ? "Marcadores actualizados" : locale === "fr" ? "Scores mis à jour" : "Placares atualizados",
+    voto: locale === "en" ? "vote" : locale === "es" ? "voto" : locale === "fr" ? "vote" : "voto",
+    votos: locale === "en" ? "votes" : locale === "es" ? "votos" : locale === "fr" ? "votes" : "votos",
+    cliquePlacar: locale === "en" ? "Click a score to see which AIs predicted it" : locale === "es" ? "Clic en un marcador para ver qué IAs lo pronosticaron" : locale === "fr" ? "Cliquez sur un score" : "Clique num placar pra ver quais IAs apostaram nele",
+    iasQueApostaram: locale === "en" ? "AIs that picked this score" : locale === "es" ? "IAs que apostaron por este marcador" : locale === "fr" ? "IA ayant choisi ce score" : "IAs que apostaram nesse placar",
   };
   const temV3 = !!consensoV3;
+
+  // Distribuição de palpites por placar (versão final: v3 quando existe, senão v2).
+  type DistPlacar = { gols_a: number; gols_b: number; votos: number; ias: { slug: string; nome: string }[] };
+  const distrib: DistPlacar[] = (() => {
+    const cont: Record<string, DistPlacar> = {};
+    for (const l of linhas) {
+      const fin = l.v3 ?? l.v2;
+      const key = `${fin.gols_a}-${fin.gols_b}`;
+      if (!cont[key]) cont[key] = { gols_a: fin.gols_a, gols_b: fin.gols_b, votos: 0, ias: [] };
+      cont[key].votos += 1;
+      cont[key].ias.push({ slug: l.slug, nome: l.nome });
+    }
+    return Object.values(cont).sort(
+      (a, b) => b.votos - a.votos || b.gols_a + b.gols_b - (a.gols_a + a.gols_b),
+    );
+  })();
+  const totalDist = linhas.length;
+  const selDist = placarSel ? distrib.find((c) => `${c.gols_a}-${c.gols_b}` === placarSel) : null;
 
   const mudaram = linhas.filter((l) => l.mudou).length;
   const total = linhas.length;
@@ -200,6 +235,7 @@ export default function ComparacaoV2Modal({
             <span style={{ color: "var(--fg-muted)" }}> · {total - mudaram} {tx.mantiveram}</span>
           </p>
 
+          {/* Distribuição de palpites por placar (versão final) */}
           <h4
             style={{
               fontFamily: "var(--ff-mono)",
@@ -207,6 +243,72 @@ export default function ComparacaoV2Modal({
               color: "var(--fg-muted)",
               textTransform: "uppercase",
               letterSpacing: "0.08em",
+              marginBottom: 6,
+            }}
+          >
+            {tx.placares}
+          </h4>
+          <p style={{ fontSize: 12, color: "var(--fg-muted)", marginBottom: 12 }}>
+            {tx.cliquePlacar}
+          </p>
+          <div className="placares-lista">
+            {distrib.map((c) => {
+              const key = `${c.gols_a}-${c.gols_b}`;
+              const ativo = placarSel === key;
+              const pct = totalDist ? Math.round((c.votos / totalDist) * 100) : 0;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setPlacarSel(ativo ? null : key)}
+                  className={`placar-row ${ativo ? "ativo" : ""}`}
+                >
+                  <span className="placar-num">
+                    {c.gols_a}×{c.gols_b}
+                  </span>
+                  <div className="placar-bar-wrap">
+                    <div className="placar-bar">
+                      <div className="placar-bar-fill" style={{ width: `${pct}%` }} />
+                    </div>
+                    <small>
+                      {c.votos} {c.votos === 1 ? tx.voto : tx.votos} ({pct}%)
+                    </small>
+                  </div>
+                  <span className="placar-toggle">{ativo ? "▾" : "▸"}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {selDist && (
+            <div className="ias-do-placar">
+              <h5>
+                {tx.iasQueApostaram} ({selDist.votos})
+              </h5>
+              <div className="ias-do-placar-grid">
+                {[...selDist.ias]
+                  .sort((a, b) => scorePopularidade(a.slug) - scorePopularidade(b.slug))
+                  .map((ia) => (
+                    <div key={ia.slug} className="ia-chip">
+                      <IconeIA slug={ia.slug} size={20} title={ia.nome} />
+                      <span>{ia.nome}</span>
+                      <small style={{ color: MARCAS[marcaDe(ia.slug).familia].cor }}>
+                        {MARCAS[marcaDe(ia.slug).familia].nome}
+                      </small>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+
+          <h4
+            style={{
+              fontFamily: "var(--ff-mono)",
+              fontSize: 11,
+              color: "var(--fg-muted)",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              marginTop: 24,
               marginBottom: 10,
             }}
           >
