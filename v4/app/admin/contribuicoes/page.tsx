@@ -131,6 +131,14 @@ export default async function ContribuicoesAdminPage() {
   const totalProcessado = processados.reduce((s, c) => s + Number(c.valor), 0);
   const totalRascunho = rascunhos.reduce((s, c) => s + Number(c.valor), 0);
 
+  // Total contribuído por email (soma de todos os pagamentos, juntando repetidos)
+  const totalPorEmail = new Map<string, number>();
+  contribs.forEach((c) => {
+    if (!c.email) return;
+    const k = c.email.toLowerCase().trim();
+    totalPorEmail.set(k, (totalPorEmail.get(k) ?? 0) + Number(c.valor));
+  });
+
   // Allowlist (contribuintes liberados)
   const { data: contribuintesRaw } = await admin
     .from("contribuintes")
@@ -350,14 +358,20 @@ export default async function ContribuicoesAdminPage() {
                 <tr>
                   <th>Nome</th>
                   <th>Email</th>
+                  <th>Total</th>
                   <th>Instagram (editar)</th>
                 </tr>
               </thead>
               <tbody>
-                {contribuintes.map((p) => (
+                {contribuintes.map((p) => {
+                  const total = totalPorEmail.get(p.email.toLowerCase().trim());
+                  return (
                   <tr key={p.email}>
                     <td>{p.nome ?? <span className="cmuted">—</span>}</td>
                     <td><code style={{ fontSize: 12 }}>{p.email}</code></td>
+                    <td className="cnum">
+                      {total != null ? brl(total) : <span className="cmuted">—</span>}
+                    </td>
                     <td>
                       <form action={definirInstagramContribuinte} className="cig">
                         <input type="hidden" name="email" value={p.email} />
@@ -371,7 +385,8 @@ export default async function ContribuicoesAdminPage() {
                       </form>
                     </td>
                   </tr>
-                ))}
+                  );
+                })}
               </tbody>
             </table>
           </div>
