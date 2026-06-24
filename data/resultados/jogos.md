@@ -55,3 +55,4 @@ no cálculo de pontuação.
 | 47 | Grupo K | Ter 23/06 | 14h00 | Houston | Portugal | 5 | 0 | Uzbequistão |
 | 45 | Grupo L | Ter 23/06 | 17h00 | Boston | Inglaterra | 0 | 0 | Gana |
 | 46 | Grupo L | Ter 23/06 | 20h00 | Toronto | Panamá | 0 | 1 | Croácia |
+| 48 | Grupo K | Ter 23/06 | 23h00 | Guadalajara | Colômbia | 1 | 0 | Congo (RD) |
