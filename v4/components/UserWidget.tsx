@@ -5,10 +5,12 @@ import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase-browser";
 
-// Hash SHA-256 do email admin. Comparação server-side acontece em /admin
+// Hashes SHA-256 dos emails admin. Comparação server-side acontece em /admin
 // — aqui é só pra decidir mostrar/esconder o link no menu.
-const ADMIN_EMAIL_HASH =
-  "3af6dac2945f81befdd61bfd0ca2562c72c98386d42a1301debb2466de0ad287";
+const ADMIN_EMAIL_HASHES = new Set([
+  "3af6dac2945f81befdd61bfd0ca2562c72c98386d42a1301debb2466de0ad287", // grec@cin.ufpe.br
+  "5fc13b2b727324dd5cb5cba74975bd87d23cab9d7e72aabb78464cc5c8c430ed", // pontes05@gmail.com
+]);
 
 async function checarAdmin(email: string | null | undefined): Promise<boolean> {
   if (!email) return false;
@@ -18,7 +20,7 @@ async function checarAdmin(email: string | null | undefined): Promise<boolean> {
     const hex = Array.from(new Uint8Array(buf))
       .map((b) => b.toString(16).padStart(2, "0"))
       .join("");
-    return hex === ADMIN_EMAIL_HASH;
+    return ADMIN_EMAIL_HASHES.has(hex);
   } catch {
     return false;
   }
