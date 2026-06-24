@@ -65,3 +65,23 @@ export async function isContribuinte(
   }
   return !!data;
 }
+
+/**
+ * Mensagem personalizada (coluna `nota`) de um contribuinte, se houver.
+ * Usada pra exibir um recado específico no banner de agradecimento.
+ */
+export async function notaContribuinte(
+  email: string | null | undefined,
+): Promise<string | null> {
+  if (!email) return null;
+  const admin = createAdminClient();
+  if (!admin) return null;
+  const { data, error } = await admin
+    .from("contribuintes")
+    .select("nota")
+    .eq("email", email.toLowerCase().trim())
+    .maybeSingle();
+  if (error) return null;
+  const nota = (data?.nota as string | null | undefined)?.trim();
+  return nota ? nota : null;
+}

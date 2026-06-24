@@ -9,7 +9,7 @@
 
 import Link from "next/link";
 import { createClient } from "@/lib/supabase-server";
-import { isContribuinte } from "@/lib/admin";
+import { isContribuinte, notaContribuinte } from "@/lib/admin";
 import type { Locale } from "@/lib/i18n";
 
 const TX: Record<
@@ -63,6 +63,7 @@ export default async function AgradecimentoContribuinte({
 
   const nome = (perfil?.display_name as string | undefined)?.trim();
   const tx = TX[locale] ?? TX.pt;
+  const nota = await notaContribuinte(user.email);
 
   return (
     <section className="section" style={{ paddingTop: 16, paddingBottom: 0 }}>
@@ -79,7 +80,7 @@ export default async function AgradecimentoContribuinte({
               {tx.ola}
               {nome ? `, ${nome}` : ""}!
             </strong>
-            <span className="pa-callout-texto">{tx.texto}</span>
+            <span className="pa-callout-texto">{nota ?? tx.texto}</span>
           </div>
           <span className="pa-callout-cta">{tx.cta} →</span>
         </Link>

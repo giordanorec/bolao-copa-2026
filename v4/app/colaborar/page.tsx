@@ -25,39 +25,28 @@ const STRIPE_LINK =
   process.env.NEXT_PUBLIC_STRIPE_DONATE_URL ||
   "https://donate.stripe.com/test_placeholder";
 
+// Quem contribui (qualquer valor) libera os mesmos recursos: palpites v2 +
+// sugestões. Os níveis abaixo NÃO mudam funcionalidade — mudam só o selo de
+// reconhecimento. Simplifica a gestão e evita virar produto comercial.
 const RECOMPENSAS = [
   {
     valor: { br: "R$ 10", intl: "US$ 2" },
     nome: "Apoiador",
     emoji: "💛",
-    perks: [
-      "Badge 💛 Apoiador no seu perfil + ao lado do nome no ranking",
-      "Acesso ao grupo privado de WhatsApp do projeto",
-      "Voto na sugestão de IAs novas pra adicionar",
-    ],
+    perks: ["Selo 💛 Apoiador ao lado do seu nome no ranking"],
   },
   {
     valor: { br: "R$ 25", intl: "US$ 5" },
     nome: "Mantenedor",
     emoji: "🛟",
     destaque: true,
-    perks: [
-      "Tudo do Apoiador",
-      "Badge 🛟 Mantenedor (cor diferente, +chamativa)",
-      "Acesso antecipado a experimentos novos da Arena das IAs",
-      "Voz ativa: 1 voto no próximo experimento (Bola de Cristal pra Oscar? Eleição? Você decide)",
-    ],
+    perks: ["Selo 🛟 Mantenedor (cor de destaque, +chamativa)"],
   },
   {
-    valor: { br: "R$ 100", intl: "US$ 20" },
+    valor: { br: "R$ 50", intl: "US$ 10" },
     nome: "Padrinho",
     emoji: "👑",
-    perks: [
-      "Tudo do Mantenedor",
-      "Badge 👑 Padrinho (dourado)",
-      "Seu nome (ou da sua empresa) no rodapé do site, em todas as páginas",
-      "Direito a sugerir 1 IA pra adicionar manualmente no bolão (sua escolha)",
-    ],
+    perks: ["Selo 👑 Padrinho (dourado), o nível de honra do projeto"],
   },
 ];
 
@@ -173,12 +162,12 @@ export default async function ColaborarPage() {
               : "No ads, no betting."}
           </strong>{" "}
           {isBR
-            ? "Sua colaboração cobre as APIs das IAs e libera experimentos mais avançados. Em troca, você ganha "
-            : "Your contribution covers AI APIs and unlocks new experiments. In return, you get "}
+            ? "Qualquer colaboração libera os palpites v2 e cobre as APIs das IAs. Os níveis abaixo mudam só o "
+            : "Any contribution unlocks the v2 picks and covers the AI APIs. The tiers below only change your "}
           <strong>
-            {isBR ? "recompensas tangíveis" : "tangible rewards"}
+            {isBR ? "selo de reconhecimento" : "recognition badge"}
           </strong>
-          .
+          {isBR ? ", nunca o acesso." : ", never the access."}
         </p>
       </section>
 
@@ -220,8 +209,8 @@ export default async function ColaborarPage() {
         <p className="colaborar-recompensas-nota">
           🎯{" "}
           {isBR
-            ? "Quer colaborar outro valor? Escolhe livremente no formulário abaixo."
-            : "Want to give a different amount? Choose freely below."}
+            ? "Todos os níveis liberam o mesmo acesso (palpites v2 + sugestões) — a diferença é só o selo. Quer colaborar outro valor? Escolhe livremente no formulário abaixo."
+            : "Every tier unlocks the same access (v2 picks + suggestions) — only the badge differs. Want to give a different amount? Choose freely below."}
         </p>
       </section>
 
