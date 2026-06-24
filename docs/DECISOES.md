@@ -565,3 +565,40 @@ Decisões firmadas neste log são especificação. Não revisitar sem perguntar 
 - **Domínio próprio**: `bolao.arenadasias.com.br` (já comprado). Apontar via DNS CNAME pro Vercel.
 - **Stripe final**: Payment Link sem nome do dono aparecendo (configurar business_name genérico tipo "Arena de IAs").
 - **Agendamento Instagram**: investigar Meta Business Suite (nativo, grátis) ou alternativas (Buffer, Later free tier).
+
+---
+
+## 2026-06-24 — Tiers de colaboração viram só prestígio (sem perks funcionais)
+
+### Contexto
+
+A /colaborar tinha listado perks funcionais por tier (R$10 Apoiador, R$25
+Mantenedor, R$100 Padrinho): grupo de WhatsApp, voto em IA nova, "voz ativa",
+acesso antecipado, nome no rodapé etc. Giordano achou que isso deixou o site com
+cara de produto comercial e que funcionalidade por tier = dificuldade de gestão.
+
+### Decisão
+
+- O **v2 continua restrito a quem pagou** (allowlist `contribuintes`, REGRA DE
+  OURO mantida). Não foi aberto ao público geral.
+- Tiers **não diferenciam funcionalidade**: qualquer valor libera os mesmos
+  recursos (palpites v2 + sugestões). A diferença é só o **selo** (💛/🛟/👑).
+- **Sugestões abertas a todos** (inclusive quem não pagou) — já era o caso.
+- Valor sugerido do Padrinho volta de **R$100 → R$50** (desde a mudança pra 100,
+  ninguém pagou 100).
+- Banner de contribuinte passa a exibir `contribuintes.nota` quando preenchida
+  (mensagens de liberação por parceria, ex.: grant gratuito).
+
+### Por quê / alternativas
+
+Abrir o v2 pra todos foi considerado e **rejeitado**: o perk pago é justamente o
+palpite futuro. Simplificar = acesso uniforme entre pagantes + diferença só
+simbólica, em vez de matriz de perks por valor.
+
+### Consequências
+
+- `v4/app/colaborar/page.tsx`: RECOMPENSAS só com selo; hero e nota reescritos;
+  R$50. `lib/admin.ts`: novo `notaContribuinte()`. `AgradecimentoContribuinte`
+  mostra a nota personalizada.
+- **Não reverter** abrindo o v2 pra todos — "todos" do usuário = "todos que
+  pagaram, sem diferenciar tier".
