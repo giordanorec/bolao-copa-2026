@@ -146,6 +146,39 @@ export default async function ContribuicoesAdminPage() {
     .order("nome", { ascending: true });
   const contribuintes = (contribuintesRaw ?? []) as Contribuinte[];
 
+  // Agrupa por PESSOA (mesma pessoa pode ter vários emails liberados).
+  // Chave = nome normalizado; sem nome, cada email é sua própria pessoa.
+  type Pessoa = {
+    nome: string | null;
+    emails: string[];
+    instagram: string | null;
+    total: number;
+  };
+  const pessoasMap = new Map<string, Pessoa>();
+  for (const c of contribuintes) {
+    const nomeNorm = (c.nome ?? "").toLowerCase().trim().replace(/\s+/g, " ");
+    const key = nomeNorm || `email:${c.email.toLowerCase().trim()}`;
+    let p = pessoasMap.get(key);
+    if (!p) {
+      p = { nome: c.nome, emails: [], instagram: null, total: 0 };
+      pessoasMap.set(key, p);
+    }
+    p.emails.push(c.email);
+    if (!p.nome && c.nome) p.nome = c.nome;
+    if (!p.instagram && c.instagram) p.instagram = c.instagram;
+  }
+  for (const p of pessoasMap.values()) {
+    p.total = p.emails.reduce(
+      (s, e) => s + (totalPorEmail.get(e.toLowerCase().trim()) ?? 0),
+      0,
+    );
+  }
+  const pessoas = Array.from(pessoasMap.values()).sort((a, b) =>
+    (a.nome ?? a.emails[0]).localeCompare(b.nome ?? b.emails[0]),
+  );
+  // Cortesia = liberado mas sem contribuição registrada (total R$0).
+  const totalCortesias = pessoas.filter((p) => p.total === 0).length;
+
   // URLs assinadas pros comprovantes (bucket privado)
   const paths = contribs
     .map((c) => c.comprovante_url)
@@ -194,8 +227,13 @@ export default async function ContribuicoesAdminPage() {
         </div>
         <div className="cstat">
           <div className="cstat-ic">🔓</div>
-          <div className="cstat-val">{contribuintes.length}</div>
-          <div className="cstat-lbl">Liberados (allowlist)</div>
+          <div className="cstat-val">{pessoas.length}</div>
+          <div className="cstat-lbl">Pessoas liberadas</div>
+        </div>
+        <div className="cstat">
+          <div className="cstat-ic">🎁</div>
+          <div className="cstat-val">{totalCortesias}</div>
+          <div className="cstat-lbl">Cortesias (R$0)</div>
         </div>
         <div className="cstat">
           <div className="cstat-ic">❓</div>
@@ -346,8 +384,12 @@ export default async function ContribuicoesAdminPage() {
 
       {/* Allowlist (pessoas liberadas) */}
       <section className="cbox">
-        <h2 className="ctitle">🔓 Pessoas liberadas ({contribuintes.length})</h2>
-        {contribuintes.length === 0 ? (
+        <h2 className="ctitle">🔓 Pessoas liberadas ({pessoas.length})</h2>
+        <p style={{ fontSize: 13, color: "var(--fg-muted)", marginBottom: 14 }}>
+          Emails da mesma pessoa agrupados; total soma todas as contribuições
+          dela. <strong>🎁 Cortesia</strong> = liberado sem contribuição (R$0).
+        </p>
+        {pessoas.length === 0 ? (
           <p style={{ color: "var(--fg-muted)", fontStyle: "italic" }}>
             Ninguém na allowlist ainda.
           </p>
@@ -357,34 +399,51 @@ export default async function ContribuicoesAdminPage() {
               <thead>
                 <tr>
                   <th>Nome</th>
-                  <th>Email</th>
+                  <th>Email(s)</th>
                   <th>Total</th>
                   <th>Instagram (editar)</th>
                 </tr>
               </thead>
               <tbody>
-                {contribuintes.map((p) => {
-                  const total = totalPorEmail.get(p.email.toLowerCase().trim());
+                {pessoas.map((p) => {
+                  const cortesia = p.total === 0;
+                  const emailPrincipal =
+                    p.emails.find(
+                      (e) => (totalPorEmail.get(e.toLowerCase().trim()) ?? 0) > 0,
+                    ) ?? p.emails[0];
                   return (
-                  <tr key={p.email}>
-                    <td>{p.nome ?? <span className="cmuted">—</span>}</td>
-                    <td><code style={{ fontSize: 12 }}>{p.email}</code></td>
-                    <td className="cnum">
-                      {total != null ? brl(total) : <span className="cmuted">—</span>}
-                    </td>
-                    <td>
-                      <form action={definirInstagramContribuinte} className="cig">
-                        <input type="hidden" name="email" value={p.email} />
-                        <input
-                          className="input"
-                          name="instagram"
-                          defaultValue={p.instagram ?? ""}
-                          placeholder="@usuario"
-                        />
-                        <button type="submit" className="btn small">OK</button>
-                      </form>
-                    </td>
-                  </tr>
+                    <tr key={p.emails[0]}>
+                      <td>
+                        {p.nome ?? <span className="cmuted">—</span>}
+                        {cortesia && <span className="cbadge">🎁 Cortesia</span>}
+                      </td>
+                      <td>
+                        {p.emails.map((e) => (
+                          <div key={e}>
+                            <code style={{ fontSize: 12 }}>{e}</code>
+                          </div>
+                        ))}
+                      </td>
+                      <td className="cnum">
+                        {cortesia ? (
+                          <span className="cmuted">R$ 0</span>
+                        ) : (
+                          brl(p.total)
+                        )}
+                      </td>
+                      <td>
+                        <form action={definirInstagramContribuinte} className="cig">
+                          <input type="hidden" name="email" value={emailPrincipal} />
+                          <input
+                            className="input"
+                            name="instagram"
+                            defaultValue={p.instagram ?? ""}
+                            placeholder="@usuario"
+                          />
+                          <button type="submit" className="btn small">OK</button>
+                        </form>
+                      </td>
+                    </tr>
                   );
                 })}
               </tbody>
@@ -453,6 +512,14 @@ function ContribStyle() {
       }
       .cnum { font-family: var(--ff-mono); font-weight: 700; white-space: nowrap; }
       .cmuted { color: var(--fg-muted); }
+      .cbadge {
+        display: inline-block; margin-left: 8px;
+        font-size: 11px; font-weight: 700;
+        padding: 2px 8px; border-radius: 999px;
+        background: color-mix(in srgb, var(--accent) 22%, transparent);
+        border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+        color: var(--fg); white-space: nowrap;
+      }
       .clink-del {
         border: 1px solid var(--line-strong);
         background: var(--bg-2); color: var(--fg-muted);

@@ -159,5 +159,5 @@ export async function definirInstagramContribuinte(formData: FormData) {
     .update({ instagram })
     .eq("email", email);
   if (error) throw new Error(error.message);
-  revalidatePath("/admin");
+  revalidatePath("/admin/contribuicoes");
 }
