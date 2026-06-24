@@ -56,6 +56,7 @@ A geometria desse sistema de pontuação muda em relação a sistemas como o do 
 Você está recebendo este prompt via API e **não tem acesso à internet**. Em vez disso, ao final deste prompt há:
 - `## DOSSIÊ DE REFERÊNCIA` — dados pré-coletados sobre lesões, suspensões por cartão, forma recente, odds atualizadas, classificação parcial dos grupos após as rodadas 1–2.
 - `## RESULTADOS DOS JOGOS 1–40` — os placares reais dos jogos já disputados.
+- `## SEUS PALPITES v1 (pré-Copa)` — o que **você mesmo** cravou para estes jogos na primeira leva, antes da Copa começar.
 
 **Diretrizes de uso:**
 - **Use o dossiê** como base factual para estado atual das seleções. Não tente "lembrar" de convocações, lesões, suspensões ou resultados que não estejam nele — sua memória de treino pode estar desatualizada.
@@ -78,18 +79,18 @@ Exemplos válidos: `<!-- ia: ChatGPT 5; data: 2026-06-22; versao: v2 -->`, `<!--
 
 | Jogo | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B |
 |---|---|---|---|---|---|---|---|---|
-| 43 | Grupo J | Seg 22/06 | 14h00 | Dallas | Argentina | | | Áustria |
-| 42 | Grupo I | Seg 22/06 | 18h00 | Filadélfia | França | | | Iraque |
 | 41 | Grupo I | Seg 22/06 | 21h00 | Nova York/NJ | Noruega | | | Senegal |
+| 42 | Grupo I | Seg 22/06 | 18h00 | Filadélfia | França | | | Iraque |
+| 43 | Grupo J | Seg 22/06 | 14h00 | Dallas | Argentina | | | Áustria |
 | 44 | Grupo J | Ter 23/06 | 00h00 | San Francisco | Jordânia | | | Argélia |
-| 47 | Grupo K | Ter 23/06 | 14h00 | Houston | Portugal | | | Uzbequistão |
 | 45 | Grupo L | Ter 23/06 | 17h00 | Boston | Inglaterra | | | Gana |
 | 46 | Grupo L | Ter 23/06 | 20h00 | Toronto | Panamá | | | Croácia |
+| 47 | Grupo K | Ter 23/06 | 14h00 | Houston | Portugal | | | Uzbequistão |
 | 48 | Grupo K | Ter 23/06 | 23h00 | Guadalajara | Colômbia | | | Congo (RD) |
+| 49 | Grupo C | Qua 24/06 | 19h00 | Miami | Escócia | | | Brasil |
+| 50 | Grupo C | Qua 24/06 | 19h00 | Atlanta | Marrocos | | | Haiti |
 | 51 | Grupo B | Qua 24/06 | 16h00 | Vancouver | Suíça | | | Canadá |
 | 52 | Grupo B | Qua 24/06 | 16h00 | Seattle | Bósnia-Herzegovina | | | Qatar |
-| 50 | Grupo C | Qua 24/06 | 19h00 | Atlanta | Marrocos | | | Haiti |
-| 49 | Grupo C | Qua 24/06 | 19h00 | Miami | Escócia | | | Brasil |
 | 53 | Grupo A | Qua 24/06 | 22h00 | Cidade do México | República Tcheca | | | México |
 | 54 | Grupo A | Qua 24/06 | 22h00 | Monterrey | África do Sul | | | Coreia do Sul |
 | 55 | Grupo E | Qui 25/06 | 17h00 | Filadélfia | Curaçao | | | Costa do Marfim |
@@ -100,16 +101,16 @@ Exemplos válidos: `<!-- ia: ChatGPT 5; data: 2026-06-22; versao: v2 -->`, `<!--
 | 60 | Grupo D | Qui 25/06 | 23h00 | San Francisco | Paraguai | | | Austrália |
 | 61 | Grupo I | Sex 26/06 | 16h00 | Boston | Noruega | | | França |
 | 62 | Grupo I | Sex 26/06 | 16h00 | Toronto | Senegal | | | Iraque |
+| 63 | Grupo G | Sáb 27/06 | 00h00 | Seattle | Egito | | | Irã |
+| 64 | Grupo G | Sáb 27/06 | 00h00 | Vancouver | Nova Zelândia | | | Bélgica |
 | 65 | Grupo H | Sex 26/06 | 21h00 | Houston | Cabo Verde | | | Arábia Saudita |
 | 66 | Grupo H | Sex 26/06 | 21h00 | Guadalajara | Uruguai | | | Espanha |
-| 64 | Grupo G | Sáb 27/06 | 00h00 | Vancouver | Nova Zelândia | | | Bélgica |
-| 63 | Grupo G | Sáb 27/06 | 00h00 | Seattle | Egito | | | Irã |
 | 67 | Grupo L | Sáb 27/06 | 18h00 | Nova York/NJ | Panamá | | | Inglaterra |
 | 68 | Grupo L | Sáb 27/06 | 18h00 | Filadélfia | Croácia | | | Gana |
-| 71 | Grupo K | Sáb 27/06 | 20h30 | Miami | Colômbia | | | Portugal |
-| 72 | Grupo K | Sáb 27/06 | 20h30 | Atlanta | Congo (RD) | | | Uzbequistão |
 | 69 | Grupo J | Sáb 27/06 | 23h00 | Kansas City | Argélia | | | Áustria |
 | 70 | Grupo J | Sáb 27/06 | 23h00 | Dallas | Jordânia | | | Argentina |
+| 71 | Grupo K | Sáb 27/06 | 20h30 | Miami | Colômbia | | | Portugal |
+| 72 | Grupo K | Sáb 27/06 | 20h30 | Atlanta | Congo (RD) | | | Uzbequistão |
 
 Checklist final antes de responder: (1) o comentário HTML `<!-- ia: ...; versao: v2 -->` está presente UMA vez acima da tabela; (2) as **32 linhas** estão presentes e na mesma ordem (jogos 41–72); (3) todas as células de Gols A e Gols B estão preenchidas com inteiros ≥ 0; (4) nada além do comentário e da tabela na resposta; (5) os resultados dos jogos 1–40 foram usados como fatos fixos, não questionados.
 
@@ -127,4 +128,16 @@ Estes são os resultados **reais e definitivos** dos jogos já disputados. Trate
 
 ```
 {{RESULTADOS}}
+```
+
+## SEUS PALPITES v1 (pré-Copa)
+
+Abaixo está o que **você mesmo** palpitou para estes 32 jogos na primeira leva (v1), **antes da Copa começar** — sem nenhum resultado em mãos. Use isto como ponto de partida, não como amarra:
+
+- Onde sua leitura v1 continua válida à luz dos resultados e do dossiê, **mantenha** o palpite.
+- Onde a informação nova muda a leitura (lesão decisiva, forma, cenário de classificação da última rodada), **ajuste** com convicção.
+- O objetivo não é mudar por mudar nem repetir por inércia: é calibrar melhor agora que você tem dados reais.
+
+```
+{{PALPITES_V1}}
 ```

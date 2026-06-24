@@ -1,23 +1,33 @@
-"""Faz upsert dos palpites v2 em public.palpite_v2 no Supabase.
+"""Faz upsert dos palpites premium (v2 e v3) em public.palpite_v2 no Supabase.
 
-Lê todos os arquivos data/palpites_v2/*.md, parseia as linhas da tabela
-markdown (colunas: Jogo, Fase, Data, Hora, Local, Time A, Gols A, Gols B,
-Time B) e faz upsert por (slug, jogo_numero) usando a service_role key.
+Lê data/palpites_v2/*.md (versao v2, jogos 41-72) e data/palpites_v3/*.md
+(versao v3, jogos 61,62,67-72), parseia as linhas da tabela markdown e faz
+upsert por (slug, jogo_numero, versao) usando a service_role key.
+
+Suporta dois schemas de tabela:
+    - 9 colunas: Jogo | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B
+    - 5 colunas: Jogo | Time A | Gols A | Gols B | Time B   (algumas interfaces web)
+
+A versão de cada arquivo vem do header `<!-- versao: vN -->`; se ausente,
+cai no default da pasta (palpites_v2 -> v2, palpites_v3 -> v3).
 
 Idempotente: pode ser rodado várias vezes sem duplicar registros.
 
+Pré-requisito: aplicar a migration v4/sql/migrations/2026-06-24_palpite_v3.sql
+(coluna `versao` + PK ampliada) antes do primeiro upload v3.
+
 Variáveis de ambiente obrigatórias (mesmo nome usado em v4/.env.example):
-    SUPABASE_URL           ex.: https://dkrsxsvdihrxmehilohq.supabase.co
+    SUPABASE_URL               ex.: https://dkrsxsvdihrxmehilohq.supabase.co
     SUPABASE_SERVICE_ROLE_KEY  chave service_role (bypassa RLS)
 
 Uso:
-    # exporte as vars antes (ou ponha em .env e use `export $(cat .env | xargs)`)
     export SUPABASE_URL=https://...
     export SUPABASE_SERVICE_ROLE_KEY=eyJ...
-    python scripts/upload_v2_supabase.py
+    python scripts/upload_v2_supabase.py            # v2 + v3
+    python scripts/upload_v2_supabase.py --so v3    # só v3
+    python scripts/upload_v2_supabase.py --so v2    # só v2
 
-    # ou lendo do v4/.env.local (que tem NEXT_PUBLIC_SUPABASE_URL):
-    # O script aceita NEXT_PUBLIC_SUPABASE_URL como fallback de SUPABASE_URL.
+    # SUPABASE_URL aceita NEXT_PUBLIC_SUPABASE_URL como fallback.
 """
 
 from __future__ import annotations
@@ -35,13 +45,17 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 ROOT = Path(__file__).resolve().parent.parent
 V2_DIR = ROOT / "data" / "palpites_v2"
+V3_DIR = ROOT / "data" / "palpites_v3"
 
 SUPABASE_URL = os.environ.get("SUPABASE_URL") or os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
 
-# Jogos válidos para v2 (fase de grupos restante)
-JOGOS_V2_MIN = 41
-JOGOS_V2_MAX = 72
+# Jogos válidos por versão.
+JOGOS_VALIDOS = {
+    "v2": set(range(41, 73)),  # fase de grupos restante (41-72)
+    "v3": {61, 62, 67, 68, 69, 70, 71, 72},  # 8 finais dos Grupos I/J/K/L
+}
+DEFAULT_VERSAO_POR_DIR = {V2_DIR: "v2", V3_DIR: "v3"}
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -62,48 +76,67 @@ def _parse_gols(valor: str) -> int | None:
     return n
 
 
-def parse_v2_file(path: Path) -> tuple[str, str, list[dict]]:
-    """Retorna (slug, modo, registros).
+def _gols_das_celulas(cells: list[str]) -> tuple[int | None, int | None]:
+    """Extrai (gols_a, gols_b) tratando os schemas conhecidos.
 
-    Slug é inferido do nome do arquivo (sem extensão).
-    Modo é lido do header HTML comentado (<!-- modo: web -->) ou 'api'.
+    9 colunas (Jogo|Fase|Data|Hora|Local|TimeA|GolsA|GolsB|TimeB) -> [6], [7].
+    5 colunas: a ordem varia entre interfaces (GolsA/GolsB podem estar em
+    [2],[3] ou [2],[4]). Como nomes de time nunca são inteiros puros, os dois
+    placares são as duas únicas células inteiras entre os índices 1..4.
+    """
+    if len(cells) >= 9:
+        return _parse_gols(cells[6]), _parse_gols(cells[7])
+    if len(cells) == 5:
+        ints = [(i, _parse_gols(c)) for i, c in enumerate(cells[1:], start=1)]
+        ints = [(i, v) for i, v in ints if v is not None]
+        if len(ints) == 2:
+            return ints[0][1], ints[1][1]
+        return _parse_gols(cells[2]), _parse_gols(cells[3])
+    return None, None
+
+
+def parse_palpite_file(path: Path, versao_default: str) -> tuple[str, str, str, list[dict]]:
+    """Retorna (slug, modo, versao, registros).
+
+    Slug e versao vêm do header (com fallback pro nome do arquivo / pasta).
     Registros: lista de dicts prontos pro upsert em palpite_v2.
     """
     slug = path.stem.lower()
     modo = "api"
-    registros: list[dict] = []
+    versao = versao_default
 
     text = path.read_text(encoding="utf-8")
 
-    # Extrai modo do header (<!-- modo: web --> ou <!-- modo: api -->)
     modo_match = re.search(r"<!--\s*modo:\s*(\w+)\s*-->", text)
     if modo_match:
         modo = modo_match.group(1).strip().lower()
 
-    # Slug explícito no header tem prioridade sobre nome do arquivo
     slug_match = re.search(r"<!--\s*slug:\s*(\S+)\s*-->", text)
     if slug_match:
         slug = slug_match.group(1).strip().lower()
 
+    versao_match = re.search(r"<!--\s*versao:\s*(\S+)\s*-->", text)
+    if versao_match:
+        versao = versao_match.group(1).strip().lower()
+
+    jogos_ok = JOGOS_VALIDOS.get(versao, set())
+    registros: list[dict] = []
     for line in text.splitlines():
         m = _TABLE_ROW_RE.match(line.strip())
         if not m:
             continue
         cells = [c.strip() for c in m.group(1).split("|")]
-        if len(cells) < 9:
+        if len(cells) < 5:
             continue
-        # Ignora header ("Jogo") e separador ("---")
         if not cells[0] or not cells[0].lstrip("-").isdigit():
-            continue
+            continue  # header / separador / linha não-numérica
         try:
             numero = int(cells[0])
         except ValueError:
             continue
-        if not (JOGOS_V2_MIN <= numero <= JOGOS_V2_MAX):
-            # Ignora silenciosamente jogos fora do escopo v2
-            continue
-        gols_a = _parse_gols(cells[6])
-        gols_b = _parse_gols(cells[7])
+        if numero not in jogos_ok:
+            continue  # fora do escopo da versão
+        gols_a, gols_b = _gols_das_celulas(cells)
         if gols_a is None or gols_b is None:
             continue
         registros.append(
@@ -113,15 +146,20 @@ def parse_v2_file(path: Path) -> tuple[str, str, list[dict]]:
                 "gols_a": gols_a,
                 "gols_b": gols_b,
                 "modo": modo,
+                "versao": versao,
             }
         )
 
-    return slug, modo, registros
+    # Dedup por jogo mantendo o último (alguns dumps web repetem a tabela).
+    por_jogo: dict[int, dict] = {}
+    for r in registros:
+        por_jogo[r["jogo_numero"]] = r
+    return slug, modo, versao, list(por_jogo.values())
 
 
 def supabase_upsert(records: list[dict]) -> tuple[int, object]:
     """Faz upsert em public.palpite_v2. Retorna (status_http, body)."""
-    url = f"{SUPABASE_URL}/rest/v1/palpite_v2?on_conflict=slug,jogo_numero"
+    url = f"{SUPABASE_URL}/rest/v1/palpite_v2?on_conflict=slug,jogo_numero,versao"
     body = json.dumps(records).encode("utf-8")
     headers = {
         "apikey": SERVICE_ROLE_KEY,
@@ -145,8 +183,19 @@ def supabase_upsert(records: list[dict]) -> tuple[int, object]:
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
+def _dirs_alvo(argv: list[str]) -> list[Path]:
+    so = None
+    for i, a in enumerate(argv):
+        if a == "--so" and i + 1 < len(argv):
+            so = argv[i + 1].lower()
+    if so == "v2":
+        return [V2_DIR]
+    if so == "v3":
+        return [V3_DIR]
+    return [V2_DIR, V3_DIR]
+
+
 def main() -> None:
-    # Validação das vars de ambiente
     if not SUPABASE_URL:
         raise SystemExit(
             "Falta SUPABASE_URL (ou NEXT_PUBLIC_SUPABASE_URL).\n"
@@ -157,55 +206,49 @@ def main() -> None:
     if not SERVICE_ROLE_KEY:
         raise SystemExit(
             "Falta SUPABASE_SERVICE_ROLE_KEY.\n"
-            "Pegue em supabase.com/dashboard/project/<id>/settings/api → service_role\n"
+            "Pegue em supabase.com/dashboard/project/<id>/settings/api -> service_role\n"
             "e exporte: export SUPABASE_SERVICE_ROLE_KEY=eyJ..."
         )
-
-    # Verifica se a pasta existe e tem arquivos
-    if not V2_DIR.exists():
-        print(
-            f"Aviso: pasta {V2_DIR} não existe ainda.\n"
-            "Rode a coleta v2 primeiro (python -m bolao coletar-v2) "
-            "ou crie os arquivos manualmente."
-        )
-        return
-
-    arquivos = sorted(V2_DIR.glob("*.md"))
-    if not arquivos:
-        print(
-            f"Aviso: nenhum arquivo .md encontrado em {V2_DIR}.\n"
-            "Rode a coleta v2 primeiro ou adicione os palpites manualmente."
-        )
-        return
 
     total_registros = 0
     erros: list[str] = []
 
-    for arq in arquivos:
-        slug, modo, registros = parse_v2_file(arq)
-        if not registros:
-            print(f"  {arq.name}: 0 registros válidos (jogos 41-72 com palpite) — pulando")
+    for d in _dirs_alvo(sys.argv[1:]):
+        if not d.exists():
+            print(f"Aviso: pasta {d} não existe — pulando.")
+            continue
+        arquivos = sorted(d.glob("*.md"))
+        if not arquivos:
+            print(f"Aviso: nenhum .md em {d} — pulando.")
             continue
 
-        status, resp = supabase_upsert(registros)
-        if status in (200, 201):
-            print(
-                f"  {arq.name} ({slug}, modo={modo}): {len(registros)} registro(s) enviados [HTTP {status}]"
-            )
-            total_registros += len(registros)
-        else:
-            msg = f"  {arq.name}: ERRO HTTP {status} — {resp}"
-            print(msg, file=sys.stderr)
-            erros.append(msg)
+        versao_default = DEFAULT_VERSAO_POR_DIR.get(d, "v2")
+        print(f"\n=== {d.name} (versao default={versao_default}) ===")
+        for arq in arquivos:
+            slug, modo, versao, registros = parse_palpite_file(arq, versao_default)
+            if not registros:
+                print(f"  {arq.name}: 0 registros válidos — pulando")
+                continue
+            status, resp = supabase_upsert(registros)
+            if status in (200, 201):
+                print(
+                    f"  {arq.name} ({slug}, {versao}, modo={modo}): "
+                    f"{len(registros)} registro(s) [HTTP {status}]"
+                )
+                total_registros += len(registros)
+            else:
+                msg = f"  {arq.name}: ERRO HTTP {status} — {resp}"
+                print(msg, file=sys.stderr)
+                erros.append(msg)
 
     print()
     if erros:
         print(
-            f"Concluido com {len(erros)} erro(s). {total_registros} registro(s) enviados com sucesso."
+            f"Concluido com {len(erros)} erro(s). "
+            f"{total_registros} registro(s) enviados com sucesso."
         )
         sys.exit(1)
-    else:
-        print(f"Concluido. {total_registros} registro(s) enviados para palpite_v2.")
+    print(f"Concluido. {total_registros} registro(s) enviados para palpite_v2.")
 
 
 if __name__ == "__main__":

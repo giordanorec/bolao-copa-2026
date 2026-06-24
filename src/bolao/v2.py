@@ -16,6 +16,10 @@ import json
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .models import Jogo, Palpite
 
 BRT = timezone(timedelta(hours=-3))
 
@@ -57,6 +61,40 @@ def _tabela_resultados_md(resultados_path: Path) -> str:
             linhas_tabela.append(linha)
 
     return "\n".join(linhas_tabela) if linhas_tabela else "(sem resultados disponiveis)"
+
+
+# ---------------------------------------------------------------------------
+# Bloco PALPITES_V1: o que a propria IA cravou na 1a leva (jogos 41-72)
+# ---------------------------------------------------------------------------
+
+
+def _tabela_palpites_v1(
+    palpites_slug: list[Palpite],
+    jogos_por_numero: dict[int, Jogo],
+) -> str:
+    """Markdown com os palpites v1 da propria IA para os jogos 41-72.
+
+    Serve para relembrar cada IA do que ela mesma palpitou na primeira leva,
+    para que reconsidere a luz dos resultados e do dossie. Devolve uma nota
+    quando a IA nao tem palpites v1 para o intervalo.
+    """
+    por_numero = {p.jogo_numero: p for p in palpites_slug}
+    linhas = [
+        "| Jogo | Time A | Gols A (seu v1) | Gols B (seu v1) | Time B |",
+        "|---|---|---|---|---|",
+    ]
+    tem_algum = False
+    for n in range(V2_JOGO_MIN, V2_JOGO_MAX + 1):
+        jogo = jogos_por_numero.get(n)
+        p = por_numero.get(n)
+        if jogo is None or p is None:
+            continue
+        tem_algum = True
+        linhas.append(f"| {n} | {jogo.time_a} | {p.gols_a} | {p.gols_b} | {jogo.time_b} |")
+
+    if not tem_algum:
+        return "(voce nao registrou palpites v1 para os jogos 41-72)"
+    return "\n".join(linhas)
 
 
 # ---------------------------------------------------------------------------
@@ -191,7 +229,9 @@ def coletar_v2_cmd(args: object, root: Path) -> int:
         print("(dry-run; nenhuma chamada feita)")
         return 0
 
-    # -- construir prompt com substituicao dos dois placeholders --
+    # -- construir prompt com substituicao dos placeholders globais --
+    # {{DOSSIE}} e {{RESULTADOS}} sao iguais para todas as IAs; {{PALPITES_V1}}
+    # e substituido por IA, dentro de _processar, pois cada uma ve so o seu.
     assert dossie_path is not None
     prompt_texto = prompt_v2_path.read_text(encoding="utf-8")
     dossie_texto = dossie_path.read_text(encoding="utf-8")
@@ -199,6 +239,14 @@ def coletar_v2_cmd(args: object, root: Path) -> int:
 
     prompt_texto = prompt_texto.replace("{{DOSSIE}}", dossie_texto)
     prompt_texto = prompt_texto.replace("{{RESULTADOS}}", resultados_texto)
+
+    # -- palpites v1 por IA, para relembrar cada uma do que cravou na 1a leva --
+    from .parser import carregar_palpites, take_errors
+
+    palpites_v1_dir = root / "data" / "palpites_ias"
+    palpites_v1 = carregar_palpites(palpites_v1_dir)
+    take_errors()  # nao deixar erros de parse do v1 poluirem a coleta
+    jogos_por_numero = {j.numero: j for j in jogos_todos}
 
     import importlib.util
 
@@ -225,9 +273,12 @@ def coletar_v2_cmd(args: object, root: Path) -> int:
                 modelo = str(item["model"])
                 async with sem:
                     try:
+                        palpites_slug = palpites_v1.get(slug) or palpites_v1.get(slug.lower()) or []
+                        tabela_v1 = _tabela_palpites_v1(palpites_slug, jogos_por_numero)
+                        prompt_individual = prompt_texto.replace("{{PALPITES_V1}}", tabela_v1)
                         payload = {
                             "model": modelo,
-                            "messages": [{"role": "user", "content": prompt_texto}],
+                            "messages": [{"role": "user", "content": prompt_individual}],
                         }
                         data = await _post_with_retry(client, payload)
                         conteudo = str(data["choices"][0]["message"]["content"])

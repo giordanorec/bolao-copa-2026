@@ -159,7 +159,21 @@ Se mercado e literatura concordam em 2×0 e você não tem motivo concreto pra d
 
 ---
 
-## 6. FORMATO DE RESPOSTA (obrigatório)
+## 6. SEUS PALPITES v1 (pré-Copa)
+
+Abaixo está o que **você mesmo** cravou para estes 32 jogos na primeira leva (v1), **antes da Copa começar** — sem nenhum resultado em mãos. Use como ponto de partida, não como amarra:
+
+- Onde sua leitura v1 continua válida à luz dos resultados e da sua pesquisa, **mantenha** o palpite.
+- Onde a informação nova muda a leitura (lesão decisiva, forma, cenário de classificação da última rodada), **ajuste** com convicção.
+- Não mude por mudar nem repita por inércia: calibre melhor agora que tem dados reais.
+
+```
+{{PALPITES_V1}}
+```
+
+---
+
+## 7. FORMATO DE RESPOSTA (obrigatório)
 
 Devolva **somente** a tabela abaixo, completa, na **mesma ordem**, preenchendo **Gols A** e **Gols B** com inteiros ≥ 0. Não adicione comentários, justificativas, notas ou colunas extras. Não altere nomes de times, datas ou outras células. Horários no fuso de Brasília.
 
@@ -179,18 +193,18 @@ Não inclua nada além desse comentário antes da tabela. Não escreva nada depo
 
 | Jogo | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B |
 |---|---|---|---|---|---|---|---|---|
-| 43 | Grupo J | Seg 22/06 | 14h00 | Dallas | Argentina | | | Áustria |
-| 42 | Grupo I | Seg 22/06 | 18h00 | Filadélfia | França | | | Iraque |
 | 41 | Grupo I | Seg 22/06 | 21h00 | Nova York/NJ | Noruega | | | Senegal |
+| 42 | Grupo I | Seg 22/06 | 18h00 | Filadélfia | França | | | Iraque |
+| 43 | Grupo J | Seg 22/06 | 14h00 | Dallas | Argentina | | | Áustria |
 | 44 | Grupo J | Ter 23/06 | 00h00 | San Francisco | Jordânia | | | Argélia |
-| 47 | Grupo K | Ter 23/06 | 14h00 | Houston | Portugal | | | Uzbequistão |
 | 45 | Grupo L | Ter 23/06 | 17h00 | Boston | Inglaterra | | | Gana |
 | 46 | Grupo L | Ter 23/06 | 20h00 | Toronto | Panamá | | | Croácia |
+| 47 | Grupo K | Ter 23/06 | 14h00 | Houston | Portugal | | | Uzbequistão |
 | 48 | Grupo K | Ter 23/06 | 23h00 | Guadalajara | Colômbia | | | Congo (RD) |
+| 49 | Grupo C | Qua 24/06 | 19h00 | Miami | Escócia | | | Brasil |
+| 50 | Grupo C | Qua 24/06 | 19h00 | Atlanta | Marrocos | | | Haiti |
 | 51 | Grupo B | Qua 24/06 | 16h00 | Vancouver | Suíça | | | Canadá |
 | 52 | Grupo B | Qua 24/06 | 16h00 | Seattle | Bósnia-Herzegovina | | | Qatar |
-| 50 | Grupo C | Qua 24/06 | 19h00 | Atlanta | Marrocos | | | Haiti |
-| 49 | Grupo C | Qua 24/06 | 19h00 | Miami | Escócia | | | Brasil |
 | 53 | Grupo A | Qua 24/06 | 22h00 | Cidade do México | República Tcheca | | | México |
 | 54 | Grupo A | Qua 24/06 | 22h00 | Monterrey | África do Sul | | | Coreia do Sul |
 | 55 | Grupo E | Qui 25/06 | 17h00 | Filadélfia | Curaçao | | | Costa do Marfim |
@@ -201,16 +215,16 @@ Não inclua nada além desse comentário antes da tabela. Não escreva nada depo
 | 60 | Grupo D | Qui 25/06 | 23h00 | San Francisco | Paraguai | | | Austrália |
 | 61 | Grupo I | Sex 26/06 | 16h00 | Boston | Noruega | | | França |
 | 62 | Grupo I | Sex 26/06 | 16h00 | Toronto | Senegal | | | Iraque |
+| 63 | Grupo G | Sáb 27/06 | 00h00 | Seattle | Egito | | | Irã |
+| 64 | Grupo G | Sáb 27/06 | 00h00 | Vancouver | Nova Zelândia | | | Bélgica |
 | 65 | Grupo H | Sex 26/06 | 21h00 | Houston | Cabo Verde | | | Arábia Saudita |
 | 66 | Grupo H | Sex 26/06 | 21h00 | Guadalajara | Uruguai | | | Espanha |
-| 64 | Grupo G | Sáb 27/06 | 00h00 | Vancouver | Nova Zelândia | | | Bélgica |
-| 63 | Grupo G | Sáb 27/06 | 00h00 | Seattle | Egito | | | Irã |
 | 67 | Grupo L | Sáb 27/06 | 18h00 | Nova York/NJ | Panamá | | | Inglaterra |
 | 68 | Grupo L | Sáb 27/06 | 18h00 | Filadélfia | Croácia | | | Gana |
-| 71 | Grupo K | Sáb 27/06 | 20h30 | Miami | Colômbia | | | Portugal |
-| 72 | Grupo K | Sáb 27/06 | 20h30 | Atlanta | Congo (RD) | | | Uzbequistão |
 | 69 | Grupo J | Sáb 27/06 | 23h00 | Kansas City | Argélia | | | Áustria |
 | 70 | Grupo J | Sáb 27/06 | 23h00 | Dallas | Jordânia | | | Argentina |
+| 71 | Grupo K | Sáb 27/06 | 20h30 | Miami | Colômbia | | | Portugal |
+| 72 | Grupo K | Sáb 27/06 | 20h30 | Atlanta | Congo (RD) | | | Uzbequistão |
 
 Checklist final antes de responder:
 1. O comentário HTML `<!-- ia: ...; versao: v2; ... -->` está presente UMA vez acima da tabela

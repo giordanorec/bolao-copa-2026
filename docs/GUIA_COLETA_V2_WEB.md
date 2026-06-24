@@ -8,7 +8,10 @@
 
 1. Para cada IA abaixo, abra o link da interface em seu navegador.
 2. **Ative os modos especiais** listados na coluna "Ativar" (Deep Research, Extended Thinking, etc.).
-3. Copie o prompt completo de `config/prompts/ia-palpiteira-v2-web.md` (tudo após a linha tracejada).
+3. Copie o prompt **personalizado** daquela IA em `data/recall_v1/<slug>.web.md`
+   (tudo após a linha tracejada). Esse arquivo já tem, na seção 6, o **recall dos
+   palpites v1 da própria IA** — para regenerar todos: `python scripts/gerar_recall_v1.py`.
+   *(Se preferir o genérico sem recall, use `config/prompts/ia-palpiteira-v2-web.md`.)*
 4. Cole na caixa de entrada da IA.
 5. Aguarde a resposta (algumas levam 2-5 minutos com modos avançados).
 6. Copie a tabela markdown da resposta (incluindo o comentário HTML `<!-- ia: ... -->`).

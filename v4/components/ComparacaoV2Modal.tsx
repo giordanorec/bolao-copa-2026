@@ -15,11 +15,14 @@ import IconeIA from "@/components/IconeIA";
 import { scorePopularidade, marcaDe, MARCAS } from "@/lib/ias";
 import type { Locale } from "@/lib/i18n";
 
+export type Placar = { gols_a: number; gols_b: number };
+
 export type LinhaComparacao = {
   slug: string;
   nome: string;
-  v1: { gols_a: number; gols_b: number } | null;
-  v2: { gols_a: number; gols_b: number };
+  v1: Placar | null;
+  v2: Placar;
+  v3?: Placar | null;
   mudou: boolean;
 };
 
@@ -42,6 +45,7 @@ export default function ComparacaoV2Modal({
   linhas,
   consensoV1,
   consensoV2,
+  consensoV3,
   locale,
   domId,
   kickoff,
@@ -58,6 +62,7 @@ export default function ComparacaoV2Modal({
   linhas: LinhaComparacao[];
   consensoV1: ConsensoSimples;
   consensoV2: ConsensoSimples;
+  consensoV3?: ConsensoSimples;
   locale: Locale;
   domId?: string;
   kickoff?: string;
@@ -84,12 +89,15 @@ export default function ComparacaoV2Modal({
   const tx = {
     fechar: locale === "en" ? "Close" : locale === "es" ? "Cerrar" : locale === "fr" ? "Fermer" : "Fechar",
     antes: locale === "en" ? "before (v1)" : locale === "es" ? "antes (v1)" : locale === "fr" ? "avant (v1)" : "antes (v1)",
+    v2lbl: "v2",
     depois: locale === "en" ? "now (v2)" : locale === "es" ? "ahora (v2)" : locale === "fr" ? "maintenant (v2)" : "agora (v2)",
+    agoraV3: locale === "en" ? "now (v3)" : locale === "es" ? "ahora (v3)" : locale === "fr" ? "maintenant (v3)" : "agora (v3)",
     mudaram: locale === "en" ? "AIs changed their pick" : locale === "es" ? "IAs cambiaron su pronóstico" : locale === "fr" ? "IA ont changé leur pronostic" : "IAs mudaram o palpite",
     mantiveram: locale === "en" ? "kept" : locale === "es" ? "mantuvieron" : locale === "fr" ? "ont gardé" : "mantiveram",
-    porIA: locale === "en" ? "Pick by pick (v1 → v2)" : locale === "es" ? "Pronóstico por IA (v1 → v2)" : locale === "fr" ? "Pronostic par IA (v1 → v2)" : "Palpite por IA (v1 → v2)",
+    porIA: locale === "en" ? "Pick by pick" : locale === "es" ? "Pronóstico por IA" : locale === "fr" ? "Pronostic par IA" : "Palpite por IA",
     novo: locale === "en" ? "new in v2" : locale === "es" ? "nuevo en v2" : locale === "fr" ? "nouveau en v2" : "novo na v2",
   };
+  const temV3 = !!consensoV3;
 
   const mudaram = linhas.filter((l) => l.mudou).length;
   const total = linhas.length;
@@ -153,14 +161,37 @@ export default function ComparacaoV2Modal({
               </div>
             </div>
             <div style={{ fontSize: 28 }}>→</div>
-            <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 11, color: "var(--secondary)", fontFamily: "var(--ff-mono)", textTransform: "uppercase", fontWeight: 700 }}>
-                {tx.depois}
+            {temV3 ? (
+              // v3 presente: v2 vira etapa intermediária, v3 é o destaque
+              <>
+                <div style={{ textAlign: "center", opacity: 0.85 }}>
+                  <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "var(--ff-mono)", textTransform: "uppercase" }}>
+                    {tx.v2lbl}
+                  </div>
+                  <div style={{ fontSize: 26, fontWeight: 800, fontFamily: "var(--ff-display)" }}>
+                    {consensoV2 ? `${consensoV2.gols_a}×${consensoV2.gols_b}` : "—"}
+                  </div>
+                </div>
+                <div style={{ fontSize: 28 }}>→</div>
+                <div style={{ textAlign: "center" }}>
+                  <div style={{ fontSize: 11, color: "var(--secondary)", fontFamily: "var(--ff-mono)", textTransform: "uppercase", fontWeight: 700 }}>
+                    {tx.agoraV3}
+                  </div>
+                  <div style={{ fontSize: 32, fontWeight: 900, fontFamily: "var(--ff-display)", color: "var(--secondary)" }}>
+                    {consensoV3 ? `${consensoV3.gols_a}×${consensoV3.gols_b}` : "—"}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <div style={{ fontSize: 11, color: "var(--secondary)", fontFamily: "var(--ff-mono)", textTransform: "uppercase", fontWeight: 700 }}>
+                  {tx.depois}
+                </div>
+                <div style={{ fontSize: 32, fontWeight: 900, fontFamily: "var(--ff-display)", color: "var(--secondary)" }}>
+                  {consensoV2 ? `${consensoV2.gols_a}×${consensoV2.gols_b}` : "—"}
+                </div>
               </div>
-              <div style={{ fontSize: 32, fontWeight: 900, fontFamily: "var(--ff-display)", color: "var(--secondary)" }}>
-                {consensoV2 ? `${consensoV2.gols_a}×${consensoV2.gols_b}` : "—"}
-              </div>
-            </div>
+            )}
           </div>
 
           <p style={{ textAlign: "center", marginBottom: 20, fontSize: 14 }}>
@@ -217,15 +248,28 @@ export default function ComparacaoV2Modal({
                     {l.v1 ? `${l.v1.gols_a}×${l.v1.gols_b}` : tx.novo}
                   </span>
                   <span style={{ color: "var(--fg-muted)" }}>→</span>
-                  <span
-                    style={{
-                      color: l.mudou || !l.v1 ? "var(--secondary)" : "var(--fg)",
-                      fontSize: 18,
-                      fontWeight: l.mudou || !l.v1 ? 900 : 700,
-                    }}
-                  >
-                    {l.v2.gols_a}×{l.v2.gols_b}
-                  </span>
+                  {l.v3 ? (
+                    // v3 presente: v2 intermediário, v3 destaque
+                    <>
+                      <span style={{ color: "var(--fg-mid)", fontSize: 15 }}>
+                        {l.v2.gols_a}×{l.v2.gols_b}
+                      </span>
+                      <span style={{ color: "var(--fg-muted)" }}>→</span>
+                      <span style={{ color: "var(--secondary)", fontSize: 18, fontWeight: 900 }}>
+                        {l.v3.gols_a}×{l.v3.gols_b}
+                      </span>
+                    </>
+                  ) : (
+                    <span
+                      style={{
+                        color: l.mudou || !l.v1 ? "var(--secondary)" : "var(--fg)",
+                        fontSize: 18,
+                        fontWeight: l.mudou || !l.v1 ? 900 : 700,
+                      }}
+                    >
+                      {l.v2.gols_a}×{l.v2.gols_b}
+                    </span>
+                  )}
                 </div>
               </div>
             ))}

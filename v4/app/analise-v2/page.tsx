@@ -52,6 +52,7 @@ type PalpiteV2Row = {
   gols_b: number;
   modo: string;
   coletado_em: string;
+  versao: string;
 };
 
 // ─── Verificação de cookie ──────────────────────────────────────
@@ -115,7 +116,7 @@ async function carregarPalpitesV2(): Promise<PalpiteV2Row[] | null> {
   for (let inicio = 0; ; inicio += PAGINA) {
     const { data, error } = await admin
       .from("palpite_v2")
-      .select("slug, jogo_numero, gols_a, gols_b, modo, coletado_em")
+      .select("slug, jogo_numero, gols_a, gols_b, modo, coletado_em, versao")
       .order("jogo_numero", { ascending: true })
       .order("slug", { ascending: true })
       .range(inicio, inicio + PAGINA - 1);
@@ -504,12 +505,15 @@ function ConteudoPage({
   const iaDistintas = new Set(palpites.map((p) => p.slug)).size;
   const jogosCobertos = new Set(palpites.map((p) => p.jogo_numero)).size;
 
-  // v2 por jogo: { jogo → { slug → placar } }
+  // v2/v3 por jogo: { jogo → { slug → placar } } separados por versão.
+  // v3 cobre só os 8 jogos finais dos Grupos I/J/K/L (61,62,67-72).
   const v2PorJogo = new Map<number, Record<string, PlacarSimples>>();
+  const v3PorJogo = new Map<number, Record<string, PlacarSimples>>();
   for (const p of palpites) {
-    const m = v2PorJogo.get(p.jogo_numero) ?? {};
+    const alvo = p.versao === "v3" ? v3PorJogo : v2PorJogo;
+    const m = alvo.get(p.jogo_numero) ?? {};
     m[p.slug] = { gols_a: p.gols_a, gols_b: p.gols_b };
-    v2PorJogo.set(p.jogo_numero, m);
+    alvo.set(p.jogo_numero, m);
   }
 
   // estatística global de mudança v1→v2
@@ -543,11 +547,16 @@ function ConteudoPage({
   const linhasPorIA = new Map<string, LinhaIA[]>();
   for (const j of jogosV2) {
     const v2map = v2PorJogo.get(j.numero)!;
+    const v3map = v3PorJogo.get(j.numero) ?? {};
     const v1pal = v1Dados[String(j.numero)]?.palpites ?? {};
     for (const [slug, v2] of Object.entries(v2map)) {
       const raw = v1Para(slug, v1pal);
       const v1 = raw ? { gols_a: raw.gols_a, gols_b: raw.gols_b } : null;
-      const mudou = !!v1 && (v1.gols_a !== v2.gols_a || v1.gols_b !== v2.gols_b);
+      const v3 = v3map[slug] ? { gols_a: v3map[slug].gols_a, gols_b: v3map[slug].gols_b } : null;
+      // "mudou" reflete a última transição: v2→v3 quando há v3, senão v1→v2.
+      const mudou = v3
+        ? v3.gols_a !== v2.gols_a || v3.gols_b !== v2.gols_b
+        : !!v1 && (v1.gols_a !== v2.gols_a || v1.gols_b !== v2.gols_b);
       const arr = linhasPorIA.get(slug) ?? [];
       arr.push({
         jogo: j.numero,
@@ -559,6 +568,7 @@ function ConteudoPage({
         hora: j.hora,
         v1,
         v2,
+        v3,
         mudou,
       });
       linhasPorIA.set(slug, arr);
@@ -677,14 +687,20 @@ function ConteudoPage({
           <div className="jogos-lista-grid">
             {lista.map((j) => {
               const v2map = v2PorJogo.get(j.numero)!;
+              const v3map = v3PorJogo.get(j.numero) ?? {};
+              const temV3 = Object.keys(v3map).length > 0;
               const v1pal = v1Dados[String(j.numero)]?.palpites ?? {};
               const linhas: LinhaComparacao[] = Object.entries(v2map).map(
                 ([slug, v2]) => {
                   const raw = v1Para(slug, v1pal);
                   const v1 = raw ? { gols_a: raw.gols_a, gols_b: raw.gols_b } : null;
-                  const mudou =
-                    !!v1 && (v1.gols_a !== v2.gols_a || v1.gols_b !== v2.gols_b);
-                  return { slug, nome: iasDict[slug] ?? slug, v1, v2, mudou };
+                  const v3 = v3map[slug]
+                    ? { gols_a: v3map[slug].gols_a, gols_b: v3map[slug].gols_b }
+                    : null;
+                  const mudou = v3
+                    ? v3.gols_a !== v2.gols_a || v3.gols_b !== v2.gols_b
+                    : !!v1 && (v1.gols_a !== v2.gols_a || v1.gols_b !== v2.gols_b);
+                  return { slug, nome: iasDict[slug] ?? slug, v1, v2, v3, mudou };
                 },
               );
               const v1subset: Record<string, PlacarSimples> = {};
@@ -696,10 +712,13 @@ function ConteudoPage({
               }
               const cV1: ConsensoSimples = consensoDe(v1subset);
               const cV2 = consensoDe(v2map)!;
+              const cV3: ConsensoSimples = temV3 ? consensoDe(v3map) : null;
+              // placar de destaque = v3 quando existe, senão v2
+              const cFinal = cV3 ?? cV2;
               const mudaram = linhas.filter((l) => l.mudou).length;
               const totalIas = linhas.length;
               const mudouConsenso =
-                !!cV1 && (cV1.gols_a !== cV2.gols_a || cV1.gols_b !== cV2.gols_b);
+                !!cV1 && (cV1.gols_a !== cFinal.gols_a || cV1.gols_b !== cFinal.gols_b);
               return (
                 <ComparacaoV2Modal
                   key={j.numero}
@@ -714,6 +733,7 @@ function ConteudoPage({
                   linhas={linhas}
                   consensoV1={cV1}
                   consensoV2={cV2}
+                  consensoV3={cV3}
                   locale={locale}
                   domId={String(j.numero)}
                   kickoff={`${j.data}T${j.hora}:00-03:00`}
@@ -732,7 +752,7 @@ function ConteudoPage({
                             color: "var(--secondary)",
                           }}
                         >
-                          {badge}
+                          {temV3 ? "✨ v1 → v2 → v3" : badge}
                         </span>
                       </div>
                       <div className="jogo-card-times">
@@ -757,11 +777,25 @@ function ConteudoPage({
                               {cV1 ? `${cV1.gols_a}×${cV1.gols_b}` : "—"}
                             </span>
                             <span style={{ opacity: 0.5 }}>→</span>
+                            {temV3 && (
+                              <>
+                                <span
+                                  style={{
+                                    opacity: 0.6,
+                                    fontSize: 16,
+                                    fontFamily: "var(--ff-display)",
+                                  }}
+                                >
+                                  {cV2.gols_a}×{cV2.gols_b}
+                                </span>
+                                <span style={{ opacity: 0.5 }}>→</span>
+                              </>
+                            )}
                             <div className="placar-consenso">
-                              {cV2.gols_a}×{cV2.gols_b}
+                              {cFinal.gols_a}×{cFinal.gols_b}
                             </div>
                           </div>
-                          <small>🔮 v1 → v2</small>
+                          <small>🔮 {temV3 ? "v1 → v2 → v3" : "v1 → v2"}</small>
                         </div>
                         <TimeLink nome={j.time_b} iso={mapaPaises[j.time_b]} size={32} />
                       </div>

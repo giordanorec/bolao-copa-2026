@@ -26,6 +26,7 @@ export type LinhaIA = {
   hora: string;
   v1: Placar | null;
   v2: Placar;
+  v3?: Placar | null;
   mudou: boolean;
 };
 
@@ -209,15 +210,27 @@ export default function SeletorIAV2({
                 {l.v1 ? `${l.v1.gols_a}×${l.v1.gols_b}` : tx.novo}
               </span>
               <span style={{ color: "var(--fg-muted)" }}>→</span>
-              <span
-                style={{
-                  color: l.mudou || !l.v1 ? "var(--secondary)" : "var(--fg)",
-                  fontSize: 18,
-                  fontWeight: l.mudou || !l.v1 ? 900 : 700,
-                }}
-              >
-                {l.v2.gols_a}×{l.v2.gols_b}
-              </span>
+              {l.v3 ? (
+                <>
+                  <span style={{ color: "var(--fg-mid)", fontSize: 15 }}>
+                    {l.v2.gols_a}×{l.v2.gols_b}
+                  </span>
+                  <span style={{ color: "var(--fg-muted)" }}>→</span>
+                  <span style={{ color: "var(--secondary)", fontSize: 18, fontWeight: 900 }}>
+                    {l.v3.gols_a}×{l.v3.gols_b}
+                  </span>
+                </>
+              ) : (
+                <span
+                  style={{
+                    color: l.mudou || !l.v1 ? "var(--secondary)" : "var(--fg)",
+                    fontSize: 18,
+                    fontWeight: l.mudou || !l.v1 ? 900 : 700,
+                  }}
+                >
+                  {l.v2.gols_a}×{l.v2.gols_b}
+                </span>
+              )}
             </div>
           </div>
         ))}

@@ -1,4 +1,4 @@
-<!-- ia: Claude Fable 5 -->
+<!-- ia: Claude Code + Fable -->
 <!-- slug: claude-fable-5 -->
 <!-- data: 2026-06-10; modo: Extended Thinking + Web Search + Sub-agentes paralelos + Dixon-Coles/EV-max -->
 | Jogo | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B |

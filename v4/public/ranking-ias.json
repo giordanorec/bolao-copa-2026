@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-06-24T00:58:32-03:00",
+  "atualizado_em": "2026-06-24T13:47:33-03:00",
   "ias": [
     {
       "slug": "grok-4-fast",
@@ -163,7 +163,7 @@
     },
     {
       "slug": "claude-fable-5",
-      "nome_display": "Claude Fable 5",
+      "nome_display": "Claude Code + Fable",
       "pontos": 192,
       "placares_exatos": 6,
       "vencedores_acertados": 30,
