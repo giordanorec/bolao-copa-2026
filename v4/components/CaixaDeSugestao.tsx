@@ -137,7 +137,7 @@ export default function CaixaDeSugestao({
   }
 
   return (
-    <section className="caixa-sug-wrap">
+    <section className="caixa-sug-wrap" id="caixa-sugestao">
       <div className="caixa-sug-card">
         <div className="caixa-sug-emoji" aria-hidden>💬</div>
         <h2 className="caixa-sug-titulo">{tx.titulo}</h2>
