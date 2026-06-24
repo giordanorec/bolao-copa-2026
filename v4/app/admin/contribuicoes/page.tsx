@@ -290,7 +290,9 @@ export default async function ContribuicoesAdminPage({
         ? p.total
         : k === "email"
           ? (p.emails[0] ?? "").toLowerCase()
-          : (p.nome ?? p.emails[0] ?? "").toLowerCase(),
+          : k === "instagram"
+            ? (p.instagram ?? "").toLowerCase()
+            : (p.nome ?? p.emails[0] ?? "").toLowerCase(),
   );
   // Cortesia = liberado mas sem contribuição registrada (total R$0).
   const totalCortesias = pessoas.filter((p) => p.total === 0).length;
@@ -549,6 +551,7 @@ export default async function ContribuicoesAdminPage({
                   <Th label="Nome" href={hrefOrdenar("p", "nome", cur)} dir={pcol === "nome" ? pdir : null} />
                   <Th label="Nível" href={hrefOrdenar("p", "nivel", cur)} dir={pcol === "nivel" ? pdir : null} />
                   <Th label="Email(s)" href={hrefOrdenar("p", "email", cur)} dir={pcol === "email" ? pdir : null} />
+                  <Th label="Instagram" href={hrefOrdenar("p", "instagram", cur)} dir={pcol === "instagram" ? pdir : null} />
                   <Th label="Total" href={hrefOrdenar("p", "total", cur)} dir={pcol === "total" ? pdir : null} align="right" />
                   <th>Editar</th>
                 </tr>
@@ -572,6 +575,20 @@ export default async function ContribuicoesAdminPage({
                             <code style={{ fontSize: 12 }}>{e}</code>
                           </div>
                         ))}
+                      </td>
+                      <td>
+                        {p.instagram ? (
+                          <a
+                            href={`https://instagram.com/${p.instagram.replace(/^@/, "")}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontSize: 12, color: "var(--accent, #6d28d9)" }}
+                          >
+                            {p.instagram.startsWith("@") ? p.instagram : "@" + p.instagram}
+                          </a>
+                        ) : (
+                          <span className="cmuted">—</span>
+                        )}
                       </td>
                       <td className="cnum">
                         {cortesia ? (
