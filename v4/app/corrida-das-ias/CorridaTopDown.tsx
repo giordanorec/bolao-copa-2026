@@ -26,7 +26,7 @@ const ICON = 20;
 const SPAN = 78; // % da pista usada pra mapear pontos (deixa margem p/ fan + chegada)
 const START_PX = 34; // offset da linha de largada
 const MIN_GAP = 6; // distância % mínima entre dois ícones na MESMA raia (final limpo)
-const SEG_MS = 1500; // tempo pra animar UM jogo (segmento) — movimento contínuo
+const SEG_MS = 1125; // tempo pra animar UM jogo (segmento) — movimento contínuo (+33% de velocidade vs. 1500)
 const PAUSA_FINAL_MS = 4000;
 
 const clamp = (v: number, lo: number, hi: number) =>
