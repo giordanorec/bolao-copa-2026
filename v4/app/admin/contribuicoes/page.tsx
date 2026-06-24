@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase-server";
 import { createAdminClient, isAdminEmail } from "@/lib/admin";
 import {
   adicionarContribuicao,
+  adicionarFotoPix,
   processarRascunhos,
   atualizarContribuicao,
   removerContribuicao,
@@ -352,9 +353,13 @@ export default async function ContribuicoesAdminPage({
         </div>
       </section>
 
-      {/* Adicionar nova contribuição */}
+      {/* Adicionar nova contribuição (dados de UMA pessoa) */}
       <section className="cbox">
-        <h2 className="ctitle">➕ Nova contribuição (rascunho)</h2>
+        <h2 className="ctitle">➕ Nova contribuição (dados de uma pessoa)</h2>
+        <p className="csub">
+          Pra cadastrar <strong>uma</strong> pessoa já identificada. Pra mandar uma
+          foto de Pix (com um ou vários), use o bloco abaixo.
+        </p>
         <form action={adicionarContribuicao} className="cform">
           <div className="cfield">
             <label>Nome *</label>
@@ -384,13 +389,33 @@ export default async function ContribuicoesAdminPage({
             <label>Nota (interno / mensagem de agradecimento)</label>
             <input className="input" name="nota" placeholder="opcional" />
           </div>
-          <div className="cfield cfield-wide">
-            <label>Comprovante Pix (imagem)</label>
-            <input className="input" name="comprovante" type="file" accept="image/*,application/pdf" />
-          </div>
           <div className="cfield-wide">
             <button type="submit" className="btn primary small">
               Salvar rascunho
+            </button>
+          </div>
+        </form>
+      </section>
+
+      {/* Enviar foto de Pix — individual detalhado OU relatório com vários */}
+      <section className="cbox">
+        <h2 className="ctitle">📷 Foto de Pix (1 ou mais contribuintes)</h2>
+        <p className="csub">
+          Suba o print do Pix — seja um recebimento individual detalhado, seja um
+          extrato com vários. Os nomes/valores são identificados depois, ao processar.
+        </p>
+        <form action={adicionarFotoPix} className="cform">
+          <div className="cfield cfield-wide">
+            <label>Imagem do Pix *</label>
+            <input className="input" name="comprovante" type="file" accept="image/*,application/pdf" required />
+          </div>
+          <div className="cfield cfield-wide">
+            <label>Nota (opcional)</label>
+            <input className="input" name="nota" placeholder="ex.: extrato de 24/jun" />
+          </div>
+          <div className="cfield-wide">
+            <button type="submit" className="btn primary small">
+              Enviar foto
             </button>
           </div>
         </form>
@@ -626,6 +651,7 @@ function ContribStyle() {
         margin-bottom: 24px;
       }
       .ctitle { font-size: 20px; font-weight: 800; margin: 0 0 16px; }
+      .csub { font-size: 13px; color: var(--fg-mid); margin: -8px 0 16px; line-height: 1.4; }
       .cform {
         display: grid;
         grid-template-columns: 1fr 1fr;

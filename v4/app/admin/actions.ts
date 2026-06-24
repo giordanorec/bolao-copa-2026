@@ -83,6 +83,38 @@ export async function adicionarContribuicao(formData: FormData) {
   revalidatePath("/admin");
 }
 
+/**
+ * Envia uma FOTO de Pix como rascunho. Pode ser um Pix individual detalhado
+ * OU um extrato/relatório com vários — por definição cobre 1+ contribuintes,
+ * identificados depois ao processar a imagem. Só pede a imagem (sem nome/valor).
+ */
+export async function adicionarFotoPix(formData: FormData) {
+  const admin = await requireAdmin();
+
+  const file = formData.get("comprovante") as File | null;
+  if (!file || typeof file.size !== "number" || file.size === 0) {
+    throw new Error("Selecione uma imagem do Pix.");
+  }
+  const ext = (file.name.split(".").pop() || "bin").toLowerCase().slice(0, 8);
+  const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const buf = Buffer.from(await file.arrayBuffer());
+  const { error: upErr } = await admin.storage
+    .from(BUCKET)
+    .upload(path, buf, { contentType: file.type || "application/octet-stream", upsert: false });
+  if (upErr) throw new Error("Falha ao subir imagem: " + upErr.message);
+
+  const nota = (formData.get("nota") as string)?.trim() || null;
+  const { error } = await admin.from("contribuicoes").insert({
+    nome: "📷 Foto de Pix (a identificar)",
+    valor: 0,
+    nota,
+    comprovante_url: path,
+    status: "rascunho",
+  });
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/contribuicoes");
+}
+
 /** Processa TODOS os rascunhos: libera os emails na allowlist e marca processado. */
 export async function processarRascunhos() {
   const admin = await requireAdmin();
