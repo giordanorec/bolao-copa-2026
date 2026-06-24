@@ -19,6 +19,7 @@ import { SUPABASE_URL } from "./supabase-config";
 
 export const ADMIN_EMAILS: ReadonlySet<string> = new Set([
   "grec@cin.ufpe.br",
+  "pontes05@gmail.com",
 ]);
 
 export function isAdminEmail(email: string | null | undefined): boolean {

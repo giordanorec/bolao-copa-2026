@@ -133,9 +133,15 @@ export default async function AdminPage() {
       <h1 style={{ fontSize: 32, fontWeight: 900, marginBottom: 4 }}>
         🛡️ Painel admin
       </h1>
-      <p style={{ color: "var(--fg-muted)", marginBottom: 28, fontSize: 14 }}>
+      <p style={{ color: "var(--fg-muted)", marginBottom: 20, fontSize: 14 }}>
         Acesso restrito a <code>{user.email}</code> · RLS bypassada (service_role).
       </p>
+
+      <div style={{ marginBottom: 28, display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <Link href="/admin/contribuicoes" className="btn primary" style={{ fontSize: 14, padding: "10px 18px" }}>
+          💰 Contribuições
+        </Link>
+      </div>
 
       {/* Estatísticas */}
       <section style={{

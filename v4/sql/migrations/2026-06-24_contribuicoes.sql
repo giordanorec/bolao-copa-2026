@@ -11,22 +11,38 @@
 -- =============================================================
 
 create table if not exists public.contribuicoes (
-    id          bigint generated always as identity primary key,
-    nome        text        not null,
-    email       text,                       -- conta associada (lower); NULL se nao identificado
-    valor       numeric(8,2) not null,
-    data        date,
-    hora        time,
-    criado_em   timestamptz not null default now()
+    id             bigint generated always as identity primary key,
+    nome           text        not null,
+    email          text,                    -- conta associada (lower); NULL se nao identificado
+    valor          numeric(8,2) not null,
+    data           date,
+    hora           time,
+    instagram      text,                    -- @ do Instagram (pra adicao manual)
+    comprovante_url text,                   -- path no bucket 'comprovantes' (Pix print), opcional
+    status         text not null default 'processado',  -- 'rascunho' | 'processado'
+    nota           text,
+    criado_em      timestamptz not null default now(),
+    processado_em  timestamptz
 );
 
 create index if not exists idx_contribuicoes_email on public.contribuicoes (email);
+create index if not exists idx_contribuicoes_status on public.contribuicoes (status);
 
 alter table public.contribuicoes enable row level security;
 -- Sem policies: acesso so via service_role (bypassa RLS).
 
--- Seed: contribuicoes recebidas ate 2026-06-24 (extrato Pix).
-insert into public.contribuicoes (nome, email, valor, data, hora) values
+-- Coluna de Instagram na allowlist (pra adicao manual de seguidores).
+alter table public.contribuintes add column if not exists instagram text;
+
+-- Bucket privado pros comprovantes de Pix (acesso so via service_role).
+insert into storage.buckets (id, name, public)
+values ('comprovantes', 'comprovantes', false)
+on conflict (id) do nothing;
+
+-- Seed: contribuicoes recebidas ate 2026-06-24 (extrato Pix). status=processado.
+-- Guard: so insere se a tabela estiver vazia (idempotente em re-run).
+insert into public.contribuicoes (nome, email, valor, data, hora)
+select v.nome, v.email, v.valor, v.data, v.hora from (values
   ('Rodrigo Albuquerque Dantas', 'rdantass@gmail.com', 10.00, '2026-06-24', '08:07'),
   ('Rodrigo Alvim Gusman Pereira', NULL, 10.00, '2026-06-24', '07:46'),
   ('Ailton Luiz Ferreira Neto', 'alfnto@icloud.com', 25.00, '2026-06-24', '01:32'),
@@ -78,4 +94,6 @@ insert into public.contribuicoes (nome, email, valor, data, hora) values
   ('Fabio Bronzatti Silveira', 'fbs813@gmail.com', 50.00, '2026-06-20', '00:23'),
   ('Michel Veronezi Aldrighi', 'michelvrt3197@gmail.com', 10.00, '2026-06-16', '16:06'),
   ('Alfeu Cavararo Martins', 'alfe.nit@hotmail.com', 10.00, '2026-06-12', '18:09'),
-  ('Clarisse Monteiro Castelo Branco', 'clarissecastelobranco@gmail.com', 10.00, '2026-06-11', '14:16');
+  ('Clarisse Monteiro Castelo Branco', 'clarissecastelobranco@gmail.com', 10.00, '2026-06-11', '14:16')
+) as v(nome, email, valor, data, hora)
+where not exists (select 1 from public.contribuicoes);
