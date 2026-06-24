@@ -515,6 +515,7 @@ export default async function ContribuicoesAdminPage({
             <table className="ctable">
               <thead>
                 <tr>
+                  <th style={{ textAlign: "right" }}>#</th>
                   <Th label="Nome" href={hrefOrdenar("p", "nome", cur)} dir={pcol === "nome" ? pdir : null} />
                   <th>Nível</th>
                   <th>Email(s)</th>
@@ -523,11 +524,12 @@ export default async function ContribuicoesAdminPage({
                 </tr>
               </thead>
               <tbody>
-                {pessoas.map((p) => {
+                {pessoas.map((p, i) => {
                   const cortesia = p.total === 0;
                   const nivel = nivelDe(p.total);
                   return (
                     <tr key={p.emails[0]}>
+                      <td className="cnum cmuted" style={{ textAlign: "right" }}>{i + 1}</td>
                       <td>{p.nome ?? <span className="cmuted">—</span>}</td>
                       <td>
                         <span className={`cnivel ${nivel.cls}`}>

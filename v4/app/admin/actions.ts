@@ -42,9 +42,12 @@ export async function adicionarContribuicao(formData: FormData) {
   const admin = await requireAdmin();
 
   const nome = (formData.get("nome") as string)?.trim();
-  const valor = parseValor(formData.get("valor") as string);
   if (!nome) throw new Error("Nome é obrigatório.");
-  if (valor == null || valor <= 0) throw new Error("Valor inválido.");
+  // Valor é opcional: rascunho com vários Pix num único print entra como R$0
+  // e os valores reais são preenchidos ao identificar cada pessoa.
+  const valorRaw = (formData.get("valor") as string)?.trim();
+  const valor = valorRaw ? parseValor(valorRaw) : 0;
+  if (valor == null || valor < 0) throw new Error("Valor inválido.");
 
   const email = normEmail(formData.get("email") as string);
   const instagram = normInsta(formData.get("instagram") as string);
