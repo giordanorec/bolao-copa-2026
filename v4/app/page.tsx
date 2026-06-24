@@ -5,6 +5,7 @@ import SeguirInstagram from "@/components/SeguirInstagram";
 import CorridaHome from "@/components/CorridaHome";
 import CaixaDeSugestao from "@/components/CaixaDeSugestao";
 import AgradecimentoContribuinte from "@/components/AgradecimentoContribuinte";
+import AvisoAtualizacaoV3 from "@/components/AvisoAtualizacaoV3";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 import { carregarAnaliseV2Publico } from "@/lib/analise-v2-publico";
@@ -186,6 +187,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <AvisoAtualizacaoV3 locale={locale} />
 
       <AgradecimentoContribuinte locale={locale} />
 

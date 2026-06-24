@@ -1,0 +1,74 @@
+<!-- ia: gemma-2-27b -->
+<!-- slug: gemma-2-27b -->
+<!-- versao: v3 -->
+<!-- corte: 2026-06-24 -->
+<!-- modo: api -->
+<!-- modelo: google/gemma-2-27b-it -->
+<!-- coletado_em: 2026-06-24T10:45:00-03:00 -->
+<!-- status: palpitou via api -->
+
+# Palpite v3 — gemma-2-27b (via OpenRouter)
+
+
+
+## RESULTADOS DOS JOGOS 1–48
+
+```
+| Jogo | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Grupo A | Qui 11/06 | 16h00 | Cidade do México | México | 2 | 0 | África do Sul |
+| 2 | Grupo A | Qui 11/06 | 23h00 | Guadalajara | Coreia do Sul | 2 | 1 | República Tcheca |
+| 3 | Grupo B | Sex 12/06 | 16h00 | Toronto | Canadá | 1 | 1 | Bósnia-Herzegovina |
+| 4 | Grupo D | Sex 12/06 | 22h00 | Los Angeles | Estados Unidos | 4 | 1 | Paraguai |
+| 8 | Grupo B | Sáb 13/06 | 16h00 | San Francisco | Qatar | 1 | 1 | Suíça |
+| 7 | Grupo C | Sáb 13/06 | 19h00 | Nova York/NJ | Brasil | 1 | 1 | Marrocos |
+| 5 | Grupo C | Sáb 13/06 | 22h00 | Boston | Haiti | 0 | 1 | Escócia |
+| 6 | Grupo D | Dom 14/06 | 01h00 | Vancouver | Austrália | 2 | 0 | Turquia |
+| 10 | Grupo E | Dom 14/06 | 14h00 | Houston | Alemanha | 7 | 1 | Curaçao |
+| 11 | Grupo F | Dom 14/06 | 17h00 | Dallas | Países Baixos | 2 | 2 | Japão |
+| 9 | Grupo E | Dom 14/06 | 20h00 | Filadélfia | Costa do Marfim | 1 | 0 | Equador |
+| 12 | Grupo F | Dom 14/06 | 23h00 | Monterrey | Suécia | 5 | 1 | Tunísia |
+| 14 | Grupo H | Seg 15/06 | 13h00 | Atlanta | Espanha | 0 | 0 | Cabo Verde |
+| 16 | Grupo G | Seg 15/06 | 16h00 | Seattle | Bélgica | 1 | 1 | Egito |
+| 13 | Grupo H | Seg 15/06 | 19h00 | Miami | Arábia Saudita | 1 | 1 | Uruguai |
+| 15 | Grupo G | Seg 15/06 | 22h00 | Los Angeles | Irã | 2 | 2 | Nova Zelândia |
+| 17 | Grupo I | Ter 16/06 | 16h00 | Nova York/NJ | França | 3 | 1 | Senegal |
+| 18 | Grupo I | Ter 16/06 | 19h00 | Boston | Iraque | 1 | 4 | Noruega |
+| 19 | Grupo J | Ter 16/06 | 22h00 | Kansas City | Argentina | 3 | 0 | Argélia |
+| 20 | Grupo J | Qua 17/06 | 01h00 | San Francisco | Áustria | 3 | 1 | Jordânia |
+| 23 | Grupo K | Qua 17/06 | 14h00 | Houston | Portugal | 1 | 1 | Congo (RD) |
+| 22 | Grupo L | Qua 17/06 | 17h00 | Dallas | Inglaterra | 4 | 2 | Croácia |
+| 21 | Grupo L | Qua 17/06 | 20h00 | Toronto | Gana | 1 | 0 | Panamá |
+| 24 | Grupo K | Qua 17/06 | 23h00 | Cidade do México | Uzbequistão | 1 | 3 | Colômbia |
+| 25 | Grupo A | Qui 18/06 | 13h00 | Atlanta | República Tcheca | 1 | 1 | África do Sul |
+| 26 | Grupo B | Qui 18/06 | 16h00 | Los Angeles | Suíça | 4 | 1 | Bósnia-Herzegovina |
+| 27 | Grupo B | Qui 18/06 | 19h00 | Vancouver | Canadá | 6 | 0 | Qatar |
+| 28 | Grupo A | Qui 18/06 | 22h00 | Guadalajara | México | 1 | 0 | Coreia do Sul |
+| 32 | Grupo D | Sex 19/06 | 16h00 | Seattle | Estados Unidos | 2 | 0 | Austrália |
+| 30 | Grupo C | Sex 19/06 | 19h00 | Boston | Escócia | 0 | 1 | Marrocos |
+| 29 | Grupo C | Sex 19/06 | 21h30 | Filadélfia | Brasil | 3 | 0 | Haiti |
+| 31 | Grupo D | Sáb 20/06 | 00h00 | San Francisco | Turquia | 0 | 1 | Paraguai |
+| 35 | Grupo F | Sáb 20/06 | 14h00 | Houston | Países Baixos | 5 | 1 | Suécia |
+| 33 | Grupo E | Sáb 20/06 | 17h00 | Toronto | Alemanha | 2 | 1 | Costa do Marfim |
+| 34 | Grupo E | Sáb 20/06 | 21h00 | Kansas City | Equador | 0 | 0 | Curaçao |
+| 36 | Grupo F | Dom 21/06 | 01h00 | Monterrey | Tunísia | 0 | 4 | Japão |
+| 38 | Grupo H | Dom 21/06 | 13h00 | Atlanta | Espanha | 4 | 0 | Arábia Saudita |
+| 39 | Grupo G | Dom 21/06 | 16h00 | Los Angeles | Bélgica | 0 | 0 | Irã |
+| 37 | Grupo H | Dom 21/06 | 19h00 | Miami | Uruguai | 2 | 2 | Cabo Verde |
+| 40 | Grupo G | Dom 21/06 | 22h00 | Vancouver | Nova Zelândia | 1 | 3 | Egito |
+| 42 | Grupo I | Seg 22/06 | 18h00 | Filadélfia | França | 3 | 0 | Iraque |
+| 43 | Grupo J | Seg 22/06 | 14h00 | Dallas | Argentina | 2 | 0 | Áustria |
+| 41 | Grupo I | Seg 22/06 | 21h00 | Nova York/NJ | Noruega | 3 | 2 | Senegal |
+
+| 44 | Grupo J | Ter 23/06 | 00h00 | San Francisco | Jordânia | 1 | 2 | Argélia |
+| 47 | Grupo K | Ter 23/06 | 14h00 | Houston | Portugal | 5 | 0 | Uzbequistão |
+
+| 45 | Grupo L | Ter 23/06 | 17h00 | Boston | Inglaterra | 0 | 0 | Gana |
+
+| 46 | Grupo L | Ter 23/06 | 20h00 | Toronto | Panamá | 0 | 1 | Croácia |
+
+| 48 | Grupo K | Ter 23/06 | 23h00 | Guadalajara | Colômbia | 1 | 0 | Congo (RD) |
+
+
+
+```
