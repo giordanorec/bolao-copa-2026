@@ -123,12 +123,37 @@ body { font-family: var(--ff-sans); }
 .bolao-card-link { display: block; text-decoration: none; }
 .bolao-card-link .card {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    padding-top: 28px;
+    background:
+        radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%),
+        linear-gradient(180deg, color-mix(in srgb, var(--primary) 7%, var(--bg-2)), var(--bg-2) 140px);
     transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.bolao-card-link .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
 .bolao-card-link:hover .card {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-pop);
     border-color: var(--primary);
+}
+.bolao-card-badge {
+    width: 46px; height: 46px;
+    display: grid; place-items: center;
+    font-size: 24px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 22%, var(--bg-2)), color-mix(in srgb, var(--accent) 26%, var(--bg-2)));
+    border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 18%, transparent);
 }
 .bolao-card-link .card h3 {
     font-family: var(--ff-display);
@@ -138,14 +163,33 @@ body { font-family: var(--ff-sans); }
     color: var(--secondary);
     margin-bottom: 8px;
     letter-spacing: var(--letterspacing-display);
+    line-height: 1.15;
 }
 .bolao-card-link .card p { color: var(--fg-mid); font-size: 14px; }
+.bolao-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 18px;
+}
 .bolao-card-link .card .slug {
     font-family: var(--ff-mono);
     font-size: 11px;
     color: var(--fg-muted);
-    margin-top: 16px;
     letter-spacing: var(--letterspacing-mono);
+}
+.bolao-card-cta {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.bolao-card-link:hover .bolao-card-cta {
+    opacity: 1;
+    transform: translateX(3px);
 }
 .empty {
     text-align: center;

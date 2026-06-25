@@ -133,9 +133,13 @@ export default async function Dashboard() {
               className="bolao-card-link"
             >
               <div className="card">
+                <div className="bolao-card-badge">🏆</div>
                 <h3>{b.nome}</h3>
                 {b.descricao && <p>{b.descricao}</p>}
-                <p className="slug">/{b.slug}</p>
+                <div className="bolao-card-foot">
+                  <span className="slug">/{b.slug}</span>
+                  <span className="bolao-card-cta">Abrir ranking →</span>
+                </div>
               </div>
             </Link>
           ))}
