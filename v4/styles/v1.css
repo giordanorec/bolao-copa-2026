@@ -565,9 +565,14 @@ body[data-theme="anthropic"] .hero h1 { font-weight: 600; }
 .card {
     background: var(--bg-2); border: 1px solid var(--line);
     border-radius: var(--r-l); box-shadow: var(--shadow-soft);
+    padding: 24px;
     transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
 }
+/* Cards que envolvem uma tabela/lista full-bleed ficam sem respiro interno
+   (a própria tabela já tem borda e raio). */
+.card:has(> .ranking-table) { padding: 0; }
 .card:hover { box-shadow: var(--shadow-pop); border-color: var(--line-strong); }
+@media (max-width: 600px) { .card { padding: 18px; } }
 a.card:hover, button.card:hover { transform: translateY(-4px); }
 
 /* ─── RANKING TABLE ─── */

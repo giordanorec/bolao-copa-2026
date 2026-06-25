@@ -152,7 +152,7 @@ export default async function RankingDoBolao({
         .bolao-membro[open] { border-color: var(--primary); }
         .bolao-membro-head {
           display: grid;
-          grid-template-columns: 48px 1fr auto 70px;
+          grid-template-columns: 16px 40px 1fr auto 64px;
           align-items: center;
           gap: 12px;
           padding: 12px 16px;
@@ -276,7 +276,7 @@ export default async function RankingDoBolao({
         .bj-pts[data-tier="vazio"] { background: transparent; color: var(--fg-muted); }
         @media (max-width: 520px) {
           .bolao-membro-head {
-            grid-template-columns: 36px 1fr 60px;
+            grid-template-columns: 16px 32px 1fr 56px;
           }
           .bolao-membro-palp { display: none; }
           .bolao-jogo-linha {
