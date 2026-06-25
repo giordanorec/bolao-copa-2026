@@ -62,3 +62,5 @@ no cálculo de pontuação.
 | 50 | Grupo C | Qua 24/06 | 19h00 | Atlanta | Marrocos | 4 | 2 | Haiti |
 | 53 | Grupo A | Qua 24/06 | 22h00 | Cidade do México | República Tcheca | 0 | 3 | México |
 | 54 | Grupo A | Qua 24/06 | 22h00 | Monterrey | África do Sul | 1 | 0 | Coreia do Sul |
+| 55 | Grupo E | Qui 25/06 | 17h00 | Filadélfia | Curaçao | 0 | 2 | Costa do Marfim |
+| 56 | Grupo E | Qui 25/06 | 17h00 | Nova York/NJ | Equador | 2 | 1 | Alemanha |
