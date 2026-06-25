@@ -60,3 +60,5 @@ no cálculo de pontuação.
 | 52 | Grupo B | Qua 24/06 | 16h00 | Seattle | Bósnia-Herzegovina | 3 | 1 | Qatar |
 | 49 | Grupo C | Qua 24/06 | 19h00 | Miami | Escócia | 0 | 3 | Brasil |
 | 50 | Grupo C | Qua 24/06 | 19h00 | Atlanta | Marrocos | 4 | 2 | Haiti |
+| 53 | Grupo A | Qua 24/06 | 22h00 | Cidade do México | República Tcheca | 0 | 3 | México |
+| 54 | Grupo A | Qua 24/06 | 22h00 | Monterrey | África do Sul | 1 | 0 | Coreia do Sul |
