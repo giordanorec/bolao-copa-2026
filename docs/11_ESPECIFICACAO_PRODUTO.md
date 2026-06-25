@@ -282,3 +282,66 @@ contribui financeiramente (conteúdo exclusivo por senha) e análise estatístic
 
 **Pipeline:** `python -m bolao coletar-v2` e `python -m bolao comparar-v2`
 (isolados; sem efeito no fluxo `rodada`). Upload: `scripts/upload_v2_supabase.py`.
+
+## 12. Runbook — processar Pix / contribuições
+
+Quando o Giordano reporta um Pix (nome, às vezes valor) ou sobe uma **foto/extrato
+de Pix** no painel `/admin/contribuicoes`, o assistente processa **sozinho**.
+Fonte de verdade desta mecânica; **se algo der errado, é aqui que se confere.**
+
+### 12.1 Modelo de dados (duas tabelas, papéis distintos)
+
+- **`contribuicoes`** = registro de **dinheiro**. Colunas: `id, nome, email,
+  valor, data, hora, instagram, comprovante_url, status (rascunho|processado),
+  nota, criado_em, processado_em`.
+  - **Total arrecadado = SUM(valor) WHERE status='processado'.**
+  - O **selo** de cada pessoa vem do SUM(valor) agrupado por email:
+    ≥50 Padrinho 👑 · ≥25 Mantenedor 🛟 · ≥10 Apoiador 💛 · R$0 Cortesia 🎁.
+- **`contribuintes`** = **allowlist de acesso** à Análise v2 (PK `email`, cols
+  `nome, instagram, nota, liberado_em`). **Só dá acesso — não registra dinheiro.**
+
+> **A regra que eu esqueci (2026-06-25):** processar um Pix são **DUAS gravações**.
+> Liberar em `contribuintes` (acesso) **E** criar a linha em `contribuicoes`
+> (dinheiro). Liberar sem gravar a contribuição deixa o total parado e a pessoa
+> aparece como **Cortesia R$0** em vez de Apoiador. Nunca fazer só metade.
+
+### 12.2 Estados — TODO Pix processado vira **liberado** OU **pendente**
+
+Não existe meio-termo. Depois de processar uma imagem, **nada** pode ficar como
+"📷 Foto de Pix (a identificar)" nem como rascunho valor=0.
+
+- **Liberado** (casou com uma conta, confiança ≥ média): linha em `contribuicoes`
+  com `status='processado'`, `email` preenchido, `nome` completo, `valor`; **e**
+  upsert em `contribuintes` (`on_conflict=email`, `Prefer: resolution=merge-duplicates`).
+- **Pendente** (não achou conta): linha em `contribuicoes` com `status='processado'`,
+  **`email=null`**, mas **com `nome` completo e `valor`** — assim o dinheiro **conta**
+  e a pessoa fica listada na fila de pendentes pra identificar depois (quando criar
+  conta, usar `identificarPendente`). **Nunca** deixar a pessoa fora do registro.
+
+### 12.3 Foto/extrato de Pix (1+ contribuintes)
+
+O form "📷 Foto de Pix" cria **um** rascunho placeholder `nome="📷 Foto de Pix
+(a identificar)"` valor=0, só com a imagem. Esse placeholder é um **container**:
+
+1. Baixar a imagem do bucket `comprovantes` (Storage API) e **ler cada Pix**
+   (nome + valor). Pix **não traz email** → cruzar cada nome com as contas
+   (`profiles.display_name` → pega `id` → `auth.users` por id pega o email;
+   casar também contra a parte local do email, iniciais contam).
+2. Cada Pix vira **uma** linha de `contribuicoes` → liberado ou pendente (§12.2).
+   Não duplicar quem já tem linha de extrato anterior.
+3. **Apagar o placeholder** depois de desdobrado (a info da imagem já foi
+   processada → é ignorada). Precedente: id 69 foi apagado ao virar 70.
+   **Nunca** deixar o placeholder como processado valor=0 — isso é o "pix não
+   identificado" que polui a lista.
+
+### 12.4 Mecânica (service_role direto no PostgREST)
+
+Credenciais em `v4/.env.local` (`NEXT_PUBLIC_SUPABASE_URL` +
+`SUPABASE_SERVICE_ROLE_KEY`) — **nunca pedir ao Giordano**. Acentos no corpo do
+curl (`-d`) causam PGRST102/falha silenciosa → **sempre `--data-binary @arquivo.json`**.
+Saída Python no Git Bash: `PYTHONIOENCODING=utf-8`.
+
+- Guardar **nome completo** em `contribuicoes.nome` E `contribuintes.nome` (Giordano
+  confere a lista pelo nome; nome truncado = ele acha que a pessoa não foi liberada).
+- Regra de confiança: **"melhor liberar por engano do que barrar quem pagou"**
+  (confiança ≥ média ⇒ liberar direto, sem perguntar).
