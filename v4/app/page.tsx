@@ -204,7 +204,9 @@ export default async function Home() {
 
       <CorridaHome locale={locale} />
 
-      {retroV2 && retroV2.n_ias > 0 && (
+      {/* Só destaca a melhoria v1→v2 quando o ganho for relevante (>5%).
+          Abaixo disso é ruído — não vai pra home (mesma regra do /analise). */}
+      {retroV2 && retroV2.n_ias > 0 && retroV2.agg.delta_pct > 5 && (
         <section className="section" style={{ paddingTop: 8 }}>
           <div className="container">
             <Link
