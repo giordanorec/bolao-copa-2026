@@ -58,3 +58,5 @@ no cálculo de pontuação.
 | 48 | Grupo K | Ter 23/06 | 23h00 | Guadalajara | Colômbia | 1 | 0 | Congo (RD) |
 | 51 | Grupo B | Qua 24/06 | 16h00 | Vancouver | Suíça | 2 | 1 | Canadá |
 | 52 | Grupo B | Qua 24/06 | 16h00 | Seattle | Bósnia-Herzegovina | 3 | 1 | Qatar |
+| 49 | Grupo C | Qua 24/06 | 19h00 | Miami | Escócia | 0 | 3 | Brasil |
+| 50 | Grupo C | Qua 24/06 | 19h00 | Atlanta | Marrocos | 4 | 2 | Haiti |
