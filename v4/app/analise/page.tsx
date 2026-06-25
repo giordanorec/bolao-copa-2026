@@ -159,7 +159,11 @@ export default async function AnalisePage() {
         </p>
       </header>
 
-      {retroV2 && retroV2.n_ias > 0 && <RetrospectivaV2 a={retroV2} />}
+      {/* Só mostra a retrospectiva v1→v2 quando o ganho for relevante (>5%).
+          Abaixo disso é ruído — fica como info interna, não publicada. */}
+      {retroV2 && retroV2.n_ias > 0 && retroV2.agg.delta_pct > 5 && (
+        <RetrospectivaV2 a={retroV2} />
+      )}
 
       {/* CLUSTERS */}
       <section style={{ marginBottom: 48 }}>
