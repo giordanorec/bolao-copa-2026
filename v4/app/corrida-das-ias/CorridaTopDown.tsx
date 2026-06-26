@@ -34,10 +34,26 @@ const PAUSA_FINAL_MS = 4800; // pausa no fim: dá tempo do zoom-out revelar a ch
 const MIN_HALF = 0.05; // meia-largura mínima ⇒ zoom MÁXIMO quando agrupados
 const VIS_K = 1.9; // folga multiplicativa em torno dos extremos (espaçamento maior)
 const EDGE_PAD = 0.03; // folga absoluta pras pontas não colarem na borda
-const CAM_EASE = 0.1; // suavização do movimento/zoom da câmera por frame
-// "Jogo de câmera": respiração de zoom (in/out) contínua via seno.
-const BREATH_AMP = 0.18; // amplitude da respiração (fração da meia-largura)
-const BREATH_S = 8; // período da respiração (segundos)
+const CAM_EASE = 0.085; // inércia: suavização do movimento da câmera por frame
+
+// === Câmera cinematográfica ===
+// Em vez de só dar zoom in/out no centro de massa, um "diretor" troca de PLANOS
+// conforme o que acontece na corrida (estabelecimento aberto, close nos líderes,
+// duelo numa troca de posição, travelling/passeio pelo pelotão). Cada plano
+// compõe com técnicas de cinegrafia: regra dos terços, lead room (espaço à
+// frente do movimento), push-in lento (dolly) e um drift orgânico tipo Ken
+// Burns. A câmera pode sair do centro de massa.
+const SHOT_MIN_MS = 2800; // duração mínima de um plano (evita corte nervoso)
+const SHOT_MAX_MS = 5600; // duração máxima
+const HALF_CLOSE = 0.085; // meia-largura de um close (zoom forte nos líderes)
+const HALF_DUEL = 0.11; // meia-largura de um plano de duelo
+const PUSH_IN = 0.16; // quanto cada plano fecha ao longo da vida (push-in/dolly)
+const LEAD_ROOM = 0.3; // regra dos terços: sujeito a ~1/3, espaço à frente
+const KB_AMP_C = 0.06; // drift lateral (Ken Burns), fração de h
+const KB_AMP_H = 0.08; // drift de zoom (Ken Burns)
+const KB_W1 = (2 * Math.PI) / 11; // freq. do drift lateral (rad/s)
+const KB_W2 = (2 * Math.PI) / 7.3; // freq. do drift de zoom — incomensurável
+const FRONT_TIGHT = 0.06; // gap (fração) abaixo do qual a briga na frente é acirrada
 // Linha de chegada = FIM DA COPA inteira (104 jogos), bem distante; só aparece
 // no zoom-out final.
 const TOTAL_JOGOS = 104;
@@ -45,13 +61,16 @@ const TOTAL_JOGOS = 104;
 // entre fases é SECA (sem degradê): cada fase tem uma cor radicalmente diferente.
 const BAND_W = 0.038; // largura de cada faixa (fração da corrida)
 
+// Contraste claro/escuro DENTRO de uma fase é sutil (pares de tons próximos);
+// a troca ENTRE fases é radical de matiz (azul → rosa nos 16-avos), depois
+// segue mudando de cor a cada fase.
 const FASES = [
-  { ini: 1, fim: 72, dark: "#0a2148", light: "#1b4f9c" }, // grupos — azul
-  { ini: 73, fim: 88, dark: "#07382f", light: "#0f8f72" }, // 16-avos — verde-água
-  { ini: 89, fim: 96, dark: "#2c0f4d", light: "#7c3aed" }, // oitavas — roxo
-  { ini: 97, fim: 100, dark: "#3d1c02", light: "#ea7317" }, // quartas — laranja
-  { ini: 101, fim: 102, dark: "#3d0810", light: "#d61f3a" }, // semis — vermelho
-  { ini: 103, fim: 104, dark: "#3a2c02", light: "#d4a017" }, // decisão — ouro
+  { ini: 1, fim: 72, dark: "#1f4179", light: "#274f8c" }, // grupos — azul
+  { ini: 73, fim: 88, dark: "#7c2358", light: "#8c2f68" }, // 16-avos — rosa
+  { ini: 89, fim: 96, dark: "#8a4512", light: "#9c531c" }, // oitavas — laranja
+  { ini: 97, fim: 100, dark: "#1f5a3c", light: "#276a48" }, // quartas — verde
+  { ini: 101, fim: 102, dark: "#472178", light: "#532b88" }, // semis — roxo
+  { ini: 103, fim: 104, dark: "#8a6512", light: "#9c741c" }, // decisão — ouro
 ];
 
 const clamp = (v: number, lo: number, hi: number) =>
@@ -136,6 +155,17 @@ export default function CorridaTopDown({
   // Câmera no mundo: centro c + meia-largura h (fração da corrida).
   const camRef = useRef({ c: MIN_HALF, h: MIN_HALF });
   const [cam, setCam] = useState({ c: MIN_HALF, h: MIN_HALF });
+  // Plano corrente do "diretor" de câmera.
+  const shotRef = useRef({
+    kind: "wide" as "wide" | "lead" | "duel" | "truck",
+    born: 0,
+    life: SHOT_MAX_MS,
+    cFrom: MIN_HALF,
+    cTo: MIN_HALF,
+    hFrom: MIN_HALF,
+    hTo: MIN_HALF,
+    cycle: 0,
+  });
 
   const ultimo = frames.length - 1;
 
@@ -144,9 +174,10 @@ export default function CorridaTopDown({
     setPos(i);
     lastRef.current = performance.now();
     esperandoFimRef.current = false;
-    const t = camBase(i);
-    camRef.current = { c: t.c, h: t.h };
-    setCam({ c: t.c, h: t.h });
+    const wf = wideFraming(i);
+    camRef.current = { c: wf.c, h: wf.h };
+    setCam({ c: wf.c, h: wf.h });
+    shotRef.current.born = 0; // força um novo plano no próximo frame
   };
 
   const ordenadas = useMemo(
@@ -176,34 +207,138 @@ export default function CorridaTopDown({
   // Copa tem TOTAL_JOGOS ⇒ a chegada fica lá em w = TOTAL_JOGOS / ultimo.
   const worldFinish = TOTAL_JOGOS / Math.max(1, ultimo);
 
-  // Câmera-base para a posição contínua p. Normal: centra no CENTRO DE MASSA
-  // (média de w) e abre só o necessário pra manter os extremos visíveis com
-  // folga (VIS_K) — mais espaçamento entre as IAs. reveal (fim da animação):
-  // afasta até a linha de chegada lá no fim da Copa.
-  const camBase = (p: number) => {
+  // Estatísticas do pelotão na posição contínua p: w (fração) de cada IA agora,
+  // e a ordem (ranking) nos frames inteiro a e b — pra detectar trocas de posição.
+  const packStats = (p: number) => {
     const a = clamp(Math.floor(p), 0, ultimo);
     const b = clamp(a + 1, 0, ultimo);
     const fr = p - a;
+    const arr = ordenadas.map((ia) => {
+      const pa = frames[a]?.pts[ia.slug] ?? 0;
+      const pb = frames[b]?.pts[ia.slug] ?? 0;
+      return {
+        slug: ia.slug,
+        w: (pa + (pb - pa) * fr) / maxPts,
+        wa: pa / maxPts,
+        wb: pb / maxPts,
+      };
+    });
     let wMin = Infinity;
     let wMax = -Infinity;
     let soma = 0;
-    let n = 0;
-    for (const ia of ordenadas) {
-      const pa = frames[a]?.pts[ia.slug] ?? 0;
-      const pb = frames[b]?.pts[ia.slug] ?? 0;
-      const w = (pa + (pb - pa) * fr) / maxPts;
-      if (w < wMin) wMin = w;
-      if (w > wMax) wMax = w;
-      soma += w;
-      n++;
+    for (const r of arr) {
+      if (r.w < wMin) wMin = r.w;
+      if (r.w > wMax) wMax = r.w;
+      soma += r.w;
     }
     if (!Number.isFinite(wMin)) {
       wMin = 0;
       wMax = 0;
     }
-    const wc = n > 0 ? soma / n : 0; // centro de massa do pelotão
+    const centroid = arr.length ? soma / arr.length : 0;
+    const byNow = [...arr].sort((x, y) => y.w - x.w);
+    const orderA = [...arr].sort((x, y) => y.wa - x.wa);
+    const orderB = [...arr].sort((x, y) => y.wb - x.wb);
+    return { wMin, wMax, centroid, byNow, orderA, orderB };
+  };
+
+  // Plano aberto (estabelecimento): centro de massa + folga pra caber o pelotão.
+  const wideFraming = (p: number) => {
+    const s = packStats(p);
+    const span = Math.max(s.wMax - s.centroid, s.centroid - s.wMin);
+    let h = Math.max(MIN_HALF, span * VIS_K + EDGE_PAD);
+    let c = s.centroid;
+    if (c - h < 0) c = h;
+    return { c, h };
+  };
+
+  // Há um momento "interessante" agora? (troca na liderança, briga acirrada na
+  // frente, ou qualquer troca de posição no pelotão).
+  const eventoForte = (s: ReturnType<typeof packStats>) => {
+    if (s.orderA[0]?.slug !== s.orderB[0]?.slug) return true; // troca de líder
+    if ((s.byNow[0]?.w ?? 0) - (s.byNow[1]?.w ?? 0) < FRONT_TIGHT) return true;
+    for (let i = 0; i < s.byNow.length; i++) {
+      if (s.orderA[i]?.slug !== s.orderB[i]?.slug) return true; // troca de posição
+    }
+    return false;
+  };
+
+  // Escolhe um novo plano com base no que está acontecendo na corrida.
+  const chooseShot = (now: number, p: number, s: ReturnType<typeof packStats>) => {
+    const sh = shotRef.current;
+    const leadChange = s.orderA[0]?.slug !== s.orderB[0]?.slug;
+    const frontGap = (s.byNow[0]?.w ?? 0) - (s.byNow[1]?.w ?? 0);
+    let swapAt = -1;
+    for (let i = 0; i < s.byNow.length; i++) {
+      if (s.orderA[i]?.slug !== s.orderB[i]?.slug) {
+        swapAt = i;
+        break;
+      }
+    }
+    const top = s.byNow;
+
+    let kind: typeof sh.kind;
+    let cFrom: number;
+    let cTo: number;
+    let hFrom: number;
+    let hTo: number;
+
+    if (leadChange || frontGap < FRONT_TIGHT) {
+      // Close nos líderes — zoom grande só nos primeiros (momento quente).
+      kind = "lead";
+      const w0 = top[0]?.w ?? 0;
+      const w1 = top[1]?.w ?? w0;
+      const focus = (w0 + w1) / 2;
+      hTo = Math.max(HALF_CLOSE, (Math.abs(w0 - w1) / 2) * 1.5 + EDGE_PAD);
+      hFrom = hTo * (1 + PUSH_IN);
+      cTo = focus + LEAD_ROOM * hTo;
+      cFrom = focus + LEAD_ROOM * hFrom;
+    } else if (swapAt >= 0) {
+      // Duelo: close na dupla que está trocando de posição.
+      kind = "duel";
+      const wi = top[swapAt]?.w ?? 0;
+      const wj = top[Math.min(swapAt + 1, top.length - 1)]?.w ?? wi;
+      const focus = (wi + wj) / 2;
+      hTo = Math.max(HALF_DUEL, (Math.abs(wi - wj) / 2) * 1.6 + EDGE_PAD);
+      hFrom = hTo * (1 + PUSH_IN);
+      cTo = focus + LEAD_ROOM * hTo;
+      cFrom = focus + LEAD_ROOM * hFrom;
+    } else {
+      // Calmaria: alterna estabelecimento <-> travelling (passeio pelo pelotão).
+      sh.cycle = (sh.cycle + 1) % 2;
+      if (sh.cycle === 0) {
+        kind = "wide";
+        const wf = wideFraming(p);
+        hTo = wf.h;
+        hFrom = wf.h * (1 + PUSH_IN * 0.6);
+        cTo = wf.c;
+        cFrom = wf.c;
+      } else {
+        kind = "truck";
+        const back = s.wMin;
+        const front = s.wMax;
+        hTo = Math.max(HALF_DUEL, ((front - back) / 2) * 0.85 + EDGE_PAD);
+        hFrom = hTo;
+        cFrom = back + hTo; // começa no fundo do pelotão
+        cTo = front + LEAD_ROOM * hTo; // desliza até a frente, com lead room
+      }
+    }
+
+    if (cFrom - hFrom < 0) cFrom = hFrom; // não rola atrás da largada
+    if (cTo - hTo < 0) cTo = hTo;
+
+    sh.kind = kind;
+    sh.born = now;
+    sh.life = SHOT_MIN_MS + Math.random() * (SHOT_MAX_MS - SHOT_MIN_MS);
+    sh.cFrom = cFrom;
+    sh.cTo = cTo;
+    sh.hFrom = hFrom;
+    sh.hTo = hTo;
+  };
+
+  // Alvo cinematográfico da câmera. reveal (fim): afasta da largada até a chegada.
+  const cineTarget = (p: number, now: number) => {
     if (esperandoFimRef.current) {
-      // Zoom-out: mostra da LARGADA (início, 0 pts) até a chegada no fim da Copa.
       const left = -EDGE_PAD;
       const right = worldFinish + EDGE_PAD;
       return {
@@ -212,19 +347,37 @@ export default function CorridaTopDown({
         reveal: true,
       };
     }
-    // meia-largura: maior distância do centro de massa a um extremo (×folga).
-    const span = Math.max(wMax - wc, wc - wMin);
-    const h = Math.max(MIN_HALF, span * VIS_K + EDGE_PAD);
-    let c = wc;
-    if (c - h < 0) c = h; // não rola atrás da largada
-    return { c, h, reveal: false };
+    const s = packStats(p);
+    const sh = shotRef.current;
+    const lived = now - sh.born;
+    // Corta de plano: ao fim da vida, OU num evento forte (com plano já estável).
+    const querCortar =
+      lived >= sh.life ||
+      (lived > SHOT_MIN_MS &&
+        sh.kind !== "lead" &&
+        sh.kind !== "duel" &&
+        eventoForte(s));
+    if (querCortar) chooseShot(now, p, s);
+
+    const prog = clamp((now - sh.born) / sh.life, 0, 1);
+    const e = prog * prog * (3 - 2 * prog); // smoothstep do movimento do plano
+    let baseC = sh.cFrom + (sh.cTo - sh.cFrom) * e;
+    let baseH = sh.hFrom + (sh.hTo - sh.hFrom) * e;
+    // Ken Burns: drift lento e orgânico (lateral + zoom), freqs incomensuráveis.
+    const tt = now / 1000;
+    baseC += KB_AMP_C * baseH * Math.sin(tt * KB_W1);
+    baseH *= 1 + KB_AMP_H * Math.sin(tt * KB_W2);
+    baseH = Math.max(MIN_HALF, baseH);
+    if (baseC - baseH < 0) baseC = baseH;
+    return { c: baseC, h: baseH, reveal: false };
   };
 
   // Snap da câmera no estado inicial (antes do 1º frame de animação).
   useEffect(() => {
-    const t = camBase(0);
-    camRef.current = { c: t.c, h: t.h };
-    setCam({ c: t.c, h: t.h });
+    const wf = wideFraming(0);
+    camRef.current = { c: wf.c, h: wf.h };
+    setCam({ c: wf.c, h: wf.h });
+    shotRef.current.born = 0;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -297,17 +450,11 @@ export default function CorridaTopDown({
         setPos(np);
       }
       // Câmera roda SEMPRE — inclusive na pausa final, pro zoom-out revelar a
-      // chegada. Centro = centro de massa; respiração de zoom dá dinamismo.
-      const t = camBase(posRef.current);
-      let th = t.h;
-      if (!t.reveal) {
-        const br =
-          1 + BREATH_AMP * Math.sin((now / 1000) * ((2 * Math.PI) / BREATH_S));
-        th = t.h * br;
-      }
+      // chegada. O diretor escolhe o plano; aqui só suavizamos (inércia).
+      const t = cineTarget(posRef.current, now);
       const c = camRef.current;
       c.c += (t.c - c.c) * CAM_EASE;
-      c.h += (th - c.h) * CAM_EASE;
+      c.h += (t.h - c.h) * CAM_EASE;
       setCam({ c: c.c, h: c.h });
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -508,11 +655,11 @@ export default function CorridaTopDown({
       </div>
 
       <p className="cn-legenda">
-        A câmera fica centrada no pelotão (centro de massa) e dá zoom in/out pra
-        evidenciar as diferenças. O piso muda de cor a cada fase da Copa e desliza
-        pra trás conforme avançam; no fim, a câmera se afasta e revela a linha de
-        chegada 🏁 lá no fim do torneio. Empatadas dividem a faixa — passe o
-        dedo/mouse pra ver o nome.
+        Câmera cinematográfica: troca de planos conforme a corrida — abre pro
+        pelotão, fecha nos líderes numa briga acirrada, persegue um duelo, ou
+        passeia pela pista. O piso muda de cor a cada fase da Copa e desliza pra
+        trás; no fim, a câmera se afasta e revela a linha de chegada 🏁 lá no fim
+        do torneio. Empatadas dividem a faixa — passe o dedo/mouse pra ver o nome.
       </p>
 
       <style>{`
