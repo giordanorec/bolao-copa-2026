@@ -61,16 +61,16 @@ const TOTAL_JOGOS = 104;
 // entre fases é SECA (sem degradê): cada fase tem uma cor radicalmente diferente.
 const BAND_W = 0.038; // largura de cada faixa (fração da corrida)
 
-// Contraste claro/escuro DENTRO de uma fase é sutil (pares de tons próximos);
-// a troca ENTRE fases é radical de matiz (azul → rosa nos 16-avos), depois
-// segue mudando de cor a cada fase.
+// Piso é FUNDO: cores dessaturadas (não competem com os personagens). Cada
+// matiz tem um claro e um escuro bem distintos (lê-se o parallax), e a troca de
+// fase muda o matiz com clareza — azul (grupos) → rosa (16-avos) → etc.
 const FASES = [
-  { ini: 1, fim: 72, dark: "#1f4179", light: "#274f8c" }, // grupos — azul
-  { ini: 73, fim: 88, dark: "#7c2358", light: "#8c2f68" }, // 16-avos — rosa
-  { ini: 89, fim: 96, dark: "#8a4512", light: "#9c531c" }, // oitavas — laranja
-  { ini: 97, fim: 100, dark: "#1f5a3c", light: "#276a48" }, // quartas — verde
-  { ini: 101, fim: 102, dark: "#472178", light: "#532b88" }, // semis — roxo
-  { ini: 103, fim: 104, dark: "#8a6512", light: "#9c741c" }, // decisão — ouro
+  { ini: 1, fim: 72, dark: "#243748", light: "#36506a" }, // grupos — azul
+  { ini: 73, fim: 88, dark: "#45293a", light: "#674055" }, // 16-avos — rosa
+  { ini: 89, fim: 96, dark: "#45382a", light: "#67553c" }, // oitavas — laranja
+  { ini: 97, fim: 100, dark: "#283f30", light: "#3c5e48" }, // quartas — verde
+  { ini: 101, fim: 102, dark: "#332a45", light: "#4c4066" }, // semis — roxo
+  { ini: 103, fim: 104, dark: "#433e28", light: "#655e3c" }, // decisão — ouro
 ];
 
 const clamp = (v: number, lo: number, hi: number) =>
@@ -141,6 +141,17 @@ export default function CorridaTopDown({
   // Nome ao lado do mascote: default escondido (só os bichinhos ficam mais
   // limpos visualmente). Usuário pode ligar via checkbox.
   const [mostrarNome, setMostrarNome] = useState(false);
+  // Modo de câmera: "dinamico" = diretor cinematográfico (planos, Ken Burns);
+  // "simples" = só segue o pelotão (enquadramento aberto, sem jogo de câmera).
+  // O rAF lê via ref (a closure do tick captura o valor no mount).
+  const [modoCamera, setModoCamera] = useState<"dinamico" | "simples">(
+    "dinamico",
+  );
+  const modoRef = useRef<"dinamico" | "simples">("dinamico");
+  modoRef.current = modoCamera;
+  // Fullscreen do card.
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isFs, setIsFs] = useState(false);
 
   // Disparo único ao montar — engagement com Modo A.
   useEffect(() => {
@@ -196,11 +207,6 @@ export default function CorridaTopDown({
         ...frames.flatMap((f) => ordenadas.map((ia) => f.pts[ia.slug] ?? 0)),
       ),
     [frames, ordenadas],
-  );
-
-  const finalFrame = useMemo(
-    () => frames[frames.length - 1]?.pts ?? {},
-    [frames],
   );
 
   // Chegada = fim da Copa inteira. O líder atual (w=1) jogou `ultimo` jogos; a
@@ -347,6 +353,11 @@ export default function CorridaTopDown({
         reveal: true,
       };
     }
+    // Modo simples: só segue o pelotão (sem planos, sem Ken Burns).
+    if (modoRef.current === "simples") {
+      const wf = wideFraming(p);
+      return { c: wf.c, h: wf.h, reveal: false };
+    }
     const s = packStats(p);
     const sh = shotRef.current;
     const lived = now - sh.born;
@@ -370,6 +381,22 @@ export default function CorridaTopDown({
     baseH = Math.max(MIN_HALF, baseH);
     if (baseC - baseH < 0) baseC = baseH;
     return { c: baseC, h: baseH, reveal: false };
+  };
+
+  // Sincroniza isFs com o estado real de fullscreen (inclui ESC do navegador).
+  useEffect(() => {
+    const onFs = () =>
+      setIsFs(document.fullscreenElement === cardRef.current);
+    document.addEventListener("fullscreenchange", onFs);
+    return () => document.removeEventListener("fullscreenchange", onFs);
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      cardRef.current?.requestFullscreen?.();
+    }
   };
 
   // Snap da câmera no estado inicial (antes do 1º frame de animação).
@@ -396,40 +423,46 @@ export default function CorridaTopDown({
   }, [frames, ordenadas]);
   segFastRef.current = segFast;
 
-  // Posição X só por pontos — sem offset por empate. IAs empatadas no mesmo X
-  // são desempilhadas pelo lane packing (raias diferentes em Y). Antes existia
-  // um "fan" que espalhava as empatadas no eixo X, mas isso podia fazer uma
-  // IA com menos pontos visualmente ultrapassar outra com mais (quando o fan
-  // somava mais que a folga em X entre dois grupos vizinhos).
-  const xDe = (_slug: string, pts: number) =>
-    clamp((pts / maxPts) * SPAN, 0, SPAN);
-
-  // Empacota IAs em poucas raias: first-fit por X final desc; reaproveita a raia
-  // se o último ocupante estiver a >= MIN_GAP de distância.
-  const { laneOf, numLanes } = useMemo(() => {
-    const items = ordenadas
-      .map((ia) => ({ slug: ia.slug, x: xDe(ia.slug, finalFrame[ia.slug] ?? 0) }))
-      .sort((a, b) => b.x - a.x);
-    const lanesLast: number[] = [];
-    const lane: Record<string, number> = {};
-    for (const it of items) {
-      let placed = -1;
-      for (let l = 0; l < lanesLast.length; l++) {
-        if (lanesLast[l] - it.x >= MIN_GAP) {
+  // Lanes DINÂMICAS, jogo a jogo: como uma corrida SEM raias fixas. Em cada
+  // frame, processamos por X (desc) e cada IA tenta MANTER a faixa do frame
+  // anterior; só sai dela quando alguém à frente está perto demais (< MIN_GAP)
+  // — aí procura outro espaço. Resultado: atletas trocam de faixa pra brigar por
+  // espaço, e a saída NÃO determina a posição final. Entre frames inteiros o Y
+  // é interpolado ⇒ a troca de faixa vira um deslize orgânico.
+  const { laneFrames, numLanes } = useMemo(() => {
+    const lf: Record<string, number>[] = [];
+    let prev: Record<string, number> = {};
+    let maxLanes = 1;
+    for (let k = 0; k < frames.length; k++) {
+      const items = ordenadas
+        .map((ia) => ({
+          slug: ia.slug,
+          x: clamp(((frames[k]?.pts[ia.slug] ?? 0) / maxPts) * SPAN, 0, SPAN),
+        }))
+        .sort((a, b) => b.x - a.x);
+      const lanesLast: (number | undefined)[] = []; // último X ocupado por faixa
+      const assign: Record<string, number> = {};
+      const livre = (l: number, x: number) =>
+        lanesLast[l] === undefined || (lanesLast[l] as number) - x >= MIN_GAP;
+      for (const it of items) {
+        let placed = -1;
+        const pl = prev[it.slug];
+        if (pl !== undefined && livre(pl, it.x)) placed = pl; // mantém a faixa
+        if (placed < 0) {
+          let l = 0;
+          while (!livre(l, it.x)) l++; // primeira faixa livre (inclui buracos)
           placed = l;
-          lanesLast[l] = it.x;
-          break;
         }
+        lanesLast[placed] = it.x;
+        assign[it.slug] = placed;
+        if (placed + 1 > maxLanes) maxLanes = placed + 1;
       }
-      if (placed < 0) {
-        lanesLast.push(it.x);
-        placed = lanesLast.length - 1;
-      }
-      lane[it.slug] = placed;
+      lf.push(assign);
+      prev = assign;
     }
-    return { laneOf: lane, numLanes: lanesLast.length };
+    return { laneFrames: lf, numLanes: maxLanes };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ordenadas, finalFrame, maxPts]);
+  }, [ordenadas, frames, maxPts]);
 
   useEffect(() => {
     if (pausado || ultimo <= 0) return;
@@ -503,7 +536,7 @@ export default function CorridaTopDown({
   }
 
   return (
-    <div className="cn-card">
+    <div className="cn-card" ref={cardRef}>
       <div className="cn-header">
         <div className="cn-frame-info">
           <span className="cn-frame-lbl">
@@ -546,6 +579,29 @@ export default function CorridaTopDown({
           >
             ⟲ Início
           </button>
+          <button
+            onClick={() => {
+              setModoCamera((m) => {
+                const novo = m === "dinamico" ? "simples" : "dinamico";
+                track("corrida_modo_camera", { modo: "A", camera: novo });
+                return novo;
+              });
+            }}
+            className="cn-btn"
+            title="Alternar entre câmera dinâmica (cinematográfica) e simples (segue o pelotão)"
+          >
+            {modoCamera === "dinamico" ? "🎬 Câmera dinâmica" : "📷 Câmera simples"}
+          </button>
+          <button
+            onClick={() => {
+              track("corrida_fullscreen", { modo: "A", entrando: !isFs });
+              toggleFullscreen();
+            }}
+            className="cn-btn"
+            title={isFs ? "Sair da tela cheia" : "Tela cheia"}
+          >
+            {isFs ? "✕ Sair" : "⛶ Tela cheia"}
+          </button>
         </div>
       </div>
 
@@ -574,14 +630,6 @@ export default function CorridaTopDown({
           />
         ))}
 
-        {Array.from({ length: numLanes }).map((_, i) => (
-          <div
-            key={i}
-            className="cn-raia"
-            style={{ top: `${i * LANE_H + LANE_H / 2 + 6}px` }}
-          />
-        ))}
-
         {ordenadas.map((ia, idx) => {
           const ptsPrev = frames[Math.max(fA - 1, 0)]?.pts[ia.slug] ?? 0;
           const ptsA = frames[fA]?.pts[ia.slug] ?? 0;
@@ -592,7 +640,12 @@ export default function CorridaTopDown({
           const ptsNow = monoHermite(ptsPrev, ptsA, ptsB, ptsNext, frac);
           const ptsLabel = Math.round(ptsNow);
           const wNow = clamp(ptsNow / maxPts, 0, 1);
-          const lane = laneOf[ia.slug] ?? 0;
+          // Faixa (Y) interpolada entre os frames inteiros ⇒ troca de faixa vira
+          // um deslize suave (corrida sem raias).
+          const laneA = laneFrames[fA]?.[ia.slug] ?? 0;
+          const laneB = laneFrames[fB]?.[ia.slug] ?? laneA;
+          const le = frac * frac * (3 - 2 * frac); // smoothstep no eixo Y
+          const lane = laneA + (laneB - laneA) * le;
           const marca = marcaDe(ia.slug);
           const temMascote = COM_MASCOTE.has(ia.slug);
           // "Bateu": errou completamente o jogo em apuração (ganhou 0 ponto).
@@ -670,6 +723,15 @@ export default function CorridaTopDown({
           padding: 16px;
           overflow: hidden;
         }
+        /* Em tela cheia o card ocupa toda a viewport e centraliza a pista. */
+        .cn-card:fullscreen {
+          width: 100vw; height: 100vh;
+          border-radius: 0; border: none;
+          padding: 24px;
+          display: flex; flex-direction: column;
+          justify-content: center;
+        }
+        .cn-card:fullscreen .cn-pista { flex: 1; min-height: 0; }
         .cn-header {
           display: flex; align-items: center; justify-content: space-between;
           gap: 14px; flex-wrap: wrap; margin-bottom: 10px;
@@ -740,14 +802,6 @@ export default function CorridaTopDown({
           position: absolute; inset: 0;
           background: radial-gradient(ellipse at center, rgba(168,85,247,0.10), transparent 72%);
           z-index: 1; pointer-events: none;
-        }
-        .cn-raia {
-          position: absolute;
-          left: 0; right: 0;
-          height: 1px;
-          border-top: 1px dashed rgba(255,255,255,0.08);
-          transform: translateY(-50%);
-          z-index: 1;
         }
         .cn-largada {
           position: absolute;
