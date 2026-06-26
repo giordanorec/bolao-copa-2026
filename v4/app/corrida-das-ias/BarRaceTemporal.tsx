@@ -23,10 +23,11 @@ type Frame = {
 };
 
 const TOP_N = 10;
-const DURACAO_FRAME_MS = 3500;
-const PAUSA_FINAL_MS = 4000;
+const DURACAO_FRAME_MS = 1250;
+const PAUSA_FINAL_MS = 2600;
 const ALTURA_BARRA = 44;
 const GAP_BARRA = 10;
+const VELOCIDADES = [1, 2, 4, 8];
 
 type Posicionada = IA & { pts: number; rank: number };
 
@@ -39,6 +40,7 @@ export default function BarRaceTemporal({
 }) {
   const [frameIdx, setFrameIdx] = useState(0);
   const [pausado, setPausado] = useState(false);
+  const [vel, setVel] = useState(1);
 
   // Disparo único ao montar — engagement com Modo B.
   useEffect(() => {
@@ -65,12 +67,16 @@ export default function BarRaceTemporal({
   useEffect(() => {
     if (pausado) return;
     const ehUltimo = frameIdx === frames.length - 1;
-    const tempo = ehUltimo ? PAUSA_FINAL_MS : DURACAO_FRAME_MS;
+    const tempo = (ehUltimo ? PAUSA_FINAL_MS : DURACAO_FRAME_MS) / vel;
     const id = setTimeout(() => {
       setFrameIdx((i) => (i + 1) % frames.length);
     }, tempo);
     return () => clearTimeout(id);
-  }, [frameIdx, frames.length, pausado]);
+  }, [frameIdx, frames.length, pausado, vel]);
+
+  // Durações das transições escalam com a velocidade (ficam < tempo de frame).
+  const tMove = +((DURACAO_FRAME_MS / 1000) * 0.62 / vel).toFixed(3);
+  const tFade = +(0.34 / vel).toFixed(3);
 
   const alturaPista = TOP_N * (ALTURA_BARRA + GAP_BARRA);
   const f = frames[frameIdx];
@@ -85,6 +91,18 @@ export default function BarRaceTemporal({
           <span className="brt-frame-rotulo">{f?.rotulo ?? ""}</span>
         </div>
         <div className="brt-controles">
+          <button
+            onClick={() => {
+              const prox =
+                VELOCIDADES[(VELOCIDADES.indexOf(vel) + 1) % VELOCIDADES.length];
+              setVel(prox);
+              track("corrida_velocidade", { modo: "B", velocidade: prox });
+            }}
+            className="brt-btn"
+            title="Velocidade da animação"
+          >
+            ⚡ {vel}×
+          </button>
           <button onClick={() => setPausado((p) => !p)} className="brt-btn">
             {pausado ? "▶ Tocar" : "⏸ Pausar"}
           </button>
@@ -124,9 +142,9 @@ export default function BarRaceTemporal({
                 }}
                 exit={{ opacity: 0, y: 30 }}
                 transition={{
-                  top: { duration: 2.5, ease: [0.22, 1, 0.36, 1] },
-                  opacity: { duration: 0.8 },
-                  y: { duration: 0.8 },
+                  top: { duration: tMove, ease: [0.22, 1, 0.36, 1] },
+                  opacity: { duration: tFade },
+                  y: { duration: tFade },
                 }}
                 style={{
                   ["--cor" as string]: marca.cor,
@@ -138,7 +156,7 @@ export default function BarRaceTemporal({
                     className="brt-bar-fill"
                     initial={{ width: 0 }}
                     animate={{ width: `${widthPct}%` }}
-                    transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: tMove, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <div className="brt-bar-info">
                     {COM_MASCOTE.has(p.slug) ? (
@@ -161,7 +179,7 @@ export default function BarRaceTemporal({
                   key={`${p.slug}-${p.pts}`}
                   initial={{ scale: 1.4, color: "#fbbf24" }}
                   animate={{ scale: 1, color: "var(--secondary)" }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: tFade }}
                 >
                   {p.pts}
                 </motion.span>

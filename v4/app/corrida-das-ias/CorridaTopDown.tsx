@@ -27,6 +27,7 @@ const SEG_MS = 520; // tempo pra animar UM jogo — bem mais rápido que antes
 const PAUSA_ANTES_MS = 4600;
 const PAUSA_FINAL_MS = 2000; // pausa depois do zoom-out, antes de reiniciar
 const REVEAL_MS = 5200; // duração do zoom-out final (lento, dá pra acompanhar)
+const VELOCIDADES = [1, 2, 4, 8];
 
 // === Posição vertical ORGÂNICA (corrida sem raias) ===
 // Ninguém tem raia fixa. Cada IA tem uma "casa" vertical estável (hash do slug,
@@ -173,6 +174,10 @@ export default function CorridaTopDown({
   );
   const modoRef = useRef<"dinamico" | "simples">("dinamico");
   modoRef.current = modoCamera;
+  // Velocidade da animação (multiplicador). O rAF lê via ref.
+  const [vel, setVel] = useState(1);
+  const velRef = useRef(1);
+  velRef.current = vel;
   // Fullscreen do card. isFs = fullscreen nativo; pseudoFs = fallback CSS p/
   // navegadores que não permitem requestFullscreen num div (iOS Safari).
   const cardRef = useRef<HTMLDivElement>(null);
@@ -497,7 +502,7 @@ export default function CorridaTopDown({
       if (!esperandoFimRef.current) {
         const seg = Math.min(Math.floor(posRef.current), ultimo - 1);
         const segDur = segFastRef.current[seg] ? SEG_MS / 2 : SEG_MS;
-        let np = posRef.current + dt / segDur;
+        let np = posRef.current + (dt * velRef.current) / segDur;
         if (np >= ultimo) {
           np = ultimo;
           esperandoFimRef.current = true; // dispara o zoom-out final (reveal)
@@ -632,6 +637,18 @@ export default function CorridaTopDown({
             />
             <span>nome</span>
           </label>
+          <button
+            onClick={() => {
+              const prox =
+                VELOCIDADES[(VELOCIDADES.indexOf(vel) + 1) % VELOCIDADES.length];
+              setVel(prox);
+              track("corrida_velocidade", { modo: "A", velocidade: prox });
+            }}
+            className="cn-btn"
+            title="Velocidade da animação"
+          >
+            ⚡ {vel}×
+          </button>
           <button
             onClick={() => {
               setPausado((p) => {
