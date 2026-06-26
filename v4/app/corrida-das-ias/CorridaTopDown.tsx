@@ -34,26 +34,21 @@ const PAUSA_FINAL_MS = 4800; // pausa no fim: dá tempo do zoom-out revelar a ch
 const MIN_HALF = 0.05; // meia-largura mínima ⇒ zoom MÁXIMO quando agrupados
 const VIS_K = 1.9; // folga multiplicativa em torno dos extremos (espaçamento maior)
 const EDGE_PAD = 0.03; // folga absoluta pras pontas não colarem na borda
-const CAM_EASE = 0.085; // inércia: suavização do movimento da câmera por frame
+const CAM_EASE = 0.1; // inércia: suavização do movimento da câmera por frame
 
-// === Câmera cinematográfica ===
-// Em vez de só dar zoom in/out no centro de massa, um "diretor" troca de PLANOS
-// conforme o que acontece na corrida (estabelecimento aberto, close nos líderes,
-// duelo numa troca de posição, travelling/passeio pelo pelotão). Cada plano
-// compõe com técnicas de cinegrafia: regra dos terços, lead room (espaço à
-// frente do movimento), push-in lento (dolly) e um drift orgânico tipo Ken
-// Burns. A câmera pode sair do centro de massa.
-const SHOT_MIN_MS = 2800; // duração mínima de um plano (evita corte nervoso)
-const SHOT_MAX_MS = 5600; // duração máxima
-const HALF_CLOSE = 0.085; // meia-largura de um close (zoom forte nos líderes)
-const HALF_DUEL = 0.11; // meia-largura de um plano de duelo
-const PUSH_IN = 0.16; // quanto cada plano fecha ao longo da vida (push-in/dolly)
-const LEAD_ROOM = 0.3; // regra dos terços: sujeito a ~1/3, espaço à frente
-const KB_AMP_C = 0.06; // drift lateral (Ken Burns), fração de h
-const KB_AMP_H = 0.08; // drift de zoom (Ken Burns)
-const KB_W1 = (2 * Math.PI) / 11; // freq. do drift lateral (rad/s)
-const KB_W2 = (2 * Math.PI) / 7.3; // freq. do drift de zoom — incomensurável
+// === Câmera de transmissão (follow contínuo) ===
+// Como numa transmissão de atletismo/futebol: a câmera NUNCA perde o líder de
+// vista e se move de forma contínua e fluida (sem cortes nem freadas pra segurar
+// quadro estático). Enquadra do pelotão relevante até um pouco à frente do líder
+// (lead room). Quando a briga na frente está acirrada, fecha suavemente nos
+// primeiros; quando o pelotão espalha, abre. Sem "diretor" de planos discretos.
+const LEAD_ROOM = 0.22; // espaço à frente do líder (fração do tamanho do pelotão)
+const BACK_CAP = 0.55; // quanto, no máx., mostramos atrás do líder (fração da corrida)
 const FRONT_TIGHT = 0.06; // gap (fração) abaixo do qual a briga na frente é acirrada
+const TIGHT_CROP = 0.55; // o quanto cortamos do fundo pra focar a frente numa briga
+const LEAD_MARGIN = 0.1; // margem mínima (fração da janela) que o líder guarda da borda
+const KB_AMP_H = 0.05; // respiração de zoom (Ken Burns), bem sutil
+const KB_W2 = (2 * Math.PI) / 8.5; // freq. da respiração de zoom (rad/s)
 // Linha de chegada = FIM DA COPA inteira (104 jogos), bem distante; só aparece
 // no zoom-out final.
 const TOTAL_JOGOS = 104;
@@ -65,12 +60,12 @@ const BAND_W = 0.038; // largura de cada faixa (fração da corrida)
 // matiz tem um claro e um escuro bem distintos (lê-se o parallax), e a troca de
 // fase muda o matiz com clareza — azul (grupos) → rosa (16-avos) → etc.
 const FASES = [
-  { ini: 1, fim: 72, dark: "#243748", light: "#36506a" }, // grupos — azul
-  { ini: 73, fim: 88, dark: "#45293a", light: "#674055" }, // 16-avos — rosa
-  { ini: 89, fim: 96, dark: "#45382a", light: "#67553c" }, // oitavas — laranja
-  { ini: 97, fim: 100, dark: "#283f30", light: "#3c5e48" }, // quartas — verde
-  { ini: 101, fim: 102, dark: "#332a45", light: "#4c4066" }, // semis — roxo
-  { ini: 103, fim: 104, dark: "#433e28", light: "#655e3c" }, // decisão — ouro
+  { ini: 1, fim: 72, dark: "#1f3b5c", light: "#2f5685" }, // grupos — azul
+  { ini: 73, fim: 88, dark: "#5a2746", light: "#883a68" }, // 16-avos — rosa
+  { ini: 89, fim: 96, dark: "#5a3a22", light: "#875833" }, // oitavas — laranja
+  { ini: 97, fim: 100, dark: "#1f4a34", light: "#2f704f" }, // quartas — verde
+  { ini: 101, fim: 102, dark: "#3a2a5c", light: "#564088" }, // semis — roxo
+  { ini: 103, fim: 104, dark: "#524a22", light: "#7d7033" }, // decisão — ouro
 ];
 
 const clamp = (v: number, lo: number, hi: number) =>
@@ -97,15 +92,15 @@ const monoHermite = (
   const d0 = y1 - y0; // secante do segmento atual
   const dm1 = y0 - yPrev; // secante anterior
   const d1 = yNext - y1; // secante seguinte
-  let m0: number;
-  let m1: number;
-  if (d0 === 0) {
-    // Jogo sem pontuação: fica parado, sem bump espúrio.
-    m0 = 0;
-    m1 = 0;
-  } else {
-    m0 = (dm1 + d0) / 2;
-    m1 = (d0 + d1) / 2;
+  let m0 = 0;
+  let m1 = 0;
+  // Tangente POR NÓ (não por segmento), pra a velocidade casar entre segmentos
+  // vizinhos (C1). Como os pontos só crescem, a tangente num nó só zera quando a
+  // secante ADJACENTE é zero — aí o corredor DESACELERA até parar (entrando num
+  // jogo sem pontos) e ACELERA do zero ao sair, sem salto 0→100 nem freada seca.
+  if (d0 !== 0) {
+    m0 = dm1 === 0 ? 0 : (dm1 + d0) / 2;
+    m1 = d1 === 0 ? 0 : (d0 + d1) / 2;
     if (m0 < 0) m0 = 0; // dados monotônicos (pontos só sobem)
     if (m1 < 0) m1 = 0;
     const a = m0 / d0;
@@ -166,17 +161,9 @@ export default function CorridaTopDown({
   // Câmera no mundo: centro c + meia-largura h (fração da corrida).
   const camRef = useRef({ c: MIN_HALF, h: MIN_HALF });
   const [cam, setCam] = useState({ c: MIN_HALF, h: MIN_HALF });
-  // Plano corrente do "diretor" de câmera.
-  const shotRef = useRef({
-    kind: "wide" as "wide" | "lead" | "duel" | "truck",
-    born: 0,
-    life: SHOT_MAX_MS,
-    cFrom: MIN_HALF,
-    cTo: MIN_HALF,
-    hFrom: MIN_HALF,
-    hTo: MIN_HALF,
-    cycle: 0,
-  });
+  // Posição (fração) do líder no último frame de câmera — usada como trava de
+  // segurança pra ele nunca sair de quadro, mesmo com a inércia da câmera.
+  const leadRef = useRef(0);
 
   const ultimo = frames.length - 1;
 
@@ -188,7 +175,6 @@ export default function CorridaTopDown({
     const wf = wideFraming(i);
     camRef.current = { c: wf.c, h: wf.h };
     setCam({ c: wf.c, h: wf.h });
-    shotRef.current.born = 0; // força um novo plano no próximo frame
   };
 
   const ordenadas = useMemo(
@@ -258,129 +244,64 @@ export default function CorridaTopDown({
     return { c, h };
   };
 
-  // Há um momento "interessante" agora? (troca na liderança, briga acirrada na
-  // frente, ou qualquer troca de posição no pelotão).
-  const eventoForte = (s: ReturnType<typeof packStats>) => {
-    if (s.orderA[0]?.slug !== s.orderB[0]?.slug) return true; // troca de líder
-    if ((s.byNow[0]?.w ?? 0) - (s.byNow[1]?.w ?? 0) < FRONT_TIGHT) return true;
-    for (let i = 0; i < s.byNow.length; i++) {
-      if (s.orderA[i]?.slug !== s.orderB[i]?.slug) return true; // troca de posição
-    }
-    return false;
-  };
-
-  // Escolhe um novo plano com base no que está acontecendo na corrida.
-  const chooseShot = (now: number, p: number, s: ReturnType<typeof packStats>) => {
-    const sh = shotRef.current;
-    const leadChange = s.orderA[0]?.slug !== s.orderB[0]?.slug;
-    const frontGap = (s.byNow[0]?.w ?? 0) - (s.byNow[1]?.w ?? 0);
-    let swapAt = -1;
-    for (let i = 0; i < s.byNow.length; i++) {
-      if (s.orderA[i]?.slug !== s.orderB[i]?.slug) {
-        swapAt = i;
-        break;
-      }
-    }
-    const top = s.byNow;
-
-    let kind: typeof sh.kind;
-    let cFrom: number;
-    let cTo: number;
-    let hFrom: number;
-    let hTo: number;
-
-    if (leadChange || frontGap < FRONT_TIGHT) {
-      // Close nos líderes — zoom grande só nos primeiros (momento quente).
-      kind = "lead";
-      const w0 = top[0]?.w ?? 0;
-      const w1 = top[1]?.w ?? w0;
-      const focus = (w0 + w1) / 2;
-      hTo = Math.max(HALF_CLOSE, (Math.abs(w0 - w1) / 2) * 1.5 + EDGE_PAD);
-      hFrom = hTo * (1 + PUSH_IN);
-      cTo = focus + LEAD_ROOM * hTo;
-      cFrom = focus + LEAD_ROOM * hFrom;
-    } else if (swapAt >= 0) {
-      // Duelo: close na dupla que está trocando de posição.
-      kind = "duel";
-      const wi = top[swapAt]?.w ?? 0;
-      const wj = top[Math.min(swapAt + 1, top.length - 1)]?.w ?? wi;
-      const focus = (wi + wj) / 2;
-      hTo = Math.max(HALF_DUEL, (Math.abs(wi - wj) / 2) * 1.6 + EDGE_PAD);
-      hFrom = hTo * (1 + PUSH_IN);
-      cTo = focus + LEAD_ROOM * hTo;
-      cFrom = focus + LEAD_ROOM * hFrom;
-    } else {
-      // Calmaria: alterna estabelecimento <-> travelling (passeio pelo pelotão).
-      sh.cycle = (sh.cycle + 1) % 2;
-      if (sh.cycle === 0) {
-        kind = "wide";
-        const wf = wideFraming(p);
-        hTo = wf.h;
-        hFrom = wf.h * (1 + PUSH_IN * 0.6);
-        cTo = wf.c;
-        cFrom = wf.c;
-      } else {
-        kind = "truck";
-        const back = s.wMin;
-        const front = s.wMax;
-        hTo = Math.max(HALF_DUEL, ((front - back) / 2) * 0.85 + EDGE_PAD);
-        hFrom = hTo;
-        cFrom = back + hTo; // começa no fundo do pelotão
-        cTo = front + LEAD_ROOM * hTo; // desliza até a frente, com lead room
-      }
-    }
-
-    if (cFrom - hFrom < 0) cFrom = hFrom; // não rola atrás da largada
-    if (cTo - hTo < 0) cTo = hTo;
-
-    sh.kind = kind;
-    sh.born = now;
-    sh.life = SHOT_MIN_MS + Math.random() * (SHOT_MAX_MS - SHOT_MIN_MS);
-    sh.cFrom = cFrom;
-    sh.cTo = cTo;
-    sh.hFrom = hFrom;
-    sh.hTo = hTo;
-  };
-
-  // Alvo cinematográfico da câmera. reveal (fim): afasta da largada até a chegada.
+  // Alvo da câmera. reveal (fim): afasta da largada até a chegada. Fora isso,
+  // FOLLOW contínuo de transmissão: enquadra do fundo relevante até um pouco à
+  // frente do líder, fechando suavemente quando a briga na frente aperta. O
+  // líder NUNCA sai de quadro; nada de cortes nem freadas pra segurar quadro.
   const cineTarget = (p: number, now: number) => {
     if (esperandoFimRef.current) {
       const left = -EDGE_PAD;
       const right = worldFinish + EDGE_PAD;
+      leadRef.current = worldFinish;
       return {
         c: (left + right) / 2,
         h: Math.max(MIN_HALF, (right - left) / 2),
         reveal: true,
       };
     }
-    // Modo simples: só segue o pelotão (sem planos, sem Ken Burns).
+    const s = packStats(p);
+    const wLead = s.byNow[0]?.w ?? 0;
+    const wSecond = s.byNow[1]?.w ?? wLead;
+    leadRef.current = wLead;
+
+    // Fundo relevante: o pelotão, mas sem deixar um retardatário lá atrás obrigar
+    // um zoom-out que apequena todo mundo. Limita o quanto mostramos atrás.
+    const back = Math.max(s.wMin, wLead - BACK_CAP);
+    const span = Math.max(0.0001, wLead - back);
+
+    // Janela base: do fundo até um pouco à frente do líder (lead room).
+    let left = back - EDGE_PAD;
+    let right = wLead + span * LEAD_ROOM + EDGE_PAD;
+
+    // Briga acirrada na frente ⇒ fecha nos primeiros: corta parte do fundo,
+    // mantendo o líder e o 2º em quadro (foco na disputa, sem perder ninguém
+    // importante). Contínuo (proporcional ao aperto), sem corte.
+    const frontGap = wLead - wSecond;
+    const tight = clamp(1 - frontGap / FRONT_TIGHT, 0, 1); // 1 = muito acirrada
+    if (tight > 0) {
+      const cropTo = wSecond - span * 0.18; // limite até onde o fundo recua
+      left += (cropTo - left) * TIGHT_CROP * tight;
+    }
+
+    let h = Math.max(MIN_HALF, (right - left) / 2);
+    let c = (left + right) / 2;
+
+    // Modo simples: segue o pelotão sem respiração nem fechamento de disputa.
     if (modoRef.current === "simples") {
       const wf = wideFraming(p);
+      leadRef.current = wLead;
       return { c: wf.c, h: wf.h, reveal: false };
     }
-    const s = packStats(p);
-    const sh = shotRef.current;
-    const lived = now - sh.born;
-    // Corta de plano: ao fim da vida, OU num evento forte (com plano já estável).
-    const querCortar =
-      lived >= sh.life ||
-      (lived > SHOT_MIN_MS &&
-        sh.kind !== "lead" &&
-        sh.kind !== "duel" &&
-        eventoForte(s));
-    if (querCortar) chooseShot(now, p, s);
 
-    const prog = clamp((now - sh.born) / sh.life, 0, 1);
-    const e = prog * prog * (3 - 2 * prog); // smoothstep do movimento do plano
-    let baseC = sh.cFrom + (sh.cTo - sh.cFrom) * e;
-    let baseH = sh.hFrom + (sh.hTo - sh.hFrom) * e;
-    // Ken Burns: drift lento e orgânico (lateral + zoom), freqs incomensuráveis.
-    const tt = now / 1000;
-    baseC += KB_AMP_C * baseH * Math.sin(tt * KB_W1);
-    baseH *= 1 + KB_AMP_H * Math.sin(tt * KB_W2);
-    baseH = Math.max(MIN_HALF, baseH);
-    if (baseC - baseH < 0) baseC = baseH;
-    return { c: baseC, h: baseH, reveal: false };
+    // Respiração de zoom (Ken Burns) bem sutil — só vida, não desenquadra.
+    h *= 1 + KB_AMP_H * Math.sin((now / 1000) * KB_W2);
+    h = Math.max(MIN_HALF, h);
+
+    // Trava: o líder guarda uma margem da borda direita (nunca sai de quadro).
+    const margin = LEAD_MARGIN * (2 * h);
+    if (wLead > c + h - margin) c = wLead - h + margin;
+    if (c - h < 0) c = h;
+    return { c, h, reveal: false };
   };
 
   // Sincroniza isFs com o estado real de fullscreen (inclui ESC do navegador).
@@ -404,7 +325,6 @@ export default function CorridaTopDown({
     const wf = wideFraming(0);
     camRef.current = { c: wf.c, h: wf.h };
     setCam({ c: wf.c, h: wf.h });
-    shotRef.current.born = 0;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -483,11 +403,20 @@ export default function CorridaTopDown({
         setPos(np);
       }
       // Câmera roda SEMPRE — inclusive na pausa final, pro zoom-out revelar a
-      // chegada. O diretor escolhe o plano; aqui só suavizamos (inércia).
+      // chegada. cineTarget dá o alvo; aqui só suavizamos (inércia/follow).
       const t = cineTarget(posRef.current, now);
       const c = camRef.current;
       c.c += (t.c - c.c) * CAM_EASE;
       c.h += (t.h - c.h) * CAM_EASE;
+      // Trava de segurança PÓS-inércia: com o follow, a câmera atrasada nunca
+      // pode deixar o líder escapar pela direita (como na TV: não se perde quem
+      // está na frente). Não vale no zoom-out final (reveal).
+      if (!t.reveal) {
+        const margin = LEAD_MARGIN * (2 * c.h);
+        if (leadRef.current > c.c + c.h - margin)
+          c.c = leadRef.current - c.h + margin;
+        if (c.c - c.h < 0) c.c = c.h;
+      }
       setCam({ c: c.c, h: c.h });
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -640,6 +569,20 @@ export default function CorridaTopDown({
           const ptsNow = monoHermite(ptsPrev, ptsA, ptsB, ptsNext, frac);
           const ptsLabel = Math.round(ptsNow);
           const wNow = clamp(ptsNow / maxPts, 0, 1);
+          // Velocidade INSTANTÂNEA (derivada da curva monotônica): rápida no meio
+          // do segmento, ~0 parado. Alimenta o balanço (swing) — quem corre mais
+          // rápido balança mais; quem está parado fica quieto.
+          const velRaw =
+            (monoHermite(ptsPrev, ptsA, ptsB, ptsNext, Math.min(frac + 0.03, 1)) -
+              monoHermite(
+                ptsPrev,
+                ptsA,
+                ptsB,
+                ptsNext,
+                Math.max(frac - 0.03, 0),
+              )) /
+            0.06;
+          const sw = clamp(Math.abs(velRaw) / 10, 0, 1);
           // Faixa (Y) interpolada entre os frames inteiros ⇒ troca de faixa vira
           // um deslize suave (corrida sem raias).
           const laneA = laneFrames[fA]?.[ia.slug] ?? 0;
@@ -665,6 +608,7 @@ export default function CorridaTopDown({
                 zIndex: Math.round(ptsNow) + 10,
                 ["--cor" as string]: marca.cor,
                 ["--swing-delay" as string]: swingDelay,
+                ["--sw" as string]: sw.toFixed(3),
               }}
             >
               {bateu && <span className="cn-fumaca" aria-hidden>💨</span>}
@@ -708,11 +652,11 @@ export default function CorridaTopDown({
       </div>
 
       <p className="cn-legenda">
-        Câmera cinematográfica: troca de planos conforme a corrida — abre pro
-        pelotão, fecha nos líderes numa briga acirrada, persegue um duelo, ou
-        passeia pela pista. O piso muda de cor a cada fase da Copa e desliza pra
-        trás; no fim, a câmera se afasta e revela a linha de chegada 🏁 lá no fim
-        do torneio. Empatadas dividem a faixa — passe o dedo/mouse pra ver o nome.
+        Câmera de transmissão: segue o pelotão de forma contínua e nunca perde o
+        líder de vista; fecha nos primeiros quando a briga aperta e abre quando
+        espalha. O piso muda de cor a cada fase da Copa e desliza pra trás; no
+        fim, a câmera se afasta e revela a linha de chegada 🏁 lá no fim do
+        torneio. Empatadas dividem a faixa — passe o dedo/mouse pra ver o nome.
       </p>
 
       <style>{`
@@ -885,18 +829,20 @@ export default function CorridaTopDown({
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-        /* Gait sutil: saltita um pouquinho enquanto pendula. Cada IA recebe
-           um animation-delay próprio via --swing-delay pra ficar desencontrado. */
+        /* Gait: saltita e pendula com AMPLITUDE proporcional à velocidade atual
+           (--sw, 0..1) — quem corre mais rápido balança mais; parado fica quieto.
+           Cada IA tem um --swing-delay próprio pra ficar desencontrado. */
         @keyframes cn-trote {
-          0%   { transform: translateY(0)   rotate(-2deg); }
-          25%  { transform: translateY(-1.5px) rotate(0deg); }
-          50%  { transform: translateY(0)   rotate(2deg); }
-          75%  { transform: translateY(-1.5px) rotate(0deg); }
-          100% { transform: translateY(0)   rotate(-2deg); }
+          0%   { transform: translateY(0) rotate(calc(var(--sw, 0) * -4deg)); }
+          25%  { transform: translateY(calc(var(--sw, 0) * -2.5px)) rotate(0deg); }
+          50%  { transform: translateY(0) rotate(calc(var(--sw, 0) * 4deg)); }
+          75%  { transform: translateY(calc(var(--sw, 0) * -2.5px)) rotate(0deg); }
+          100% { transform: translateY(0) rotate(calc(var(--sw, 0) * -4deg)); }
         }
         .cn-runner.correndo:not(.batendo) .cn-mascote,
         .cn-runner.correndo:not(.batendo) .cn-marca {
-          animation: cn-trote 0.62s ease-in-out infinite;
+          /* mais rápido ⇒ ciclo mais curto (pernada mais acelerada) */
+          animation: cn-trote calc(0.7s - var(--sw, 0) * 0.35s) ease-in-out infinite;
           animation-delay: var(--swing-delay, 0s);
           transform-origin: 50% 85%;
         }
