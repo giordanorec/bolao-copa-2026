@@ -55,9 +55,13 @@ const Y_MAX_STEP = 0.05; // deslocamento vertical máximo por jogo (fração da 
 // nessa mesma unidade; a câmera nunca fecha além do que mantém a pista na tela.
 const TRACK_W = 0.075; // largura (vertical) da pista, em unidades de mundo
 const MASCOTE_W = 0.0145; // tamanho-base do personagem, em unidades de mundo
-// No zoom máximo (revelação final) a pista ocupa só esta fração da altura; o
-// resto (acima de y1 e abaixo de y2) vira grama/paisagem, como pista de verdade.
+// Teto de zoom (fecha): limita o tamanho máximo do personagem na corrida.
 const TRACK_VFILL = 0.8;
+// No zoom-out final a pista ocupa só esta fração da altura; o resto (acima de y1
+// e abaixo de y2) vira grama. Durante a corrida (rev=0) a pista ocupa 100%.
+const REVEAL_TRACK_FRAC = 0.74;
+// Piso de tamanho do personagem no reveal (px) — grande o bastante pra ler quem é.
+const REVEAL_CHAR_MIN = 30;
 
 // Câmera de transmissão (follow contínuo): NUNCA perde o líder de vista, move-se
 // de forma contínua (sem cortes nem freadas). Enquadra um grupo de foco em torno
@@ -194,7 +198,9 @@ export default function CorridaTopDown({
   const segFastRef = useRef<boolean[]>([]);
   // Câmera no mundo: centro c + meia-largura h (fração da corrida).
   const camRef = useRef({ c: MIN_HALF, h: MIN_HALF });
-  const [cam, setCam] = useState({ c: MIN_HALF, h: MIN_HALF });
+  // rev = progresso do zoom-out final (0 durante a corrida, 0→1 no reveal).
+  // Controla a faixa da pista (grama só no fim) e o piso de tamanho dos bichos.
+  const [cam, setCam] = useState({ c: MIN_HALF, h: MIN_HALF, rev: 0 });
   // Posição (fração) do líder no último frame de câmera — usada como trava de
   // segurança pra ele nunca sair de quadro, mesmo com a inércia da câmera.
   const leadRef = useRef(0);
@@ -212,7 +218,7 @@ export default function CorridaTopDown({
     revealRef.current = { t0: 0, c0: 0, h0: 0, scheduled: false };
     const wf = wideFraming(i);
     camRef.current = { c: wf.c, h: wf.h };
-    setCam({ c: wf.c, h: wf.h });
+    setCam({ c: wf.c, h: wf.h, rev: 0 });
   };
 
   // Zoom mínimo (meia-largura máxima de fechamento): nunca fechar tanto que a
@@ -401,7 +407,7 @@ export default function CorridaTopDown({
   useEffect(() => {
     const wf = wideFraming(0);
     camRef.current = { c: wf.c, h: wf.h };
-    setCam({ c: wf.c, h: wf.h });
+    setCam({ c: wf.c, h: wf.h, rev: 0 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -503,6 +509,7 @@ export default function CorridaTopDown({
       // chegada. cineTarget dá o alvo; aqui só suavizamos (inércia/follow).
       const t = cineTarget(posRef.current, now);
       const c = camRef.current;
+      let revMix = 0;
       if (t.reveal) {
         // Zoom-out final: interpolado POR TEMPO (lento, REVEAL_MS), do quadro
         // atual até a vista completa da corrida. A pausa (PAUSA_FINAL_MS) só
@@ -524,6 +531,7 @@ export default function CorridaTopDown({
           const e = prog * prog * (3 - 2 * prog); // smoothstep
           c.c = rv.c0 + (t.c - rv.c0) * e;
           c.h = rv.h0 + (t.h - rv.h0) * e;
+          revMix = e; // só agora a pista estreita e a grama aparece
           if (prog >= 1 && !rv.scheduled) {
             rv.scheduled = true;
             window.setTimeout(() => irPara(0), PAUSA_FINAL_MS);
@@ -540,7 +548,7 @@ export default function CorridaTopDown({
           c.c = leadRef.current - c.h + margin;
         if (c.c - c.h < 0) c.c = c.h;
       }
-      setCam({ c: c.c, h: c.h });
+      setCam({ c: c.c, h: c.h, rev: revMix });
       rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
@@ -566,13 +574,16 @@ export default function CorridaTopDown({
   // eixo X (faixas), o eixo Y (posição vertical) e o tamanho do personagem — por
   // isso a razão personagem ÷ faixa é CONSTANTE em qualquer zoom (pista real).
   const worldUnitPx = pistaPx.w / camW;
-  const charPx = Math.max(10, MASCOTE_W * worldUnitPx);
-  // Faixa do trilho (superfície de corrida): só esta tira horizontal recebe o
-  // piso colorido; acima (trackTop) e abaixo é grama. Quando a câmera está
-  // fechada, trackPx > altura da pista ⇒ o trilho cobre tudo (grama some); no
-  // zoom final ele encolhe pra TRACK_VFILL e a grama aparece em cima/embaixo.
-  const trackPx = TRACK_W * worldUnitPx;
-  const trackTop = pistaPx.h / 2 - trackPx / 2;
+  // Faixa do trilho: ocupa a ALTURA TODA durante a corrida (rev=0 ⇒ sem grama) e
+  // encolhe pra REVEAL_TRACK_FRAC só no zoom-out final (rev→1 ⇒ grama aparece em
+  // cima/embaixo). Assim a grama só surge na revelação, como pedido.
+  const revealMix = cam.rev;
+  const trackPx = pistaPx.h * (1 - revealMix * (1 - REVEAL_TRACK_FRAC));
+  const trackTop = (pistaPx.h - trackPx) / 2;
+  // Tamanho do bicho: segue a escala do mundo na corrida; no reveal ganha um piso
+  // (REVEAL_CHAR_MIN) pra continuar grande o suficiente pra identificar quem é.
+  const charFloor = 11 + revealMix * (REVEAL_CHAR_MIN - 11);
+  const charPx = Math.max(charFloor, MASCOTE_W * worldUnitPx);
   const xLargada = screenX(0);
   const xChegada = screenX(worldFinish);
 
@@ -747,7 +758,7 @@ export default function CorridaTopDown({
               }`}
               title={`${ia.nome_display} — ${ptsLabel} pts`}
               style={{
-                top: `${pistaPx.h / 2 + (yNow - 0.5) * TRACK_W * worldUnitPx}px`,
+                top: `${pistaPx.h / 2 + (yNow - 0.5) * trackPx}px`,
                 left: `${screenX(wNow)}%`,
                 zIndex: Math.round(ptsNow) + 10,
                 ["--cor" as string]: marca.cor,
