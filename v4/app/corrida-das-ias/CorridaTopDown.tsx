@@ -54,14 +54,14 @@ const Y_MAX_STEP = 0.05; // deslocamento vertical máximo por jogo (fração da 
 // fração-da-corrida (w = pts/maxPts). TRACK_W é a "largura" (vertical) da pista
 // nessa mesma unidade; a câmera nunca fecha além do que mantém a pista na tela.
 const TRACK_W = 0.075; // largura (vertical) da pista, em unidades de mundo
-const MASCOTE_W = 0.0145; // tamanho-base do personagem, em unidades de mundo
+const MASCOTE_W = 0.02175; // tamanho-base do personagem, em unidades de mundo (50% maior)
 // Teto de zoom (fecha): limita o tamanho máximo do personagem na corrida.
 const TRACK_VFILL = 0.8;
 // No zoom-out final a pista ocupa só esta fração da altura; o resto (acima de y1
 // e abaixo de y2) vira grama. Durante a corrida (rev=0) a pista ocupa 100%.
 const REVEAL_TRACK_FRAC = 0.74;
 // Piso de tamanho do personagem no reveal (px) — grande o bastante pra ler quem é.
-const REVEAL_CHAR_MIN = 30;
+const REVEAL_CHAR_MIN = 45;
 
 // Câmera de transmissão (follow contínuo): NUNCA perde o líder de vista, move-se
 // de forma contínua (sem cortes nem freadas). Enquadra um grupo de foco em torno
