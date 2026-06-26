@@ -41,48 +41,70 @@ const BREATH_S = 8; // período da respiração (segundos)
 // Linha de chegada = FIM DA COPA inteira (104 jogos), bem distante; só aparece
 // no zoom-out final.
 const TOTAL_JOGOS = 104;
-// Piso em faixas alternadas (parallax) — cor muda por FASE do torneio.
+// Piso em faixas alternadas (parallax) — cor muda por FASE do torneio. A troca
+// entre fases é SECA (sem degradê): cada fase tem uma cor radicalmente diferente.
 const BAND_W = 0.038; // largura de cada faixa (fração da corrida)
-const FASE_BLEND_INI = 0.7; // a partir de 70% da fase, já vira a cor da próxima
 
 const FASES = [
-  { ini: 1, fim: 72, dark: "#0e2643", light: "#163a64" }, // fase de grupos
-  { ini: 73, fim: 88, dark: "#0c3a39", light: "#14605c" }, // 16-avos
-  { ini: 89, fim: 96, dark: "#2a1a47", light: "#45266f" }, // oitavas
-  { ini: 97, fim: 100, dark: "#3a230a", light: "#6b4012" }, // quartas
-  { ini: 101, fim: 102, dark: "#3a1015", light: "#6b1f28" }, // semis
-  { ini: 103, fim: 104, dark: "#3a2f08", light: "#6b5410" }, // decisão
+  { ini: 1, fim: 72, dark: "#0a2148", light: "#1b4f9c" }, // grupos — azul
+  { ini: 73, fim: 88, dark: "#07382f", light: "#0f8f72" }, // 16-avos — verde-água
+  { ini: 89, fim: 96, dark: "#2c0f4d", light: "#7c3aed" }, // oitavas — roxo
+  { ini: 97, fim: 100, dark: "#3d1c02", light: "#ea7317" }, // quartas — laranja
+  { ini: 101, fim: 102, dark: "#3d0810", light: "#d61f3a" }, // semis — vermelho
+  { ini: 103, fim: 104, dark: "#3a2c02", light: "#d4a017" }, // decisão — ouro
 ];
 
 const clamp = (v: number, lo: number, hi: number) =>
   Math.max(lo, Math.min(hi, v));
 
-// Interpola dois hex (#rrggbb).
-const hexLerp = (a: string, b: string, t: number) => {
-  const pa = [1, 3, 5].map((i) => parseInt(a.slice(i, i + 2), 16));
-  const pb = [1, 3, 5].map((i) => parseInt(b.slice(i, i + 2), 16));
-  const ch = pa.map((v, i) => Math.round(v + (pb[i] - v) * t));
-  return `#${ch.map((v) => v.toString(16).padStart(2, "0")).join("")}`;
-};
-
-// Cores (dark/light) da fase do jogo jn, já transicionando pra próxima no fim.
+// Cor (dark/light) da fase do jogo jn — troca seca, sem transição entre fases.
 const coresFase = (jn: number) => {
   let i = FASES.findIndex((f) => jn >= f.ini && jn <= f.fim);
   if (i < 0) i = jn < 1 ? 0 : FASES.length - 1;
-  const f = FASES[i];
-  const frac = (jn - f.ini) / Math.max(1, f.fim - f.ini + 1);
-  const prox = FASES[i + 1];
-  if (prox && frac > FASE_BLEND_INI) {
-    const t = Math.min(
-      0.55,
-      ((frac - FASE_BLEND_INI) / (1 - FASE_BLEND_INI)) * 0.55,
-    );
-    return {
-      dark: hexLerp(f.dark, prox.dark, t),
-      light: hexLerp(f.light, prox.light, t),
-    };
+  return { dark: FASES[i].dark, light: FASES[i].light };
+};
+
+// Interpolação monotônica de Hermite (Fritsch–Carlson). Passa EXATAMENTE pelos
+// pontos reais de cada jogo (y0 em t=0, y1 em t=1), mas com velocidade contínua
+// entre segmentos: o personagem acelera e desacelera em vez de dar saltos
+// abruptos. Como os pontos só crescem, nunca anda pra trás (sem overshoot).
+const monoHermite = (
+  yPrev: number,
+  y0: number,
+  y1: number,
+  yNext: number,
+  t: number,
+) => {
+  const d0 = y1 - y0; // secante do segmento atual
+  const dm1 = y0 - yPrev; // secante anterior
+  const d1 = yNext - y1; // secante seguinte
+  let m0: number;
+  let m1: number;
+  if (d0 === 0) {
+    // Jogo sem pontuação: fica parado, sem bump espúrio.
+    m0 = 0;
+    m1 = 0;
+  } else {
+    m0 = (dm1 + d0) / 2;
+    m1 = (d0 + d1) / 2;
+    if (m0 < 0) m0 = 0; // dados monotônicos (pontos só sobem)
+    if (m1 < 0) m1 = 0;
+    const a = m0 / d0;
+    const b = m1 / d0;
+    const s = a * a + b * b;
+    if (s > 9) {
+      const tau = 3 / Math.sqrt(s); // limita inclinação (sem overshoot)
+      m0 = tau * a * d0;
+      m1 = tau * b * d0;
+    }
   }
-  return { dark: f.dark, light: f.light };
+  const t2 = t * t;
+  const t3 = t2 * t;
+  const h00 = 2 * t3 - 3 * t2 + 1;
+  const h10 = t3 - 2 * t2 + t;
+  const h01 = -2 * t3 + 3 * t2;
+  const h11 = t3 - t2;
+  return h00 * y0 + h10 * m0 + h01 * y1 + h11 * m1;
 };
 
 export default function CorridaTopDown({
@@ -181,8 +203,8 @@ export default function CorridaTopDown({
     }
     const wc = n > 0 ? soma / n : 0; // centro de massa do pelotão
     if (esperandoFimRef.current) {
-      // Zoom-out revelando a chegada lá no fim da Copa.
-      const left = Math.max(0, wMin - EDGE_PAD);
+      // Zoom-out: mostra da LARGADA (início, 0 pts) até a chegada no fim da Copa.
+      const left = -EDGE_PAD;
       const right = worldFinish + EDGE_PAD;
       return {
         c: (left + right) / 2,
@@ -414,10 +436,13 @@ export default function CorridaTopDown({
         ))}
 
         {ordenadas.map((ia, idx) => {
+          const ptsPrev = frames[Math.max(fA - 1, 0)]?.pts[ia.slug] ?? 0;
           const ptsA = frames[fA]?.pts[ia.slug] ?? 0;
           const ptsB = frames[fB]?.pts[ia.slug] ?? 0;
-          // posição interpolada (linear = velocidade constante, sem freadas)
-          const ptsNow = ptsA + (ptsB - ptsA) * frac;
+          const ptsNext = frames[Math.min(fB + 1, ultimo)]?.pts[ia.slug] ?? 0;
+          // posição com suavização monotônica: passa exata na pontuação de cada
+          // jogo, mas acelera/desacelera em vez de saltar.
+          const ptsNow = monoHermite(ptsPrev, ptsA, ptsB, ptsNext, frac);
           const ptsLabel = Math.round(ptsNow);
           const wNow = clamp(ptsNow / maxPts, 0, 1);
           const lane = laneOf[ia.slug] ?? 0;
