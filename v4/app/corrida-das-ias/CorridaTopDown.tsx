@@ -23,11 +23,24 @@ type Frame = {
 
 const LANE_H = 30; // altura de cada raia (px)
 const ICON = 20;
-const SPAN = 78; // % da pista usada pra mapear pontos (deixa margem p/ fan + chegada)
-const START_PX = 34; // offset da linha de largada
+const SPAN = 78; // % usada SÓ no empacotamento de raias (Y); o X agora é por câmera
 const MIN_GAP = 6; // distância % mínima entre dois ícones na MESMA raia (final limpo)
 const SEG_MS = 1125; // tempo pra animar UM jogo (segmento) — movimento contínuo (+33% de velocidade vs. 1500)
 const PAUSA_FINAL_MS = 4000;
+
+// Câmera: em vez de mostrar a corrida inteira de uma vez (zoom ~1x), enquadra o
+// pelotão atual (do último ao 1º + folga). Agrupados ⇒ zoom forte (diferenças
+// evidentes); espalhados ⇒ abre (todos continuam visíveis — restrição mobile).
+// O mundo é medido em fração da corrida: w = pts / maxPts ∈ [0, 1].
+const PAD_BEHIND = 0.05; // folga atrás do lanterninha (fração da corrida)
+const PAD_AHEAD = 0.16; // folga à frente do líder (deixa a chegada entrar no fim)
+const MIN_VIEW_W = 0.22; // largura mínima visível ⇒ zoom MÁXIMO (~4.5x) quando agrupados
+const CAM_MIN_LEFT = -0.05; // não rola atrás da largada
+const CAM_EASE = 0.14; // suavização do movimento/zoom da câmera por frame
+// Piso em faixas alternadas (parallax): desliza pra trás conforme avançam.
+const BAND_W = 0.045; // largura de cada faixa (fração da corrida)
+const BAND_DARK = "#0e2643";
+const BAND_LIGHT = "#163a64";
 
 const clamp = (v: number, lo: number, hi: number) =>
   Math.max(lo, Math.min(hi, v));
@@ -58,6 +71,12 @@ export default function CorridaTopDown({
   const rafRef = useRef(0);
   const esperandoFimRef = useRef(false);
   const segFastRef = useRef<boolean[]>([]);
+  // Janela da câmera no mundo: [left, right] em fração da corrida.
+  const camRef = useRef({ left: CAM_MIN_LEFT, right: CAM_MIN_LEFT + MIN_VIEW_W });
+  const [cam, setCam] = useState({
+    left: CAM_MIN_LEFT,
+    right: CAM_MIN_LEFT + MIN_VIEW_W,
+  });
 
   const ultimo = frames.length - 1;
 
@@ -66,6 +85,9 @@ export default function CorridaTopDown({
     setPos(i);
     lastRef.current = performance.now();
     esperandoFimRef.current = false;
+    const t = camTarget(i);
+    camRef.current = { ...t };
+    setCam(t);
   };
 
   const ordenadas = useMemo(
@@ -90,6 +112,48 @@ export default function CorridaTopDown({
     () => frames[frames.length - 1]?.pts ?? {},
     [frames],
   );
+
+  // Janela-alvo da câmera para a posição contínua p: enquadra o pelotão
+  // (menor w ao maior w) + folga, com largura mínima (limita o zoom máximo).
+  const camTarget = (p: number) => {
+    const a = clamp(Math.floor(p), 0, ultimo);
+    const b = clamp(a + 1, 0, ultimo);
+    const fr = p - a;
+    let wMin = Infinity;
+    let wMax = -Infinity;
+    for (const ia of ordenadas) {
+      const pa = frames[a]?.pts[ia.slug] ?? 0;
+      const pb = frames[b]?.pts[ia.slug] ?? 0;
+      const w = (pa + (pb - pa) * fr) / maxPts;
+      if (w < wMin) wMin = w;
+      if (w > wMax) wMax = w;
+    }
+    if (!Number.isFinite(wMin)) {
+      wMin = 0;
+      wMax = 0;
+    }
+    let left = wMin - PAD_BEHIND;
+    let right = wMax + PAD_AHEAD;
+    if (right - left < MIN_VIEW_W) {
+      const c = (left + right) / 2;
+      left = c - MIN_VIEW_W / 2;
+      right = c + MIN_VIEW_W / 2;
+    }
+    if (left < CAM_MIN_LEFT) {
+      const w = right - left;
+      left = CAM_MIN_LEFT;
+      right = CAM_MIN_LEFT + w;
+    }
+    return { left, right };
+  };
+
+  // Snap da câmera no estado inicial (antes do 1º frame de animação).
+  useEffect(() => {
+    const t = camTarget(0);
+    camRef.current = { ...t };
+    setCam(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Segmento "rápido": jogo em que NINGUÉM pontuou (todos erraram) — anima na
   // metade do tempo. segFast[s] cobre a transição do frame s → s+1.
@@ -158,6 +222,12 @@ export default function CorridaTopDown({
         }
         posRef.current = np;
         setPos(np);
+        // Suaviza câmera (posição + zoom) em direção ao alvo do pelotão.
+        const t = camTarget(np);
+        const c = camRef.current;
+        c.left += (t.left - c.left) * CAM_EASE;
+        c.right += (t.right - c.right) * CAM_EASE;
+        setCam({ left: c.left, right: c.right });
       }
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -175,6 +245,28 @@ export default function CorridaTopDown({
   const idxRotulo = emMovimento && frac > 0.001 ? fB : fA;
   const f = frames[idxRotulo];
   const alturaPista = numLanes * LANE_H + 14;
+
+  // Converte fração-do-mundo w em % horizontal na tela, via janela da câmera.
+  const camW = Math.max(0.0001, cam.right - cam.left);
+  const screenX = (w: number) => ((w - cam.left) / camW) * 100;
+  const xLargada = screenX(0);
+  const xChegada = screenX(1);
+
+  // Faixas do piso visíveis na janela atual (parallax).
+  const bandas: { b: number; left: number; w: number; dark: boolean }[] = [];
+  {
+    const b0 = Math.floor((cam.left - BAND_W) / BAND_W);
+    const b1 = Math.ceil((cam.right + BAND_W) / BAND_W);
+    const wPct = (BAND_W / camW) * 100;
+    for (let b = b0; b <= b1; b++) {
+      bandas.push({
+        b,
+        left: screenX(b * BAND_W),
+        w: wPct,
+        dark: (((b % 2) + 2) % 2) === 0,
+      });
+    }
+  }
 
   return (
     <div className="cn-card">
@@ -236,6 +328,18 @@ export default function CorridaTopDown({
       </div>
 
       <div className="cn-pista" style={{ height: alturaPista }}>
+        {bandas.map((bd) => (
+          <div
+            key={bd.b}
+            className="cn-band"
+            style={{
+              left: `${bd.left}%`,
+              width: `${bd.w}%`,
+              background: bd.dark ? BAND_DARK : BAND_LIGHT,
+            }}
+          />
+        ))}
+
         {Array.from({ length: numLanes }).map((_, i) => (
           <div
             key={i}
@@ -250,7 +354,7 @@ export default function CorridaTopDown({
           // posição interpolada (linear = velocidade constante, sem freadas)
           const ptsNow = ptsA + (ptsB - ptsA) * frac;
           const ptsLabel = Math.round(ptsNow);
-          const x = xDe(ia.slug, ptsNow);
+          const wNow = clamp(ptsNow / maxPts, 0, 1);
           const lane = laneOf[ia.slug] ?? 0;
           const marca = marcaDe(ia.slug);
           const temMascote = COM_MASCOTE.has(ia.slug);
@@ -267,8 +371,8 @@ export default function CorridaTopDown({
               title={`${ia.nome_display} — ${ptsLabel} pts`}
               style={{
                 top: `${lane * LANE_H + LANE_H / 2 + 6}px`,
-                left: `calc(${START_PX}px + ${x}%)`,
-                zIndex: Math.round(ptsNow) + 1,
+                left: `${screenX(wNow)}%`,
+                zIndex: Math.round(ptsNow) + 10,
                 ["--cor" as string]: marca.cor,
                 ["--swing-delay" as string]: swingDelay,
               }}
@@ -294,16 +398,30 @@ export default function CorridaTopDown({
           );
         })}
 
-        <div className="cn-largada">
-          <span>🚦</span>
-        </div>
-        <div className="cn-chegada" aria-hidden />
-        <div className="cn-bandeira">🏁</div>
+        {xLargada > -8 && xLargada < 108 && (
+          <div className="cn-largada" style={{ left: `${xLargada}%` }}>
+            <span>🚦</span>
+          </div>
+        )}
+        {xChegada > -8 && xChegada < 112 && (
+          <>
+            <div
+              className="cn-chegada"
+              style={{ left: `${xChegada}%` }}
+              aria-hidden
+            />
+            <div className="cn-bandeira" style={{ left: `${xChegada}%` }}>
+              🏁
+            </div>
+          </>
+        )}
       </div>
 
       <p className="cn-legenda">
-        Cada ícone é uma IA; quanto mais à direita, mais pontos. Empatadas dividem
-        a mesma faixa — passe o dedo/mouse pra ver o nome.
+        A câmera acompanha o pelotão: agrupadas, dá zoom pra ver a diferença;
+        espalhadas, abre pra caber todo mundo. O piso desliza pra trás conforme
+        avançam e a linha de chegada 🏁 surge no fim. Empatadas dividem a faixa —
+        passe o dedo/mouse pra ver o nome.
       </p>
 
       <style>{`
@@ -368,41 +486,52 @@ export default function CorridaTopDown({
         .cn-pista {
           position: relative;
           width: 100%;
-          background:
-            repeating-linear-gradient(
-              90deg,
-              transparent 0 50px,
-              rgba(255,255,255,0.02) 50px 51px
-            ),
-            radial-gradient(ellipse at center, rgba(168, 85, 247, 0.07), transparent 70%);
+          background: #0a1c33;
           border-radius: var(--r-m);
           overflow: hidden;
+        }
+        /* Faixas alternadas do piso (parallax): deslizam pra trás. */
+        .cn-band {
+          position: absolute;
+          top: 0; bottom: 0;
+          z-index: 0;
+        }
+        /* Brilho central por cima das faixas, sem tapar os corredores. */
+        .cn-pista::after {
+          content: "";
+          position: absolute; inset: 0;
+          background: radial-gradient(ellipse at center, rgba(168,85,247,0.10), transparent 72%);
+          z-index: 1; pointer-events: none;
         }
         .cn-raia {
           position: absolute;
           left: 0; right: 0;
           height: 1px;
-          border-top: 1px dashed rgba(255,255,255,0.06);
+          border-top: 1px dashed rgba(255,255,255,0.08);
           transform: translateY(-50%);
+          z-index: 1;
         }
         .cn-largada {
           position: absolute;
-          left: 0; top: 0; bottom: 0;
+          top: 0; bottom: 0;
           width: 30px;
-          background: linear-gradient(90deg, rgba(0,156,59,0.25), transparent);
+          transform: translateX(-50%);
+          background: linear-gradient(90deg, rgba(0,156,59,0.30), transparent);
           display: flex; align-items: center; justify-content: center;
-          font-size: 18px; z-index: 1;
+          font-size: 18px; z-index: 2;
         }
         .cn-chegada {
           position: absolute;
-          right: 0; top: 0; bottom: 0;
-          width: 8px;
+          top: 0; bottom: 0;
+          width: 10px;
+          transform: translateX(-50%);
           background: repeating-linear-gradient(45deg, #fff 0 6px, #000 6px 12px);
-          opacity: 0.5; z-index: 1;
+          opacity: 0.85; z-index: 2;
         }
         .cn-bandeira {
           position: absolute;
-          right: -2px; top: -8px;
+          top: -8px;
+          transform: translateX(-50%);
           font-size: 24px; z-index: 3;
         }
         .cn-runner {
