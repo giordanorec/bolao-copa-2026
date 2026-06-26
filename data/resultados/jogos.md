@@ -64,3 +64,5 @@ no cálculo de pontuação.
 | 54 | Grupo A | Qua 24/06 | 22h00 | Monterrey | África do Sul | 1 | 0 | Coreia do Sul |
 | 55 | Grupo E | Qui 25/06 | 17h00 | Filadélfia | Curaçao | 0 | 2 | Costa do Marfim |
 | 56 | Grupo E | Qui 25/06 | 17h00 | Nova York/NJ | Equador | 2 | 1 | Alemanha |
+| 57 | Grupo F | Qui 25/06 | 20h00 | Dallas | Japão | 1 | 1 | Suécia |
+| 58 | Grupo F | Qui 25/06 | 20h00 | Kansas City | Tunísia | 1 | 3 | Países Baixos |
