@@ -1,0 +1,4 @@
+# Imagens dos posts de Instagram são servidas do Supabase Storage
+# (ver public/ig-posts-manifest.json). Não precisam ir pro deploy e
+# estouram o limite de 250MB do Vercel.
+public/ig-posts/
