@@ -22,7 +22,10 @@ type Frame = {
 };
 
 const SEG_MS = 520; // tempo pra animar UM jogo — bem mais rápido que antes
-const PAUSA_FINAL_MS = 3200; // pausa no fim — só COMEÇA depois do zoom-out terminar
+// Pausa ANTES do zoom-out: o pelotão chega ao fim e a câmera segura fechada nos
+// líderes — é o momento de clímax, mais importante que a pausa pós-reveal.
+const PAUSA_ANTES_MS = 4600;
+const PAUSA_FINAL_MS = 2000; // pausa depois do zoom-out, antes de reiniciar
 const REVEAL_MS = 5200; // duração do zoom-out final (lento, dá pra acompanhar)
 
 // === Posição vertical ORGÂNICA (corrida sem raias) ===
@@ -506,18 +509,25 @@ export default function CorridaTopDown({
         // começa a contar DEPOIS que o zoom-out termina.
         const rv = revealRef.current;
         if (rv.t0 === 0) {
-          rv.t0 = now;
+          rv.t0 = now; // instante em que o pelotão chegou ao fim
           rv.c0 = c.c;
           rv.h0 = c.h;
           rv.scheduled = false;
         }
-        const prog = clamp((now - rv.t0) / REVEAL_MS, 0, 1);
-        const e = prog * prog * (3 - 2 * prog); // smoothstep
-        c.c = rv.c0 + (t.c - rv.c0) * e;
-        c.h = rv.h0 + (t.h - rv.h0) * e;
-        if (prog >= 1 && !rv.scheduled) {
-          rv.scheduled = true;
-          window.setTimeout(() => irPara(0), PAUSA_FINAL_MS);
+        const since = now - rv.t0;
+        if (since < PAUSA_ANTES_MS) {
+          // PAUSA de clímax: segura a câmera fechada nos líderes antes de abrir.
+          c.c = rv.c0;
+          c.h = rv.h0;
+        } else {
+          const prog = clamp((since - PAUSA_ANTES_MS) / REVEAL_MS, 0, 1);
+          const e = prog * prog * (3 - 2 * prog); // smoothstep
+          c.c = rv.c0 + (t.c - rv.c0) * e;
+          c.h = rv.h0 + (t.h - rv.h0) * e;
+          if (prog >= 1 && !rv.scheduled) {
+            rv.scheduled = true;
+            window.setTimeout(() => irPara(0), PAUSA_FINAL_MS);
+          }
         }
       } else {
         c.c += (t.c - c.c) * CAM_EASE;
@@ -714,7 +724,7 @@ export default function CorridaTopDown({
                 Math.max(frac - 0.03, 0),
               )) /
             0.06;
-          const sw = clamp(Math.abs(velRaw) / 10, 0, 1);
+          const sw = clamp(Math.abs(velRaw) / 6.5, 0, 1);
           // Y orgânico interpolado entre os frames inteiros ⇒ a separação vira um
           // deslize suave (corrida sem raias).
           const yA = yFrames[fA]?.[ia.slug] ?? 0.5;
@@ -1017,11 +1027,11 @@ export default function CorridaTopDown({
            (--sw, 0..1) — quem corre mais rápido balança mais; parado fica quieto.
            Cada IA tem um --swing-delay próprio pra ficar desencontrado. */
         @keyframes cn-trote {
-          0%   { transform: translateY(0) rotate(calc(var(--sw, 0) * -4deg)); }
-          25%  { transform: translateY(calc(var(--sw, 0) * -2.5px)) rotate(0deg); }
-          50%  { transform: translateY(0) rotate(calc(var(--sw, 0) * 4deg)); }
-          75%  { transform: translateY(calc(var(--sw, 0) * -2.5px)) rotate(0deg); }
-          100% { transform: translateY(0) rotate(calc(var(--sw, 0) * -4deg)); }
+          0%   { transform: translateY(0) rotate(calc(var(--sw, 0) * -7deg)); }
+          25%  { transform: translateY(calc(var(--sw, 0) * -4.5px)) rotate(0deg); }
+          50%  { transform: translateY(0) rotate(calc(var(--sw, 0) * 7deg)); }
+          75%  { transform: translateY(calc(var(--sw, 0) * -4.5px)) rotate(0deg); }
+          100% { transform: translateY(0) rotate(calc(var(--sw, 0) * -7deg)); }
         }
         .cn-runner.correndo:not(.batendo) .cn-mascote,
         .cn-runner.correndo:not(.batendo) .cn-marca {
