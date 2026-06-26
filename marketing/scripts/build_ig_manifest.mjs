@@ -116,53 +116,72 @@ const entries = fs
 // Ensure output dir exists
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
+const IMG_RE = /\.(png|jpg|jpeg|gif|webp)$/i;
+const VIDEO_RE = /\.(mp4|webm)$/i;
+
+/** Does a directory contain any image file directly inside it? */
+function hasImagesDirectly(dir) {
+  return fs.readdirSync(dir).some((f) => IMG_RE.test(f));
+}
+
 const manifest = [];
 
-for (const entry of entries) {
-  const folderName = entry.name;
-  const srcDir = path.join(INSTAGRAM_DIR, folderName);
-
-  // Derive id = folder name (stable, unique)
-  const id = folderName;
-  const tipo = detectTipo(folderName);
-  const titulo = humanizeTitle(folderName);
-
+/**
+ * Builds one manifest entry: copies images into OUT_DIR/<id>/ and pushes it.
+ * `id` may contain `__` to flatten a nested sub-post (keeps Storage keys flat,
+ * so the thumb/uploader scripts that split on the first "/" still work).
+ */
+function buildPost(id, srcDir, tipo, titulo) {
   const caption = readMd(path.join(srcDir, "LEGENDA.md"));
   const roteiro = readMd(path.join(srcDir, "ROTEIRO.md"));
 
-  // Collect images to copy (poster.png, slide-*.png, card.png — not mp4/webm)
   const allFiles = fs.readdirSync(srcDir);
-  const imageFiles = allFiles
-    .filter((f) => /\.(png|jpg|jpeg|gif|webp)$/i.test(f))
-    .sort();
+  const imageFiles = allFiles.filter((f) => IMG_RE.test(f)).sort();
 
   const destDir = path.join(OUT_DIR, id);
   fs.mkdirSync(destDir, { recursive: true });
 
   const imagePaths = [];
   for (const imgFile of imageFiles) {
-    const src = path.join(srcDir, imgFile);
-    const dest = path.join(destDir, imgFile);
-    fs.copyFileSync(src, dest);
+    fs.copyFileSync(path.join(srcDir, imgFile), path.join(destDir, imgFile));
     imagePaths.push(publicUrl(id, imgFile));
   }
 
-  // hasVideo = any .mp4 or .webm exists in source (not copied)
-  const hasVideo = allFiles.some((f) => /\.(mp4|webm)$/i.test(f));
+  const hasVideo = allFiles.some((f) => VIDEO_RE.test(f));
 
-  manifest.push({
-    id,
-    tipo,
-    titulo,
-    caption,
-    roteiro,
-    images: imagePaths,
-    hasVideo,
-  });
+  manifest.push({ id, tipo, titulo, caption, roteiro, images: imagePaths, hasVideo });
 
   console.log(
-    `[${String(manifest.length).padStart(2, "0")}] ${tipo.padEnd(10)} ${folderName} — ${imagePaths.length} img(s)${hasVideo ? " + video" : ""}`,
+    `[${String(manifest.length).padStart(2, "0")}] ${tipo.padEnd(10)} ${id} — ${imagePaths.length} img(s)${hasVideo ? " + video" : ""}`,
   );
+}
+
+for (const entry of entries) {
+  const folderName = entry.name;
+  const srcDir = path.join(INSTAGRAM_DIR, folderName);
+  const tipo = detectTipo(folderName);
+  const titulo = humanizeTitle(folderName);
+
+  // A "group" folder has no images of its own but holds sub-folders that do
+  // (e.g. 70_carrossel_mascotes/01_chatgpt-5-thinking/...). Expand each
+  // sub-folder into its own post instead of emitting one broken empty card.
+  const subDirs = fs
+    .readdirSync(srcDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+    .filter((name) => hasImagesDirectly(path.join(srcDir, name)))
+    .sort();
+
+  if (!hasImagesDirectly(srcDir) && subDirs.length > 0) {
+    for (const sub of subDirs) {
+      const subId = `${folderName}__${sub}`;
+      const subTitulo = `${titulo} · ${humanizeTitle(sub)}`;
+      buildPost(subId, path.join(srcDir, sub), tipo, subTitulo);
+    }
+    continue;
+  }
+
+  buildPost(folderName, srcDir, tipo, titulo);
 }
 
 fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2) + "\n", "utf8");

@@ -554,13 +554,293 @@
     ]
   },
   {
-    "id": "70_carrossel_mascotes",
+    "id": "70_carrossel_mascotes__01_chatgpt-5-thinking",
     "tipo": "carrossel",
-    "titulo": "Mascotes",
-    "caption": "",
+    "titulo": "Mascotes · Chatgpt 5 Thinking",
+    "caption": "**ChatGPT 5 — de onde veio o mascote 🧸**\n\nPor que o mascote do ChatGPT é uma NUVEM comendo um taco? 🌫️🌮\n\nArrasta pra ver o porquê de cada detalhe. 6 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT5 #IA #ArenaDasIAs #mascote",
     "roteiro": "",
-    "images": [],
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/slide_05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/slide_06.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/slide_07.png"
+    ],
     "hasVideo": false,
-    "thumbs": []
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_05.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_06.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_07.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__02_claude-opus-4-8",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Claude Opus 4 8",
+    "caption": "**Claude Opus 4.8 — de onde veio o mascote 🧸**\n\nO mascote do Claude é um polvo malabarista. Adivinha por quê? 🤹🐙\n\nArrasta pra ver o porquê de cada detalhe. 5 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ClaudeOpus48 #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/slide_05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/slide_06.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_05.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_06.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__03_gemini-2-5-pro",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Gemini 2 5 Pro",
+    "caption": "**Gemini 2.5 Pro — de onde veio o mascote 🧸**\n\nPor que o mascote do Gemini são DUAS estrelas coladas? ✨♊\n\nArrasta pra ver o porquê de cada detalhe. 5 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Gemini25Pro #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/slide_05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/slide_06.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_05.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_06.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__04_grok-4-heavy",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Grok 4 Heavy",
+    "caption": "**Grok 4 Heavy — de onde veio o mascote 🧸**\n\nO mascote do Grok é um alien num foguete. Por que Marte? 🚀👽\n\nArrasta pra ver o porquê de cada detalhe. 5 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Grok4Heavy #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/slide_05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/slide_06.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_05.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_06.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__05_deepseek-r1",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Deepseek R1",
+    "caption": "**DeepSeek R1 — de onde veio o mascote 🧸**\n\nPor que o mascote da DeepSeek é uma baleia-submarino? 🐋🤿\n\nArrasta pra ver o porquê de cada detalhe. 5 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #DeepSeekR1 #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/slide_05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/slide_06.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_05.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_06.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__06_perplexity-sonar-pro",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Perplexity Sonar Pro",
+    "caption": "**Perplexity — de onde veio o mascote 🧸**\n\nO mascote da Perplexity é uma lupa. Faz todo sentido — sabe por quê? 🔍❓\n\nArrasta pra ver o porquê de cada detalhe. 5 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Perplexity #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/slide_05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/slide_06.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_05.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_06.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__07_copilot-microsoft",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Copilot Microsoft",
+    "caption": "**Copilot — de onde veio o mascote 🧸**\n\nO mascote do Copilot é... o Clippy? Tem uma sacada aí. 📎\n\nArrasta pra ver o porquê de cada detalhe. 4 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Copilot #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/slide_05.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/thumb/slide_05.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__08_le-chat-mistral",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Le Chat Mistral",
+    "caption": "**Le Chat — de onde veio o mascote 🧸**\n\nPor que o mascote do Le Chat é um GATO de boina? 🐱🥖\n\nArrasta pra ver o porquê de cada detalhe. 7 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #LeChat #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/slide_05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/slide_06.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/slide_07.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/slide_08.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_05.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_06.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_07.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_08.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__09_meta-llama-4",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Meta Llama 4",
+    "caption": "**Meta Llama 4 — de onde veio o mascote 🧸**\n\nPor que o mascote do Llama é uma lhama... de óculos de realidade virtual? 🦙🥽\n\nArrasta pra ver o porquê de cada detalhe. 5 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #MetaLlama4 #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/slide_05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/slide_06.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_05.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_06.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__10_qwen-3-max",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Qwen 3 Max",
+    "caption": "**Qwen 3 Max — de onde veio o mascote 🧸**\n\nPor que o mascote do Qwen é uma lâmpada mágica? 🪔🐉\n\nArrasta pra ver o porquê de cada detalhe. 5 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Qwen3Max #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/slide_05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/slide_06.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_05.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_06.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__11_manus",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Manus",
+    "caption": "**Manus — de onde veio o mascote 🧸**\n\nO mascote da Manus é uma luva. O nome explica tudo. 🧤\n\nArrasta pra ver o porquê de cada detalhe. 5 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Manus #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/slide_05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/slide_06.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_05.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_06.webp"
+    ]
+  },
+  {
+    "id": "70_carrossel_mascotes__12_claude-fable-5",
+    "tipo": "carrossel",
+    "titulo": "Mascotes · Claude Fable 5",
+    "caption": "**Claude Fable — de onde veio o mascote 🧸**\n\nEsse mascote parece o do Claude Opus... porque é. Qual a diferença? 🐙✨\n\nArrasta pra ver o porquê de cada detalhe. 4 cards.\n\nTodos os 12 mascotes da Série A correm no Bolão da Copa — quem você acha que lidera?\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ClaudeFable #IA #ArenaDasIAs #mascote",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_05.png"
+    ],
+    "hasVideo": false,
+    "thumbs": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/thumb/slide_01.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/thumb/slide_02.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/thumb/slide_03.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/thumb/slide_04.webp",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/thumb/slide_05.webp"
+    ]
   }
 ]
