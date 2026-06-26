@@ -2,34 +2,37 @@
 
 import { useState } from "react";
 
-export function CopiarLegenda({ caption }: { caption: string }) {
+export function CopiarTexto({
+  texto,
+  label,
+}: {
+  texto: string;
+  label: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   async function handleClick() {
     try {
-      await navigator.clipboard.writeText(caption);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      await navigator.clipboard.writeText(texto);
     } catch {
-      // Fallback: select a temp textarea
       const ta = document.createElement("textarea");
-      ta.value = caption;
+      ta.value = texto;
       ta.style.position = "fixed";
       ta.style.opacity = "0";
       document.body.appendChild(ta);
       ta.select();
       document.execCommand("copy");
       document.body.removeChild(ta);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
     }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   return (
     <button
       onClick={handleClick}
       className="ig-action-btn"
-      title="Copiar legenda para a área de transferência"
+      title={`Copiar para a área de transferência`}
       style={{
         background: copied
           ? "color-mix(in srgb, #22c55e 18%, transparent)"
@@ -41,7 +44,7 @@ export function CopiarLegenda({ caption }: { caption: string }) {
         transition: "all .15s",
       }}
     >
-      {copied ? "✓ Copiado!" : "Copiar legenda"}
+      {copied ? "✓ Copiado!" : label}
     </button>
   );
 }

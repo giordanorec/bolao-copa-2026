@@ -4,7 +4,8 @@ import fs from "fs";
 import path from "path";
 import { createClient } from "@/lib/supabase-server";
 import { isAdminEmail } from "@/lib/admin";
-import { CopiarLegenda } from "./CopiarLegenda";
+import { CopiarTexto } from "./CopiarTexto";
+import { BaixarImagens } from "./BaixarImagens";
 
 export const dynamic = "force-dynamic";
 
@@ -246,26 +247,20 @@ export default async function InstagramPostsPage() {
                   <details className="ig-roteiro">
                     <summary>Ver roteiro / script</summary>
                     <pre className="ig-roteiro-pre">{post.roteiro}</pre>
+                    <div className="ig-roteiro-actions">
+                      <CopiarTexto texto={post.roteiro} label="Copiar roteiro" />
+                    </div>
                   </details>
                 )}
 
                 {/* ── Action buttons ─────────────────────────────────── */}
                 <div className="ig-actions">
-                  <CopiarLegenda caption={post.caption} />
+                  {post.caption && (
+                    <CopiarTexto texto={post.caption} label="Copiar legenda" />
+                  )}
 
                   {hasImages && (
-                    <a
-                      href={post.images[0]}
-                      download
-                      className="ig-action-btn"
-                      title={
-                        isCarrossel
-                          ? `Baixar ${post.images.length} slides (abra cada um individualmente)`
-                          : "Baixar imagem"
-                      }
-                    >
-                      Baixar imagem{isCarrossel ? `s (${post.images.length})` : ""}
-                    </a>
+                    <BaixarImagens images={post.images} nomeBase={post.id} />
                   )}
 
                   <a
@@ -278,23 +273,6 @@ export default async function InstagramPostsPage() {
                     Abrir Instagram
                   </a>
                 </div>
-
-                {/* For carrossel: individual slide download links */}
-                {isCarrossel && post.images.length > 1 && (
-                  <details className="ig-slides-dl">
-                    <summary>Baixar slides individualmente ({post.images.length})</summary>
-                    <div className="ig-slides-dl-list">
-                      {post.images.map((src, i) => {
-                        const filename = src.split("/").pop() ?? `slide-${i + 1}.png`;
-                        return (
-                          <a key={i} href={src} download className="ig-slide-dl-link">
-                            {filename}
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </details>
-                )}
               </article>
             );
           })}
@@ -354,8 +332,9 @@ function IgStyle() {
       }
       .ig-single-img {
         width: 100%;
-        height: 220px;
-        object-fit: cover;
+        height: 360px;
+        object-fit: contain;
+        background: var(--bg-1);
         display: block;
         transition: opacity .15s;
       }
@@ -521,42 +500,25 @@ function IgStyle() {
         color: #c2185b;
       }
 
-      /* ── Slide download list ──────────────────────────────────── */
-      .ig-slides-dl {
-        margin-top: 10px;
-        border: 1px solid var(--line);
-        border-radius: var(--r-m, 10px);
-        overflow: hidden;
-        font-size: 13px;
-      }
-      .ig-slides-dl summary {
-        cursor: pointer;
-        padding: 8px 14px;
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--fg-muted);
-        list-style: none;
-        background: var(--bg-soft);
-        user-select: none;
-      }
-      .ig-slides-dl summary::-webkit-details-marker { display: none; }
-      .ig-slides-dl[open] summary { border-bottom: 1px solid var(--line); }
-
-      .ig-slides-dl-list {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        padding: 8px 12px;
-        background: var(--bg-2);
-      }
-      .ig-slide-dl-link {
-        font-size: 12px;
+      /* Botão de download em destaque */
+      .ig-action-dl {
+        background: color-mix(in srgb, var(--primary, #6d28d9) 12%, transparent);
+        border-color: color-mix(in srgb, var(--primary, #6d28d9) 38%, transparent);
         color: var(--primary, #6d28d9);
-        font-family: var(--ff-mono);
-        padding: 3px 0;
-        text-decoration: none;
       }
-      .ig-slide-dl-link:hover { text-decoration: underline; }
+      .ig-action-dl:hover:not(:disabled) {
+        background: color-mix(in srgb, var(--primary, #6d28d9) 20%, transparent);
+        border-color: color-mix(in srgb, var(--primary, #6d28d9) 55%, transparent);
+      }
+      .ig-action-dl:disabled { opacity: .8; }
+
+      .ig-roteiro-actions {
+        display: flex;
+        padding: 10px 14px;
+        background: var(--bg-2);
+        border-top: 1px solid var(--line);
+      }
+      .ig-roteiro-actions .ig-action-btn { flex: 0 0 auto; min-width: 0; }
 
       @media (max-width: 600px) {
         .ig-grid { grid-template-columns: 1fr; }
