@@ -2,6 +2,24 @@
 
 import { useState } from "react";
 
+function IconDownload() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  );
+}
+
+function IconCheck() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
+
 export function BaixarImagens({
   images,
   nomeBase,
@@ -44,11 +62,9 @@ export function BaixarImagens({
       try {
         await baixarUma(url, nome);
       } catch {
-        // Fallback: abre numa aba se o fetch/CORS falhar.
         window.open(url, "_blank", "noopener");
       }
       setProgresso(i + 1);
-      // Espaça os downloads pro navegador não bloquear o "multiple downloads".
       if (i < images.length - 1) await new Promise((r) => setTimeout(r, 350));
     }
     setEstado("ok");
@@ -59,35 +75,25 @@ export function BaixarImagens({
     estado === "baixando"
       ? `Baixando ${progresso}/${images.length}…`
       : estado === "ok"
-        ? "✓ Baixadas!"
+        ? "Baixadas!"
         : varias
-          ? `⬇ Baixar todas (${images.length})`
-          : "⬇ Baixar imagem";
+          ? `Baixar todas (${images.length})`
+          : "Baixar imagem";
 
   return (
     <button
       onClick={baixarTodas}
       disabled={estado === "baixando"}
-      className="ig-action-btn ig-action-dl"
+      className={`ig-act${estado === "ok" ? " ok" : ""}`}
       title={
         varias
           ? `Baixa as ${images.length} imagens em resolução cheia`
           : "Baixa a imagem em resolução cheia"
       }
-      style={{
-        background:
-          estado === "ok"
-            ? "color-mix(in srgb, #22c55e 18%, transparent)"
-            : undefined,
-        borderColor:
-          estado === "ok"
-            ? "color-mix(in srgb, #22c55e 50%, transparent)"
-            : undefined,
-        color: estado === "ok" ? "#16a34a" : undefined,
-        cursor: estado === "baixando" ? "wait" : "pointer",
-      }}
+      style={{ cursor: estado === "baixando" ? "wait" : "pointer" }}
     >
-      {label}
+      {estado === "ok" ? <IconCheck /> : <IconDownload />}
+      <span>{label}</span>
     </button>
   );
 }

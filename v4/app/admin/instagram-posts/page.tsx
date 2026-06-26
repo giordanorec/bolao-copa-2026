@@ -323,17 +323,23 @@ function IgStyle() {
         color: var(--fg-muted);
       }
 
-      /* Single image (reel / card) */
+      /* Single image (reel / card) — miniatura proporcional, sem distorção */
       .ig-single-wrap {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: relative;
         line-height: 0;
+        padding: 8px;
       }
       .ig-single-img {
-        width: 100%;
+        width: auto;
+        max-width: 100%;
         height: auto;
-        max-height: 70vh;
+        max-height: 340px;
+        margin: 0 auto;
         display: block;
+        border-radius: var(--r-s, 6px);
         background: var(--bg-1);
         transition: opacity .15s;
       }
@@ -416,24 +422,31 @@ function IgStyle() {
         gap: 8px;
         margin-bottom: 6px;
       }
-      .ig-copy-icon {
+      /* Botão de ícone (copiar legenda) — quadrado, toque-amigável */
+      .ig-icon-btn {
         flex-shrink: 0;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 26px;
-        height: 26px;
-        border-radius: var(--r-s, 6px);
+        width: 40px;
+        height: 40px;
+        border-radius: var(--r-s, 8px);
         border: 1px solid var(--line);
         background: var(--bg-2);
+        color: var(--fg-mid);
         cursor: pointer;
-        font-size: 13px;
-        line-height: 1;
-        transition: background .12s, border-color .12s;
+        line-height: 0;
+        transition: background .12s, border-color .12s, color .12s;
       }
-      .ig-copy-icon:hover {
+      .ig-icon-btn:hover {
         background: var(--bg-1);
         border-color: var(--fg-muted);
+        color: var(--fg);
+      }
+      .ig-icon-btn.ok {
+        background: color-mix(in srgb, #22c55e 16%, transparent);
+        border-color: color-mix(in srgb, #22c55e 50%, transparent);
+        color: #16a34a;
       }
       .ig-caption-text {
         font-size: 13px;
@@ -489,16 +502,50 @@ function IgStyle() {
         padding-top: 6px;
       }
 
+      /* Botão padrão com ícone + texto (download, copiar roteiro) */
+      .ig-act {
+        flex: 1;
+        min-width: 120px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 11px 14px;
+        min-height: 44px;
+        border-radius: var(--r-m, 8px);
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        line-height: 1;
+        border: 1px solid color-mix(in srgb, var(--primary, #6d28d9) 38%, transparent);
+        background: color-mix(in srgb, var(--primary, #6d28d9) 12%, transparent);
+        color: var(--primary, #6d28d9);
+        transition: background .12s, color .12s, border-color .12s;
+      }
+      .ig-act:hover:not(:disabled) {
+        background: color-mix(in srgb, var(--primary, #6d28d9) 20%, transparent);
+        border-color: color-mix(in srgb, var(--primary, #6d28d9) 55%, transparent);
+      }
+      .ig-act:disabled { opacity: .75; }
+      .ig-act.ok {
+        background: color-mix(in srgb, #22c55e 16%, transparent);
+        border-color: color-mix(in srgb, #22c55e 50%, transparent);
+        color: #16a34a;
+      }
+      .ig-act svg { flex-shrink: 0; }
+
       .ig-action-btn {
         flex: 1;
-        min-width: 100px;
+        min-width: 120px;
+        min-height: 44px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 5px;
-        padding: 8px 12px;
+        padding: 11px 14px;
         border-radius: var(--r-m, 8px);
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 700;
         cursor: pointer;
         text-decoration: none;
@@ -543,11 +590,15 @@ function IgStyle() {
         background: var(--bg-2);
         border-top: 1px solid var(--line);
       }
-      .ig-roteiro-actions .ig-action-btn { flex: 0 0 auto; min-width: 0; }
+      .ig-roteiro-actions .ig-act { flex: 0 0 auto; min-width: 0; }
 
       @media (max-width: 600px) {
-        .ig-grid { grid-template-columns: 1fr; }
-        .ig-action-btn { min-width: 80px; font-size: 11px; }
+        .ig-grid { grid-template-columns: 1fr; gap: 16px; }
+        .ig-card { padding: 14px; }
+        .ig-single-img { max-height: 60vh; }
+        .ig-carousel-img { width: 120px; height: 154px; }
+        .ig-actions { gap: 8px; }
+        .ig-act { flex: 1 1 100%; min-width: 0; }
       }
     `}</style>
   );
