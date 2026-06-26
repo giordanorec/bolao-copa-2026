@@ -25,25 +25,65 @@ const LANE_H = 30; // altura de cada raia (px)
 const ICON = 20;
 const SPAN = 78; // % usada SÓ no empacotamento de raias (Y); o X agora é por câmera
 const MIN_GAP = 6; // distância % mínima entre dois ícones na MESMA raia (final limpo)
-const SEG_MS = 1125; // tempo pra animar UM jogo (segmento) — movimento contínuo (+33% de velocidade vs. 1500)
-const PAUSA_FINAL_MS = 4000;
+const SEG_MS = 520; // tempo pra animar UM jogo — bem mais rápido que antes
+const PAUSA_FINAL_MS = 4800; // pausa no fim: dá tempo do zoom-out revelar a chegada
 
-// Câmera: em vez de mostrar a corrida inteira de uma vez (zoom ~1x), enquadra o
-// pelotão atual (do último ao 1º + folga). Agrupados ⇒ zoom forte (diferenças
-// evidentes); espalhados ⇒ abre (todos continuam visíveis — restrição mobile).
-// O mundo é medido em fração da corrida: w = pts / maxPts ∈ [0, 1].
-const PAD_BEHIND = 0.05; // folga atrás do lanterninha (fração da corrida)
-const PAD_AHEAD = 0.16; // folga à frente do líder (deixa a chegada entrar no fim)
-const MIN_VIEW_W = 0.22; // largura mínima visível ⇒ zoom MÁXIMO (~4.5x) quando agrupados
-const CAM_MIN_LEFT = -0.05; // não rola atrás da largada
-const CAM_EASE = 0.14; // suavização do movimento/zoom da câmera por frame
-// Piso em faixas alternadas (parallax): desliza pra trás conforme avançam.
-const BAND_W = 0.045; // largura de cada faixa (fração da corrida)
-const BAND_DARK = "#0e2643";
-const BAND_LIGHT = "#163a64";
+// Câmera centrada no CENTRO DE MASSA do pelotão (média de pontos). half = meia-
+// largura visível; quanto menor, mais zoom (diferenças mais evidentes). O mundo
+// é medido em fração da corrida: w = pts / maxPts (w=1 = líder atual).
+const MIN_HALF = 0.05; // meia-largura mínima ⇒ zoom MÁXIMO quando agrupados
+const VIS_K = 1.9; // folga multiplicativa em torno dos extremos (espaçamento maior)
+const EDGE_PAD = 0.03; // folga absoluta pras pontas não colarem na borda
+const CAM_EASE = 0.1; // suavização do movimento/zoom da câmera por frame
+// "Jogo de câmera": respiração de zoom (in/out) contínua via seno.
+const BREATH_AMP = 0.18; // amplitude da respiração (fração da meia-largura)
+const BREATH_S = 8; // período da respiração (segundos)
+// Linha de chegada = FIM DA COPA inteira (104 jogos), bem distante; só aparece
+// no zoom-out final.
+const TOTAL_JOGOS = 104;
+// Piso em faixas alternadas (parallax) — cor muda por FASE do torneio.
+const BAND_W = 0.038; // largura de cada faixa (fração da corrida)
+const FASE_BLEND_INI = 0.7; // a partir de 70% da fase, já vira a cor da próxima
+
+const FASES = [
+  { ini: 1, fim: 72, dark: "#0e2643", light: "#163a64" }, // fase de grupos
+  { ini: 73, fim: 88, dark: "#0c3a39", light: "#14605c" }, // 16-avos
+  { ini: 89, fim: 96, dark: "#2a1a47", light: "#45266f" }, // oitavas
+  { ini: 97, fim: 100, dark: "#3a230a", light: "#6b4012" }, // quartas
+  { ini: 101, fim: 102, dark: "#3a1015", light: "#6b1f28" }, // semis
+  { ini: 103, fim: 104, dark: "#3a2f08", light: "#6b5410" }, // decisão
+];
 
 const clamp = (v: number, lo: number, hi: number) =>
   Math.max(lo, Math.min(hi, v));
+
+// Interpola dois hex (#rrggbb).
+const hexLerp = (a: string, b: string, t: number) => {
+  const pa = [1, 3, 5].map((i) => parseInt(a.slice(i, i + 2), 16));
+  const pb = [1, 3, 5].map((i) => parseInt(b.slice(i, i + 2), 16));
+  const ch = pa.map((v, i) => Math.round(v + (pb[i] - v) * t));
+  return `#${ch.map((v) => v.toString(16).padStart(2, "0")).join("")}`;
+};
+
+// Cores (dark/light) da fase do jogo jn, já transicionando pra próxima no fim.
+const coresFase = (jn: number) => {
+  let i = FASES.findIndex((f) => jn >= f.ini && jn <= f.fim);
+  if (i < 0) i = jn < 1 ? 0 : FASES.length - 1;
+  const f = FASES[i];
+  const frac = (jn - f.ini) / Math.max(1, f.fim - f.ini + 1);
+  const prox = FASES[i + 1];
+  if (prox && frac > FASE_BLEND_INI) {
+    const t = Math.min(
+      0.55,
+      ((frac - FASE_BLEND_INI) / (1 - FASE_BLEND_INI)) * 0.55,
+    );
+    return {
+      dark: hexLerp(f.dark, prox.dark, t),
+      light: hexLerp(f.light, prox.light, t),
+    };
+  }
+  return { dark: f.dark, light: f.light };
+};
 
 export default function CorridaTopDown({
   ias,
@@ -71,12 +111,9 @@ export default function CorridaTopDown({
   const rafRef = useRef(0);
   const esperandoFimRef = useRef(false);
   const segFastRef = useRef<boolean[]>([]);
-  // Janela da câmera no mundo: [left, right] em fração da corrida.
-  const camRef = useRef({ left: CAM_MIN_LEFT, right: CAM_MIN_LEFT + MIN_VIEW_W });
-  const [cam, setCam] = useState({
-    left: CAM_MIN_LEFT,
-    right: CAM_MIN_LEFT + MIN_VIEW_W,
-  });
+  // Câmera no mundo: centro c + meia-largura h (fração da corrida).
+  const camRef = useRef({ c: MIN_HALF, h: MIN_HALF });
+  const [cam, setCam] = useState({ c: MIN_HALF, h: MIN_HALF });
 
   const ultimo = frames.length - 1;
 
@@ -85,9 +122,9 @@ export default function CorridaTopDown({
     setPos(i);
     lastRef.current = performance.now();
     esperandoFimRef.current = false;
-    const t = camTarget(i);
-    camRef.current = { ...t };
-    setCam(t);
+    const t = camBase(i);
+    camRef.current = { c: t.c, h: t.h };
+    setCam({ c: t.c, h: t.h });
   };
 
   const ordenadas = useMemo(
@@ -113,45 +150,59 @@ export default function CorridaTopDown({
     [frames],
   );
 
-  // Janela-alvo da câmera para a posição contínua p: enquadra o pelotão
-  // (menor w ao maior w) + folga, com largura mínima (limita o zoom máximo).
-  const camTarget = (p: number) => {
+  // Chegada = fim da Copa inteira. O líder atual (w=1) jogou `ultimo` jogos; a
+  // Copa tem TOTAL_JOGOS ⇒ a chegada fica lá em w = TOTAL_JOGOS / ultimo.
+  const worldFinish = TOTAL_JOGOS / Math.max(1, ultimo);
+
+  // Câmera-base para a posição contínua p. Normal: centra no CENTRO DE MASSA
+  // (média de w) e abre só o necessário pra manter os extremos visíveis com
+  // folga (VIS_K) — mais espaçamento entre as IAs. reveal (fim da animação):
+  // afasta até a linha de chegada lá no fim da Copa.
+  const camBase = (p: number) => {
     const a = clamp(Math.floor(p), 0, ultimo);
     const b = clamp(a + 1, 0, ultimo);
     const fr = p - a;
     let wMin = Infinity;
     let wMax = -Infinity;
+    let soma = 0;
+    let n = 0;
     for (const ia of ordenadas) {
       const pa = frames[a]?.pts[ia.slug] ?? 0;
       const pb = frames[b]?.pts[ia.slug] ?? 0;
       const w = (pa + (pb - pa) * fr) / maxPts;
       if (w < wMin) wMin = w;
       if (w > wMax) wMax = w;
+      soma += w;
+      n++;
     }
     if (!Number.isFinite(wMin)) {
       wMin = 0;
       wMax = 0;
     }
-    let left = wMin - PAD_BEHIND;
-    let right = wMax + PAD_AHEAD;
-    if (right - left < MIN_VIEW_W) {
-      const c = (left + right) / 2;
-      left = c - MIN_VIEW_W / 2;
-      right = c + MIN_VIEW_W / 2;
+    const wc = n > 0 ? soma / n : 0; // centro de massa do pelotão
+    if (esperandoFimRef.current) {
+      // Zoom-out revelando a chegada lá no fim da Copa.
+      const left = Math.max(0, wMin - EDGE_PAD);
+      const right = worldFinish + EDGE_PAD;
+      return {
+        c: (left + right) / 2,
+        h: Math.max(MIN_HALF, (right - left) / 2),
+        reveal: true,
+      };
     }
-    if (left < CAM_MIN_LEFT) {
-      const w = right - left;
-      left = CAM_MIN_LEFT;
-      right = CAM_MIN_LEFT + w;
-    }
-    return { left, right };
+    // meia-largura: maior distância do centro de massa a um extremo (×folga).
+    const span = Math.max(wMax - wc, wc - wMin);
+    const h = Math.max(MIN_HALF, span * VIS_K + EDGE_PAD);
+    let c = wc;
+    if (c - h < 0) c = h; // não rola atrás da largada
+    return { c, h, reveal: false };
   };
 
   // Snap da câmera no estado inicial (antes do 1º frame de animação).
   useEffect(() => {
-    const t = camTarget(0);
-    camRef.current = { ...t };
-    setCam(t);
+    const t = camBase(0);
+    camRef.current = { c: t.c, h: t.h };
+    setCam({ c: t.c, h: t.h });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -222,13 +273,20 @@ export default function CorridaTopDown({
         }
         posRef.current = np;
         setPos(np);
-        // Suaviza câmera (posição + zoom) em direção ao alvo do pelotão.
-        const t = camTarget(np);
-        const c = camRef.current;
-        c.left += (t.left - c.left) * CAM_EASE;
-        c.right += (t.right - c.right) * CAM_EASE;
-        setCam({ left: c.left, right: c.right });
       }
+      // Câmera roda SEMPRE — inclusive na pausa final, pro zoom-out revelar a
+      // chegada. Centro = centro de massa; respiração de zoom dá dinamismo.
+      const t = camBase(posRef.current);
+      let th = t.h;
+      if (!t.reveal) {
+        const br =
+          1 + BREATH_AMP * Math.sin((now / 1000) * ((2 * Math.PI) / BREATH_S));
+        th = t.h * br;
+      }
+      const c = camRef.current;
+      c.c += (t.c - c.c) * CAM_EASE;
+      c.h += (th - c.h) * CAM_EASE;
+      setCam({ c: c.c, h: c.h });
       rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
@@ -247,23 +305,30 @@ export default function CorridaTopDown({
   const alturaPista = numLanes * LANE_H + 14;
 
   // Converte fração-do-mundo w em % horizontal na tela, via janela da câmera.
-  const camW = Math.max(0.0001, cam.right - cam.left);
-  const screenX = (w: number) => ((w - cam.left) / camW) * 100;
+  const camLeft = cam.c - cam.h;
+  const camRight = cam.c + cam.h;
+  const camW = Math.max(0.0001, cam.h * 2);
+  const screenX = (w: number) => ((w - camLeft) / camW) * 100;
   const xLargada = screenX(0);
-  const xChegada = screenX(1);
+  const xChegada = screenX(worldFinish);
 
-  // Faixas do piso visíveis na janela atual (parallax).
-  const bandas: { b: number; left: number; w: number; dark: boolean }[] = [];
+  // Faixas do piso visíveis na janela atual (parallax), coloridas por fase.
+  const bandas: { b: number; left: number; w: number; bg: string }[] = [];
   {
-    const b0 = Math.floor((cam.left - BAND_W) / BAND_W);
-    const b1 = Math.ceil((cam.right + BAND_W) / BAND_W);
+    const b0 = Math.floor((camLeft - BAND_W) / BAND_W);
+    const b1 = Math.ceil((camRight + BAND_W) / BAND_W);
     const wPct = (BAND_W / camW) * 100;
     for (let b = b0; b <= b1; b++) {
+      // jogo aproximado representado por esta faixa (w → nº de jogo).
+      const wMid = (b + 0.5) * BAND_W;
+      const jn = clamp(Math.round(wMid * ultimo), 1, TOTAL_JOGOS);
+      const cores = coresFase(jn);
+      const dark = (((b % 2) + 2) % 2) === 0;
       bandas.push({
         b,
         left: screenX(b * BAND_W),
         w: wPct,
-        dark: (((b % 2) + 2) % 2) === 0,
+        bg: dark ? cores.dark : cores.light,
       });
     }
   }
@@ -335,7 +400,7 @@ export default function CorridaTopDown({
             style={{
               left: `${bd.left}%`,
               width: `${bd.w}%`,
-              background: bd.dark ? BAND_DARK : BAND_LIGHT,
+              background: bd.bg,
             }}
           />
         ))}
@@ -418,10 +483,11 @@ export default function CorridaTopDown({
       </div>
 
       <p className="cn-legenda">
-        A câmera acompanha o pelotão: agrupadas, dá zoom pra ver a diferença;
-        espalhadas, abre pra caber todo mundo. O piso desliza pra trás conforme
-        avançam e a linha de chegada 🏁 surge no fim. Empatadas dividem a faixa —
-        passe o dedo/mouse pra ver o nome.
+        A câmera fica centrada no pelotão (centro de massa) e dá zoom in/out pra
+        evidenciar as diferenças. O piso muda de cor a cada fase da Copa e desliza
+        pra trás conforme avançam; no fim, a câmera se afasta e revela a linha de
+        chegada 🏁 lá no fim do torneio. Empatadas dividem a faixa — passe o
+        dedo/mouse pra ver o nome.
       </p>
 
       <style>{`
