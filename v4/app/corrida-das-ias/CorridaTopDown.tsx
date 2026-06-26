@@ -57,7 +57,7 @@ const TRACK_W = 0.075; // largura (vertical) da pista, em unidades de mundo
 const MASCOTE_W = 0.0145; // tamanho-base do personagem, em unidades de mundo
 // No zoom máximo (revelação final) a pista ocupa só esta fração da altura; o
 // resto (acima de y1 e abaixo de y2) vira grama/paisagem, como pista de verdade.
-const TRACK_VFILL = 0.6;
+const TRACK_VFILL = 0.8;
 
 // Câmera de transmissão (follow contínuo): NUNCA perde o líder de vista, move-se
 // de forma contínua (sem cortes nem freadas). Enquadra um grupo de foco em torno
@@ -904,14 +904,10 @@ export default function CorridaTopDown({
           position: relative;
           width: 100%;
           height: clamp(300px, 56vh, 560px);
-          /* Grama/paisagem: aparece acima e abaixo do trilho no zoom final. */
-          background:
-            repeating-linear-gradient(
-              90deg,
-              #0c2c19 0 44px,
-              #0e3420 44px 88px
-            ),
-            #0c2c19;
+          /* Grama/paisagem: verde chapado (sem listras) — aparece acima e abaixo
+             do trilho no zoom final, sem dar sensação de movimento descompassado
+             em relação ao piso azul que desliza. */
+          background: #0d3a20;
           border-radius: var(--r-m);
           overflow: hidden;
         }
