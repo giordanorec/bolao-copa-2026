@@ -288,5 +288,15 @@
     "jogo_numero": 58,
     "gols_a": 1,
     "gols_b": 3
+  },
+  {
+    "jogo_numero": 59,
+    "gols_a": 3,
+    "gols_b": 2
+  },
+  {
+    "jogo_numero": 60,
+    "gols_a": 0,
+    "gols_b": 0
   }
 ]

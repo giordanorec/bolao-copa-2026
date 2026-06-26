@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-06-25T23:29:52-03:00",
+  "atualizado_em": "2026-06-26T07:49:58-03:00",
   "ias": [
     {
       "slug": "grok-4-fast",
@@ -7,17 +7,17 @@
       "pontos": 284,
       "placares_exatos": 11,
       "vencedores_acertados": 41,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
       "rank": 1
     },
     {
       "slug": "mistral-small-3",
       "nome_display": "Mistral Small 3",
-      "pontos": 276,
+      "pontos": 281,
       "placares_exatos": 12,
-      "vencedores_acertados": 40,
-      "jogos_palpitados": 58,
+      "vencedores_acertados": 41,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
       "rank": 2
     },
@@ -27,9 +27,39 @@
       "pontos": 260,
       "placares_exatos": 11,
       "vencedores_acertados": 37,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
       "rank": 3
+    },
+    {
+      "slug": "claude-haiku-3-5",
+      "nome_display": "Claude Haiku 3.5 (legacy)",
+      "pontos": 260,
+      "placares_exatos": 8,
+      "vencedores_acertados": 40,
+      "jogos_palpitados": 60,
+      "palpites_total": 72,
+      "rank": 4
+    },
+    {
+      "slug": "o3",
+      "nome_display": "OpenAI o3",
+      "pontos": 259,
+      "placares_exatos": 12,
+      "vencedores_acertados": 37,
+      "jogos_palpitados": 60,
+      "palpites_total": 72,
+      "rank": 5
+    },
+    {
+      "slug": "wizardlm-2-8x22b",
+      "nome_display": "WizardLM 2 8x22B",
+      "pontos": 259,
+      "placares_exatos": 11,
+      "vencedores_acertados": 38,
+      "jogos_palpitados": 60,
+      "palpites_total": 72,
+      "rank": 6
     },
     {
       "slug": "claude-opus-4-7",
@@ -37,9 +67,9 @@
       "pontos": 254,
       "placares_exatos": 11,
       "vencedores_acertados": 37,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 4
+      "rank": 7
     },
     {
       "slug": "claude-sonnet-4-6",
@@ -47,9 +77,9 @@
       "pontos": 253,
       "placares_exatos": 11,
       "vencedores_acertados": 36,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 5
+      "rank": 8
     },
     {
       "slug": "bola-de-cristal",
@@ -57,37 +87,7 @@
       "pontos": 253,
       "placares_exatos": 10,
       "vencedores_acertados": 37,
-      "jogos_palpitados": 58,
-      "palpites_total": 72,
-      "rank": 6
-    },
-    {
-      "slug": "claude-haiku-3-5",
-      "nome_display": "Claude Haiku 3.5 (legacy)",
-      "pontos": 253,
-      "placares_exatos": 8,
-      "vencedores_acertados": 39,
-      "jogos_palpitados": 58,
-      "palpites_total": 72,
-      "rank": 7
-    },
-    {
-      "slug": "o3",
-      "nome_display": "OpenAI o3",
-      "pontos": 249,
-      "placares_exatos": 11,
-      "vencedores_acertados": 36,
-      "jogos_palpitados": 58,
-      "palpites_total": 72,
-      "rank": 8
-    },
-    {
-      "slug": "wizardlm-2-8x22b",
-      "nome_display": "WizardLM 2 8x22B",
-      "pontos": 249,
-      "placares_exatos": 10,
-      "vencedores_acertados": 37,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
       "rank": 9
     },
@@ -97,7 +97,17 @@
       "pontos": 247,
       "placares_exatos": 10,
       "vencedores_acertados": 37,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
+      "palpites_total": 72,
+      "rank": 10
+    },
+    {
+      "slug": "le-chat-mistral",
+      "nome_display": "Le Chat (Mistral Large)",
+      "pontos": 247,
+      "placares_exatos": 10,
+      "vencedores_acertados": 37,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
       "rank": 10
     },
@@ -107,9 +117,9 @@
       "pontos": 246,
       "placares_exatos": 9,
       "vencedores_acertados": 37,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 11
+      "rank": 12
     },
     {
       "slug": "mistral-medium-3",
@@ -117,9 +127,9 @@
       "pontos": 246,
       "placares_exatos": 8,
       "vencedores_acertados": 38,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 12
+      "rank": 13
     },
     {
       "slug": "claude-opus-4-5",
@@ -127,9 +137,29 @@
       "pontos": 245,
       "placares_exatos": 11,
       "vencedores_acertados": 36,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 13
+      "rank": 14
+    },
+    {
+      "slug": "gemma-3-12b",
+      "nome_display": "Gemma 3 12B",
+      "pontos": 245,
+      "placares_exatos": 6,
+      "vencedores_acertados": 41,
+      "jogos_palpitados": 60,
+      "palpites_total": 72,
+      "rank": 15
+    },
+    {
+      "slug": "ministral-8b",
+      "nome_display": "Ministral 8B",
+      "pontos": 242,
+      "placares_exatos": 6,
+      "vencedores_acertados": 40,
+      "jogos_palpitados": 60,
+      "palpites_total": 72,
+      "rank": 16
     },
     {
       "slug": "o1",
@@ -137,19 +167,19 @@
       "pontos": 240,
       "placares_exatos": 9,
       "vencedores_acertados": 37,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 14
+      "rank": 17
     },
     {
-      "slug": "gemma-3-12b",
-      "nome_display": "Gemma 3 12B",
-      "pontos": 240,
-      "placares_exatos": 6,
-      "vencedores_acertados": 40,
-      "jogos_palpitados": 58,
+      "slug": "deepseek-v3-1",
+      "nome_display": "DeepSeek V3.1",
+      "pontos": 239,
+      "placares_exatos": 7,
+      "vencedores_acertados": 38,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 15
+      "rank": 18
     },
     {
       "slug": "chatgpt-5-nano",
@@ -157,9 +187,9 @@
       "pontos": 237,
       "placares_exatos": 10,
       "vencedores_acertados": 35,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 16
+      "rank": 19
     },
     {
       "slug": "grok-4-heavy",
@@ -167,29 +197,39 @@
       "pontos": 235,
       "placares_exatos": 9,
       "vencedores_acertados": 36,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 17
+      "rank": 20
     },
     {
-      "slug": "ministral-8b",
-      "nome_display": "Ministral 8B",
+      "slug": "deepseek-v3",
+      "nome_display": "DeepSeek V3 (legacy)",
       "pontos": 235,
-      "placares_exatos": 6,
-      "vencedores_acertados": 39,
-      "jogos_palpitados": 58,
+      "placares_exatos": 8,
+      "vencedores_acertados": 37,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 18
+      "rank": 21
     },
     {
-      "slug": "le-chat-mistral",
-      "nome_display": "Le Chat (Mistral Large)",
-      "pontos": 230,
-      "placares_exatos": 9,
+      "slug": "qwen-3-max",
+      "nome_display": "Qwen 3 Max",
+      "pontos": 231,
+      "placares_exatos": 10,
       "vencedores_acertados": 35,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 19
+      "rank": 22
+    },
+    {
+      "slug": "claude-fable-5",
+      "nome_display": "Claude Code + Fable",
+      "pontos": 231,
+      "placares_exatos": 7,
+      "vencedores_acertados": 36,
+      "jogos_palpitados": 60,
+      "palpites_total": 72,
+      "rank": 23
     },
     {
       "slug": "grok-4",
@@ -197,9 +237,9 @@
       "pontos": 230,
       "placares_exatos": 8,
       "vencedores_acertados": 36,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 20
+      "rank": 24
     },
     {
       "slug": "chatgpt-5-thinking",
@@ -207,9 +247,9 @@
       "pontos": 229,
       "placares_exatos": 8,
       "vencedores_acertados": 35,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 21
+      "rank": 25
     },
     {
       "slug": "manus",
@@ -217,9 +257,9 @@
       "pontos": 228,
       "placares_exatos": 8,
       "vencedores_acertados": 36,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 22
+      "rank": 26
     },
     {
       "slug": "kimi-k2",
@@ -227,9 +267,19 @@
       "pontos": 228,
       "placares_exatos": 8,
       "vencedores_acertados": 34,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 23
+      "rank": 27
+    },
+    {
+      "slug": "gemini-2-5-flash-lite",
+      "nome_display": "Gemini 2.5 Flash-Lite",
+      "pontos": 227,
+      "placares_exatos": 9,
+      "vencedores_acertados": 34,
+      "jogos_palpitados": 60,
+      "palpites_total": 72,
+      "rank": 28
     },
     {
       "slug": "perplexity-sonar-pro",
@@ -237,19 +287,29 @@
       "pontos": 227,
       "placares_exatos": 7,
       "vencedores_acertados": 36,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 24
+      "rank": 29
     },
     {
-      "slug": "qwen-3-max",
-      "nome_display": "Qwen 3 Max",
+      "slug": "deepseek-v3-2",
+      "nome_display": "DeepSeek V3.2",
       "pontos": 226,
-      "placares_exatos": 10,
-      "vencedores_acertados": 34,
-      "jogos_palpitados": 58,
+      "placares_exatos": 9,
+      "vencedores_acertados": 33,
+      "jogos_palpitados": 56,
+      "palpites_total": 67,
+      "rank": 30
+    },
+    {
+      "slug": "chatgpt-5-mini",
+      "nome_display": "ChatGPT 5 mini",
+      "pontos": 226,
+      "placares_exatos": 4,
+      "vencedores_acertados": 38,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 25
+      "rank": 31
     },
     {
       "slug": "qwen-3-235b",
@@ -257,19 +317,9 @@
       "pontos": 225,
       "placares_exatos": 9,
       "vencedores_acertados": 34,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 26
-    },
-    {
-      "slug": "deepseek-v3",
-      "nome_display": "DeepSeek V3 (legacy)",
-      "pontos": 225,
-      "placares_exatos": 7,
-      "vencedores_acertados": 36,
-      "jogos_palpitados": 58,
-      "palpites_total": 72,
-      "rank": 27
+      "rank": 32
     },
     {
       "slug": "chatgpt-5",
@@ -277,19 +327,19 @@
       "pontos": 224,
       "placares_exatos": 8,
       "vencedores_acertados": 34,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 28
+      "rank": 33
     },
     {
-      "slug": "claude-fable-5",
-      "nome_display": "Claude Code + Fable",
+      "slug": "copilot-microsoft",
+      "nome_display": "Microsoft Copilot",
       "pontos": 224,
-      "placares_exatos": 7,
-      "vencedores_acertados": 35,
-      "jogos_palpitados": 58,
+      "placares_exatos": 8,
+      "vencedores_acertados": 34,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 29
+      "rank": 33
     },
     {
       "slug": "perplexity-sonar-reasoning",
@@ -297,9 +347,9 @@
       "pontos": 224,
       "placares_exatos": 7,
       "vencedores_acertados": 35,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 29
+      "rank": 35
     },
     {
       "slug": "gpt-4o",
@@ -307,19 +357,9 @@
       "pontos": 222,
       "placares_exatos": 8,
       "vencedores_acertados": 34,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 31
-    },
-    {
-      "slug": "deepseek-v3-1",
-      "nome_display": "DeepSeek V3.1",
-      "pontos": 222,
-      "placares_exatos": 6,
-      "vencedores_acertados": 36,
-      "jogos_palpitados": 58,
-      "palpites_total": 72,
-      "rank": 32
+      "rank": 36
     },
     {
       "slug": "qwen-3-coder",
@@ -327,19 +367,9 @@
       "pontos": 222,
       "placares_exatos": 5,
       "vencedores_acertados": 37,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 33
-    },
-    {
-      "slug": "gemini-2-5-flash-lite",
-      "nome_display": "Gemini 2.5 Flash-Lite",
-      "pontos": 220,
-      "placares_exatos": 9,
-      "vencedores_acertados": 33,
-      "jogos_palpitados": 58,
-      "palpites_total": 72,
-      "rank": 34
+      "rank": 37
     },
     {
       "slug": "claude-sonnet-4-5",
@@ -347,19 +377,19 @@
       "pontos": 219,
       "placares_exatos": 8,
       "vencedores_acertados": 33,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 35
+      "rank": 38
     },
     {
-      "slug": "copilot-microsoft",
-      "nome_display": "Microsoft Copilot",
+      "slug": "qwen-2-5-72b",
+      "nome_display": "Qwen 2.5 72B",
       "pontos": 219,
-      "placares_exatos": 8,
-      "vencedores_acertados": 33,
-      "jogos_palpitados": 58,
+      "placares_exatos": 5,
+      "vencedores_acertados": 36,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 35
+      "rank": 39
     },
     {
       "slug": "llama-3-1-70b",
@@ -367,19 +397,9 @@
       "pontos": 217,
       "placares_exatos": 6,
       "vencedores_acertados": 35,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 37
-    },
-    {
-      "slug": "chatgpt-5-mini",
-      "nome_display": "ChatGPT 5 mini",
-      "pontos": 216,
-      "placares_exatos": 3,
-      "vencedores_acertados": 37,
-      "jogos_palpitados": 58,
-      "palpites_total": 72,
-      "rank": 38
+      "rank": 40
     },
     {
       "slug": "codestral",
@@ -387,9 +407,9 @@
       "pontos": 214,
       "placares_exatos": 7,
       "vencedores_acertados": 33,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 39
+      "rank": 41
     },
     {
       "slug": "jamba-1-5-large",
@@ -397,19 +417,29 @@
       "pontos": 213,
       "placares_exatos": 4,
       "vencedores_acertados": 35,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 40
+      "rank": 42
     },
     {
-      "slug": "qwen-2-5-72b",
-      "nome_display": "Qwen 2.5 72B",
+      "slug": "deepseek-r1",
+      "nome_display": "DeepSeek R1",
       "pontos": 212,
-      "placares_exatos": 5,
-      "vencedores_acertados": 35,
-      "jogos_palpitados": 58,
+      "placares_exatos": 6,
+      "vencedores_acertados": 34,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 41
+      "rank": 43
+    },
+    {
+      "slug": "claude-haiku-4-5",
+      "nome_display": "Claude Haiku 4.5",
+      "pontos": 212,
+      "placares_exatos": 6,
+      "vencedores_acertados": 34,
+      "jogos_palpitados": 60,
+      "palpites_total": 72,
+      "rank": 43
     },
     {
       "slug": "cohere-command-r",
@@ -417,9 +447,9 @@
       "pontos": 212,
       "placares_exatos": 4,
       "vencedores_acertados": 36,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 42
+      "rank": 45
     },
     {
       "slug": "perplexity-sonar-large",
@@ -427,19 +457,9 @@
       "pontos": 211,
       "placares_exatos": 7,
       "vencedores_acertados": 34,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 43
-    },
-    {
-      "slug": "deepseek-v3-2",
-      "nome_display": "DeepSeek V3.2",
-      "pontos": 209,
-      "placares_exatos": 8,
-      "vencedores_acertados": 31,
-      "jogos_palpitados": 54,
-      "palpites_total": 67,
-      "rank": 44
+      "rank": 46
     },
     {
       "slug": "mixtral-8x22b",
@@ -447,9 +467,9 @@
       "pontos": 206,
       "placares_exatos": 6,
       "vencedores_acertados": 34,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 45
+      "rank": 47
     },
     {
       "slug": "gemini-2-5-pro",
@@ -457,19 +477,9 @@
       "pontos": 205,
       "placares_exatos": 7,
       "vencedores_acertados": 32,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 46
-    },
-    {
-      "slug": "claude-haiku-4-5",
-      "nome_display": "Claude Haiku 4.5",
-      "pontos": 205,
-      "placares_exatos": 6,
-      "vencedores_acertados": 33,
-      "jogos_palpitados": 58,
-      "palpites_total": 72,
-      "rank": 47
+      "rank": 48
     },
     {
       "slug": "llama-4-maverick",
@@ -477,19 +487,19 @@
       "pontos": 204,
       "placares_exatos": 6,
       "vencedores_acertados": 32,
-      "jogos_palpitados": 58,
-      "palpites_total": 72,
-      "rank": 48
-    },
-    {
-      "slug": "deepseek-r1",
-      "nome_display": "DeepSeek R1",
-      "pontos": 202,
-      "placares_exatos": 5,
-      "vencedores_acertados": 33,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
       "rank": 49
+    },
+    {
+      "slug": "gemma-3-27b",
+      "nome_display": "Gemma 3 27B",
+      "pontos": 204,
+      "placares_exatos": 3,
+      "vencedores_acertados": 35,
+      "jogos_palpitados": 60,
+      "palpites_total": 72,
+      "rank": 50
     },
     {
       "slug": "llama-3-3-70b",
@@ -497,19 +507,19 @@
       "pontos": 202,
       "placares_exatos": 5,
       "vencedores_acertados": 33,
-      "jogos_palpitados": 58,
-      "palpites_total": 72,
-      "rank": 49
-    },
-    {
-      "slug": "gemma-3-27b",
-      "nome_display": "Gemma 3 27B",
-      "pontos": 199,
-      "placares_exatos": 3,
-      "vencedores_acertados": 34,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
       "rank": 51
+    },
+    {
+      "slug": "phi-4-mini",
+      "nome_display": "Phi-4 mini",
+      "pontos": 192,
+      "placares_exatos": 7,
+      "vencedores_acertados": 29,
+      "jogos_palpitados": 60,
+      "palpites_total": 71,
+      "rank": 52
     },
     {
       "slug": "cohere-command-r-plus",
@@ -517,27 +527,17 @@
       "pontos": 183,
       "placares_exatos": 5,
       "vencedores_acertados": 30,
-      "jogos_palpitados": 58,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
-      "rank": 52
-    },
-    {
-      "slug": "phi-4-mini",
-      "nome_display": "Phi-4 mini",
-      "pontos": 182,
-      "placares_exatos": 6,
-      "vencedores_acertados": 28,
-      "jogos_palpitados": 58,
-      "palpites_total": 71,
       "rank": 53
     },
     {
       "slug": "meta-llama-4",
       "nome_display": "Meta AI (Llama 4)",
-      "pontos": 170,
+      "pontos": 177,
       "placares_exatos": 2,
-      "vencedores_acertados": 30,
-      "jogos_palpitados": 58,
+      "vencedores_acertados": 31,
+      "jogos_palpitados": 60,
       "palpites_total": 72,
       "rank": 54
     },
@@ -1242,6 +1242,6 @@
       "rank": 56
     }
   ],
-  "jogos_apurados": 58,
+  "jogos_apurados": 60,
   "jogos_totais": 104
 }
