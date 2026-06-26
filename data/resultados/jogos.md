@@ -68,3 +68,5 @@ no cálculo de pontuação.
 | 58 | Grupo F | Qui 25/06 | 20h00 | Kansas City | Tunísia | 1 | 3 | Países Baixos |
 | 59 | Grupo D | Qui 25/06 | 23h00 | Los Angeles | Turquia | 3 | 2 | Estados Unidos |
 | 60 | Grupo D | Qui 25/06 | 23h00 | San Francisco | Paraguai | 0 | 0 | Austrália |
+| 61 | Grupo I | Sex 26/06 | 16h00 | Boston | Noruega | 1 | 4 | França |
+| 62 | Grupo I | Sex 26/06 | 16h00 | Toronto | Senegal | 5 | 0 | Iraque |
