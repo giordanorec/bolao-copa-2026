@@ -21,32 +21,46 @@ type Frame = {
   pts: Record<string, number>;
 };
 
-const LANE_H = 30; // altura de cada raia (px)
-const ICON = 20;
-const SPAN = 78; // % usada SÓ no empacotamento de raias (Y); o X agora é por câmera
-const MIN_GAP = 6; // distância % mínima entre dois ícones na MESMA raia (final limpo)
 const SEG_MS = 520; // tempo pra animar UM jogo — bem mais rápido que antes
-const PAUSA_FINAL_MS = 4800; // pausa no fim: dá tempo do zoom-out revelar a chegada
+const PAUSA_FINAL_MS = 3200; // pausa no fim — só COMEÇA depois do zoom-out terminar
+const REVEAL_MS = 5200; // duração do zoom-out final (lento, dá pra acompanhar)
 
-// Câmera centrada no CENTRO DE MASSA do pelotão (média de pontos). half = meia-
-// largura visível; quanto menor, mais zoom (diferenças mais evidentes). O mundo
-// é medido em fração da corrida: w = pts / maxPts (w=1 = líder atual).
-const MIN_HALF = 0.05; // meia-largura mínima ⇒ zoom MÁXIMO quando agrupados
-const VIS_K = 1.9; // folga multiplicativa em torno dos extremos (espaçamento maior)
-const EDGE_PAD = 0.03; // folga absoluta pras pontas não colarem na borda
+// === Posição vertical ORGÂNICA (corrida sem raias) ===
+// Ninguém tem raia fixa. Cada IA tem uma "casa" vertical estável (hash do slug,
+// NÃO o ranking — pra a posição não entregar o resultado). A cada jogo, uma
+// relaxação separa quem está colado (perto no eixo X) empurrando um pra cima e
+// outro pra baixo, e puxa cada um de volta pra casa devagar. Resultado: quando
+// dois disputam o mesmo espaço, um se desgarra; senão, voltam à sua altura.
+const Y_LO = 0.1; // limite superior/inferior da pista (fração da LARGURA da pista)
+const Y_HI = 0.9;
+const X_NEAR = 0.06; // distância no X (fração da corrida) abaixo da qual "colidem"
+const Y_MIN = 0.22; // separação vertical mínima desejada (fração da largura da pista)
+const HOME_PULL = 0.05; // força de retorno à casa por iteração
+const RELAX_ITERS = 28; // iterações de relaxação por frame
+
+// === Mundo físico (pista real) ===
+// Tudo — pista (faixas) E personagens — vive no MESMO mundo e é desenhado pela
+// MESMA escala da câmera (px por unidade-de-mundo). Por isso a razão entre o
+// tamanho do personagem e a largura de uma faixa é CONSTANTE: dar zoom aumenta
+// os dois juntos, como acompanhar uma pista de verdade. A unidade do mundo é a
+// fração-da-corrida (w = pts/maxPts). TRACK_W é a "largura" (vertical) da pista
+// nessa mesma unidade; a câmera nunca fecha além do que mantém a pista na tela.
+const TRACK_W = 0.075; // largura (vertical) da pista, em unidades de mundo
+const MASCOTE_W = 0.0145; // tamanho-base do personagem, em unidades de mundo
+
+// Câmera de transmissão (follow contínuo): NUNCA perde o líder de vista, move-se
+// de forma contínua (sem cortes nem freadas). Enquadra um grupo de foco em torno
+// do líder, fechando no eixo X pra EXAGERAR as diferenças de pontos. O mundo é
+// medido em fração da corrida: w = pts / maxPts (w=1 = líder atual).
+const MIN_HALF = 0.04; // meia-largura mínima ⇒ zoom MÁXIMO quando agrupados
+const VIS_K = 1.55; // folga multiplicativa em torno dos extremos (modo simples)
+const EDGE_PAD = 0.02; // folga absoluta pras pontas não colarem na borda
 const CAM_EASE = 0.1; // inércia: suavização do movimento da câmera por frame
-
-// === Câmera de transmissão (follow contínuo) ===
-// Como numa transmissão de atletismo/futebol: a câmera NUNCA perde o líder de
-// vista e se move de forma contínua e fluida (sem cortes nem freadas pra segurar
-// quadro estático). Enquadra do pelotão relevante até um pouco à frente do líder
-// (lead room). Quando a briga na frente está acirrada, fecha suavemente nos
-// primeiros; quando o pelotão espalha, abre. Sem "diretor" de planos discretos.
-const LEAD_ROOM = 0.22; // espaço à frente do líder (fração do tamanho do pelotão)
-const BACK_CAP = 0.55; // quanto, no máx., mostramos atrás do líder (fração da corrida)
+const LEAD_ROOM = 0.16; // espaço à frente do líder (fração do grupo de foco)
+const BACK_CAP = 0.3; // quanto, no máx., mostramos atrás do líder (fração da corrida)
 const FRONT_TIGHT = 0.06; // gap (fração) abaixo do qual a briga na frente é acirrada
-const TIGHT_CROP = 0.55; // o quanto cortamos do fundo pra focar a frente numa briga
-const LEAD_MARGIN = 0.1; // margem mínima (fração da janela) que o líder guarda da borda
+const TIGHT_CROP = 0.6; // o quanto fechamos no líder numa briga acirrada
+const LEAD_MARGIN = 0.12; // margem que o líder guarda da borda direita (fração da janela)
 const KB_AMP_H = 0.05; // respiração de zoom (Ken Burns), bem sutil
 const KB_W2 = (2 * Math.PI) / 8.5; // freq. da respiração de zoom (rad/s)
 // Linha de chegada = FIM DA COPA inteira (104 jogos), bem distante; só aparece
@@ -144,9 +158,18 @@ export default function CorridaTopDown({
   );
   const modoRef = useRef<"dinamico" | "simples">("dinamico");
   modoRef.current = modoCamera;
-  // Fullscreen do card.
+  // Fullscreen do card. isFs = fullscreen nativo; pseudoFs = fallback CSS p/
+  // navegadores que não permitem requestFullscreen num div (iOS Safari).
   const cardRef = useRef<HTMLDivElement>(null);
   const [isFs, setIsFs] = useState(false);
+  const [pseudoFs, setPseudoFs] = useState(false);
+  // Tamanho real (px) da pista — base da escala do mundo. Atualizado por
+  // ResizeObserver (responsivo: muda com viewport, orientação e tela cheia). O
+  // tick lê via ref (closure do rAF não vê o state novo).
+  const pistaRef = useRef<HTMLDivElement>(null);
+  const [pistaPx, setPistaPx] = useState({ w: 800, h: 340 });
+  const pistaPxRef = useRef(pistaPx);
+  pistaPxRef.current = pistaPx;
 
   // Disparo único ao montar — engagement com Modo A.
   useEffect(() => {
@@ -164,6 +187,9 @@ export default function CorridaTopDown({
   // Posição (fração) do líder no último frame de câmera — usada como trava de
   // segurança pra ele nunca sair de quadro, mesmo com a inércia da câmera.
   const leadRef = useRef(0);
+  // Zoom-out final (reveal): interpolado POR TEMPO (lento), não por inércia. A
+  // pausa só começa a contar depois que o zoom-out termina.
+  const revealRef = useRef({ t0: 0, c0: 0, h0: 0, scheduled: false });
 
   const ultimo = frames.length - 1;
 
@@ -172,9 +198,19 @@ export default function CorridaTopDown({
     setPos(i);
     lastRef.current = performance.now();
     esperandoFimRef.current = false;
+    revealRef.current = { t0: 0, c0: 0, h0: 0, scheduled: false };
     const wf = wideFraming(i);
     camRef.current = { c: wf.c, h: wf.h };
     setCam({ c: wf.c, h: wf.h });
+  };
+
+  // Zoom mínimo (meia-largura máxima de fechamento): nunca fechar tanto que a
+  // largura da pista (TRACK_W) não caiba na altura da tela. Mantém a pista
+  // inteira sempre visível e dá um teto natural ao tamanho dos personagens.
+  const hFloor = () => {
+    const px = pistaPxRef.current;
+    const aspectHW = px.h / Math.max(1, px.w);
+    return Math.max(MIN_HALF, TRACK_W / (2 * Math.max(0.01, aspectHW)));
   };
 
   const ordenadas = useMemo(
@@ -249,13 +285,14 @@ export default function CorridaTopDown({
   // frente do líder, fechando suavemente quando a briga na frente aperta. O
   // líder NUNCA sai de quadro; nada de cortes nem freadas pra segurar quadro.
   const cineTarget = (p: number, now: number) => {
+    const hMin = hFloor();
     if (esperandoFimRef.current) {
       const left = -EDGE_PAD;
       const right = worldFinish + EDGE_PAD;
       leadRef.current = worldFinish;
       return {
         c: (left + right) / 2,
-        h: Math.max(MIN_HALF, (right - left) / 2),
+        h: Math.max(hMin, (right - left) / 2),
         reveal: true,
       };
     }
@@ -283,19 +320,19 @@ export default function CorridaTopDown({
       left += (cropTo - left) * TIGHT_CROP * tight;
     }
 
-    let h = Math.max(MIN_HALF, (right - left) / 2);
+    let h = Math.max(hMin, (right - left) / 2);
     let c = (left + right) / 2;
 
     // Modo simples: segue o pelotão sem respiração nem fechamento de disputa.
     if (modoRef.current === "simples") {
       const wf = wideFraming(p);
       leadRef.current = wLead;
-      return { c: wf.c, h: wf.h, reveal: false };
+      return { c: wf.c, h: Math.max(hMin, wf.h), reveal: false };
     }
 
     // Respiração de zoom (Ken Burns) bem sutil — só vida, não desenquadra.
     h *= 1 + KB_AMP_H * Math.sin((now / 1000) * KB_W2);
-    h = Math.max(MIN_HALF, h);
+    h = Math.max(hMin, h);
 
     // Trava: o líder guarda uma margem da borda direita (nunca sai de quadro).
     const margin = LEAD_MARGIN * (2 * h);
@@ -315,10 +352,36 @@ export default function CorridaTopDown({
   const toggleFullscreen = () => {
     if (document.fullscreenElement) {
       document.exitFullscreen();
+      return;
+    }
+    if (pseudoFs) {
+      setPseudoFs(false);
+      return;
+    }
+    const el = cardRef.current;
+    if (el?.requestFullscreen) {
+      el.requestFullscreen().catch(() => setPseudoFs(true));
     } else {
-      cardRef.current?.requestFullscreen?.();
+      setPseudoFs(true);
     }
   };
+
+  // Mede a pista em px (base da escala do mundo). Atualiza em resize, mudança de
+  // orientação e entrada/saída de tela cheia — mantém personagens e faixas na
+  // proporção certa em qualquer tela.
+  useEffect(() => {
+    const el = pistaRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      for (const e of entries) {
+        const { width, height } = e.contentRect;
+        if (width > 0 && height > 0)
+          setPistaPx({ w: Math.round(width), h: Math.round(height) });
+      }
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // Snap da câmera no estado inicial (antes do 1º frame de animação).
   useEffect(() => {
@@ -343,44 +406,56 @@ export default function CorridaTopDown({
   }, [frames, ordenadas]);
   segFastRef.current = segFast;
 
-  // Lanes DINÂMICAS, jogo a jogo: como uma corrida SEM raias fixas. Em cada
-  // frame, processamos por X (desc) e cada IA tenta MANTER a faixa do frame
-  // anterior; só sai dela quando alguém à frente está perto demais (< MIN_GAP)
-  // — aí procura outro espaço. Resultado: atletas trocam de faixa pra brigar por
-  // espaço, e a saída NÃO determina a posição final. Entre frames inteiros o Y
-  // é interpolado ⇒ a troca de faixa vira um deslize orgânico.
-  const { laneFrames, numLanes } = useMemo(() => {
-    const lf: Record<string, number>[] = [];
-    let prev: Record<string, number> = {};
-    let maxLanes = 1;
-    for (let k = 0; k < frames.length; k++) {
-      const items = ordenadas
-        .map((ia) => ({
-          slug: ia.slug,
-          x: clamp(((frames[k]?.pts[ia.slug] ?? 0) / maxPts) * SPAN, 0, SPAN),
-        }))
-        .sort((a, b) => b.x - a.x);
-      const lanesLast: (number | undefined)[] = []; // último X ocupado por faixa
-      const assign: Record<string, number> = {};
-      const livre = (l: number, x: number) =>
-        lanesLast[l] === undefined || (lanesLast[l] as number) - x >= MIN_GAP;
-      for (const it of items) {
-        let placed = -1;
-        const pl = prev[it.slug];
-        if (pl !== undefined && livre(pl, it.x)) placed = pl; // mantém a faixa
-        if (placed < 0) {
-          let l = 0;
-          while (!livre(l, it.x)) l++; // primeira faixa livre (inclui buracos)
-          placed = l;
-        }
-        lanesLast[placed] = it.x;
-        assign[it.slug] = placed;
-        if (placed + 1 > maxLanes) maxLanes = placed + 1;
-      }
-      lf.push(assign);
-      prev = assign;
+  // Posição vertical ORGÂNICA (sem raias). Cada IA tem uma "casa" estável (hash
+  // do slug — NÃO o ranking, pra a altura não entregar o resultado). A cada
+  // frame, relaxamos: quem está colado no eixo X é empurrado verticalmente pra
+  // não sobrepor, e todos são puxados de volta pra casa devagar. O estado é
+  // carregado do frame anterior (coerência temporal); entre frames inteiros o Y
+  // é interpolado ⇒ a separação vira um deslize orgânico, não um pulo de raia.
+  const yFrames = useMemo(() => {
+    const home: Record<string, number> = {};
+    for (const ia of ordenadas) {
+      let h = 0;
+      for (let i = 0; i < ia.slug.length; i++)
+        h = (h * 31 + ia.slug.charCodeAt(i)) >>> 0;
+      home[ia.slug] = Y_LO + ((h % 1000) / 1000) * (Y_HI - Y_LO);
     }
-    return { laneFrames: lf, numLanes: maxLanes };
+    const slugs = ordenadas.map((ia) => ia.slug);
+    const out: Record<string, number>[] = [];
+    let prev: Record<string, number> = { ...home };
+    for (let k = 0; k < frames.length; k++) {
+      const xs: Record<string, number> = {};
+      for (const s of slugs) xs[s] = (frames[k]?.pts[s] ?? 0) / maxPts;
+      const y: Record<string, number> = {};
+      for (const s of slugs) y[s] = prev[s] ?? home[s];
+      for (let it = 0; it < RELAX_ITERS; it++) {
+        // separação: pares próximos no X que estão verticalmente colados se
+        // afastam (metade pra cada lado).
+        for (let i = 0; i < slugs.length; i++) {
+          for (let j = i + 1; j < slugs.length; j++) {
+            const a = slugs[i];
+            const b = slugs[j];
+            if (Math.abs(xs[a] - xs[b]) > X_NEAR) continue;
+            const dy = y[a] - y[b];
+            const ad = Math.abs(dy);
+            if (ad < Y_MIN) {
+              const push = (Y_MIN - ad) / 2;
+              const dir = dy >= 0 ? 1 : -1;
+              y[a] += dir * push;
+              y[b] -= dir * push;
+            }
+          }
+        }
+        // retorno à casa + limites da pista.
+        for (const s of slugs) {
+          y[s] += (home[s] - y[s]) * HOME_PULL;
+          y[s] = clamp(y[s], Y_LO, Y_HI);
+        }
+      }
+      out.push(y);
+      prev = y;
+    }
+    return out;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ordenadas, frames, maxPts]);
 
@@ -396,8 +471,7 @@ export default function CorridaTopDown({
         let np = posRef.current + dt / segDur;
         if (np >= ultimo) {
           np = ultimo;
-          esperandoFimRef.current = true;
-          window.setTimeout(() => irPara(0), PAUSA_FINAL_MS);
+          esperandoFimRef.current = true; // dispara o zoom-out final (reveal)
         }
         posRef.current = np;
         setPos(np);
@@ -406,12 +480,31 @@ export default function CorridaTopDown({
       // chegada. cineTarget dá o alvo; aqui só suavizamos (inércia/follow).
       const t = cineTarget(posRef.current, now);
       const c = camRef.current;
-      c.c += (t.c - c.c) * CAM_EASE;
-      c.h += (t.h - c.h) * CAM_EASE;
-      // Trava de segurança PÓS-inércia: com o follow, a câmera atrasada nunca
-      // pode deixar o líder escapar pela direita (como na TV: não se perde quem
-      // está na frente). Não vale no zoom-out final (reveal).
-      if (!t.reveal) {
+      if (t.reveal) {
+        // Zoom-out final: interpolado POR TEMPO (lento, REVEAL_MS), do quadro
+        // atual até a vista completa da corrida. A pausa (PAUSA_FINAL_MS) só
+        // começa a contar DEPOIS que o zoom-out termina.
+        const rv = revealRef.current;
+        if (rv.t0 === 0) {
+          rv.t0 = now;
+          rv.c0 = c.c;
+          rv.h0 = c.h;
+          rv.scheduled = false;
+        }
+        const prog = clamp((now - rv.t0) / REVEAL_MS, 0, 1);
+        const e = prog * prog * (3 - 2 * prog); // smoothstep
+        c.c = rv.c0 + (t.c - rv.c0) * e;
+        c.h = rv.h0 + (t.h - rv.h0) * e;
+        if (prog >= 1 && !rv.scheduled) {
+          rv.scheduled = true;
+          window.setTimeout(() => irPara(0), PAUSA_FINAL_MS);
+        }
+      } else {
+        c.c += (t.c - c.c) * CAM_EASE;
+        c.h += (t.h - c.h) * CAM_EASE;
+        // Trava de segurança PÓS-inércia: com o follow, a câmera atrasada nunca
+        // pode deixar o líder escapar pela direita (como na TV: não se perde
+        // quem está na frente).
         const margin = LEAD_MARGIN * (2 * c.h);
         if (leadRef.current > c.c + c.h - margin)
           c.c = leadRef.current - c.h + margin;
@@ -433,13 +526,17 @@ export default function CorridaTopDown({
   // Rótulo: enquanto anima um segmento, mostra o jogo que está sendo apurado.
   const idxRotulo = emMovimento && frac > 0.001 ? fB : fA;
   const f = frames[idxRotulo];
-  const alturaPista = numLanes * LANE_H + 14;
 
   // Converte fração-do-mundo w em % horizontal na tela, via janela da câmera.
   const camLeft = cam.c - cam.h;
   const camRight = cam.c + cam.h;
   const camW = Math.max(0.0001, cam.h * 2);
   const screenX = (w: number) => ((w - camLeft) / camW) * 100;
+  // Escala única do mundo: px por unidade-de-mundo. A MESMA escala dimensiona o
+  // eixo X (faixas), o eixo Y (posição vertical) e o tamanho do personagem — por
+  // isso a razão personagem ÷ faixa é CONSTANTE em qualquer zoom (pista real).
+  const worldUnitPx = pistaPx.w / camW;
+  const charPx = Math.max(10, MASCOTE_W * worldUnitPx);
   const xLargada = screenX(0);
   const xChegada = screenX(worldFinish);
 
@@ -465,7 +562,7 @@ export default function CorridaTopDown({
   }
 
   return (
-    <div className="cn-card" ref={cardRef}>
+    <div className={`cn-card${pseudoFs ? " cn-fs" : ""}`} ref={cardRef}>
       <div className="cn-header">
         <div className="cn-frame-info">
           <span className="cn-frame-lbl">
@@ -523,13 +620,14 @@ export default function CorridaTopDown({
           </button>
           <button
             onClick={() => {
-              track("corrida_fullscreen", { modo: "A", entrando: !isFs });
+              const ativo = isFs || pseudoFs;
+              track("corrida_fullscreen", { modo: "A", entrando: !ativo });
               toggleFullscreen();
             }}
             className="cn-btn"
-            title={isFs ? "Sair da tela cheia" : "Tela cheia"}
+            title={isFs || pseudoFs ? "Sair da tela cheia" : "Tela cheia"}
           >
-            {isFs ? "✕ Sair" : "⛶ Tela cheia"}
+            {isFs || pseudoFs ? "✕ Sair" : "⛶ Tela cheia"}
           </button>
         </div>
       </div>
@@ -546,7 +644,7 @@ export default function CorridaTopDown({
         ))}
       </div>
 
-      <div className="cn-pista" style={{ height: alturaPista }}>
+      <div className="cn-pista" ref={pistaRef}>
         {bandas.map((bd) => (
           <div
             key={bd.b}
@@ -583,12 +681,12 @@ export default function CorridaTopDown({
               )) /
             0.06;
           const sw = clamp(Math.abs(velRaw) / 10, 0, 1);
-          // Faixa (Y) interpolada entre os frames inteiros ⇒ troca de faixa vira
-          // um deslize suave (corrida sem raias).
-          const laneA = laneFrames[fA]?.[ia.slug] ?? 0;
-          const laneB = laneFrames[fB]?.[ia.slug] ?? laneA;
+          // Y orgânico interpolado entre os frames inteiros ⇒ a separação vira um
+          // deslize suave (corrida sem raias).
+          const yA = yFrames[fA]?.[ia.slug] ?? 0.5;
+          const yB = yFrames[fB]?.[ia.slug] ?? yA;
           const le = frac * frac * (3 - 2 * frac); // smoothstep no eixo Y
-          const lane = laneA + (laneB - laneA) * le;
+          const yNow = yA + (yB - yA) * le;
           const marca = marcaDe(ia.slug);
           const temMascote = COM_MASCOTE.has(ia.slug);
           // "Bateu": errou completamente o jogo em apuração (ganhou 0 ponto).
@@ -603,12 +701,13 @@ export default function CorridaTopDown({
               }`}
               title={`${ia.nome_display} — ${ptsLabel} pts`}
               style={{
-                top: `${lane * LANE_H + LANE_H / 2 + 6}px`,
+                top: `${pistaPx.h / 2 + (yNow - 0.5) * TRACK_W * worldUnitPx}px`,
                 left: `${screenX(wNow)}%`,
                 zIndex: Math.round(ptsNow) + 10,
                 ["--cor" as string]: marca.cor,
                 ["--swing-delay" as string]: swingDelay,
                 ["--sw" as string]: sw.toFixed(3),
+                ["--char" as string]: `${charPx}px`,
               }}
             >
               {bateu && <span className="cn-fumaca" aria-hidden>💨</span>}
@@ -625,7 +724,7 @@ export default function CorridaTopDown({
                 />
               ) : (
                 <span className="cn-marca">
-                  <IconeIA slug={ia.slug} size={26} />
+                  <IconeIA slug={ia.slug} size={Math.round(charPx * 0.7)} />
                 </span>
               )}
             </div>
@@ -668,14 +767,20 @@ export default function CorridaTopDown({
           overflow: hidden;
         }
         /* Em tela cheia o card ocupa toda a viewport e centraliza a pista. */
-        .cn-card:fullscreen {
-          width: 100vw; height: 100vh;
+        .cn-card:fullscreen,
+        .cn-card.cn-fs {
+          width: 100vw; height: 100dvh;
           border-radius: 0; border: none;
-          padding: 24px;
+          padding: 16px;
           display: flex; flex-direction: column;
           justify-content: center;
         }
-        .cn-card:fullscreen .cn-pista { flex: 1; min-height: 0; }
+        /* Fallback p/ iOS Safari (não permite requestFullscreen em div). */
+        .cn-card.cn-fs {
+          position: fixed; inset: 0; z-index: 9999;
+        }
+        .cn-card:fullscreen .cn-pista,
+        .cn-card.cn-fs .cn-pista { flex: 1; min-height: 0; height: auto; }
         .cn-header {
           display: flex; align-items: center; justify-content: space-between;
           gap: 14px; flex-wrap: wrap; margin-bottom: 10px;
@@ -693,7 +798,9 @@ export default function CorridaTopDown({
           color: #fff;
           overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
         }
-        .cn-controles { display: flex; gap: 8px; }
+        .cn-controles {
+          display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;
+        }
         .cn-btn {
           background: rgba(255,255,255,0.06);
           border: 1px solid rgba(255,255,255,0.15);
@@ -702,6 +809,12 @@ export default function CorridaTopDown({
           color: rgba(255,255,255,0.85);
           border-radius: var(--r-s);
           cursor: pointer;
+          white-space: nowrap;
+        }
+        @media (max-width: 640px) {
+          .cn-controles { gap: 6px; }
+          .cn-btn { padding: 6px 9px; font-size: 11px; }
+          .cn-check { padding: 5px 8px; font-size: 10px; }
         }
         .cn-btn:hover { background: rgba(255,255,255,0.12); }
         .cn-check {
@@ -730,9 +843,13 @@ export default function CorridaTopDown({
         .cn-pista {
           position: relative;
           width: 100%;
+          height: clamp(300px, 56vh, 560px);
           background: #0a1c33;
           border-radius: var(--r-m);
           overflow: hidden;
+        }
+        @media (max-width: 640px) {
+          .cn-pista { height: clamp(240px, 42vh, 380px); }
         }
         /* Faixas alternadas do piso (parallax): deslizam pra trás. */
         .cn-band {
@@ -781,7 +898,7 @@ export default function CorridaTopDown({
         }
         .cn-marca {
           flex-shrink: 0;
-          width: ${ICON + 6}px; height: ${ICON + 6}px;
+          width: var(--char, 38px); height: var(--char, 38px);
           display: inline-flex;
           align-items: center; justify-content: center;
           background: transparent;
@@ -789,7 +906,7 @@ export default function CorridaTopDown({
         }
         .cn-mascote {
           flex-shrink: 0;
-          width: 38px; height: 38px;
+          width: var(--char, 38px); height: var(--char, 38px);
           object-fit: contain;
           background: transparent;
           border: none;
