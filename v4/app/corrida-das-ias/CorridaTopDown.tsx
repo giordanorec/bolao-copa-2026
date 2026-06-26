@@ -52,6 +52,9 @@ const Y_MAX_STEP = 0.05; // deslocamento vertical máximo por jogo (fração da 
 // nessa mesma unidade; a câmera nunca fecha além do que mantém a pista na tela.
 const TRACK_W = 0.075; // largura (vertical) da pista, em unidades de mundo
 const MASCOTE_W = 0.0145; // tamanho-base do personagem, em unidades de mundo
+// No zoom máximo (revelação final) a pista ocupa só esta fração da altura; o
+// resto (acima de y1 e abaixo de y2) vira grama/paisagem, como pista de verdade.
+const TRACK_VFILL = 0.6;
 
 // Câmera de transmissão (follow contínuo): NUNCA perde o líder de vista, move-se
 // de forma contínua (sem cortes nem freadas). Enquadra um grupo de foco em torno
@@ -215,7 +218,10 @@ export default function CorridaTopDown({
   const hFloor = () => {
     const px = pistaPxRef.current;
     const aspectHW = px.h / Math.max(1, px.w);
-    return Math.max(MIN_HALF, TRACK_W / (2 * Math.max(0.01, aspectHW)));
+    return Math.max(
+      MIN_HALF,
+      TRACK_W / (2 * Math.max(0.01, aspectHW) * TRACK_VFILL),
+    );
   };
 
   const ordenadas = useMemo(
@@ -551,6 +557,12 @@ export default function CorridaTopDown({
   // isso a razão personagem ÷ faixa é CONSTANTE em qualquer zoom (pista real).
   const worldUnitPx = pistaPx.w / camW;
   const charPx = Math.max(10, MASCOTE_W * worldUnitPx);
+  // Faixa do trilho (superfície de corrida): só esta tira horizontal recebe o
+  // piso colorido; acima (trackTop) e abaixo é grama. Quando a câmera está
+  // fechada, trackPx > altura da pista ⇒ o trilho cobre tudo (grama some); no
+  // zoom final ele encolhe pra TRACK_VFILL e a grama aparece em cima/embaixo.
+  const trackPx = TRACK_W * worldUnitPx;
+  const trackTop = pistaPx.h / 2 - trackPx / 2;
   const xLargada = screenX(0);
   const xChegada = screenX(worldFinish);
 
@@ -666,10 +678,18 @@ export default function CorridaTopDown({
             style={{
               left: `${bd.left}%`,
               width: `${bd.w}%`,
+              top: `${trackTop}px`,
+              height: `${trackPx}px`,
               background: bd.bg,
             }}
           />
         ))}
+        {/* Bordas da pista (linhas branca em cima/baixo do trilho). */}
+        <div
+          className="cn-track-edge"
+          style={{ top: `${trackTop}px`, height: `${trackPx}px` }}
+          aria-hidden
+        />
 
         {ordenadas.map((ia, idx) => {
           const ptsPrev = frames[Math.max(fA - 1, 0)]?.pts[ia.slug] ?? 0;
@@ -748,7 +768,14 @@ export default function CorridaTopDown({
         })}
 
         {xLargada > -8 && xLargada < 108 && (
-          <div className="cn-largada" style={{ left: `${xLargada}%` }}>
+          <div
+            className="cn-largada"
+            style={{
+              left: `${xLargada}%`,
+              top: `${trackTop}px`,
+              height: `${trackPx}px`,
+            }}
+          >
             <span>🚦</span>
           </div>
         )}
@@ -756,10 +783,17 @@ export default function CorridaTopDown({
           <>
             <div
               className="cn-chegada"
-              style={{ left: `${xChegada}%` }}
+              style={{
+                left: `${xChegada}%`,
+                top: `${trackTop}px`,
+                height: `${trackPx}px`,
+              }}
               aria-hidden
             />
-            <div className="cn-bandeira" style={{ left: `${xChegada}%` }}>
+            <div
+              className="cn-bandeira"
+              style={{ left: `${xChegada}%`, top: `${trackTop - 8}px` }}
+            >
               🏁
             </div>
           </>
@@ -860,18 +894,35 @@ export default function CorridaTopDown({
           position: relative;
           width: 100%;
           height: clamp(300px, 56vh, 560px);
-          background: #0a1c33;
+          /* Grama/paisagem: aparece acima e abaixo do trilho no zoom final. */
+          background:
+            repeating-linear-gradient(
+              90deg,
+              #0c2c19 0 44px,
+              #0e3420 44px 88px
+            ),
+            #0c2c19;
           border-radius: var(--r-m);
           overflow: hidden;
         }
         @media (max-width: 640px) {
           .cn-pista { height: clamp(240px, 42vh, 380px); }
         }
-        /* Faixas alternadas do piso (parallax): deslizam pra trás. */
+        /* Faixas alternadas do piso (parallax): deslizam pra trás. Confinadas ao
+           trilho central via top/height inline. */
         .cn-band {
           position: absolute;
-          top: 0; bottom: 0;
           z-index: 0;
+        }
+        /* Linhas brancas que delimitam o trilho (cima/baixo). */
+        .cn-track-edge {
+          position: absolute;
+          left: 0; right: 0;
+          border-top: 2px solid rgba(255,255,255,0.55);
+          border-bottom: 2px solid rgba(255,255,255,0.55);
+          box-shadow: inset 0 0 0 9999px transparent;
+          pointer-events: none;
+          z-index: 1;
         }
         /* Brilho central por cima das faixas, sem tapar os corredores. */
         .cn-pista::after {
