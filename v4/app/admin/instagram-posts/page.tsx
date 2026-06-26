@@ -20,6 +20,7 @@ type IgPost = {
   caption: string;
   roteiro: string;
   images: string[];
+  thumbs?: string[];
   hasVideo: boolean;
 };
 
@@ -151,9 +152,10 @@ export default async function InstagramPostsPage() {
                         >
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
-                            src={src}
+                            src={post.thumbs?.[i] ?? src}
                             alt={`Slide ${i + 1} — ${post.titulo}`}
                             className="ig-carousel-img"
+                            loading="lazy"
                           />
                           <span className="ig-slide-num">{i + 1}</span>
                         </a>
@@ -169,9 +171,10 @@ export default async function InstagramPostsPage() {
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={firstImage}
+                        src={post.thumbs?.[0] ?? firstImage}
                         alt={post.titulo}
                         className="ig-single-img"
+                        loading="lazy"
                       />
                       {post.hasVideo && (
                         <div className="ig-play-badge" title="Vídeo disponível na pasta de origem">
