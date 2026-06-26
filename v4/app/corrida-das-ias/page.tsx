@@ -1,6 +1,5 @@
 import CorridaComSelector from "./CorridaComSelector";
 import BarRaceTemporal from "./BarRaceTemporal";
-import { GraficoDistanciaComSelector } from "./GraficosComSelector";
 import PageVisitTracker from "./PageVisitTracker";
 import { carregarCorrida } from "@/lib/corrida-frames";
 
@@ -25,9 +24,8 @@ export default async function CorridaDasIAsPage() {
     ),
   }));
 
-  // Pra C/D: TODAS as IAs (default seleciona todas; user pode filtrar)
+  // Modos A/B: TODAS as IAs (selector faz o filtro client-side)
   const iasAll = topIas; // ja ordenadas por pts desc
-  // frames com TODAS as IAs (selector faz o filtro client-side)
   const framesAll = frames;
 
   return (
@@ -36,7 +34,7 @@ export default async function CorridaDasIAsPage() {
       <header style={{ textAlign: "center", marginBottom: 28 }}>
         <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)" }}>🏁 Corrida das IAs</h1>
         <p className="lede" style={{ marginTop: 10, maxWidth: 640, marginInline: "auto" }}>
-          3 formas de visualizar a corrida das IAs ao longo dos jogos.
+          2 formas de visualizar a corrida das IAs ao longo dos jogos.
         </p>
       </header>
 
@@ -59,14 +57,6 @@ export default async function CorridaDasIAsPage() {
         <BarRaceTemporal ias={ias15} frames={framesTop15} />
       </section>
 
-      <section style={{ marginBottom: 32 }}>
-        <h2 style={{ marginBottom: 4, fontSize: 26 }}>🎯 Modo C — Pontos acumulados</h2>
-        <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
-          Pontuação real de cada IA acumulada jogo a jogo. Use os presets
-          (Série A, Top 10, Todas) pra escolher quais exibir.
-        </p>
-        <GraficoDistanciaComSelector ias={iasAll} frames={framesAll} />
-      </section>
     </div>
   );
 }

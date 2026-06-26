@@ -141,6 +141,9 @@ export default async function AdminPage() {
         <Link href="/admin/contribuicoes" className="btn primary" style={{ fontSize: 14, padding: "10px 18px" }}>
           💰 Contribuições
         </Link>
+        <Link href="/admin/instagram-posts" className="btn primary" style={{ fontSize: 14, padding: "10px 18px" }}>
+          📸 Instagram Posts
+        </Link>
       </div>
 
       {/* Estatísticas */}

@@ -6,6 +6,8 @@ import ScatterClusters from "./ScatterClusters";
 import HeatmapSimilaridade from "./HeatmapSimilaridade";
 import RetrospectivaV2 from "./RetrospectivaV2";
 import { carregarAnaliseV2Publico } from "@/lib/analise-v2-publico";
+import { carregarCorrida } from "@/lib/corrida-frames";
+import { GraficoDistanciaComSelector } from "@/app/corrida-das-ias/GraficosComSelector";
 
 export const metadata = {
   title: "🔬 Análise das IAs · Bolão das IAs",
@@ -103,7 +105,11 @@ async function carregar(): Promise<Analise | null> {
 }
 
 export default async function AnalisePage() {
-  const [a, retroV2] = await Promise.all([carregar(), carregarAnaliseV2Publico()]);
+  const [a, retroV2, corrida] = await Promise.all([
+    carregar(),
+    carregarAnaliseV2Publico(),
+    carregarCorrida(),
+  ]);
   if (!a) {
     return (
       <div style={{ padding: 60, textAlign: "center" }}>
@@ -289,6 +295,20 @@ export default async function AnalisePage() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* PONTOS ACUMULADOS — centrado na média */}
+      <section style={{ marginBottom: 48 }}>
+        <h2 style={{ marginBottom: 4, fontSize: 26 }}>📈 Pontos acumulados por jogo</h2>
+        <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
+          Pontuação real de cada IA acumulada jogo a jogo, centrada na média do
+          pelotão. Quanto mais acima da linha do meio, mais longe da média essa
+          IA estava naquele momento. Use os presets pra escolher quais exibir.
+        </p>
+        <GraficoDistanciaComSelector
+          ias={corrida.topIas}
+          frames={corrida.frames}
+        />
       </section>
 
       {/* HEATMAP SIMILARIDADE */}

@@ -33,28 +33,28 @@ export default function GraficoDistancia({
   frames: Frame[];
 }) {
   // Pra cada frame:
-  // - mid = (min + max) / 2 das IAs mostradas
-  // - Y = 50 + (pts - mid) * SCALE
+  // - mean = média aritmética dos pontos das IAs mostradas
+  // - Y = 50 + (pts - mean) * SCALE
   // O SCALE é GLOBAL (calculado a partir do frame mais desigual), então a
   // distância vertical entre as IAs reflete o GAP REAL de pontos: quando o
   // pelotão está junto (early game, todo mundo perto de 0), as linhas ficam
-  // justas no meio; quando o gap aumenta, elas abrem leque. O meio do
+  // justas no meio; quando o gap aumenta, elas abrem leque. A MÉDIA do
   // pelotão de cada frame fica SEMPRE em Y=50 (o "alinhador").
+  // Diferente do midpoint (min+max)/2, a média não coloca 1º e último
+  // em posições simétricas — cada IA fica à distância real da média.
   const prep = frames.map((f) => {
     const ptsFrame = ias.map((ia) => f.pts[ia.slug] ?? 0);
-    const min = Math.min(...ptsFrame);
-    const max = Math.max(...ptsFrame);
-    const mid = (min + max) / 2;
-    return { f, ptsFrame, min, max, mid };
+    const mean = ptsFrame.reduce((acc, v) => acc + v, 0) / (ptsFrame.length || 1);
+    return { f, ptsFrame, mean };
   });
 
-  // SCALE: o maior |pts - mid| em qualquer frame mapeia pra 40 (limita Y em
+  // SCALE: o maior |pts - mean| em qualquer frame mapeia pra 40 (limita Y em
   // 10..90, deixando margem). Sem isso, frames cedo (todo mundo a 0) sumiam
   // numa linha só, ou frames tardios estouravam o gráfico.
   let maxDelta = 1;
   for (const d of prep) {
     for (const pts of d.ptsFrame) {
-      const delta = Math.abs(pts - d.mid);
+      const delta = Math.abs(pts - d.mean);
       if (delta > maxDelta) maxDelta = delta;
     }
   }
@@ -63,13 +63,11 @@ export default function GraficoDistancia({
   const data = prep.map((d) => {
     const ponto: Record<string, string | number> = {
       rodada: d.f.jogoNum === 0 ? "Início" : `Jogo ${d.f.jogoNum}`,
-      _max: d.max,
-      _min: d.min,
     };
     for (const ia of ias) {
       const pts = d.f.pts[ia.slug] ?? 0;
-      const y = 50 + (pts - d.mid) * SCALE;
-      ponto[ia.nome_display] = Math.round(y * 10) / 10;
+      const y = 50 + (pts - d.mean) * SCALE;
+      ponto[ia.nome_display] = Math.round(Math.max(10, Math.min(90, y)) * 10) / 10;
       ponto[`__pts_${ia.nome_display}`] = pts;
     }
     return ponto;
@@ -92,10 +90,9 @@ export default function GraficoDistancia({
           fontFamily: "var(--ff-mono)",
         }}
       >
-        Y centrado em 50: o meio do pelotão de cada frame fica sempre na
+        Y centrado em 50: a MÉDIA do pelotão de cada jogo fica sempre na
         linha do meio. A distância vertical entre as IAs escala com o gap
-        REAL de pontos — quando todo mundo está junto, as linhas ficam justas;
-        quando o pelotão se espalha, elas abrem.
+        REAL de pontos em relação à média — 1º e último não são simétricos.
       </div>
       <div style={{ width: "100%", height: 480 }}>
         <ResponsiveContainer width="100%" height="100%">
@@ -146,7 +143,7 @@ export default function GraficoDistancia({
               stroke="var(--line-strong)"
               strokeDasharray="4 4"
               label={{
-                value: "MEIO DO PELOTÃO",
+                value: "MÉDIA DO PELOTÃO",
                 fill: "var(--fg-muted)",
                 fontSize: 10,
                 fontFamily: "var(--ff-mono)",

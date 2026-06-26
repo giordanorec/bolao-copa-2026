@@ -59,6 +59,10 @@ resumo.txt
 .coverage
 htmlcov/
 
+# Instagram-post PNGs (133MB) — hosted on Supabase Storage, too big for Vercel.
+# Kept locally for re-upload; served via v4/public/ig-posts-manifest.json (committed).
+v4/public/ig-posts/
+
 # deploy
 .vercel
 .netlify

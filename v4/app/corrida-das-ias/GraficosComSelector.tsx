@@ -37,7 +37,7 @@ export function GraficoDistanciaComSelector({
 
   // Disparo único ao montar — engagement com Modo C.
   useEffect(() => {
-    track("corrida_view", { modo: "C", ias_visiveis: ias.length });
+    track("corrida_view", { modo: "analise", ias_visiveis: ias.length });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -46,27 +46,27 @@ export function GraficoDistanciaComSelector({
       const n = new Set(s);
       if (n.has(slug)) {
         n.delete(slug);
-        track("corrida_ia_toggle", { modo: "C", slug, ligado: false });
+        track("corrida_ia_toggle", { modo: "analise", slug, ligado: false });
       } else {
         n.add(slug);
-        track("corrida_ia_toggle", { modo: "C", slug, ligado: true });
+        track("corrida_ia_toggle", { modo: "analise", slug, ligado: true });
       }
       return n;
     });
   }
 
   function selectAll() {
-    track("corrida_preset", { modo: "C", preset: "todas" });
+    track("corrida_preset", { modo: "analise", preset: "todas" });
     setSelecionadas(new Set(ias.map((ia) => ia.slug)));
   }
 
   function selectTop10() {
-    track("corrida_preset", { modo: "C", preset: "top10" });
+    track("corrida_preset", { modo: "analise", preset: "top10" });
     setSelecionadas(new Set(ias.slice(0, 10).map((ia) => ia.slug)));
   }
 
   function selectSerieA() {
-    track("corrida_preset", { modo: "C", preset: "serie_a" });
+    track("corrida_preset", { modo: "analise", preset: "serie_a" });
     setSelecionadas(
       new Set(ias.filter((ia) => SLUGS_SERIE_A.has(ia.slug)).map((ia) => ia.slug)),
     );
