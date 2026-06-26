@@ -5,9 +5,11 @@ import { useState } from "react";
 export function CopiarTexto({
   texto,
   label,
+  compacto = false,
 }: {
   texto: string;
   label: string;
+  compacto?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -26,6 +28,20 @@ export function CopiarTexto({
     }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  }
+
+  if (compacto) {
+    return (
+      <button
+        onClick={handleClick}
+        className="ig-copy-icon"
+        title={label}
+        aria-label={label}
+        style={{ color: copied ? "#16a34a" : "var(--fg-muted)" }}
+      >
+        {copied ? "✓" : "📋"}
+      </button>
+    );
   }
 
   return (

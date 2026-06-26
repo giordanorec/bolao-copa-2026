@@ -231,8 +231,11 @@ export default async function InstagramPostsPage() {
                 {/* ── Caption ────────────────────────────────────────── */}
                 {post.caption ? (
                   <div className="ig-caption-block">
-                    <div style={{ fontSize: 11, fontWeight: 700, color: "var(--fg-muted)", textTransform: "uppercase", letterSpacing: ".04em", marginBottom: 6 }}>
-                      Legenda
+                    <div className="ig-caption-head">
+                      <span style={{ fontSize: 11, fontWeight: 700, color: "var(--fg-muted)", textTransform: "uppercase", letterSpacing: ".04em" }}>
+                        Legenda
+                      </span>
+                      <CopiarTexto texto={post.caption} label="Copiar legenda" compacto />
                     </div>
                     <p className="ig-caption-text">{post.caption}</p>
                   </div>
@@ -255,10 +258,6 @@ export default async function InstagramPostsPage() {
 
                 {/* ── Action buttons ─────────────────────────────────── */}
                 <div className="ig-actions">
-                  {post.caption && (
-                    <CopiarTexto texto={post.caption} label="Copiar legenda" />
-                  )}
-
                   {hasImages && (
                     <BaixarImagens images={post.images} nomeBase={post.id} />
                   )}
@@ -332,10 +331,10 @@ function IgStyle() {
       }
       .ig-single-img {
         width: 100%;
-        height: 360px;
-        object-fit: contain;
-        background: var(--bg-1);
+        height: auto;
+        max-height: 70vh;
         display: block;
+        background: var(--bg-1);
         transition: opacity .15s;
       }
       .ig-single-wrap:hover .ig-single-img { opacity: .92; }
@@ -409,6 +408,32 @@ function IgStyle() {
         border-radius: var(--r-m, 10px);
         padding: 12px 14px;
         margin-bottom: 14px;
+      }
+      .ig-caption-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+      .ig-copy-icon {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 26px;
+        height: 26px;
+        border-radius: var(--r-s, 6px);
+        border: 1px solid var(--line);
+        background: var(--bg-2);
+        cursor: pointer;
+        font-size: 13px;
+        line-height: 1;
+        transition: background .12s, border-color .12s;
+      }
+      .ig-copy-icon:hover {
+        background: var(--bg-1);
+        border-color: var(--fg-muted);
       }
       .ig-caption-text {
         font-size: 13px;
