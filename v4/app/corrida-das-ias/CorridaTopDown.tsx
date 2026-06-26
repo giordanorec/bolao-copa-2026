@@ -31,12 +31,17 @@ const REVEAL_MS = 5200; // duração do zoom-out final (lento, dá pra acompanha
 // relaxação separa quem está colado (perto no eixo X) empurrando um pra cima e
 // outro pra baixo, e puxa cada um de volta pra casa devagar. Resultado: quando
 // dois disputam o mesmo espaço, um se desgarra; senão, voltam à sua altura.
-const Y_LO = 0.1; // limite superior/inferior da pista (fração da LARGURA da pista)
-const Y_HI = 0.9;
-const X_NEAR = 0.06; // distância no X (fração da corrida) abaixo da qual "colidem"
-const Y_MIN = 0.22; // separação vertical mínima desejada (fração da largura da pista)
-const HOME_PULL = 0.05; // força de retorno à casa por iteração
-const RELAX_ITERS = 28; // iterações de relaxação por frame
+const Y_LO = 0.12; // limite superior/inferior da pista (fração da LARGURA da pista)
+const Y_HI = 0.88;
+const X_NEAR = 0.04; // distância no X abaixo da qual "colidem" (só MUITO perto)
+const Y_MIN = 0.2; // separação vertical mínima desejada (fração da largura da pista)
+const Y_PUSH = 0.55; // suavidade do empurrão de separação (0..1) — gentil, não brusco
+const HOME_PULL = 0.07; // força de retorno à casa por iteração (prefere ficar na sua)
+const RELAX_ITERS = 16; // iterações de relaxação por frame
+// Trocar de raia é ESFORÇO: o atleta só muda quando precisa, e devagar. Limita o
+// deslocamento vertical por jogo ⇒ uma mudança necessária se espalha por vários
+// segmentos, virando um deslize fluido/senoidal em vez de uma diagonal seca.
+const Y_MAX_STEP = 0.05; // deslocamento vertical máximo por jogo (fração da pista)
 
 // === Mundo físico (pista real) ===
 // Tudo — pista (faixas) E personagens — vive no MESMO mundo e é desenhado pela
@@ -430,7 +435,8 @@ export default function CorridaTopDown({
       for (const s of slugs) y[s] = prev[s] ?? home[s];
       for (let it = 0; it < RELAX_ITERS; it++) {
         // separação: pares próximos no X que estão verticalmente colados se
-        // afastam (metade pra cada lado).
+        // afastam — GENTIL (Y_PUSH), pra não espalhar geral quando muitos estão
+        // empatados (ex.: largada, todos em 0 ponto).
         for (let i = 0; i < slugs.length; i++) {
           for (let j = i + 1; j < slugs.length; j++) {
             const a = slugs[i];
@@ -439,7 +445,7 @@ export default function CorridaTopDown({
             const dy = y[a] - y[b];
             const ad = Math.abs(dy);
             if (ad < Y_MIN) {
-              const push = (Y_MIN - ad) / 2;
+              const push = ((Y_MIN - ad) / 2) * Y_PUSH;
               const dir = dy >= 0 ? 1 : -1;
               y[a] += dir * push;
               y[b] -= dir * push;
@@ -450,6 +456,14 @@ export default function CorridaTopDown({
         for (const s of slugs) {
           y[s] += (home[s] - y[s]) * HOME_PULL;
           y[s] = clamp(y[s], Y_LO, Y_HI);
+        }
+      }
+      // Esforço de trocar de raia: limita o quanto cada um se move por jogo. Uma
+      // separação necessária acontece aos poucos, ao longo de vários segmentos.
+      if (k > 0) {
+        for (const s of slugs) {
+          const p = prev[s] ?? home[s];
+          y[s] = clamp(y[s], p - Y_MAX_STEP, p + Y_MAX_STEP);
         }
       }
       out.push(y);
@@ -685,7 +699,9 @@ export default function CorridaTopDown({
           // deslize suave (corrida sem raias).
           const yA = yFrames[fA]?.[ia.slug] ?? 0.5;
           const yB = yFrames[fB]?.[ia.slug] ?? yA;
-          const le = frac * frac * (3 - 2 * frac); // smoothstep no eixo Y
+          // smootherstep (6t⁵−15t⁴+10t³): entra e sai com derivada ZERO ⇒ a troca
+          // de raia é senoidal/fluida, sem o "bico" diagonal do início/fim.
+          const le = frac * frac * frac * (frac * (frac * 6 - 15) + 10);
           const yNow = yA + (yB - yA) * le;
           const marca = marcaDe(ia.slug);
           const temMascote = COM_MASCOTE.has(ia.slug);
