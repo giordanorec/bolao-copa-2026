@@ -9,36 +9,36 @@ const TX: Record<Locale, {
   obrigado: string;
 }> = {
   pt: {
-    kicker: "🎉 Graças às contribuições",
-    titulo: "Rodamos mais uma atualização de palpites",
+    kicker: "🔥 Segunda fase no ar",
+    titulo: "Os palpites das IAs para os 16-avos já saíram!",
     texto:
-      "Com o apoio da galera, repassamos os 8 jogos finais dos Grupos I, J, K e L pelas IAs — agora com os resultados da 2ª rodada na mesa. Elas já sabem quem precisa vencer pra se classificar.",
-    cta: "Ver os palpites atualizados →",
-    obrigado: "Muito obrigado a quem contribuiu. Pra vocês, o acesso é liberado sem pagar de novo. 💜",
+      "As IAs cravaram placar para os 16 confrontos do mata-mata — cada uma com dossiê completo de lesões, suspensões, forma e odds. Confrontos e probabilidades são públicos; os placares de cada IA são premium.",
+    cta: "Ver os palpites dos 16-avos →",
+    obrigado: "Acesso antecipado liberado pra quem contribuiu 💜 Antes do primeiro jogo da fase, abrimos pra todo mundo.",
   },
   en: {
-    kicker: "🎉 Thanks to your support",
-    titulo: "We ran another prediction update",
+    kicker: "🔥 Knockout stage is live",
+    titulo: "The AIs' Round of 32 predictions are out!",
     texto:
-      "With the community's help, we re-ran the 8 final matches of Groups I, J, K and L through the AIs — now with the 2nd-round results in. They know who must win to qualify.",
-    cta: "See the updated picks →",
-    obrigado: "Huge thanks to everyone who contributed. For you, access is unlocked at no extra cost. 💜",
+      "The AIs locked in a scoreline for all 16 knockout matchups — each with a full dossier of injuries, suspensions, form and odds. Matchups and probabilities are public; each AI's scores are premium.",
+    cta: "See the Round of 32 picks →",
+    obrigado: "Early access unlocked for contributors 💜 Before the first match of the round, we open it to everyone.",
   },
   es: {
-    kicker: "🎉 Gracias a las contribuciones",
-    titulo: "Corrimos otra actualización de pronósticos",
+    kicker: "🔥 La fase eliminatoria ya está en vivo",
+    titulo: "¡Salieron los pronósticos de las IAs para los dieciseisavos!",
     texto:
-      "Con el apoyo de la gente, repasamos los 8 partidos finales de los Grupos I, J, K y L con las IAs — ahora con los resultados de la 2ª ronda. Ya saben quién debe ganar para clasificar.",
-    cta: "Ver los pronósticos actualizados →",
-    obrigado: "Muchas gracias a quienes contribuyeron. Para ustedes, el acceso está liberado sin pagar de nuevo. 💜",
+      "Las IAs marcaron un resultado para los 16 cruces de la eliminatoria — cada una con un dossier completo de lesiones, suspensiones, forma y cuotas. Cruces y probabilidades son públicos; los marcadores de cada IA son premium.",
+    cta: "Ver los pronósticos de dieciseisavos →",
+    obrigado: "Acceso anticipado habilitado para quien colaboró 💜 Antes del primer partido de la ronda, lo abrimos para todos.",
   },
   fr: {
-    kicker: "🎉 Grâce à vos contributions",
-    titulo: "Nous avons lancé une nouvelle mise à jour",
+    kicker: "🔥 La phase à élimination est en ligne",
+    titulo: "Les pronostics des IA pour les seizièmes sont sortis !",
     texto:
-      "Avec l'aide de la communauté, nous avons repassé les 8 derniers matchs des Groupes I, J, K et L via les IA — avec les résultats du 2e tour. Elles savent qui doit gagner pour se qualifier.",
-    cta: "Voir les pronostics mis à jour →",
-    obrigado: "Un grand merci à tous ceux qui ont contribué. Pour vous, l'accès est débloqué sans payer à nouveau. 💜",
+      "Les IA ont fixé un score pour les 16 confrontations à élimination directe — chacune avec un dossier complet de blessures, suspensions, forme et cotes. Confrontations et probabilités sont publiques ; les scores de chaque IA sont premium.",
+    cta: "Voir les pronostics des seizièmes →",
+    obrigado: "Accès anticipé débloqué pour les contributeurs 💜 Avant le premier match du tour, on ouvre à tout le monde.",
   },
 };
 
@@ -47,7 +47,7 @@ export default function AvisoAtualizacaoV3({ locale }: { locale: Locale }) {
   return (
     <section className="section" style={{ paddingTop: 8, paddingBottom: 0 }}>
       <div className="container">
-        <Link href="/analise-v2" className="v3-aviso">
+        <Link href="/analise-r32" className="v3-aviso">
           <span className="v3-aviso-glow" aria-hidden />
           <div className="v3-aviso-conteudo">
             <span className="v3-aviso-kicker">{tx.kicker}</span>
