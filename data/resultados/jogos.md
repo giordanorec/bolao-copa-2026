@@ -72,3 +72,5 @@ no cálculo de pontuação.
 | 62 | Grupo I | Sex 26/06 | 16h00 | Toronto | Senegal | 5 | 0 | Iraque |
 | 64 | Grupo G | Sáb 27/06 | 00h00 | Vancouver | Nova Zelândia | 1 | 5 | Bélgica |
 | 63 | Grupo G | Sáb 27/06 | 00h00 | Seattle | Egito | 1 | 1 | Irã |
+| 65 | Grupo H | Sex 26/06 | 21h00 | Houston | Cabo Verde | 0 | 0 | Arábia Saudita |
+| 66 | Grupo H | Sex 26/06 | 21h00 | Guadalajara | Uruguai | 0 | 1 | Espanha |
