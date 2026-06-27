@@ -141,6 +141,8 @@ type TxKey =
   | "page.vazio"
   | "page.ias"
   | "page.jogos_cobertos"
+  | "anuncio.titulo"
+  | "anuncio.desc"
   | "gate.titulo"
   | "gate.desc"
   | "gate.placeholder"
@@ -170,6 +172,9 @@ const STRINGS: Record<Locale, Record<TxKey, string>> = {
     "page.vazio": "Nenhum palpite mata-mata coletado ainda. Volte em breve.",
     "page.ias": "IAs",
     "page.jogos_cobertos": "Jogos cobertos",
+    "anuncio.titulo": "🚀 Primeiros palpites da segunda fase já no ar",
+    "anuncio.desc":
+      "Acesso antecipado liberado para quem contribuiu 💛. Antes do primeiro jogo da fase, os palpites ficam abertos para todo mundo.",
     "gate.titulo": "Palpites para os 16-avos",
     "gate.desc":
       "Conteúdo exclusivo para contribuintes. Digite a senha recebida pelo Instagram @arena.das.ias.",
@@ -201,6 +206,9 @@ const STRINGS: Record<Locale, Record<TxKey, string>> = {
     "page.vazio": "No knockout picks collected yet. Check back soon.",
     "page.ias": "AIs",
     "page.jogos_cobertos": "Matches covered",
+    "anuncio.titulo": "🚀 First knockout-stage predictions are live",
+    "anuncio.desc":
+      "Early access unlocked for contributors 💛. Before the first match of the round, the predictions open up to everyone.",
     "gate.titulo": "Round of 16 Predictions",
     "gate.desc":
       "Exclusive content for supporters. Enter the password received via @arena.das.ias on Instagram.",
@@ -232,6 +240,9 @@ const STRINGS: Record<Locale, Record<TxKey, string>> = {
     "page.vazio": "Todavía no hay pronósticos de eliminatoria. Vuelve pronto.",
     "page.ias": "IAs",
     "page.jogos_cobertos": "Partidos cubiertos",
+    "anuncio.titulo": "🚀 Los primeros pronósticos de la fase eliminatoria ya están en vivo",
+    "anuncio.desc":
+      "Acceso anticipado habilitado para quien colaboró 💛. Antes del primer partido de la ronda, los pronósticos se abren para todos.",
     "gate.titulo": "Pronósticos para los Octavos",
     "gate.desc":
       "Contenido exclusivo para colaboradores. Introduce la contraseña recibida en @arena.das.ias.",
@@ -263,6 +274,9 @@ const STRINGS: Record<Locale, Record<TxKey, string>> = {
     "page.vazio": "Aucun pronostic de phase éliminatoire collecté. Revenez bientôt.",
     "page.ias": "IA",
     "page.jogos_cobertos": "Matchs couverts",
+    "anuncio.titulo": "🚀 Les premiers pronostics de la phase à élimination directe sont en ligne",
+    "anuncio.desc":
+      "Accès anticipé débloqué pour les contributeurs 💛. Avant le premier match du tour, les pronostics s'ouvrent à tout le monde.",
     "gate.titulo": "Pronostics Huitièmes de Finale",
     "gate.desc":
       "Contenu exclusif pour les soutiens. Entrez le mot de passe reçu via @arena.das.ias.",
@@ -956,6 +970,43 @@ export default async function AnaliseR32Page({
           }}
         >
           {tx(locale, "page.contexto")}
+        </p>
+      </div>
+
+      {/* Anúncio: prévia já no ar (early access p/ contribuintes) */}
+      <div
+        style={{
+          maxWidth: 620,
+          marginInline: "auto",
+          marginBottom: 32,
+          padding: "16px 20px",
+          borderRadius: 14,
+          border: "1px solid var(--primary)",
+          background:
+            "linear-gradient(135deg, color-mix(in srgb, var(--primary) 14%, transparent), color-mix(in srgb, var(--primary) 4%, transparent))",
+          textAlign: "center",
+        }}
+      >
+        <p
+          style={{
+            fontSize: 16,
+            fontWeight: 700,
+            lineHeight: 1.3,
+            marginBottom: 6,
+            color: "var(--fg)",
+          }}
+        >
+          {tx(locale, "anuncio.titulo")}
+        </p>
+        <p
+          style={{
+            fontSize: 13.5,
+            lineHeight: 1.55,
+            color: "var(--fg-mid)",
+            margin: 0,
+          }}
+        >
+          {tx(locale, "anuncio.desc")}
         </p>
       </div>
 

@@ -149,7 +149,7 @@ export default async function Home() {
       href: "/analise-r32",
       emoji: "⚔️",
       titulo: pt ? "16-avos de Final" : en ? "Round of 32" : es ? "Dieciseisavos de Final" : "Seizièmes de Finale",
-      sub: pt ? "Palpites das IAs — exclusivo contribuintes" : en ? "AI predictions — contributors only" : es ? "Pronósticos IAs — exclusivo" : "Pronostics IA — exclusif",
+      sub: pt ? "🚀 Já no ar — early access contribuintes" : en ? "🚀 Now live — contributor early access" : es ? "🚀 Ya en vivo — acceso anticipado" : "🚀 En ligne — accès anticipé",
       desc: pt
         ? "Prévia dos palpites das 54 IAs para os 16 confrontos do mata-mata — coletada com os grupos J, K e L ainda em aberto. Confrontos + probabilidades são públicos; placares são premium."
         : en
