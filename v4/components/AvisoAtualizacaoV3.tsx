@@ -47,7 +47,7 @@ export default function AvisoAtualizacaoV3({ locale }: { locale: Locale }) {
   return (
     <section className="section" style={{ paddingTop: 8, paddingBottom: 0 }}>
       <div className="container">
-        <Link href="/analise-r32" className="v3-aviso">
+        <Link href="/jogos#73" className="v3-aviso">
           <span className="v3-aviso-glow" aria-hidden />
           <div className="v3-aviso-conteudo">
             <span className="v3-aviso-kicker">{tx.kicker}</span>

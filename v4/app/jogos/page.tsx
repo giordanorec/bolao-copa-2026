@@ -1,8 +1,11 @@
+import { promises as fs } from "fs";
+import path from "path";
 import Link from "next/link";
 import { carregarJogos, jogoComecou } from "@/lib/jogos";
 import {
   carregarPalpitesIAs,
   carregarDictIAs,
+  type DadosPorJogo,
 } from "@/lib/palpites-ias";
 import { carregarMapaPaises } from "@/lib/paises";
 import { resolverLocale } from "@/lib/locale-server";
@@ -26,6 +29,45 @@ export const metadata = {
   description: "Cada jogo da Copa 2026 com os palpites das 122 IAs.",
 };
 
+// R32 (jogos 73-88): os confrontos reais (ou projetados) vêm da projeção
+// Monte Carlo; o fixtures.json ainda traz só os slots ("2º Grupo A").
+type ProjMatch = { time_a: string; time_b: string; definido: boolean };
+async function carregarProjR32(): Promise<Map<number, ProjMatch>> {
+  const map = new Map<number, ProjMatch>();
+  try {
+    const fp = path.join(process.cwd(), "public", "r32-projecao.json");
+    const raw = await fs.readFile(fp, "utf-8");
+    const d = JSON.parse(raw) as {
+      jogos?: { numero: number; time_a: string; time_b: string; definido?: boolean }[];
+    };
+    for (const j of d.jogos ?? []) {
+      map.set(j.numero, {
+        time_a: j.time_a,
+        time_b: j.time_b,
+        definido: !!j.definido,
+      });
+    }
+  } catch {
+    // sem projeção: cards R32 caem nos slots do fixtures
+  }
+  return map;
+}
+
+// Monta um DadosPorJogo a partir dos palpites mata-mata (palpite_v2
+// versao='mata-mata'), pra reusar exatamente o card + modal dos jogos de grupo.
+function construirDadosR32(
+  mm: Record<string, { gols_a: number; gols_b: number }>,
+): DadosPorJogo {
+  const c = consensoV2(mm);
+  return {
+    palpites: mm,
+    consenso: [],
+    bola_de_cristal: c
+      ? { gols_a: c.gols_a, gols_b: c.gols_b, votos: c.votos, fonte_ias: [] }
+      : null,
+  };
+}
+
 export default async function JogosPage() {
   const [jogos, palpitesIAs, iasDict, mapaPaises, locale, userRes] =
     await Promise.all([
@@ -43,6 +85,9 @@ export default async function JogosPage() {
   const v2PorJogo = ehContribuinte
     ? await carregarV2PorJogo()
     : new Map<number, Record<string, { gols_a: number; gols_b: number }>>();
+
+  // Confrontos R32 (reais/projetados) pra exibir os times certos nos jogos 73-88
+  const projR32 = await carregarProjR32();
 
   const titulo =
     locale === "en" ? "All 104 matches"
@@ -115,7 +160,20 @@ export default async function JogosPage() {
           <h2 className="fase-titulo">{formataDia(data)}</h2>
           <div className="jogos-lista-grid">
             {lista.map((j) => {
-              const dados = palpitesIAs[String(j.numero)];
+              // R32 (73-88): times reais/projetados + palpites mata-mata gated.
+              const ehR32 = j.numero >= 73 && j.numero <= 88;
+              const proj = ehR32 ? projR32.get(j.numero) : undefined;
+              const timeA = proj?.time_a ?? j.time_a;
+              const timeB = proj?.time_b ?? j.time_b;
+              const isoA = mapaPaises[timeA];
+              const isoB = mapaPaises[timeB];
+              const r32Projecao = ehR32 && proj ? !proj.definido : false;
+              let dados: DadosPorJogo | null =
+                palpitesIAs[String(j.numero)] ?? null;
+              if (ehR32) {
+                const mm = ehContribuinte ? v2PorJogo.get(j.numero) : undefined;
+                dados = mm ? construirDadosR32(mm) : null;
+              }
               const bola = dados?.bola_de_cristal;
               const totalVotos = dados
                 ? Object.keys(dados.palpites).length
@@ -189,10 +247,10 @@ export default async function JogosPage() {
                 <JogoModal
                   key={j.numero}
                   jogoNumero={j.numero}
-                  timeA={j.time_a}
-                  timeB={j.time_b}
-                  isoA={mapaPaises[j.time_a]}
-                  isoB={mapaPaises[j.time_b]}
+                  timeA={timeA}
+                  timeB={timeB}
+                  isoA={isoA}
+                  isoB={isoB}
                   data={j.data}
                   hora={j.hora}
                   local={j.local}
@@ -206,10 +264,15 @@ export default async function JogosPage() {
                       <div className="jogo-card-head">
                         <span className="jogo-num">#{j.numero}</span>
                         <span className="jogo-data">{j.data} · {j.hora}</span>
+                        {r32Projecao && (
+                          <span className="jogo-ft" style={{ background: "color-mix(in srgb, var(--accent) 20%, transparent)", color: "var(--accent)" }}>
+                            🔮 {locale === "en" ? "projected" : locale === "es" ? "proyección" : locale === "fr" ? "projeté" : "projeção"}
+                          </span>
+                        )}
                         {encerrado && <span className="jogo-ft">✓ {ftLbl}</span>}
                       </div>
                       <div className="jogo-card-times">
-                        <TimeLink nome={j.time_a} iso={mapaPaises[j.time_a]} size={32} />
+                        <TimeLink nome={timeA} iso={isoA} size={32} />
                         <div className="jogo-card-vs">
                           {encerrado ? (
                             <>
@@ -229,7 +292,7 @@ export default async function JogosPage() {
                             <span style={{ opacity: 0.4 }}>—</span>
                           )}
                         </div>
-                        <TimeLink nome={j.time_b} iso={mapaPaises[j.time_b]} size={32} />
+                        <TimeLink nome={timeB} iso={isoB} size={32} />
                       </div>
                       {encerrado && (
                         <div className="breakdown-strip">
@@ -314,6 +377,10 @@ export default async function JogosPage() {
                         // contribuinte sem v2 daquele jogo: não mostra nada
                         return ehContribuinte ? null : <CadeadoV2 locale={locale} />;
                       })()}
+                      {/* R32: palpites mata-mata em early access pra contribuintes */}
+                      {ehR32 && !jogoComecou(j) && !ehContribuinte && (
+                        <CadeadoV2 locale={locale} />
+                      )}
                     </div>
                   }
                 />
