@@ -58,11 +58,6 @@ const TRACK_W = 0.075; // largura (vertical) da pista, em unidades de mundo
 const MASCOTE_W = 0.02175; // tamanho-base do personagem, em unidades de mundo (50% maior)
 // Teto de zoom (fecha): limita o tamanho máximo do personagem na corrida.
 const TRACK_VFILL = 0.8;
-// No zoom-out final a pista ocupa só esta fração da altura; o resto (acima de y1
-// e abaixo de y2) vira grama. Durante a corrida (rev=0) a pista ocupa 100%.
-const REVEAL_TRACK_FRAC = 0.74;
-// Piso de tamanho do personagem no reveal (px) — grande o bastante pra ler quem é.
-const REVEAL_CHAR_MIN = 45;
 
 // Câmera de transmissão (follow contínuo): NUNCA perde o líder de vista, move-se
 // de forma contínua (sem cortes nem freadas). Enquadra um grupo de foco em torno
@@ -579,16 +574,26 @@ export default function CorridaTopDown({
   // eixo X (faixas), o eixo Y (posição vertical) e o tamanho do personagem — por
   // isso a razão personagem ÷ faixa é CONSTANTE em qualquer zoom (pista real).
   const worldUnitPx = pistaPx.w / camW;
-  // Faixa do trilho: ocupa a ALTURA TODA durante a corrida (rev=0 ⇒ sem grama) e
-  // encolhe pra REVEAL_TRACK_FRAC só no zoom-out final (rev→1 ⇒ grama aparece em
-  // cima/embaixo). Assim a grama só surge na revelação, como pedido.
-  const revealMix = cam.rev;
-  const trackPx = pistaPx.h * (1 - revealMix * (1 - REVEAL_TRACK_FRAC));
+  // Pista (largura vertical) e personagem compartilham a MESMA escala do mundo:
+  // largura da pista = TRACK_W·worldUnitPx e tamanho do bicho = MASCOTE_W·worldUnitPx.
+  // Como charPx = (MASCOTE_W/TRACK_W)·trackPx, a razão personagem÷pista é
+  // CONSTANTE em QUALQUER zoom — inclusive no zoom-out final, que agora encolhe os
+  // dois juntos (vira um zoom-out de verdade, não o efeito estranho de antes). A
+  // grama aparece sozinha quando a câmera abre: a pista encolhe e sobra paisagem.
+  const trackPx = Math.min(pistaPx.h, TRACK_W * worldUnitPx);
   const trackTop = (pistaPx.h - trackPx) / 2;
-  // Tamanho do bicho: segue a escala do mundo na corrida; no reveal ganha um piso
-  // (REVEAL_CHAR_MIN) pra continuar grande o suficiente pra identificar quem é.
-  const charFloor = 11 + revealMix * (REVEAL_CHAR_MIN - 11);
-  const charPx = Math.max(charFloor, MASCOTE_W * worldUnitPx);
+  const charPx = Math.max(6, (MASCOTE_W / TRACK_W) * trackPx);
+  // Micro linhas horizontais (raias) dentro do trilho: ajudam a PERCEBER o zoom.
+  // Espaçadas em fração da pista ⇒ a distância entre elas encolhe junto no
+  // zoom-out. O tracejado tem período no mundo (dashPx) e desliza com a câmera
+  // (bgX), então também denuncia o zoom/pan no eixo horizontal.
+  const N_RAIAS = 8;
+  const laneLines = Array.from(
+    { length: N_RAIAS - 1 },
+    (_, i) => trackTop + ((i + 1) / N_RAIAS) * trackPx,
+  );
+  const dashPx = Math.max(4, 0.012 * worldUnitPx);
+  const bgX = (screenX(0) / 100) * pistaPx.w;
   const xLargada = screenX(0);
   const xChegada = screenX(worldFinish);
 
@@ -728,6 +733,19 @@ export default function CorridaTopDown({
           style={{ top: `${trackTop}px`, height: `${trackPx}px` }}
           aria-hidden
         />
+        {/* Micro raias horizontais — referência pra perceber os zooms. */}
+        {laneLines.map((top, i) => (
+          <div
+            key={`lane-${i}`}
+            className="cn-lane-line"
+            style={{
+              top: `${top}px`,
+              ["--dash" as string]: `${dashPx}px`,
+              backgroundPositionX: `${bgX}px`,
+            }}
+            aria-hidden
+          />
+        ))}
 
         {ordenadas.map((ia, idx) => {
           const ptsPrev = frames[Math.max(fA - 1, 0)]?.pts[ia.slug] ?? 0;
@@ -955,6 +973,18 @@ export default function CorridaTopDown({
           border-top: 2px solid rgba(255,255,255,0.55);
           border-bottom: 2px solid rgba(255,255,255,0.55);
           box-shadow: inset 0 0 0 9999px transparent;
+          pointer-events: none;
+          z-index: 1;
+        }
+        /* Micro raias horizontais tracejadas (referência de zoom). */
+        .cn-lane-line {
+          position: absolute;
+          left: 0; right: 0; height: 1px;
+          background: repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,0.16) 0 var(--dash, 8px),
+            transparent var(--dash, 8px) calc(var(--dash, 8px) * 2)
+          );
           pointer-events: none;
           z-index: 1;
         }
