@@ -70,3 +70,5 @@ no cálculo de pontuação.
 | 60 | Grupo D | Qui 25/06 | 23h00 | San Francisco | Paraguai | 0 | 0 | Austrália |
 | 61 | Grupo I | Sex 26/06 | 16h00 | Boston | Noruega | 1 | 4 | França |
 | 62 | Grupo I | Sex 26/06 | 16h00 | Toronto | Senegal | 5 | 0 | Iraque |
+| 64 | Grupo G | Sáb 27/06 | 00h00 | Vancouver | Nova Zelândia | 1 | 5 | Bélgica |
+| 63 | Grupo G | Sáb 27/06 | 00h00 | Seattle | Egito | 1 | 1 | Irã |
