@@ -298,6 +298,7 @@ function IgStyle() {
         display: flex;
         flex-direction: column;
         gap: 0;
+        min-width: 0;
         transition: box-shadow .15s;
       }
       .ig-card:hover {
@@ -307,6 +308,7 @@ function IgStyle() {
       /* ── Media area ─────────────────────────────────────────────── */
       .ig-media {
         width: 100%;
+        min-width: 0;
         border-radius: var(--r-m, 10px);
         overflow: hidden;
         background: var(--bg-soft);
