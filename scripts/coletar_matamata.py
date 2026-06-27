@@ -35,7 +35,8 @@ BRT = timezone(timedelta(hours=-3))
 MM_JOGOS = list(range(73, 89))
 
 MAPPING_PATH = ROOT / "config" / "openrouter_mapping.json"
-PROMPT_PATH = ROOT / "config" / "prompts" / "ia-palpiteira-mata-mata-v1.md"
+PROMPT_PATH = ROOT / "config" / "prompts" / "ia-palpiteira-mata-mata-v2.md"
+DOSSIE_PATH = ROOT / "data" / "dossie" / "r32-2026-06-27.md"
 RESULTADOS_PATH = ROOT / "data" / "resultados" / "jogos.md"
 PALPITES_DIR = ROOT / "data" / "palpites_matamata"
 
@@ -114,7 +115,18 @@ def main() -> int:
         print(f"erro: prompt ausente: {PROMPT_PATH}", file=sys.stderr)
         return 1
 
+    if not DOSSIE_PATH.is_file():
+        print(
+            f"erro: dossiê ausente: {DOSSIE_PATH}\n"
+            "Crie o arquivo antes de rodar a coleta (sem dossiê as IAs API não têm contexto).",
+            file=sys.stderr,
+        )
+        return 1
+
+    dossie_conteudo = DOSSIE_PATH.read_text(encoding="utf-8")
+
     prompt_base = PROMPT_PATH.read_text(encoding="utf-8")
+    prompt_base = prompt_base.replace("{{DOSSIE}}", dossie_conteudo)
     prompt_base = prompt_base.replace("{{RESULTADOS}}", _tabela_resultados_md(RESULTADOS_PATH))
 
     corte = datetime.now(BRT).strftime("%Y-%m-%d")
