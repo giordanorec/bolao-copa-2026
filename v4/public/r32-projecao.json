@@ -1,0 +1,168 @@
+{
+  "gerado_em": "2026-06-27T11:47:26",
+  "fase": "R32",
+  "n_simulacoes": 50000,
+  "cenario_conjunto_pct": 3.7,
+  "jogos": [
+    {
+      "numero": 73,
+      "time_a": "África do Sul",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Canadá",
+      "prob_b": 100,
+      "definido_b": true,
+      "definido": true
+    },
+    {
+      "numero": 74,
+      "time_a": "Alemanha",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Paraguai",
+      "prob_b": 28,
+      "definido_b": false,
+      "definido": false
+    },
+    {
+      "numero": 75,
+      "time_a": "Países Baixos",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Marrocos",
+      "prob_b": 100,
+      "definido_b": true,
+      "definido": true
+    },
+    {
+      "numero": 76,
+      "time_a": "Brasil",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Japão",
+      "prob_b": 100,
+      "definido_b": true,
+      "definido": true
+    },
+    {
+      "numero": 77,
+      "time_a": "França",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Suécia",
+      "prob_b": 51,
+      "definido_b": false,
+      "definido": false
+    },
+    {
+      "numero": 78,
+      "time_a": "Costa do Marfim",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Noruega",
+      "prob_b": 100,
+      "definido_b": true,
+      "definido": true
+    },
+    {
+      "numero": 79,
+      "time_a": "México",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Senegal",
+      "prob_b": 46,
+      "definido_b": false,
+      "definido": false
+    },
+    {
+      "numero": 80,
+      "time_a": "Inglaterra",
+      "prob_a": 58,
+      "definido_a": false,
+      "time_b": "Equador",
+      "prob_b": 20,
+      "definido_b": false,
+      "definido": false
+    },
+    {
+      "numero": 81,
+      "time_a": "Estados Unidos",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Bósnia-Herzegovina",
+      "prob_b": 91,
+      "definido_b": false,
+      "definido": false
+    },
+    {
+      "numero": 82,
+      "time_a": "Bélgica",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Coreia do Sul",
+      "prob_b": 28,
+      "definido_b": false,
+      "definido": false
+    },
+    {
+      "numero": 83,
+      "time_a": "Portugal",
+      "prob_a": 54,
+      "definido_a": false,
+      "time_b": "Gana",
+      "prob_b": 44,
+      "definido_b": false,
+      "definido": false
+    },
+    {
+      "numero": 84,
+      "time_a": "Espanha",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Áustria",
+      "prob_b": 69,
+      "definido_b": false,
+      "definido": false
+    },
+    {
+      "numero": 85,
+      "time_a": "Suíça",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Irã",
+      "prob_b": 91,
+      "definido_b": false,
+      "definido": false
+    },
+    {
+      "numero": 86,
+      "time_a": "Argentina",
+      "prob_a": 99,
+      "definido_a": false,
+      "time_b": "Cabo Verde",
+      "prob_b": 100,
+      "definido_b": true,
+      "definido": false
+    },
+    {
+      "numero": 87,
+      "time_a": "Colômbia",
+      "prob_a": 55,
+      "definido_a": false,
+      "time_b": "Croácia",
+      "prob_b": 34,
+      "definido_b": false,
+      "definido": false
+    },
+    {
+      "numero": 88,
+      "time_a": "Austrália",
+      "prob_a": 100,
+      "definido_a": true,
+      "time_b": "Egito",
+      "prob_b": 100,
+      "definido_b": true,
+      "definido": true
+    }
+  ]
+}

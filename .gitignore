@@ -48,9 +48,10 @@ venv/
 data/raw/
 data/cache/
 
-# Palpites v2/v3 (premium — nunca versionar; repo é público)
+# Palpites v2/v3/mata-mata (premium — nunca versionar; repo é público)
 data/palpites_v2/
 data/palpites_v3/
+data/palpites_matamata/
 data/analise_v2.json
 
 # Bolão: gerados em runtime

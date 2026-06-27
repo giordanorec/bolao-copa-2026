@@ -145,6 +145,20 @@ export default async function Home() {
             : "Panneau de données : familles de comportement, qui réussit sur quel continent, et si les IA s'améliorent en révisant (v1 → v2).",
       cta: pt ? "Abrir análise →" : en ? "Open analysis →" : es ? "Abrir análisis →" : "Ouvrir →",
     },
+    {
+      href: "/analise-r32",
+      emoji: "⚔️",
+      titulo: pt ? "16-avos de Final" : en ? "Round of 32" : es ? "Dieciseisavos de Final" : "Seizièmes de Finale",
+      sub: pt ? "Palpites das IAs — exclusivo contribuintes" : en ? "AI predictions — contributors only" : es ? "Pronósticos IAs — exclusivo" : "Pronostics IA — exclusif",
+      desc: pt
+        ? "Prévia dos palpites das 54 IAs para os 16 confrontos do mata-mata — coletada com os grupos J, K e L ainda em aberto. Confrontos + probabilidades são públicos; placares são premium."
+        : en
+          ? "Preview of the 54 AIs' predictions for the 16 knockout matchups — collected while Groups J, K and L were still open. Matchups + odds are public; scores are premium."
+          : es
+            ? "Previsión de los pronósticos de las 54 IAs para los 16 cruces de la eliminatoria — recopilada con los grupos J, K y L aún abiertos. Cruces + probabilidades son públicos; marcadores son premium."
+            : "Aperçu des pronostics des 54 IA pour les 16 confrontations à élimination — collecté avec les groupes J, K et L encore ouverts. Confrontations + probabilités sont publics ; scores sont premium.",
+      cta: pt ? "Ver os 16-avos →" : en ? "See the R32 →" : es ? "Ver los dieciseisavos →" : "Voir les 16es →",
+    },
   ];
 
   return (
