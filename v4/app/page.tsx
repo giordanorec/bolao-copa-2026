@@ -203,6 +203,73 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="section" style={{ paddingTop: 8, paddingBottom: 8 }}>
+        <div className="container">
+          <Link
+            href="/jogos"
+            className="card hoverable"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 16,
+              textDecoration: "none",
+              maxWidth: 880,
+              margin: "0 auto",
+              textAlign: "center",
+              background:
+                "linear-gradient(135deg, color-mix(in srgb, var(--secondary) 16%, transparent), color-mix(in srgb, var(--accent) 14%, transparent))",
+              border: "1px solid color-mix(in srgb, var(--secondary) 36%, transparent)",
+            }}
+          >
+            <span style={{ fontSize: 40, lineHeight: 1 }}>🔮</span>
+            <span style={{ flex: "1 1 320px", minWidth: 0 }}>
+              <span
+                style={{
+                  display: "block",
+                  fontFamily: "var(--ff-mono)",
+                  fontSize: 12,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  color: "var(--secondary)",
+                  fontWeight: 700,
+                  marginBottom: 4,
+                }}
+              >
+                {pt ? "✨ No ar agora · de graça"
+                : en ? "✨ Live now · free"
+                : es ? "✨ En vivo · gratis"
+                : "✨ En direct · gratuit"}
+              </span>
+              <span
+                style={{
+                  display: "block",
+                  fontSize: 20,
+                  fontWeight: 800,
+                  color: "var(--fg)",
+                  lineHeight: 1.2,
+                }}
+              >
+                {pt ? "Os palpites das IAs pro próximo jogo já saíram"
+                : en ? "The AIs' picks for the next match are out"
+                : es ? "Los pronósticos de las IAs para el próximo partido ya están"
+                : "Les pronostics des IA pour le prochain match sont là"}
+              </span>
+            </span>
+            <span
+              className="btn yellow"
+              style={{ flex: "0 0 auto", pointerEvents: "none" }}
+            >
+              {pt ? "Ver os palpites agora →"
+              : en ? "See the picks now →"
+              : es ? "Ver ahora →"
+              : "Voir maintenant →"}
+            </span>
+          </Link>
+        </div>
+      </section>
+
       <BolaoHumanosRecrutamento locale={locale} />
 
       <AgradecimentoContribuinte locale={locale} />
