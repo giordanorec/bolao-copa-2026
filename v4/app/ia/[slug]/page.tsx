@@ -106,7 +106,7 @@ export default async function IADetalhePage({
 
   // Palpites atualizados (premium). Match direto pelo slug. v2/v3 só são
   // RENDERIZADOS quando `liberado`; o boolean temV2 (não vaza placar) decide o CTA.
-  const [{ liberado }, { v2, v3 }] = await Promise.all([
+  const [{ liberado }, { v2, v3, mm }] = await Promise.all([
     analiseLiberado(),
     carregarV2V3DoSlug(slug),
   ]);
@@ -252,7 +252,9 @@ export default async function IADetalhePage({
 
       <div className="palpites-lista">
         {jogos.map((jogo) => {
-          const p = palpites[jogo.numero];
+          // Mata-mata não tem v1 público; o palpite "mata-mata" É o palpite-base.
+          const p =
+            palpites[jogo.numero] ?? (liberado ? mm[jogo.numero] : undefined);
           const pv2: PlacarV2 | undefined = liberado ? v2[jogo.numero] : undefined;
           const pv3: PlacarV2 | undefined = liberado ? v3[jogo.numero] : undefined;
           const temTrail = !!(pv2 || pv3);

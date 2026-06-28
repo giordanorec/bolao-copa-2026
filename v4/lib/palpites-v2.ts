@@ -63,11 +63,13 @@ export async function carregarV2PorJogo(): Promise<
 export async function carregarV2V3DoSlug(slug: string): Promise<{
   v2: Record<number, PlacarV2>;
   v3: Record<number, PlacarV2>;
+  mm: Record<number, PlacarV2>;
 }> {
   const v2: Record<number, PlacarV2> = {};
   const v3: Record<number, PlacarV2> = {};
+  const mm: Record<number, PlacarV2> = {};
   const admin = createAdminClient();
-  if (!admin) return { v2, v3 };
+  if (!admin) return { v2, v3, mm };
 
   const { data, error } = await admin
     .from("palpite_v2")
@@ -75,7 +77,7 @@ export async function carregarV2V3DoSlug(slug: string): Promise<{
     .eq("slug", slug);
   if (error) {
     console.error("[palpites-v2] erro ao carregar slug:", error.message);
-    return { v2, v3 };
+    return { v2, v3, mm };
   }
   for (const r of (data ?? []) as {
     jogo_numero: number;
@@ -83,10 +85,14 @@ export async function carregarV2V3DoSlug(slug: string): Promise<{
     gols_b: number;
     versao: string;
   }[]) {
-    const alvo = r.versao === "v3" ? v3 : v2;
+    // "mata-mata" é o palpite único do jogo (não há trilha v1→v2→v3 no
+    // mata-mata — o v1 público nunca cobriu esses jogos). Vai num balde próprio
+    // pra ser exibido como palpite-base, sem o "v1 sem palpite → v2" confuso.
+    const alvo =
+      r.versao === "mata-mata" ? mm : r.versao === "v3" ? v3 : v2;
     alvo[r.jogo_numero] = { gols_a: r.gols_a, gols_b: r.gols_b };
   }
-  return { v2, v3 };
+  return { v2, v3, mm };
 }
 
 /** Placar mais votado entre os palpites v2 de um jogo. */
