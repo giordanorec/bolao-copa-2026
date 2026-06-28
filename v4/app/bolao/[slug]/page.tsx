@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase-server";
 import { totalPontos } from "@/lib/scoring";
 import { carregarJogos } from "@/lib/jogos";
+import { escopoDoBolao, jogosNoEscopo } from "@/lib/bolao-escopo";
 import { resolverLocale } from "@/lib/locale-server";
 import SerieA from "@/components/SerieA";
 import EntrarButton from "./EntrarButton";
@@ -51,7 +52,9 @@ export default async function BolaoPage({
     : false;
 
   const userIds = membrosTyped.map((m) => m.user_id);
-  const jogos = await carregarJogos();
+  const todosJogos = await carregarJogos();
+  const escopo = escopoDoBolao(bolao.slug);
+  const jogos = jogosNoEscopo(todosJogos, escopo);
   let rankingPraShare: { nome: string; pontos: number }[] = [];
   if (userIds.length > 0) {
     const { data: pp } = await supabase
@@ -144,7 +147,7 @@ export default async function BolaoPage({
             👥 <strong>{membrosTyped.length}</strong>{" "}
             {membrosTyped.length === 1 ? "membro" : "membros"}
           </span>
-          <span>⚽ 104 jogos</span>
+          <span>⚽ {jogos.length} jogos{escopo.maxJogo - escopo.minJogo + 1 < todosJogos.length ? ` (${escopo.label})` : ""}</span>
           <span>🔮 122 IAs palpitando</span>
         </div>
 
@@ -181,7 +184,11 @@ export default async function BolaoPage({
 
       {/* ── Ranking do bolão (logo após o hero) ── */}
       <section style={{ marginTop: 32 }}>
-        <RankingDoBolao bolaoId={bolao.id} membros={membrosTyped} />
+        <RankingDoBolao
+          bolaoId={bolao.id}
+          slug={bolao.slug}
+          membros={membrosTyped}
+        />
       </section>
 
       {/* ── O que é o Bolão das IAs (pra TODO mundo) ── */}

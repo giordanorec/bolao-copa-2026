@@ -1,15 +1,18 @@
 import { createClient } from "@/lib/supabase-server";
 import { totalPontos, pontosJogo } from "@/lib/scoring";
 import { carregarJogos } from "@/lib/jogos";
+import { escopoDoBolao, jogosNoEscopo } from "@/lib/bolao-escopo";
 import type { Palpite, Jogo } from "@/lib/types";
 
 type MembroRow = { user_id: string; profiles: { display_name: string } };
 
 export default async function RankingDoBolao({
   bolaoId: _bolaoId,
+  slug,
   membros,
 }: {
   bolaoId: string;
+  slug: string;
   membros: MembroRow[];
 }) {
   void _bolaoId;
@@ -28,15 +31,19 @@ export default async function RankingDoBolao({
     .select("user_id, jogo_numero, gols_a, gols_b, atualizado_em")
     .in("user_id", userIds);
 
-  const jogos = await carregarJogos();
+  const todosJogos = await carregarJogos();
+  // Só os jogos que CONTAM nesse bolão (mata-mata = 73-104; demais = 1-104).
+  const escopo = escopoDoBolao(slug);
+  const jogos = jogosNoEscopo(todosJogos, escopo);
+  const totalEscopo = jogos.length;
   const porUser = new Map<string, Record<number, Palpite>>();
   (todosPalpites ?? []).forEach((p) => {
     if (!porUser.has(p.user_id)) porUser.set(p.user_id, {});
     porUser.get(p.user_id)![p.jogo_numero] = p as Palpite;
   });
 
-  // Só os jogos já encerrados (com resultado) — esses é que importam pra
-  // ver palpite × real × pts. Ordem decrescente: o mais recente em cima.
+  // Só os jogos do escopo já encerrados (com resultado) — esses é que importam
+  // pra ver palpite × real × pts. Ordem decrescente: o mais recente em cima.
   const jogosEncerrados = jogos
     .filter((j): j is Jogo & { gols_a: number; gols_b: number } =>
       j.gols_a != null && j.gols_b != null,
@@ -47,11 +54,12 @@ export default async function RankingDoBolao({
   const linhas = membros
     .map((m) => {
       const palps = porUser.get(m.user_id) ?? {};
+      const preenchidos = jogos.filter((j) => palps[j.numero]).length;
       return {
         user_id: m.user_id,
         nome: m.profiles.display_name,
         pontos: totalPontos(palps, jogos),
-        preenchidos: Object.keys(palps).length,
+        preenchidos,
         palpites: palps,
       };
     })
@@ -69,7 +77,23 @@ export default async function RankingDoBolao({
 
   return (
     <div className="card">
-      <h2 style={{ fontSize: 28, marginBottom: 16 }}>🏆 Ranking</h2>
+      <h2 style={{ fontSize: 28, marginBottom: 6 }}>🏆 Ranking</h2>
+      {escopo.maxJogo - escopo.minJogo + 1 < todosJogos.length && (
+        <p
+          style={{
+            display: "inline-block",
+            background: "color-mix(in srgb, var(--primary) 12%, transparent)",
+            color: "var(--primary)",
+            fontWeight: 700,
+            fontSize: 12,
+            padding: "3px 10px",
+            borderRadius: 999,
+            marginBottom: 10,
+          }}
+        >
+          Só conta o {escopo.label} (jogos {escopo.minJogo}–{escopo.maxJogo})
+        </p>
+      )}
       <p style={{ color: "var(--fg-mid)", fontSize: 13, marginBottom: 12 }}>
         Clique em cada membro pra ver os palpites jogo a jogo, com o resultado
         real e quantos pontos cada um fez.
@@ -81,7 +105,7 @@ export default async function RankingDoBolao({
               <span className="bolao-membro-rank">{l.rank}º</span>
               <span className="bolao-membro-nome">{l.nome}</span>
               <span className="bolao-membro-palp">
-                {l.preenchidos}/104 palpites
+                {l.preenchidos}/{totalEscopo} palpites
               </span>
               <span className="bolao-membro-pts">{l.pontos}</span>
             </summary>

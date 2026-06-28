@@ -44,14 +44,24 @@ export default function PalpitarForm({
     palpitesRef.current = palpites;
   }, [palpites]);
 
+  // Os palpites são globais (1 conjunto por usuário, reusado em N bolões), mas
+  // o progresso conta SÓ os jogos exibidos neste bolão (o escopo).
+  const numerosEscopo = useMemo(
+    () => new Set(jogos.map((j) => j.numero)),
+    [jogos],
+  );
   const total = jogos.length;
-  const preenchidos = Object.keys(palpites).length;
+  const preenchidos = useMemo(
+    () => jogos.filter((j) => palpites[j.numero]).length,
+    [jogos, palpites],
+  );
   const pct = Math.round((preenchidos / total) * 100);
   const algumSalvando = salvando.size > 0;
 
   const iasInfo = useMemo(() => {
     const contagem: Record<string, number> = {};
-    Object.values(palpitesIAs).forEach((d) => {
+    Object.entries(palpitesIAs).forEach(([numStr, d]) => {
+      if (!numerosEscopo.has(Number(numStr))) return; // fora do escopo do bolão
       if (d.bola_de_cristal) {
         contagem["bola-de-cristal"] = (contagem["bola-de-cristal"] ?? 0) + 1;
       }
@@ -225,7 +235,7 @@ export default function PalpitarForm({
   async function removerTodos() {
     if (
       !confirm(
-        "Tem certeza? Vai apagar seus palpites de jogos AINDA NÃO INICIADOS (em todos os bolões em que você está). Palpites de jogos que já começaram ficam travados pelo servidor. Não dá pra desfazer.",
+        "Tem certeza? Vai apagar seus palpites destes jogos (ainda não iniciados). Palpites de jogos que já começaram ficam travados pelo servidor. Não dá pra desfazer.",
       )
     )
       return;
@@ -233,21 +243,25 @@ export default function PalpitarForm({
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
     // O servidor (RLS) só deixa apagar jogos com kickoff > now(); a query
-    // pode pedir tudo, mas o efeito é restringido aos não-bloqueados.
+    // pede só os jogos DESTE bolão (escopo), e o efeito ainda é restringido
+    // aos não-bloqueados.
+    const numeros = [...numerosEscopo];
     const { error } = await supabase
       .from("palpite")
       .delete()
-      .eq("user_id", user.id);
+      .eq("user_id", user.id)
+      .in("jogo_numero", numeros);
     if (error) {
       setErroSalvar(`Erro ao apagar palpites: ${error.message}`);
       return;
     }
-    // Mantém localmente só os palpites de jogos já bloqueados (o resto
-    // foi de fato apagado no banco).
+    // Mantém localmente os palpites fora do escopo + os do escopo que já
+    // estavam bloqueados (esses não foram apagados no banco).
     const sobreviventes: Estado = {};
     for (const numStr of Object.keys(palpitesRef.current)) {
       const n = Number(numStr);
-      if (bloqueadosSet.has(n)) sobreviventes[n] = palpitesRef.current[n];
+      if (!numerosEscopo.has(n) || bloqueadosSet.has(n))
+        sobreviventes[n] = palpitesRef.current[n];
     }
     palpitesRef.current = sobreviventes;
     setPalpites(sobreviventes);

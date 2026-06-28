@@ -670,3 +670,56 @@ jogo-a-jogo, respeitando a trava).
 - Card de recrutamento na home (4 idiomas) apontando pro bolão central.
 - **Não reverter** sem perguntar: o nível 3 do filtro é o único que mostra
   humanos; entrar no bolão central sempre implica palpites públicos.
+
+---
+
+## 2026-06-28 — Escopo de jogos por bolão + estratégia do ranking geral da Copa
+
+### Contexto
+
+Havia confusão sobre como calcular um ranking geral "final" da Copa, dado que: (a)
+existe um **bolão público do mata-mata** (Humanos × IAs) que só deve considerar os
+jogos do mata-mata; (b) há **bolões privados** que cobrem a Copa toda; (c) os
+palpites das IAs têm várias versões; e (d) uma pessoa pode estar em vários bolões.
+
+A chave que dissolve a confusão está no schema: a tabela `palpite` tem PK
+`(user_id, jogo_numero)` — ou seja, **cada usuário tem UM único conjunto de
+palpites, reaproveitado em todos os bolões**. Não há `bolao_id` em `palpite`, nem
+escopo de jogos por bolão no banco.
+
+### Decisão
+
+- **Bolão = associação (`bolao_membro`) + ESCOPO de jogos.** A única coisa que
+  distingue um bolão de outro na pontuação é o intervalo de jogos que conta. O
+  escopo vive em código (`v4/lib/bolao-escopo.ts`), não no banco:
+  - `humanos-vs-ias` (público) → **só mata-mata, jogos 73–104**. Nenhum ponto da
+    fase de grupos entra.
+  - Qualquer outro bolão (privados) → **Copa toda, jogos 1–104**.
+- **Ranking geral da Copa** = `/ranking-geral` ("copa toda"): soma dos palpites de
+  cada participante sobre **todos os 104 jogos** (humanos opt-in + todas as IAs).
+  Como o palpite é global, a pessoa pontua de forma consistente em qualquer recorte
+  de fase, sem dupla contagem.
+- **Importar palpites entre bolões é desnecessário (moot).** Como o palpite já é
+  global por `(user_id, jogo_numero)`, entrar num segundo bolão reusa
+  automaticamente os mesmos palpites. Não há o que importar.
+
+### Por quê / alternativas
+
+- Não criar `bolao_id` em `palpite` nem duplicar palpites por bolão: manteria N
+  cópias divergentes do mesmo chute e quebraria o ranking geral. O modelo global
+  é mais simples e já é o que o schema garante.
+- Escopo em código (allowlist por slug) em vez de coluna no banco: o conjunto de
+  bolões com escopo especial é pequeno e raro de mudar; evita migração e DDL.
+
+### Consequências
+
+- `v4/lib/bolao-escopo.ts`: `escopoDoBolao(slug)` (default 1–104; `humanos-vs-ias`
+  → 73–104), `jogoNoEscopo`, `jogosNoEscopo`.
+- `RankingDoBolao.tsx`, `bolao/[slug]/page.tsx`, `palpitar/page.tsx`,
+  `PalpitarForm.tsx`: filtram jogos exibidos, pontuação, progresso e "apagar
+  todos" pelo escopo do bolão. O bolão do mata-mata mostra só os jogos 73–104 e
+  rotula "Só conta o Mata-mata".
+- `palpitar`: "apagar todos" passa a apagar só os palpites **do escopo** (não some
+  com os palpites de grupos de quem está no bolão do mata-mata).
+- **Não reverter** sem perguntar: bolão do mata-mata jamais conta pontos de
+  grupos; ranking geral continua somando a Copa toda.

@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase-server";
 import { carregarJogos } from "@/lib/jogos";
+import { escopoDoBolao, jogosNoEscopo } from "@/lib/bolao-escopo";
 import {
   carregarPalpitesIAs,
   carregarDictIAs,
@@ -32,13 +33,18 @@ export default async function PalpitarPage({
     .single();
   if (!bolao) notFound();
 
-  const [jogos, palpitesIAs, iasDict, paises, mapaPaises] = await Promise.all([
-    carregarJogos(),
-    carregarPalpitesIAs(),
-    carregarDictIAs(),
-    carregarPaises(),
-    carregarMapaPaises(),
-  ]);
+  const [todosJogos, palpitesIAs, iasDict, paises, mapaPaises] =
+    await Promise.all([
+      carregarJogos(),
+      carregarPalpitesIAs(),
+      carregarDictIAs(),
+      carregarPaises(),
+      carregarMapaPaises(),
+    ]);
+
+  // Só os jogos que CONTAM nesse bolão (mata-mata = 73-104; demais = 1-104).
+  const escopo = escopoDoBolao(slug);
+  const jogos = jogosNoEscopo(todosJogos, escopo);
 
   const { data: palpites } = await supabase
     .from("palpite")
