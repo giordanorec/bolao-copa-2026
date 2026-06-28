@@ -375,6 +375,67 @@ def _gerar_analise_v2_publico() -> dict | None:
     }
 
 
+def _supabase_creds() -> tuple[str, str] | None:
+    """URL + service_role key, do ambiente ou de v4/.env.local."""
+    import os
+
+    url = os.environ.get("SUPABASE_URL") or os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
+    key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
+    if not (url and key):
+        envf = ROOT / "v4" / ".env.local"
+        if envf.is_file():
+            vals: dict[str, str] = {}
+            for line in envf.read_text(encoding="utf-8").splitlines():
+                if "=" in line and not line.lstrip().startswith("#"):
+                    k, _, v = line.partition("=")
+                    vals[k.strip()] = v.strip().strip('"').strip("'")
+            url = url or vals.get("NEXT_PUBLIC_SUPABASE_URL")
+            key = key or vals.get("SUPABASE_SERVICE_ROLE_KEY")
+    if url and key:
+        return url, key
+    return None
+
+
+def _fetch_matamata() -> dict[int, dict[str, dict[str, int]]]:
+    """Palpites do mata-mata (versao='mata-mata') do Supabase, por jogo.
+
+    Só slugs não-web entram (igual aos grupos): os '-web' são vitrines que
+    reaproveitam o irmão, e contá-los duplicaria votos no consenso.
+    """
+    import urllib.request
+
+    creds = _supabase_creds()
+    if not creds:
+        print("matamata: sem credenciais Supabase — pulando (json fica só grupos)")
+        return {}
+    url, key = creds
+    out: dict[int, dict[str, dict[str, int]]] = {}
+    headers = {"apikey": key, "Authorization": f"Bearer {key}"}
+    off = 0
+    while True:
+        q = (
+            f"{url}/rest/v1/palpite_v2?select=slug,jogo_numero,gols_a,gols_b"
+            f"&versao=eq.mata-mata&order=jogo_numero"
+        )
+        req = urllib.request.Request(q, headers={**headers, "Range": f"{off}-{off + 999}"})
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            lote = json.loads(resp.read().decode("utf-8"))
+        for r in lote:
+            slug = r["slug"]
+            if slug.endswith("-web"):
+                continue
+            out.setdefault(int(r["jogo_numero"]), {})[slug] = {
+                "gols_a": int(r["gols_a"]),
+                "gols_b": int(r["gols_b"]),
+            }
+        if len(lote) < 1000:
+            break
+        off += 1000
+    total = sum(len(v) for v in out.values())
+    print(f"matamata: {total} palpites em {len(out)} jogos do Supabase")
+    return out
+
+
 def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
     """Roda parser do v1 e agrega palpites por jogo + dict de IAs + paises."""
     import sys
@@ -404,6 +465,9 @@ def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
     if cristal_path.is_file():
         cristal = json.loads(cristal_path.read_text(encoding="utf-8"))
 
+    # palpites de mata-mata (vivem só no Supabase) — tudo público agora
+    matamata = _fetch_matamata()
+
     # agrega
     por_jogo: dict[str, dict] = {}
     for jogo in jogos:
@@ -414,6 +478,9 @@ def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
                 if p.jogo_numero == num:
                     entries[ia_slug] = {"gols_a": p.gols_a, "gols_b": p.gols_b}
                     break
+        # mata-mata: injeta palpites do Supabase (v1 não cobre esses jogos)
+        for ia_slug, palp in matamata.get(num, {}).items():
+            entries.setdefault(ia_slug, palp)
         # consenso (top placares por votos)
         contador: Counter[tuple[int, int]] = Counter()
         placares_to_ias: dict[tuple[int, int], list[str]] = {}

@@ -7,8 +7,7 @@ import { resolverLocale } from "@/lib/locale-server";
 import { marcaDe } from "@/lib/ias";
 import { FALLBACK_NAO_WEB } from "@/lib/serie-a";
 import { pontosJogo } from "@/lib/scoring";
-import { analiseLiberado } from "@/lib/analise-auth";
-import { carregarV2V3DoSlug, type PlacarV2 } from "@/lib/palpites-v2";
+import { carregarV2V3DoSlug } from "@/lib/palpites-v2";
 import type { Jogo as JogoFull, Palpite as PalpiteFull } from "@/lib/types";
 
 type Jogo = {
@@ -104,16 +103,15 @@ export default async function IADetalhePage({
   const { ia, jogos, palpites } = await carregarTudo(slug);
   if (!ia) notFound();
 
-  // Palpites atualizados (premium). Match direto pelo slug. v2/v3 só são
-  // RENDERIZADOS quando `liberado`; o boolean temV2 (não vaza placar) decide o CTA.
-  const [{ liberado }, { v2, v3, mm }] = await Promise.all([
-    analiseLiberado(),
-    carregarV2V3DoSlug(slug),
-  ]);
-  const temV2 = Object.keys(v2).length > 0 || Object.keys(v3).length > 0;
+  // Mata-mata: palpites vivem no palpite_v2 (slug do irmão não-web). Trazemos só
+  // o palpite único (sem trilha v1/v2/v3, sem paywall — tudo público agora) e
+  // mesclamos com o v1 dos grupos num único mapa.
+  const fonteSlug = FALLBACK_NAO_WEB[slug] ?? slug;
+  const { mm } = await carregarV2V3DoSlug(fonteSlug);
+  const palpitesAll: Record<number, Palpite> = { ...mm, ...palpites };
 
   const marca = marcaDe(slug);
-  const totalPalpites = Object.keys(palpites).length;
+  const totalPalpites = Object.keys(palpitesAll).length;
 
   const tx = {
     voltar: en ? "← Back to AIs" : es ? "← Volver a las IAs" : fr ? "← Retour aux IA" : "← Voltar pra lista",
@@ -125,27 +123,6 @@ export default async function IADetalhePage({
     palpiteAbrev: en ? "pick" : es ? "pron" : fr ? "pron" : "palpite",
     resultadoAbrev: en ? "result" : es ? "result" : fr ? "réel" : "real",
     ft: en ? "FT" : "FIM",
-    v2Aviso: en
-      ? "✨ This AI redid its picks mid-tournament — the v1 → v2 (→ v3) trail is shown below."
-      : es
-      ? "✨ Esta IA rehízo sus pronósticos con el Mundial en marcha — abajo el camino v1 → v2 (→ v3)."
-      : fr
-      ? "✨ Cette IA a refait ses pronostics en cours de tournoi — le parcours v1 → v2 (→ v3) est ci-dessous."
-      : "✨ Esta IA refez os palpites com a Copa rolando — a trilha v1 → v2 (→ v3) aparece abaixo.",
-    v2Cta: en
-      ? "This AI updated its picks mid-tournament."
-      : es
-      ? "Esta IA actualizó sus pronósticos con el Mundial en marcha."
-      : fr
-      ? "Cette IA a mis à jour ses pronostics en cours de tournoi."
-      : "Esta IA atualizou os palpites com a Copa em andamento.",
-    v2CtaLink: en
-      ? "See the updated picks →"
-      : es
-      ? "Ver los pronósticos actualizados →"
-      : fr
-      ? "Voir les pronostics mis à jour →"
-      : "Ver os palpites atualizados →",
   };
 
   return (
@@ -238,26 +215,11 @@ export default async function IADetalhePage({
         </span>
       </div>
 
-      {temV2 && liberado && (
-        <div className="ia-v2-aviso">{tx.v2Aviso}</div>
-      )}
-      {temV2 && !liberado && (
-        <Link href="/analise-v2" className="ia-v2-cta">
-          <span>✨ {tx.v2Cta}</span>
-          <strong>{tx.v2CtaLink}</strong>
-        </Link>
-      )}
-
       <h2 style={{ marginBottom: 16 }}>{tx.jogos_h2}</h2>
 
       <div className="palpites-lista">
         {jogos.map((jogo) => {
-          // Mata-mata não tem v1 público; o palpite "mata-mata" É o palpite-base.
-          const p =
-            palpites[jogo.numero] ?? (liberado ? mm[jogo.numero] : undefined);
-          const pv2: PlacarV2 | undefined = liberado ? v2[jogo.numero] : undefined;
-          const pv3: PlacarV2 | undefined = liberado ? v3[jogo.numero] : undefined;
-          const temTrail = !!(pv2 || pv3);
+          const p = palpitesAll[jogo.numero];
           const encerrado = jogo.gols_a != null && jogo.gols_b != null;
           // pontosJogo aceita o Jogo completo + palpite
           const pts = encerrado && p
@@ -287,7 +249,7 @@ export default async function IADetalhePage({
                 <span className="palpite-time">{jogo.time_a}</span>
                 <div className="palpite-placares">
                   <span className="placar-bloco palpite">
-                    <span className="placar-lbl">{temTrail ? "v1" : tx.palpiteAbrev}</span>
+                    <span className="placar-lbl">{tx.palpiteAbrev}</span>
                     {p ? (
                       <span className="placar-num">
                         <strong>{p.gols_a}</strong>
@@ -298,32 +260,6 @@ export default async function IADetalhePage({
                       <em className="placar-vazio">{tx.semPalpite}</em>
                     )}
                   </span>
-                  {pv2 && (
-                    <>
-                      <span className="placar-seta">→</span>
-                      <span className="placar-bloco v2">
-                        <span className="placar-lbl">v2</span>
-                        <span className="placar-num">
-                          <strong>{pv2.gols_a}</strong>
-                          <span style={{ opacity: 0.5, margin: "0 4px" }}>×</span>
-                          <strong>{pv2.gols_b}</strong>
-                        </span>
-                      </span>
-                    </>
-                  )}
-                  {pv3 && (
-                    <>
-                      <span className="placar-seta">→</span>
-                      <span className="placar-bloco v3">
-                        <span className="placar-lbl">v3</span>
-                        <span className="placar-num">
-                          <strong>{pv3.gols_a}</strong>
-                          <span style={{ opacity: 0.5, margin: "0 4px" }}>×</span>
-                          <strong>{pv3.gols_b}</strong>
-                        </span>
-                      </span>
-                    </>
-                  )}
                   {encerrado && (
                     <span className="placar-bloco real">
                       <span className="placar-lbl">{tx.resultadoAbrev}</span>
