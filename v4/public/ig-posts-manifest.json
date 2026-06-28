@@ -822,5 +822,35 @@
     ],
     "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/32_reel_retrospectiva-grupos/reel.mp4",
     "hasVideo": true
+  },
+  {
+    "id": "33_carrossel_novo-momento",
+    "tipo": "carrossel",
+    "titulo": "Novo Momento",
+    "caption": "A Arena das IAs entrou em campo — e tudo mudou. ⚽🤖\n\n55+ inteligências artificiais palpitando a Copa 2026. E agora os palpites de todas elas são **grátis pra todo mundo** — sem cadeado, sem Pix pra ver.\n\nArrasta e descobre o que tem de novo no site:\n🔓 Palpites das IAs abertos a qualquer um\n🔮 Bola de Cristal: oitavas já disponíveis (acertou o vencedor em 64% dos jogos da fase de grupos)\n📊 Retrospectiva completa da fase de grupos\n🏆 Ranking Geral: Geral · Série A · Humanos × IAs\n🏁 Corrida das IAs — animação placar a placar\n\nE o grande anúncio: **vem aí o Bolão da Arena das IAs — Humanos × IAs**. Qualquer pessoa entra, faz seus palpites do mata-mata e disputa no mesmo ranking que as máquinas. De graça.\n\nVocê acha que bate as IAs? Entra e prova. 👇\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs #HumanosXIAs #BolaDeCristal #SerieA",
+    "roteiro": "# Carrossel 33 — Novo Momento da Arena das IAs\n\n**Formato:** 8 slides · 1080×1350 · Fundo cosmic purple (#0a0518 → #2a1257) · Sora + Archivo Black\n\n| Slide | Título visual | Conteúdo chave |\n|-------|---------------|----------------|\n| 01 — CAPA | \"A Arena das IAs entrou em campo\" | Hook de abertura. Badge \"Copa 2026 · Novo Momento\". Subtítulo: 55+ IAs, palpites grátis, maior anúncio por vir. CTA \"arraste pra descobrir\". |\n| 02 — PALPITES GRÁTIS | \"Palpites grátis pra todo mundo\" | Destaque principal. Antes/Depois (🔒 → 🔓). Stat box 55+ IAs com palpites visíveis. Copy: 3.902 palpites de graça agora. |\n| 03 — BOLA DE CRISTAL | \"A Bola de Cristal aponta o placar mais votado\" | Ring animado 64%. Badges: disponível grupos E mata-mata / oitavas já disponíveis. |\n| 04 — TOUR SITE | \"O que tem de novo\" | 4 features em lista: Retrospectiva · Ranking Geral · Corrida das IAs · Palpites mata-mata (destaque dourado). |\n| 05 — NÚMEROS | \"Fase de grupos em números\" | Grid 2×2: 3.902 palpites · 55+ IAs · 72 jogos · 64% Bola de Cristal. |\n| 06 — GRANDE ANÚNCIO (teaser) | \"Bolão da Arena das IAs\" | Sirene 🚨. Badge \"Vem aí\". Título Humanos × IAs em gradient dourado. Teaser \"Qualquer pessoa pode entrar\". |\n| 07 — HUMANOS × IAs | \"Você acha que bate as IAs?\" | VS visual: Você 🧠 vs 55+ IAs 🤖. CTA direto. Pill \"Gratuito · Mata-mata · Já disponível\". |\n| 08 — CTA | \"Entra e prova\" | Resumo dos 3 pilares (palpites grátis / bola de cristal / ranking). Box roxo com URL. Rodapé @arena.das.ias. |\n\n**Tom:** empolgado, convite à ação, foco no \"o que mudou\" e no que vem.\n**Paleta:** #0a0518 bg · #9d4edd accent · #ffd34d gold · #cdb4ff lilac · #4ade80 verde acerto.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-06.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-07.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-08.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "34_reel_novo-momento",
+    "tipo": "reel",
+    "titulo": "Novo Momento",
+    "caption": "A Arena das IAs entrou em campo. ⚽🤖🚀\n\n55+ IAs palpitando a Copa 2026 — e agora tudo grátis pra qualquer pessoa ver. Sem cadeado. Sem Pix. Bola de Cristal no mata-mata. Ranking Humanos × IAs. E uma novidade que muda o jogo.\n\nVocê acha que bate as IAs? Entra e prova.\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs #HumanosXIAs #BolaDeCristal #SerieA",
+    "roteiro": "# Reel 34 — Novo Momento da Arena das IAs\n\n**Formato:** 1080×1920 · ~23s · h264 yuv420p +faststart · Sora + Archivo Black · Cosmic purple bg\n**Poster:** frame t=21s do mp4 — cena Humanos × IAs (clímax).\n\n| Cena | CSS offset | Conteúdo |\n|------|-----------|----------|\n| 1 — CAPA | 0s | 🚀🤖 · \"A Arena das IAs entrou em campo\" · \"Novo momento · Copa 2026\" · Badge Bolão das IAs |\n| 2 — PALPITES GRÁTIS | 2.6s | 🔓 · \"Palpites das IAs agora são grátis\" · Antes/Depois (🔒 → 🔓) · Stat 55+ IAs |\n| 3 — BOLA DE CRISTAL | 5.2s | 🔮 flutuante · Ring animado 64% verde · Badges: grupos + oitavas disponíveis |\n| 4 — TOUR DO SITE | 7.8s | Lista 4 features: Retrospectiva · Ranking Geral · Corrida das IAs · Palpites mata-mata |\n| 5 — NÚMEROS | 10.4s | Grid 2×2: 3.902 / 55+ / 72 / 64% |\n| 6 — HUMANOS × IAs (anúncio) | 13s | 🚨 \"Vem aí\" · \"Bolão da Arena — Humanos × IAs\" · VS visual · \"Qualquer pessoa entra. De graça.\" |\n| 7 — CLÍMAX | 15.8s | ⚽🏆 · \"Você acha que bate as IAs?\" · 3 bullets (palpites / bola de cristal / você vs IAs) |\n| 8 — CTA | 18.6s | 🤖⚽ · \"Acessa agora\" · Box roxo bolao.arenadasias.com.br · @arena.das.ias · hashtags |\n\n**Tom:** build de tensão progressivo, clímax na cena 6-7 com o anúncio Humanos × IAs, CTA na última cena.\n**Nota técnica:** poster extraído do mp4 via ffmpeg em t=21s (cena 6 visível e completamente renderizada com fontes carregadas).",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/34_reel_novo-momento/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/34_reel_novo-momento/reel.mp4",
+    "hasVideo": true
   }
 ]
