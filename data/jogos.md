@@ -83,22 +83,22 @@ Horários no **horário de Brasília (BRT)**. Fase de grupos com times definidos
 
 | Jogo | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B |
 |---|---|---|---|---|---|---|---|---|
-| 73 | R32 | Dom 28/06 | 16h00 | Los Angeles | 2º Grupo A | | | 2º Grupo B |
-| 76 | R32 | Seg 29/06 | 14h00 | Houston | 1º Grupo C | | | 2º Grupo F |
-| 74 | R32 | Seg 29/06 | 17h30 | Boston | 1º Grupo E | | | 3º Grupo A/B/C/D/F |
-| 75 | R32 | Seg 29/06 | 22h00 | Monterrey | 1º Grupo F | | | 2º Grupo C |
-| 78 | R32 | Ter 30/06 | 14h00 | Dallas | 2º Grupo E | | | 2º Grupo I |
-| 77 | R32 | Ter 30/06 | 18h00 | Nova York/NJ | 1º Grupo I | | | 3º Grupo C/D/F/G/H |
-| 79 | R32 | Ter 30/06 | 22h00 | Cidade do México | 1º Grupo A | | | 3º Grupo C/E/F/H/I |
-| 80 | R32 | Qua 01/07 | 13h00 | Atlanta | 1º Grupo L | | | 3º Grupo E/H/I/J/K |
-| 82 | R32 | Qua 01/07 | 17h00 | Seattle | 1º Grupo G | | | 3º Grupo A/E/H/I/J |
-| 81 | R32 | Qua 01/07 | 21h00 | San Francisco | 1º Grupo D | | | 3º Grupo B/E/F/I/J |
-| 84 | R32 | Qui 02/07 | 16h00 | Los Angeles | 1º Grupo H | | | 2º Grupo J |
-| 83 | R32 | Qui 02/07 | 20h00 | Toronto | 2º Grupo K | | | 2º Grupo L |
-| 85 | R32 | Sex 03/07 | 00h00 | Vancouver | 1º Grupo B | | | 3º Grupo E/F/G/I/J |
-| 88 | R32 | Sex 03/07 | 15h00 | Dallas | 2º Grupo D | | | 2º Grupo G |
-| 86 | R32 | Sex 03/07 | 19h00 | Miami | 1º Grupo J | | | 2º Grupo H |
-| 87 | R32 | Sex 03/07 | 22h30 | Kansas City | 1º Grupo K | | | 3º Grupo D/E/I/J/L |
+| 73 | R32 | Dom 28/06 | 16h00 | Los Angeles | África do Sul | | | Canadá |
+| 76 | R32 | Seg 29/06 | 14h00 | Houston | Brasil | | | Japão |
+| 74 | R32 | Seg 29/06 | 17h30 | Boston | Alemanha | | | Paraguai |
+| 75 | R32 | Seg 29/06 | 22h00 | Monterrey | Países Baixos | | | Marrocos |
+| 78 | R32 | Ter 30/06 | 14h00 | Dallas | Costa do Marfim | | | Noruega |
+| 77 | R32 | Ter 30/06 | 18h00 | Nova York/NJ | França | | | Suécia |
+| 79 | R32 | Ter 30/06 | 22h00 | Cidade do México | México | | | Equador |
+| 80 | R32 | Qua 01/07 | 13h00 | Atlanta | Inglaterra | | | Congo (RD) |
+| 82 | R32 | Qua 01/07 | 17h00 | Seattle | Bélgica | | | Senegal |
+| 81 | R32 | Qua 01/07 | 21h00 | San Francisco | Estados Unidos | | | Bósnia-Herzegovina |
+| 84 | R32 | Qui 02/07 | 16h00 | Los Angeles | Espanha | | | Áustria |
+| 83 | R32 | Qui 02/07 | 20h00 | Toronto | Portugal | | | Croácia |
+| 85 | R32 | Sex 03/07 | 00h00 | Vancouver | Suíça | | | Argélia |
+| 88 | R32 | Sex 03/07 | 15h00 | Dallas | Austrália | | | Egito |
+| 86 | R32 | Sex 03/07 | 19h00 | Miami | Argentina | | | Cabo Verde |
+| 87 | R32 | Sex 03/07 | 22h30 | Kansas City | Colômbia | | | Gana |
 
 ## Oitavas de final
 

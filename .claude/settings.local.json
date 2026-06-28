@@ -1,6 +1,25 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(touch -d \"2026-06-08T12:00:00\" data/palpites_ias/manus.md)",
+      "Read(//c/Users/grec/OneDrive - Stanford/Documents/Projetos/Bolao da Copa/**)",
+      "Bash(touch -d \"2026-06-10 12:00:00\" data/palpites_ias/claude-fable-5.md)",
+      "mcp__vercel__list_teams",
+      "mcp__vercel__list_projects",
+      "mcp__vercel__get_runtime_errors",
+      "mcp__vercel__list_deployments",
+      "mcp__vercel__get_project",
+      "PowerShell(Resolve-DnsName *)",
+      "PowerShell($env:Path; $lines = Get-Content \".env.local\"; $url=\\($lines | Where-Object {$_ -match '^NEXT_PUBLIC_SUPABASE_URL='}\\) -replace '^NEXT_PUBLIC_SUPABASE_URL=',''; $key=\\($lines | Where-Object {$_ -match '^SUPABASE_SERVICE_ROLE_KEY='}\\) -replace '^SUPABASE_SERVICE_ROLE_KEY=',''; $url=$url.Trim\\(\\); $key=$key.Trim\\(\\); $h=@{ apikey=$key; Authorization=\"Bearer $key\" }; try { $r = Invoke-RestMethod -Uri \"$url/rest/v1/contribuicoes?id=in.\\(85,89,101\\)&select=id,nome,email,valor,status\" -Headers $h -ErrorAction Stop; $r | ConvertTo-Json -Compress } catch { \"ERR: $\\($_.Exception.Message\\)\" })",
+      "PowerShell($lines = Get-Content \".env.local\"; $url=\\(\\($lines | Where-Object {$_ -match '^NEXT_PUBLIC_SUPABASE_URL='}\\) -replace '^NEXT_PUBLIC_SUPABASE_URL=',''\\).Trim\\(\\); $key=\\(\\($lines | Where-Object {$_ -match '^SUPABASE_SERVICE_ROLE_KEY='}\\) -replace '^SUPABASE_SERVICE_ROLE_KEY=',''\\).Trim\\(\\); $h=@{ apikey=$key; Authorization=\"Bearer $key\" }; $ok=$false; for\\($i=1;$i -le 8 -and -not $ok;$i++\\){ try { $r = Invoke-RestMethod -Uri \"$url/rest/v1/contribuicoes?id=in.\\(85,89,101\\)&select=id,nome,email,valor,status\" -Headers $h -ErrorAction Stop; \"OK try $i\"; $r | ConvertTo-Json -Compress; $ok=$true } catch { \"try $i ERR: $\\($_.Exception.Message\\)\"; Start-Sleep -Seconds 2 } })",
+      "PowerShell(Test-NetConnection *)",
+      "PowerShell(Get-NetIPConfiguration *)",
+      "mcp__claude_ai_Supabase__apply_migration",
+      "mcp__claude_ai_Supabase__list_projects"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "supabase"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

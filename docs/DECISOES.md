@@ -602,3 +602,71 @@ simbólica, em vez de matriz de perks por valor.
   mostra a nota personalizada.
 - **Não reverter** abrindo o v2 pra todos — "todos" do usuário = "todos que
   pagaram, sem diferenciar tier".
+
+---
+
+## 2026-06-27 — Bolão Humanos × IAs + rankings por fase (grupos / mata-mata / geral)
+
+### Contexto
+
+Giordano quis um "Bolão do Mata-Mata" pra comparar humanos × IAs de verdade, com
+card de recrutamento no site e três rankings (fase de grupos, mata-mata, geral),
+cada um contabilizando IAs (Série A ou todas) **e** humanos. O mapeamento do
+código mostrou que quase toda a infra já existe: humanos já palpitam (`palpite`,
+`/bolao/[slug]/palpitar`, trava server-side), `/ranking-geral` já mistura humanos
++ IAs + Cristal, a engine de pontuação é idêntica em Python e TS (2× mata-mata
+pronto), `/dashboard` já é o "Meus Bolões", e **a cópia de palpites de uma IA ou
+da Bola de Cristal já existe** (`PrePreencherBar` em massa + `SugestaoIA`
+jogo-a-jogo, respeitando a trava).
+
+### Decisões
+
+- **D1 — Bolão central é uma linha real em `bolao`** (não conceito). Slug
+  `humanos-vs-ias`, nome "Humanos × IAs — Mata-mata". Nova coluna
+  `bolao.publico boolean default false`; a linha central tem `publico=true`.
+  Entrar nele exige **consentimento explícito** de tornar os palpites públicos →
+  o join seta `profiles.opt_in_geral = true`. Aparece em "Meus Bolões"
+  (`/dashboard`) como qualquer outro. Bolões privados continuam privados (não
+  forçam público).
+- **D2 — Uma página, três abas** (Grupos · Mata-mata · Geral), evoluindo
+  `/ranking-geral`. Não criar três páginas.
+- **D3 — Filtro de escopo em 3 níveis progressivos** (padrão já usado no site):
+  *Só Série A* → *Série A + demais IAs* → *Todas as IAs + Humanos*. Humanos só
+  aparecem no nível 3. Bola de Cristal aparece em todos (linha de referência 🔮).
+- **D4 — Cópia de palpites já existe; estender ao mata-mata.** Garantir que os
+  palpites de IA do mata-mata (hoje em `palpite_v2`, premium) cheguem ao loader
+  `carregarPalpitesIAs()`/JSON respeitando o **gating atual**: Cristal é livre;
+  placar de IA específica no mata-mata continua premium (só contribuinte copia).
+- **Contrato de dados — ranking por fase:** o pipeline passa a emitir, por IA, um
+  recorte por fase no `ranking-ias.json` (sub-objetos `grupos` / `matamata` /
+  `geral`, cada um com `pontos`, `placares_exatos`, `vencedores_acertados`,
+  `jogos_palpitados`). Fase = grupos (jogos 1–72) vs mata-mata (≥73). Humanos são
+  recortados no front pela mesma régua via `scoring.ts`.
+- **Integração mata-mata IA no scoring:** o pipeline precisa pontuar os palpites
+  de IA do mata-mata contra os resultados quando os jogos 73+ acontecerem (hoje a
+  pontuação só cobre grupos). Mata-mata ainda não foi jogado, então o ranking de
+  mata-mata nasce vazio e enche conforme os jogos fecham — mas a integração tem
+  de estar correta pro primeiro resultado já pontuar.
+
+### Por quê / alternativas
+
+- Bolão central como linha real (vs. conceito puro) foi escolhido porque o
+  usuário quer que apareça em "Meus Bolões" e que "entrar" seja um ato explícito
+  com consentimento de tornar público. Coluna `publico` generaliza (pode haver
+  outros bolões públicos no futuro) sem hard-code de slug.
+- Empates seguem na mesma colocação e a ordenação/desempate seguem o §1 da
+  especificação (pontos → placares_exatos → vencedores_acertados →
+  popularidade). Isso vale dentro de **cada** aba.
+
+### Consequências
+
+- SQL: `alter table bolao add column publico boolean default false;` + seed da
+  linha `humanos-vs-ias` com `publico=true`. RLS de `bolao_membro` já é pública.
+- Join com consentimento: variante do `EntrarButton` pra bolão `publico` (modal
+  de consentimento → upsert `bolao_membro` + set `opt_in_geral=true`).
+- `src/bolao/ranking.py` + `scripts/v4_sync.py`: recorte por fase no JSON +
+  ingestão dos palpites de IA do mata-mata.
+- `/ranking-geral`: 3 abas + filtro 3 níveis; humanos agregados por fase.
+- Card de recrutamento na home (4 idiomas) apontando pro bolão central.
+- **Não reverter** sem perguntar: o nível 3 do filtro é o único que mostra
+  humanos; entrar no bolão central sempre implica palpites públicos.

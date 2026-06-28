@@ -24,17 +24,22 @@ import socketserver
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from . import __version__
 from .cristal import calcular_bola_de_cristal
 from .parser import carregar_jogos, carregar_palpites, carregar_resultados, take_errors
-from .ranking import pontos_por_ia, ranking_geral
+from .ranking import pontos_por_ia, pontos_por_ia_por_fase, ranking_geral
+
+if TYPE_CHECKING:
+    from .models import Jogo, Palpite
 
 BRT = timezone(timedelta(hours=-3))
 
 ROOT = Path.cwd()
 JOGOS_PATH = ROOT / "data" / "jogos.md"
 PALPITES_DIR = ROOT / "data" / "palpites_ias"
+PALPITES_MATAMATA_DIR = ROOT / "data" / "palpites_matamata"
 RESULTADOS_PATH = ROOT / "data" / "resultados" / "jogos.md"
 WEB_DIR = ROOT / "web"
 WEB_DATA_DIR = WEB_DIR / "data"
@@ -77,9 +82,39 @@ def _nome_display(slug: str) -> str:
     return _NOME_CACHE[slug]
 
 
+def _fundir_palpites_matamata(
+    base: dict[str, list[Palpite]],
+    matamata_dir: Path,
+    jogos: list[Jogo],
+) -> dict[str, list[Palpite]]:
+    """Mescla palpites de mata-mata (jogos >= 73) nos palpites base.
+
+    Para cada IA presente em ``matamata_dir``, os palpites de mata-mata
+    (jogo_numero >= 73) são acrescentados à lista existente ou criam uma
+    entrada nova. Palpites de grupos (<= 72) no arquivo de mata-mata são
+    ignorados para evitar duplicatas.
+
+    O lock de cutoff NÃO é aplicado aqui: os arquivos de mata-mata foram
+    gerados antes dos jogos (coletados em 2026-06-27, jogos a partir de
+    28/06). Isso é intencional — a restrição de cutoff serve para jogos que
+    já começaram, não para palpites previamente coletados.
+    """
+    from .ranking import LIMITE_GRUPOS
+
+    mm = carregar_palpites(matamata_dir)  # sem lock de cutoff
+    merged = dict(base)
+    for slug, lista_mm in mm.items():
+        apenas_mm = [p for p in lista_mm if p.jogo_numero > LIMITE_GRUPOS]
+        if not apenas_mm:
+            continue
+        merged[slug] = list(merged.get(slug, [])) + apenas_mm
+    return merged
+
+
 def _carregar_tudo() -> tuple[list, dict, list]:  # type: ignore[type-arg]
     jogos = carregar_jogos(JOGOS_PATH)
     palpites = carregar_palpites(PALPITES_DIR, jogos=jogos)
+    palpites = _fundir_palpites_matamata(palpites, PALPITES_MATAMATA_DIR, jogos)
     resultados = carregar_resultados(RESULTADOS_PATH)
     return jogos, palpites, resultados
 
@@ -162,6 +197,9 @@ def _cmd_ranking(_args: argparse.Namespace) -> int:
 
     ranking = ranking_geral(palpites_com_cristal, resultados, jogos)
 
+    # Sub-objetos por fase (grupos / mata-mata / geral) para cada IA
+    por_fase_map = pontos_por_ia_por_fase(palpites_com_cristal, resultados, jogos)
+
     # Desempate por popularidade dentro de grupos com mesmos (pontos, exatos, vencedores)
     popmap = _carregar_popularidade()
     ranking_sorted = sorted(
@@ -190,6 +228,37 @@ def _cmd_ranking(_args: argparse.Namespace) -> int:
                 and r["vencedores_acertados"] == prev["vencedores_acertados"]
             )
             rank = ias_json[idx - 1]["rank"] if mesmo_grupo else idx + 1  # type: ignore[assignment]
+        pf = por_fase_map.get(r["slug"])
+        grupos_d = (
+            dict(pf["grupos"])
+            if pf
+            else {
+                "pontos": 0,
+                "placares_exatos": 0,
+                "vencedores_acertados": 0,
+                "jogos_palpitados": 0,
+            }
+        )
+        matamata_d = (
+            dict(pf["matamata"])
+            if pf
+            else {
+                "pontos": 0,
+                "placares_exatos": 0,
+                "vencedores_acertados": 0,
+                "jogos_palpitados": 0,
+            }
+        )
+        geral_d = (
+            dict(pf["geral"])
+            if pf
+            else {
+                "pontos": 0,
+                "placares_exatos": 0,
+                "vencedores_acertados": 0,
+                "jogos_palpitados": 0,
+            }
+        )
         ias_json.append(
             {
                 "slug": r["slug"],
@@ -200,6 +269,9 @@ def _cmd_ranking(_args: argparse.Namespace) -> int:
                 "jogos_palpitados": r["jogos_palpitados"],
                 "palpites_total": r["palpites_total"],
                 "rank": rank,
+                "grupos": grupos_d,
+                "matamata": matamata_d,
+                "geral": geral_d,
             }
         )
 

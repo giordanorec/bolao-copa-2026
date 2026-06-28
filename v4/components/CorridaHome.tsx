@@ -1,10 +1,10 @@
 import Link from "next/link";
 import CorridaComSelector from "@/app/corrida-das-ias/CorridaComSelector";
-import { carregarCorrida } from "@/lib/corrida-frames";
+import { carregarCorridaTodasFases } from "@/lib/corrida-frames";
 import type { Locale } from "@/lib/i18n";
 
 // Renderiza o MESMO CorridaComSelector (Modo A vista de cima) da página
-// /corrida-das-ias na home. Fonte de dados ÚNICA via carregarCorrida().
+// /corrida-das-ias na home. Fonte de dados ÚNICA via carregarCorridaTodasFases().
 // Qualquer mudança no componente, no scoring ou na trilha de pontos
 // reflete nos dois lugares automaticamente.
 
@@ -14,22 +14,22 @@ const TX: Record<
 > = {
   pt: {
     titulo: "🏃 A corrida das IAs",
-    lede: "Cada IA avança jogo a jogo; a posição é a pontuação real acumulada. Default: Série A. Use os presets pra ver todas.",
+    lede: "Cada IA avança jogo a jogo; a posição é a pontuação real acumulada. Default: Mata-mata, Série A. Use os seletores pra explorar.",
     cta: "Ver mais visualizações (bar race + gráfico) →",
   },
   en: {
     titulo: "🏃 The AI Race",
-    lede: "Each AI advances match by match; position is the real cumulative score. Default: Premier League. Use the presets to see all.",
+    lede: "Each AI advances match by match; position is the real cumulative score. Default: Knockout, Premier League. Use the selectors to explore.",
     cta: "See more views (bar race + chart) →",
   },
   es: {
     titulo: "🏃 La carrera de las IAs",
-    lede: "Cada IA avanza partido a partido; la posición es el puntaje real acumulado. Por defecto: Liga A. Usa los presets para ver todas.",
+    lede: "Cada IA avanza partido a partido; la posición es el puntaje real acumulado. Por defecto: Mata-mata, Liga A. Usa los selectores para explorar.",
     cta: "Ver más visualizaciones (bar race + gráfico) →",
   },
   fr: {
     titulo: "🏃 La course des IA",
-    lede: "Chaque IA avance match par match ; la position est le score réel cumulé. Par défaut : Ligue 1. Utilisez les présets pour tout voir.",
+    lede: "Chaque IA avance match par match ; la position est le score réel cumulé. Par défaut : Éliminatoires, Ligue 1. Utilisez les sélecteurs pour explorer.",
     cta: "Voir plus de visualisations (bar race + graphique) →",
   },
 };
@@ -39,8 +39,9 @@ export default async function CorridaHome({
 }: {
   locale?: Locale;
 }) {
-  const { topIas, frames } = await carregarCorrida();
-  if (topIas.length === 0 || frames.length <= 1) return null;
+  const { grupos, matamata, geral } = await carregarCorridaTodasFases();
+  // Mostra a home apenas se há IAs e ao menos um frame além do inicial (geral ou grupos)
+  if (geral.topIas.length === 0 && grupos.topIas.length === 0) return null;
   const tx = TX[locale];
 
   return (
@@ -62,7 +63,7 @@ export default async function CorridaHome({
           </p>
         </div>
 
-        <CorridaComSelector ias={topIas} frames={frames} />
+        <CorridaComSelector grupos={grupos} matamata={matamata} geral={geral} />
 
         <div style={{ marginTop: 18, textAlign: "center" }}>
           <Link

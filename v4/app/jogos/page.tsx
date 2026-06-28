@@ -29,16 +29,11 @@ export const metadata = {
   description: "Cada jogo da Copa 2026 com os palpites das 122 IAs.",
 };
 
-// R32 (jogos 73-88): os confrontos reais (ou projetados) vêm da projeção
-// Monte Carlo; o fixtures.json ainda traz só os slots ("2º Grupo A").
+// R32 (jogos 73-88): os confrontos reais vêm da projeção Monte Carlo;
+// o fixtures.json ainda traz só os slots ("2º Grupo A").
 type ProjMatch = {
   time_a: string;
   time_b: string;
-  definido: boolean;
-  prob_a: number;
-  prob_b: number;
-  // probabilidade combinada (%) do confronto sair exatamente assim
-  confianca: number;
 };
 async function carregarProjR32(): Promise<Map<number, ProjMatch>> {
   const map = new Map<number, ProjMatch>();
@@ -50,57 +45,18 @@ async function carregarProjR32(): Promise<Map<number, ProjMatch>> {
         numero: number;
         time_a: string;
         time_b: string;
-        definido?: boolean;
-        prob_a?: number;
-        prob_b?: number;
       }[];
     };
     for (const j of d.jogos ?? []) {
-      const pa = j.prob_a ?? 100;
-      const pb = j.prob_b ?? 100;
       map.set(j.numero, {
         time_a: j.time_a,
         time_b: j.time_b,
-        definido: !!j.definido,
-        prob_a: pa,
-        prob_b: pb,
-        confianca: Math.round((pa / 100) * (pb / 100) * 100),
       });
     }
   } catch {
     // sem projeção: cards R32 caem nos slots do fixtures
   }
   return map;
-}
-
-// Traduz a probabilidade combinada num rótulo + cor pro badge do confronto.
-type NivelProj = { label: string; emoji: string; bg: string; fg: string; pct: number };
-function nivelProjecao(confianca: number, locale: Locale): NivelProj {
-  const L = (pt: string, en: string, es: string, fr: string) =>
-    locale === "en" ? en : locale === "es" ? es : locale === "fr" ? fr : pt;
-  if (confianca >= 75)
-    return {
-      label: L("quase certo", "near-locked", "casi seguro", "quasi sûr"),
-      emoji: "🔒",
-      bg: "rgba(34,197,94,0.16)",
-      fg: "#15803d",
-      pct: confianca,
-    };
-  if (confianca >= 40)
-    return {
-      label: L("provável", "likely", "probable", "probable"),
-      emoji: "🔮",
-      bg: "rgba(234,179,8,0.18)",
-      fg: "#a16207",
-      pct: confianca,
-    };
-  return {
-    label: L("em aberto", "wide open", "indefinido", "incertain"),
-    emoji: "❓",
-    bg: "rgba(148,163,184,0.22)",
-    fg: "#64748b",
-    pct: confianca,
-  };
 }
 
 // Monta um DadosPorJogo a partir dos palpites mata-mata (palpite_v2
@@ -217,9 +173,6 @@ export default async function JogosPage() {
               const timeB = proj?.time_b ?? j.time_b;
               const isoA = mapaPaises[timeA];
               const isoB = mapaPaises[timeB];
-              const r32Projecao = ehR32 && proj ? !proj.definido : false;
-              const nivelProj =
-                r32Projecao && proj ? nivelProjecao(proj.confianca, locale) : null;
               let dados: DadosPorJogo | null =
                 palpitesIAs[String(j.numero)] ?? null;
               if (ehR32) {
@@ -316,23 +269,6 @@ export default async function JogosPage() {
                       <div className="jogo-card-head">
                         <span className="jogo-num">#{j.numero}</span>
                         <span className="jogo-data">{j.data} · {j.hora}</span>
-                        {nivelProj && (
-                          <span
-                            className="jogo-ft"
-                            style={{ background: nivelProj.bg, color: nivelProj.fg }}
-                            title={
-                              locale === "en"
-                                ? `Projected matchup — ${nivelProj.pct}% chance these two teams actually meet`
-                                : locale === "es"
-                                  ? `Cruce proyectado — ${nivelProj.pct}% de probabilidad de que estos dos se enfrenten`
-                                  : locale === "fr"
-                                    ? `Confrontation projetée — ${nivelProj.pct}% de chance que ces deux équipes se rencontrent`
-                                    : `Confronto projetado — ${nivelProj.pct}% de chance desses dois se enfrentarem`
-                            }
-                          >
-                            {nivelProj.emoji} {nivelProj.label} · {nivelProj.pct}%
-                          </span>
-                        )}
                         {encerrado && <span className="jogo-ft">✓ {ftLbl}</span>}
                       </div>
                       <div className="jogo-card-times">

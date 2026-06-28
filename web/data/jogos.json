@@ -653,8 +653,8 @@
     "data": "2026-06-28",
     "hora": "16:00",
     "local": "Los Angeles",
-    "time_a": "2º Grupo A",
-    "time_b": "2º Grupo B"
+    "time_a": "África do Sul",
+    "time_b": "Canadá"
   },
   {
     "numero": 74,
@@ -662,8 +662,8 @@
     "data": "2026-06-29",
     "hora": "17:30",
     "local": "Boston",
-    "time_a": "1º Grupo E",
-    "time_b": "3º Grupo A/B/C/D/F"
+    "time_a": "Alemanha",
+    "time_b": "Paraguai"
   },
   {
     "numero": 75,
@@ -671,8 +671,8 @@
     "data": "2026-06-29",
     "hora": "22:00",
     "local": "Monterrey",
-    "time_a": "1º Grupo F",
-    "time_b": "2º Grupo C"
+    "time_a": "Países Baixos",
+    "time_b": "Marrocos"
   },
   {
     "numero": 76,
@@ -680,8 +680,8 @@
     "data": "2026-06-29",
     "hora": "14:00",
     "local": "Houston",
-    "time_a": "1º Grupo C",
-    "time_b": "2º Grupo F"
+    "time_a": "Brasil",
+    "time_b": "Japão"
   },
   {
     "numero": 77,
@@ -689,8 +689,8 @@
     "data": "2026-06-30",
     "hora": "18:00",
     "local": "Nova York/NJ",
-    "time_a": "1º Grupo I",
-    "time_b": "3º Grupo C/D/F/G/H"
+    "time_a": "França",
+    "time_b": "Suécia"
   },
   {
     "numero": 78,
@@ -698,8 +698,8 @@
     "data": "2026-06-30",
     "hora": "14:00",
     "local": "Dallas",
-    "time_a": "2º Grupo E",
-    "time_b": "2º Grupo I"
+    "time_a": "Costa do Marfim",
+    "time_b": "Noruega"
   },
   {
     "numero": 79,
@@ -707,8 +707,8 @@
     "data": "2026-06-30",
     "hora": "22:00",
     "local": "Cidade do México",
-    "time_a": "1º Grupo A",
-    "time_b": "3º Grupo C/E/F/H/I"
+    "time_a": "México",
+    "time_b": "Equador"
   },
   {
     "numero": 80,
@@ -716,8 +716,8 @@
     "data": "2026-07-01",
     "hora": "13:00",
     "local": "Atlanta",
-    "time_a": "1º Grupo L",
-    "time_b": "3º Grupo E/H/I/J/K"
+    "time_a": "Inglaterra",
+    "time_b": "Congo (RD)"
   },
   {
     "numero": 81,
@@ -725,8 +725,8 @@
     "data": "2026-07-01",
     "hora": "21:00",
     "local": "San Francisco",
-    "time_a": "1º Grupo D",
-    "time_b": "3º Grupo B/E/F/I/J"
+    "time_a": "Estados Unidos",
+    "time_b": "Bósnia-Herzegovina"
   },
   {
     "numero": 82,
@@ -734,8 +734,8 @@
     "data": "2026-07-01",
     "hora": "17:00",
     "local": "Seattle",
-    "time_a": "1º Grupo G",
-    "time_b": "3º Grupo A/E/H/I/J"
+    "time_a": "Bélgica",
+    "time_b": "Senegal"
   },
   {
     "numero": 83,
@@ -743,8 +743,8 @@
     "data": "2026-07-02",
     "hora": "20:00",
     "local": "Toronto",
-    "time_a": "2º Grupo K",
-    "time_b": "2º Grupo L"
+    "time_a": "Portugal",
+    "time_b": "Croácia"
   },
   {
     "numero": 84,
@@ -752,8 +752,8 @@
     "data": "2026-07-02",
     "hora": "16:00",
     "local": "Los Angeles",
-    "time_a": "1º Grupo H",
-    "time_b": "2º Grupo J"
+    "time_a": "Espanha",
+    "time_b": "Áustria"
   },
   {
     "numero": 85,
@@ -761,8 +761,8 @@
     "data": "2026-07-03",
     "hora": "00:00",
     "local": "Vancouver",
-    "time_a": "1º Grupo B",
-    "time_b": "3º Grupo E/F/G/I/J"
+    "time_a": "Suíça",
+    "time_b": "Argélia"
   },
   {
     "numero": 86,
@@ -770,8 +770,8 @@
     "data": "2026-07-03",
     "hora": "19:00",
     "local": "Miami",
-    "time_a": "1º Grupo J",
-    "time_b": "2º Grupo H"
+    "time_a": "Argentina",
+    "time_b": "Cabo Verde"
   },
   {
     "numero": 87,
@@ -779,8 +779,8 @@
     "data": "2026-07-03",
     "hora": "22:30",
     "local": "Kansas City",
-    "time_a": "1º Grupo K",
-    "time_b": "3º Grupo D/E/I/J/L"
+    "time_a": "Colômbia",
+    "time_b": "Gana"
   },
   {
     "numero": 88,
@@ -788,8 +788,8 @@
     "data": "2026-07-03",
     "hora": "15:00",
     "local": "Dallas",
-    "time_a": "2º Grupo D",
-    "time_b": "2º Grupo G"
+    "time_a": "Austrália",
+    "time_b": "Egito"
   },
   {
     "numero": 89,

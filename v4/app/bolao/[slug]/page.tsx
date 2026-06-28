@@ -6,6 +6,7 @@ import { carregarJogos } from "@/lib/jogos";
 import { resolverLocale } from "@/lib/locale-server";
 import SerieA from "@/components/SerieA";
 import EntrarButton from "./EntrarButton";
+import EntrarPublicoButton from "./EntrarPublicoButton";
 import CopyLinkButton from "./CopyLinkButton";
 import RankingDoBolao from "./RankingDoBolao";
 import ShareCardButton from "./ShareCardButton";
@@ -21,7 +22,7 @@ export default async function BolaoPage({
 
   const { data: bolao } = await supabase
     .from("bolao")
-    .select("id, slug, nome, descricao, criador_id, criado_em")
+    .select("id, slug, nome, descricao, criador_id, criado_em, publico")
     .eq("slug", slug)
     .single();
 
@@ -151,7 +152,11 @@ export default async function BolaoPage({
               🎯 Entrar nesse bolão →
             </Link>
           ) : isVisitante ? (
-            <EntrarButton bolaoId={bolao.id} slug={bolao.slug} />
+            bolao.publico ? (
+              <EntrarPublicoButton bolaoId={bolao.id} slug={bolao.slug} />
+            ) : (
+              <EntrarButton bolaoId={bolao.id} slug={bolao.slug} />
+            )
           ) : (
             <Link
               href={`/bolao/${bolao.slug}/palpitar`}

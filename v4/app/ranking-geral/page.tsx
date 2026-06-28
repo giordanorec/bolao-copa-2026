@@ -1,54 +1,60 @@
 import { createClient } from "@/lib/supabase-server";
 import { createAdminClient, isContribuinte } from "@/lib/admin";
-import { totalPontos } from "@/lib/scoring";
+import { pontosJogo } from "@/lib/scoring";
 import { carregarJogos } from "@/lib/jogos";
 import { promises as fs } from "fs";
 import path from "path";
 import type { Palpite } from "@/lib/types";
 import { ehSerieA, nomeSerieA } from "@/lib/serie-a";
+import { ORDEM_POPULARIDADE, scorePopularidade } from "@/lib/ias";
+import RankingGeralClient, { type LinhaFase } from "./RankingGeralClient";
 
-type Linha = {
-  tipo: "humano" | "ia" | "cristal";
-  nome: string;
-  pontos: number;
-  preenchidos: number;
-  serieA?: boolean;
-  v2?: boolean;
-  delta?: number | null;
-};
+// Jogo 1-72 = grupos; >=73 = mata-mata
+function fasePorNumero(num: number): "grupos" | "matamata" {
+  return num <= 72 ? "grupos" : "matamata";
+}
 
-async function carregarIAs(): Promise<Linha[]> {
+async function carregarIAs(): Promise<LinhaFase[]> {
   try {
     const filePath = path.join(process.cwd(), "public", "ranking-ias.json");
     const raw = await fs.readFile(filePath, "utf-8");
     const data = JSON.parse(raw);
     return (data.ias ?? [])
       .filter(
-        // Esconde IAs que nunca palpitaram (placeholders sem coleta)
         (ia: { slug?: string; palpites_total?: number }) =>
           ia.slug === "bola-de-cristal" || (ia.palpites_total ?? 0) > 0,
       )
       .map(
-        (
-          ia: {
-            nome_display?: string;
-            slug?: string;
-            pontos?: number;
-            palpites_total?: number;
-          },
-        ) => {
+        (ia: {
+          nome_display?: string;
+          slug?: string;
+          pontos?: number;
+          palpites_total?: number;
+          grupos?: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
+          matamata?: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
+          geral?: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
+        }) => {
           const slug = ia.slug ?? "";
           const serieA = ehSerieA(slug);
+          const zero = { pontos: 0, placares_exatos: 0, vencedores_acertados: 0, jogos_palpitados: 0 };
           return {
             tipo:
               slug === "bola-de-cristal"
                 ? ("cristal" as const)
                 : ("ia" as const),
+            slug,
             nome: nomeSerieA(slug) ?? ia.nome_display ?? slug ?? "?",
-            pontos: ia.pontos ?? 0,
-            preenchidos: ia.palpites_total ?? 104,
             serieA,
-          };
+            grupos: ia.grupos ?? zero,
+            matamata: ia.matamata ?? zero,
+            geral: ia.geral ?? {
+              pontos: ia.pontos ?? 0,
+              placares_exatos: 0,
+              vencedores_acertados: 0,
+              jogos_palpitados: ia.palpites_total ?? 0,
+            },
+            popularidade: scorePopularidade(slug),
+          } satisfies LinhaFase;
         },
       );
   } catch {
@@ -56,9 +62,7 @@ async function carregarIAs(): Promise<Linha[]> {
   }
 }
 
-// Linhas "IA v2" (bifurcação) — só pra contribuintes. Lê ranking-ias-v2.json
-// (v1 nos jogos 1-40 + v2 nos 41-72) e cruza com o original pra mostrar o delta.
-async function carregarIAsV2(): Promise<Linha[]> {
+async function carregarIAsV2(): Promise<LinhaFase[]> {
   try {
     const [rawV2, rawV1] = await Promise.all([
       fs.readFile(path.join(process.cwd(), "public", "ranking-ias-v2.json"), "utf-8"),
@@ -70,27 +74,34 @@ async function carregarIAsV2(): Promise<Linha[]> {
     for (const ia of dataV1.ias ?? []) ptsV1.set(ia.slug, ia.pontos ?? 0);
 
     return (dataV2.ias ?? [])
-      .filter((ia: { tem_v2?: boolean }) => ia.tem_v2) // só IAs com palpite v2 real
+      .filter((ia: { tem_v2?: boolean }) => ia.tem_v2)
       .map(
         (ia: {
           nome_display?: string;
           slug?: string;
           pontos?: number;
           palpites_total?: number;
+          grupos?: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
+          matamata?: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
+          geral?: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
         }) => {
           const slug = ia.slug ?? "";
           const serieA = ehSerieA(slug);
           const pts = ia.pontos ?? 0;
           const orig = ptsV1.get(slug);
+          const zero = { pontos: 0, placares_exatos: 0, vencedores_acertados: 0, jogos_palpitados: 0 };
           return {
             tipo: "ia" as const,
+            slug,
             nome: nomeSerieA(slug) ?? ia.nome_display ?? slug ?? "?",
-            pontos: pts,
-            preenchidos: ia.palpites_total ?? 72,
             serieA,
             v2: true,
             delta: orig != null ? pts - orig : null,
-          };
+            grupos: ia.grupos ?? zero,
+            matamata: ia.matamata ?? zero,
+            geral: ia.geral ?? { pontos: pts, placares_exatos: 0, vencedores_acertados: 0, jogos_palpitados: ia.palpites_total ?? 72 },
+            popularidade: scorePopularidade(slug),
+          } satisfies LinhaFase;
         },
       );
   } catch {
@@ -108,10 +119,6 @@ export default async function RankingGeralPage() {
   const supabase = await createClient();
   const jogos = await carregarJogos();
 
-  // Visitantes anônimos não passam pela RLS de `palpite` (a policy exige
-  // auth.uid() dono ou companheiro de bolão), então os palpites dos humanos
-  // viriam vazios e todos pontuariam 0. Usamos o service_role (bypass de RLS)
-  // só pra LER as pontuações de quem fez opt-in no ranking geral.
   const db = createAdminClient() ?? supabase;
 
   const { data: humanosOptIn } = await db
@@ -119,12 +126,9 @@ export default async function RankingGeralPage() {
     .select("id, display_name, opt_in_geral")
     .eq("opt_in_geral", true);
 
-  let linhasHumanos: Linha[] = [];
+  let linhasHumanos: LinhaFase[] = [];
   if (humanosOptIn && humanosOptIn.length > 0) {
     const userIds = humanosOptIn.map((h: { id: string }) => h.id);
-    // PostgREST corta em 1000 linhas por requisição. Com ~72 palpites por
-    // pessoa, poucos usuários opt-in já estouram o limite e os palpites de
-    // quem fica além do corte sumiriam (pontuando 0). Por isso paginamos.
     const PAGINA = 1000;
     const pp: Palpite[] = [];
     for (let inicio = 0; ; inicio += PAGINA) {
@@ -144,21 +148,47 @@ export default async function RankingGeralPage() {
       if (!porUser.has(p.user_id)) porUser.set(p.user_id, {});
       porUser.get(p.user_id)![p.jogo_numero] = p as Palpite;
     });
+
     linhasHumanos = humanosOptIn.map(
       (h: { id: string; display_name: string }) => {
         const palps = porUser.get(h.id) ?? {};
+
+        // Agregar por fase
+        const zero = () => ({ pontos: 0, placares_exatos: 0, vencedores_acertados: 0, jogos_palpitados: 0 });
+        const grp = zero();
+        const mm = zero();
+
+        for (const jogo of jogos) {
+          const p = palps[jogo.numero];
+          if (!p) continue;
+          const fase = fasePorNumero(jogo.numero);
+          const bucket = fase === "grupos" ? grp : mm;
+          const pts = pontosJogo(p, jogo);
+          bucket.pontos += pts;
+          bucket.jogos_palpitados += 1;
+          if (jogo.gols_a != null && jogo.gols_b != null) {
+            if (p.gols_a === jogo.gols_a && p.gols_b === jogo.gols_b) bucket.placares_exatos += 1;
+            else if (Math.sign(p.gols_a - p.gols_b) === Math.sign(jogo.gols_a - jogo.gols_b)) bucket.vencedores_acertados += 1;
+          }
+        }
+
         return {
           tipo: "humano" as const,
           nome: h.display_name,
-          pontos: totalPontos(palps, jogos),
-          preenchidos: Object.keys(palps).length,
-        };
+          grupos: grp,
+          matamata: mm,
+          geral: {
+            pontos: grp.pontos + mm.pontos,
+            placares_exatos: grp.placares_exatos + mm.placares_exatos,
+            vencedores_acertados: grp.vencedores_acertados + mm.vencedores_acertados,
+            jogos_palpitados: grp.jogos_palpitados + mm.jogos_palpitados,
+          },
+          popularidade: 999,
+        } satisfies LinhaFase;
       },
     );
   }
 
-  // Contribuinte (allowlist/admin) vê o Hall bifurcado: cada IA com palpite v2
-  // aparece também na versão atualizada (v1 nos jogos 1-40 + v2 nos 41-72).
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -167,20 +197,15 @@ export default async function RankingGeralPage() {
 
   const linhasIAs = await carregarIAs();
   const linhasV2 = contribuinte ? await carregarIAsV2() : [];
-  const todos: Linha[] = [...linhasHumanos, ...linhasIAs, ...linhasV2].sort(
-    (a, b) => b.pontos - a.pontos,
-  );
 
-  // Colocação com empate na MESMA posição (1º, 1º, 3º) — vale em todo ranking.
-  let rankAtual = 0;
-  let ptsAnterior: number | null = null;
-  const colocacoes = todos.map((l, idx) => {
-    if (ptsAnterior === null || l.pontos !== ptsAnterior) {
-      rankAtual = idx + 1;
-      ptsAnterior = l.pontos;
-    }
-    return rankAtual;
-  });
+  const numHumanos = linhasHumanos.length;
+  const numIAs = linhasIAs.filter((l) => l.tipo === "ia").length;
+
+  const todasLinhas: LinhaFase[] = [
+    ...linhasHumanos,
+    ...linhasIAs,
+    ...linhasV2,
+  ];
 
   return (
     <div style={{ marginTop: 40 }}>
@@ -189,107 +214,23 @@ export default async function RankingGeralPage() {
           🏆 Ranking Geral
         </h1>
         <p className="lede" style={{ marginTop: 16 }}>
-          Humanos {linhasHumanos.length > 0 ? `(${linhasHumanos.length})` : ""}{" "}
-          + {linhasIAs.length} IAs juntos. Quem chuta melhor?
+          Humanos {numHumanos > 0 ? `(${numHumanos})` : ""} + {numIAs} IAs
+          juntos. Quem chuta melhor?
         </p>
         {contribuinte && linhasV2.length > 0 && (
           <p
             className="muted"
             style={{ marginTop: 8, fontSize: 14, maxWidth: 640, marginInline: "auto" }}
           >
-            🔓 Visão de colaborador: as linhas{" "}
+            Visão de colaborador: as linhas{" "}
             <span style={{ fontWeight: 800, color: "var(--accent-3)" }}>v2 🔄</span>{" "}
-            são a versão atualizada de cada IA (palpites originais nos jogos 1–40 +
-            palpites revisados a partir do 41). O número verde/vermelho é o ganho/perda
-            de pontos vs. a versão original. Dá pra ver quem melhora com mais informação.
+            são a versão atualizada de cada IA. O número verde/vermelho é o
+            ganho/perda vs. a versão original.
           </p>
         )}
       </div>
 
-      <div className="card">
-        {todos.length === 0 ? (
-          <p className="muted center" style={{ padding: 40 }}>
-            Aguardando palpites…
-          </p>
-        ) : (
-          <div className="table-scroll">
-          <table className="ranking-table">
-            <thead>
-              <tr>
-                <th className="pos">#</th>
-                <th>Tipo</th>
-                <th>Quem</th>
-                <th style={{ textAlign: "right" }}>Pontos</th>
-              </tr>
-            </thead>
-            <tbody>
-              {todos.slice(0, contribuinte ? 400 : 200).map((l, i) => (
-                <tr
-                  key={`${l.tipo}-${l.nome}-${l.v2 ? "v2" : "v1"}-${i}`}
-                  style={
-                    l.v2
-                      ? { background: "color-mix(in srgb, var(--accent) 9%, transparent)" }
-                      : undefined
-                  }
-                >
-                  <td className="pos">{colocacoes[i]}º</td>
-                  <td>
-                    {l.tipo === "humano" ? (
-                      <span style={{ color: "var(--primary)" }}>👤 Humano</span>
-                    ) : l.tipo === "cristal" ? (
-                      <span style={{ color: "var(--accent)" }}>🔮 Cristal</span>
-                    ) : l.serieA ? (
-                      <span style={{ color: "var(--secondary)", fontWeight: 700 }}>
-                        🏆 Série A
-                      </span>
-                    ) : (
-                      <span style={{ color: "var(--fg-muted)" }}>🤖 IA</span>
-                    )}
-                  </td>
-                  <td className="nome">
-                    {l.nome}
-                    {l.v2 && (
-                      <>
-                        {" "}
-                        <span
-                          style={{
-                            fontSize: 11,
-                            fontWeight: 800,
-                            padding: "1px 6px",
-                            borderRadius: 999,
-                            background:
-                              "linear-gradient(135deg, var(--accent), var(--accent-2))",
-                            color: "var(--secondary)",
-                          }}
-                        >
-                          v2 🔄
-                        </span>
-                        {l.delta != null && l.delta !== 0 && (
-                          <span
-                            style={{
-                              marginLeft: 6,
-                              fontSize: 12,
-                              fontWeight: 700,
-                              color:
-                                l.delta > 0
-                                  ? "var(--ok, #16a34a)"
-                                  : "var(--err, #dc2626)",
-                            }}
-                          >
-                            {l.delta > 0 ? `+${l.delta}` : l.delta}
-                          </span>
-                        )}
-                      </>
-                    )}
-                  </td>
-                  <td className="pts">{l.pontos}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </div>
-        )}
-      </div>
+      <RankingGeralClient linhas={todasLinhas} contribuinte={contribuinte} />
 
       <div
         className="card"
@@ -303,10 +244,11 @@ export default async function RankingGeralPage() {
           Quer aparecer aqui?
         </h3>
         <p style={{ color: "var(--fg-mid)", marginBottom: 16 }}>
-          Cria conta, palpita, e ativa o opt-in no teu perfil.
+          Entre no bolão público "Humanos × IAs", palpite os jogos e concorra
+          contra as 122 IAs no mesmo placar.
         </p>
-        <a href="/signup" className="btn primary">
-          Criar conta →
+        <a href="/bolao/humanos-vs-ias" className="btn primary">
+          Entrar no Bolão Humanos × IAs →
         </a>
       </div>
     </div>

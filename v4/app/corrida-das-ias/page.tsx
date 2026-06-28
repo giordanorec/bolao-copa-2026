@@ -1,7 +1,7 @@
 import CorridaComSelector from "./CorridaComSelector";
 import BarRaceTemporal from "./BarRaceTemporal";
 import PageVisitTracker from "./PageVisitTracker";
-import { carregarCorrida } from "@/lib/corrida-frames";
+import { carregarCorridaTodasFases } from "@/lib/corrida-frames";
 
 export type { Frame } from "@/lib/corrida-frames";
 
@@ -11,22 +11,19 @@ export const metadata = {
 };
 
 export default async function CorridaDasIAsPage() {
-  const { topIas, frames } = await carregarCorrida();
+  const { grupos, matamata, geral } = await carregarCorridaTodasFases();
 
-  // Pra bar races: top 15
-  const ias15 = topIas.slice(0, 15);
+  // Bar race usa fase geral, top 15
+  const topIasGeral = geral.topIas;
+  const ias15 = topIasGeral.slice(0, 15);
   const ias15Slugs = new Set(ias15.map((ia) => ia.slug));
-  const framesTop15 = frames.map((f) => ({
+  const framesTop15 = geral.frames.map((f) => ({
     jogoNum: f.jogoNum,
     rotulo: f.rotulo,
     pts: Object.fromEntries(
       Object.entries(f.pts).filter(([s]) => ias15Slugs.has(s)),
     ),
   }));
-
-  // Modos A/B: TODAS as IAs (selector faz o filtro client-side)
-  const iasAll = topIas; // ja ordenadas por pts desc
-  const framesAll = frames;
 
   return (
     <div style={{ marginTop: 24, marginBottom: 64 }}>
@@ -43,9 +40,13 @@ export default async function CorridaDasIAsPage() {
         <p style={{ color: "var(--fg-mid)", fontSize: 14, marginBottom: 16 }}>
           Cada IA avança jogo a jogo; a posição em cada rodada é a pontuação
           real acumulada até ali — não uma aproximação linear da posição final.
-          Use os presets (Série A, Top 10, Todas) pra escolher quais exibir.
+          Filtre por fase (Grupos / Mata-mata / Geral) e use os presets (Série A, Top 10, Todas) pra escolher quais exibir.
         </p>
-        <CorridaComSelector ias={iasAll} frames={framesAll} />
+        <CorridaComSelector
+          grupos={grupos}
+          matamata={matamata}
+          geral={geral}
+        />
       </section>
 
       <section style={{ marginBottom: 56 }}>

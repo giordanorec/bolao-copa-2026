@@ -78,3 +78,5 @@ no cálculo de pontuação.
 | 68 | Grupo L | Sáb 27/06 | 18h00 | Filadélfia | Croácia | 2 | 1 | Gana |
 | 71 | Grupo K | Sáb 27/06 | 20h30 | Miami | Colômbia | 0 | 0 | Portugal |
 | 72 | Grupo K | Sáb 27/06 | 20h30 | Atlanta | Congo (RD) | 3 | 1 | Uzbequistão |
+| 69 | Grupo J | Sáb 27/06 | 23h00 | Kansas City | Argélia | 3 | 3 | Áustria |
+| 70 | Grupo J | Sáb 27/06 | 23h00 | Dallas | Jordânia | 1 | 4 | Argentina |
