@@ -1,6 +1,6 @@
 // Service Worker — Bolão das IAs
 // Estratégia: network-first com fallback offline simples
-const CACHE = 'bolao-v1';
+const CACHE = 'bolao-v2';
 const OFFLINE_URL = '/';
 
 self.addEventListener('install', (e) => {
