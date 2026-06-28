@@ -3,9 +3,10 @@ import Link from "next/link";
 import fs from "fs";
 import path from "path";
 import { createClient } from "@/lib/supabase-server";
-import { isAdminEmail } from "@/lib/admin";
+import { isAdminEmail, createAdminClient } from "@/lib/admin";
 import { CopiarTexto } from "./CopiarTexto";
 import { BaixarImagens } from "./BaixarImagens";
+import { PublicarToggle } from "./PublicarToggle";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,7 @@ type IgPost = {
   thumbs?: string[];
   hasVideo: boolean;
   video?: string;
+  publicado?: boolean;
 };
 
 function loadManifest(): IgPost[] {
@@ -31,6 +33,21 @@ function loadManifest(): IgPost[] {
   if (!fs.existsSync(manifestPath)) return [];
   const raw = fs.readFileSync(manifestPath, "utf8");
   return JSON.parse(raw) as IgPost[];
+}
+
+/**
+ * Set de post_ids já publicados (tabela ig_posts_status). Tolera a tabela
+ * ainda não existir — nesse caso ninguém aparece como publicado.
+ */
+async function carregarPublicados(): Promise<Set<string>> {
+  const admin = createAdminClient();
+  if (!admin) return new Set();
+  const { data, error } = await admin
+    .from("ig_posts_status")
+    .select("post_id")
+    .eq("publicado", true);
+  if (error) return new Set();
+  return new Set((data ?? []).map((r) => r.post_id as string));
 }
 
 // Badge colour per tipo
@@ -59,7 +76,12 @@ export default async function InstagramPostsPage() {
   } = await supabase.auth.getUser();
   if (!user || !isAdminEmail(user.email)) notFound();
 
-  const posts = loadManifest();
+  const [postsRaw, publicados] = await Promise.all([
+    Promise.resolve(loadManifest()),
+    carregarPublicados(),
+  ]);
+  const posts = postsRaw.map((p) => ({ ...p, publicado: publicados.has(p.id) }));
+  const totalPublicados = posts.filter((p) => p.publicado).length;
 
   return (
     <main style={{ maxWidth: 1160, margin: "32px auto", padding: "0 20px 60px" }}>
@@ -77,7 +99,7 @@ export default async function InstagramPostsPage() {
             Instagram Posts
           </h1>
           <p style={{ color: "var(--fg-muted)", fontSize: 14 }}>
-            {posts.length} posts prontos · logado como <code>{user.email}</code>
+            {posts.length} posts prontos · {totalPublicados} publicados · logado como <code>{user.email}</code>
           </p>
         </div>
         <a
@@ -204,6 +226,21 @@ export default async function InstagramPostsPage() {
                   >
                     {tipo.label}
                   </span>
+                  {post.publicado && (
+                    <span
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 800,
+                        padding: "3px 10px",
+                        borderRadius: 999,
+                        background: "color-mix(in srgb, #16a34a 16%, transparent)",
+                        border: "1px solid color-mix(in srgb, #16a34a 45%, transparent)",
+                        color: "#16a34a",
+                      }}
+                    >
+                      ✓ publicado
+                    </span>
+                  )}
                   {post.hasVideo && (
                     <span
                       style={{
@@ -259,6 +296,8 @@ export default async function InstagramPostsPage() {
 
                 {/* ── Action buttons ─────────────────────────────────── */}
                 <div className="ig-actions">
+                  <PublicarToggle postId={post.id} publicado={!!post.publicado} />
+
                   {hasImages && (
                     <BaixarImagens images={post.images} nomeBase={post.id} />
                   )}
@@ -599,6 +638,19 @@ function IgStyle() {
         border-color: color-mix(in srgb, var(--primary, #6d28d9) 55%, transparent);
       }
       .ig-action-dl:disabled { opacity: .8; }
+
+      /* Botão "marcar publicado" — verde quando já publicado */
+      .ig-pub-on {
+        background: color-mix(in srgb, #16a34a 14%, transparent);
+        border-color: color-mix(in srgb, #16a34a 45%, transparent);
+        color: #15803d;
+        font-weight: 600;
+      }
+      .ig-pub-on:hover:not(:disabled) {
+        background: color-mix(in srgb, #16a34a 22%, transparent);
+        border-color: color-mix(in srgb, #16a34a 60%, transparent);
+        color: #166534;
+      }
 
       .ig-roteiro-actions {
         display: flex;

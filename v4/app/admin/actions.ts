@@ -298,3 +298,24 @@ export async function atualizarContribuinte(formData: FormData) {
   if (error) throw new Error(error.message);
   revalidatePath("/admin/contribuicoes");
 }
+
+/**
+ * Marca/desmarca um post do Instagram como já publicado em @arena.das.ias.
+ * `postId` casa com o id no ig-posts-manifest.json. Persiste em
+ * `ig_posts_status` (service_role only).
+ */
+export async function marcarPublicado(postId: string, publicado: boolean) {
+  const admin = await requireAdmin();
+  if (!postId) throw new Error("Post inválido.");
+  const { error } = await admin.from("ig_posts_status").upsert(
+    {
+      post_id: postId,
+      publicado,
+      publicado_em: publicado ? new Date().toISOString() : null,
+      atualizado_em: new Date().toISOString(),
+    },
+    { onConflict: "post_id" },
+  );
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/instagram-posts");
+}
