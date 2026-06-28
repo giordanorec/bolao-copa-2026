@@ -23,6 +23,7 @@ type IgPost = {
   images: string[];
   thumbs?: string[];
   hasVideo: boolean;
+  video?: string;
 };
 
 function loadManifest(): IgPost[] {
@@ -260,6 +261,19 @@ export default async function InstagramPostsPage() {
                 <div className="ig-actions">
                   {hasImages && (
                     <BaixarImagens images={post.images} nomeBase={post.id} />
+                  )}
+
+                  {post.video && (
+                    <a
+                      href={post.video}
+                      download={`${post.id}.mp4`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="ig-action-btn ig-action-dl"
+                      title="Baixar vídeo (mp4) pronto pro Reels"
+                    >
+                      ▶ Baixar vídeo
+                    </a>
                   )}
 
                   <a
