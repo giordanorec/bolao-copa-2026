@@ -723,3 +723,51 @@ escopo de jogos por bolão no banco.
   com os palpites de grupos de quem está no bolão do mata-mata).
 - **Não reverter** sem perguntar: bolão do mata-mata jamais conta pontos de
   grupos; ranking geral continua somando a Copa toda.
+
+## 2026-06-28 — Correção urgente: confrontos R32 trocados no site
+
+### Contexto
+
+Usuários reportaram confrontos do mata-mata (R32) trocados no site: "Inglaterra ×
+Congo", "o jogo do Senegal errado", etc. A 1ª coleta de palpites do R32 (27/06
+15h) saiu **antes** dos jogos 67–72 (3ª rodada dos grupos J/K/L). Naquele momento
+6 confrontos ainda eram projeção; quando os grupos fecharam, 6 deles mudaram de
+adversário: 79 (→Equador), 80 (→Congo RD), 82 (→Senegal), 83 (→Croácia), 85
+(→Argélia), 87 (→Gana). O chaveamento em si estava certo — conferido com
+`scripts/resolver_r32.py` contra a alocação oficial FIFA dos 8 melhores terceiros.
+
+### Duas causas (corrigidas em sequência)
+
+1. **Palpites contra adversário projetado.** As IAs palpitaram contra os times
+   errados nos 6 jogos. Decisão do Giordano: **opção A — recoletar só os 6 que
+   mudaram**, preservando os 10 que as pessoas já viam.
+2. **Times exibidos vinham de `r32-projecao.json` (projeção Monte Carlo velha),
+   não do `jogos.json`.** A página `/jogos` lê os confrontos dos jogos 73–88 de
+   `v4/public/r32-projecao.json` (ver `carregarProjR32` em `app/jogos/page.tsx`).
+   Esse arquivo era de 27/06 e tinha os adversários projetados — por isso o site
+   continuou trocado mesmo após corrigir os palpites.
+
+### Decisão / o que foi feito
+
+- **Coleta parcial dos 6 jogos** via `scripts/recoletar_matamata_6.py` (novo):
+  prompt focado `config/prompts/ia-palpiteira-mata-mata-redux.md` + dossiê
+  `data/dossie/r32-redux-2026-06-28.md`, merge só nas 6 linhas do arquivo
+  canônico de cada IA, preservando as outras 10. 52 IAs API recoletadas; gemma-2-27b
+  e lfm-40b ficaram de fora (nunca produziram tabela válida, respondem em prosa).
+- **`r32-projecao.json` regenerado** a partir do `jogos.json` canônico: 16
+  confrontos oficiais, todos `definido=true`. (NÃO é gerado pelo `v4_sync` — é
+  seguro editar à mão; `scripts/projecao_r32.py` é quem o gerava na fase de prévia.)
+- Upload Supabase (`upload_v2_supabase.py --so mata-mata`) → `v4_sync.py` → deploy
+  homologação→main. Verificado ao vivo: `/jogos` mostra os confrontos certos.
+
+### Pendência
+
+- Modelos **`-web`** (vitrines) ainda têm palpite da prévia. Eles **não entram no
+  mata-mata do site** (`v4_sync` pula slugs `-web`), então é melhoria, não bug.
+  Recoleta pela interface web (Chrome CDP) fica para quando der.
+
+### Não reverter sem perguntar
+
+- A página lê os times do R32 de `r32-projecao.json`. Se um confronto mudar (ou ao
+  resolver os 16-avos→oitavas), **atualize esse arquivo** além do `jogos.json`,
+  senão o site mostra o confronto velho.
