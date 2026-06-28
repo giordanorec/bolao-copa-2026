@@ -1,11 +1,11 @@
 import Link from "next/link";
 import SerieA from "@/components/SerieA";
+import PodioGrupos from "@/components/PodioGrupos";
 import HeroCTAs from "@/components/HeroCTAs";
 import SeguirInstagram from "@/components/SeguirInstagram";
 import CorridaHome from "@/components/CorridaHome";
 import CaixaDeSugestao from "@/components/CaixaDeSugestao";
 import AgradecimentoContribuinte from "@/components/AgradecimentoContribuinte";
-import AvisoAtualizacaoV3 from "@/components/AvisoAtualizacaoV3";
 import BolaoHumanosRecrutamento from "@/components/BolaoHumanosRecrutamento";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
@@ -194,7 +194,7 @@ export default async function Home() {
               <span className="stat-lbl">{t(locale, "home.stats.jogos")}</span>
             </div>
             <div className="stat">
-              <div className="stat-num">8.6k+</div>
+              <div className="stat-num">12k+</div>
               <span className="stat-lbl">
                 {t(locale, "home.stats.palpites")}
               </span>
@@ -202,8 +202,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      <AvisoAtualizacaoV3 locale={locale} />
 
       <BolaoHumanosRecrutamento locale={locale} />
 
@@ -217,7 +215,9 @@ export default async function Home() {
 
       <SeguirInstagram locale={locale} />
 
-      <SerieA locale={locale} variante="destaque" />
+      <PodioGrupos locale={locale} />
+
+      <SerieA locale={locale} variante="destaque" fase="matamata" />
 
       <CorridaHome locale={locale} />
 

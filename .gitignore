@@ -68,3 +68,6 @@ v4/public/ig-posts/
 .vercel
 .netlify
 .env*
+
+# Vinhetas geradas (vão pro Supabase Storage, não pro git)
+marketing/vinhetas/

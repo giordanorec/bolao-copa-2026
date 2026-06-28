@@ -11,7 +11,7 @@ import { t } from "@/lib/i18n";
 function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
-  const redirect = params.get("redirect") || "/dashboard";
+  const redirect = params.get("redirect") || "/";
   const locale = useLocale();
 
   const [email, setEmail] = useState("");

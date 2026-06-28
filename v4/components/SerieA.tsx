@@ -10,6 +10,13 @@ import {
 } from "@/lib/serie-a";
 import IconeIA from "@/components/IconeIA";
 
+type FaseStats = {
+  pontos: number;
+  placares_exatos: number;
+  vencedores_acertados: number;
+  jogos_palpitados: number;
+};
+
 type IA = {
   slug: string;
   nome_display: string;
@@ -17,6 +24,9 @@ type IA = {
   placares_exatos: number;
   jogos_palpitados: number;
   rank: number;
+  grupos?: FaseStats;
+  matamata?: FaseStats;
+  geral?: FaseStats;
 };
 
 async function carregarSerieA(): Promise<IA[]> {
@@ -45,14 +55,11 @@ async function carregarSerieA(): Promise<IA[]> {
         placares_exatos: fonte.placares_exatos,
         jogos_palpitados: fonte.jogos_palpitados,
         rank: 0,
+        grupos: fonte.grupos,
+        matamata: fonte.matamata,
+        geral: fonte.geral,
       });
     }
-
-    ias.sort(
-      (a, b) =>
-        b.pontos - a.pontos ||
-        scorePopularidade(a.slug) - scorePopularidade(b.slug),
-    );
 
     return ias;
   } catch {
@@ -61,7 +68,7 @@ async function carregarSerieA(): Promise<IA[]> {
 }
 
 // Calcula rank com empate (dense ranking estilo "1, 1, 3").
-function calcularRanks(ias: IA[]): number[] {
+function calcularRanks(ias: { pontos: number }[]): number[] {
   const ranks: number[] = [];
   let rankAtual = 1;
   for (let i = 0; i < ias.length; i++) {
@@ -79,15 +86,48 @@ function calcularRanks(ias: IA[]): number[] {
   return ranks;
 }
 
+// Extrai pontos/stats de uma IA para a fase pedida
+function statsParaFase(
+  ia: IA,
+  fase: "grupos" | "matamata" | "geral",
+): { pontos: number; placares_exatos: number; jogos_palpitados: number } {
+  const sub = ia[fase];
+  if (sub) {
+    return {
+      pontos: sub.pontos,
+      placares_exatos: sub.placares_exatos,
+      jogos_palpitados: sub.jogos_palpitados,
+    };
+  }
+  // fallback pro top-level (geral) se o sub-objeto não existe
+  return {
+    pontos: ia.pontos,
+    placares_exatos: ia.placares_exatos,
+    jogos_palpitados: ia.jogos_palpitados,
+  };
+}
+
 export default async function SerieA({
   locale = "pt",
   variante = "compact",
+  fase = "geral",
 }: {
   locale?: Locale;
   variante?: "compact" | "destaque";
+  fase?: "grupos" | "matamata" | "geral";
 }) {
-  const ias = await carregarSerieA();
-  if (ias.length === 0) return null;
+  const iasRaw = await carregarSerieA();
+  if (iasRaw.length === 0) return null;
+
+  // Monta lista com pontos da fase pedida e ordena
+  const ias = iasRaw
+    .map((ia) => ({ ...ia, ...statsParaFase(ia, fase) }))
+    .sort(
+      (a, b) =>
+        b.pontos - a.pontos ||
+        scorePopularidade(a.slug) - scorePopularidade(b.slug),
+    );
+
   const ranks = calcularRanks(ias);
 
   const sufixoJogos =
@@ -98,11 +138,14 @@ export default async function SerieA({
   const wrapCls =
     variante === "destaque" ? "serie-a-grid destaque" : "serie-a-grid";
 
+  const tituloKey = fase === "matamata" ? "home.serie_a.titulo_matamata" : "home.serie_a.titulo";
+  const subKey = fase === "matamata" ? "home.serie_a.sub_matamata" : "home.serie_a.sub";
+
   return (
     <section className="section serie-a-vitrine">
       <div className="container">
         <h2 style={{ textAlign: "center", marginBottom: 8 }}>
-          {t(locale, "home.serie_a.titulo")}
+          {t(locale, tituloKey)}
         </h2>
         <p
           style={{
@@ -112,7 +155,7 @@ export default async function SerieA({
             marginBottom: 36,
           }}
         >
-          {t(locale, "home.serie_a.sub")}
+          {t(locale, subKey)}
         </p>
 
         <div className={wrapCls}>
