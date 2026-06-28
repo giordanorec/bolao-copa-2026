@@ -5,6 +5,7 @@ import HeroCTAs from "@/components/HeroCTAs";
 import SeguirInstagram from "@/components/SeguirInstagram";
 import CorridaHome from "@/components/CorridaHome";
 import CaixaDeSugestao from "@/components/CaixaDeSugestao";
+import CelebracaoCristal from "@/components/CelebracaoCristal";
 import AgradecimentoContribuinte from "@/components/AgradecimentoContribuinte";
 import BolaoHumanosRecrutamento from "@/components/BolaoHumanosRecrutamento";
 import { resolverLocale } from "@/lib/locale-server";
@@ -202,6 +203,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <CelebracaoCristal locale={locale} />
 
       <section className="section" style={{ paddingTop: 8, paddingBottom: 8 }}>
         <div className="container">

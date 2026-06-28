@@ -80,3 +80,7 @@ no cálculo de pontuação.
 | 72 | Grupo K | Sáb 27/06 | 20h30 | Atlanta | Congo (RD) | 3 | 1 | Uzbequistão |
 | 69 | Grupo J | Sáb 27/06 | 23h00 | Kansas City | Argélia | 3 | 3 | Áustria |
 | 70 | Grupo J | Sáb 27/06 | 23h00 | Dallas | Jordânia | 1 | 4 | Argentina |
+
+## Mata-mata — 16-avos de final (R32)
+
+| 73 | R32 | Dom 28/06 | 16h00 | Los Angeles | África do Sul | 0 | 1 | Canadá |

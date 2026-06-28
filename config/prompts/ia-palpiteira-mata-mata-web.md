@@ -69,23 +69,25 @@ Estes são os resultados **reais e definitivos** dos jogos 1–72. Trate-os como
 
 ## Os confrontos dos 16-avos
 
+Todos os 16 confrontos estão **DEFINIDOS** (a fase de grupos terminou; jogos 1–72 completos).
+
 | Jogo | Confronto | Situação |
 |---|---|---|
 | 73 | África do Sul × Canadá | DEFINIDO |
-| 74 | Alemanha × Paraguai | Alemanha definida; Paraguai = terceiro mais provável (28%) |
+| 74 | Alemanha × Paraguai | DEFINIDO |
 | 75 | Países Baixos × Marrocos | DEFINIDO |
 | 76 | Brasil × Japão | DEFINIDO |
-| 77 | França × Suécia | França definida; Suécia = terceiro mais provável (51%) |
+| 77 | França × Suécia | DEFINIDO |
 | 78 | Costa do Marfim × Noruega | DEFINIDO |
-| 79 | México × Senegal | México definido; Senegal = terceiro mais provável (46%) |
-| 80 | Inglaterra × Equador | Inglaterra 1º do L mais provável (58%); Equador terceiro (20%) |
-| 81 | Estados Unidos × Bósnia-Herzegovina | EUA definidos; Bósnia = terceiro mais provável (91%) |
-| 82 | Bélgica × Coreia do Sul | Bélgica definida; Coreia = terceiro mais provável (28%) |
-| 83 | Portugal × Gana | Portugal 2º do K mais provável (54%); Gana 2º do L (44%) |
-| 84 | Espanha × Áustria | Espanha definida; Áustria 2º do J mais provável (69%) |
-| 85 | Suíça × Irã | Suíça definida; Irã = terceiro mais provável (91%) |
-| 86 | Argentina × Cabo Verde | Argentina 1º do J mais provável (99%); Cabo Verde definido |
-| 87 | Colômbia × Croácia | Colômbia 1º do K mais provável (55%); Croácia terceiro (34%) |
+| 79 | México × Equador | DEFINIDO |
+| 80 | Inglaterra × Congo (RD) | DEFINIDO |
+| 81 | Estados Unidos × Bósnia-Herzegovina | DEFINIDO |
+| 82 | Bélgica × Senegal | DEFINIDO |
+| 83 | Portugal × Croácia | DEFINIDO |
+| 84 | Espanha × Áustria | DEFINIDO |
+| 85 | Suíça × Argélia | DEFINIDO |
+| 86 | Argentina × Cabo Verde | DEFINIDO |
+| 87 | Colômbia × Gana | DEFINIDO |
 | 88 | Austrália × Egito | DEFINIDO |
 
 ## Palpites anteriores (para referência)
@@ -116,15 +118,15 @@ Exemplos válidos: `<!-- ia: ChatGPT 5; fase: mata-mata; data: 2026-06-27 -->`, 
 | 76 | R32 | Seg 29/06 | 14h00 | Houston | Brasil | | | Japão |
 | 77 | R32 | Ter 30/06 | 18h00 | Nova York/NJ | França | | | Suécia |
 | 78 | R32 | Ter 30/06 | 14h00 | Dallas | Costa do Marfim | | | Noruega |
-| 79 | R32 | Ter 30/06 | 22h00 | Cidade do México | México | | | Senegal |
-| 80 | R32 | Qua 01/07 | 13h00 | Atlanta | Inglaterra | | | Equador |
+| 79 | R32 | Ter 30/06 | 22h00 | Cidade do México | México | | | Equador |
+| 80 | R32 | Qua 01/07 | 13h00 | Atlanta | Inglaterra | | | Congo (RD) |
 | 81 | R32 | Qua 01/07 | 21h00 | San Francisco | Estados Unidos | | | Bósnia-Herzegovina |
-| 82 | R32 | Qua 01/07 | 17h00 | Seattle | Bélgica | | | Coreia do Sul |
-| 83 | R32 | Qui 02/07 | 20h00 | Toronto | Portugal | | | Gana |
+| 82 | R32 | Qua 01/07 | 17h00 | Seattle | Bélgica | | | Senegal |
+| 83 | R32 | Qui 02/07 | 20h00 | Toronto | Portugal | | | Croácia |
 | 84 | R32 | Qui 02/07 | 16h00 | Los Angeles | Espanha | | | Áustria |
-| 85 | R32 | Sex 03/07 | 00h00 | Vancouver | Suíça | | | Irã |
+| 85 | R32 | Sex 03/07 | 00h00 | Vancouver | Suíça | | | Argélia |
 | 86 | R32 | Sex 03/07 | 19h00 | Miami | Argentina | | | Cabo Verde |
-| 87 | R32 | Sex 03/07 | 22h30 | Kansas City | Colômbia | | | Croácia |
+| 87 | R32 | Sex 03/07 | 22h30 | Kansas City | Colômbia | | | Gana |
 | 88 | R32 | Sex 03/07 | 15h00 | Dallas | Austrália | | | Egito |
 
 Checklist final antes de responder: (1) o comentário HTML `<!-- ia: ... -->` está presente UMA vez acima da tabela; (2) as **16 linhas** estão presentes e na mesma ordem (jogos 73–88); (3) todas as células de Gols A e Gols B estão preenchidas com inteiros ≥ 0; (4) nada além do comentário e da tabela na resposta; (5) pesquisou lesões, suspensões, odds e forma antes de cravar; (6) os resultados dos jogos 1–72 foram usados como fatos fixos.
