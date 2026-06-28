@@ -750,6 +750,46 @@ const CSS = `
   .par-split { gap: 24px; }
   .campea-stats { gap: 28px; }
 }
+
+/* Celulares estreitos em retrato */
+@media (max-width: 380px) {
+  .retro-root .cena { padding: 48px 16px; }
+  .zebras-grid { gap: 10px; }
+  .zebra-card { padding: 12px 10px; }
+  .time-nome { font-size: 11px; }
+}
+
+/* Telas baixas / celular em PAISAGEM: relaxa o snap, encolhe os elementos
+   gigantes (que escalam por vw) e deixa cada cena crescer com seu conteúdo
+   pra nada ser cortado. Capa e final continuam ocupando a tela cheia. */
+@media (max-height: 620px) {
+  .retro-root { scroll-snap-type: y proximity; }
+  .retro-root .cena { min-height: auto; padding: 40px 22px; }
+  .capa, .final { min-height: 100dvh; justify-content: center; }
+  .cena-h2 { font-size: clamp(22px, 5vw, 38px); margin-bottom: 16px; }
+  .capa-titulo { font-size: clamp(32px, 8vw, 60px); margin-bottom: 16px; }
+  .capa-sub { font-size: clamp(13px, 2vw, 16px); }
+  .campea-trofeu { font-size: clamp(44px, 9vh, 84px); }
+  .zebra-emoji, .final-emoji { font-size: clamp(40px, 8vh, 80px); }
+  .escala-num { font-size: clamp(32px, 7vh, 54px); }
+  .escala-card { padding: 16px 14px; }
+  .par-ring { width: 120px; height: 120px; margin-bottom: 14px; }
+  .par-pct { font-size: 30px; }
+  .zd-placar, .gol-placar { font-size: clamp(38px, 9vh, 78px); }
+  .campea-stats { gap: 28px; margin-top: 18px; }
+  .cs-num { font-size: clamp(30px, 6vh, 48px); }
+  .scroll-hint { margin-top: 24px; }
+  .licao { padding: 14px 16px; }
+  .licao-emoji { font-size: 28px; }
+}
+
+/* Paisagem propriamente dita: aproveita a largura extra */
+@media (orientation: landscape) and (max-height: 620px) {
+  .escala-grid { grid-template-columns: repeat(4, 1fr); max-width: 900px; }
+  .par-split { flex-wrap: nowrap; gap: 28px; }
+  .licoes-list { max-width: 840px; }
+  .capa-titulo { font-size: clamp(36px, 7vw, 72px); }
+}
 @media (prefers-reduced-motion: reduce) {
   .retro-root { scroll-snap-type: none; }
   .cena * { transition: none !important; animation: none !important; }
