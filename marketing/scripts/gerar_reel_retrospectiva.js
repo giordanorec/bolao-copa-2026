@@ -1,58 +1,32 @@
 /**
  * Reel animado (1080×1920) — Retrospectiva da Fase de Grupos do Bolão das IAs.
  * 8 cenas sequenciais em uma única página HTML com timeline CSS.
- * Usa Playwright para gravar webm e ffmpeg para converter para mp4.
+ * Renderizado por CAPTURA DE FRAMES (lib_reel_capture) — determinístico, sem
+ * stutter e sem cortar antes do fim da animação.
  *
  * Uso:
  *   node marketing/scripts/gerar_reel_retrospectiva.js
  *
  * Saída: marketing/brainstorming_instagram/32_reel_retrospectiva-grupos/
- *   retrospectiva.webm  retrospectiva.mp4  poster.png
+ *   retrospectiva.mp4  poster.png
  */
 
 const fs   = require('fs');
 const path = require('path');
-const { execFileSync } = require('child_process');
-
-const FFMPEG_BIN =
-  process.env.FFMPEG_BIN ||
-  'C:/Users/grec/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1.2-full_build/bin/ffmpeg.exe';
-
-const V4_ROOT = path.resolve(__dirname, '../../v4');
-const { chromium } = require(path.join(V4_ROOT, 'node_modules', 'playwright'));
+const { renderReel } = require('./lib_reel_capture');
 
 const OUT = path.resolve(__dirname, '../brainstorming_instagram/32_reel_retrospectiva-grupos');
 fs.mkdirSync(OUT, { recursive: true });
 
 // ------------------------------------------------------------------
-// Duração total: ~22s
-// Poster: capturado no clímax da cena do pódio (cena 4, ~9.2s)
-// Estratégia: usamos waitForTimeout real + fonts.ready para garantir
-// que as animações estão rodando quando capturamos.
+// Timeline CSS: última cena (CTA) entra em 18.8s, fica visível e só faz
+// sceneOut em 21.6s. Capturamos até 21.5s pra terminar com o CTA na tela.
+// Poster: clímax do pódio (cena 4, centro ≈ 9.9s de timeline CSS).
 // ------------------------------------------------------------------
 
-const TOTAL_MS  = 27000;   // total de gravação (ms reais) — inclui overhead de fonte
-const POSTER_MS = 12500;   // momento do poster: cena pódio fica em CSS 8.4–11.4s,
-                           // mas Google Fonts adiciona ~2s de overhead, então
-                           // capturamos em t=12.5s real (≈10.5s CSS = centro do pódio)
-const TRIM_TO   = 24;      // duração final do mp4 em segundos
-
-function toMp4(webm, mp4, trimSec) {
-  if (!fs.existsSync(FFMPEG_BIN)) {
-    console.warn('  (ffmpeg não encontrado — pulando mp4)');
-    return false;
-  }
-  const args = [
-    '-y', '-i', webm,
-    '-t', String(trimSec),
-    '-movflags', '+faststart',
-    '-pix_fmt', 'yuv420p',
-    '-r', '30',
-    mp4,
-  ];
-  execFileSync(FFMPEG_BIN, args, { stdio: 'ignore' });
-  return true;
-}
+const TOTAL_MS  = 21500;   // captura 0 → 21.5s (CTA ainda visível no fim)
+const POSTER_MS = 9900;    // centro da cena do pódio
+const FPS       = 30;
 
 // Converte ms para string CSS de segundos (ex: 2800 -> "2.80s")
 function cs(ms) { return (ms / 1000).toFixed(2) + 's'; }
@@ -475,64 +449,13 @@ ${sceneCSS('c8', S.cta,     VIS + 400)}
 
 (async () => {
   const html = buildHtml();
-  const htmlPath = path.join(OUT, '_reel_retro.html');
-  fs.writeFileSync(htmlPath, html, 'utf-8');
-
-  const webmPath   = path.join(OUT, 'retrospectiva.webm');
-  const mp4Path    = path.join(OUT, 'retrospectiva.mp4');
-  const posterPath = path.join(OUT, 'poster.png');
-
-  console.log('Iniciando Playwright...');
-  const browser = await chromium.launch({
-    args: ['--disable-web-security', '--allow-file-access-from-files'],
+  await renderReel({
+    html,
+    outDir: OUT,
+    baseName: 'retrospectiva',
+    totalMs: TOTAL_MS,
+    posterMs: POSTER_MS,
+    fps: FPS,
   });
-
-  const context = await browser.newContext({
-    viewport: { width: 1080, height: 1920 },
-    deviceScaleFactor: 1,
-    recordVideo: { dir: OUT, size: { width: 1080, height: 1920 } },
-  });
-
-  const page = await context.newPage();
-  await page.goto('file://' + htmlPath.replace(/\\/g, '/'));
-
-  // Aguarda 3s de settle para fontes carregarem e primeiras cenas aparecerem
-  // (gerar_vinheta.js usa 600ms; aqui a timeline é mais longa, 3s é seguro)
-  console.log('  aguardando 3s de settle (fontes + cena 1)...');
-  await page.waitForTimeout(3000);
-
-  // Agora já estamos em t≈3s real.
-  // O poster deve ser capturado em t=9.5s de timeline CSS.
-  // Portanto esperamos mais (9500 - 3000) = 6500ms.
-  const waitForPoster = POSTER_MS - 3000;
-  console.log(`  aguardando mais ${waitForPoster}ms para cena do pódio...`);
-  await page.waitForTimeout(waitForPoster);
-  console.log(`  -> capturando poster (t_real≈${POSTER_MS}ms, CSS pódio t≈10.5s)...`);
-  await page.screenshot({ path: posterPath });
-
-  // Aguarda o restante do timeline (até ~27s total real)
-  const remaining = TOTAL_MS - POSTER_MS + 1000;
-  await page.waitForTimeout(remaining);
-
-  await page.close();
-  const tmpVideo = await page.video().path();
-  await context.close();
-
-  // Copia webm final
-  fs.copyFileSync(tmpVideo, webmPath);
-  try { fs.rmSync(tmpVideo, { force: true }); } catch (_) {}
-  console.log('  webm:', webmPath);
-
-  // Converte para mp4, aparando em TRIM_TO segundos
-  const hasMp4 = toMp4(webmPath, mp4Path, TRIM_TO);
-  console.log(hasMp4 ? `  mp4 (${TRIM_TO}s): ${mp4Path}` : '  (sem mp4 — ffmpeg ausente)');
-
-  // Remove html temporário
-  try { fs.rmSync(htmlPath, { force: true }); } catch (_) {}
-
-  await browser.close();
   console.log('\nFeito! Arquivos em:', OUT);
-  console.log('  poster.png :', posterPath);
-  console.log('  webm       :', webmPath);
-  if (hasMp4) console.log('  mp4        :', mp4Path);
 })();

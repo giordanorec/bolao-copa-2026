@@ -156,7 +156,16 @@ export default async function InstagramPostsPage() {
               <article key={post.id} className="ig-card">
                 {/* ── Image area ─────────────────────────────────────── */}
                 <div className="ig-media">
-                  {!hasImages ? (
+                  {post.video ? (
+                    <video
+                      className="ig-video"
+                      src={post.video}
+                      poster={firstImage}
+                      controls
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : !hasImages ? (
                     <div className="ig-no-image">
                       <span style={{ fontSize: 32 }}>🖼️</span>
                       <span style={{ fontSize: 13, color: "var(--fg-muted)", marginTop: 6 }}>
@@ -298,21 +307,13 @@ export default async function InstagramPostsPage() {
                 <div className="ig-actions">
                   <PublicarToggle postId={post.id} publicado={!!post.publicado} />
 
-                  {hasImages && (
-                    <BaixarImagens images={post.images} nomeBase={post.id} />
-                  )}
-
-                  {post.video && (
-                    <a
-                      href={post.video}
-                      download={`${post.id}.mp4`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="ig-action-btn ig-action-dl"
-                      title="Baixar vídeo (mp4) pronto pro Reels"
-                    >
-                      ▶ Baixar vídeo
-                    </a>
+                  {(hasImages || post.video) && (
+                    <BaixarImagens
+                      images={post.images}
+                      nomeBase={post.id}
+                      video={post.video}
+                      tipo={post.tipo}
+                    />
                   )}
 
                   <a
@@ -399,6 +400,16 @@ function IgStyle() {
         transition: opacity .15s;
       }
       .ig-single-wrap:hover .ig-single-img { opacity: .92; }
+
+      /* Vídeo inline tocável (reels) */
+      .ig-video {
+        display: block;
+        width: 100%;
+        max-height: 60vh;
+        margin: 0 auto;
+        background: #000;
+        border-radius: var(--r-s, 6px);
+      }
 
       .ig-play-badge {
         position: absolute;

@@ -2,26 +2,20 @@
  * Reel animado (1080×1920) — "Novo Momento" da Arena de IAs.
  * 8 cenas sequenciais: capa → palpites grátis → bola de cristal →
  * tour de features → anúncio Humanos×IAs (clímax) → CTA.
+ * Renderizado por CAPTURA DE FRAMES (lib_reel_capture) — sem stutter.
  *
  * Uso:
  *   node marketing/scripts/gerar_reel_novo_momento.js
  *
  * Saída: marketing/brainstorming_instagram/34_reel_novo-momento/
- *   novo-momento.webm  novo-momento.mp4  poster.png
+ *   novo-momento.mp4  poster.png
  */
 
 "use strict";
 
 const fs   = require("fs");
 const path = require("path");
-const { execFileSync } = require("child_process");
-
-const FFMPEG_BIN =
-  process.env.FFMPEG_BIN ||
-  "C:/Users/grec/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1.2-full_build/bin/ffmpeg.exe";
-
-const V4_ROOT = path.resolve(__dirname, "../../v4");
-const { chromium } = require(path.join(V4_ROOT, "node_modules", "playwright"));
+const { renderReel } = require("./lib_reel_capture");
 
 const OUT = path.resolve(
   __dirname,
@@ -30,37 +24,14 @@ const OUT = path.resolve(
 fs.mkdirSync(OUT, { recursive: true });
 
 // ------------------------------------------------------------------
-// Timeline total: ~22s
-// Poster: extraído do mp4 final com ffmpeg (t=21s = cena Humanos×IAs).
-// Nota: Google Fonts adiciona ~8s de overhead de rede, então o poster
-// via Playwright screenshot não é confiável. Usamos ffmpeg no mp4.
+// Timeline CSS: CTA (cena 8) entra em 18.6s e só faz sceneOut em 21.2s.
+// Capturamos até 21.1s pra terminar com o CTA na tela.
+// Poster: cena Humanos×IAs (cena 6) centro ≈ 14.4s.
 // ------------------------------------------------------------------
 
-const TOTAL_MS  = 26000;   // gravação total (ms reais)
-const POSTER_MS = null;    // não usamos screenshot de Playwright para o poster
-const POSTER_T  = 21;      // segundo no mp4 final para extração do poster
-const TRIM_TO   = 23;      // duração final do mp4 (s)
-
-function toMp4(webm, mp4, trimSec) {
-  if (!fs.existsSync(FFMPEG_BIN)) {
-    console.warn("  (ffmpeg não encontrado — pulando mp4)");
-    return false;
-  }
-  const args = [
-    "-y", "-i", webm,
-    "-t", String(trimSec),
-    "-vf", "scale=1080:1920:flags=lanczos",
-    "-c:v", "libx264",
-    "-preset", "fast",
-    "-crf", "20",
-    "-movflags", "+faststart",
-    "-pix_fmt", "yuv420p",
-    "-r", "30",
-    mp4,
-  ];
-  execFileSync(FFMPEG_BIN, args, { stdio: "ignore" });
-  return true;
-}
+const TOTAL_MS  = 21100;
+const POSTER_MS = 14400;
+const FPS       = 30;
 
 // ms → CSS seconds string
 function cs(ms) { return (ms / 1000).toFixed(2) + "s"; }
@@ -494,58 +465,14 @@ ${sceneCSS("c8", S.cta,     VIS + 400)}
 }
 
 (async () => {
-  const html     = buildHtml();
-  const htmlPath = path.join(OUT, "_reel_novo_momento.html");
-  fs.writeFileSync(htmlPath, html, "utf-8");
-
-  const webmPath   = path.join(OUT, "novo-momento.webm");
-  const mp4Path    = path.join(OUT, "novo-momento.mp4");
-  const posterPath = path.join(OUT, "poster.png");
-
-  console.log("Iniciando Playwright...");
-  const browser = await chromium.launch({
-    args: ["--disable-web-security", "--allow-file-access-from-files"],
+  const html = buildHtml();
+  await renderReel({
+    html,
+    outDir: OUT,
+    baseName: "novo-momento",
+    totalMs: TOTAL_MS,
+    posterMs: POSTER_MS,
+    fps: FPS,
   });
-
-  const context = await browser.newContext({
-    viewport: { width: 1080, height: 1920 },
-    deviceScaleFactor: 1,
-    recordVideo: { dir: OUT, size: { width: 1080, height: 1920 } },
-  });
-
-  const page = await context.newPage();
-  await page.goto("file://" + htmlPath.replace(/\\/g, "/"));
-
-  // Aguarda toda a timeline (Google Fonts pode adicionar vários segundos de overhead)
-  console.log(`  aguardando ${TOTAL_MS}ms de timeline...`);
-  await page.waitForTimeout(TOTAL_MS);
-
-  await page.close();
-  const tmpVideo = await page.video().path();
-  await context.close();
-
-  // Copia webm
-  fs.copyFileSync(tmpVideo, webmPath);
-  try { fs.rmSync(tmpVideo, { force: true }); } catch (_) {}
-  console.log("  webm:", webmPath);
-
-  // Converte mp4
-  const hasMp4 = toMp4(webmPath, mp4Path, TRIM_TO);
-  console.log(hasMp4 ? `  mp4 (${TRIM_TO}s): ${mp4Path}` : "  (sem mp4 — ffmpeg ausente)");
-
-  // Extrai poster do mp4 no frame certo (mais confiável que screenshot mid-run)
-  if (hasMp4 && fs.existsSync(FFMPEG_BIN)) {
-    const args = ["-y", "-ss", String(POSTER_T), "-i", mp4Path, "-frames:v", "1", "-update", "1", posterPath];
-    execFileSync(FFMPEG_BIN, args, { stdio: "ignore" });
-    console.log(`  poster (t=${POSTER_T}s mp4): ${posterPath}`);
-  }
-
-  // Remove html temp
-  try { fs.rmSync(htmlPath, { force: true }); } catch (_) {}
-
-  await browser.close();
   console.log("\nFeito! Arquivos em:", OUT);
-  console.log("  poster.png :", posterPath);
-  console.log("  webm       :", webmPath);
-  if (hasMp4) console.log("  mp4        :", mp4Path);
 })();
