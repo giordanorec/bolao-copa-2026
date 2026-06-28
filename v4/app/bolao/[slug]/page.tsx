@@ -22,11 +22,16 @@ export default async function BolaoPage({
 
   const { data: bolao } = await supabase
     .from("bolao")
-    .select("id, slug, nome, descricao, criador_id, criado_em, publico")
+    .select("id, slug, nome, descricao, criador_id, criado_em")
     .eq("slug", slug)
     .single();
 
   if (!bolao) notFound();
+
+  // Bolões públicos (entrada torna palpites públicos no Ranking Geral).
+  // Mantido como allowlist em código para não depender de coluna no schema.
+  const BOLOES_PUBLICOS = new Set(["humanos-vs-ias"]);
+  const ehPublico = BOLOES_PUBLICOS.has(bolao.slug);
 
   const [{ data: { user } }, locale] = await Promise.all([
     supabase.auth.getUser(),
@@ -152,7 +157,7 @@ export default async function BolaoPage({
               🎯 Entrar nesse bolão →
             </Link>
           ) : isVisitante ? (
-            bolao.publico ? (
+            ehPublico ? (
               <EntrarPublicoButton bolaoId={bolao.id} slug={bolao.slug} />
             ) : (
               <EntrarButton bolaoId={bolao.id} slug={bolao.slug} />
