@@ -18,10 +18,7 @@ import JogoModal from "@/components/JogoModal";
 import ScrollProximoJogo from "@/components/ScrollProximoJogo";
 import TimeLink from "@/components/TimeLink";
 import { scorePopularidade, marcaDe } from "@/lib/ias";
-import CadeadoV2 from "@/components/CadeadoV2";
 import V2Revelado from "@/components/V2Revelado";
-import { createClient } from "@/lib/supabase-server";
-import { isContribuinte } from "@/lib/admin";
 import { carregarV2PorJogo, consensoV2 } from "@/lib/palpites-v2";
 
 export const metadata = {
@@ -75,22 +72,17 @@ function construirDadosR32(
 }
 
 export default async function JogosPage() {
-  const [jogos, palpitesIAs, iasDict, mapaPaises, locale, userRes] =
+  // Palpites das IAs são gratuitos pra todo mundo: v1 (JSON público), v2 dos
+  // jogos 41–72 e mata-mata (73–88) ficam todos visíveis, sem cadeado.
+  const [jogos, palpitesIAs, iasDict, mapaPaises, locale, v2PorJogo] =
     await Promise.all([
       carregarJogos(),
       carregarPalpitesIAs(),
       carregarDictIAs(),
       carregarMapaPaises(),
       resolverLocale(),
-      createClient().then((c) => c.auth.getUser()),
+      carregarV2PorJogo(),
     ]);
-
-  // Contribuinte/admin logado vê os palpites v2 (jogos 41–72) destravados
-  // no lugar do cadeado. v2 só é lido server-side se o viewer tem direito.
-  const ehContribuinte = await isContribuinte(userRes.data.user?.email);
-  const v2PorJogo = ehContribuinte
-    ? await carregarV2PorJogo()
-    : new Map<number, Record<string, { gols_a: number; gols_b: number }>>();
 
   // Confrontos R32 (reais/projetados) pra exibir os times certos nos jogos 73-88
   const projR32 = await carregarProjR32();
@@ -176,7 +168,7 @@ export default async function JogosPage() {
               let dados: DadosPorJogo | null =
                 palpitesIAs[String(j.numero)] ?? null;
               if (ehR32) {
-                const mm = ehContribuinte ? v2PorJogo.get(j.numero) : undefined;
+                const mm = v2PorJogo.get(j.numero);
                 dados = mm ? construirDadosR32(mm) : null;
               }
               const bola = dados?.bola_de_cristal;
@@ -359,28 +351,18 @@ export default async function JogosPage() {
                       </div>
                       {j.numero >= 41 && j.numero <= 72 && !jogoComecou(j) && (() => {
                         const v2map = v2PorJogo.get(j.numero);
-                        if (ehContribuinte && v2map) {
-                          const c = consensoV2(v2map);
-                          if (c) {
-                            return (
-                              <V2Revelado
-                                locale={locale}
-                                jogoNumero={j.numero}
-                                golsA={c.gols_a}
-                                golsB={c.gols_b}
-                                votos={c.votos}
-                                total={c.total}
-                              />
-                            );
-                          }
-                        }
-                        // contribuinte sem v2 daquele jogo: não mostra nada
-                        return ehContribuinte ? null : <CadeadoV2 locale={locale} />;
+                        const c = v2map ? consensoV2(v2map) : null;
+                        return c ? (
+                          <V2Revelado
+                            locale={locale}
+                            jogoNumero={j.numero}
+                            golsA={c.gols_a}
+                            golsB={c.gols_b}
+                            votos={c.votos}
+                            total={c.total}
+                          />
+                        ) : null;
                       })()}
-                      {/* R32: palpites mata-mata em early access pra contribuintes */}
-                      {ehR32 && !jogoComecou(j) && !ehContribuinte && (
-                        <CadeadoV2 locale={locale} />
-                      )}
                     </div>
                   }
                 />
