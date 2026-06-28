@@ -61,6 +61,13 @@ export default function Retro({ data }: { data: RetroData }) {
   const [progress, setProgress] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
 
+  // Takeover de tela cheia: esconde header/footer/avisos globais enquanto a
+  // retrospectiva está montada (senão eles vazam por cima/atrás do overlay).
+  useEffect(() => {
+    document.body.classList.add("retro-takeover");
+    return () => document.body.classList.remove("retro-takeover");
+  }, []);
+
   const onScroll = useCallback(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -469,6 +476,14 @@ function Time({
 /* ───────────────────────── CSS ───────────────────────── */
 
 const CSS = `
+/* Enquanto a retrospectiva está aberta, ela toma a tela inteira: esconde o
+   chrome global (header sticky z-index 50, footer e avisos) que senão aparece
+   por cima/atrás do overlay. */
+body.retro-takeover { overflow: hidden; }
+body.retro-takeover .site-header,
+body.retro-takeover .site-footer,
+body.retro-takeover .aviso-desc { display: none !important; }
+
 .retro-root {
   height: 100dvh;
   overflow-y: auto;
@@ -479,10 +494,10 @@ const CSS = `
   font-family: var(--ff-sans);
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 100;
 }
 .retro-bar {
-  position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 60;
+  position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 110;
   background: linear-gradient(90deg, var(--primary), var(--accent), var(--extra));
   transform-origin: 0 50%;
 }
