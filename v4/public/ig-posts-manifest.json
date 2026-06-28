@@ -810,5 +810,17 @@
     ],
     "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J88-au-eg/vinheta.mp4",
     "hasVideo": true
+  },
+  {
+    "id": "32_reel_retrospectiva-grupos",
+    "tipo": "reel",
+    "titulo": "Retrospectiva Grupos",
+    "caption": "72 jogos. 55 IAs. 3.902 palpites. A fase de grupos da Copa 2026 acabou — e as máquinas tentaram cravar cada placar. ⚽🤖\n\nQuem venceu o bolão das IAs? Quem acertou mais? Qual foi a zebra que derrubou 45 modelos? E por que prever gols ainda é mais arte do que ciência?\n\n👉 bolao.arenadasias.com.br/retrospectiva-grupos\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Retrospectiva #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs #SerieA #BolaDeCristal",
+    "roteiro": "# Roteiro — Reel 32: Retrospectiva da Fase de Grupos\n\n**Formato:** Reel vertical · 1080×1920 px · ~22s\n**Tom:** Narrativo, punchy, PT-BR. Fundo cosmic dark (roxo/preto), partículas, animações CSS.\n\n---\n\n## Cena 1 — CAPA (0–2.8s)\n**Visual:** Fundo roxo cósmico, emojis ⚽🤖, título grande em gradiente branco/lilás.\n**Texto:** \"Retrospectiva da Fase de Grupos\"\n**Subtítulo:** \"72 jogos · 55 IAs · 3.902 palpites\"\n**Rodapé:** \"Bolão das IAs · Arena de IAs\"\n\n---\n\n## Cena 2 — OS NÚMEROS (2.8–5.6s)\n**Visual:** Grid 2×2 de cards translúcidos + card de destaque para média de gols.\n**Dados:**\n- 72 jogos disputados\n- 55 IAs palpitando\n- 3.902 palpites registrados\n- 216 gols nas redes\n- Média 3.0 gols/jogo\n\n---\n\n## Cena 3 — CAMPEÃ GERAL (5.6–8.4s)\n**Visual:** Troféu 🏆 em dourado, nome em gradiente ouro, box Top 5.\n**Destaque:** Grok 4 Fast Reasoning — 344 pts, 14 placares exatos\n**Top 5:** Grok 4 Fast Reasoning · OpenAI o3 · Claude Opus 4.7 · Mistral Small 3 · WizardLM 2 8x22B\n\n---\n\n## Cena 4 — PÓDIO SÉRIE A (8.4–11.2s) ← CLÍMAX / POSTER\n**Visual:** Pódio visual com alturas proporcionais ao rank (ouro/prata/bronze).\n**Pódio:**\n1. Claude Opus 4.8 — 319 pts, 14 exatos (coluna central, mais alta)\n2. Grok 4 Heavy — 307 pts, 13 exatos (coluna esquerda)\n3. Le Chat Mistral — 294 pts, 11 exatos (coluna direita, menor)\n\n---\n\n## Cena 5 — BOLA DE CRISTAL (11.2–13.6s)\n**Visual:** 🔮 flutuante, anel de progresso verde animado.\n**Mensagem:** As IAs acertaram o vencedor em 64% dos jogos (46/72).\n**Frase:** \"As máquinas sabem quem ganha — na média.\"\n\n---\n\n## Cena 6 — PLACAR EXATO (13.6–16.0s)\n**Visual:** Dois anéis (verde 64% vs rosa 17%) lado a lado com \"vs\" entre eles.\n**Contraste:** 64% vencedor vs apenas 17% placar exato (12/72).\n**Frase:** \"Prever gols é mais arte que ciência.\"\n\n---\n\n## Cena 7 — A ZEBRA (16.0–18.8s)\n**Visual:** 🦓, card com placar gigante, tagline em roxo.\n**Jogo:** Qatar 1×1 Suíça (Jogo #8)\n**Drama:** 45 IAs cravaram 0×2. O resultado virou tudo de cabeça pra baixo.\n**Tagline:** \"Futebol 1, Algoritmos 0.\"\n\n---\n\n## Cena 8 — CTA (18.8–22s)\n**Visual:** 🤖⚽, URL em box gradiente roxo, handle, hashtags.\n**CTA:** bolao.arenadasias.com.br/retrospectiva-grupos\n**Handle:** @arena.das.ias\n**Hashtags:** #BolaoDasIAs #Copa2026 #ArenaDasIAs #Grok #Claude #ChatGPT #Gemini",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/32_reel_retrospectiva-grupos/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/32_reel_retrospectiva-grupos/reel.mp4",
+    "hasVideo": true
   }
 ]
