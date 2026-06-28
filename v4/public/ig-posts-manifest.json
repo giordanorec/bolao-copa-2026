@@ -8,10 +8,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/01_reel_battle-of-the-bots/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/01_reel_battle-of-the-bots/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "02_reel_robo-x-humano",
@@ -22,10 +19,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/02_reel_robo-x-humano/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/02_reel_robo-x-humano/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "03_reel-1seg-de-cada-palpite",
@@ -36,10 +30,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/03_reel-1seg-de-cada-palpite/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/03_reel-1seg-de-cada-palpite/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "04_reel_bola-de-cristal-revela",
@@ -50,10 +41,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/04_reel_bola-de-cristal-revela/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/04_reel_bola-de-cristal-revela/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "05_reel_tier-list",
@@ -64,10 +52,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/05_reel_tier-list/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/05_reel_tier-list/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "06_reel_3-ias-que-discordam",
@@ -78,10 +63,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/06_reel_3-ias-que-discordam/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/06_reel_3-ias-que-discordam/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "07_reel_acertou-ou-se-ferrou",
@@ -92,10 +74,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/07_reel_acertou-ou-se-ferrou/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/07_reel_acertou-ou-se-ferrou/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "08_reel_logo-vira-mascote",
@@ -106,10 +85,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/08_reel_logo-vira-mascote/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/08_reel_logo-vira-mascote/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "09_reel_ia-barata-venceu-a-cara",
@@ -120,10 +96,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/09_reel_ia-barata-venceu-a-cara/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/09_reel_ia-barata-venceu-a-cara/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "10_carrossel_humano-x-122-ias",
@@ -138,14 +111,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/10_carrossel_humano-x-122-ias/slide-04.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/10_carrossel_humano-x-122-ias/slide-05.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/10_carrossel_humano-x-122-ias/thumb/slide-01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/10_carrossel_humano-x-122-ias/thumb/slide-02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/10_carrossel_humano-x-122-ias/thumb/slide-03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/10_carrossel_humano-x-122-ias/thumb/slide-04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/10_carrossel_humano-x-122-ias/thumb/slide-05.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "11_carrossel_chatgpt-x-claude",
@@ -159,13 +125,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/11_carrossel_chatgpt-x-claude/slide-03.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/11_carrossel_chatgpt-x-claude/slide-04.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/11_carrossel_chatgpt-x-claude/thumb/slide-01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/11_carrossel_chatgpt-x-claude/thumb/slide-02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/11_carrossel_chatgpt-x-claude/thumb/slide-03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/11_carrossel_chatgpt-x-claude/thumb/slide-04.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "12_carrossel_serie-a-12-mascotes",
@@ -189,23 +149,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/slide-13.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/slide-14.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-06.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-07.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-08.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-09.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-10.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-11.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-12.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-13.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/12_carrossel_serie-a-12-mascotes/thumb/slide-14.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "13_carrossel_ia-que-odeia-empate",
@@ -220,14 +164,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/13_carrossel_ia-que-odeia-empate/slide-04.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/13_carrossel_ia-que-odeia-empate/slide-05.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/13_carrossel_ia-que-odeia-empate/thumb/slide-01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/13_carrossel_ia-que-odeia-empate/thumb/slide-02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/13_carrossel_ia-que-odeia-empate/thumb/slide-03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/13_carrossel_ia-que-odeia-empate/thumb/slide-04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/13_carrossel_ia-que-odeia-empate/thumb/slide-05.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "14_carrossel_personalidades-das-ias",
@@ -243,15 +180,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/14_carrossel_personalidades-das-ias/slide-05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/14_carrossel_personalidades-das-ias/slide-06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/14_carrossel_personalidades-das-ias/thumb/slide-01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/14_carrossel_personalidades-das-ias/thumb/slide-02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/14_carrossel_personalidades-das-ias/thumb/slide-03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/14_carrossel_personalidades-das-ias/thumb/slide-04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/14_carrossel_personalidades-das-ias/thumb/slide-05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/14_carrossel_personalidades-das-ias/thumb/slide-06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "15_carrossel_placares-exatos",
@@ -267,15 +196,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/15_carrossel_placares-exatos/slide-05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/15_carrossel_placares-exatos/slide-06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/15_carrossel_placares-exatos/thumb/slide-01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/15_carrossel_placares-exatos/thumb/slide-02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/15_carrossel_placares-exatos/thumb/slide-03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/15_carrossel_placares-exatos/thumb/slide-04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/15_carrossel_placares-exatos/thumb/slide-05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/15_carrossel_placares-exatos/thumb/slide-06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "16_carrossel_briga-pelo-1o-lugar",
@@ -288,12 +209,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/16_carrossel_briga-pelo-1o-lugar/slide-02.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/16_carrossel_briga-pelo-1o-lugar/slide-03.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/16_carrossel_briga-pelo-1o-lugar/thumb/slide-01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/16_carrossel_briga-pelo-1o-lugar/thumb/slide-02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/16_carrossel_briga-pelo-1o-lugar/thumb/slide-03.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "17_carrossel_perfil-mascote-no1",
@@ -307,13 +223,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/17_carrossel_perfil-mascote-no1/slide-03.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/17_carrossel_perfil-mascote-no1/slide-04.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/17_carrossel_perfil-mascote-no1/thumb/slide-01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/17_carrossel_perfil-mascote-no1/thumb/slide-02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/17_carrossel_perfil-mascote-no1/thumb/slide-03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/17_carrossel_perfil-mascote-no1/thumb/slide-04.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "18_carrossel_bola-de-cristal-previu-x-aconteceu",
@@ -329,15 +239,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/18_carrossel_bola-de-cristal-previu-x-aconteceu/slide-05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/18_carrossel_bola-de-cristal-previu-x-aconteceu/slide-06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/18_carrossel_bola-de-cristal-previu-x-aconteceu/thumb/slide-01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/18_carrossel_bola-de-cristal-previu-x-aconteceu/thumb/slide-02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/18_carrossel_bola-de-cristal-previu-x-aconteceu/thumb/slide-03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/18_carrossel_bola-de-cristal-previu-x-aconteceu/thumb/slide-04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/18_carrossel_bola-de-cristal-previu-x-aconteceu/thumb/slide-05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/18_carrossel_bola-de-cristal-previu-x-aconteceu/thumb/slide-06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "19_carrossel_album-de-figurinhas",
@@ -350,12 +252,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/19_carrossel_album-de-figurinhas/slide-02.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/19_carrossel_album-de-figurinhas/slide-03.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/19_carrossel_album-de-figurinhas/thumb/slide-01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/19_carrossel_album-de-figurinhas/thumb/slide-02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/19_carrossel_album-de-figurinhas/thumb/slide-03.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "20_card_voce-bate-122-robos",
@@ -366,10 +263,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/20_card_voce-bate-122-robos/card.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/20_card_voce-bate-122-robos/thumb/card.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "21_card_ranking-ao-vivo",
@@ -380,10 +274,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/21_card_ranking-ao-vivo/card.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/21_card_ranking-ao-vivo/thumb/card.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "22_card_convoca-a-galera",
@@ -394,10 +285,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/22_card_convoca-a-galera/card.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/22_card_convoca-a-galera/thumb/card.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "23_card_duelo-de-pelucias",
@@ -408,10 +296,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/23_card_duelo-de-pelucias/card.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/23_card_duelo-de-pelucias/thumb/card.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "24_card_carta-de-jogador",
@@ -422,10 +307,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/24_card_carta-de-jogador/card.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/24_card_carta-de-jogador/thumb/card.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "25_card_antes-e-depois",
@@ -436,10 +318,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/25_card_antes-e-depois/card.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/25_card_antes-e-depois/thumb/card.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "26_card_drake",
@@ -450,10 +329,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/26_card_drake/card.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/26_card_drake/thumb/card.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "27_story_qual-seu-mascote",
@@ -464,10 +340,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/27_story_qual-seu-mascote/story.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/27_story_qual-seu-mascote/thumb/story.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "28_story_sequencia-do-dia",
@@ -478,10 +351,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/28_story_sequencia-do-dia/story.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/28_story_sequencia-do-dia/thumb/story.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "29_story_adivinha-qual-ia",
@@ -492,10 +362,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/29_story_adivinha-qual-ia/story.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/29_story_adivinha-qual-ia/thumb/story.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "30_story_chuta-antes-da-bola",
@@ -506,10 +373,25 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/30_story_chuta-antes-da-bola/story.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/30_story_chuta-antes-da-bola/thumb/story.webp"
-    ]
+    "hasVideo": false
+  },
+  {
+    "id": "31_carrossel_retrospectiva-grupos",
+    "tipo": "carrossel",
+    "titulo": "Retrospectiva Grupos",
+    "caption": "72 jogos. 55 IAs. 3.902 palpites. A fase de grupos da Copa 2026 acabou — e as máquinas tentaram cravar cada placar. ⚽🤖\n\nArrasta pra ver quem ganhou o bolão das IAs, quem acertou mais, qual foi a zebra que derrubou o consenso de 45 modelos, e por que prever gols ainda é mais arte do que ciência.\n\n👉 Retrospectiva completa: bolao.arenadasias.com.br/retrospectiva-grupos\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Retrospectiva #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #FutebolETech #ArenaDasIAs #SerieA #BolaDeCristal",
+    "roteiro": "# Roteiro — Carrossel 31: Retrospectiva da Fase de Grupos\n\n**Formato:** 8 slides · 1080×1350 px (portrait 4:5)\n**Tom:** Narrativo, punchy, PT-BR. Dark slides para dados impactantes.\n\n---\n\n## Slide 01 — Capa\n**Visual:** Fundo branco com gradiente BR, título grande, pills verde/azul.\n**Texto principal:** \"Retrospectiva da Fase de Grupos\"\n**Subtítulo:** \"72 jogos · 55 IAs · milhares de palpites — o que as máquinas acertaram\"\n**Gancho:** \"arraste pra ver →\"\n\n---\n\n## Slide 02 — Os números\n**Visual:** 4 cards coloridos em grid 2×2 + barra de destaque.\n**Dados:**\n- 72 jogos disputados\n- 55 IAs palpitando\n- 3.902 palpites registrados\n- 216 gols nas redes\n- Média 3.0 gols/jogo\n\n---\n\n## Slide 03 — A campeã geral\n**Visual:** Troféu gigante, nome em gradiente dourado, tabela top-5.\n**Destaque:** Grok 4 Fast Reasoning — 344 pts, 14 placares exatos\n**Top 5 geral:** Grok 4 Fast Reasoning · OpenAI o3 · Claude Opus 4.7 · Mistral Small 3 · WizardLM 2 8x22B\n\n---\n\n## Slide 04 — Pódio da Série A\n**Visual:** Pódio visual com logos das IAs, alturas proporcionais à posição.\n**Pódio:**\n1. Claude Opus 4.8 — 319 pts, 14 exatos\n2. Grok 4 Heavy — 307 pts, 13 exatos\n3. Le Chat Mistral — 294 pts, 11 exatos\n\n---\n\n## Slide 05 — Bola de Cristal: acertou o vencedor\n**Visual:** Dark slide, cristal emoji, anel de progresso verde.\n**Mensagem:** O consenso das IAs acertou o vencedor em 64% dos jogos (46/72).\n**Tom:** \"As máquinas sabem quem ganha — na média.\"\n\n---\n\n## Slide 06 — Mas placar exato é outra história\n**Visual:** Dark slide roxo-rosa, dois anéis (64% verde vs 17% rosa).\n**Mensagem:** Só 17% de placares exatos (12/72). Prever gols é mais arte do que ciência.\n**Contraste:** A distância entre saber o vencedor e cravar o placar.\n\n---\n\n## Slide 07 — A maior zebra\n**Visual:** Dark slide, zebra emoji, bandeiras do Qatar e Suíça.\n**Jogo:** Qatar 1×1 Suíça (Jogo #8)\n**Drama:** 45 IAs cravaram 0×2. O resultado virou tudo de cabeça pra baixo.\n**Tagline:** \"Futebol 1, Algoritmos 0.\"\n\n---\n\n## Slide 08 — CTA\n**Visual:** Fundo branco, cristal emoji, URL em destaque azul.\n**CTA:** bolao.arenadasias.com.br/retrospectiva-grupos\n**Calls secundários:** Ver ranking completo das 55 IAs + entrar no bolão do mata-mata.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/31_carrossel_retrospectiva-grupos/slide-01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/31_carrossel_retrospectiva-grupos/slide-02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/31_carrossel_retrospectiva-grupos/slide-03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/31_carrossel_retrospectiva-grupos/slide-04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/31_carrossel_retrospectiva-grupos/slide-05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/31_carrossel_retrospectiva-grupos/slide-06.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/31_carrossel_retrospectiva-grupos/slide-07.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/31_carrossel_retrospectiva-grupos/slide-08.png"
+    ],
+    "hasVideo": false
   },
   {
     "id": "60_reel_corrida-das-ias",
@@ -520,10 +402,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/60_reel_corrida-das-ias/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/60_reel_corrida-das-ias/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "61_reel_corrida-modo-a",
@@ -534,10 +413,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/61_reel_corrida-modo-a/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/61_reel_corrida-modo-a/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "62_reel_corrida-modo-a-horizontal",
@@ -548,10 +424,7 @@
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/62_reel_corrida-modo-a-horizontal/poster.png"
     ],
-    "hasVideo": true,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/62_reel_corrida-modo-a-horizontal/thumb/poster.webp"
-    ]
+    "hasVideo": true
   },
   {
     "id": "70_carrossel_mascotes__01_chatgpt-5-thinking",
@@ -568,16 +441,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/slide_06.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/slide_07.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_06.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__01_chatgpt-5-thinking/thumb/slide_07.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__02_claude-opus-4-8",
@@ -593,15 +457,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/slide_05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/slide_06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__02_claude-opus-4-8/thumb/slide_06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__03_gemini-2-5-pro",
@@ -617,15 +473,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/slide_05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/slide_06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__03_gemini-2-5-pro/thumb/slide_06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__04_grok-4-heavy",
@@ -641,15 +489,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/slide_05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/slide_06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__04_grok-4-heavy/thumb/slide_06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__05_deepseek-r1",
@@ -665,15 +505,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/slide_05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/slide_06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__05_deepseek-r1/thumb/slide_06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__06_perplexity-sonar-pro",
@@ -689,15 +521,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/slide_05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/slide_06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__06_perplexity-sonar-pro/thumb/slide_06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__07_copilot-microsoft",
@@ -712,14 +536,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/slide_04.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/slide_05.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__07_copilot-microsoft/thumb/slide_05.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__08_le-chat-mistral",
@@ -737,17 +554,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/slide_07.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/slide_08.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_06.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_07.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__08_le-chat-mistral/thumb/slide_08.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__09_meta-llama-4",
@@ -763,15 +570,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/slide_05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/slide_06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__09_meta-llama-4/thumb/slide_06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__10_qwen-3-max",
@@ -787,15 +586,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/slide_05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/slide_06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__10_qwen-3-max/thumb/slide_06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__11_manus",
@@ -811,15 +602,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/slide_05.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/slide_06.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_05.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__11_manus/thumb/slide_06.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "70_carrossel_mascotes__12_claude-fable-5",
@@ -834,14 +617,7 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_04.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_05.png"
     ],
-    "hasVideo": false,
-    "thumbs": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/thumb/slide_01.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/thumb/slide_02.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/thumb/slide_03.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/thumb/slide_04.webp",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/thumb/slide_05.webp"
-    ]
+    "hasVideo": false
   },
   {
     "id": "vinheta-J73-za-ca",
