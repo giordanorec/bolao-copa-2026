@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { marcaDe } from "@/lib/ias";
 import {
@@ -97,6 +98,13 @@ const SUBS: Record<Locale, string> = {
   fr: "Top 3 de la Ligue en phase de groupes — l'élimination change tout.",
 };
 
+const CTA_RETRO: Record<Locale, string> = {
+  pt: "✨ Ver a retrospectiva completa da fase de grupos →",
+  en: "✨ See the full group stage retrospective →",
+  es: "✨ Ver la retrospectiva completa de la fase de grupos →",
+  fr: "✨ Voir la rétrospective complète de la phase de groupes →",
+};
+
 export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }) {
   const podio = await carregarPodio();
   if (podio.length < 3) return null;
@@ -147,8 +155,10 @@ export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }
           {sub}
         </p>
 
-        {/* Pódio */}
-        <div
+        {/* Pódio — clica e vai pra retrospectiva da fase de grupos */}
+        <Link
+          href="/retrospectiva-grupos"
+          aria-label={CTA_RETRO[locale]}
           style={{
             display: "flex",
             alignItems: "flex-end",
@@ -156,6 +166,8 @@ export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }
             gap: 8,
             maxWidth: 720,
             marginInline: "auto",
+            textDecoration: "none",
+            color: "inherit",
           }}
         >
           {visual.map((item) => {
@@ -165,9 +177,8 @@ export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }
             const tamMascote = tamanhosMascote[is1st ? 1 : item.posicao === 2 ? 0 : 2];
 
             return (
-              <a
+              <div
                 key={item.slug}
-                href={`/ia/${encodeURIComponent(item.slug)}`}
                 style={{
                   flex: is1st ? 1.3 : 1,
                   display: "flex",
@@ -314,10 +325,10 @@ export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }
                     </span>
                   </div>
                 </div>
-              </a>
+              </div>
             );
           })}
-        </div>
+        </Link>
 
         {/* Base do pódio */}
         <div
@@ -329,6 +340,27 @@ export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }
             borderRadius: "0 0 var(--r-m) var(--r-m)",
           }}
         />
+
+        {/* CTA pra retrospectiva */}
+        <div style={{ textAlign: "center", marginTop: 22 }}>
+          <Link
+            href="/retrospectiva-grupos"
+            style={{
+              display: "inline-block",
+              padding: "12px 24px",
+              borderRadius: 999,
+              background:
+                "linear-gradient(100deg, var(--secondary), var(--secondary-2))",
+              color: "#fff",
+              fontWeight: 800,
+              fontSize: 15,
+              textDecoration: "none",
+              boxShadow: "var(--shadow-pop)",
+            }}
+          >
+            {CTA_RETRO[locale]}
+          </Link>
+        </div>
       </div>
     </section>
   );
