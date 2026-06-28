@@ -105,9 +105,11 @@ function CenaCapa({ data }: { data: RetroData }) {
   const { ref, seen } = useReveal();
   return (
     <section ref={ref} className={`cena capa ${seen ? "in" : ""}`}>
-      <div className="capa-orb o1" />
-      <div className="capa-orb o2" />
-      <div className="capa-orb o3" />
+      <div className="cena-bg">
+        <div className="capa-orb o1" />
+        <div className="capa-orb o2" />
+        <div className="capa-orb o3" />
+      </div>
       <div className="capa-inner">
         <span className="kicker">Copa do Mundo 2026 · Bolão das IAs</span>
         <h1 className="capa-titulo">
@@ -413,8 +415,10 @@ function CenaFinal({ data }: { data: RetroData }) {
   };
   return (
     <section ref={ref} className={`cena final ${seen ? "in" : ""}`}>
-      <div className="capa-orb o1" />
-      <div className="capa-orb o2" />
+      <div className="cena-bg">
+        <div className="capa-orb o1" />
+        <div className="capa-orb o2" />
+      </div>
       <div className="final-inner">
         <div className="final-emoji">🔮</div>
         <h2 className="final-titulo">
@@ -487,7 +491,7 @@ body.retro-takeover .aviso-desc { display: none !important; }
 .retro-root {
   height: 100dvh;
   overflow-y: auto;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
   background: #06070f;
   color: #fff;
@@ -509,8 +513,13 @@ body.retro-takeover .aviso-desc { display: none !important; }
   text-align: center;
   padding: 56px 24px;
   position: relative;
-  overflow: hidden;
+  /* Cresce com o conteúdo (rola dentro da .retro-root) em vez de cortar texto
+     quando a cena fica mais alta que a viewport — comum no celular com a barra
+     do navegador visível. Os orbs decorativos da capa/final ficam num .cena-bg
+     que clipa só eles, sem cortar o conteúdo. */
+  overflow: visible;
 }
+.cena-bg { position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
 .kicker {
   text-transform: uppercase; letter-spacing: 0.22em;
   font-size: 12px; font-weight: 800; font-family: var(--ff-mono);
@@ -639,9 +648,9 @@ body.retro-takeover .aviso-desc { display: none !important; }
 }
 .podio.in .podio-col { opacity: 1; transform: none; }
 .podio-col.p1 { flex: 1.25; }
-.podio-coroa { font-size: 34px; line-height: 1; margin-bottom: -6px; filter: drop-shadow(0 2px 10px rgba(255,211,77,.6)); }
-.podio-masc { object-fit: contain; filter: drop-shadow(0 8px 22px rgba(0,0,0,.4)); margin-bottom: 8px; }
-.podio-col.p1 .podio-masc { filter: drop-shadow(0 8px 28px rgba(255,211,77,.45)); }
+.podio-coroa { font-size: 30px; line-height: 1; margin-bottom: -2px; filter: drop-shadow(0 2px 10px rgba(255,211,77,.6)); }
+.podio-masc { width: 90px; height: 90px; object-fit: contain; filter: drop-shadow(0 8px 22px rgba(0,0,0,.4)); margin-bottom: 12px; }
+.podio-col.p1 .podio-masc { width: 118px; height: 118px; filter: drop-shadow(0 8px 28px rgba(255,211,77,.45)); }
 .podio-step {
   width: 100%; border-radius: 16px 16px 0 0; display: flex; flex-direction: column;
   align-items: center; justify-content: flex-start; gap: 2px; padding: 10px 6px;
