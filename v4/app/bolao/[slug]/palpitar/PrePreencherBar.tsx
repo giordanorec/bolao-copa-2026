@@ -60,7 +60,9 @@ export default function PrePreencherBar({
               marginTop: 2,
             }}
           >
-            Copia em lote os palpites de uma IA ou da Bola de Cristal.
+            Copia em lote os palpites de uma IA ou da Bola de Cristal. Só
+            altera jogos que ainda não começaram — os já iniciados ficam
+            intactos.
           </p>
         </div>
         <button
@@ -106,7 +108,7 @@ export default function PrePreencherBar({
               onClick={() => {
                 if (
                   confirm(
-                    `Substituir TODOS os ${totalJogos} palpites pelos de ${escolhida?.nome}?`,
+                    `Sobrescrever seus palpites dos jogos que ainda não começaram pelos de ${escolhida?.nome}? (Jogos já iniciados não são tocados.)`,
                   )
                 ) {
                   onAplicar(escolhido, "todos");
@@ -116,7 +118,7 @@ export default function PrePreencherBar({
               className="btn primary small"
               style={{ flex: 1 }}
             >
-              ⚡ Substituir todos
+              ⚡ Sobrescrever os futuros
             </button>
             <button
               onClick={() => {
@@ -126,7 +128,7 @@ export default function PrePreencherBar({
               className="btn small"
               style={{ flex: 1 }}
             >
-              🎯 Preencher só vazios
+              🎯 Preencher só os vazios
             </button>
           </div>
           <p
