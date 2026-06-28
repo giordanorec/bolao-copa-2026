@@ -14,22 +14,22 @@ const TX: Record<
 > = {
   pt: {
     titulo: "🏃 A corrida das IAs",
-    lede: "Cada IA avança jogo a jogo; a posição é a pontuação real acumulada. Default: Mata-mata, Série A. Use os seletores pra explorar.",
+    lede: "Cada IA avança jogo a jogo; a posição é a pontuação real acumulada. Default: Fase de grupos, Série A. Use os seletores pra explorar.",
     cta: "Ver mais visualizações (bar race + gráfico) →",
   },
   en: {
     titulo: "🏃 The AI Race",
-    lede: "Each AI advances match by match; position is the real cumulative score. Default: Knockout, Premier League. Use the selectors to explore.",
+    lede: "Each AI advances match by match; position is the real cumulative score. Default: Group stage, Premier League. Use the selectors to explore.",
     cta: "See more views (bar race + chart) →",
   },
   es: {
     titulo: "🏃 La carrera de las IAs",
-    lede: "Cada IA avanza partido a partido; la posición es el puntaje real acumulado. Por defecto: Mata-mata, Liga A. Usa los selectores para explorar.",
+    lede: "Cada IA avanza partido a partido; la posición es el puntaje real acumulado. Por defecto: Fase de grupos, Liga A. Usa los selectores para explorar.",
     cta: "Ver más visualizaciones (bar race + gráfico) →",
   },
   fr: {
     titulo: "🏃 La course des IA",
-    lede: "Chaque IA avance match par match ; la position est le score réel cumulé. Par défaut : Éliminatoires, Ligue 1. Utilisez les sélecteurs pour explorer.",
+    lede: "Chaque IA avance match par match ; la position est le score réel cumulé. Par défaut : Phase de groupes, Ligue 1. Utilisez les sélecteurs pour explorer.",
     cta: "Voir plus de visualisations (bar race + graphique) →",
   },
 };
@@ -63,7 +63,12 @@ export default async function CorridaHome({
           </p>
         </div>
 
-        <CorridaComSelector grupos={grupos} matamata={matamata} geral={geral} />
+        <CorridaComSelector
+          grupos={grupos}
+          matamata={matamata}
+          geral={geral}
+          faseInicial="grupos"
+        />
 
         <div style={{ marginTop: 18, textAlign: "center" }}>
           <Link

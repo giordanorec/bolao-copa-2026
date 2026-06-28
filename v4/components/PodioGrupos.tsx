@@ -106,8 +106,27 @@ export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }
 
   // Ordem visual: 2º (esq), 1º (centro/maior), 3º (dir)
   const visual: [PodioItem, PodioItem, PodioItem] = [podio[1], podio[0], podio[2]];
-  const alturas = [160, 210, 130]; // altura do degrau em px (visual: 2, 1, 3)
-  const tamanhosMascote = [100, 140, 88]; // img do mascote
+  const alturas = [180, 280, 140]; // altura do degrau em px (visual: 2, 1, 3)
+  const tamanhosMascote = [108, 178, 92]; // img do mascote (só ele em cima)
+
+  // Tinta do degrau por colocação (ouro / prata / bronze)
+  const TINTA: Record<1 | 2 | 3, { grad: string; cor: string; borda: string }> = {
+    1: {
+      grad: "linear-gradient(165deg, #FFD34D 0%, #E0A100 60%, #B97E00 100%)",
+      cor: "#3a2a00",
+      borda: "#FFD34D",
+    },
+    2: {
+      grad: "linear-gradient(165deg, #E8ECF2 0%, #B9C0CC 60%, #969DAA 100%)",
+      cor: "#2a2f38",
+      borda: "#C9D0DA",
+    },
+    3: {
+      grad: "linear-gradient(165deg, #E6A86B 0%, #C07B3C 60%, #9A5E28 100%)",
+      cor: "#3a2208",
+      borda: "#E6A86B",
+    },
+  };
 
   return (
     <section className="section" style={{ paddingBottom: 0 }}>
@@ -120,7 +139,7 @@ export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }
             textAlign: "center",
             color: "var(--fg-mid)",
             fontSize: 15,
-            marginBottom: 40,
+            marginBottom: 44,
             maxWidth: 560,
             marginInline: "auto",
           }}
@@ -134,22 +153,23 @@ export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "center",
-            gap: 0,
-            maxWidth: 680,
+            gap: 8,
+            maxWidth: 720,
             marginInline: "auto",
           }}
         >
-          {visual.map((item, vi) => {
-            const alturaBloco = alturas[vi];
-            const tamMascote = tamanhosMascote[vi];
+          {visual.map((item) => {
             const is1st = item.posicao === 1;
+            const tinta = TINTA[item.posicao];
+            const alturaBloco = alturas[is1st ? 1 : item.posicao === 2 ? 0 : 2];
+            const tamMascote = tamanhosMascote[is1st ? 1 : item.posicao === 2 ? 0 : 2];
 
             return (
               <a
                 key={item.slug}
                 href={`/ia/${encodeURIComponent(item.slug)}`}
                 style={{
-                  flex: 1,
+                  flex: is1st ? 1.3 : 1,
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
@@ -157,127 +177,142 @@ export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }
                   color: "inherit",
                 }}
               >
-                {/* Mascote + medalha acima do degrau */}
+                {/* Coroa só no 1º lugar */}
+                {is1st && (
+                  <div
+                    style={{
+                      fontSize: 40,
+                      lineHeight: 1,
+                      marginBottom: -8,
+                      filter: "drop-shadow(0 2px 8px rgba(255,211,77,.6))",
+                    }}
+                    aria-hidden
+                  >
+                    👑
+                  </div>
+                )}
+
+                {/* SÓ o mascote em cima do degrau */}
                 <div
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    paddingBottom: 8,
-                    gap: 6,
+                    position: "relative",
+                    display: "inline-block",
+                    marginBottom: 6,
                   }}
                 >
-                  <div style={{ position: "relative", display: "inline-block" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`/mascots/${item.slug}.png`}
-                      alt={`Mascote ${item.nome}`}
-                      width={tamMascote}
-                      height={tamMascote}
-                      loading="lazy"
-                      style={{
-                        width: tamMascote,
-                        height: tamMascote,
-                        objectFit: "contain",
-                        display: "block",
-                        filter: is1st
-                          ? "drop-shadow(0 4px 16px color-mix(in srgb, var(--secondary) 40%, transparent))"
-                          : "none",
-                      }}
-                    />
-                    {/* Badge do ícone de marca */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: -4,
-                        right: -4,
-                        background: "var(--bg)",
-                        borderRadius: "50%",
-                        padding: 3,
-                        border: "1px solid var(--line)",
-                        lineHeight: 0,
-                      }}
-                    >
-                      <IconeIA slug={item.slug} size={is1st ? 22 : 16} />
-                    </div>
-                  </div>
-
-                  {/* Medalha + nome + pontos */}
-                  <div style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: is1st ? 28 : 22, lineHeight: 1 }}>
-                      {item.medal}
-                    </div>
-                    <div
-                      style={{
-                        fontWeight: 800,
-                        fontSize: is1st ? 14 : 12,
-                        color: "var(--fg)",
-                        marginTop: 2,
-                        lineHeight: 1.2,
-                        maxWidth: 120,
-                      }}
-                    >
-                      {item.nome}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "var(--ff-display)",
-                        fontSize: is1st ? 22 : 17,
-                        fontWeight: 900,
-                        color: is1st ? "var(--secondary)" : "var(--fg-mid)",
-                        marginTop: 2,
-                        lineHeight: 1,
-                      }}
-                    >
-                      {item.pontos}
-                      <span
-                        style={{
-                          fontSize: 11,
-                          fontFamily: "var(--ff-mono)",
-                          fontWeight: 700,
-                          color: "var(--fg-muted)",
-                          marginLeft: 3,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.06em",
-                        }}
-                      >
-                        pts
-                      </span>
-                    </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/mascots/${item.slug}.png`}
+                    alt={`Mascote ${item.nome}`}
+                    width={tamMascote}
+                    height={tamMascote}
+                    loading="lazy"
+                    style={{
+                      width: tamMascote,
+                      height: tamMascote,
+                      objectFit: "contain",
+                      display: "block",
+                      filter: is1st
+                        ? "drop-shadow(0 6px 22px rgba(255,211,77,.55))"
+                        : "drop-shadow(0 4px 12px rgba(0,0,0,.25))",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: -2,
+                      right: -2,
+                      background: "var(--bg)",
+                      borderRadius: "50%",
+                      padding: 3,
+                      border: "1px solid var(--line)",
+                      lineHeight: 0,
+                    }}
+                  >
+                    <IconeIA slug={item.slug} size={is1st ? 24 : 16} />
                   </div>
                 </div>
 
-                {/* Degrau */}
+                {/* Degrau com legendas SOBREPOSTAS */}
                 <div
                   style={{
                     width: "100%",
                     height: alturaBloco,
-                    background: is1st
-                      ? "linear-gradient(160deg, color-mix(in srgb, var(--secondary) 30%, var(--bg-1)), color-mix(in srgb, var(--accent) 18%, var(--bg-1)))"
-                      : "var(--bg-1)",
-                    border: "1px solid var(--line)",
+                    background: tinta.grad,
+                    border: `1px solid ${tinta.borda}`,
                     borderBottom: "none",
                     borderRadius: "var(--r-m) var(--r-m) 0 0",
                     display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "center",
-                    paddingTop: 12,
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    paddingTop: is1st ? 16 : 12,
+                    gap: 3,
+                    position: "relative",
+                    overflow: "hidden",
                     boxShadow: is1st
-                      ? "0 -4px 20px color-mix(in srgb, var(--secondary) 14%, transparent)"
-                      : "none",
+                      ? "0 -6px 28px rgba(255,211,77,.30)"
+                      : "0 -2px 12px rgba(0,0,0,.12)",
                   }}
                 >
+                  {/* nº gigante de marca d'água no fundo */}
                   <span
                     style={{
-                      fontFamily: "var(--ff-mono)",
+                      position: "absolute",
+                      bottom: -8,
+                      fontFamily: "var(--ff-display)",
                       fontWeight: 900,
-                      fontSize: is1st ? 28 : 20,
-                      color: is1st ? "var(--secondary)" : "var(--fg-muted)",
-                      opacity: 0.6,
+                      fontSize: is1st ? 130 : 90,
+                      color: tinta.cor,
+                      opacity: 0.14,
+                      lineHeight: 1,
+                      pointerEvents: "none",
                     }}
                   >
                     {item.posicao}
                   </span>
+
+                  <div style={{ fontSize: is1st ? 38 : 26, lineHeight: 1, position: "relative" }}>
+                    {item.medal}
+                  </div>
+                  <div
+                    style={{
+                      fontWeight: 800,
+                      fontSize: is1st ? 17 : 13,
+                      color: tinta.cor,
+                      lineHeight: 1.15,
+                      textAlign: "center",
+                      padding: "0 8px",
+                      position: "relative",
+                    }}
+                  >
+                    {item.nome}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "var(--ff-display)",
+                      fontSize: is1st ? 34 : 22,
+                      fontWeight: 900,
+                      color: tinta.cor,
+                      lineHeight: 1,
+                      position: "relative",
+                    }}
+                  >
+                    {item.pontos}
+                    <span
+                      style={{
+                        fontSize: 11,
+                        fontFamily: "var(--ff-mono)",
+                        fontWeight: 700,
+                        marginLeft: 3,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.06em",
+                        opacity: 0.7,
+                      }}
+                    >
+                      pts
+                    </span>
+                  </div>
                 </div>
               </a>
             );
@@ -287,9 +322,9 @@ export default async function PodioGrupos({ locale = "pt" }: { locale?: Locale }
         {/* Base do pódio */}
         <div
           style={{
-            maxWidth: 680,
+            maxWidth: 720,
             marginInline: "auto",
-            height: 6,
+            height: 7,
             background: "var(--line)",
             borderRadius: "0 0 var(--r-m) var(--r-m)",
           }}

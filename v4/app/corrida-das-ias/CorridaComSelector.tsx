@@ -37,13 +37,14 @@ export default function CorridaComSelector({
   grupos,
   matamata,
   geral,
+  faseInicial = "matamata",
 }: {
   grupos: DadosFase;
   matamata: DadosFase;
   geral: DadosFase;
+  faseInicial?: FaseCorrida;
 }) {
-  // Default: mata-mata (fase atual da Copa)
-  const [fase, setFase] = useState<FaseCorrida>("matamata");
+  const [fase, setFase] = useState<FaseCorrida>(faseInicial);
 
   // Dados da fase selecionada
   const dadosFase: DadosFase =
