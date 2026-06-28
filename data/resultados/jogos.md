@@ -74,3 +74,7 @@ no cálculo de pontuação.
 | 63 | Grupo G | Sáb 27/06 | 00h00 | Seattle | Egito | 1 | 1 | Irã |
 | 65 | Grupo H | Sex 26/06 | 21h00 | Houston | Cabo Verde | 0 | 0 | Arábia Saudita |
 | 66 | Grupo H | Sex 26/06 | 21h00 | Guadalajara | Uruguai | 0 | 1 | Espanha |
+| 67 | Grupo L | Sáb 27/06 | 18h00 | Nova York/NJ | Panamá | 0 | 2 | Inglaterra |
+| 68 | Grupo L | Sáb 27/06 | 18h00 | Filadélfia | Croácia | 2 | 1 | Gana |
+| 71 | Grupo K | Sáb 27/06 | 20h30 | Miami | Colômbia | 0 | 0 | Portugal |
+| 72 | Grupo K | Sáb 27/06 | 20h30 | Atlanta | Congo (RD) | 3 | 1 | Uzbequistão |
