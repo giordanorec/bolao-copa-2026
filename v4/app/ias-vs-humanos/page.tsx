@@ -4,7 +4,7 @@ import path from "path";
 import IconeIA from "@/components/IconeIA";
 import { resolverLocale } from "@/lib/locale-server";
 import { carregarTodosHumanos, type HumanoPts } from "@/lib/humanos-pts";
-import { ehSerieA, nomeSerieA, SLUGS_SERIE_A } from "@/lib/serie-a";
+import { ehSerieA, nomeSerieA, SLUGS_SERIE_A, FALLBACK_NAO_WEB } from "@/lib/serie-a";
 import { scorePopularidade } from "@/lib/ias";
 import type { Locale } from "@/lib/i18n";
 
@@ -266,8 +266,39 @@ export default async function IAsVsHumanosPage() {
       scorePopularidade(a.slug) - scorePopularidade(b.slug),
   );
 
-  // Série A: manter só slugs que são -web e que estão em SLUGS_SERIE_A
-  const serieA = iasSorted.filter((ia) => SLUGS_SERIE_A.includes(ia.slug));
+  // Série A: cada slug "-web" da vitrine resolve pro irmão com mais jogos.
+  // Os slugs "-web" no JSON só carregam dados do mata-mata (16 jogos);
+  // os pontos completos (com fase de grupos) estão nos irmãos sem "-web"
+  // (FALLBACK_NAO_WEB). Sem essa resolução, todas as médias/melhor IA
+  // ficariam zeradas em ~20 pts.
+  const iasPorSlug = new Map(ias.map((i) => [i.slug, i]));
+  const serieA: IAItem[] = [];
+  for (const slug of SLUGS_SERIE_A) {
+    const oficial = iasPorSlug.get(slug);
+    const irmaoSlug = FALLBACK_NAO_WEB[slug];
+    const irmao = irmaoSlug ? iasPorSlug.get(irmaoSlug) : undefined;
+    let fonte = oficial;
+    if (
+      irmao &&
+      (!oficial ||
+        irmao.geral.jogos_palpitados > oficial.geral.jogos_palpitados)
+    ) {
+      fonte = irmao;
+    }
+    if (!fonte) continue;
+    serieA.push({
+      slug, // mantém slug da vitrine pra display
+      nome: nomeSerieA(slug) ?? fonte.nome,
+      serieA: true,
+      geral: fonte.geral, // dados do mais completo dos dois
+    });
+  }
+  serieA.sort(
+    (a, b) =>
+      b.geral.pontos - a.geral.pontos ||
+      b.geral.placares_exatos - a.geral.placares_exatos ||
+      scorePopularidade(a.slug) - scorePopularidade(b.slug),
+  );
 
   // Humanos ordenados por pts
   const humanosSorted = [...humanos].sort(
@@ -279,12 +310,11 @@ export default async function IAsVsHumanosPage() {
 
   // ── Placar destaque ─────────────────────────────────────────────────────
   const melhorHumano = humanosSorted[0] ?? null;
+  // "Melhor IA" = líder global, não restrito à Série A
   const melhorIA = iasSorted[0] ?? null;
-  const melhorSerieA = serieA[0] ?? null;
 
-  // Placar usa melhor IA Série A vs melhor humano
   const ptsHumanoLider = melhorHumano?.geral.pontos ?? 0;
-  const ptsIALider = melhorSerieA?.geral.pontos ?? melhorIA?.geral.pontos ?? 0;
+  const ptsIALider = melhorIA?.geral.pontos ?? 0;
   const diff = Math.abs(ptsHumanoLider - ptsIALider);
   const lideraHumano = ptsHumanoLider > ptsIALider;
   const lideraIA = ptsIALider > ptsHumanoLider;
@@ -499,7 +529,7 @@ export default async function IAsVsHumanosPage() {
                 {ptsIALider}
               </div>
               <div style={{ fontSize: 13, color: "var(--fg-muted)", marginTop: 6, minHeight: 20 }}>
-                {melhorSerieA?.nome ?? melhorIA?.nome ?? "—"}
+                {melhorIA?.nome ?? "—"}
               </div>
             </div>
           </div>
