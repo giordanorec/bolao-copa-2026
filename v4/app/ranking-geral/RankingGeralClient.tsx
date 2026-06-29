@@ -275,7 +275,10 @@ export default function RankingGeralClient({
           </p>
         </div>
       ) : (
-        <div className="ias-mini-grid">
+        <div
+          className="ias-mini-grid"
+          style={{ gridTemplateColumns: "1fr", maxWidth: 720, marginInline: "auto" }}
+        >
           {ordenadas.slice(0, limite).map((l, i) => {
             const stats = l[fase];
             const isLink = l.tipo === "ia" && l.slug && l.slug !== "bola-de-cristal";
