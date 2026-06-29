@@ -123,7 +123,7 @@ export default async function RankingGeralPage() {
 
   const { data: humanosOptIn } = await db
     .from("profiles")
-    .select("id, display_name, opt_in_geral")
+    .select("id, display_name, opt_in_geral, avatar_url")
     .eq("opt_in_geral", true);
 
   let linhasHumanos: LinhaFase[] = [];
@@ -150,7 +150,7 @@ export default async function RankingGeralPage() {
     });
 
     linhasHumanos = humanosOptIn.map(
-      (h: { id: string; display_name: string }) => {
+      (h: { id: string; display_name: string; avatar_url?: string | null }) => {
         const palps = porUser.get(h.id) ?? {};
 
         // Agregar por fase
@@ -175,6 +175,7 @@ export default async function RankingGeralPage() {
         return {
           tipo: "humano" as const,
           nome: h.display_name,
+          avatar_url: h.avatar_url ?? null,
           grupos: grp,
           matamata: mm,
           geral: {
