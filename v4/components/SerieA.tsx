@@ -37,16 +37,23 @@ async function carregarSerieA(): Promise<IA[]> {
     const porSlug = new Map<string, IA>();
     for (const ia of dados.ias) porSlug.set(ia.slug, ia);
 
-    // Pra cada slug da Série A:
-    // se o slug oficial não tem palpites apurados, usa do irmão sem "-web"
+    // Pra cada slug da Série A: escolhe entre o "-web" (vitrine) e o irmão
+    // sem "-web" (API) pelo que tem MAIS jogos apurados. Slugs "-web"
+    // recém-coletados só têm mata-mata (16 jogos) e ficariam ~20 pts;
+    // o irmão tem o histórico completo (72-73 jogos).
     const ias: IA[] = [];
     for (const slug of SLUGS_SERIE_A) {
       const oficial = porSlug.get(slug);
-      const fallback = FALLBACK_NAO_WEB[slug]
+      const irmao = FALLBACK_NAO_WEB[slug]
         ? porSlug.get(FALLBACK_NAO_WEB[slug])
         : undefined;
-      const fonte =
-        oficial && oficial.jogos_palpitados > 0 ? oficial : fallback ?? oficial;
+      let fonte = oficial;
+      if (
+        irmao &&
+        (!oficial || irmao.jogos_palpitados > oficial.jogos_palpitados)
+      ) {
+        fonte = irmao;
+      }
       if (!fonte) continue;
       ias.push({
         slug,
