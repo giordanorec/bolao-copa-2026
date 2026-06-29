@@ -17,6 +17,7 @@ function fasePorNumero(num: number): "grupos" | "matamata" {
 export type HumanoPts = {
   user_id: string;
   display_name: string;
+  avatar_url: string | null;
   opt_in_geral: boolean;
   grupos: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
   matamata: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
@@ -31,7 +32,7 @@ export async function carregarTodosHumanos(): Promise<HumanoPts[]> {
 
   const { data: todos } = await admin
     .from("profiles")
-    .select("id, display_name, opt_in_geral");
+    .select("id, display_name, opt_in_geral, avatar_url");
 
   if (!todos || todos.length === 0) return [];
 
@@ -57,7 +58,7 @@ export async function carregarTodosHumanos(): Promise<HumanoPts[]> {
     porUser.get(p.user_id)![p.jogo_numero] = p;
   });
 
-  return todos.map((h: { id: string; display_name: string; opt_in_geral: boolean }) => {
+  return todos.map((h: { id: string; display_name: string; opt_in_geral: boolean; avatar_url?: string | null }) => {
     const palps = porUser.get(h.id) ?? {};
     const zero = () => ({ pontos: 0, placares_exatos: 0, vencedores_acertados: 0, jogos_palpitados: 0 });
     const grp = zero();
@@ -80,6 +81,7 @@ export async function carregarTodosHumanos(): Promise<HumanoPts[]> {
     return {
       user_id: h.id,
       display_name: h.display_name,
+      avatar_url: h.avatar_url ?? null,
       opt_in_geral: h.opt_in_geral,
       grupos: grp,
       matamata: mm,

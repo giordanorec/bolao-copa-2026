@@ -2,6 +2,7 @@ import Link from "next/link";
 import { promises as fs } from "fs";
 import path from "path";
 import IconeIA from "@/components/IconeIA";
+import Avatar from "@/components/Avatar";
 import { resolverLocale } from "@/lib/locale-server";
 import { carregarTodosHumanos, type HumanoPts } from "@/lib/humanos-pts";
 import { ehSerieA, nomeSerieA, SLUGS_SERIE_A, FALLBACK_NAO_WEB } from "@/lib/serie-a";
@@ -27,8 +28,12 @@ type IAItem = {
   slug: string;
   nome: string;
   serieA: boolean;
+  grupos: FaseStat;
+  matamata: FaseStat;
   geral: FaseStat;
 };
+
+type Fase = "grupos" | "matamata" | "geral";
 
 // ── helpers ─────────────────────────────────────────────────────────────────
 
@@ -52,11 +57,23 @@ function mediana(vals: number[]): number {
     : sorted[mid];
 }
 
-function pctExatos(items: { geral: FaseStat }[]): string {
-  const total = items.reduce((s, i) => s + i.geral.jogos_palpitados, 0);
-  const exatos = items.reduce((s, i) => s + i.geral.placares_exatos, 0);
+function pctExatosIA(items: IAItem[], fase: Fase): string {
+  const total = items.reduce((s, i) => s + i[fase].jogos_palpitados, 0);
+  const exatos = items.reduce((s, i) => s + i[fase].placares_exatos, 0);
   if (total === 0) return "0%";
   return (Math.round((exatos / total) * 1000) / 10).toFixed(1) + "%";
+}
+
+function pctExatosH(items: HumanoPts[], fase: Fase): string {
+  const total = items.reduce((s, h) => s + h[fase].jogos_palpitados, 0);
+  const exatos = items.reduce((s, h) => s + h[fase].placares_exatos, 0);
+  if (total === 0) return "0%";
+  return (Math.round((exatos / total) * 1000) / 10).toFixed(1) + "%";
+}
+
+function validarFase(raw: string | undefined): Fase {
+  if (raw === "grupos" || raw === "matamata" || raw === "geral") return raw;
+  return "geral";
 }
 
 // ── carregamento IAs ─────────────────────────────────────────────────────────
@@ -77,6 +94,8 @@ async function carregarIAs(): Promise<IAItem[]> {
           nome_display?: string;
           pontos?: number;
           palpites_total?: number;
+          grupos?: FaseStat;
+          matamata?: FaseStat;
           geral?: FaseStat;
           placares_exatos?: number;
           jogos_palpitados?: number;
@@ -87,6 +106,8 @@ async function carregarIAs(): Promise<IAItem[]> {
             slug,
             nome: nomeSerieA(slug) ?? ia.nome_display ?? slug,
             serieA: ehSerieA(slug),
+            grupos: ia.grupos ?? zero,
+            matamata: ia.matamata ?? zero,
             geral: ia.geral ?? {
               pontos: ia.pontos ?? 0,
               placares_exatos: ia.placares_exatos ?? 0,
@@ -122,6 +143,24 @@ function tx(locale: Locale, key: string): string {
       en: "Same World Cup, same score, identical rules. Serie A AIs versus opt-in humans — and the anonymous ones who participate without appearing in the ranking.",
       es: "Mismo Mundial, mismo marcador, criterios idénticos. IAs de la Serie A versus humanos opt-in — y los anónimos que participan sin aparecer en el ranking.",
       fr: "Même Coupe, même score, critères identiques. IA de la Série A contre humains opt-in — et les anonymes qui participent sans figurer au classement.",
+    },
+    fase_grupos: {
+      pt: "Grupos",
+      en: "Groups",
+      es: "Grupos",
+      fr: "Groupes",
+    },
+    fase_matamata: {
+      pt: "Mata-mata",
+      en: "Knockout",
+      es: "Eliminatorias",
+      fr: "Élimination",
+    },
+    fase_geral: {
+      pt: "Geral",
+      en: "Overall",
+      es: "General",
+      fr: "Global",
     },
     placar_titulo: {
       pt: "Placar ao vivo",
@@ -177,17 +216,17 @@ function tx(locale: Locale, key: string): string {
     serie_a: { pt: "Série A (10 IAs)", en: "Serie A (10 AIs)", es: "Serie A (10 IAs)", fr: "Série A (10 IA)" },
     todas_ias: { pt: "Todas as IAs", en: "All AIs", es: "Todas las IAs", fr: "Toutes les IA" },
     humanos: { pt: "Humanos", en: "Humans", es: "Humanos", fr: "Humains" },
-    privados_titulo: {
-      pt: "Top 5 anônimos",
-      en: "Top 5 anonymous",
-      es: "Top 5 anónimos",
-      fr: "Top 5 anonymes",
+    top_humanos_titulo: {
+      pt: "Top Humanos",
+      en: "Top Humans",
+      es: "Top Humanos",
+      fr: "Top Humains",
     },
-    privados_sub: {
-      pt: "Participam mas preferem não aparecer no ranking público.",
-      en: "They participate but prefer not to appear in the public ranking.",
-      es: "Participan pero prefieren no aparecer en el ranking público.",
-      fr: "Ils participent mais préfèrent ne pas figurer dans le classement public.",
+    anonimo: {
+      pt: "Anônimo",
+      en: "Anonymous",
+      es: "Anónimo",
+      fr: "Anonyme",
     },
     usuario_privado: {
       pt: "Usuário privado",
@@ -196,23 +235,17 @@ function tx(locale: Locale, key: string): string {
       fr: "Utilisateur privé",
     },
     exatos: { pt: "exatos", en: "exact", es: "exactos", fr: "exacts" },
-    podio_titulo: {
-      pt: "Pódio lado a lado",
-      en: "Side-by-side podium",
-      es: "Podio lado a lado",
-      fr: "Podium côte à côte",
-    },
-    podio_humanos: {
-      pt: "Top 5 Humanos",
-      en: "Top 5 Humans",
-      es: "Top 5 Humanos",
-      fr: "Top 5 Humains",
-    },
     podio_ias: {
       pt: "Top 5 IAs",
       en: "Top 5 AIs",
       es: "Top 5 IAs",
       fr: "Top 5 IA",
+    },
+    sem_humanos: {
+      pt: "Nenhum humano com palpites ainda.",
+      en: "No humans with predictions yet.",
+      es: "Ningún humano con pronósticos aún.",
+      fr: "Aucun humain avec des pronostics pour l'instant.",
     },
     cta_titulo: {
       pt: "Você consegue bater as IAs?",
@@ -232,45 +265,37 @@ function tx(locale: Locale, key: string): string {
       es: "Entrar al Bolão Humanos × IAs →",
       fr: "Rejoindre le pool Humains × IA →",
     },
-    privado_sem_dados: {
-      pt: "Nenhum usuário privado com palpites ainda.",
-      en: "No anonymous users with predictions yet.",
-      es: "Ningún usuario privado con pronósticos aún.",
-      fr: "Aucun utilisateur anonyme avec des pronostics pour l'instant.",
-    },
-    sem_humanos: {
-      pt: "Nenhum humano opt-in com palpites ainda.",
-      en: "No opt-in humans with predictions yet.",
-      es: "Ningún humano opt-in con pronósticos aún.",
-      fr: "Aucun humain opt-in avec des pronostics pour l'instant.",
-    },
   };
   return d[key]?.[locale] ?? d[key]?.["pt"] ?? key;
 }
 
 // ── página ───────────────────────────────────────────────────────────────────
 
-export default async function IAsVsHumanosPage() {
+export default async function IAsVsHumanosPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ fase?: string }>;
+}) {
   const locale = await resolverLocale();
+  const sp = await searchParams;
+  const fase: Fase = validarFase(sp.fase);
 
   const [ias, humanos] = await Promise.all([
     carregarIAs(),
     carregarTodosHumanos(),
   ]);
 
-  // Ordenar IAs por pontos
+  // Ordenar IAs por pontos da fase escolhida
   const iasSorted = [...ias].sort(
     (a, b) =>
-      b.geral.pontos - a.geral.pontos ||
-      b.geral.placares_exatos - a.geral.placares_exatos ||
+      b[fase].pontos - a[fase].pontos ||
+      b[fase].placares_exatos - a[fase].placares_exatos ||
       scorePopularidade(a.slug) - scorePopularidade(b.slug),
   );
 
-  // Série A: cada slug "-web" da vitrine resolve pro irmão com mais jogos.
-  // Os slugs "-web" no JSON só carregam dados do mata-mata (16 jogos);
-  // os pontos completos (com fase de grupos) estão nos irmãos sem "-web"
-  // (FALLBACK_NAO_WEB). Sem essa resolução, todas as médias/melhor IA
-  // ficariam zeradas em ~20 pts.
+  // Série A: resolver sibling — para cada slug da vitrine, escolher o irmão
+  // com mais jogos_palpitados NA FASE ESCOLHIDA. Para geral, prefere o irmão
+  // sem "-web" (72+ jogos); para matamata, o "-web" pode ter mais jogos de mm.
   const iasPorSlug = new Map(ias.map((i) => [i.slug, i]));
   const serieA: IAItem[] = [];
   for (const slug of SLUGS_SERIE_A) {
@@ -281,48 +306,46 @@ export default async function IAsVsHumanosPage() {
     if (
       irmao &&
       (!oficial ||
-        irmao.geral.jogos_palpitados > oficial.geral.jogos_palpitados)
+        irmao[fase].jogos_palpitados > oficial[fase].jogos_palpitados)
     ) {
       fonte = irmao;
     }
     if (!fonte) continue;
     serieA.push({
-      slug, // mantém slug da vitrine pra display
+      slug,
       nome: nomeSerieA(slug) ?? fonte.nome,
       serieA: true,
-      geral: fonte.geral, // dados do mais completo dos dois
+      grupos: fonte.grupos,
+      matamata: fonte.matamata,
+      geral: fonte.geral,
     });
   }
   serieA.sort(
     (a, b) =>
-      b.geral.pontos - a.geral.pontos ||
-      b.geral.placares_exatos - a.geral.placares_exatos ||
+      b[fase].pontos - a[fase].pontos ||
+      b[fase].placares_exatos - a[fase].placares_exatos ||
       scorePopularidade(a.slug) - scorePopularidade(b.slug),
   );
 
-  // Humanos ordenados por pts
+  // Humanos: ordenados por pts da fase escolhida
   const humanosSorted = [...humanos].sort(
-    (a, b) => b.geral.pontos - a.geral.pontos,
+    (a, b) => b[fase].pontos - a[fase].pontos,
   );
-
-  const humanosOptIn = humanosSorted.filter((h) => h.opt_in_geral);
-  const humanosPrivados = humanosSorted.filter((h) => !h.opt_in_geral);
 
   // ── Placar destaque ─────────────────────────────────────────────────────
   const melhorHumano = humanosSorted[0] ?? null;
-  // "Melhor IA" = líder global, não restrito à Série A
   const melhorIA = iasSorted[0] ?? null;
 
-  const ptsHumanoLider = melhorHumano?.geral.pontos ?? 0;
-  const ptsIALider = melhorIA?.geral.pontos ?? 0;
+  const ptsHumanoLider = melhorHumano?.[fase].pontos ?? 0;
+  const ptsIALider = melhorIA?.[fase].pontos ?? 0;
   const diff = Math.abs(ptsHumanoLider - ptsIALider);
   const lideraHumano = ptsHumanoLider > ptsIALider;
   const lideraIA = ptsIALider > ptsHumanoLider;
 
   // ── Stats ────────────────────────────────────────────────────────────────
-  const ptsSerieA = serieA.map((i) => i.geral.pontos);
-  const ptsTodasIAs = iasSorted.map((i) => i.geral.pontos);
-  const ptsHumanos = humanosSorted.map((h) => h.geral.pontos);
+  const ptsSerieA = serieA.map((i) => i[fase].pontos);
+  const ptsTodasIAs = iasSorted.map((i) => i[fase].pontos);
+  const ptsHumanos = humanosSorted.map((h) => h[fase].pontos);
 
   const statsRows = [
     {
@@ -339,18 +362,26 @@ export default async function IAsVsHumanosPage() {
     },
     {
       label: tx(locale, "pct_exatos"),
-      serieA: pctExatos(serieA),
-      todasIAs: pctExatos(iasSorted),
-      humanos: pctExatos(humanosSorted),
+      serieA: pctExatosIA(serieA, fase),
+      todasIAs: pctExatosIA(iasSorted, fase),
+      humanos: pctExatosH(humanosSorted, fase),
     },
   ];
 
-  // ── Pódio ────────────────────────────────────────────────────────────────
-  const top5Humanos = humanosOptIn.slice(0, 5);
-  const top5IAs = iasSorted.slice(0, 5);
+  // ── Top Humanos (mistura opt-in + privados, ordem por pts) ──────────────
+  const topHumanos = humanosSorted.slice(0, 10);
+  const ranksHumanos = colocacoes(topHumanos.map((h) => h[fase].pontos));
 
-  const ranksHumanos = colocacoes(top5Humanos.map((h) => h.geral.pontos));
-  const ranksIAs = colocacoes(top5IAs.map((i) => i.geral.pontos));
+  // ── Top 5 IAs ────────────────────────────────────────────────────────────
+  const top5IAs = iasSorted.slice(0, 5);
+  const ranksIAs = colocacoes(top5IAs.map((i) => i[fase].pontos));
+
+  // ── Labels de fase para o seletor ────────────────────────────────────────
+  const fasesNav: { key: Fase; label: string }[] = [
+    { key: "grupos", label: tx(locale, "fase_grupos") },
+    { key: "matamata", label: tx(locale, "fase_matamata") },
+    { key: "geral", label: tx(locale, "fase_geral") },
+  ];
 
   return (
     <div style={{ marginTop: 40, paddingBottom: 64 }}>
@@ -358,7 +389,7 @@ export default async function IAsVsHumanosPage() {
       <section
         style={{
           textAlign: "center",
-          marginBottom: 48,
+          marginBottom: 32,
           padding: "0 16px",
         }}
       >
@@ -412,6 +443,44 @@ export default async function IAsVsHumanosPage() {
           {tx(locale, "hero_lead")}
         </p>
       </section>
+
+      {/* ── SELETOR DE FASE ───────────────────────────────────────────────── */}
+      <div
+        style={{
+          display: "flex",
+          gap: 8,
+          justifyContent: "center",
+          marginBottom: 40,
+          flexWrap: "wrap",
+          padding: "0 16px",
+        }}
+      >
+        {fasesNav.map(({ key, label }) => {
+          const ativo = fase === key;
+          return (
+            <Link
+              key={key}
+              href={`?fase=${key}`}
+              style={{
+                padding: "8px 22px",
+                borderRadius: 999,
+                border: `2px solid ${ativo ? "var(--primary)" : "var(--line-strong)"}`,
+                background: ativo
+                  ? "color-mix(in srgb, var(--primary) 12%, transparent)"
+                  : "var(--bg-2)",
+                color: ativo ? "var(--primary)" : "var(--fg)",
+                fontWeight: ativo ? 700 : 500,
+                fontSize: 14,
+                textDecoration: "none",
+                transition: "all 0.15s ease",
+                display: "inline-block",
+              }}
+            >
+              {label}
+            </Link>
+          );
+        })}
+      </div>
 
       {/* ── PLACAR IAs × HUMANOS ──────────────────────────────────────── */}
       <section style={{ maxWidth: 760, marginInline: "auto", marginBottom: 48, padding: "0 16px" }}>
@@ -654,7 +723,7 @@ export default async function IAsVsHumanosPage() {
         ))}
       </section>
 
-      {/* ── TOP 5 PRIVADOS ────────────────────────────────────────────────── */}
+      {/* ── TOP HUMANOS (unificado opt-in + privados) ─────────────────────── */}
       <section style={{ maxWidth: 760, marginInline: "auto", marginBottom: 48, padding: "0 16px" }}>
         <h2
           style={{
@@ -663,24 +732,14 @@ export default async function IAsVsHumanosPage() {
             fontFamily: "var(--ff-display)",
             fontVariationSettings: "var(--ff-display-vs)",
             fontWeight: "var(--ff-display-weight)",
-            marginBottom: 8,
+            marginBottom: 20,
             color: "var(--fg)",
           }}
         >
-          {tx(locale, "privados_titulo")}
+          {tx(locale, "top_humanos_titulo")}
         </h2>
-        <p
-          style={{
-            textAlign: "center",
-            color: "var(--fg-muted)",
-            fontSize: 14,
-            marginBottom: 20,
-          }}
-        >
-          {tx(locale, "privados_sub")}
-        </p>
 
-        {humanosPrivados.length === 0 ? (
+        {topHumanos.length === 0 ? (
           <p
             style={{
               textAlign: "center",
@@ -689,294 +748,206 @@ export default async function IAsVsHumanosPage() {
               padding: "24px 0",
             }}
           >
-            {tx(locale, "privado_sem_dados")}
+            {tx(locale, "sem_humanos")}
           </p>
         ) : (
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            {humanosPrivados.slice(0, 5).map((h, idx) => (
-              <div
-                key={h.user_id}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 16,
-                  padding: "14px 20px",
-                  borderBottom:
-                    idx < Math.min(humanosPrivados.length, 5) - 1
-                      ? "1px solid var(--line)"
-                      : "none",
-                  background: idx % 2 === 0 ? "var(--bg-2)" : "var(--bg-1)",
-                }}
-              >
-                <div
-                  style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: "50%",
-                    background: "var(--bg-soft)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 12,
-                    fontFamily: "var(--ff-mono)",
-                    fontWeight: 700,
-                    color: "var(--fg-muted)",
-                    flexShrink: 0,
-                  }}
-                >
-                  #{idx + 1}
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div
-                    style={{
-                      fontSize: "clamp(13px, 2vw, 15px)",
-                      fontWeight: 600,
-                      color: "var(--fg)",
-                    }}
-                  >
-                    {tx(locale, "usuario_privado")} #{idx + 1}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 12,
-                      color: "var(--fg-muted)",
-                      fontFamily: "var(--ff-mono)",
-                    }}
-                  >
-                    {h.geral.placares_exatos} {tx(locale, "exatos")}
-                  </div>
-                </div>
-                <div
-                  style={{
-                    fontSize: "clamp(20px, 4vw, 28px)",
-                    fontFamily: "var(--ff-display)",
-                    fontVariationSettings: "var(--ff-display-vs)",
-                    fontWeight: 800,
-                    color: "var(--fg)",
-                  }}
-                >
-                  {h.geral.pontos}{" "}
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 400,
-                      color: "var(--fg-muted)",
-                      fontFamily: "var(--ff-sans)",
-                    }}
-                  >
-                    {tx(locale, "pts")}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* ── PÓDIO LADO A LADO ─────────────────────────────────────────────── */}
-      <section style={{ maxWidth: 960, marginInline: "auto", marginBottom: 48, padding: "0 16px" }}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: 22,
-            fontFamily: "var(--ff-display)",
-            fontVariationSettings: "var(--ff-display-vs)",
-            fontWeight: "var(--ff-display-weight)",
-            marginBottom: 24,
-            color: "var(--fg)",
-          }}
-        >
-          {tx(locale, "podio_titulo")}
-        </h2>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: 20,
-          }}
-        >
-          {/* Top 5 Humanos */}
-          <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div
-              style={{
-                padding: "14px 20px",
-                background: "linear-gradient(90deg, color-mix(in srgb, var(--primary) 15%, var(--bg-1)), var(--bg-1))",
-                borderBottom: "1px solid var(--line)",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 12,
-                  fontFamily: "var(--ff-mono)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                  fontWeight: 700,
-                  color: "var(--primary)",
-                }}
-              >
-                👤 {tx(locale, "podio_humanos")}
-              </div>
-            </div>
-
-            {top5Humanos.length === 0 ? (
-              <div
-                style={{
-                  padding: "24px 20px",
-                  color: "var(--fg-dim)",
-                  fontSize: 13,
-                  textAlign: "center",
-                }}
-              >
-                {tx(locale, "sem_humanos")}
-              </div>
-            ) : (
-              top5Humanos.map((h, idx) => (
+            {topHumanos.map((h, idx) => {
+              const rank = ranksHumanos[idx];
+              const isOptIn = h.opt_in_geral;
+              return (
                 <div
                   key={h.user_id}
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 12,
-                    padding: "12px 20px",
+                    gap: 14,
+                    padding: "14px 20px",
                     borderBottom:
-                      idx < top5Humanos.length - 1
+                      idx < topHumanos.length - 1
                         ? "1px solid var(--line)"
                         : "none",
                     background: idx % 2 === 0 ? "var(--bg-2)" : "var(--bg-1)",
                   }}
                 >
+                  {/* Colocação */}
                   <div
                     style={{
                       fontSize: 13,
                       fontFamily: "var(--ff-mono)",
                       fontWeight: 700,
-                      color: ranksHumanos[idx] <= 3 ? "var(--accent-3)" : "var(--fg-muted)",
-                      width: 24,
+                      color: rank <= 3 ? "var(--accent-3)" : "var(--fg-muted)",
+                      width: 28,
                       textAlign: "center",
                       flexShrink: 0,
                     }}
                   >
-                    {ranksHumanos[idx]}º
+                    {rank}º
                   </div>
+
+                  {/* Avatar ou placeholder anônimo */}
+                  {isOptIn ? (
+                    <Avatar src={h.avatar_url} nome={h.display_name} size={36} />
+                  ) : (
+                    <div
+                      style={{
+                        width: 36,
+                        height: 36,
+                        minWidth: 36,
+                        borderRadius: "50%",
+                        background: "var(--bg-soft)",
+                        border: "1.5px solid var(--line-strong)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: 16,
+                        color: "var(--fg-muted)",
+                        flexShrink: 0,
+                      }}
+                    >
+                      ?
+                    </div>
+                  )}
+
+                  {/* Nome */}
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div
                       style={{
-                        fontSize: "clamp(13px, 2vw, 14px)",
+                        fontSize: "clamp(13px, 2vw, 15px)",
                         fontWeight: 600,
-                        color: "var(--fg)",
+                        color: isOptIn ? "var(--fg)" : "var(--fg-muted)",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",
                       }}
                     >
-                      {h.display_name}
+                      {isOptIn ? h.display_name : tx(locale, "anonimo")}
                     </div>
-                    <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "var(--ff-mono)" }}>
-                      {h.geral.placares_exatos} {tx(locale, "exatos")}
+                    <div
+                      style={{
+                        fontSize: 12,
+                        color: "var(--fg-muted)",
+                        fontFamily: "var(--ff-mono)",
+                      }}
+                    >
+                      {h[fase].placares_exatos} {tx(locale, "exatos")}
                     </div>
                   </div>
+
+                  {/* Pontos */}
                   <div
                     style={{
-                      fontSize: 18,
+                      fontSize: "clamp(20px, 4vw, 26px)",
                       fontFamily: "var(--ff-display)",
                       fontVariationSettings: "var(--ff-display-vs)",
                       fontWeight: 800,
-                      color: "var(--primary)",
+                      color: isOptIn ? "var(--primary)" : "var(--fg)",
                     }}
                   >
-                    {h.geral.pontos}
+                    {h[fase].pontos}{" "}
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 400,
+                        color: "var(--fg-muted)",
+                        fontFamily: "var(--ff-sans)",
+                      }}
+                    >
+                      {tx(locale, "pts")}
+                    </span>
                   </div>
                 </div>
-              ))
-            )}
+              );
+            })}
           </div>
+        )}
+      </section>
 
-          {/* Top 5 IAs */}
-          <div className="card" style={{ padding: 0, overflow: "hidden" }}>
+      {/* ── TOP 5 IAs ─────────────────────────────────────────────────────── */}
+      <section style={{ maxWidth: 760, marginInline: "auto", marginBottom: 48, padding: "0 16px" }}>
+        <div className="card" style={{ padding: 0, overflow: "hidden" }}>
+          <div
+            style={{
+              padding: "14px 20px",
+              background: "linear-gradient(90deg, color-mix(in srgb, var(--secondary) 15%, var(--bg-1)), var(--bg-1))",
+              borderBottom: "1px solid var(--line)",
+            }}
+          >
             <div
               style={{
-                padding: "14px 20px",
-                background: "linear-gradient(90deg, color-mix(in srgb, var(--secondary) 15%, var(--bg-1)), var(--bg-1))",
-                borderBottom: "1px solid var(--line)",
+                fontSize: 12,
+                fontFamily: "var(--ff-mono)",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                fontWeight: 700,
+                color: "var(--secondary)",
+              }}
+            >
+              {tx(locale, "podio_ias")}
+            </div>
+          </div>
+
+          {top5IAs.map((ia, idx) => (
+            <Link
+              key={ia.slug}
+              href={`/ia/${ia.slug}`}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                padding: "12px 20px",
+                borderBottom:
+                  idx < top5IAs.length - 1 ? "1px solid var(--line)" : "none",
+                background: idx % 2 === 0 ? "var(--bg-2)" : "var(--bg-1)",
+                textDecoration: "none",
+                color: "inherit",
+                transition: "background 0.15s",
               }}
             >
               <div
                 style={{
-                  fontSize: 12,
+                  fontSize: 13,
                   fontFamily: "var(--ff-mono)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
                   fontWeight: 700,
+                  color: ranksIAs[idx] <= 3 ? "var(--accent-3)" : "var(--fg-muted)",
+                  width: 24,
+                  textAlign: "center",
+                  flexShrink: 0,
+                }}
+              >
+                {ranksIAs[idx]}º
+              </div>
+              <IconeIA slug={ia.slug} size={22} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div
+                  style={{
+                    fontSize: "clamp(13px, 2vw, 14px)",
+                    fontWeight: 600,
+                    color: "var(--fg)",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {ia.nome}
+                </div>
+                <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "var(--ff-mono)" }}>
+                  {ia[fase].placares_exatos} {tx(locale, "exatos")}
+                </div>
+              </div>
+              <div
+                style={{
+                  fontSize: 18,
+                  fontFamily: "var(--ff-display)",
+                  fontVariationSettings: "var(--ff-display-vs)",
+                  fontWeight: 800,
                   color: "var(--secondary)",
                 }}
               >
-                🤖 {tx(locale, "podio_ias")}
+                {ia[fase].pontos}
               </div>
-            </div>
-
-            {top5IAs.map((ia, idx) => (
-              <Link
-                key={ia.slug}
-                href={`/ia/${ia.slug}`}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                  padding: "12px 20px",
-                  borderBottom:
-                    idx < top5IAs.length - 1 ? "1px solid var(--line)" : "none",
-                  background: idx % 2 === 0 ? "var(--bg-2)" : "var(--bg-1)",
-                  textDecoration: "none",
-                  color: "inherit",
-                  transition: "background 0.15s",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: 13,
-                    fontFamily: "var(--ff-mono)",
-                    fontWeight: 700,
-                    color: ranksIAs[idx] <= 3 ? "var(--accent-3)" : "var(--fg-muted)",
-                    width: 24,
-                    textAlign: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  {ranksIAs[idx]}º
-                </div>
-                <IconeIA slug={ia.slug} size={22} />
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div
-                    style={{
-                      fontSize: "clamp(13px, 2vw, 14px)",
-                      fontWeight: 600,
-                      color: "var(--fg)",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {ia.nome}
-                  </div>
-                  <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "var(--ff-mono)" }}>
-                    {ia.geral.placares_exatos} {tx(locale, "exatos")}
-                  </div>
-                </div>
-                <div
-                  style={{
-                    fontSize: 18,
-                    fontFamily: "var(--ff-display)",
-                    fontVariationSettings: "var(--ff-display-vs)",
-                    fontWeight: 800,
-                    color: "var(--secondary)",
-                  }}
-                >
-                  {ia.geral.pontos}
-                </div>
-              </Link>
-            ))}
-          </div>
+            </Link>
+          ))}
         </div>
       </section>
 
