@@ -84,3 +84,4 @@ no cálculo de pontuação.
 ## Mata-mata — 16-avos de final (R32)
 
 | 73 | R32 | Dom 28/06 | 16h00 | Los Angeles | África do Sul | 0 | 1 | Canadá |
+| 76 | R32 | Seg 29/06 | 14h00 | Houston | Brasil | 2 | 1 | Japão |
