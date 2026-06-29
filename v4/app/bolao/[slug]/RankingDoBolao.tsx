@@ -1,10 +1,92 @@
+import { promises as fs } from "fs";
+import path from "path";
 import { createClient } from "@/lib/supabase-server";
 import { totalPontos, pontosJogo } from "@/lib/scoring";
 import { carregarJogos } from "@/lib/jogos";
 import { escopoDoBolao, jogosNoEscopo } from "@/lib/bolao-escopo";
+import { nomeSerieA } from "@/lib/serie-a";
+import IconeIA from "@/components/IconeIA";
 import type { Palpite, Jogo } from "@/lib/types";
 
 type MembroRow = { user_id: string; profiles: { display_name: string } };
+
+type LinhaBase = {
+  pontos: number;
+  preenchidos: number;
+  palpites: Record<number, { gols_a: number; gols_b: number }>;
+};
+
+type LinhaHumano = LinhaBase & {
+  tipo: "humano";
+  key: string;
+  nome: string;
+};
+
+type LinhaIA = LinhaBase & {
+  tipo: "ia";
+  key: string;
+  slug: string;
+  nome: string;
+};
+
+type Linha = LinhaHumano | LinhaIA;
+
+// Carrega palpites das IAs e calcula pts no escopo do bolão.
+async function carregarLinhasIAs(jogos: Jogo[]): Promise<LinhaIA[]> {
+  try {
+    const [rawRanking, rawPorJogo] = await Promise.all([
+      fs.readFile(path.join(process.cwd(), "public", "ranking-ias.json"), "utf-8"),
+      fs.readFile(path.join(process.cwd(), "public", "palpites_por_jogo.json"), "utf-8"),
+    ]);
+    const dataRanking = JSON.parse(rawRanking) as {
+      ias: Array<{ slug: string; nome_display?: string; palpites_total?: number }>;
+    };
+    const porJogo = JSON.parse(rawPorJogo) as Record<
+      string,
+      { palpites?: Record<string, { gols_a: number; gols_b: number }> }
+    >;
+
+    // Para cada IA com palpites, monta seu mapa de palpites no escopo
+    const linhas: LinhaIA[] = [];
+    for (const ia of dataRanking.ias ?? []) {
+      const slug = ia.slug;
+      if (!slug || (ia.palpites_total ?? 0) === 0) continue;
+      const palps: Record<number, { gols_a: number; gols_b: number }> = {};
+      let preenchidos = 0;
+      for (const jogo of jogos) {
+        const bucket = porJogo[String(jogo.numero)];
+        const p = bucket?.palpites?.[slug];
+        if (!p) continue;
+        palps[jogo.numero] = p;
+        preenchidos += 1;
+      }
+      const pontos = jogos.reduce((acc, j) => {
+        const p = palps[j.numero];
+        if (!p) return acc;
+        const palpite: Palpite = {
+          user_id: slug,
+          jogo_numero: j.numero,
+          gols_a: p.gols_a,
+          gols_b: p.gols_b,
+          atualizado_em: "",
+        };
+        return acc + pontosJogo(palpite, j);
+      }, 0);
+      linhas.push({
+        tipo: "ia",
+        key: `ia:${slug}`,
+        slug,
+        nome: nomeSerieA(slug) ?? ia.nome_display ?? slug,
+        pontos,
+        preenchidos,
+        palpites: palps,
+      });
+    }
+    return linhas;
+  } catch {
+    return [];
+  }
+}
 
 export default async function RankingDoBolao({
   bolaoId: _bolaoId,
@@ -50,20 +132,27 @@ export default async function RankingDoBolao({
     )
     .sort((a, b) => b.numero - a.numero);
 
+  // Humanos
+  const linhasHumanos: LinhaHumano[] = membros.map((m) => {
+    const palps = porUser.get(m.user_id) ?? {};
+    const preenchidos = jogos.filter((j) => palps[j.numero]).length;
+    return {
+      tipo: "humano" as const,
+      key: `user:${m.user_id}`,
+      nome: m.profiles.display_name,
+      pontos: totalPontos(palps, jogos),
+      preenchidos,
+      palpites: palps,
+    };
+  });
+
+  // IAs (todas inscritas automaticamente, com os palpites já dados)
+  const linhasIAs = await carregarLinhasIAs(jogos);
+
   // Colocação com empate na MESMA posição (1º, 1º, 3º).
-  const linhas = membros
-    .map((m) => {
-      const palps = porUser.get(m.user_id) ?? {};
-      const preenchidos = jogos.filter((j) => palps[j.numero]).length;
-      return {
-        user_id: m.user_id,
-        nome: m.profiles.display_name,
-        pontos: totalPontos(palps, jogos),
-        preenchidos,
-        palpites: palps,
-      };
-    })
-    .sort((a, b) => b.pontos - a.pontos);
+  const linhas: Linha[] = [...linhasHumanos, ...linhasIAs].sort(
+    (a, b) => b.pontos - a.pontos,
+  );
 
   let rankAtual = 0;
   let ptsAnterior: number | null = null;
@@ -100,10 +189,32 @@ export default async function RankingDoBolao({
       </p>
       <div className="bolao-membros">
         {linhasComRank.map((l) => (
-          <details key={l.user_id} className="bolao-membro">
+          <details key={l.key} className="bolao-membro" data-tipo={l.tipo}>
             <summary className="bolao-membro-head">
               <span className="bolao-membro-rank">{l.rank}º</span>
-              <span className="bolao-membro-nome">{l.nome}</span>
+              {l.tipo === "ia" ? (
+                <IconeIA slug={l.slug} size={26} />
+              ) : (
+                <span className="bolao-membro-avatar-h" aria-hidden>👤</span>
+              )}
+              <span className="bolao-membro-nome">
+                {l.nome}
+                {l.tipo === "ia" && (
+                  <span
+                    style={{
+                      marginLeft: 6,
+                      fontFamily: "var(--ff-mono)",
+                      fontSize: 10,
+                      fontWeight: 700,
+                      color: "var(--fg-muted)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                    }}
+                  >
+                    IA
+                  </span>
+                )}
+              </span>
               <span className="bolao-membro-palp">
                 {l.preenchidos}/{totalEscopo} palpites
               </span>
@@ -118,7 +229,10 @@ export default async function RankingDoBolao({
                 <ul className="bolao-jogos-lista">
                   {jogosEncerrados.map((j) => {
                     const p = l.palpites[j.numero];
-                    const pts = p ? pontosJogo(p, j) : null;
+                    const palpite: Palpite | null = p
+                      ? { user_id: l.key, jogo_numero: j.numero, gols_a: p.gols_a, gols_b: p.gols_b, atualizado_em: "" }
+                      : null;
+                    const pts = palpite ? pontosJogo(palpite, j) : null;
                     const tier =
                       pts == null
                         ? "vazio"
