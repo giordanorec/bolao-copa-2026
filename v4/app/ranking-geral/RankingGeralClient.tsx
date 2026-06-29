@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { ehSerieA } from "@/lib/serie-a";
 import Avatar from "@/components/Avatar";
+import IconeIA from "@/components/IconeIA";
 
 export type LinhaFase = {
   tipo: "humano" | "ia" | "cristal";
@@ -179,137 +180,146 @@ export default function RankingGeralClient({
         ))}
       </div>
 
-      {/* Card com tabela */}
-      <div className="card">
-        {vazia ? (
-          <div
-            style={{
-              textAlign: "center",
-              padding: "48px 24px",
-              color: "var(--fg-muted)",
-            }}
-          >
-            <div style={{ fontSize: 48, marginBottom: 16 }}>⏳</div>
-            <h3 style={{ marginBottom: 8, color: "var(--fg)" }}>
-              O mata-mata ainda não começou
-            </h3>
-            <p style={{ maxWidth: 480, margin: "0 auto", fontSize: 14, lineHeight: 1.6 }}>
-              Os palpites de todas as IAs para os confrontos do mata-mata já
-              estão registrados — assim que os jogos começarem os pontos
-              aparecem aqui automaticamente.
-            </p>
-          </div>
-        ) : (
-          <div className="table-scroll">
-            <table className="ranking-table">
-              <thead>
-                <tr>
-                  <th className="pos">#</th>
-                  <th>Tipo</th>
-                  <th>Quem</th>
-                  <th style={{ textAlign: "right" }}>Pts</th>
-                  <th style={{ textAlign: "right", fontSize: 12, color: "var(--fg-muted)" }}>
-                    Exatos
-                  </th>
-                  <th style={{ textAlign: "right", fontSize: 12, color: "var(--fg-muted)" }}>
-                    Jogos
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {ordenadas.slice(0, limite).map((l, i) => (
-                  <tr
-                    key={`${l.tipo}-${l.slug ?? l.nome}-${l.v2 ? "v2" : "v1"}`}
-                    style={
-                      l.v2
-                        ? {
-                            background:
-                              "color-mix(in srgb, var(--accent) 9%, transparent)",
-                          }
-                        : undefined
-                    }
-                  >
-                    <td className="pos">{ranks[i]}º</td>
-                    <td>
-                      <BadgeTipo l={l} />
-                    </td>
-                    <td className="nome">
+      {/* Grid de cards (estilo /ranking-ias) */}
+      {vazia ? (
+        <div
+          className="card"
+          style={{
+            textAlign: "center",
+            padding: "48px 24px",
+            color: "var(--fg-muted)",
+          }}
+        >
+          <div style={{ fontSize: 48, marginBottom: 16 }}>⏳</div>
+          <h3 style={{ marginBottom: 8, color: "var(--fg)" }}>
+            O mata-mata ainda não começou
+          </h3>
+          <p style={{ maxWidth: 480, margin: "0 auto", fontSize: 14, lineHeight: 1.6 }}>
+            Os palpites de todas as IAs para os confrontos do mata-mata já
+            estão registrados — assim que os jogos começarem os pontos
+            aparecem aqui automaticamente.
+          </p>
+        </div>
+      ) : (
+        <div className="ias-mini-grid">
+          {ordenadas.slice(0, limite).map((l, i) => {
+            const stats = l[fase];
+            const isLink = l.tipo === "ia" && l.slug && l.slug !== "bola-de-cristal";
+            const cardStyle: React.CSSProperties = l.v2
+              ? {
+                  background: "color-mix(in srgb, var(--accent) 9%, transparent)",
+                  borderColor: "color-mix(in srgb, var(--accent) 30%, var(--line))",
+                }
+              : {};
+            const inner = (
+              <>
+                <span
+                  style={{
+                    fontFamily: "var(--ff-mono)",
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: "var(--fg-muted)",
+                    minWidth: 36,
+                    textAlign: "right",
+                  }}
+                >
+                  {ranks[i]}º
+                </span>
+                {l.tipo === "humano" ? (
+                  <Avatar src={l.avatar_url ?? null} nome={l.nome} size={36} />
+                ) : l.tipo === "cristal" ? (
+                  <span style={{ fontSize: 28, lineHeight: 1, width: 36, textAlign: "center" }}>🔮</span>
+                ) : (
+                  <IconeIA slug={l.slug ?? ""} size={36} />
+                )}
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <strong style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+                    <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      {l.nome}
+                    </span>
+                    {l.v2 && (
                       <span
                         style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: 8,
+                          fontSize: 10,
+                          fontWeight: 800,
+                          padding: "1px 6px",
+                          borderRadius: 999,
+                          background: "linear-gradient(135deg, var(--accent), var(--accent-2))",
+                          color: "var(--secondary)",
                         }}
                       >
-                        {l.tipo === "humano" && (
-                          <Avatar
-                            src={l.avatar_url ?? null}
-                            nome={l.nome}
-                            size={32}
-                          />
-                        )}
-                        {l.nome}
+                        v2 🔄
                       </span>
-                      {l.v2 && (
-                        <>
-                          {" "}
-                          <span
-                            style={{
-                              fontSize: 11,
-                              fontWeight: 800,
-                              padding: "1px 6px",
-                              borderRadius: 999,
-                              background:
-                                "linear-gradient(135deg, var(--accent), var(--accent-2))",
-                              color: "var(--secondary)",
-                            }}
-                          >
-                            v2 🔄
-                          </span>
-                          {l.delta != null && l.delta !== 0 && (
-                            <span
-                              style={{
-                                marginLeft: 6,
-                                fontSize: 12,
-                                fontWeight: 700,
-                                color:
-                                  l.delta > 0
-                                    ? "var(--ok, #16a34a)"
-                                    : "var(--err, #dc2626)",
-                              }}
-                            >
-                              {l.delta > 0 ? `+${l.delta}` : l.delta}
-                            </span>
-                          )}
-                        </>
-                      )}
-                    </td>
-                    <td className="pts">{l[fase].pontos}</td>
-                    <td
-                      style={{
-                        textAlign: "right",
-                        fontSize: 13,
-                        color: "var(--fg-muted)",
-                      }}
-                    >
-                      {l[fase].placares_exatos}
-                    </td>
-                    <td
-                      style={{
-                        textAlign: "right",
-                        fontSize: 13,
-                        color: "var(--fg-muted)",
-                      }}
-                    >
-                      {l[fase].jogos_palpitados}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+                    )}
+                    {l.v2 && l.delta != null && l.delta !== 0 && (
+                      <span
+                        style={{
+                          fontSize: 11,
+                          fontWeight: 700,
+                          color: l.delta > 0 ? "var(--ok, #16a34a)" : "var(--err, #dc2626)",
+                        }}
+                      >
+                        {l.delta > 0 ? `+${l.delta}` : l.delta}
+                      </span>
+                    )}
+                  </strong>
+                  <small
+                    style={{
+                      display: "block",
+                      fontSize: 11,
+                      color: "var(--fg-muted)",
+                      fontFamily: "var(--ff-mono)",
+                      marginTop: 2,
+                    }}
+                  >
+                    <BadgeTipo l={l} /> · {stats.placares_exatos} exato{stats.placares_exatos === 1 ? "" : "s"} · {stats.jogos_palpitados} jogo{stats.jogos_palpitados === 1 ? "" : "s"}
+                  </small>
+                </div>
+                <div style={{ textAlign: "right", flexShrink: 0 }}>
+                  <strong
+                    style={{
+                      fontFamily: "var(--ff-display)",
+                      fontSize: 22,
+                      color: "var(--secondary)",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {stats.pontos}
+                  </strong>
+                  <span
+                    style={{
+                      display: "block",
+                      fontFamily: "var(--ff-mono)",
+                      fontSize: 10,
+                      color: "var(--fg-muted)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.08em",
+                      marginTop: 1,
+                    }}
+                  >
+                    pts
+                  </span>
+                </div>
+              </>
+            );
+            const key = `${l.tipo}-${l.slug ?? l.nome}-${l.v2 ? "v2" : "v1"}`;
+            return isLink ? (
+              <a
+                key={key}
+                href={`/ia/${encodeURIComponent(l.slug ?? "")}`}
+                className="ia-mini"
+                style={cardStyle}
+              >
+                {inner}
+              </a>
+            ) : (
+              <div key={key} className="ia-mini" style={cardStyle}>
+                {inner}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Legenda */}
       <p
