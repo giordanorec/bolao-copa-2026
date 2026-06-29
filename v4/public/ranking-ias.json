@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-06-29T16:08:27-03:00",
+  "atualizado_em": "2026-06-29T19:03:17-03:00",
   "ias": [
     {
       "slug": "grok-4-fast",
@@ -478,6 +478,34 @@
       }
     },
     {
+      "slug": "claude-fable-5",
+      "nome_display": "Claude Code + Fable",
+      "pontos": 313,
+      "placares_exatos": 10,
+      "vencedores_acertados": 46,
+      "jogos_palpitados": 74,
+      "palpites_total": 88,
+      "rank": 18,
+      "grupos": {
+        "pontos": 283,
+        "placares_exatos": 9,
+        "vencedores_acertados": 44,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 30,
+        "placares_exatos": 1,
+        "vencedores_acertados": 2,
+        "jogos_palpitados": 2
+      },
+      "geral": {
+        "pontos": 313,
+        "placares_exatos": 10,
+        "vencedores_acertados": 46,
+        "jogos_palpitados": 74
+      }
+    },
+    {
       "slug": "chatgpt-5",
       "nome_display": "ChatGPT 5",
       "pontos": 311,
@@ -485,7 +513,7 @@
       "vencedores_acertados": 45,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 18,
+      "rank": 19,
       "grupos": {
         "pontos": 281,
         "placares_exatos": 10,
@@ -513,7 +541,7 @@
       "vencedores_acertados": 46,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 19,
+      "rank": 20,
       "grupos": {
         "pontos": 277,
         "placares_exatos": 9,
@@ -541,7 +569,7 @@
       "vencedores_acertados": 47,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 20,
+      "rank": 21,
       "grupos": {
         "pontos": 267,
         "placares_exatos": 6,
@@ -569,7 +597,7 @@
       "vencedores_acertados": 44,
       "jogos_palpitados": 69,
       "palpites_total": 81,
-      "rank": 21,
+      "rank": 22,
       "grupos": {
         "pontos": 276,
         "placares_exatos": 10,
@@ -597,7 +625,7 @@
       "vencedores_acertados": 42,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 22,
+      "rank": 23,
       "grupos": {
         "pontos": 272,
         "placares_exatos": 10,
@@ -625,7 +653,7 @@
       "vencedores_acertados": 48,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 23,
+      "rank": 24,
       "grupos": {
         "pontos": 282,
         "placares_exatos": 8,
@@ -653,7 +681,7 @@
       "vencedores_acertados": 47,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 24,
+      "rank": 25,
       "grupos": {
         "pontos": 269,
         "placares_exatos": 6,
@@ -681,7 +709,7 @@
       "vencedores_acertados": 43,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 25,
+      "rank": 26,
       "grupos": {
         "pontos": 272,
         "placares_exatos": 11,
@@ -709,7 +737,7 @@
       "vencedores_acertados": 44,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 26,
+      "rank": 27,
       "grupos": {
         "pontos": 271,
         "placares_exatos": 11,
@@ -737,7 +765,7 @@
       "vencedores_acertados": 44,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 27,
+      "rank": 28,
       "grupos": {
         "pontos": 281,
         "placares_exatos": 11,
@@ -765,7 +793,7 @@
       "vencedores_acertados": 48,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 28,
+      "rank": 29,
       "grupos": {
         "pontos": 270,
         "placares_exatos": 4,
@@ -793,7 +821,7 @@
       "vencedores_acertados": 44,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 29,
+      "rank": 30,
       "grupos": {
         "pontos": 269,
         "placares_exatos": 9,
@@ -821,7 +849,7 @@
       "vencedores_acertados": 43,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 30,
+      "rank": 31,
       "grupos": {
         "pontos": 274,
         "placares_exatos": 11,
@@ -849,7 +877,7 @@
       "vencedores_acertados": 47,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 31,
+      "rank": 32,
       "grupos": {
         "pontos": 287,
         "placares_exatos": 9,
@@ -877,7 +905,7 @@
       "vencedores_acertados": 45,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 32,
+      "rank": 33,
       "grupos": {
         "pontos": 267,
         "placares_exatos": 8,
@@ -905,7 +933,7 @@
       "vencedores_acertados": 45,
       "jogos_palpitados": 72,
       "palpites_total": 72,
-      "rank": 33,
+      "rank": 34,
       "grupos": {
         "pontos": 295,
         "placares_exatos": 10,
@@ -933,7 +961,7 @@
       "vencedores_acertados": 43,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 34,
+      "rank": 35,
       "grupos": {
         "pontos": 274,
         "placares_exatos": 11,
@@ -961,7 +989,7 @@
       "vencedores_acertados": 44,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 35,
+      "rank": 36,
       "grupos": {
         "pontos": 263,
         "placares_exatos": 9,
@@ -989,7 +1017,7 @@
       "vencedores_acertados": 43,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 36,
+      "rank": 37,
       "grupos": {
         "pontos": 263,
         "placares_exatos": 8,
@@ -1017,7 +1045,7 @@
       "vencedores_acertados": 45,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 37,
+      "rank": 38,
       "grupos": {
         "pontos": 267,
         "placares_exatos": 8,
@@ -1045,7 +1073,7 @@
       "vencedores_acertados": 44,
       "jogos_palpitados": 74,
       "palpites_total": 88,
-      "rank": 38,
+      "rank": 39,
       "grupos": {
         "pontos": 261,
         "placares_exatos": 7,
@@ -1063,34 +1091,6 @@
         "placares_exatos": 7,
         "vencedores_acertados": 44,
         "jogos_palpitados": 74
-      }
-    },
-    {
-      "slug": "claude-fable-5",
-      "nome_display": "Claude Code + Fable",
-      "pontos": 283,
-      "placares_exatos": 9,
-      "vencedores_acertados": 44,
-      "jogos_palpitados": 72,
-      "palpites_total": 72,
-      "rank": 39,
-      "grupos": {
-        "pontos": 283,
-        "placares_exatos": 9,
-        "vencedores_acertados": 44,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 0,
-        "placares_exatos": 0,
-        "vencedores_acertados": 0,
-        "jogos_palpitados": 0
-      },
-      "geral": {
-        "pontos": 283,
-        "placares_exatos": 9,
-        "vencedores_acertados": 44,
-        "jogos_palpitados": 72
       }
     },
     {
