@@ -30,19 +30,25 @@ export type RankingGeralLabels = {
   nivelMaisIAs: string;
   nivelTodas: string;
   toggleV2: string;
-  competidores: (n: number) => string;
+  // Templates com placeholders {n}, {nIAs}, {nHumanos} —
+  // funções não cruzam a fronteira server→client (Next.js 15).
+  competidoresTpl: string; // "{n} competidores nessa visão"
   mostrandoSerieA: string;
-  mostrandoIAs: (n: number) => string;
-  mostrandoTodas: (nIAs: number, nHumanos: number) => string;
+  mostrandoIAsTpl: string; // "{n} IAs + Bola de Cristal"
+  mostrandoTodasTpl: string; // "{nIAs} IAs + Bola de Cristal + {nHumanos} humanos opt-in"
   matamataVazio: string;
   matamataVazioDesc: string;
   cristal: string;
   humano: string;
   serieA: string;
   ia: string;
-  exatos: (n: number) => string;
-  jogos: (n: number) => string;
+  exatosTpl: string; // "{n} exatos"
+  jogosTpl: string; // "{n} jogos"
 };
+
+function fmt(tpl: string, vars: Record<string, string | number>): string {
+  return tpl.replace(/\{(\w+)\}/g, (_m, k) => String(vars[k] ?? ""));
+}
 
 // Desempate: pontos → placares_exatos → vencedores_acertados → popularidade
 function ordenar(linhas: LinhaFase[], fase: Fase): LinhaFase[] {
@@ -128,8 +134,8 @@ export default function RankingGeralClient({
     nivel === 1
       ? labels.mostrandoSerieA
       : nivel === 2
-        ? labels.mostrandoIAs(numIAs)
-        : labels.mostrandoTodas(numIAs, numHumanos);
+        ? fmt(labels.mostrandoIAsTpl, { n: numIAs })
+        : fmt(labels.mostrandoTodasTpl, { nIAs: numIAs, nHumanos: numHumanos });
 
   const chipFase: { key: Fase; label: string }[] = [
     { key: "grupos", label: labels.faseGrupos },
@@ -253,7 +259,7 @@ export default function RankingGeralClient({
           fontFamily: "var(--ff-mono)",
         }}
       >
-        {labels.competidores(totalVisiveis)} · {legendaAtual}
+        {fmt(labels.competidoresTpl, { n: totalVisiveis })} · {legendaAtual}
       </p>
 
       {/* Grid de cards */}
@@ -349,7 +355,7 @@ export default function RankingGeralClient({
                       marginTop: 2,
                     }}
                   >
-                    <BadgeTipo l={l} labels={labels} /> · {labels.exatos(stats.placares_exatos)} · {labels.jogos(stats.jogos_palpitados)}
+                    <BadgeTipo l={l} labels={labels} /> · {fmt(labels.exatosTpl, { n: stats.placares_exatos })} · {fmt(labels.jogosTpl, { n: stats.jogos_palpitados })}
                   </small>
                 </div>
                 <div style={{ textAlign: "right", flexShrink: 0 }}>

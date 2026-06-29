@@ -22,14 +22,11 @@ function buildLabels(locale: string): RankingGeralLabels {
 
     toggleV2: en ? "🔄 SHOW V2 VARIANTS" : es ? "🔄 MOSTRAR VARIANTES V2" : fr ? "🔄 VARIANTES V2" : "🔄 MOSTRAR VARIAÇÕES V2",
 
-    competidores: (n) =>
-      en
-        ? `${n} competitor${n === 1 ? "" : "s"} in this view`
-        : es
-          ? `${n} competidor${n === 1 ? "" : "es"} en esta vista`
-          : fr
-            ? `${n} concurrent${n === 1 ? "" : "s"} dans cette vue`
-            : `${n} competidor${n === 1 ? "" : "es"} nessa visão`,
+    competidoresTpl:
+      en ? "{n} competitors in this view"
+        : es ? "{n} competidores en esta vista"
+          : fr ? "{n} concurrents dans cette vue"
+            : "{n} competidores nessa visão",
 
     mostrandoSerieA:
       en ? "Premier League (top 10) + Crystal Ball"
@@ -37,17 +34,17 @@ function buildLabels(locale: string): RankingGeralLabels {
           : fr ? "Ligue A (top 10) + Boule de Cristal"
             : "Série A (top 10) + Bola de Cristal",
 
-    mostrandoIAs: (n) =>
-      en ? `${n} AIs + Crystal Ball`
-        : es ? `${n} IAs + Bola de Cristal`
-          : fr ? `${n} IA + Boule de Cristal`
-            : `${n} IAs + Bola de Cristal`,
+    mostrandoIAsTpl:
+      en ? "{n} AIs + Crystal Ball"
+        : es ? "{n} IAs + Bola de Cristal"
+          : fr ? "{n} IA + Boule de Cristal"
+            : "{n} IAs + Bola de Cristal",
 
-    mostrandoTodas: (nIAs, nHumanos) =>
-      en ? `${nIAs} AIs + Crystal Ball + ${nHumanos} humans opt-in`
-        : es ? `${nIAs} IAs + Bola de Cristal + ${nHumanos} humanos opt-in`
-          : fr ? `${nIAs} IA + Boule de Cristal + ${nHumanos} humains opt-in`
-            : `${nIAs} IAs + Bola de Cristal + ${nHumanos} humanos opt-in`,
+    mostrandoTodasTpl:
+      en ? "{nIAs} AIs + Crystal Ball + {nHumanos} humans opt-in"
+        : es ? "{nIAs} IAs + Bola de Cristal + {nHumanos} humanos opt-in"
+          : fr ? "{nIAs} IA + Boule de Cristal + {nHumanos} humains opt-in"
+            : "{nIAs} IAs + Bola de Cristal + {nHumanos} humanos opt-in",
 
     matamataVazio:
       en ? "Knockout hasn't started yet"
@@ -69,17 +66,17 @@ function buildLabels(locale: string): RankingGeralLabels {
     serieA: en ? "Premier League" : es ? "Liga A" : fr ? "Ligue A" : "Série A",
     ia: en ? "AI" : es ? "IA" : fr ? "IA" : "IA",
 
-    exatos: (n) =>
-      en ? `${n} exact${n === 1 ? "" : "s"}`
-        : es ? `${n} exacto${n === 1 ? "" : "s"}`
-          : fr ? `${n} exact${n === 1 ? "" : "s"}`
-            : `${n} exato${n === 1 ? "" : "s"}`,
+    exatosTpl:
+      en ? "{n} exatos"
+        : es ? "{n} exactos"
+          : fr ? "{n} exacts"
+            : "{n} exatos",
 
-    jogos: (n) =>
-      en ? `${n} match${n === 1 ? "" : "es"}`
-        : es ? `${n} partido${n === 1 ? "" : "s"}`
-          : fr ? `${n} match${n === 1 ? "" : "es"}`
-            : `${n} jogo${n === 1 ? "" : "s"}`,
+    jogosTpl:
+      en ? "{n} matches"
+        : es ? "{n} partidos"
+          : fr ? "{n} matches"
+            : "{n} jogos",
   };
 }
 
