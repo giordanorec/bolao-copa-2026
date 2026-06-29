@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { ehSerieA } from "@/lib/serie-a";
+import Avatar from "@/components/Avatar";
 
 export type LinhaFase = {
   tipo: "humano" | "ia" | "cristal";
@@ -10,6 +11,7 @@ export type LinhaFase = {
   serieA?: boolean;
   v2?: boolean;
   delta?: number | null;
+  avatar_url?: string | null;
   // pontos por fase
   grupos: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
   matamata: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
@@ -232,7 +234,22 @@ export default function RankingGeralClient({
                       <BadgeTipo l={l} />
                     </td>
                     <td className="nome">
-                      {l.nome}
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 8,
+                        }}
+                      >
+                        {l.tipo === "humano" && (
+                          <Avatar
+                            src={l.avatar_url ?? null}
+                            nome={l.nome}
+                            size={32}
+                          />
+                        )}
+                        {l.nome}
+                      </span>
                       {l.v2 && (
                         <>
                           {" "}

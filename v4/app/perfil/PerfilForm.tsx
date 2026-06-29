@@ -49,8 +49,7 @@ export default function PerfilForm({
   }
 
   return (
-    <div className="card form-card">
-      <h1>👤 Meu perfil</h1>
+    <>
       <p className="lede-form">
         Você pode editar a qualquer momento.
       </p>
@@ -167,6 +166,6 @@ export default function PerfilForm({
           {salvando ? "Salvando..." : "Salvar"}
         </button>
       </form>
-    </div>
+    </>
   );
 }
