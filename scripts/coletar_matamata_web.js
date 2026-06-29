@@ -34,6 +34,24 @@ const OUT_DIR = path.join(ROOT, "data", "palpites_matamata");
 // 16 jogos dos 16-avos (R32)
 const MM_JOGOS = [73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88];
 
+// URL que abre uma CONVERSA NOVA (sem contexto anterior) por host. Usado com
+// --new: as conversas antigas contêm a tabela com adversários ERRADOS (projeção
+// pré-3ª rodada); reaproveitá-las faz a IA repreencher a estrutura velha. Chat
+// novo = zero contaminação.
+const NEW_CHAT = {
+  "chatgpt.com": "https://chatgpt.com/",
+  "claude.ai": "https://claude.ai/new",
+  "gemini.google.com": "https://gemini.google.com/u/1/app",
+  "grok.com": "https://grok.com/",
+  "deepseek.com": "https://chat.deepseek.com/",
+  "copilot.microsoft.com": "https://copilot.microsoft.com/",
+  "perplexity.ai": "https://www.perplexity.ai/",
+  "chat.mistral.ai": "https://chat.mistral.ai/chat",
+  "meta.ai": "https://www.meta.ai/",
+  "qwen.ai": "https://chat.qwen.ai/",
+  "manus.im": "https://manus.im/app",
+};
+
 // ---------------------------------------------------------------------------
 // Config por site. url = link da conversa específica (recupera contexto anterior).
 // conv = trecho distintivo da URL pra casar a aba já aberta.
@@ -71,7 +89,7 @@ const SITES = {
     host: "gemini.google.com",
     url: "https://gemini.google.com/u/1/app/dd7d1eebf6faa096?pageId=none",
     conv: "dd7d1eebf6faa096",
-    input: ["div.ql-editor[contenteditable]", 'div[contenteditable="true"]', "textarea"],
+    input: ["div.ql-editor[contenteditable]", 'rich-textarea div[contenteditable="true"]', 'div[role="textbox"]', 'div[contenteditable="true"]', "textarea"],
     send: "enter",
     assistant: "message-content, .model-response-text",
     stop: 'button[aria-label*="Stop"], .stop-icon',
@@ -187,6 +205,7 @@ function parseArgs(argv) {
     else if (t === "--collect") a.collect = true;
     else if (t === "--all") a.all = true;
     else if (t === "--dry") a.dry = true;   // cola mas NÃO envia
+    else if (t === "--new") a.new = true;   // abre CHAT NOVO (sem contexto anterior)
     else if (t === "--nowait") a.nowait = true; // envia mas NÃO espera
     else if (t === "--site") a.site = argv[++i];
     else if (t === "--cdp") a.cdp = argv[++i];
@@ -234,12 +253,38 @@ function salvar(slug, modo, conteudo) {
   return arq;
 }
 
-async function acharPagina(browser, cfg) {
+async function acharPagina(browser, cfg, { fresh = false, inPlace = false } = {}) {
   const pages = [];
   for (const ctx of browser.contexts()) {
     for (const pg of ctx.pages()) {
       try { pages.push(pg); } catch {}
     }
+  }
+  // inPlace: lê a aba atual do host SEM navegar (preserva o chat novo aberto pelo
+  // --new --nowait, cuja URL já mudou). Usado por --collect após disparar.
+  if (inPlace) {
+    for (const pg of pages) {
+      try { if (pg.url().includes(cfg.host)) return pg; } catch {}
+    }
+  }
+  // --new: SEMPRE abre conversa nova (sem contexto). Reaproveita a aba logada do
+  // mesmo host (mantém a sessão) navegando pra URL de chat novo; senão abre aba.
+  if (fresh) {
+    const destino = NEW_CHAT[cfg.host] || cfg.url;
+    for (const pg of pages) {
+      try {
+        if (pg.url().includes(cfg.host)) {
+          await pg.goto(destino, { waitUntil: "domcontentloaded" });
+          await pg.waitForTimeout(3500);
+          return pg;
+        }
+      } catch {}
+    }
+    const ctxN = browser.contexts()[0];
+    const pgN = await ctxN.newPage();
+    await pgN.goto(destino, { waitUntil: "domcontentloaded" });
+    await pgN.waitForTimeout(3500);
+    return pgN;
   }
   // 1) já está na conversa específica (id casa) -> usa direto
   for (const pg of pages) {
@@ -448,11 +493,11 @@ async function inspecionar(browser, key) {
 }
 
 // Só extrai + salva a resposta atual (sem recolar/reenviar).
-async function coletarSite(browser, key) {
+async function coletarSite(browser, key, args) {
   const cfg = SITES[key];
   if (!cfg) { console.log(`  ?? site desconhecido: ${key}`); return; }
-  console.log(`\n=== COLLECT ${key} (${cfg.slug}) ===`);
-  const page = await acharPagina(browser, cfg);
+  console.log(`\n=== COLLECT ${key} (${cfg.slug})${args && args.new ? " [IN-PLACE]" : ""} ===`);
+  const page = await acharPagina(browser, cfg, { inPlace: !!(args && args.new) });
   await page.bringToFront();
   await page.waitForTimeout(1500);
   const r = await extrairResposta(page, cfg);
@@ -473,14 +518,22 @@ async function coletarSite(browser, key) {
 async function rodarSite(browser, key, args) {
   const cfg = SITES[key];
   if (!cfg) { console.log(`  ?? site desconhecido: ${key}`); return; }
-  console.log(`\n=== RUN ${key} (${cfg.slug})${args.dry ? " [DRY]" : ""} ===`);
-  const page = await acharPagina(browser, cfg);
+  console.log(`\n=== RUN ${key} (${cfg.slug})${args.dry ? " [DRY]" : ""}${args.new ? " [NEW CHAT]" : ""} ===`);
+  const page = await acharPagina(browser, cfg, { fresh: !!args.new });
   await page.bringToFront();
   await page.waitForTimeout(1500);
   console.log(`  aba: ${page.url()}`);
 
   const prompt = montarPrompt();
-  const input = await acharInput(page, cfg.input);
+  // SPAs pesadas (gemini/grok/meta) montam o editor depois do load. Em chat novo,
+  // tenta achar a caixa por até ~24s antes de desistir.
+  let input = await acharInput(page, cfg.input);
+  if (!input && args.new) {
+    for (let t = 0; t < 8 && !input; t++) {
+      await page.waitForTimeout(3000);
+      input = await acharInput(page, cfg.input);
+    }
+  }
   if (!input) {
     console.log("  !! não achei a caixa de texto. screenshot pra diagnóstico:");
     console.log("     " + path.relative(ROOT, await shot(page, `${cfg.slug}-NOINPUT`)));
@@ -519,13 +572,21 @@ async function rodarSite(browser, key, args) {
 async function main() {
   const args = parseArgs(process.argv);
   let browser;
-  try {
-    browser = await chromium.connectOverCDP(args.cdp);
-  } catch (e) {
-    console.error(`\nNão consegui conectar via CDP em ${args.cdp}`);
-    console.error('Abra o Chrome com: scripts/abrir_chrome_debug.ps1 -Profile "Profile 7"');
-    console.error(`Detalhe: ${e.message}\n`);
-    process.exit(1);
+  // connectOverCDP às vezes estoura o default de 30s enumerando todos os targets
+  // (service workers, iframes, omnibox popup do Chrome). Damos timeout folgado e
+  // 1 retry antes de desistir.
+  for (let tent = 1; tent <= 2 && !browser; tent++) {
+    try {
+      browser = await chromium.connectOverCDP(args.cdp, { timeout: 90000 });
+    } catch (e) {
+      if (tent === 2) {
+        console.error(`\nNão consegui conectar via CDP em ${args.cdp}`);
+        console.error('Abra o Chrome com: scripts/abrir_chrome_debug.ps1 -Profile "Profile 7"');
+        console.error(`Detalhe: ${e.message}\n`);
+        process.exit(1);
+      }
+      console.error(`  conexão CDP falhou (tentativa ${tent}/2): ${e.message.split("\n")[0]} — retentando...`);
+    }
   }
 
   if (args.list) {
@@ -552,7 +613,7 @@ async function main() {
   for (const key of alvo) {
     try {
       if (args.inspect) await inspecionar(browser, key);
-      else if (args.collect) await coletarSite(browser, key);
+      else if (args.collect) await coletarSite(browser, key, args);
       else await rodarSite(browser, key, args); // --run (ou default com --site)
     } catch (e) {
       console.error(`  FAIL ${key}: ${e.message}`);
