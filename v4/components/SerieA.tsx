@@ -31,6 +31,26 @@ type IA = {
   geral?: FaseStats;
 };
 
+const ZERO_FASE: FaseStats = {
+  pontos: 0,
+  placares_exatos: 0,
+  vencedores_acertados: 0,
+  jogos_palpitados: 0,
+};
+
+/** Escolhe a melhor fonte (web vs API) PRA UMA FASE específica.
+ *  Critério: quem tiver MAIS jogos apurados ganha. Em caso de empate, prefere
+ *  o slug oficial (geralmente "-web" — a vitrine). */
+function melhorFonte(
+  oficial: FaseStats | undefined,
+  irmao: FaseStats | undefined,
+): FaseStats {
+  const o = oficial ?? ZERO_FASE;
+  const i = irmao ?? ZERO_FASE;
+  if (i.jogos_palpitados > o.jogos_palpitados) return i;
+  return o;
+}
+
 async function carregarSerieA(): Promise<IA[]> {
   try {
     const arquivo = path.join(process.cwd(), "public", "ranking-ias.json");
@@ -39,32 +59,42 @@ async function carregarSerieA(): Promise<IA[]> {
     const porSlug = new Map<string, IA>();
     for (const ia of dados.ias) porSlug.set(ia.slug, ia);
 
-    // Pra cada slug da Série A: escolhe entre o "-web" (vitrine) e o irmão
-    // sem "-web" (API) pelo que tem MAIS jogos apurados para a fase geral.
+    // Série A "merge por fase": pra cada slug da vitrine, monta uma entrada
+    // sintética combinando o melhor dado disponível PER FASE entre o slug
+    // "-web" oficial e o irmão sem "-web" (FALLBACK_NAO_WEB).
+    //   - grupos: o que tiver mais jogos apurados (geralmente o irmão API,
+    //     já que a recoleta via web só rodou pro mata-mata)
+    //   - mata-mata: o que tiver mais jogos apurados (em geral, empate 2x2;
+    //     preferência pro oficial = a versão via Web)
+    //   - geral: SOMA das duas fontes escolhidas acima — não vem de um
+    //     único slug.
     const ias: IA[] = [];
     for (const slug of SLUGS_SERIE_A) {
       const oficial = porSlug.get(slug);
       const irmao = FALLBACK_NAO_WEB[slug]
         ? porSlug.get(FALLBACK_NAO_WEB[slug])
         : undefined;
-      let fonte = oficial;
-      if (
-        irmao &&
-        (!oficial || irmao.jogos_palpitados > oficial.jogos_palpitados)
-      ) {
-        fonte = irmao;
-      }
-      if (!fonte) continue;
+      if (!oficial && !irmao) continue;
+      const gFonte = melhorFonte(oficial?.grupos, irmao?.grupos);
+      const mFonte = melhorFonte(oficial?.matamata, irmao?.matamata);
+      const geral: FaseStats = {
+        pontos: gFonte.pontos + mFonte.pontos,
+        placares_exatos: gFonte.placares_exatos + mFonte.placares_exatos,
+        vencedores_acertados:
+          gFonte.vencedores_acertados + mFonte.vencedores_acertados,
+        jogos_palpitados:
+          gFonte.jogos_palpitados + mFonte.jogos_palpitados,
+      };
       ias.push({
         slug,
-        nome_display: oficial?.nome_display ?? fonte.nome_display,
-        pontos: fonte.pontos,
-        placares_exatos: fonte.placares_exatos,
-        jogos_palpitados: fonte.jogos_palpitados,
+        nome_display: oficial?.nome_display ?? irmao?.nome_display ?? slug,
+        pontos: geral.pontos,
+        placares_exatos: geral.placares_exatos,
+        jogos_palpitados: geral.jogos_palpitados,
         rank: 0,
-        grupos: fonte.grupos,
-        matamata: fonte.matamata,
-        geral: fonte.geral,
+        grupos: gFonte,
+        matamata: mFonte,
+        geral,
       });
     }
 

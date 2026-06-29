@@ -293,31 +293,39 @@ export default async function IAsVsHumanosPage({
       scorePopularidade(a.slug) - scorePopularidade(b.slug),
   );
 
-  // Série A: resolver sibling — para cada slug da vitrine, escolher o irmão
-  // com mais jogos_palpitados NA FASE ESCOLHIDA. Para geral, prefere o irmão
-  // sem "-web" (72+ jogos); para matamata, o "-web" pode ter mais jogos de mm.
+  // Série A: merge POR FASE — pra cada slug da vitrine, escolhe o melhor
+  // dado disponível PER FASE entre o "-web" oficial e o irmão sem "-web".
+  // Critério por fase: maior jogos_palpitados (empate → fica com o oficial,
+  // ou seja, a versão Web pra mata-mata). O `geral` é a SOMA das fontes
+  // escolhidas pra grupos + matamata — não vem de um único slug.
   const iasPorSlug = new Map(ias.map((i) => [i.slug, i]));
+  const ZERO: FaseStat = { pontos: 0, placares_exatos: 0, vencedores_acertados: 0, jogos_palpitados: 0 };
+  const pickFase = (o: FaseStat | undefined, ir: FaseStat | undefined): FaseStat => {
+    const a = o ?? ZERO;
+    const b = ir ?? ZERO;
+    return b.jogos_palpitados > a.jogos_palpitados ? b : a;
+  };
   const serieA: IAItem[] = [];
   for (const slug of SLUGS_SERIE_A) {
     const oficial = iasPorSlug.get(slug);
     const irmaoSlug = FALLBACK_NAO_WEB[slug];
     const irmao = irmaoSlug ? iasPorSlug.get(irmaoSlug) : undefined;
-    let fonte = oficial;
-    if (
-      irmao &&
-      (!oficial ||
-        irmao[fase].jogos_palpitados > oficial[fase].jogos_palpitados)
-    ) {
-      fonte = irmao;
-    }
-    if (!fonte) continue;
+    if (!oficial && !irmao) continue;
+    const gruposM = pickFase(oficial?.grupos, irmao?.grupos);
+    const matamataM = pickFase(oficial?.matamata, irmao?.matamata);
+    const geralM: FaseStat = {
+      pontos: gruposM.pontos + matamataM.pontos,
+      placares_exatos: gruposM.placares_exatos + matamataM.placares_exatos,
+      vencedores_acertados: gruposM.vencedores_acertados + matamataM.vencedores_acertados,
+      jogos_palpitados: gruposM.jogos_palpitados + matamataM.jogos_palpitados,
+    };
     serieA.push({
       slug,
-      nome: nomeSerieA(slug) ?? fonte.nome,
+      nome: nomeSerieA(slug) ?? oficial?.nome ?? irmao?.nome ?? slug,
       serieA: true,
-      grupos: fonte.grupos,
-      matamata: fonte.matamata,
-      geral: fonte.geral,
+      grupos: gruposM,
+      matamata: matamataM,
+      geral: geralM,
     });
   }
   serieA.sort(
