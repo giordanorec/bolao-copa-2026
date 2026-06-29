@@ -287,7 +287,7 @@ export default async function Home() {
 
       <PodioGrupos locale={locale} />
 
-      <SerieA locale={locale} variante="destaque" fase="matamata" />
+      <SerieA locale={locale} variante="destaque" fase="geral" />
 
       <CorridaHome locale={locale} />
 

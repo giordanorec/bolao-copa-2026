@@ -79,7 +79,7 @@ export default function RankingGeralClient({
   linhas: LinhaFase[];
   contribuinte: boolean;
 }) {
-  const [fase, setFase] = useState<Fase>("matamata");
+  const [fase, setFase] = useState<Fase>("geral");
   const [nivel, setNivel] = useState<Nivel>(1);
 
   const linhasFiltradas = useMemo(() => {
