@@ -1,14 +1,16 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { t, type Locale } from "@/lib/i18n";
-import { marcaDe, scorePopularidade } from "@/lib/ias";
+import { scorePopularidade } from "@/lib/ias";
 import {
   SLUG_FABLE,
   SLUGS_SERIE_A,
   APELIDOS_SERIE_A as APELIDOS,
   FALLBACK_NAO_WEB,
 } from "@/lib/serie-a";
-import IconeIA from "@/components/IconeIA";
+import SerieAVitrine, { type IAVitrine, type SerieAVitrineLabels } from "@/components/SerieAVitrine";
+
+type Fase = "grupos" | "matamata" | "geral";
 
 type FaseStats = {
   pontos: number;
@@ -38,9 +40,7 @@ async function carregarSerieA(): Promise<IA[]> {
     for (const ia of dados.ias) porSlug.set(ia.slug, ia);
 
     // Pra cada slug da Série A: escolhe entre o "-web" (vitrine) e o irmão
-    // sem "-web" (API) pelo que tem MAIS jogos apurados. Slugs "-web"
-    // recém-coletados só têm mata-mata (16 jogos) e ficariam ~20 pts;
-    // o irmão tem o histórico completo (72-73 jogos).
+    // sem "-web" (API) pelo que tem MAIS jogos apurados para a fase geral.
     const ias: IA[] = [];
     for (const slug of SLUGS_SERIE_A) {
       const oficial = porSlug.get(slug);
@@ -93,10 +93,12 @@ function calcularRanks(ias: { pontos: number }[]): number[] {
   return ranks;
 }
 
-// Extrai pontos/stats de uma IA para a fase pedida
+// Extrai pontos/stats de uma IA para a fase pedida.
+// Para o sibling resolver, usa jogos_palpitados da fase específica
+// quando disponível, caindo para o top-level como fallback.
 function statsParaFase(
   ia: IA,
-  fase: "grupos" | "matamata" | "geral",
+  fase: Fase,
 ): { pontos: number; placares_exatos: number; jogos_palpitados: number } {
   const sub = ia[fase];
   if (sub) {
@@ -114,19 +116,9 @@ function statsParaFase(
   };
 }
 
-export default async function SerieA({
-  locale = "pt",
-  variante = "compact",
-  fase = "geral",
-}: {
-  locale?: Locale;
-  variante?: "compact" | "destaque";
-  fase?: "grupos" | "matamata" | "geral";
-}) {
-  const iasRaw = await carregarSerieA();
-  if (iasRaw.length === 0) return null;
-
-  // Monta lista com pontos da fase pedida e ordena
+// Constrói a lista de IAVitrine para uma fase específica,
+// aplicando o sibling resolver por fase + sort por pontos + popularidade.
+function construirIasPorFase(iasRaw: IA[], fase: Fase): IAVitrine[] {
   const ias = iasRaw
     .map((ia) => ({ ...ia, ...statsParaFase(ia, fase) }))
     .sort(
@@ -137,94 +129,91 @@ export default async function SerieA({
 
   const ranks = calcularRanks(ias);
 
+  return ias.map((ia, i) => {
+    const ap = APELIDOS[ia.slug];
+    return {
+      slug: ia.slug,
+      nome: ap?.nome ?? ia.nome_display,
+      modelo: ap?.modelo ?? "",
+      pontos: ia.pontos,
+      placares_exatos: ia.placares_exatos,
+      jogos_palpitados: ia.jogos_palpitados,
+      rank: ranks[i],
+      ehFable: ia.slug === SLUG_FABLE,
+    };
+  });
+}
+
+// Labels dos chips — declarados inline para não precisar tocar no i18n.ts
+const CHIP_LABELS: Record<Locale, Record<Fase, string>> = {
+  pt: { grupos: "Grupos", matamata: "Mata-mata", geral: "Geral" },
+  en: { grupos: "Groups", matamata: "Knockout", geral: "Overall" },
+  es: { grupos: "Grupos", matamata: "Eliminatoria", geral: "General" },
+  fr: { grupos: "Groupes", matamata: "Éliminatoires", geral: "Général" },
+};
+
+export default async function SerieA({
+  locale = "pt",
+  variante = "compact",
+  fase = "geral",
+  mostrarSeletor = false,
+}: {
+  locale?: Locale;
+  variante?: "compact" | "destaque";
+  fase?: Fase;
+  mostrarSeletor?: boolean;
+}) {
+  const iasRaw = await carregarSerieA();
+  if (iasRaw.length === 0) return null;
+
+  // Sufixos de texto
   const sufixoJogos =
     locale === "en" ? "matches" : locale === "es" ? "partidos" : locale === "fr" ? "matches" : "jogos";
   const sufixoExatos =
     locale === "en" ? "exact" : locale === "es" ? "exactos" : locale === "fr" ? "exacts" : "exatos";
 
-  const wrapCls =
-    variante === "destaque" ? "serie-a-grid destaque" : "serie-a-grid";
+  // Títulos por fase — fallback para titulo genérico se key específica ausente
+  const tituloGrupos = t(locale, "home.serie_a.titulo_grupos") !== "home.serie_a.titulo_grupos"
+    ? t(locale, "home.serie_a.titulo_grupos")
+    : t(locale, "home.serie_a.titulo");
+  const tituloMatamata = t(locale, "home.serie_a.titulo_matamata");
+  const tituloGeral = t(locale, "home.serie_a.titulo");
 
-  const tituloKey = fase === "matamata" ? "home.serie_a.titulo_matamata" : "home.serie_a.titulo";
-  const subKey = fase === "matamata" ? "home.serie_a.sub_matamata" : "home.serie_a.sub";
+  // Subtítulos por fase — fallback para sub genérico se key específica ausente
+  const subGrupos = t(locale, "home.serie_a.sub_grupos") !== "home.serie_a.sub_grupos"
+    ? t(locale, "home.serie_a.sub_grupos")
+    : t(locale, "home.serie_a.sub");
+  const subMatamata = t(locale, "home.serie_a.sub_matamata");
+  const subGeral = t(locale, "home.serie_a.sub");
+
+  const labels: SerieAVitrineLabels = {
+    titulos: {
+      grupos: tituloGrupos,
+      matamata: tituloMatamata,
+      geral: tituloGeral,
+    },
+    subs: {
+      grupos: subGrupos,
+      matamata: subMatamata,
+      geral: subGeral,
+    },
+    chips: CHIP_LABELS[locale],
+    sufixoJogos,
+    sufixoExatos,
+  };
+
+  const FASES: Fase[] = ["grupos", "matamata", "geral"];
+  const iasPorFase = Object.fromEntries(
+    FASES.map((f) => [f, construirIasPorFase(iasRaw, f)]),
+  ) as Record<Fase, IAVitrine[]>;
 
   return (
-    <section className="section serie-a-vitrine">
-      <div className="container">
-        <h2 style={{ textAlign: "center", marginBottom: 8 }}>
-          {t(locale, tituloKey)}
-        </h2>
-        <p
-          style={{
-            textAlign: "center",
-            color: "var(--fg-mid)",
-            fontSize: 16,
-            marginBottom: 36,
-          }}
-        >
-          {t(locale, subKey)}
-        </p>
-
-        <div className={wrapCls}>
-          {ias.map((ia, i) => {
-            const ap = APELIDOS[ia.slug];
-            const nome = ap?.nome ?? ia.nome_display;
-            const modelo = ap?.modelo ?? "";
-            const marca = marcaDe(ia.slug);
-            const rank = ranks[i];
-            const isFable = ia.slug === SLUG_FABLE;
-            const dim = variante === "destaque" ? 200 : 120;
-
-            return (
-              <a
-                key={ia.slug}
-                href={`/ia/${encodeURIComponent(ia.slug)}`}
-                className={`ia-card${isFable ? " ia-card-fable" : ""}`}
-              >
-                <div className="ia-rank">{rank}º</div>
-                <div className="ia-mascote-wrap">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`/mascots/${ia.slug}.png`}
-                    alt={`Mascote ${nome}`}
-                    width={dim}
-                    height={dim}
-                    loading="lazy"
-                  />
-                  <div className="ia-marca-badge" title={marca.nome}>
-                    <IconeIA slug={ia.slug} size={variante === "destaque" ? 40 : 28} />
-                  </div>
-                </div>
-                <div className="ia-card-body">
-                  <h3>{nome}</h3>
-                  {modelo && (
-                    <p className="ia-modelo">
-                      <span
-                        style={{
-                          color: marca.cor,
-                          fontWeight: 800,
-                        }}
-                      >
-                        {marca.nome}
-                      </span>
-                      <span style={{ opacity: 0.5 }}> · </span>
-                      {modelo.replace(`${marca.nome} `, "").replace(`${marca.nome}, `, "")}
-                    </p>
-                  )}
-                  <div className="ia-pontos">
-                    <strong>{ia.pontos}</strong>
-                    <span>pts</span>
-                  </div>
-                  <small>
-                    {ia.jogos_palpitados} {sufixoJogos} ·{" "}
-                    {ia.placares_exatos} {sufixoExatos}
-                  </small>
-                </div>
-              </a>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+    <SerieAVitrine
+      variante={variante}
+      defaultFase={fase}
+      mostrarSeletor={mostrarSeletor}
+      iasPorFase={iasPorFase}
+      labels={labels}
+    />
   );
 }
