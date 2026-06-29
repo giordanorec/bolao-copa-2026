@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { ehSerieA } from "@/lib/serie-a";
 import Avatar from "@/components/Avatar";
 import IconeIA from "@/components/IconeIA";
 
@@ -23,16 +22,26 @@ export type LinhaFase = {
 type Fase = "grupos" | "matamata" | "geral";
 type Nivel = 1 | 2 | 3;
 
-const LABELS_FASE: Record<Fase, string> = {
-  grupos: "Grupos",
-  matamata: "Mata-mata",
-  geral: "Geral",
-};
-
-const LABELS_NIVEL: Record<Nivel, string> = {
-  1: "Só Série A",
-  2: "Série A + demais IAs",
-  3: "Todas as IAs + Humanos",
+export type RankingGeralLabels = {
+  faseGrupos: string;
+  faseMatamata: string;
+  faseGeral: string;
+  nivelSerieA: string;
+  nivelMaisIAs: string;
+  nivelTodas: string;
+  toggleV2: string;
+  competidores: (n: number) => string;
+  mostrandoSerieA: string;
+  mostrandoIAs: (n: number) => string;
+  mostrandoTodas: (nIAs: number, nHumanos: number) => string;
+  matamataVazio: string;
+  matamataVazioDesc: string;
+  cristal: string;
+  humano: string;
+  serieA: string;
+  ia: string;
+  exatos: (n: number) => string;
+  jogos: (n: number) => string;
 };
 
 // Desempate: pontos → placares_exatos → vencedores_acertados → popularidade
@@ -61,32 +70,37 @@ function colocacoes(linhas: LinhaFase[], fase: Fase): number[] {
   });
 }
 
-function BadgeTipo({ l }: { l: LinhaFase }) {
+function BadgeTipo({ l, labels }: { l: LinhaFase; labels: RankingGeralLabels }) {
   if (l.tipo === "cristal")
-    return <span style={{ color: "var(--accent)" }}>🔮 Cristal</span>;
+    return <span style={{ color: "var(--accent)" }}>🔮 {labels.cristal}</span>;
   if (l.tipo === "humano")
-    return <span style={{ color: "var(--primary)" }}>👤 Humano</span>;
+    return <span style={{ color: "var(--primary)" }}>👤 {labels.humano}</span>;
   if (l.serieA)
     return (
       <span style={{ color: "var(--secondary)", fontWeight: 700 }}>
-        🏆 Série A
+        🏆 {labels.serieA}
       </span>
     );
-  return <span style={{ color: "var(--fg-muted)" }}>🤖 IA</span>;
+  return <span style={{ color: "var(--fg-muted)" }}>🤖 {labels.ia}</span>;
 }
 
 export default function RankingGeralClient({
   linhas,
   contribuinte,
+  labels,
 }: {
   linhas: LinhaFase[];
   contribuinte: boolean;
+  labels: RankingGeralLabels;
 }) {
   const [fase, setFase] = useState<Fase>("geral");
   const [nivel, setNivel] = useState<Nivel>(1);
+  const [mostrarV2, setMostrarV2] = useState(false);
 
   const linhasFiltradas = useMemo(() => {
     return linhas.filter((l) => {
+      // v2 só aparece se toggle ativo
+      if (l.v2) return contribuinte && mostrarV2;
       // Cristal aparece em todos os níveis
       if (l.tipo === "cristal") return true;
       // Humanos só no nível 3
@@ -96,7 +110,7 @@ export default function RankingGeralClient({
       // Demais IAs: níveis 2, 3
       return nivel >= 2;
     });
-  }, [linhas, nivel]);
+  }, [linhas, nivel, contribuinte, mostrarV2]);
 
   const ordenadas = useMemo(() => ordenar(linhasFiltradas, fase), [linhasFiltradas, fase]);
   const ranks = useMemo(() => colocacoes(ordenadas, fase), [ordenadas, fase]);
@@ -105,7 +119,29 @@ export default function RankingGeralClient({
   const limite = contribuinte ? 400 : 200;
 
   const numHumanos = linhas.filter((l) => l.tipo === "humano").length;
-  const numIAs = linhas.filter((l) => l.tipo === "ia").length;
+  const numIAs = linhas.filter((l) => l.tipo === "ia" && !l.v2).length;
+
+  // Contador de competidores na visão atual (excluindo v2 linhas p/ contar)
+  const totalVisiveis = linhasFiltradas.filter((l) => !l.v2).length;
+
+  const legendaAtual =
+    nivel === 1
+      ? labels.mostrandoSerieA
+      : nivel === 2
+        ? labels.mostrandoIAs(numIAs)
+        : labels.mostrandoTodas(numIAs, numHumanos);
+
+  const chipFase: { key: Fase; label: string }[] = [
+    { key: "grupos", label: labels.faseGrupos },
+    { key: "matamata", label: labels.faseMatamata },
+    { key: "geral", label: labels.faseGeral },
+  ];
+
+  const chipNivel: { key: Nivel; label: string }[] = [
+    { key: 1, label: labels.nivelSerieA },
+    { key: 2, label: labels.nivelMaisIAs },
+    { key: 3, label: labels.nivelTodas },
+  ];
 
   return (
     <>
@@ -115,30 +151,30 @@ export default function RankingGeralClient({
           display: "flex",
           gap: 8,
           justifyContent: "center",
-          marginBottom: 20,
+          marginBottom: 12,
           flexWrap: "wrap",
         }}
       >
-        {(["grupos", "matamata", "geral"] as Fase[]).map((f) => (
+        {chipFase.map(({ key, label }) => (
           <button
-            key={f}
-            onClick={() => setFase(f)}
+            key={key}
+            onClick={() => setFase(key)}
             style={{
               padding: "8px 22px",
               borderRadius: 999,
-              border: `2px solid ${fase === f ? "var(--primary)" : "var(--line-strong)"}`,
+              border: `2px solid ${fase === key ? "var(--primary)" : "var(--line-strong)"}`,
               background:
-                fase === f
+                fase === key
                   ? "color-mix(in srgb, var(--primary) 12%, transparent)"
                   : "var(--bg-2)",
-              color: fase === f ? "var(--primary)" : "var(--fg)",
-              fontWeight: fase === f ? 700 : 500,
+              color: fase === key ? "var(--primary)" : "var(--fg)",
+              fontWeight: fase === key ? 700 : 500,
               fontSize: 14,
               cursor: "pointer",
               transition: "all 0.15s ease",
             }}
           >
-            {LABELS_FASE[f]}
+            {label}
           </button>
         ))}
       </div>
@@ -149,24 +185,24 @@ export default function RankingGeralClient({
           display: "flex",
           gap: 8,
           justifyContent: "center",
-          marginBottom: 28,
+          marginBottom: 8,
           flexWrap: "wrap",
         }}
       >
-        {([1, 2, 3] as Nivel[]).map((n) => (
+        {chipNivel.map(({ key, label }) => (
           <button
-            key={n}
-            onClick={() => setNivel(n)}
+            key={key}
+            onClick={() => setNivel(key)}
             style={{
               padding: "6px 16px",
               borderRadius: 999,
-              border: `1.5px solid ${nivel === n ? "var(--secondary)" : "var(--line)"}`,
+              border: `1.5px solid ${nivel === key ? "var(--secondary)" : "var(--line)"}`,
               background:
-                nivel === n
+                nivel === key
                   ? "color-mix(in srgb, var(--secondary) 10%, transparent)"
                   : "var(--bg-1)",
-              color: nivel === n ? "var(--secondary)" : "var(--fg-muted)",
-              fontWeight: nivel === n ? 700 : 400,
+              color: nivel === key ? "var(--secondary)" : "var(--fg-muted)",
+              fontWeight: nivel === key ? 700 : 400,
               fontSize: 12,
               cursor: "pointer",
               fontFamily: "var(--ff-mono)",
@@ -175,12 +211,52 @@ export default function RankingGeralClient({
               transition: "all 0.15s ease",
             }}
           >
-            {LABELS_NIVEL[n]}
+            {label}
           </button>
         ))}
       </div>
 
-      {/* Grid de cards (estilo /ranking-ias) */}
+      {/* Toggle v2 (só contribuintes) */}
+      {contribuinte && (
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 8 }}>
+          <button
+            onClick={() => setMostrarV2((v) => !v)}
+            style={{
+              padding: "5px 14px",
+              borderRadius: 999,
+              border: `1.5px solid ${mostrarV2 ? "var(--accent)" : "var(--line)"}`,
+              background: mostrarV2
+                ? "color-mix(in srgb, var(--accent) 12%, transparent)"
+                : "var(--bg-1)",
+              color: mostrarV2 ? "var(--accent)" : "var(--fg-muted)",
+              fontWeight: mostrarV2 ? 700 : 400,
+              fontSize: 11,
+              cursor: "pointer",
+              fontFamily: "var(--ff-mono)",
+              textTransform: "uppercase",
+              letterSpacing: "0.04em",
+              transition: "all 0.15s ease",
+            }}
+          >
+            {labels.toggleV2}
+          </button>
+        </div>
+      )}
+
+      {/* Contador */}
+      <p
+        style={{
+          textAlign: "center",
+          fontSize: 13,
+          color: "var(--fg-muted)",
+          marginBottom: 24,
+          fontFamily: "var(--ff-mono)",
+        }}
+      >
+        {labels.competidores(totalVisiveis)} · {legendaAtual}
+      </p>
+
+      {/* Grid de cards */}
       {vazia ? (
         <div
           className="card"
@@ -192,12 +268,10 @@ export default function RankingGeralClient({
         >
           <div style={{ fontSize: 48, marginBottom: 16 }}>⏳</div>
           <h3 style={{ marginBottom: 8, color: "var(--fg)" }}>
-            O mata-mata ainda não começou
+            {labels.matamataVazio}
           </h3>
           <p style={{ maxWidth: 480, margin: "0 auto", fontSize: 14, lineHeight: 1.6 }}>
-            Os palpites de todas as IAs para os confrontos do mata-mata já
-            estão registrados — assim que os jogos começarem os pontos
-            aparecem aqui automaticamente.
+            {labels.matamataVazioDesc}
           </p>
         </div>
       ) : (
@@ -272,7 +346,7 @@ export default function RankingGeralClient({
                       marginTop: 2,
                     }}
                   >
-                    <BadgeTipo l={l} /> · {stats.placares_exatos} exato{stats.placares_exatos === 1 ? "" : "s"} · {stats.jogos_palpitados} jogo{stats.jogos_palpitados === 1 ? "" : "s"}
+                    <BadgeTipo l={l} labels={labels} /> · {labels.exatos(stats.placares_exatos)} · {labels.jogos(stats.jogos_palpitados)}
                   </small>
                 </div>
                 <div style={{ textAlign: "right", flexShrink: 0 }}>
@@ -320,22 +394,6 @@ export default function RankingGeralClient({
           })}
         </div>
       )}
-
-      {/* Legenda */}
-      <p
-        style={{
-          marginTop: 12,
-          fontSize: 13,
-          color: "var(--fg-muted)",
-          textAlign: "center",
-        }}
-      >
-        {nivel === 1 && "Mostrando: Série A (12 IAs) + Bola de Cristal"}
-        {nivel === 2 &&
-          `Mostrando: ${numIAs} IAs + Bola de Cristal`}
-        {nivel === 3 &&
-          `Mostrando: ${numIAs} IAs + Bola de Cristal + ${numHumanos} humanos opt-in`}
-      </p>
     </>
   );
 }
