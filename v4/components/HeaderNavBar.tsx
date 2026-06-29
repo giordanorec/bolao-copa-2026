@@ -33,16 +33,16 @@ export default function HeaderNavBar({ locale }: { locale: Locale }) {
               : "Ranking de IAs",
     },
     {
-      href: "/ranking-geral",
-      emoji: "🌍",
+      href: "/ias-vs-humanos",
+      emoji: "⚔️",
       label:
         locale === "en"
-          ? "Hall of Fame"
+          ? "AIs × Humans"
           : locale === "es"
-            ? "Salón Fama"
+            ? "IAs × Humanos"
             : locale === "fr"
-              ? "Hall Fame"
-              : "Hall da Fama",
+              ? "IA × Humains"
+              : "IAs × Humanos",
     },
     {
       href: "/como-funciona",

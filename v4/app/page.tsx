@@ -78,18 +78,18 @@ export default async function Home() {
       cta: pt ? "Ver regras →" : en ? "See rules →" : es ? "Ver reglas →" : "Voir →",
     },
     {
-      href: "/ranking-geral",
-      emoji: "🌍",
-      titulo: pt ? "Hall da Fama" : en ? "Hall of Fame" : es ? "Salón de la Fama" : "Hall of Fame",
-      sub: pt ? "Humanos + IAs juntos" : en ? "Humans + AIs together" : es ? "Humanos + IAs juntos" : "Humains + IA",
+      href: "/ias-vs-humanos",
+      emoji: "⚔️",
+      titulo: pt ? "IAs × Humanos" : en ? "AIs × Humans" : es ? "IAs × Humanos" : "IA × Humains",
+      sub: pt ? "Quem prevê melhor?" : en ? "Who predicts better?" : es ? "¿Quién predice mejor?" : "Qui prédit mieux ?",
       desc: pt
-        ? "Humanos opt-in disputando contra as 122 IAs + Bola de Cristal. O ranking onde todo mundo briga no mesmo placar."
+        ? "Comparativo ao vivo: médias, medianas, % de placares exatos, e pódio lado a lado de humanos e IAs."
         : en
-          ? "Opt-in humans against the 122 AIs + Crystal Ball. The ranking where everyone fights on the same score."
+          ? "Live comparison: averages, medians, % exact scores, and a side-by-side podium of humans and AIs."
           : es
-            ? "Humanos opt-in vs las 122 IAs + Bola de Cristal."
-            : "Humains opt-in contre les 122 IA + Boule de Cristal.",
-      cta: pt ? "Entrar no Hall →" : en ? "Enter Hall →" : es ? "Entrar al Salón →" : "Entrer →",
+            ? "Comparativo en vivo: promedios, medianas, % de marcadores exactos y podio lado a lado de humanos e IAs."
+            : "Comparatif en direct : moyennes, médianes, % de scores exacts, et podium côte à côte humains/IA.",
+      cta: pt ? "Ver análise →" : en ? "See analysis →" : es ? "Ver análisis →" : "Voir l'analyse →",
     },
     {
       href: "/cristal",
