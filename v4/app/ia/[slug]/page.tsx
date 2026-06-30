@@ -56,11 +56,14 @@ async function carregarTudo(slug: string): Promise<{
     const pj = JSON.parse(pjRaw) as PorJogo;
 
     const ia = rk.ias.find((i) => i.slug === slug) ?? null;
-    // Série A "-web" são vitrines: os palpites reais vivem no irmão sem "-web".
-    const fonteSlug = FALLBACK_NAO_WEB[slug] ?? slug;
+    // Slug "-web" tem os palpites próprios pro mata-mata (coletados via web)
+    // e nenhum pra grupos. Pra grupos, fallback no irmão API (FALLBACK_NAO_WEB).
+    // Tenta o slug direto primeiro; se não tiver palpite pra aquele jogo,
+    // cai no irmão. Pra slugs sem irmão, fallbackSlug == slug (no-op).
+    const fallbackSlug = FALLBACK_NAO_WEB[slug] ?? slug;
     const palpites: Record<number, Palpite> = {};
     for (const [numStr, entry] of Object.entries(pj)) {
-      const p = entry.palpites?.[fonteSlug];
+      const p = entry.palpites?.[slug] ?? entry.palpites?.[fallbackSlug];
       if (p) palpites[Number(numStr)] = p;
     }
     return { ia, jogos, palpites };

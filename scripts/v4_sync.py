@@ -399,8 +399,10 @@ def _supabase_creds() -> tuple[str, str] | None:
 def _fetch_matamata() -> dict[int, dict[str, dict[str, int]]]:
     """Palpites do mata-mata (versao='mata-mata') do Supabase, por jogo.
 
-    Só slugs não-web entram (igual aos grupos): os '-web' são vitrines que
-    reaproveitam o irmão, e contá-los duplicaria votos no consenso.
+    Inclui TODOS os slugs (web e não-web). A página /ia/<slug> precisa dos
+    palpites do próprio slug "-web" pra mostrar os palpites via Web no
+    detalhe. A exclusão pra evitar duplicação no consenso (Bola de Cristal)
+    é feita depois, no agregador.
     """
     import urllib.request
 
@@ -422,8 +424,6 @@ def _fetch_matamata() -> dict[int, dict[str, dict[str, int]]]:
             lote = json.loads(resp.read().decode("utf-8"))
         for r in lote:
             slug = r["slug"]
-            if slug.endswith("-web"):
-                continue
             out.setdefault(int(r["jogo_numero"]), {})[slug] = {
                 "gols_a": int(r["gols_a"]),
                 "gols_b": int(r["gols_b"]),
@@ -481,10 +481,13 @@ def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
         # mata-mata: injeta palpites do Supabase (v1 não cobre esses jogos)
         for ia_slug, palp in matamata.get(num, {}).items():
             entries.setdefault(ia_slug, palp)
-        # consenso (top placares por votos)
+        # consenso (top placares por votos) — exclui slugs "-web" pra não
+        # duplicar voto da mesma marca (web reaproveita o irmão em consensos).
         contador: Counter[tuple[int, int]] = Counter()
         placares_to_ias: dict[tuple[int, int], list[str]] = {}
         for slug, palp in entries.items():
+            if slug.endswith("-web"):
+                continue
             key = (palp["gols_a"], palp["gols_b"])
             contador[key] += 1
             placares_to_ias.setdefault(key, []).append(slug)
