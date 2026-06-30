@@ -1108,24 +1108,24 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
 
   return (
     <div>
-      {/* Container que limita ALTURA = 85vh e LARGURA = 100% (max 1400px),
-          mantendo aspect ratio do bracket. SVG dentro preenche 100%×100%. */}
+      {/* SVG cabe na tela: max-width 100% (até 1400) E max-height 85vh.
+          Browser usa o constraint MENOR (largura ou altura) e
+          preserveAspectRatio=meet escala mantendo proporção do bracket. */}
       <div
         style={{
           width: "100%",
-          maxWidth: 1400,
-          maxHeight: "85vh",
-          aspectRatio: `${SVG_W} / ${SVG_H}`,
-          margin: "0 auto",
+          textAlign: "center",
         }}
       >
         <svg
           viewBox={`0 0 ${SVG_W} ${SVG_H}`}
           preserveAspectRatio="xMidYMid meet"
           style={{
-            display: "block",
-            width: "100%",
-            height: "100%",
+            display: "inline-block",
+            maxWidth: "100%",
+            maxHeight: "85vh",
+            width: "auto",
+            height: "auto",
             background:
               "linear-gradient(135deg, #0a0e1a 0%, #111827 60%, #0d1520 100%)",
             fontFamily: "system-ui, -apple-system, sans-serif",
