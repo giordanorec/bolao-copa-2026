@@ -4,7 +4,6 @@ export default function BannerR32({ locale }: { locale: Locale }) {
   const pt = locale === "pt";
   const en = locale === "en";
   const es = locale === "es";
-  const fr = locale === "fr";
 
   const tit = pt
     ? "🇧🇷 BRASIL 2×1 JAPÃO!"
@@ -46,14 +45,6 @@ export default function BannerR32({ locale }: { locale: Locale }) {
         ? "🇳🇱 Países Bajos 1×1 Marruecos 🇲🇦 — 6 IAs clavaron el 1×1 exacto (meta-llama-4, deepseek-v3-1, deepseek-v3-2, ministral-8b, chatgpt-5, llama-4-maverick). Marruecos ganó 3×2 en penales."
         : "🇳🇱 Pays-Bas 1×1 Maroc 🇲🇦 — 6 IA ont trouvé le 1×1 exact (meta-llama-4, deepseek-v3-1, deepseek-v3-2, ministral-8b, chatgpt-5, llama-4-maverick). Le Maroc s'est imposé 3×2 aux tirs au but.";
 
-  const classificados = pt
-    ? "Parabéns aos classificados de ontem: 🇨🇦 Canadá, 🇧🇷 Brasil, 🇵🇾 Paraguai e 🇲🇦 Marrocos!"
-    : en
-      ? "Congrats to yesterday's qualifiers: 🇨🇦 Canada, 🇧🇷 Brazil, 🇵🇾 Paraguay and 🇲🇦 Morocco!"
-      : es
-        ? "Felicidades a los clasificados de ayer: 🇨🇦 Canadá, 🇧🇷 Brasil, 🇵🇾 Paraguay y 🇲🇦 Marruecos."
-        : "Bravo aux qualifiés d'hier : 🇨🇦 Canada, 🇧🇷 Brésil, 🇵🇾 Paraguay et 🇲🇦 Maroc !";
-
   const proximos = pt
     ? "Hoje (30/06): 🇨🇮 Costa do Marfim × Noruega 🇳🇴 — 14h · 🇫🇷 França × Suécia 🇸🇪 — 18h · 🇲🇽 México × Equador 🇪🇨 — 22h."
     : en
@@ -61,6 +52,22 @@ export default function BannerR32({ locale }: { locale: Locale }) {
       : es
         ? "Hoy (30/06): 🇨🇮 Costa de Marfil × Noruega 🇳🇴 — 14h · 🇫🇷 Francia × Suecia 🇸🇪 — 18h · 🇲🇽 México × Ecuador 🇪🇨 — 22h."
         : "Aujourd'hui (30/06) : 🇨🇮 Côte d'Ivoire × Norvège 🇳🇴 — 14h · 🇫🇷 France × Suède 🇸🇪 — 18h · 🇲🇽 Mexique × Équateur 🇪🇨 — 22h.";
+
+  // Frases nas línguas nativas (sem tradução — descobrir é a graça).
+  // Eliminados → "até a próxima". Classificados → parabéns + segue na Copa.
+  // Japão tem frase especial porque foi adversário do Brasil.
+  const farewells = [
+    { lang: "ja", flag: "🇯🇵", text: "日本、あなたは素晴らしい対戦相手でした" },
+    { lang: "af", flag: "🇿🇦", text: "Tot siens, Bafana Bafana — sien jou weer" },
+    { lang: "nl", flag: "🇳🇱", text: "Tot de volgende keer, Oranje — kom snel terug" },
+    { lang: "de", flag: "🇩🇪", text: "Bis zum nächsten Mal, Mannschaft — Kopf hoch" },
+  ];
+
+  const congrats = [
+    { lang: "en", flag: "🇨🇦", text: "Way to go, Canada — round of 16, here we come, eh!" },
+    { lang: "gn", flag: "🇵🇾", text: "¡Iporã, Albirroja! Tereguahē porãite ko'ãgaite — vamos por más" },
+    { lang: "ar", flag: "🇲🇦", text: "مبروك يا أسود الأطلس — الطريق ما زال طويلًا" },
+  ];
 
   return (
     <section className="section" style={{ paddingTop: 8, paddingBottom: 8 }}>
@@ -140,17 +147,15 @@ export default function BannerR32({ locale }: { locale: Locale }) {
             {holMar}
           </p>
 
-          <p style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 6, color: "var(--fg)" }}>
-            {classificados}
-          </p>
           <p style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 18, color: "var(--fg-mid)" }}>
             {proximos}
           </p>
 
+          {/* Bloco BRASIL + recados em línguas nativas */}
           <div
             style={{
               borderTop: "1px dashed color-mix(in srgb, var(--secondary) 30%, transparent)",
-              paddingTop: 14,
+              paddingTop: 16,
               textAlign: "center",
             }}
           >
@@ -167,90 +172,80 @@ export default function BannerR32({ locale }: { locale: Locale }) {
             >
               VAAAAAAI BRASIL 🇧🇷
             </p>
-            <p
-              lang="ja"
-              style={{
-                fontSize: 17,
-                fontWeight: 700,
-                color: "var(--fg)",
-                marginTop: 14,
-                lineHeight: 1.5,
-              }}
-            >
-              日本、あなたは素晴らしい対戦相手でした 🇯🇵
-            </p>
-            <p
-              style={{
-                fontSize: 12,
-                color: "var(--fg-muted)",
-                fontStyle: "italic",
-                marginTop: 2,
-                marginBottom: 14,
-              }}
-            >
-              {pt
-                ? "(Japão, você foi um grande oponente)"
-                : en
-                  ? "(Japan, you were a great opponent)"
-                  : es
-                    ? "(Japón, fuiste un gran rival)"
-                    : "(Japon, tu as été un grand adversaire)"}
-            </p>
-            <p
-              lang="nl"
-              style={{
-                fontSize: 16,
-                fontWeight: 700,
-                color: "var(--fg)",
-                lineHeight: 1.5,
-              }}
-            >
-              Bedankt voor de strijd, Nederland 🇳🇱
-            </p>
-            <p
-              style={{
-                fontSize: 12,
-                color: "var(--fg-muted)",
-                fontStyle: "italic",
-                marginTop: 2,
-                marginBottom: 14,
-              }}
-            >
-              {pt
-                ? "(Obrigado pela luta, Holanda)"
-                : en
-                  ? "(Thanks for the fight, Netherlands)"
-                  : es
-                    ? "(Gracias por la lucha, Países Bajos)"
-                    : "(Merci pour le combat, Pays-Bas)"}
-            </p>
-            <p
-              lang="de"
-              style={{
-                fontSize: 16,
-                fontWeight: 700,
-                color: "var(--fg)",
-                lineHeight: 1.5,
-              }}
-            >
-              Danke für den Kampf, Deutschland 🇩🇪
-            </p>
-            <p
-              style={{
-                fontSize: 12,
-                color: "var(--fg-muted)",
-                fontStyle: "italic",
-                marginTop: 2,
-              }}
-            >
-              {pt
-                ? "(Obrigado pela luta, Alemanha)"
-                : en
-                  ? "(Thanks for the fight, Germany)"
-                  : es
-                    ? "(Gracias por la lucha, Alemania)"
-                    : "(Merci pour le combat, Allemagne)"}
-            </p>
+
+            <div style={{ marginTop: 22 }}>
+              <p
+                style={{
+                  fontFamily: "var(--ff-mono)",
+                  fontSize: 10,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                  color: "var(--fg-muted)",
+                  fontWeight: 700,
+                  marginBottom: 10,
+                }}
+              >
+                {pt
+                  ? "Até a próxima"
+                  : en
+                    ? "Until next time"
+                    : es
+                      ? "Hasta la próxima"
+                      : "À la prochaine"}
+              </p>
+              {farewells.map((f) => (
+                <p
+                  key={f.lang}
+                  lang={f.lang}
+                  style={{
+                    fontSize: 15,
+                    fontWeight: 700,
+                    color: "var(--fg)",
+                    lineHeight: 1.5,
+                    margin: "4px 0",
+                  }}
+                >
+                  {f.flag} {f.text}
+                </p>
+              ))}
+            </div>
+
+            <div style={{ marginTop: 20 }}>
+              <p
+                style={{
+                  fontFamily: "var(--ff-mono)",
+                  fontSize: 10,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                  color: "var(--fg-muted)",
+                  fontWeight: 700,
+                  marginBottom: 10,
+                }}
+              >
+                {pt
+                  ? "Parabéns aos que seguem"
+                  : en
+                    ? "Congrats to those advancing"
+                    : es
+                      ? "Felicidades a los que siguen"
+                      : "Bravo aux qualifiés"}
+              </p>
+              {congrats.map((c) => (
+                <p
+                  key={c.lang}
+                  lang={c.lang}
+                  style={{
+                    fontSize: 15,
+                    fontWeight: 700,
+                    color: "var(--fg)",
+                    lineHeight: 1.5,
+                    margin: "4px 0",
+                  }}
+                >
+                  {c.flag} {c.text}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
