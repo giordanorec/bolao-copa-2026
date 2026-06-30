@@ -1043,28 +1043,20 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           opacity={0.12}
         />
         <circle cx={CENTER_X} cy={cy} r={52} fill="rgba(255,215,0,0.04)" />
-        {/* Trophy — Fix 5: centered at (CENTER_X, CENTER_Y), strong golden glow */}
-        <foreignObject
-          x={CENTER_X - TROPHY_SIZE / 2}
-          y={cy - TROPHY_SIZE * 0.9}
-          width={TROPHY_SIZE}
-          height={TROPHY_SIZE}
+        {/* Trophy — SVG text nativo, centro exato em (CENTER_X, CENTER_Y) */}
+        <text
+          x={CENTER_X}
+          y={cy}
+          textAnchor="middle"
+          dominantBaseline="central"
+          fontSize={TROPHY_SIZE * 0.95}
+          style={{
+            filter:
+              "drop-shadow(0 0 20px rgba(255,215,0,0.6)) drop-shadow(0 0 40px rgba(255,215,0,0.3))",
+          }}
         >
-          <div
-            style={{
-              width: TROPHY_SIZE,
-              height: TROPHY_SIZE,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: TROPHY_SIZE * 0.80,
-              lineHeight: 1,
-              filter: "drop-shadow(0 0 20px rgba(255,215,0,0.6)) drop-shadow(0 0 40px rgba(255,215,0,0.3))",
-            }}
-          >
-            🏆
-          </div>
-        </foreignObject>
+          🏆
+        </text>
         {/* Fix 1: very subtle placeholder slots for finalists */}
         <SlotPlaceholder cx={CENTER_X - 110} cy={cy} r={FLAG_F} />
         <SlotPlaceholder cx={CENTER_X + 110} cy={cy} r={FLAG_F} />
