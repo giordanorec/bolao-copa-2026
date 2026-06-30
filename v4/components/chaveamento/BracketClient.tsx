@@ -1124,8 +1124,9 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           style={{
             display: "inline-block",
             maxWidth: "100%",
-            // Desconta header (~180px) — garante caber sem scroll vertical
-            maxHeight: "calc(100vh - 180px)",
+            // Desconta HeaderNavBar + page header + paddings (~250px total)
+            // Playwright em 1400x900 mediu SVG top=208 → folga de 32px.
+            maxHeight: "calc(100vh - 250px)",
             // Em telas estreitas, força tamanho mínimo (bandeiras legíveis)
             // — usuário scrolla horizontalmente quando viewport < 1100px.
             minWidth: 1100,
