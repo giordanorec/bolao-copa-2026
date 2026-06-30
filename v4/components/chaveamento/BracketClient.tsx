@@ -5,11 +5,19 @@
  *
  * Architecture:
  * - R32 games are the ONLY source of team flags. Each flag lives exactly once.
- * - Winners animate from their R32 position to the correct R16 slot via CSS translate.
- * - Losers fade to 0.3 opacity in-place.
+ * - Winners animate from their R32 position to the correct R16 slot via SVG
+ *   animateMotion + mpath along the right-angle connector path.
+ * - Losers fade to 0.3 opacity in-place (CSS animation, fired SMIL-side with
+ *   a <animate> on opacity).
  * - R16/QF/SF/Final slots render as EMPTY placeholder boxes, no flags.
  *   (The animated flag that travels from R32 IS the flag that populates R16.)
  * - Future rounds (QF, SF, Final) are also empty placeholder boxes.
+ *
+ * Animation chronology:
+ * - Decided games are sorted by their real match date+time before assigning
+ *   delay slots — so the earliest-played match animates first.
+ * - Each flag follows the right-angle connector path exactly via animateMotion
+ *   + mpath (H → V → H trajectory). No diagonal translate.
  *
  * Toggle modes:
  * - "spaced" (default): FLAG_R32=40, generous slot height (120px/game → 960px total).
@@ -36,6 +44,10 @@ export type Confronto = {
   gols_b: number | null;
   vencedor: "a" | "b" | null;
   hasPenaltyNote: boolean;
+  /** ISO date string YYYY-MM-DD from jogos.json */
+  data: string;
+  /** Time string HH:MM from jogos.json */
+  hora: string;
 };
 
 type Props = {
@@ -154,11 +166,17 @@ function flagUrl(iso: string): string {
   return `https://hatscripts.github.io/circle-flags/flags/${iso}.svg`;
 }
 
+/** Convert "YYYY-MM-DD" + "HH:MM" to a sortable numeric key */
+function gameDateTime(data: string, hora: string): number {
+  // Produces e.g. "2026-06-28T16:00" → Date numeric value
+  return new Date(`${data}T${hora}`).getTime();
+}
+
 // ─── SVG sub-components ────────────────────────────────────────────────────────
 
 /**
  * Renders one circular flag at (cx, cy) with radius r.
- * Returns SVG elements (no animation — caller applies animation via style prop on wrapper).
+ * Returns SVG elements (no animation — caller applies animation via wrapper).
  */
 function FlagCircle({
   slot,
@@ -394,131 +412,118 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
   // ─── Animation spec computation ───────────────────────────────────────────────
 
   /**
-   * For each decided R32 game, compute:
-   * - origin (cx, cy) = the winner's position in R32 layout
-   * - destination (cx, cy) = the position in R16 layout
-   * - animId = unique CSS animation name
-   * - delay = seconds before animation starts (after 1.5s initial pause)
+   * For each decided R32 game, compute geometry and timing.
    *
-   * The winner flag is rendered AT its R32 position.
-   * CSS transform translate(dx, dy) moves it to its R16 position.
+   * The flag group is positioned at the R32 origin with:
+   *   <g transform="translate(fromCX, fromCY)">
+   * Inside it, FlagCircle renders at (0, 0).
+   * <animateMotion> drives the group along the right-angle path from (0,0)
+   * to (toCX-fromCX, toCY-fromCY), i.e. the path is relative:
+   *   M 0 0  H (midX-fromCX)  V (toCY-fromCY)  H (toCX-fromCX)
+   *
+   * Chronological ordering: games sorted by data+hora before assigning delays.
    */
 
   type AnimSpec = {
-    animId: string;
+    animId: string;       // unique id for <animateMotion> element
+    pathId: string;       // unique id for <path> in <defs>
     fromCX: number;
     fromCY: number;
     toCX: number;
     toCY: number;
-    delay: number; // seconds total (includes initial pause)
+    /** Relative right-angle path: M 0 0 → destination, via midpoint */
+    relPath: string;
+    delayS: number;       // seconds from cycle start when THIS animation begins
     side: "L" | "R";
     jNum: number;
     winnerSide: "a" | "b";
+    gi: number;           // game row index
+    dateTime: number;     // sortable timestamp for chronological ordering
   };
-
-  const animSpecs: AnimSpec[] = [];
 
   // Initial delay before any animation starts
   const INIT_PAUSE = 1.2; // seconds
-  const PER_TEAM_DELAY = 0.45; // seconds between each team animation
+  const TRAVEL_DURATION = 1.5; // seconds per flag travel
+  const INTER_GAP = 0.3;  // gap between sequential animations
+  const HOLD_DURATION = 10; // seconds to hold final state before repeat
 
-  let delayCounter = 0;
+  // Collect all decided games from both sides (with geometry)
+  const unsortedSpecs: AnimSpec[] = [];
 
-  // LEFT side
-  leftR32.forEach((c, gi) => {
-    if (c.vencedor === null) return;
-    const r16Idx = Math.floor(gi / 2);
-    const isA = c.vencedor === "a";
-    const fromCX = LR32_X;
-    const fromCY = isA ? teamAY(gi) : teamBY(gi);
-    // In R16, the two teams from the two R32 games become teamA (from top game) and teamB (from bottom game)
-    // gi=0,2 (top of pair) → r16TeamAY; gi=1,3 (bottom of pair) → r16TeamBY
-    const isTopOfPair = gi % 2 === 0;
-    const toCX = LR16_X;
-    const toCY = isTopOfPair ? r16TeamAY(r16Idx) : r16TeamBY(r16Idx);
+  function collectSpecs(
+    games: Confronto[],
+    side: "L" | "R",
+    flagCX: number,
+    r16CX: number,
+  ) {
+    games.forEach((c, gi) => {
+      if (c.vencedor === null) return;
+      const r16Idx = Math.floor(gi / 2);
+      const isA = c.vencedor === "a";
+      const fromCX = flagCX;
+      const fromCY = isA ? teamAY(gi) : teamBY(gi);
+      const isTopOfPair = gi % 2 === 0;
+      const toCX = r16CX;
+      const toCY = isTopOfPair ? r16TeamAY(r16Idx) : r16TeamBY(r16Idx);
 
-    animSpecs.push({
-      animId: `adv-L-${c.numero}-${c.vencedor}`,
-      fromCX,
-      fromCY,
-      toCX,
-      toCY,
-      delay: INIT_PAUSE + delayCounter * PER_TEAM_DELAY,
-      side: "L",
-      jNum: c.numero,
-      winnerSide: c.vencedor,
+      // Mid-X of the right-angle path (halfway between R32 and R16 X positions)
+      // For left side: R32_X < R16_X → midX is between them
+      // For right side: R32_X > R16_X → midX is between them
+      const midX = (fromCX + toCX) / 2;
+
+      // Relative path: starts at (0,0) = fromCX,fromCY; ends at destination offset
+      const dx = toCX - fromCX;
+      const dy = toCY - fromCY;
+      const midDX = midX - fromCX; // relative midpoint X
+
+      let relPath: string;
+      if (Math.abs(dy) < 1) {
+        // Same Y — just horizontal
+        relPath = `M 0 0 H ${Math.round(dx)}`;
+      } else {
+        relPath = `M 0 0 H ${Math.round(midDX)} V ${Math.round(dy)} H ${Math.round(dx)}`;
+      }
+
+      const animId = `anim-adv-${side}-${c.numero}-${c.vencedor}`;
+      const pathId = `path-adv-${side}-${c.numero}-${c.vencedor}`;
+
+      unsortedSpecs.push({
+        animId,
+        pathId,
+        fromCX,
+        fromCY,
+        toCX,
+        toCY,
+        relPath,
+        delayS: 0, // assigned after sorting
+        side,
+        jNum: c.numero,
+        winnerSide: c.vencedor,
+        gi,
+        dateTime: gameDateTime(c.data, c.hora),
+      });
     });
-    delayCounter++;
-  });
+  }
 
-  // RIGHT side — continue delay counter
-  rightR32.forEach((c, gi) => {
-    if (c.vencedor === null) return;
-    const r16Idx = Math.floor(gi / 2);
-    const isA = c.vencedor === "a";
-    const fromCX = RR32_X;
-    const fromCY = isA ? teamAY(gi) : teamBY(gi);
-    const isTopOfPair = gi % 2 === 0;
-    const toCX = RR16_X;
-    const toCY = isTopOfPair ? r16TeamAY(r16Idx) : r16TeamBY(r16Idx);
+  collectSpecs(leftR32, "L", LR32_X, LR16_X);
+  collectSpecs(rightR32, "R", RR32_X, RR16_X);
 
-    animSpecs.push({
-      animId: `adv-R-${c.numero}-${c.vencedor}`,
-      fromCX,
-      fromCY,
-      toCX,
-      toCY,
-      delay: INIT_PAUSE + delayCounter * PER_TEAM_DELAY,
-      side: "R",
-      jNum: c.numero,
-      winnerSide: c.vencedor,
-    });
-    delayCounter++;
-  });
+  // Sort chronologically by match date+time
+  unsortedSpecs.sort((a, b) => a.dateTime - b.dateTime);
 
-  // Total animation cycle duration (last delay + 1.5s travel + 8s hold + repeat)
-  const lastDelay = animSpecs.length > 0
-    ? Math.max(...animSpecs.map((s) => s.delay))
+  // Assign sequential delays after sorting
+  const animSpecs: AnimSpec[] = unsortedSpecs.map((spec, idx) => ({
+    ...spec,
+    delayS: INIT_PAUSE + idx * (TRAVEL_DURATION + INTER_GAP),
+  }));
+
+  // Compute full cycle duration
+  const lastAnimStart = animSpecs.length > 0
+    ? Math.max(...animSpecs.map((s) => s.delayS))
     : INIT_PAUSE;
-  const TRAVEL_DURATION = 1.2; // seconds for each flag to slide
-  const HOLD_DURATION = 10;    // seconds to hold at R16 before looping
-  const CYCLE = lastDelay + TRAVEL_DURATION + HOLD_DURATION;
+  const CYCLE = lastAnimStart + TRAVEL_DURATION + HOLD_DURATION;
 
-  // Build CSS keyframes
-  function buildKeyframe(spec: AnimSpec): string {
-    const dx = spec.toCX - spec.fromCX;
-    const dy = spec.toCY - spec.fromCY;
-    const pStart = ((spec.delay / CYCLE) * 100).toFixed(2);
-    const pEnd = (((spec.delay + TRAVEL_DURATION) / CYCLE) * 100).toFixed(2);
-    return `@keyframes ${spec.animId} {
-  0%, ${pStart}% { transform: translate(0px, 0px); opacity: 1; }
-  ${pEnd}%, 100% { transform: translate(${Math.round(dx)}px, ${Math.round(dy)}px); opacity: 1; }
-}`;
-  }
-
-  // Loser fade keyframes — fade to 0.3 at same time as winner starts moving
-  function buildLoserKeyframe(spec: AnimSpec, loserSide: "a" | "b"): string {
-    const loserAnimId = `fade-${spec.animId}-${loserSide}`;
-    const pStart = ((spec.delay / CYCLE) * 100).toFixed(2);
-    const pEnd = (((spec.delay + 0.8) / CYCLE) * 100).toFixed(2);
-    return `@keyframes ${loserAnimId} {
-  0%, ${pStart}% { opacity: 1; }
-  ${pEnd}%, 100% { opacity: 0.3; }
-}`;
-  }
-
-  // Build all CSS
-  const allKeyframes: string[] = [];
-  animSpecs.forEach((spec) => {
-    allKeyframes.push(buildKeyframe(spec));
-    // Loser is the OTHER side
-    const loserSide = spec.winnerSide === "a" ? "b" : "a";
-    allKeyframes.push(buildLoserKeyframe(spec, loserSide));
-  });
-
-  const fullCSS = allKeyframes.join("\n");
-
-  // Map for quick lookup: (side, jNum) → animSpec
+  // Build lookup by (side, jNum) for rendering
   const animLookup = new Map<string, AnimSpec>();
   animSpecs.forEach((s) => {
     animLookup.set(`${s.side}-${s.jNum}`, s);
@@ -528,13 +533,33 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
     return animLookup.get(`${side}-${jNum}`);
   }
 
+  // ─── SMIL begin string builders ──────────────────────────────────────────────
+
+  /**
+   * Build SMIL begin attribute for an animateMotion.
+   *
+   * The loopAnchor <animate> element is placed in the SVG body with:
+   *   begin="0s; loopAnchor.end"   dur=CYCLE
+   * This makes it fire at t=0, then again at each multiple of CYCLE.
+   * loopAnchor.begin fires at t=0, CYCLE, 2*CYCLE, ...
+   *
+   * Each flag animation uses: begin="loopAnchor.begin + delayS"
+   * This chains correctly across all loop iterations.
+   *
+   * The loser fade uses the same pattern.
+   */
+  function smilBegin(delayS: number): string {
+    const ds = delayS.toFixed(2);
+    return `loopAnchor.begin+${ds}s`;
+  }
+
   // ─── Rendering helpers ───────────────────────────────────────────────────────
 
   /**
    * Render one R32 game row.
-   * - Winner: rendered normally, with advance animation applied.
-   * - Loser: rendered normally, with fade animation applied.
-   * - Undecided teams: rendered normally, no animation.
+   * Winner: rendered in a <g transform="translate(cx,cy)"> with animateMotion.
+   * Loser: rendered normally with a SMIL <animate> on opacity.
+   * Undecided: rendered normally, no animation.
    */
   function renderR32Game(
     c: Confronto,
@@ -550,15 +575,6 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
     const spec = decided ? getAnimSpec(side, c.numero) : undefined;
     const winnerSide = c.vencedor;
 
-    const loserAnimIdA =
-      decided && winnerSide === "b"
-        ? `fade-${spec!.animId}-a`
-        : undefined;
-    const loserAnimIdB =
-      decided && winnerSide === "a"
-        ? `fade-${spec!.animId}-b`
-        : undefined;
-
     const BRACKET_X = side === "L" ? flagCX + FLAG_R32 + 3 : flagCX - FLAG_R32 - 3;
     const EXIT_X = side === "L" ? flagCX + PHASE_W / 2 : flagCX - PHASE_W / 2;
 
@@ -567,6 +583,223 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
       side === "L"
         ? BRACKET_X + 38
         : BRACKET_X - 38;
+
+    // Loser fade timing: starts when winner begins moving
+    const loserFadeBegin = spec ? smilBegin(spec.delayS) : "indefinite";
+    const loserFadeDur = "0.8s";
+
+    // For the winner's group: render at origin (0,0), translated to abs position
+    // The animateMotion moves the group along relPath (relative coordinates)
+    // After animation ends (fill="freeze"), group is at destination.
+
+    const isWinnerA = winnerSide === "a";
+    const isWinnerB = winnerSide === "b";
+
+    // Render team A
+    const teamAEl = (
+      <g key={`tA-${side}-${c.numero}`}>
+        {isWinnerA && spec ? (
+          // Winner: group placed at origin (flagCX, aY), animateMotion moves it
+          <g transform={`translate(${flagCX}, ${aY})`}>
+            <FlagCircle
+              slot={c.timeA}
+              cx={0}
+              cy={0}
+              r={FLAG_R32}
+              faded={false}
+              isBright={true}
+              uid={`r32${side}${c.numero}a`}
+            />
+            <text
+              x={textRight ? FLAG_R32 + 6 : -FLAG_R32 - 6}
+              y={5}
+              fontSize={Math.max(10, FLAG_R32 * 0.28)}
+              fontFamily="system-ui, -apple-system, sans-serif"
+              fontWeight={600}
+              fill={c.timeA.nome === "Brasil" ? "#4ADE80" : "rgba(255,255,255,0.88)"}
+              textAnchor={textRight ? "start" : "end"}
+            >
+              {isUnknownTeam(c.timeA.nome) ? "?" : shortName(c.timeA.nome, 11)}
+            </text>
+            <animateMotion
+              id={spec.animId}
+              dur={`${TRAVEL_DURATION}s`}
+              begin={smilBegin(spec.delayS)}
+              fill="freeze"
+              rotate="0"
+              calcMode="linear"
+            >
+              <mpath href={`#${spec.pathId}`} />
+            </animateMotion>
+          </g>
+        ) : (
+          // Loser A or undecided A: static position
+          <g>
+            {isWinnerB && spec ? (
+              // Loser: fade to 0.3 when winner starts moving
+              <g>
+                <FlagCircle
+                  slot={c.timeA}
+                  cx={flagCX}
+                  cy={aY}
+                  r={FLAG_R32}
+                  faded={false}
+                  isBright={false}
+                  uid={`r32${side}${c.numero}a`}
+                />
+                <text
+                  x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
+                  y={aY + 5}
+                  fontSize={Math.max(10, FLAG_R32 * 0.28)}
+                  fontFamily="system-ui, -apple-system, sans-serif"
+                  fontWeight={400}
+                  fill="rgba(255,255,255,0.88)"
+                  textAnchor={textRight ? "start" : "end"}
+                >
+                  {isUnknownTeam(c.timeA.nome) ? "?" : shortName(c.timeA.nome, 11)}
+                </text>
+                {/* SMIL opacity fade for loser */}
+                <animate
+                  attributeName="opacity"
+                  values="1;0.3"
+                  begin={loserFadeBegin}
+                  dur={loserFadeDur}
+                  fill="freeze"
+                  id={`fade-${side}-${c.numero}-a`}
+                />
+              </g>
+            ) : (
+              // Undecided
+              <g>
+                <FlagCircle
+                  slot={c.timeA}
+                  cx={flagCX}
+                  cy={aY}
+                  r={FLAG_R32}
+                  faded={false}
+                  isBright={!decided}
+                  uid={`r32${side}${c.numero}a`}
+                />
+                <text
+                  x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
+                  y={aY + 5}
+                  fontSize={Math.max(10, FLAG_R32 * 0.28)}
+                  fontFamily="system-ui, -apple-system, sans-serif"
+                  fontWeight={400}
+                  fill="rgba(255,255,255,0.88)"
+                  textAnchor={textRight ? "start" : "end"}
+                >
+                  {isUnknownTeam(c.timeA.nome) ? "?" : shortName(c.timeA.nome, 11)}
+                </text>
+              </g>
+            )}
+          </g>
+        )}
+      </g>
+    );
+
+    // Render team B
+    const teamBEl = (
+      <g key={`tB-${side}-${c.numero}`}>
+        {isWinnerB && spec ? (
+          // Winner: group placed at origin (flagCX, bY), animateMotion moves it
+          <g transform={`translate(${flagCX}, ${bY})`}>
+            <FlagCircle
+              slot={c.timeB}
+              cx={0}
+              cy={0}
+              r={FLAG_R32}
+              faded={false}
+              isBright={true}
+              uid={`r32${side}${c.numero}b`}
+            />
+            <text
+              x={textRight ? FLAG_R32 + 6 : -FLAG_R32 - 6}
+              y={5}
+              fontSize={Math.max(10, FLAG_R32 * 0.28)}
+              fontFamily="system-ui, -apple-system, sans-serif"
+              fontWeight={600}
+              fill={c.timeB.nome === "Brasil" ? "#4ADE80" : "rgba(255,255,255,0.88)"}
+              textAnchor={textRight ? "start" : "end"}
+            >
+              {isUnknownTeam(c.timeB.nome) ? "?" : shortName(c.timeB.nome, 11)}
+            </text>
+            <animateMotion
+              id={spec.animId}
+              dur={`${TRAVEL_DURATION}s`}
+              begin={smilBegin(spec.delayS)}
+              fill="freeze"
+              rotate="0"
+              calcMode="linear"
+            >
+              <mpath href={`#${spec.pathId}`} />
+            </animateMotion>
+          </g>
+        ) : (
+          // Loser B or undecided B: static position
+          <g>
+            {isWinnerA && spec ? (
+              // Loser: fade to 0.3 when winner starts moving
+              <g>
+                <FlagCircle
+                  slot={c.timeB}
+                  cx={flagCX}
+                  cy={bY}
+                  r={FLAG_R32}
+                  faded={false}
+                  isBright={false}
+                  uid={`r32${side}${c.numero}b`}
+                />
+                <text
+                  x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
+                  y={bY + 5}
+                  fontSize={Math.max(10, FLAG_R32 * 0.28)}
+                  fontFamily="system-ui, -apple-system, sans-serif"
+                  fontWeight={400}
+                  fill="rgba(255,255,255,0.88)"
+                  textAnchor={textRight ? "start" : "end"}
+                >
+                  {isUnknownTeam(c.timeB.nome) ? "?" : shortName(c.timeB.nome, 11)}
+                </text>
+                {/* SMIL opacity fade for loser */}
+                <animate
+                  attributeName="opacity"
+                  values="1;0.3"
+                  begin={loserFadeBegin}
+                  dur={loserFadeDur}
+                  fill="freeze"
+                  id={`fade-${side}-${c.numero}-b`}
+                />
+              </g>
+            ) : (
+              // Undecided
+              <g>
+                <FlagCircle
+                  slot={c.timeB}
+                  cx={flagCX}
+                  cy={bY}
+                  r={FLAG_R32}
+                  faded={false}
+                  isBright={!decided}
+                  uid={`r32${side}${c.numero}b`}
+                />
+                <text
+                  x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
+                  y={bY + 5}
+                  fontSize={Math.max(10, FLAG_R32 * 0.28)}
+                  fontFamily="system-ui, -apple-system, sans-serif"
+                  fontWeight={400}
+                  fill="rgba(255,255,255,0.88)"
+                  textAnchor={textRight ? "start" : "end"}
+                >
+                  {isUnknownTeam(c.timeB.nome) ? "?" : shortName(c.timeB.nome, 11)}
+                </text>
+              </g>
+            )}
+          </g>
+        )}
+      </g>
+    );
 
     return (
       <g key={`r32-${side}-${c.numero}`}>
@@ -593,90 +826,8 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           strokeWidth={decided ? 1.8 : 1}
           strokeOpacity={decided ? 0.7 : 0.5}
         />
-        {/* Team A */}
-        <g
-          style={
-            spec && winnerSide === "a"
-              ? {
-                  animation: `${spec.animId} ${CYCLE}s ease-out infinite`,
-                  animationDelay: "0s",
-                }
-              : loserAnimIdA
-              ? {
-                  animation: `${loserAnimIdA} ${CYCLE}s ease-out infinite`,
-                }
-              : undefined
-          }
-        >
-          <FlagCircle
-            slot={c.timeA}
-            cx={flagCX}
-            cy={aY}
-            r={FLAG_R32}
-            faded={false}
-            isBright={!decided || winnerSide === "a"}
-            uid={`r32${side}${c.numero}a`}
-          />
-          <text
-            x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
-            y={aY + 5}
-            fontSize={Math.max(10, FLAG_R32 * 0.28)}
-            fontFamily="system-ui, -apple-system, sans-serif"
-            fontWeight={!decided || winnerSide === "a" ? 600 : 400}
-            fill={
-              !decided || winnerSide === "a"
-                ? c.timeA.nome === "Brasil"
-                  ? "#4ADE80"
-                  : "rgba(255,255,255,0.88)"
-                : "rgba(255,255,255,0.35)"
-            }
-            textAnchor={textRight ? "start" : "end"}
-          >
-            {isUnknownTeam(c.timeA.nome) ? "?" : shortName(c.timeA.nome, 11)}
-          </text>
-        </g>
-        {/* Team B */}
-        <g
-          style={
-            spec && winnerSide === "b"
-              ? {
-                  animation: `${spec.animId} ${CYCLE}s ease-out infinite`,
-                  animationDelay: "0s",
-                }
-              : loserAnimIdB
-              ? {
-                  animation: `${loserAnimIdB} ${CYCLE}s ease-out infinite`,
-                }
-              : undefined
-          }
-        >
-          <FlagCircle
-            slot={c.timeB}
-            cx={flagCX}
-            cy={bY}
-            r={FLAG_R32}
-            faded={false}
-            isBright={!decided || winnerSide === "b"}
-            uid={`r32${side}${c.numero}b`}
-          />
-          <text
-            x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
-            y={bY + 5}
-            fontSize={Math.max(10, FLAG_R32 * 0.28)}
-            fontFamily="system-ui, -apple-system, sans-serif"
-            fontWeight={!decided || winnerSide === "b" ? 600 : 400}
-            fill={
-              !decided || winnerSide === "b"
-                ? c.timeB.nome === "Brasil"
-                  ? "#4ADE80"
-                  : "rgba(255,255,255,0.88)"
-                : "rgba(255,255,255,0.35)"
-            }
-            textAnchor={textRight ? "start" : "end"}
-          >
-            {isUnknownTeam(c.timeB.nome) ? "?" : shortName(c.timeB.nome, 11)}
-          </text>
-        </g>
+        {teamAEl}
+        {teamBEl}
         {/* Score */}
         {c.gols_a !== null && c.gols_b !== null && (
           <text
@@ -703,7 +854,6 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
   function renderR32toR16Connectors(
     side: "L" | "R",
     r16Idx: number, // 0-3
-    r32Games: Confronto[], // full array
   ) {
     const g1 = r16Idx * 2;
     const g2 = r16Idx * 2 + 1;
@@ -1056,10 +1206,42 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           }}
           aria-label="Chaveamento da Copa do Mundo 2026"
         >
-          {/* Animation CSS */}
           <defs>
-            <style>{fullCSS}</style>
+            {/*
+              Motion paths for each advancing flag.
+              These are relative paths starting at M 0 0 (the flag's R32 origin).
+              animateMotion + mpath drives the flag's <g transform="translate"> group
+              along this path, so the group moves from (fromCX,fromCY) through the
+              right-angle bend to (toCX,toCY).
+            */}
+            {animSpecs.map((spec) => (
+              <path
+                key={spec.pathId}
+                id={spec.pathId}
+                d={spec.relPath}
+                fill="none"
+                stroke="none"
+              />
+            ))}
           </defs>
+
+          {/*
+            Loop anchor: a zero-size rect with a self-restarting <animate>.
+            begin="0s; loopAnchor.end" makes it fire at t=0, CYCLE, 2*CYCLE, ...
+            All animateMotion and loser-fade animations use:
+              begin="loopAnchor.begin + Xs"
+            which correctly chains across every loop iteration.
+          */}
+          <rect id="loopAnchorRect" width={0} height={0} opacity={0}>
+            <animate
+              id="loopAnchor"
+              attributeName="opacity"
+              values="0;0"
+              dur={`${CYCLE.toFixed(2)}s`}
+              begin={`0s; loopAnchor.end`}
+              fill="freeze"
+            />
+          </rect>
 
           {/* Phase labels */}
           {phaseLabels.map(([label, x]) => (
@@ -1085,7 +1267,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
 
           {/* ── LEFT SIDE R16 connectors + placeholder slots ── */}
           {[0, 1, 2, 3].map((r16Idx) =>
-            renderR32toR16Connectors("L", r16Idx, leftR32),
+            renderR32toR16Connectors("L", r16Idx),
           )}
 
           {/* ── LEFT SIDE QF placeholder slots ── */}
@@ -1101,7 +1283,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
 
           {/* ── RIGHT SIDE R16 connectors + placeholder slots ── */}
           {[0, 1, 2, 3].map((r16Idx) =>
-            renderR32toR16Connectors("R", r16Idx, rightR32),
+            renderR32toR16Connectors("R", r16Idx),
           )}
 
           {/* ── RIGHT SIDE QF placeholder slots ── */}
