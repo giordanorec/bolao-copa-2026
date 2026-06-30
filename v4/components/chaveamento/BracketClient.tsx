@@ -66,15 +66,19 @@ interface LayoutConfig {
 }
 
 const LAYOUTS: Record<Mode, LayoutConfig> = {
+  // "spaced" = SEM sobreposição. Math: 2 flags raio R precisam ≥ 2R+2R = 4R
+  // de distância entre topos. Com R=36 (diâmetro 72), GAME_H precisa ≥ 4R + gap
+  // interno = 144 + 16 = 160 pra deixar 16px entre as duas flags do mesmo jogo.
   spaced: {
-    FLAG_R32: 40,
-    FLAG_R16: 44,
-    FLAG_QF: 52,
+    FLAG_R32: 36,
+    FLAG_R16: 40,
+    FLAG_QF: 50,
     FLAG_SF: 62,
-    FLAG_F: 80,
-    GAME_H: 120,  // 2×40 + padding = 120 → comfortable
-    GAME_GAP: 12,
+    FLAG_F: 84,
+    GAME_H: 170,    // 2×36×2 + 26 padding = 170 → 26px gap entre as 2 flags
+    GAME_GAP: 18,
   },
+  // "compact" = SOBREPÕE. Flags maiores, distância menor → bordas encavalam.
   compact: {
     FLAG_R32: 52,
     FLAG_R16: 56,
