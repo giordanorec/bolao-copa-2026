@@ -25,7 +25,6 @@
  * - "compact": FLAG_R32=52, tighter. Flags slightly bigger, slight overlap accepted.
  */
 
-import { useState } from "react";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 
@@ -308,8 +307,8 @@ function rightAnglePath(
 // ─── Main bracket component ────────────────────────────────────────────────────
 
 export default function BracketClient({ leftR32, rightR32 }: Props) {
-  const [mode, setMode] = useState<Mode>("spaced");
-  const cfg = LAYOUTS[mode];
+  // Modo fixo "spaced" — sem sobreposição. Toggle removido.
+  const cfg = LAYOUTS.spaced;
 
   const {
     FLAG_R32,
@@ -1134,57 +1133,6 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
 
   return (
     <div>
-      {/* Toggle chips */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: 10,
-          padding: "12px 0 20px",
-        }}
-      >
-        <button
-          onClick={() => setMode("spaced")}
-          style={{
-            padding: "6px 18px",
-            borderRadius: 20,
-            border: "1px solid",
-            borderColor: mode === "spaced" ? "#FFD700" : "rgba(255,255,255,0.2)",
-            background:
-              mode === "spaced" ? "rgba(255,215,0,0.1)" : "transparent",
-            color: mode === "spaced" ? "#FFD700" : "rgba(255,255,255,0.5)",
-            fontSize: 12,
-            fontWeight: 600,
-            letterSpacing: 0.5,
-            cursor: "pointer",
-            transition: "all 0.2s",
-          }}
-        >
-          Sem sobreposição
-        </button>
-        <button
-          onClick={() => setMode("compact")}
-          style={{
-            padding: "6px 18px",
-            borderRadius: 20,
-            border: "1px solid",
-            borderColor:
-              mode === "compact" ? "#FFD700" : "rgba(255,255,255,0.2)",
-            background:
-              mode === "compact" ? "rgba(255,215,0,0.1)" : "transparent",
-            color:
-              mode === "compact" ? "#FFD700" : "rgba(255,255,255,0.5)",
-            fontSize: 12,
-            fontWeight: 600,
-            letterSpacing: 0.5,
-            cursor: "pointer",
-            transition: "all 0.2s",
-          }}
-        >
-          Com sobreposição
-        </button>
-      </div>
-
       {/* SVG bracket — escala fluida pra caber na viewport (sem scroll) */}
       <div
         style={{
