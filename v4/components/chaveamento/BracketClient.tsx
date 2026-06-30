@@ -267,7 +267,7 @@ function SlotPlaceholder({
       cy={cy}
       r={r}
       fill="none"
-      stroke="rgba(255,255,255,0.1)"
+      stroke="rgba(255,255,255,0.40)"
       strokeWidth={1}
       strokeDasharray="4 3"
     />
@@ -576,7 +576,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           y1={aY}
           x2={BRACKET_X}
           y2={bY}
-          stroke="rgba(255,255,255,0.13)"
+          stroke="rgba(255,255,255,0.45)"
           strokeWidth={1}
         />
         {/* Horizontal exit line from midpoint toward R16 */}
@@ -728,14 +728,14 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
         <path
           d={rightAnglePath(EXIT_X, mid1Y, ENTRY_X, entryAY)}
           fill="none"
-          stroke="rgba(255,255,255,0.12)"
-          strokeWidth={1.5}
+          stroke="rgba(255,255,255,0.42)"
+          strokeWidth={2.5}
         />
         <path
           d={rightAnglePath(EXIT_X, mid2Y, ENTRY_X, entryBY)}
           fill="none"
-          stroke="rgba(255,255,255,0.12)"
-          strokeWidth={1.5}
+          stroke="rgba(255,255,255,0.42)"
+          strokeWidth={2.5}
         />
         {/* Vertical bar at R16 entry connecting teamA and teamB placeholders */}
         <line
@@ -743,7 +743,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           y1={entryAY}
           x2={side === "L" ? LR16_X + FLAG_R16 + 3 : RR16_X - FLAG_R16 - 3}
           y2={entryBY}
-          stroke="rgba(255,255,255,0.12)"
+          stroke="rgba(255,255,255,0.42)"
           strokeWidth={1}
         />
         {/* Placeholder circles for R16 slots */}
@@ -763,8 +763,8 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           y1={r16MidY(r16Idx)}
           x2={side === "L" ? LR16_X + PHASE_W / 2 : RR16_X - PHASE_W / 2}
           y2={r16MidY(r16Idx)}
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth={1.5}
+          stroke="rgba(255,255,255,0.40)"
+          strokeWidth={2.5}
         />
       </g>
     );
@@ -791,14 +791,14 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
         <path
           d={rightAnglePath(EXIT_X, r16MidY(qfIdx * 2), ENTRY_X, aY)}
           fill="none"
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth={1.5}
+          stroke="rgba(255,255,255,0.40)"
+          strokeWidth={2.5}
         />
         <path
           d={rightAnglePath(EXIT_X, r16MidY(qfIdx * 2 + 1), ENTRY_X, bY)}
           fill="none"
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth={1.5}
+          stroke="rgba(255,255,255,0.40)"
+          strokeWidth={2.5}
         />
         {/* Bracket bar */}
         <line
@@ -806,7 +806,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           y1={aY}
           x2={BRACKET_X}
           y2={bY}
-          stroke="rgba(255,255,255,0.1)"
+          stroke="rgba(255,255,255,0.40)"
           strokeWidth={1}
         />
         {/* Placeholder slots */}
@@ -818,8 +818,8 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           y1={midY}
           x2={side === "L" ? LQF_X + PHASE_W / 2 : RQF_X - PHASE_W / 2}
           y2={midY}
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth={1.5}
+          stroke="rgba(255,255,255,0.40)"
+          strokeWidth={2.5}
         />
       </g>
     );
@@ -857,14 +857,14 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
         <path
           d={rightAnglePath(EXIT_X, qfMidY(0), ENTRY_X, aY)}
           fill="none"
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth={1.5}
+          stroke="rgba(255,255,255,0.40)"
+          strokeWidth={2.5}
         />
         <path
           d={rightAnglePath(EXIT_X, qfMidY(1), ENTRY_X, bY)}
           fill="none"
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth={1.5}
+          stroke="rgba(255,255,255,0.40)"
+          strokeWidth={2.5}
         />
         {/* Bracket bar */}
         <line
@@ -872,7 +872,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           y1={aY}
           x2={BRACKET_X}
           y2={bY}
-          stroke="rgba(255,255,255,0.1)"
+          stroke="rgba(255,255,255,0.40)"
           strokeWidth={1}
         />
         {/* Placeholder slots */}
@@ -884,8 +884,8 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           y1={midY}
           x2={FINAL_X}
           y2={midY}
-          stroke="rgba(255,255,255,0.1)"
-          strokeWidth={1.5}
+          stroke="rgba(255,255,255,0.40)"
+          strokeWidth={2.5}
         />
       </g>
     );
