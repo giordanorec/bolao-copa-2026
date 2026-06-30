@@ -90,6 +90,8 @@ function buildConfrontos(
         gols_b: null,
         vencedor: null,
         hasPenaltyNote: false,
+        data: "9999-12-31",
+        hora: "00:00",
       };
     }
     const resultado = resultados.get(n);
@@ -105,6 +107,8 @@ function buildConfrontos(
       gols_b: resultado?.gols_b ?? null,
       vencedor,
       hasPenaltyNote: PENALTY_WINNER[n] !== undefined && resultado !== undefined,
+      data: jogo.data,
+      hora: jogo.hora,
     };
   });
 }
