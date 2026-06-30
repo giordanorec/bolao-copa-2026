@@ -7,7 +7,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { pontosJogo } from "@/lib/scoring";
 import { carregarJogos } from "@/lib/jogos";
-import { ehSerieA, nomeSerieA } from "@/lib/serie-a";
+import { ehSerieA, nomeSerieA, SLUGS_SERIE_A, FALLBACK_NAO_WEB, SLUGS_SIBLINGS_SERIE_A } from "@/lib/serie-a";
 import { scorePopularidade } from "@/lib/ias";
 import type { Palpite } from "@/lib/types";
 import type { LinhaFase } from "@/app/ranking-geral/RankingGeralClient";
@@ -17,46 +17,112 @@ function fasePorNumero(num: number): "grupos" | "matamata" {
   return num <= 72 ? "grupos" : "matamata";
 }
 
+type FaseStat = {
+  pontos: number;
+  placares_exatos: number;
+  vencedores_acertados: number;
+  jogos_palpitados: number;
+};
+
+type IARaw = {
+  slug?: string;
+  nome_display?: string;
+  pontos?: number;
+  palpites_total?: number;
+  grupos?: FaseStat;
+  matamata?: FaseStat;
+  geral?: FaseStat;
+  placares_exatos?: number;
+  jogos_palpitados?: number;
+};
+
+const ZERO_FASE: FaseStat = {
+  pontos: 0,
+  placares_exatos: 0,
+  vencedores_acertados: 0,
+  jogos_palpitados: 0,
+};
+
+/** Escolhe a fonte da fase com MAIS jogos apurados (empate → fica com a oficial). */
+function melhorFaseFonte(
+  oficial: FaseStat | undefined,
+  irmao: FaseStat | undefined,
+): FaseStat {
+  const o = oficial ?? ZERO_FASE;
+  const i = irmao ?? ZERO_FASE;
+  return i.jogos_palpitados > o.jogos_palpitados ? i : o;
+}
+
 export async function carregarLinhasIAs(): Promise<LinhaFase[]> {
   try {
     const filePath = path.join(process.cwd(), "public", "ranking-ias.json");
     const raw = await fs.readFile(filePath, "utf-8");
     const data = JSON.parse(raw);
-    return (data.ias ?? [])
-      .filter(
-        (ia: { slug?: string; palpites_total?: number }) =>
-          ia.slug === "bola-de-cristal" || (ia.palpites_total ?? 0) > 0,
-      )
-      .map(
-        (ia: {
-          nome_display?: string;
-          slug?: string;
-          pontos?: number;
-          palpites_total?: number;
-          grupos?: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
-          matamata?: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
-          geral?: { pontos: number; placares_exatos: number; vencedores_acertados: number; jogos_palpitados: number };
-        }) => {
-          const slug = ia.slug ?? "";
-          const serieA = ehSerieA(slug);
-          const zero = { pontos: 0, placares_exatos: 0, vencedores_acertados: 0, jogos_palpitados: 0 };
-          return {
-            tipo: slug === "bola-de-cristal" ? ("cristal" as const) : ("ia" as const),
-            slug,
-            nome: nomeSerieA(slug) ?? ia.nome_display ?? slug ?? "?",
-            serieA,
-            grupos: ia.grupos ?? zero,
-            matamata: ia.matamata ?? zero,
-            geral: ia.geral ?? {
-              pontos: ia.pontos ?? 0,
-              placares_exatos: 0,
-              vencedores_acertados: 0,
-              jogos_palpitados: ia.palpites_total ?? 0,
-            },
-            popularidade: scorePopularidade(slug),
-          } satisfies LinhaFase;
+    const todas: IARaw[] = (data.ias ?? []).filter(
+      (ia: IARaw) =>
+        ia.slug === "bola-de-cristal" || (ia.palpites_total ?? 0) > 0,
+    );
+    const porSlug = new Map<string, IARaw>();
+    for (const ia of todas) {
+      if (ia.slug) porSlug.set(ia.slug, ia);
+    }
+
+    const linhas: LinhaFase[] = [];
+
+    // 1) Série A: UMA entrada sintética por slug da vitrine, com merge por
+    //    fase (grupos do irmão API se tiver mais jogos, mata-mata do web).
+    for (const slug of SLUGS_SERIE_A) {
+      const oficial = porSlug.get(slug);
+      const irmaoSlug = FALLBACK_NAO_WEB[slug];
+      const irmao = irmaoSlug ? porSlug.get(irmaoSlug) : undefined;
+      if (!oficial && !irmao) continue;
+      const grupos = melhorFaseFonte(oficial?.grupos, irmao?.grupos);
+      const matamata = melhorFaseFonte(oficial?.matamata, irmao?.matamata);
+      const geral: FaseStat = {
+        pontos: grupos.pontos + matamata.pontos,
+        placares_exatos: grupos.placares_exatos + matamata.placares_exatos,
+        vencedores_acertados:
+          grupos.vencedores_acertados + matamata.vencedores_acertados,
+        jogos_palpitados:
+          grupos.jogos_palpitados + matamata.jogos_palpitados,
+      };
+      linhas.push({
+        tipo: "ia" as const,
+        slug,
+        nome: nomeSerieA(slug) ?? oficial?.nome_display ?? irmao?.nome_display ?? slug,
+        serieA: true,
+        grupos,
+        matamata,
+        geral,
+        popularidade: scorePopularidade(slug),
+      } satisfies LinhaFase);
+    }
+
+    // 2) IAs fora da Série A: cada slug entra com seus próprios dados.
+    //    Os irmãos API de Série A (claude-opus-4-7 etc.) ENTRAM aqui como
+    //    IA "regular" (serieA=false), pra quem quiser ver a versão crua —
+    //    sem confundir com a vitrine acima.
+    for (const ia of todas) {
+      const slug = ia.slug ?? "";
+      if (SLUGS_SERIE_A.includes(slug)) continue; // já entrou no merge acima
+      linhas.push({
+        tipo: slug === "bola-de-cristal" ? ("cristal" as const) : ("ia" as const),
+        slug,
+        nome: nomeSerieA(slug) ?? ia.nome_display ?? slug ?? "?",
+        serieA: false, // siblings deixam de ser marcados Série A — só o slot canônico
+        grupos: ia.grupos ?? ZERO_FASE,
+        matamata: ia.matamata ?? ZERO_FASE,
+        geral: ia.geral ?? {
+          pontos: ia.pontos ?? 0,
+          placares_exatos: 0,
+          vencedores_acertados: 0,
+          jogos_palpitados: ia.palpites_total ?? 0,
         },
-      );
+        popularidade: scorePopularidade(slug),
+      } satisfies LinhaFase);
+    }
+
+    return linhas;
   } catch {
     return [];
   }
