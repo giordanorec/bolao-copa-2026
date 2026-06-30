@@ -54,20 +54,36 @@ export default function BannerR32({ locale }: { locale: Locale }) {
         : "🇨🇮 Côte d'Ivoire 1×2 Norvège 🇳🇴 — fin d'après-midi 🌅";
 
   const noruegaLinha = pt
-    ? "Vitória aliada à massa: 23 IAs cravaram o 1×2 exato (Grok 4 Fast lidera com 16 cravadas no total). Noruega vai pras oitavas."
+    ? "Vitória aliada à massa: 23 IAs cravaram o 1×2 exato. Noruega vai pras oitavas."
     : en
-      ? "Vindicated by the crowd: 23 AIs nailed the exact 1×2 (Grok 4 Fast leads with 16 exact picks total). Norway moves on to round 16."
+      ? "Vindicated by the crowd: 23 AIs nailed the exact 1×2. Norway moves on to round 16."
       : es
-        ? "Vindicación de la masa: 23 IAs clavaron el 1×2 exacto (Grok 4 Fast lidera con 16 exactos totales). Noruega va a octavos."
-        : "Vindiqué par la foule : 23 IA ont trouvé le 1×2 exact (Grok 4 Fast en tête avec 16 scores exacts). La Norvège passe en 8es.";
+        ? "Vindicación de la masa: 23 IAs clavaron el 1×2 exacto. Noruega va a octavos."
+        : "Vindiqué par la foule : 23 IA ont trouvé le 1×2 exact. La Norvège passe en 8es.";
+
+  const francaTit = pt
+    ? "🇫🇷 França 3×0 Suécia 🇸🇪 — passeio europeu 🏰"
+    : en
+      ? "🇫🇷 France 3×0 Sweden 🇸🇪 — European cruise 🏰"
+      : es
+        ? "🇫🇷 Francia 3×0 Suecia 🇸🇪 — paseo europeo 🏰"
+        : "🇫🇷 France 3×0 Suède 🇸🇪 — promenade européenne 🏰";
+
+  const francaLinha = pt
+    ? "Consenso massivo: 62 de 63 IAs viam vitória francesa, e 17 cravaram o 3×0 exato (Grok 4 Fast salta pra 404 pts liderando com folga). Suécia segue calorosa, mas dá adeus."
+    : en
+      ? "Massive consensus: 62 of 63 AIs predicted a French win, and 17 nailed the exact 3×0 (Grok 4 Fast jumps to 404 pts, leading comfortably). Sweden bows out warmly."
+      : es
+        ? "Consenso masivo: 62 de 63 IAs preveían victoria francesa, y 17 clavaron el 3×0 exacto (Grok 4 Fast salta a 404 pts liderando con holgura). Suecia se despide."
+        : "Consensus massif : 62 IA sur 63 prévoyaient la victoire française, et 17 ont trouvé le 3×0 exact (Grok 4 Fast bondit à 404 pts, en tête confortable). La Suède dit au revoir.";
 
   const proximos = pt
-    ? "Ainda hoje (30/06): 🇫🇷 França × Suécia 🇸🇪 — 18h · 🇲🇽 México × Equador 🇪🇨 — 22h."
+    ? "Ainda hoje (30/06): 🇲🇽 México × Equador 🇪🇨 — 22h."
     : en
-      ? "Still today (30 June): 🇫🇷 France × Sweden 🇸🇪 — 18:00 BRT · 🇲🇽 Mexico × Ecuador 🇪🇨 — 22:00 BRT."
+      ? "Still today (30 June): 🇲🇽 Mexico × Ecuador 🇪🇨 — 22:00 BRT."
       : es
-        ? "Aún hoy (30/06): 🇫🇷 Francia × Suecia 🇸🇪 — 18h · 🇲🇽 México × Ecuador 🇪🇨 — 22h."
-        : "Encore aujourd'hui (30/06) : 🇫🇷 France × Suède 🇸🇪 — 18h · 🇲🇽 Mexique × Équateur 🇪🇨 — 22h.";
+        ? "Aún hoy (30/06): 🇲🇽 México × Ecuador 🇪🇨 — 22h."
+        : "Encore aujourd'hui (30/06) : 🇲🇽 Mexique × Équateur 🇪🇨 — 22h.";
 
   // Frases nas línguas nativas (sem tradução — descobrir é a graça).
   // Eliminados → "até a próxima". Classificados → parabéns + segue na Copa.
@@ -78,6 +94,7 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "nl", flag: "🇳🇱", text: "Tot de volgende keer, Oranje — kom snel terug" },
     { lang: "de", flag: "🇩🇪", text: "Bis zum nächsten Mal, Mannschaft — Kopf hoch" },
     { lang: "fr", flag: "🇨🇮", text: "À la prochaine, les Éléphants — vous reviendrez plus forts" },
+    { lang: "sv", flag: "🇸🇪", text: "Tack för matchen, Blågult — vi ses snart igen" },
   ];
 
   const congrats = [
@@ -85,6 +102,7 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "gn", flag: "🇵🇾", text: "¡Iporã, Albirroja! Tereguahē porãite ko'ãgaite — vamos por más" },
     { lang: "ar", flag: "🇲🇦", text: "مبروك يا أسود الأطلس — الطريق ما زال طويلًا" },
     { lang: "nb", flag: "🇳🇴", text: "Bra jobba, Løvene — vi sees i åttedelsfinalen!" },
+    { lang: "fr", flag: "🇫🇷", text: "Allez les Bleus ! Le rêve continue — la coupe nous attend" },
   ];
 
   return (
@@ -178,6 +196,21 @@ export default function BannerR32({ locale }: { locale: Locale }) {
           </h3>
           <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
             {noruegaLinha}
+          </p>
+
+          <h3
+            style={{
+              fontSize: "clamp(17px, 2.6vw, 20px)",
+              fontWeight: 800,
+              marginBottom: 6,
+              lineHeight: 1.2,
+              color: "var(--fg)",
+            }}
+          >
+            {francaTit}
+          </h3>
+          <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
+            {francaLinha}
           </p>
 
           <p style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 18, color: "var(--fg-mid)" }}>
