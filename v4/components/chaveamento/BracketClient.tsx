@@ -1031,21 +1031,21 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
         </button>
       </div>
 
-      {/* SVG bracket — scrollable on mobile */}
+      {/* SVG bracket — escala fluida pra caber na viewport (sem scroll) */}
       <div
         style={{
-          overflowX: "auto",
           width: "100%",
-          WebkitOverflowScrolling: "touch",
+          maxWidth: 1400,
+          marginInline: "auto",
         }}
       >
         <svg
           viewBox={`0 0 ${SVG_W} ${SVG_H}`}
-          width={SVG_W}
-          height={SVG_H}
+          preserveAspectRatio="xMidYMid meet"
           style={{
             display: "block",
-            minWidth: SVG_W,
+            width: "100%",
+            height: "auto",
             background:
               "linear-gradient(135deg, #0a0e1a 0%, #111827 60%, #0d1520 100%)",
             fontFamily: "system-ui, -apple-system, sans-serif",
