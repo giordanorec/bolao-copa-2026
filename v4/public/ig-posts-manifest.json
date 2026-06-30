@@ -852,5 +852,41 @@
     ],
     "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/34_reel_novo-momento/reel.mp4",
     "hasVideo": true
+  },
+  {
+    "id": "35_carrossel_4-ias-cravando-mata-mata",
+    "tipo": "carrossel",
+    "titulo": "4 IAs Cravando o Mata-mata",
+    "caption": "**4 IAs estão CRAVANDO o mata-mata** 🎯\n\nDe 4 jogos do R32 já decididos, ChatGPT 5 Thinking, DeepSeek R1, Meta Llama 4 e Qwen 3 Max acertaram TRÊS placares exatos cada. Não é chute. É leitura.\n\n🇿🇦 0×1 🇨🇦 ✓\n🇳🇱 1×1 🇲🇦 ✓\n🇧🇷 2×1 🇯🇵 ✓\n\nQuem vai cravar próximo? Confere no site 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT #DeepSeek #LlamaIA #Qwen #IA #ArenaDasIAs #MataMata #SerieA",
+    "roteiro": "# Carrossel 35 — 4 IAs Cravando o Mata-mata\n\n**Formato:** 1080×1350 · 6 slides · paleta amber/red/dark · Sora display + Inter\n\n| Slide | Conteúdo |\n|---|---|\n| 1 — CAPA | Badge \"🏆 SÉRIE A NO MATA-MATA\" topo. Título HUGE: \"4 IAs CRAVANDO o MATA-MATA\". Sub: \"3 placares exatos em 4 jogos\". Mascotes pequenos no canto. |\n| 2 — OS 4 | Grid 2×2 com logo + nome: ChatGPT 5 Thinking, DeepSeek R1, Meta Llama 4, Qwen 3 Max. Cada um com \"3 ✓\". |\n| 3 — J73 | África do Sul 0×1 Canadá. Linha do tempo: \"Coletado 27/06, jogou 28/06\". \"Cravado por 7 IAs\" |\n| 4 — J75 | Holanda 1×1 Marrocos. \"Cravado por 4 das 7 Série A via Web\" (todas as 4 do top). |\n| 5 — J76 | Brasil 2×1 Japão. \"11 IAs cravaram (7 da Série A via Web)\" |\n| 6 — CTA | \"Quer ver quem cravar próximo?\" → bolao.arenadasias.com.br · QR opcional |\n\n**Dinâmico:** este post tem que ser regenerado a cada novo resultado do R32 (números mudam: 3→4→5 etc.). Idealmente um script que lê resultados.json + palpites_por_jogo.json e gera as artes.",
+    "images": [],
+    "hasVideo": false
+  },
+  {
+    "id": "36_reel_brasil-2x1-japao-11-cravaram",
+    "tipo": "reel",
+    "titulo": "Brasil 2×1 Japão — 11 IAs Cravaram",
+    "caption": "**11 IAs CRAVARAM o 2×1 do Brasil ontem** 🇧🇷⚽🇯🇵\n\nDe 122 modelos palpitando a Copa, 11 cravaram o placar exato Brasil 2×1 Japão — incluindo 7 das 12 da Série A via interface Web (ChatGPT 5 Thinking, Claude Opus 4.8, Gemini 2.5 Pro, DeepSeek R1, Meta Llama 4, Perplexity Sonar, Qwen 3 Max).\n\nDá pra bater elas? Entra no bolão público 👉 bolao.arenadasias.com.br\n\n日本、あなたは素晴らしい対戦相手でした 🇯🇵\n\n#BolaoDasIAs #Brasil #Japao #Copa2026 #FifaWorldCup2026 #ChatGPT #IA #ArenaDasIAs #Reels",
+    "roteiro": "# Reel 36 — 11 IAs cravaram Brasil 2×1 Japão\n\n**Duração:** ~10s · 1080×1920\n\n| t | cena |\n|---|---|\n| 0s | Badge \"R32 · 29/06\" + 🇧🇷 |\n| 0.5s | Título POP \"2×1\" gigante (amarelo/verde gradient) com bandeiras Brasil/Japão dos lados |\n| 2.5s | Texto: \"11 IAs CRAVARAM o placar\" (contador animado 0→11) |\n| 4.5s | Carrossel rápido das 7 logos da Série A (0.4s cada) |\n| 7.5s | Texto japonês: 日本、あなたは素晴らしい対戦相手でした (fade in, lento) |\n| 9s | CTA: \"Quem vai cravar próximo? bolao.arenadasias.com.br\" |\n\n**Áudio:** beat de comemoração, redução pro momento japonês.\n**Tom:** celebração + respeito ao adversário.",
+    "images": [],
+    "hasVideo": false
+  },
+  {
+    "id": "37_carrossel_classificados-r32-vs-ias",
+    "tipo": "carrossel",
+    "titulo": "Classificados R32 vs. o que as IAs Previam",
+    "caption": "**4 classificados, 4 surpresas?** 🎯\n\nDe ontem (29/06), 4 países seguem na Copa: 🇨🇦 Canadá, 🇧🇷 Brasil, 🇵🇾 Paraguai e 🇲🇦 Marrocos.\n\nMas o que as 122 IAs previam? Pra Canadá vs. África do Sul: 7 das 7 IAs Série A via Web cravaram. Pra Paraguai (que venceu nos pênaltis): só UMA IA chutou empate. Pros pênaltis do Marrocos: 4 cravaram 1×1.\n\nVeja todos os palpites jogo-a-jogo 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #IA #ArenaDasIAs #R32",
+    "roteiro": "# Carrossel 37 — Classificados R32 vs. previsões IAs\n\n**Formato:** 1080×1350 · 6 slides\n\n| Slide | Conteúdo |\n|---|---|\n| 1 — CAPA | \"4 CLASSIFICADOS\" + 4 bandeiras (CA/BR/PY/MA) num grid 2×2. Subtítulo: \"o que as 122 IAs previam?\" |\n| 2 — Canadá 1×0 África | \"7 das 7 IAs Série A via Web cravaram 0×1\". Bandeiras Canadá em destaque. |\n| 3 — Brasil 2×1 Japão | \"11 IAs cravaram o placar. 7 da Série A via Web\". 🇧🇷 grande. |\n| 4 — Paraguai (pen) Alemanha | \"Só 1 IA chutou empate: Liquid LFM-40B (0×0). Paraguai venceu nos pênaltis.\". 🇵🇾 + 🇩🇪 cortando. |\n| 5 — Marrocos (pen) Holanda | \"4 IAs Série A cravaram 1×1. Marrocos venceu 3×2 nos pênaltis.\". 🇲🇦 + 🇳🇱 cortando. |\n| 6 — CTA | \"Quem ainda na corrida? Holanda fora, África fora, Alemanha fora, Japão fora\". CTA. |",
+    "images": [],
+    "hasVideo": false
+  },
+  {
+    "id": "38_card_holanda-x-marrocos-4-cravaram",
+    "tipo": "card",
+    "titulo": "Holanda 1×1 Marrocos — 4 IAs Cravaram",
+    "caption": "**4 IAs Série A cravaram 1×1 Holanda × Marrocos** 🇳🇱🤝🇲🇦\n\nChatGPT 5 Thinking, DeepSeek R1, Meta Llama 4 e Qwen 3 Max. As outras 3 (Claude Opus, Gemini Pro, Perplexity) chutaram vitória da Holanda 2×1.\n\nMarrocos venceu 3×2 nos pênaltis e segue. Bedankt voor de strijd, Nederland 🇳🇱\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Marrocos #Holanda #IA #ChatGPT #DeepSeek",
+    "roteiro": "# Card 38 — Holanda × Marrocos\n\n**Formato:** 1080×1080 estático\n\n- Centro: \"1 × 1\" gigante, bandeiras Holanda/Marrocos pequenas em cima de cada número\n- Topo: badge \"R32 · 29/06\"\n- Embaixo dos números: \"4 IAs Série A cravaram o placar\"\n- Lista compacta dos 4 nomes/logos\n- Rodapé: \"Marrocos venceu 3×2 nos pênaltis\" + \"Bedankt voor de strijd, Nederland\"",
+    "images": [],
+    "hasVideo": false
   }
 ]
