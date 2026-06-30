@@ -45,13 +45,29 @@ export default function BannerR32({ locale }: { locale: Locale }) {
         ? "🇳🇱 Países Bajos 1×1 Marruecos 🇲🇦 — 6 IAs clavaron el 1×1 exacto (meta-llama-4, deepseek-v3-1, deepseek-v3-2, ministral-8b, chatgpt-5, llama-4-maverick). Marruecos ganó 3×2 en penales."
         : "🇳🇱 Pays-Bas 1×1 Maroc 🇲🇦 — 6 IA ont trouvé le 1×1 exact (meta-llama-4, deepseek-v3-1, deepseek-v3-2, ministral-8b, chatgpt-5, llama-4-maverick). Le Maroc s'est imposé 3×2 aux tirs au but.";
 
-  const proximos = pt
-    ? "Hoje (30/06): 🇨🇮 Costa do Marfim × Noruega 🇳🇴 — 14h · 🇫🇷 França × Suécia 🇸🇪 — 18h · 🇲🇽 México × Equador 🇪🇨 — 22h."
+  const noruegaTit = pt
+    ? "🇨🇮 Costa do Marfim 1×2 Noruega 🇳🇴 — fim da tarde 🌅"
     : en
-      ? "Today (30 June): 🇨🇮 Ivory Coast × Norway 🇳🇴 — 14:00 BRT · 🇫🇷 France × Sweden 🇸🇪 — 18:00 BRT · 🇲🇽 Mexico × Ecuador 🇪🇨 — 22:00 BRT."
+      ? "🇨🇮 Ivory Coast 1×2 Norway 🇳🇴 — late afternoon 🌅"
       : es
-        ? "Hoy (30/06): 🇨🇮 Costa de Marfil × Noruega 🇳🇴 — 14h · 🇫🇷 Francia × Suecia 🇸🇪 — 18h · 🇲🇽 México × Ecuador 🇪🇨 — 22h."
-        : "Aujourd'hui (30/06) : 🇨🇮 Côte d'Ivoire × Norvège 🇳🇴 — 14h · 🇫🇷 France × Suède 🇸🇪 — 18h · 🇲🇽 Mexique × Équateur 🇪🇨 — 22h.";
+        ? "🇨🇮 Costa de Marfil 1×2 Noruega 🇳🇴 — al final de la tarde 🌅"
+        : "🇨🇮 Côte d'Ivoire 1×2 Norvège 🇳🇴 — fin d'après-midi 🌅";
+
+  const noruegaLinha = pt
+    ? "Vitória aliada à massa: 23 IAs cravaram o 1×2 exato (Grok 4 Fast lidera com 16 cravadas no total). Noruega vai pras oitavas."
+    : en
+      ? "Vindicated by the crowd: 23 AIs nailed the exact 1×2 (Grok 4 Fast leads with 16 exact picks total). Norway moves on to round 16."
+      : es
+        ? "Vindicación de la masa: 23 IAs clavaron el 1×2 exacto (Grok 4 Fast lidera con 16 exactos totales). Noruega va a octavos."
+        : "Vindiqué par la foule : 23 IA ont trouvé le 1×2 exact (Grok 4 Fast en tête avec 16 scores exacts). La Norvège passe en 8es.";
+
+  const proximos = pt
+    ? "Ainda hoje (30/06): 🇫🇷 França × Suécia 🇸🇪 — 18h · 🇲🇽 México × Equador 🇪🇨 — 22h."
+    : en
+      ? "Still today (30 June): 🇫🇷 France × Sweden 🇸🇪 — 18:00 BRT · 🇲🇽 Mexico × Ecuador 🇪🇨 — 22:00 BRT."
+      : es
+        ? "Aún hoy (30/06): 🇫🇷 Francia × Suecia 🇸🇪 — 18h · 🇲🇽 México × Ecuador 🇪🇨 — 22h."
+        : "Encore aujourd'hui (30/06) : 🇫🇷 France × Suède 🇸🇪 — 18h · 🇲🇽 Mexique × Équateur 🇪🇨 — 22h.";
 
   // Frases nas línguas nativas (sem tradução — descobrir é a graça).
   // Eliminados → "até a próxima". Classificados → parabéns + segue na Copa.
@@ -61,12 +77,14 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "af", flag: "🇿🇦", text: "Tot siens, Bafana Bafana — sien jou weer" },
     { lang: "nl", flag: "🇳🇱", text: "Tot de volgende keer, Oranje — kom snel terug" },
     { lang: "de", flag: "🇩🇪", text: "Bis zum nächsten Mal, Mannschaft — Kopf hoch" },
+    { lang: "fr", flag: "🇨🇮", text: "À la prochaine, les Éléphants — vous reviendrez plus forts" },
   ];
 
   const congrats = [
     { lang: "en", flag: "🇨🇦", text: "Way to go, Canada — round of 16, here we come, eh!" },
     { lang: "gn", flag: "🇵🇾", text: "¡Iporã, Albirroja! Tereguahē porãite ko'ãgaite — vamos por más" },
     { lang: "ar", flag: "🇲🇦", text: "مبروك يا أسود الأطلس — الطريق ما زال طويلًا" },
+    { lang: "nb", flag: "🇳🇴", text: "Bra jobba, Løvene — vi sees i åttedelsfinalen!" },
   ];
 
   return (
@@ -145,6 +163,21 @@ export default function BannerR32({ locale }: { locale: Locale }) {
           </p>
           <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
             {holMar}
+          </p>
+
+          <h3
+            style={{
+              fontSize: "clamp(17px, 2.6vw, 20px)",
+              fontWeight: 800,
+              marginBottom: 6,
+              lineHeight: 1.2,
+              color: "var(--fg)",
+            }}
+          >
+            {noruegaTit}
+          </h3>
+          <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
+            {noruegaLinha}
           </p>
 
           <p style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 18, color: "var(--fg-mid)" }}>

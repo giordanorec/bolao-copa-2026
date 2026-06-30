@@ -87,3 +87,4 @@ no cálculo de pontuação.
 | 76 | R32 | Seg 29/06 | 14h00 | Houston | Brasil | 2 | 1 | Japão |
 | 74 | R32 | Seg 29/06 | 17h30 | Boston | Alemanha | 1 | 1 | Paraguai |
 | 75 | R32 | Seg 29/06 | 22h00 | Monterrey | Países Baixos | 1 | 1 | Marrocos |
+| 78 | R32 | Ter 30/06 | 14h00 | Dallas | Costa do Marfim | 1 | 2 | Noruega |

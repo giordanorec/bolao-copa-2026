@@ -1,13 +1,13 @@
 {
-  "atualizado_em": "2026-06-30T00:46:10-03:00",
+  "atualizado_em": "2026-06-30T16:02:57-03:00",
   "ias": [
     {
       "slug": "grok-4-fast",
       "nome_display": "Grok 4 Fast Reasoning",
-      "pontos": 374,
-      "placares_exatos": 15,
-      "vencedores_acertados": 52,
-      "jogos_palpitados": 76,
+      "pontos": 394,
+      "placares_exatos": 16,
+      "vencedores_acertados": 53,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
       "rank": 1,
       "grupos": {
@@ -17,16 +17,128 @@
         "jogos_palpitados": 72
       },
       "matamata": {
-        "pontos": 30,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "pontos": 50,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
       },
       "geral": {
-        "pontos": 374,
-        "placares_exatos": 15,
-        "vencedores_acertados": 52,
-        "jogos_palpitados": 76
+        "pontos": 394,
+        "placares_exatos": 16,
+        "vencedores_acertados": 53,
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "mistral-small-3",
+      "nome_display": "Mistral Small 3",
+      "pontos": 358,
+      "placares_exatos": 14,
+      "vencedores_acertados": 50,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 2,
+      "grupos": {
+        "pontos": 318,
+        "placares_exatos": 13,
+        "vencedores_acertados": 47,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 40,
+        "placares_exatos": 1,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 358,
+        "placares_exatos": 14,
+        "vencedores_acertados": 50,
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "gpt-4-1",
+      "nome_display": "GPT-4.1 (legacy)",
+      "pontos": 356,
+      "placares_exatos": 14,
+      "vencedores_acertados": 49,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 3,
+      "grupos": {
+        "pontos": 306,
+        "placares_exatos": 12,
+        "vencedores_acertados": 46,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 50,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 356,
+        "placares_exatos": 14,
+        "vencedores_acertados": 49,
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "wizardlm-2-8x22b",
+      "nome_display": "WizardLM 2 8x22B",
+      "pontos": 354,
+      "placares_exatos": 14,
+      "vencedores_acertados": 50,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 4,
+      "grupos": {
+        "pontos": 314,
+        "placares_exatos": 13,
+        "vencedores_acertados": 47,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 40,
+        "placares_exatos": 1,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 354,
+        "placares_exatos": 14,
+        "vencedores_acertados": 50,
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "deepseek-v3-1",
+      "nome_display": "DeepSeek V3.1",
+      "pontos": 354,
+      "placares_exatos": 10,
+      "vencedores_acertados": 50,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 5,
+      "grupos": {
+        "pontos": 290,
+        "placares_exatos": 8,
+        "vencedores_acertados": 46,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 64,
+        "placares_exatos": 2,
+        "vencedores_acertados": 4,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 354,
+        "placares_exatos": 10,
+        "vencedores_acertados": 50,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -35,9 +147,9 @@
       "pontos": 349,
       "placares_exatos": 15,
       "vencedores_acertados": 49,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 2,
+      "rank": 6,
       "grupos": {
         "pontos": 319,
         "placares_exatos": 14,
@@ -48,13 +160,13 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 349,
         "placares_exatos": 15,
         "vencedores_acertados": 49,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -63,9 +175,9 @@
       "pontos": 344,
       "placares_exatos": 14,
       "vencedores_acertados": 47,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 3,
+      "rank": 7,
       "grupos": {
         "pontos": 314,
         "placares_exatos": 13,
@@ -76,13 +188,41 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 344,
         "placares_exatos": 14,
         "vencedores_acertados": 47,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "le-chat-mistral",
+      "nome_display": "Le Chat (Mistral Large)",
+      "pontos": 344,
+      "placares_exatos": 13,
+      "vencedores_acertados": 48,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 8,
+      "grupos": {
+        "pontos": 294,
+        "placares_exatos": 11,
+        "vencedores_acertados": 45,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 50,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 344,
+        "placares_exatos": 13,
+        "vencedores_acertados": 48,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -91,9 +231,9 @@
       "pontos": 340,
       "placares_exatos": 13,
       "vencedores_acertados": 48,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 4,
+      "rank": 9,
       "grupos": {
         "pontos": 310,
         "placares_exatos": 12,
@@ -104,69 +244,13 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 340,
         "placares_exatos": 13,
         "vencedores_acertados": 48,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "deepseek-v3-1",
-      "nome_display": "DeepSeek V3.1",
-      "pontos": 340,
-      "placares_exatos": 10,
-      "vencedores_acertados": 49,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 5,
-      "grupos": {
-        "pontos": 290,
-        "placares_exatos": 8,
-        "vencedores_acertados": 46,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 50,
-        "placares_exatos": 2,
-        "vencedores_acertados": 3,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 340,
-        "placares_exatos": 10,
-        "vencedores_acertados": 49,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "mistral-small-3",
-      "nome_display": "Mistral Small 3",
-      "pontos": 338,
-      "placares_exatos": 13,
-      "vencedores_acertados": 49,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 6,
-      "grupos": {
-        "pontos": 318,
-        "placares_exatos": 13,
-        "vencedores_acertados": 47,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 20,
-        "placares_exatos": 0,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 338,
-        "placares_exatos": 13,
-        "vencedores_acertados": 49,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -175,9 +259,9 @@
       "pontos": 337,
       "placares_exatos": 14,
       "vencedores_acertados": 48,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 7,
+      "rank": 10,
       "grupos": {
         "pontos": 307,
         "placares_exatos": 13,
@@ -188,69 +272,41 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 337,
         "placares_exatos": 14,
         "vencedores_acertados": 48,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
-      "slug": "gpt-4-1",
-      "nome_display": "GPT-4.1 (legacy)",
+      "slug": "o4-mini",
+      "nome_display": "OpenAI o4-mini",
       "pontos": 336,
       "placares_exatos": 13,
-      "vencedores_acertados": 48,
-      "jogos_palpitados": 76,
+      "vencedores_acertados": 46,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 8,
+      "rank": 11,
       "grupos": {
-        "pontos": 306,
-        "placares_exatos": 12,
-        "vencedores_acertados": 46,
+        "pontos": 286,
+        "placares_exatos": 11,
+        "vencedores_acertados": 43,
         "jogos_palpitados": 72
       },
       "matamata": {
-        "pontos": 30,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "pontos": 50,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 336,
         "placares_exatos": 13,
-        "vencedores_acertados": 48,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "wizardlm-2-8x22b",
-      "nome_display": "WizardLM 2 8x22B",
-      "pontos": 334,
-      "placares_exatos": 13,
-      "vencedores_acertados": 49,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 9,
-      "grupos": {
-        "pontos": 314,
-        "placares_exatos": 13,
-        "vencedores_acertados": 47,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 20,
-        "placares_exatos": 0,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 334,
-        "placares_exatos": 13,
-        "vencedores_acertados": 49,
-        "jogos_palpitados": 76
+        "vencedores_acertados": 46,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -259,9 +315,9 @@
       "pontos": 333,
       "placares_exatos": 14,
       "vencedores_acertados": 48,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 10,
+      "rank": 12,
       "grupos": {
         "pontos": 323,
         "placares_exatos": 14,
@@ -272,13 +328,41 @@
         "pontos": 10,
         "placares_exatos": 0,
         "vencedores_acertados": 1,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 333,
         "placares_exatos": 14,
         "vencedores_acertados": 48,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "llama-4-maverick",
+      "nome_display": "Llama 4 Maverick",
+      "pontos": 333,
+      "placares_exatos": 11,
+      "vencedores_acertados": 45,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 13,
+      "grupos": {
+        "pontos": 263,
+        "placares_exatos": 8,
+        "vencedores_acertados": 41,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 70,
+        "placares_exatos": 3,
+        "vencedores_acertados": 4,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 333,
+        "placares_exatos": 11,
+        "vencedores_acertados": 45,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -287,9 +371,9 @@
       "pontos": 331,
       "placares_exatos": 12,
       "vencedores_acertados": 46,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 11,
+      "rank": 14,
       "grupos": {
         "pontos": 281,
         "placares_exatos": 10,
@@ -300,13 +384,13 @@
         "pontos": 50,
         "placares_exatos": 2,
         "vencedores_acertados": 3,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 331,
         "placares_exatos": 12,
         "vencedores_acertados": 46,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -315,9 +399,9 @@
       "pontos": 330,
       "placares_exatos": 14,
       "vencedores_acertados": 47,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 12,
+      "rank": 15,
       "grupos": {
         "pontos": 300,
         "placares_exatos": 13,
@@ -328,13 +412,13 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 330,
         "placares_exatos": 14,
         "vencedores_acertados": 47,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -345,7 +429,7 @@
       "vencedores_acertados": 45,
       "jogos_palpitados": 70,
       "palpites_total": 81,
-      "rank": 13,
+      "rank": 16,
       "grupos": {
         "pontos": 276,
         "placares_exatos": 10,
@@ -366,14 +450,70 @@
       }
     },
     {
+      "slug": "kimi-k2",
+      "nome_display": "Kimi K2",
+      "pontos": 326,
+      "placares_exatos": 12,
+      "vencedores_acertados": 43,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 17,
+      "grupos": {
+        "pontos": 272,
+        "placares_exatos": 10,
+        "vencedores_acertados": 40,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 54,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 326,
+        "placares_exatos": 12,
+        "vencedores_acertados": 43,
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "deepseek-v3",
+      "nome_display": "DeepSeek V3 (legacy)",
+      "pontos": 326,
+      "placares_exatos": 9,
+      "vencedores_acertados": 49,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 18,
+      "grupos": {
+        "pontos": 282,
+        "placares_exatos": 8,
+        "vencedores_acertados": 46,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 44,
+        "placares_exatos": 1,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 326,
+        "placares_exatos": 9,
+        "vencedores_acertados": 49,
+        "jogos_palpitados": 77
+      }
+    },
+    {
       "slug": "mistral-medium-3",
       "nome_display": "Mistral Medium 3",
       "pontos": 325,
       "placares_exatos": 11,
       "vencedores_acertados": 47,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 14,
+      "rank": 19,
       "grupos": {
         "pontos": 295,
         "placares_exatos": 10,
@@ -384,13 +524,13 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 325,
         "placares_exatos": 11,
         "vencedores_acertados": 47,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -399,9 +539,9 @@
       "pontos": 324,
       "placares_exatos": 13,
       "vencedores_acertados": 45,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 15,
+      "rank": 20,
       "grupos": {
         "pontos": 300,
         "placares_exatos": 13,
@@ -412,41 +552,13 @@
         "pontos": 24,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 324,
         "placares_exatos": 13,
         "vencedores_acertados": 45,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "le-chat-mistral",
-      "nome_display": "Le Chat (Mistral Large)",
-      "pontos": 324,
-      "placares_exatos": 12,
-      "vencedores_acertados": 47,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 16,
-      "grupos": {
-        "pontos": 294,
-        "placares_exatos": 11,
-        "vencedores_acertados": 45,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 30,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 324,
-        "placares_exatos": 12,
-        "vencedores_acertados": 47,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -455,9 +567,9 @@
       "pontos": 323,
       "placares_exatos": 8,
       "vencedores_acertados": 48,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 17,
+      "rank": 21,
       "grupos": {
         "pontos": 269,
         "placares_exatos": 6,
@@ -468,13 +580,125 @@
         "pontos": 54,
         "placares_exatos": 2,
         "vencedores_acertados": 3,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 323,
         "placares_exatos": 8,
         "vencedores_acertados": 48,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "chatgpt-5-nano",
+      "nome_display": "ChatGPT 5 nano",
+      "pontos": 321,
+      "placares_exatos": 12,
+      "vencedores_acertados": 45,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 22,
+      "grupos": {
+        "pontos": 281,
+        "placares_exatos": 11,
+        "vencedores_acertados": 42,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 40,
+        "placares_exatos": 1,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 321,
+        "placares_exatos": 12,
+        "vencedores_acertados": 45,
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "chatgpt-5-mini",
+      "nome_display": "ChatGPT 5 mini",
+      "pontos": 320,
+      "placares_exatos": 6,
+      "vencedores_acertados": 49,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 23,
+      "grupos": {
+        "pontos": 270,
+        "placares_exatos": 4,
+        "vencedores_acertados": 46,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 50,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 320,
+        "placares_exatos": 6,
+        "vencedores_acertados": 49,
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "gpt-4o",
+      "nome_display": "GPT-4o (legacy)",
+      "pontos": 319,
+      "placares_exatos": 11,
+      "vencedores_acertados": 45,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 24,
+      "grupos": {
+        "pontos": 269,
+        "placares_exatos": 9,
+        "vencedores_acertados": 42,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 50,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 319,
+        "placares_exatos": 11,
+        "vencedores_acertados": 45,
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "gemini-2-5-flash-lite",
+      "nome_display": "Gemini 2.5 Flash-Lite",
+      "pontos": 318,
+      "placares_exatos": 12,
+      "vencedores_acertados": 44,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 25,
+      "grupos": {
+        "pontos": 274,
+        "placares_exatos": 11,
+        "vencedores_acertados": 41,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 44,
+        "placares_exatos": 1,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 318,
+        "placares_exatos": 12,
+        "vencedores_acertados": 44,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -483,9 +707,9 @@
       "pontos": 318,
       "placares_exatos": 11,
       "vencedores_acertados": 46,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 18,
+      "rank": 26,
       "grupos": {
         "pontos": 284,
         "placares_exatos": 10,
@@ -496,41 +720,69 @@
         "pontos": 34,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 318,
         "placares_exatos": 11,
         "vencedores_acertados": 46,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
-      "slug": "o4-mini",
-      "nome_display": "OpenAI o4-mini",
-      "pontos": 316,
-      "placares_exatos": 12,
-      "vencedores_acertados": 45,
-      "jogos_palpitados": 76,
+      "slug": "o1",
+      "nome_display": "OpenAI o1 (legacy)",
+      "pontos": 317,
+      "placares_exatos": 10,
+      "vencedores_acertados": 48,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 19,
+      "rank": 27,
       "grupos": {
-        "pontos": 286,
-        "placares_exatos": 11,
-        "vencedores_acertados": 43,
+        "pontos": 287,
+        "placares_exatos": 9,
+        "vencedores_acertados": 46,
         "jogos_palpitados": 72
       },
       "matamata": {
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 317,
+        "placares_exatos": 10,
+        "vencedores_acertados": 48,
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "qwen-3-235b",
+      "nome_display": "Qwen 3 235B",
+      "pontos": 316,
+      "placares_exatos": 12,
+      "vencedores_acertados": 44,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 28,
+      "grupos": {
+        "pontos": 272,
+        "placares_exatos": 11,
+        "vencedores_acertados": 41,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 44,
+        "placares_exatos": 1,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 316,
         "placares_exatos": 12,
-        "vencedores_acertados": 45,
-        "jogos_palpitados": 76
+        "vencedores_acertados": 44,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -539,9 +791,9 @@
       "pontos": 316,
       "placares_exatos": 10,
       "vencedores_acertados": 46,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 20,
+      "rank": 29,
       "grupos": {
         "pontos": 276,
         "placares_exatos": 8,
@@ -552,13 +804,41 @@
         "pontos": 40,
         "placares_exatos": 2,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 316,
         "placares_exatos": 10,
         "vencedores_acertados": 46,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "perplexity-sonar-large",
+      "nome_display": "Perplexity Sonar Large",
+      "pontos": 313,
+      "placares_exatos": 11,
+      "vencedores_acertados": 45,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 30,
+      "grupos": {
+        "pontos": 263,
+        "placares_exatos": 9,
+        "vencedores_acertados": 42,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 50,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 313,
+        "placares_exatos": 11,
+        "vencedores_acertados": 45,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -567,9 +847,9 @@
       "pontos": 313,
       "placares_exatos": 10,
       "vencedores_acertados": 46,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 21,
+      "rank": 31,
       "grupos": {
         "pontos": 283,
         "placares_exatos": 9,
@@ -580,41 +860,13 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 313,
         "placares_exatos": 10,
         "vencedores_acertados": 46,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "llama-4-maverick",
-      "nome_display": "Llama 4 Maverick",
-      "pontos": 313,
-      "placares_exatos": 10,
-      "vencedores_acertados": 44,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 22,
-      "grupos": {
-        "pontos": 263,
-        "placares_exatos": 8,
-        "vencedores_acertados": 41,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 50,
-        "placares_exatos": 2,
-        "vencedores_acertados": 3,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 313,
-        "placares_exatos": 10,
-        "vencedores_acertados": 44,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -623,9 +875,9 @@
       "pontos": 307,
       "placares_exatos": 10,
       "vencedores_acertados": 46,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 23,
+      "rank": 32,
       "grupos": {
         "pontos": 277,
         "placares_exatos": 9,
@@ -636,13 +888,13 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 307,
         "placares_exatos": 10,
         "vencedores_acertados": 46,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -651,9 +903,9 @@
       "pontos": 307,
       "placares_exatos": 8,
       "vencedores_acertados": 47,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 24,
+      "rank": 33,
       "grupos": {
         "pontos": 267,
         "placares_exatos": 6,
@@ -664,97 +916,13 @@
         "pontos": 40,
         "placares_exatos": 2,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 307,
         "placares_exatos": 8,
         "vencedores_acertados": 47,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "kimi-k2",
-      "nome_display": "Kimi K2",
-      "pontos": 306,
-      "placares_exatos": 11,
-      "vencedores_acertados": 42,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 25,
-      "grupos": {
-        "pontos": 272,
-        "placares_exatos": 10,
-        "vencedores_acertados": 40,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 34,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 306,
-        "placares_exatos": 11,
-        "vencedores_acertados": 42,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "deepseek-v3",
-      "nome_display": "DeepSeek V3 (legacy)",
-      "pontos": 306,
-      "placares_exatos": 8,
-      "vencedores_acertados": 48,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 26,
-      "grupos": {
-        "pontos": 282,
-        "placares_exatos": 8,
-        "vencedores_acertados": 46,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 24,
-        "placares_exatos": 0,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 306,
-        "placares_exatos": 8,
-        "vencedores_acertados": 48,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "qwen-3-235b",
-      "nome_display": "Qwen 3 235B",
-      "pontos": 302,
-      "placares_exatos": 12,
-      "vencedores_acertados": 43,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 27,
-      "grupos": {
-        "pontos": 272,
-        "placares_exatos": 11,
-        "vencedores_acertados": 41,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 30,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 302,
-        "placares_exatos": 12,
-        "vencedores_acertados": 43,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -763,9 +931,9 @@
       "pontos": 301,
       "placares_exatos": 12,
       "vencedores_acertados": 44,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 28,
+      "rank": 34,
       "grupos": {
         "pontos": 271,
         "placares_exatos": 11,
@@ -776,153 +944,41 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 301,
         "placares_exatos": 12,
         "vencedores_acertados": 44,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
-      "slug": "chatgpt-5-nano",
-      "nome_display": "ChatGPT 5 nano",
-      "pontos": 301,
-      "placares_exatos": 11,
-      "vencedores_acertados": 44,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 29,
-      "grupos": {
-        "pontos": 281,
-        "placares_exatos": 11,
-        "vencedores_acertados": 42,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 20,
-        "placares_exatos": 0,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 301,
-        "placares_exatos": 11,
-        "vencedores_acertados": 44,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "chatgpt-5-mini",
-      "nome_display": "ChatGPT 5 mini",
-      "pontos": 300,
-      "placares_exatos": 5,
-      "vencedores_acertados": 48,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 30,
-      "grupos": {
-        "pontos": 270,
-        "placares_exatos": 4,
-        "vencedores_acertados": 46,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 30,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 300,
-        "placares_exatos": 5,
-        "vencedores_acertados": 48,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "gpt-4o",
-      "nome_display": "GPT-4o (legacy)",
+      "slug": "claude-haiku-4-5",
+      "nome_display": "Claude Haiku 4.5",
       "pontos": 299,
-      "placares_exatos": 10,
-      "vencedores_acertados": 44,
-      "jogos_palpitados": 76,
+      "placares_exatos": 9,
+      "vencedores_acertados": 43,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 31,
+      "rank": 35,
       "grupos": {
-        "pontos": 269,
-        "placares_exatos": 9,
-        "vencedores_acertados": 42,
+        "pontos": 249,
+        "placares_exatos": 7,
+        "vencedores_acertados": 40,
         "jogos_palpitados": 72
       },
       "matamata": {
-        "pontos": 30,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "pontos": 50,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 299,
-        "placares_exatos": 10,
-        "vencedores_acertados": 44,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "gemini-2-5-flash-lite",
-      "nome_display": "Gemini 2.5 Flash-Lite",
-      "pontos": 298,
-      "placares_exatos": 11,
-      "vencedores_acertados": 43,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 32,
-      "grupos": {
-        "pontos": 274,
-        "placares_exatos": 11,
-        "vencedores_acertados": 41,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 24,
-        "placares_exatos": 0,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 298,
-        "placares_exatos": 11,
+        "placares_exatos": 9,
         "vencedores_acertados": 43,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "o1",
-      "nome_display": "OpenAI o1 (legacy)",
-      "pontos": 297,
-      "placares_exatos": 9,
-      "vencedores_acertados": 47,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 33,
-      "grupos": {
-        "pontos": 287,
-        "placares_exatos": 9,
-        "vencedores_acertados": 46,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 10,
-        "placares_exatos": 0,
-        "vencedores_acertados": 1,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 297,
-        "placares_exatos": 9,
-        "vencedores_acertados": 47,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -931,9 +987,9 @@
       "pontos": 297,
       "placares_exatos": 9,
       "vencedores_acertados": 45,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 34,
+      "rank": 36,
       "grupos": {
         "pontos": 267,
         "placares_exatos": 8,
@@ -944,13 +1000,13 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 297,
         "placares_exatos": 9,
         "vencedores_acertados": 45,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -959,9 +1015,9 @@
       "pontos": 297,
       "placares_exatos": 8,
       "vencedores_acertados": 46,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 35,
+      "rank": 37,
       "grupos": {
         "pontos": 267,
         "placares_exatos": 8,
@@ -972,13 +1028,41 @@
         "pontos": 30,
         "placares_exatos": 0,
         "vencedores_acertados": 3,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 297,
         "placares_exatos": 8,
         "vencedores_acertados": 46,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
+      }
+    },
+    {
+      "slug": "deepseek-r1",
+      "nome_display": "DeepSeek R1",
+      "pontos": 296,
+      "placares_exatos": 7,
+      "vencedores_acertados": 45,
+      "jogos_palpitados": 77,
+      "palpites_total": 88,
+      "rank": 38,
+      "grupos": {
+        "pontos": 252,
+        "placares_exatos": 6,
+        "vencedores_acertados": 42,
+        "jogos_palpitados": 72
+      },
+      "matamata": {
+        "pontos": 44,
+        "placares_exatos": 1,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 296,
+        "placares_exatos": 7,
+        "vencedores_acertados": 45,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -989,7 +1073,7 @@
       "vencedores_acertados": 45,
       "jogos_palpitados": 72,
       "palpites_total": 72,
-      "rank": 36,
+      "rank": 39,
       "grupos": {
         "pontos": 295,
         "placares_exatos": 10,
@@ -1015,9 +1099,9 @@
       "pontos": 294,
       "placares_exatos": 11,
       "vencedores_acertados": 43,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 37,
+      "rank": 40,
       "grupos": {
         "pontos": 274,
         "placares_exatos": 11,
@@ -1028,41 +1112,41 @@
         "pontos": 20,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 294,
         "placares_exatos": 11,
         "vencedores_acertados": 43,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
-      "slug": "perplexity-sonar-large",
-      "nome_display": "Perplexity Sonar Large",
+      "slug": "mixtral-8x22b",
+      "nome_display": "Mixtral 8x22B",
       "pontos": 293,
-      "placares_exatos": 10,
-      "vencedores_acertados": 44,
-      "jogos_palpitados": 76,
+      "placares_exatos": 9,
+      "vencedores_acertados": 43,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 38,
+      "rank": 41,
       "grupos": {
-        "pontos": 263,
-        "placares_exatos": 9,
-        "vencedores_acertados": 42,
+        "pontos": 243,
+        "placares_exatos": 7,
+        "vencedores_acertados": 40,
         "jogos_palpitados": 72
       },
       "matamata": {
-        "pontos": 30,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "pontos": 50,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 293,
-        "placares_exatos": 10,
-        "vencedores_acertados": 44,
-        "jogos_palpitados": 76
+        "placares_exatos": 9,
+        "vencedores_acertados": 43,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -1071,9 +1155,9 @@
       "pontos": 285,
       "placares_exatos": 7,
       "vencedores_acertados": 44,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 39,
+      "rank": 42,
       "grupos": {
         "pontos": 261,
         "placares_exatos": 7,
@@ -1084,41 +1168,41 @@
         "pontos": 24,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 285,
         "placares_exatos": 7,
         "vencedores_acertados": 44,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
-      "slug": "deepseek-r1",
-      "nome_display": "DeepSeek R1",
-      "pontos": 282,
-      "placares_exatos": 7,
-      "vencedores_acertados": 44,
-      "jogos_palpitados": 76,
+      "slug": "meta-llama-4",
+      "nome_display": "Meta AI (Llama 4)",
+      "pontos": 284,
+      "placares_exatos": 5,
+      "vencedores_acertados": 42,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 40,
+      "rank": 43,
       "grupos": {
-        "pontos": 252,
-        "placares_exatos": 6,
-        "vencedores_acertados": 42,
+        "pontos": 214,
+        "placares_exatos": 2,
+        "vencedores_acertados": 38,
         "jogos_palpitados": 72
       },
       "matamata": {
-        "pontos": 30,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "pontos": 70,
+        "placares_exatos": 3,
+        "vencedores_acertados": 4,
+        "jogos_palpitados": 5
       },
       "geral": {
-        "pontos": 282,
-        "placares_exatos": 7,
-        "vencedores_acertados": 44,
-        "jogos_palpitados": 76
+        "pontos": 284,
+        "placares_exatos": 5,
+        "vencedores_acertados": 42,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -1127,9 +1211,9 @@
       "pontos": 282,
       "placares_exatos": 6,
       "vencedores_acertados": 44,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 41,
+      "rank": 44,
       "grupos": {
         "pontos": 254,
         "placares_exatos": 6,
@@ -1140,13 +1224,13 @@
         "pontos": 28,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 282,
         "placares_exatos": 6,
         "vencedores_acertados": 44,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -1155,9 +1239,9 @@
       "pontos": 279,
       "placares_exatos": 10,
       "vencedores_acertados": 40,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 42,
+      "rank": 45,
       "grupos": {
         "pontos": 249,
         "placares_exatos": 9,
@@ -1168,41 +1252,41 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 279,
         "placares_exatos": 10,
         "vencedores_acertados": 40,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
-      "slug": "claude-haiku-4-5",
-      "nome_display": "Claude Haiku 4.5",
+      "slug": "gemma-3-27b",
+      "nome_display": "Gemma 3 27B",
       "pontos": 279,
-      "placares_exatos": 8,
-      "vencedores_acertados": 42,
-      "jogos_palpitados": 76,
+      "placares_exatos": 5,
+      "vencedores_acertados": 43,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 43,
+      "rank": 46,
       "grupos": {
-        "pontos": 249,
-        "placares_exatos": 7,
+        "pontos": 229,
+        "placares_exatos": 3,
         "vencedores_acertados": 40,
         "jogos_palpitados": 72
       },
       "matamata": {
-        "pontos": 30,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "pontos": 50,
+        "placares_exatos": 2,
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 279,
-        "placares_exatos": 8,
-        "vencedores_acertados": 42,
-        "jogos_palpitados": 76
+        "placares_exatos": 5,
+        "vencedores_acertados": 43,
+        "jogos_palpitados": 77
       }
     },
     {
@@ -1213,7 +1297,7 @@
       "vencedores_acertados": 43,
       "jogos_palpitados": 72,
       "palpites_total": 72,
-      "rank": 44,
+      "rank": 47,
       "grupos": {
         "pontos": 275,
         "placares_exatos": 10,
@@ -1234,31 +1318,31 @@
       }
     },
     {
-      "slug": "mixtral-8x22b",
-      "nome_display": "Mixtral 8x22B",
-      "pontos": 273,
-      "placares_exatos": 8,
+      "slug": "llama-3-3-70b",
+      "nome_display": "Llama 3.3 70B",
+      "pontos": 274,
+      "placares_exatos": 6,
       "vencedores_acertados": 42,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 45,
+      "rank": 48,
       "grupos": {
-        "pontos": 243,
-        "placares_exatos": 7,
-        "vencedores_acertados": 40,
+        "pontos": 234,
+        "placares_exatos": 5,
+        "vencedores_acertados": 39,
         "jogos_palpitados": 72
       },
       "matamata": {
-        "pontos": 30,
+        "pontos": 40,
         "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "vencedores_acertados": 3,
+        "jogos_palpitados": 5
       },
       "geral": {
-        "pontos": 273,
-        "placares_exatos": 8,
+        "pontos": 274,
+        "placares_exatos": 6,
         "vencedores_acertados": 42,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -1267,9 +1351,9 @@
       "pontos": 273,
       "placares_exatos": 4,
       "vencedores_acertados": 43,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 46,
+      "rank": 49,
       "grupos": {
         "pontos": 245,
         "placares_exatos": 4,
@@ -1280,13 +1364,13 @@
         "pontos": 28,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 273,
         "placares_exatos": 4,
         "vencedores_acertados": 43,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -1295,9 +1379,9 @@
       "pontos": 272,
       "placares_exatos": 8,
       "vencedores_acertados": 42,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
-      "rank": 47,
+      "rank": 50,
       "grupos": {
         "pontos": 252,
         "placares_exatos": 8,
@@ -1308,13 +1392,13 @@
         "pontos": 20,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 272,
         "placares_exatos": 8,
         "vencedores_acertados": 42,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -1325,7 +1409,7 @@
       "vencedores_acertados": 41,
       "jogos_palpitados": 72,
       "palpites_total": 72,
-      "rank": 48,
+      "rank": 51,
       "grupos": {
         "pontos": 271,
         "placares_exatos": 10,
@@ -1346,96 +1430,12 @@
       }
     },
     {
-      "slug": "meta-llama-4",
-      "nome_display": "Meta AI (Llama 4)",
-      "pontos": 264,
-      "placares_exatos": 4,
-      "vencedores_acertados": 41,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 49,
-      "grupos": {
-        "pontos": 214,
-        "placares_exatos": 2,
-        "vencedores_acertados": 38,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 50,
-        "placares_exatos": 2,
-        "vencedores_acertados": 3,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 264,
-        "placares_exatos": 4,
-        "vencedores_acertados": 41,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "gemma-3-27b",
-      "nome_display": "Gemma 3 27B",
-      "pontos": 259,
-      "placares_exatos": 4,
-      "vencedores_acertados": 42,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 50,
-      "grupos": {
-        "pontos": 229,
-        "placares_exatos": 3,
-        "vencedores_acertados": 40,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 30,
-        "placares_exatos": 1,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 259,
-        "placares_exatos": 4,
-        "vencedores_acertados": 42,
-        "jogos_palpitados": 76
-      }
-    },
-    {
-      "slug": "llama-3-3-70b",
-      "nome_display": "Llama 3.3 70B",
-      "pontos": 254,
-      "placares_exatos": 5,
-      "vencedores_acertados": 41,
-      "jogos_palpitados": 76,
-      "palpites_total": 88,
-      "rank": 51,
-      "grupos": {
-        "pontos": 234,
-        "placares_exatos": 5,
-        "vencedores_acertados": 39,
-        "jogos_palpitados": 72
-      },
-      "matamata": {
-        "pontos": 20,
-        "placares_exatos": 0,
-        "vencedores_acertados": 2,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 254,
-        "placares_exatos": 5,
-        "vencedores_acertados": 41,
-        "jogos_palpitados": 76
-      }
-    },
-    {
       "slug": "cohere-command-r",
       "nome_display": "Cohere Command R",
       "pontos": 251,
       "placares_exatos": 4,
       "vencedores_acertados": 41,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
       "rank": 52,
       "grupos": {
@@ -1448,13 +1448,13 @@
         "pontos": 24,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 251,
         "placares_exatos": 4,
         "vencedores_acertados": 41,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -1463,7 +1463,7 @@
       "pontos": 245,
       "placares_exatos": 7,
       "vencedores_acertados": 38,
-      "jogos_palpitados": 76,
+      "jogos_palpitados": 77,
       "palpites_total": 88,
       "rank": 53,
       "grupos": {
@@ -1476,13 +1476,13 @@
         "pontos": 20,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 245,
         "placares_exatos": 7,
         "vencedores_acertados": 38,
-        "jogos_palpitados": 76
+        "jogos_palpitados": 77
       }
     },
     {
@@ -1491,7 +1491,7 @@
       "pontos": 219,
       "placares_exatos": 9,
       "vencedores_acertados": 32,
-      "jogos_palpitados": 75,
+      "jogos_palpitados": 76,
       "palpites_total": 87,
       "rank": 54,
       "grupos": {
@@ -1504,13 +1504,13 @@
         "pontos": 0,
         "placares_exatos": 0,
         "vencedores_acertados": 0,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 219,
         "placares_exatos": 9,
         "vencedores_acertados": 32,
-        "jogos_palpitados": 75
+        "jogos_palpitados": 76
       }
     },
     {
@@ -1519,7 +1519,7 @@
       "pontos": 89,
       "placares_exatos": 2,
       "vencedores_acertados": 13,
-      "jogos_palpitados": 24,
+      "jogos_palpitados": 25,
       "palpites_total": 36,
       "rank": 55,
       "grupos": {
@@ -1532,13 +1532,41 @@
         "pontos": 24,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 89,
         "placares_exatos": 2,
         "vencedores_acertados": 13,
-        "jogos_palpitados": 24
+        "jogos_palpitados": 25
+      }
+    },
+    {
+      "slug": "qwen-3-max-web",
+      "nome_display": "Qwen 3 Max (via Web)",
+      "pontos": 80,
+      "placares_exatos": 4,
+      "vencedores_acertados": 4,
+      "jogos_palpitados": 5,
+      "palpites_total": 16,
+      "rank": 56,
+      "grupos": {
+        "pontos": 0,
+        "placares_exatos": 0,
+        "vencedores_acertados": 0,
+        "jogos_palpitados": 0
+      },
+      "matamata": {
+        "pontos": 80,
+        "placares_exatos": 4,
+        "vencedores_acertados": 4,
+        "jogos_palpitados": 5
+      },
+      "geral": {
+        "pontos": 80,
+        "placares_exatos": 4,
+        "vencedores_acertados": 4,
+        "jogos_palpitados": 5
       }
     },
     {
@@ -1547,9 +1575,9 @@
       "pontos": 60,
       "placares_exatos": 3,
       "vencedores_acertados": 3,
-      "jogos_palpitados": 4,
+      "jogos_palpitados": 5,
       "palpites_total": 16,
-      "rank": 56,
+      "rank": 57,
       "grupos": {
         "pontos": 0,
         "placares_exatos": 0,
@@ -1560,13 +1588,13 @@
         "pontos": 60,
         "placares_exatos": 3,
         "vencedores_acertados": 3,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 60,
         "placares_exatos": 3,
         "vencedores_acertados": 3,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       }
     },
     {
@@ -1575,9 +1603,9 @@
       "pontos": 60,
       "placares_exatos": 3,
       "vencedores_acertados": 3,
-      "jogos_palpitados": 4,
+      "jogos_palpitados": 5,
       "palpites_total": 16,
-      "rank": 56,
+      "rank": 57,
       "grupos": {
         "pontos": 0,
         "placares_exatos": 0,
@@ -1588,13 +1616,13 @@
         "pontos": 60,
         "placares_exatos": 3,
         "vencedores_acertados": 3,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 60,
         "placares_exatos": 3,
         "vencedores_acertados": 3,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       }
     },
     {
@@ -1603,9 +1631,9 @@
       "pontos": 60,
       "placares_exatos": 3,
       "vencedores_acertados": 3,
-      "jogos_palpitados": 4,
+      "jogos_palpitados": 5,
       "palpites_total": 16,
-      "rank": 56,
+      "rank": 57,
       "grupos": {
         "pontos": 0,
         "placares_exatos": 0,
@@ -1616,41 +1644,13 @@
         "pontos": 60,
         "placares_exatos": 3,
         "vencedores_acertados": 3,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 60,
         "placares_exatos": 3,
         "vencedores_acertados": 3,
-        "jogos_palpitados": 4
-      }
-    },
-    {
-      "slug": "qwen-3-max-web",
-      "nome_display": "Qwen 3 Max (via Web)",
-      "pontos": 60,
-      "placares_exatos": 3,
-      "vencedores_acertados": 3,
-      "jogos_palpitados": 4,
-      "palpites_total": 16,
-      "rank": 56,
-      "grupos": {
-        "pontos": 0,
-        "placares_exatos": 0,
-        "vencedores_acertados": 0,
-        "jogos_palpitados": 0
-      },
-      "matamata": {
-        "pontos": 60,
-        "placares_exatos": 3,
-        "vencedores_acertados": 3,
-        "jogos_palpitados": 4
-      },
-      "geral": {
-        "pontos": 60,
-        "placares_exatos": 3,
-        "vencedores_acertados": 3,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       }
     },
     {
@@ -1659,7 +1659,7 @@
       "pontos": 40,
       "placares_exatos": 2,
       "vencedores_acertados": 2,
-      "jogos_palpitados": 4,
+      "jogos_palpitados": 5,
       "palpites_total": 16,
       "rank": 60,
       "grupos": {
@@ -1672,13 +1672,13 @@
         "pontos": 40,
         "placares_exatos": 2,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 40,
         "placares_exatos": 2,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       }
     },
     {
@@ -1687,7 +1687,7 @@
       "pontos": 40,
       "placares_exatos": 2,
       "vencedores_acertados": 2,
-      "jogos_palpitados": 4,
+      "jogos_palpitados": 5,
       "palpites_total": 16,
       "rank": 60,
       "grupos": {
@@ -1700,13 +1700,13 @@
         "pontos": 40,
         "placares_exatos": 2,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 40,
         "placares_exatos": 2,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       }
     },
     {
@@ -1715,7 +1715,7 @@
       "pontos": 40,
       "placares_exatos": 2,
       "vencedores_acertados": 2,
-      "jogos_palpitados": 4,
+      "jogos_palpitados": 5,
       "palpites_total": 16,
       "rank": 60,
       "grupos": {
@@ -1728,13 +1728,13 @@
         "pontos": 40,
         "placares_exatos": 2,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 40,
         "placares_exatos": 2,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       }
     },
     {
@@ -1743,7 +1743,7 @@
       "pontos": 30,
       "placares_exatos": 1,
       "vencedores_acertados": 2,
-      "jogos_palpitados": 4,
+      "jogos_palpitados": 5,
       "palpites_total": 16,
       "rank": 63,
       "grupos": {
@@ -1756,13 +1756,13 @@
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 30,
         "placares_exatos": 1,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       }
     },
     {
@@ -1771,7 +1771,7 @@
       "pontos": 20,
       "placares_exatos": 0,
       "vencedores_acertados": 2,
-      "jogos_palpitados": 4,
+      "jogos_palpitados": 5,
       "palpites_total": 16,
       "rank": 64,
       "grupos": {
@@ -1784,13 +1784,13 @@
         "pontos": 20,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 20,
         "placares_exatos": 0,
         "vencedores_acertados": 2,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       }
     },
     {
@@ -1799,7 +1799,7 @@
       "pontos": 14,
       "placares_exatos": 0,
       "vencedores_acertados": 1,
-      "jogos_palpitados": 4,
+      "jogos_palpitados": 5,
       "palpites_total": 16,
       "rank": 65,
       "grupos": {
@@ -1812,13 +1812,13 @@
         "pontos": 14,
         "placares_exatos": 0,
         "vencedores_acertados": 1,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       },
       "geral": {
         "pontos": 14,
         "placares_exatos": 0,
         "vencedores_acertados": 1,
-        "jogos_palpitados": 4
+        "jogos_palpitados": 5
       }
     },
     {
@@ -3474,6 +3474,6 @@
       }
     }
   ],
-  "jogos_apurados": 76,
+  "jogos_apurados": 77,
   "jogos_totais": 104
 }
