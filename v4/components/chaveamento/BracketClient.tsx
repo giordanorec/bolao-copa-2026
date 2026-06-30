@@ -5,24 +5,21 @@
  *
  * Architecture:
  * - R32 games are the ONLY source of team flags. Each flag lives exactly once.
- * - Winners animate from their R32 position to the correct R16 slot via SVG
- *   animateMotion + mpath along the right-angle connector path.
- * - Losers fade to 0.3 opacity in-place (CSS animation, fired SMIL-side with
- *   a <animate> on opacity).
- * - R16/QF/SF/Final slots render as EMPTY placeholder boxes, no flags.
- *   (The animated flag that travels from R32 IS the flag that populates R16.)
- * - Future rounds (QF, SF, Final) are also empty placeholder boxes.
+ * - Winners animate from their R32 position to the correct R16 slot via CSS
+ *   offset-path (right-angle H→V→H trajectory). More reliable than SMIL animateMotion.
+ * - Losers fade to 0.80 opacity in-place (CSS animation).
+ * - R16/QF/SF/Final slots render as very subtle placeholder marks (opacity 0.08).
+ * - Future rounds (QF, SF, Final) are also subtle placeholder marks.
  *
  * Animation chronology:
  * - Decided games are sorted by their real match date+time before assigning
  *   delay slots — so the earliest-played match animates first.
- * - Each flag follows the right-angle connector path exactly via animateMotion
- *   + mpath (H → V → H trajectory). No diagonal translate.
+ * - Each flag follows the right-angle connector path exactly via CSS offset-path
+ *   (absolute H → V → H trajectory). No diagonal movement.
  *
- * Toggle modes:
- * - "spaced" (default): FLAG_R32=40, generous slot height (120px/game → 960px total).
- *   Each R16 slot has 130px height for 2 stacked flags. No overlap.
- * - "compact": FLAG_R32=52, tighter. Flags slightly bigger, slight overlap accepted.
+ * Layout:
+ * - GAME_H=130, FLAG_R32=30 → 2×(2×30)+10=130 tight fit, no overlap.
+ * - SVG_H ≈ 8×130 + 7×12 + top/bottom ≈ 1199 — fits better on vertical viewports.
  */
 
 
@@ -62,44 +59,17 @@ type Props = {
   // rightR32 same mapping → slots 0-3 (J91, J92, J95, J96)
 };
 
-// ─── Layout constants (per mode) ───────────────────────────────────────────────
+// ─── Layout constants ──────────────────────────────────────────────────────────
 
-type Mode = "spaced" | "compact";
-
-interface LayoutConfig {
-  FLAG_R32: number;
-  FLAG_R16: number;
-  FLAG_QF: number;
-  FLAG_SF: number;
-  FLAG_F: number;
-  GAME_H: number;   // height allocated for each R32 game row
-  GAME_GAP: number; // vertical gap between R32 game rows
-}
-
-const LAYOUTS: Record<Mode, LayoutConfig> = {
-  // "spaced" = SEM sobreposição. Math: 2 flags raio R precisam ≥ 2R+2R = 4R
-  // de distância entre topos. Com R=36 (diâmetro 72), GAME_H precisa ≥ 4R + gap
-  // interno = 144 + 16 = 160 pra deixar 16px entre as duas flags do mesmo jogo.
-  spaced: {
-    FLAG_R32: 36,
-    FLAG_R16: 40,
-    FLAG_QF: 50,
-    FLAG_SF: 62,
-    FLAG_F: 84,
-    GAME_H: 170,    // 2×36×2 + 26 padding = 170 → 26px gap entre as 2 flags
-    GAME_GAP: 18,
-  },
-  // "compact" = SOBREPÕE. Flags maiores, distância menor → bordas encavalam.
-  compact: {
-    FLAG_R32: 52,
-    FLAG_R16: 56,
-    FLAG_QF: 64,
-    FLAG_SF: 74,
-    FLAG_F: 92,
-    GAME_H: 130,
-    GAME_GAP: 8,
-  },
-};
+// Math check: GAME_H=130, FLAG_R32=30
+// Two flags per game: diameter 60 each + 10px gap = 130 → tight, no overlap.
+const FLAG_R32 = 30;
+const FLAG_R16 = 36;
+const FLAG_QF  = 46;
+const FLAG_SF  = 58;
+const FLAG_F   = 90;
+const GAME_H   = 130;  // 2×(2×30)+10 = 130 — no overlap
+const GAME_GAP = 12;
 
 // ─── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -167,7 +137,6 @@ function flagUrl(iso: string): string {
 
 /** Convert "YYYY-MM-DD" + "HH:MM" to a sortable numeric key */
 function gameDateTime(data: string, hora: string): number {
-  // Produces e.g. "2026-06-28T16:00" → Date numeric value
   return new Date(`${data}T${hora}`).getTime();
 }
 
@@ -175,7 +144,6 @@ function gameDateTime(data: string, hora: string): number {
 
 /**
  * Renders one circular flag at (cx, cy) with radius r.
- * Returns SVG elements (no animation — caller applies animation via wrapper).
  */
 function FlagCircle({
   slot,
@@ -199,13 +167,14 @@ function FlagCircle({
   const clipId = `clip-${uid}`;
 
   return (
-    <g opacity={faded ? 0.3 : 1}>
+    // Fix 4: eliminated teams at 0.80 opacity (only 20% fade), not 0.3
+    <g opacity={faded ? 0.80 : 1}>
       {/* Glow ring for winners/bright teams */}
       {isBright && !unknown && (
         <circle
           cx={cx}
           cy={cy}
-          r={r + 8}
+          r={r + 7}
           fill="none"
           stroke={color}
           strokeWidth={slot.nome === "Brasil" ? 3.5 : 2}
@@ -266,8 +235,9 @@ function FlagCircle({
 }
 
 /**
- * Placeholder box for a slot that hasn't been filled yet (future rounds).
- * Shows a dashed circle outline.
+ * Fix 1: Placeholder circle for a slot that hasn't been filled yet.
+ * Very subtle — opacity 0.08, thin dashed stroke "2 4".
+ * Does NOT draw a filled shape, just a barely-visible reference mark.
  */
 function SlotPlaceholder({
   cx,
@@ -284,9 +254,9 @@ function SlotPlaceholder({
       cy={cy}
       r={r}
       fill="none"
-      stroke="rgba(255,255,255,0.40)"
+      stroke="rgba(255,255,255,0.08)"
       strokeWidth={1}
-      strokeDasharray="4 3"
+      strokeDasharray="2 4"
     />
   );
 }
@@ -307,18 +277,6 @@ function rightAnglePath(
 // ─── Main bracket component ────────────────────────────────────────────────────
 
 export default function BracketClient({ leftR32, rightR32 }: Props) {
-  // Modo fixo "spaced" — sem sobreposição. Toggle removido.
-  const cfg = LAYOUTS.spaced;
-
-  const {
-    FLAG_R32,
-    FLAG_R16,
-    FLAG_QF,
-    FLAG_SF,
-    FLAG_F,
-    GAME_H,
-    GAME_GAP,
-  } = cfg;
 
   // ─── SVG geometry ────────────────────────────────────────────────────────────
 
@@ -349,11 +307,13 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
   }
   /** Center-y of team A in game row gi */
   function teamAY(gi: number): number {
-    return rowTopY(gi) + FLAG_R32 + 4;
+    // padding 5 from top of row + FLAG_R32 radius
+    return rowTopY(gi) + 5 + FLAG_R32;
   }
   /** Center-y of team B in game row gi */
   function teamBY(gi: number): number {
-    return rowTopY(gi) + GAME_H - FLAG_R32 - 4;
+    // padding 5 from bottom of row + FLAG_R32 radius
+    return rowTopY(gi) + GAME_H - 5 - FLAG_R32;
   }
   /** Mid-y of game row gi (between the two teams) */
   function gameMidY(gi: number): number {
@@ -363,7 +323,6 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
   /**
    * Center-y of R16 slot r16Idx (0-3 per side).
    * Each R16 slot aggregates two R32 game rows.
-   * We place team A at (midpoint - FLAG_R16 - 6) and team B at (midpoint + FLAG_R16 + 6).
    */
   function r16MidY(r16Idx: number): number {
     const g1 = r16Idx * 2;
@@ -379,7 +338,6 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
 
   /**
    * Center-y of QF slot qfIdx (0-1 per side).
-   * Each QF slot aggregates two R16 slots.
    */
   function qfMidY(qfIdx: number): number {
     return (r16MidY(qfIdx * 2) + r16MidY(qfIdx * 2 + 1)) / 2;
@@ -402,51 +360,59 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
     return sfMidY() + FLAG_SF + 10;
   }
 
-  const finalY = sfMidY();
-
-  // Total SVG height
+  // Total SVG height — Fix 2: with GAME_H=130 instead of 170
   const TOTAL_ROWS_H = 8 * GAME_H + 7 * GAME_GAP;
   const SVG_H = TOTAL_ROWS_H + TOP_OFFSET + 80;
 
-  // ─── Animation spec computation ───────────────────────────────────────────────
+  // Fix 5: Trophy at true vertical center of SVG
+  const CENTER_Y = SVG_H / 2;
+  const finalY = CENTER_Y;
+
+  // ─── Animation spec computation (CSS offset-path) ─────────────────────────────
 
   /**
-   * For each decided R32 game, compute geometry and timing.
+   * Fix 3: Use CSS offset-path instead of SMIL animateMotion.
    *
-   * The flag group is positioned at the R32 origin with:
-   *   <g transform="translate(fromCX, fromCY)">
-   * Inside it, FlagCircle renders at (0, 0).
-   * <animateMotion> drives the group along the right-angle path from (0,0)
-   * to (toCX-fromCX, toCY-fromCY), i.e. the path is relative:
-   *   M 0 0  H (midX-fromCX)  V (toCY-fromCY)  H (toCX-fromCX)
+   * CSS offset-path with path() uses ABSOLUTE SVG coordinates.
+   * The <g> element has NO transform — it starts at (0,0) in SVG space.
+   * The offset-path moves the element's "anchor point" (its own 0,0) along
+   * the absolute path. So the path goes from (fromCX, fromCY) to (toCX, toCY)
+   * via a right-angle H→V→H route.
    *
-   * Chronological ordering: games sorted by data+hora before assigning delays.
+   * offset-anchor: "50% 50%" centers the element on the path point.
+   * We compensate by offsetting the FlagCircle cx/cy by 0,0 (anchor is center).
+   *
+   * The animation uses CSS keyframes:
+   *   from { offset-distance: 0% }
+   *   to   { offset-distance: 100% }
+   * with animation-delay and animation-fill-mode: forwards.
+   *
+   * Looping: we use animation-iteration-count: infinite with a long-period
+   * calculation using animation-delay negative trick for phased starts.
    */
 
   type AnimSpec = {
-    animId: string;       // unique id for <animateMotion> element
-    pathId: string;       // unique id for <path> in <defs>
+    uid: string;        // unique CSS class suffix
     fromCX: number;
     fromCY: number;
     toCX: number;
     toCY: number;
-    /** Relative right-angle path: M 0 0 → destination, via midpoint */
-    relPath: string;
+    /** Absolute right-angle path: M fromCX fromCY H midX V toCY H toCX */
+    absPath: string;
     delayS: number;       // seconds from cycle start when THIS animation begins
     side: "L" | "R";
     jNum: number;
     winnerSide: "a" | "b";
-    gi: number;           // game row index
-    dateTime: number;     // sortable timestamp for chronological ordering
+    gi: number;
+    dateTime: number;
   };
 
-  // Initial delay before any animation starts
-  const INIT_PAUSE = 1.2; // seconds
+  // Animation timing constants
+  const INIT_PAUSE = 1.2;    // seconds before first animation
   const TRAVEL_DURATION = 1.5; // seconds per flag travel
-  const INTER_GAP = 0.3;  // gap between sequential animations
-  const HOLD_DURATION = 10; // seconds to hold final state before repeat
+  const INTER_GAP = 0.3;     // gap between sequential animations
+  const HOLD_DURATION = 10;  // seconds to hold final state before repeat
 
-  // Collect all decided games from both sides (with geometry)
   const unsortedSpecs: AnimSpec[] = [];
 
   function collectSpecs(
@@ -465,35 +431,26 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
       const toCX = r16CX;
       const toCY = isTopOfPair ? r16TeamAY(r16Idx) : r16TeamBY(r16Idx);
 
-      // Mid-X of the right-angle path (halfway between R32 and R16 X positions)
-      // For left side: R32_X < R16_X → midX is between them
-      // For right side: R32_X > R16_X → midX is between them
+      // Midpoint X for the right-angle bend
       const midX = (fromCX + toCX) / 2;
 
-      // Relative path: starts at (0,0) = fromCX,fromCY; ends at destination offset
-      const dx = toCX - fromCX;
-      const dy = toCY - fromCY;
-      const midDX = midX - fromCX; // relative midpoint X
-
-      let relPath: string;
-      if (Math.abs(dy) < 1) {
-        // Same Y — just horizontal
-        relPath = `M 0 0 H ${Math.round(dx)}`;
+      // Absolute path: go horizontal to midX, then vertical to toCY, then horizontal to toCX
+      let absPath: string;
+      if (Math.abs(fromCY - toCY) < 1) {
+        absPath = `M ${Math.round(fromCX)} ${Math.round(fromCY)} H ${Math.round(toCX)}`;
       } else {
-        relPath = `M 0 0 H ${Math.round(midDX)} V ${Math.round(dy)} H ${Math.round(dx)}`;
+        absPath = `M ${Math.round(fromCX)} ${Math.round(fromCY)} H ${Math.round(midX)} V ${Math.round(toCY)} H ${Math.round(toCX)}`;
       }
 
-      const animId = `anim-adv-${side}-${c.numero}-${c.vencedor}`;
-      const pathId = `path-adv-${side}-${c.numero}-${c.vencedor}`;
+      const uid = `adv-${side}-${c.numero}-${c.vencedor}`;
 
       unsortedSpecs.push({
-        animId,
-        pathId,
+        uid,
         fromCX,
         fromCY,
         toCX,
         toCY,
-        relPath,
+        absPath,
         delayS: 0, // assigned after sorting
         side,
         jNum: c.numero,
@@ -507,22 +464,22 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
   collectSpecs(leftR32, "L", LR32_X, LR16_X);
   collectSpecs(rightR32, "R", RR32_X, RR16_X);
 
-  // Sort chronologically by match date+time
+  // Sort chronologically
   unsortedSpecs.sort((a, b) => a.dateTime - b.dateTime);
 
-  // Assign sequential delays after sorting
+  // Assign sequential delays
   const animSpecs: AnimSpec[] = unsortedSpecs.map((spec, idx) => ({
     ...spec,
     delayS: INIT_PAUSE + idx * (TRAVEL_DURATION + INTER_GAP),
   }));
 
-  // Compute full cycle duration
+  // Full cycle duration
   const lastAnimStart = animSpecs.length > 0
     ? Math.max(...animSpecs.map((s) => s.delayS))
     : INIT_PAUSE;
   const CYCLE = lastAnimStart + TRAVEL_DURATION + HOLD_DURATION;
 
-  // Build lookup by (side, jNum) for rendering
+  // Build lookup
   const animLookup = new Map<string, AnimSpec>();
   animSpecs.forEach((s) => {
     animLookup.set(`${s.side}-${s.jNum}`, s);
@@ -532,33 +489,87 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
     return animLookup.get(`${side}-${jNum}`);
   }
 
-  // ─── SMIL begin string builders ──────────────────────────────────────────────
+  // Build CSS for all winner/loser animations.
+  // Each flag gets a unique @keyframes + CSS class.
+  // The animation-duration is the full CYCLE, so all flags are synchronized.
+  // The keyframes hold at offset-distance 0% until the flag's travel window,
+  // travel to 100% during the window, then hold at 100% for the rest of the cycle.
+  // animation-iteration-count: infinite loops the whole cycle seamlessly.
 
-  /**
-   * Build SMIL begin attribute for an animateMotion.
-   *
-   * The loopAnchor <animate> element is placed in the SVG body with:
-   *   begin="0s; loopAnchor.end"   dur=CYCLE
-   * This makes it fire at t=0, then again at each multiple of CYCLE.
-   * loopAnchor.begin fires at t=0, CYCLE, 2*CYCLE, ...
-   *
-   * Each flag animation uses: begin="loopAnchor.begin + delayS"
-   * This chains correctly across all loop iterations.
-   *
-   * The loser fade uses the same pattern.
-   */
-  function smilBegin(delayS: number): string {
-    const ds = delayS.toFixed(2);
-    return `loopAnchor.begin+${ds}s`;
+  function buildCSS(): string {
+    const rules: string[] = [];
+
+    animSpecs.forEach((spec) => {
+      const travelFraction = TRAVEL_DURATION / CYCLE;
+      const startFraction = spec.delayS / CYCLE;
+      const endFraction = startFraction + travelFraction;
+
+      const startPct = (startFraction * 100).toFixed(2);
+      const endPct = (endFraction * 100).toFixed(2);
+
+      // Winner flag: CSS offset-path animation.
+      //
+      // The winner <g> has transform="translate(fromCX, fromCY)" and its children
+      // (FlagCircle + label) are drawn at local (0,0). CSS offset-path uses a
+      // RELATIVE path M 0 0 → (dx, dy) via right-angle bend in the group's local
+      // coordinate system. offset-anchor: 0px 0px anchors the path at the group's
+      // origin (= FlagCircle center). offset-rotate: 0deg prevents rotation.
+      //
+      // The keyframes hold at 0% until the travel window starts, then travel to
+      // 100%, then hold at 100% until the cycle repeats. This creates the
+      // staggered sequential animation effect across all decided games.
+      const { toCX, fromCX, toCY, fromCY } = spec;
+      const dx = Math.round(toCX - fromCX);
+      const dy = Math.round(toCY - fromCY);
+      const midDX = Math.round((toCX - fromCX) / 2);
+
+      let relPath: string;
+      if (Math.abs(dy) < 1) {
+        relPath = `M 0 0 H ${dx}`;
+      } else {
+        relPath = `M 0 0 H ${midDX} V ${dy} H ${dx}`;
+      }
+
+      rules.push(`
+@keyframes move-${spec.uid} {
+  0%, ${startPct}% { offset-distance: 0%; }
+  ${endPct}%, 100% { offset-distance: 100%; }
+}
+.flag-${spec.uid} {
+  offset-path: path("${relPath}");
+  offset-rotate: 0deg;
+  offset-anchor: 0px 0px;
+  animation: move-${spec.uid} ${CYCLE.toFixed(2)}s linear infinite;
+}
+`);
+
+      // Loser flag: fade to 0.80 opacity when winner starts moving (Fix 4)
+      const fadeDuration = 0.8;
+      const fadeFraction = fadeDuration / CYCLE;
+      const fadeEndFraction = startFraction + fadeFraction;
+      const fadeEndPct = Math.min(fadeEndFraction * 100, 100).toFixed(2);
+
+      rules.push(`
+@keyframes fade-loser-${spec.uid} {
+  0%, ${startPct}% { opacity: 1; }
+  ${fadeEndPct}%, 100% { opacity: 0.80; }
+}
+.loser-${spec.uid} {
+  animation: fade-loser-${spec.uid} ${CYCLE.toFixed(2)}s linear infinite;
+}
+`);
+    });
+
+    return rules.join("");
   }
 
   // ─── Rendering helpers ───────────────────────────────────────────────────────
 
   /**
    * Render one R32 game row.
-   * Winner: rendered in a <g transform="translate(cx,cy)"> with animateMotion.
-   * Loser: rendered normally with a SMIL <animate> on opacity.
-   * Undecided: rendered normally, no animation.
+   * Winner: CSS offset-path animation moving flag from R32 to R16.
+   * Loser: CSS opacity fade animation.
+   * Undecided: static, no animation.
    */
   function renderR32Game(
     c: Confronto,
@@ -577,29 +588,28 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
     const BRACKET_X = side === "L" ? flagCX + FLAG_R32 + 3 : flagCX - FLAG_R32 - 3;
     const EXIT_X = side === "L" ? flagCX + PHASE_W / 2 : flagCX - PHASE_W / 2;
 
-    // Score label X
     const scoreLabelX =
       side === "L"
         ? BRACKET_X + 38
         : BRACKET_X - 38;
 
-    // Loser fade timing: starts when winner begins moving
-    const loserFadeBegin = spec ? smilBegin(spec.delayS) : "indefinite";
-    const loserFadeDur = "0.8s";
-
-    // For the winner's group: render at origin (0,0), translated to abs position
-    // The animateMotion moves the group along relPath (relative coordinates)
-    // After animation ends (fill="freeze"), group is at destination.
-
     const isWinnerA = winnerSide === "a";
     const isWinnerB = winnerSide === "b";
 
-    // Render team A
-    const teamAEl = (
-      <g key={`tA-${side}-${c.numero}`}>
-        {isWinnerA && spec ? (
-          // Winner: group placed at origin (flagCX, aY), animateMotion moves it
-          <g transform={`translate(${flagCX}, ${aY})`}>
+    // ── Team A ──
+    const teamAEl = (() => {
+      if (isWinnerA && spec) {
+        // Winner A: CSS offset-path animation.
+        // The <g> has transform="translate(fromCX, fromCY)" so it starts at the right
+        // position. Children are drawn at local (0,0). The CSS offset-path is a
+        // RELATIVE path M 0 0 → (dx,dy) in the group's local coordinate system.
+        // offset-anchor: 0px 0px anchors the path at local (0,0) = FlagCircle center.
+        return (
+          <g
+            key={`tA-${side}-${c.numero}`}
+            transform={`translate(${flagCX}, ${aY})`}
+            className={`flag-${spec.uid}`}
+          >
             <FlagCircle
               slot={c.timeA}
               cx={0}
@@ -620,89 +630,74 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
             >
               {isUnknownTeam(c.timeA.nome) ? "?" : shortName(c.timeA.nome, 11)}
             </text>
-            <animateMotion
-              id={spec.animId}
-              dur={`${TRAVEL_DURATION}s`}
-              begin={smilBegin(spec.delayS)}
-              fill="freeze"
-              rotate="0"
-              calcMode="linear"
+          </g>
+        );
+      } else if (isWinnerB && spec) {
+        // Loser A: fade animation
+        return (
+          <g key={`tA-${side}-${c.numero}`} className={`loser-${spec.uid}`}>
+            <FlagCircle
+              slot={c.timeA}
+              cx={flagCX}
+              cy={aY}
+              r={FLAG_R32}
+              faded={false}
+              isBright={false}
+              uid={`r32${side}${c.numero}a`}
+            />
+            <text
+              x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
+              y={aY + 5}
+              fontSize={Math.max(10, FLAG_R32 * 0.28)}
+              fontFamily="system-ui, -apple-system, sans-serif"
+              fontWeight={400}
+              fill="rgba(255,255,255,0.88)"
+              textAnchor={textRight ? "start" : "end"}
             >
-              <mpath href={`#${spec.pathId}`} />
-            </animateMotion>
+              {isUnknownTeam(c.timeA.nome) ? "?" : shortName(c.timeA.nome, 11)}
+            </text>
           </g>
-        ) : (
-          // Loser A or undecided A: static position
-          <g>
-            {isWinnerB && spec ? (
-              // Loser: fade to 0.3 when winner starts moving
-              <g>
-                <FlagCircle
-                  slot={c.timeA}
-                  cx={flagCX}
-                  cy={aY}
-                  r={FLAG_R32}
-                  faded={false}
-                  isBright={false}
-                  uid={`r32${side}${c.numero}a`}
-                />
-                <text
-                  x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
-                  y={aY + 5}
-                  fontSize={Math.max(10, FLAG_R32 * 0.28)}
-                  fontFamily="system-ui, -apple-system, sans-serif"
-                  fontWeight={400}
-                  fill="rgba(255,255,255,0.88)"
-                  textAnchor={textRight ? "start" : "end"}
-                >
-                  {isUnknownTeam(c.timeA.nome) ? "?" : shortName(c.timeA.nome, 11)}
-                </text>
-                {/* SMIL opacity fade for loser */}
-                <animate
-                  attributeName="opacity"
-                  values="1;0.3"
-                  begin={loserFadeBegin}
-                  dur={loserFadeDur}
-                  fill="freeze"
-                  id={`fade-${side}-${c.numero}-a`}
-                />
-              </g>
-            ) : (
-              // Undecided
-              <g>
-                <FlagCircle
-                  slot={c.timeA}
-                  cx={flagCX}
-                  cy={aY}
-                  r={FLAG_R32}
-                  faded={false}
-                  isBright={!decided}
-                  uid={`r32${side}${c.numero}a`}
-                />
-                <text
-                  x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
-                  y={aY + 5}
-                  fontSize={Math.max(10, FLAG_R32 * 0.28)}
-                  fontFamily="system-ui, -apple-system, sans-serif"
-                  fontWeight={400}
-                  fill="rgba(255,255,255,0.88)"
-                  textAnchor={textRight ? "start" : "end"}
-                >
-                  {isUnknownTeam(c.timeA.nome) ? "?" : shortName(c.timeA.nome, 11)}
-                </text>
-              </g>
-            )}
+        );
+      } else {
+        // Undecided
+        return (
+          <g key={`tA-${side}-${c.numero}`}>
+            <FlagCircle
+              slot={c.timeA}
+              cx={flagCX}
+              cy={aY}
+              r={FLAG_R32}
+              faded={false}
+              isBright={!decided}
+              uid={`r32${side}${c.numero}a`}
+            />
+            <text
+              x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
+              y={aY + 5}
+              fontSize={Math.max(10, FLAG_R32 * 0.28)}
+              fontFamily="system-ui, -apple-system, sans-serif"
+              fontWeight={400}
+              fill="rgba(255,255,255,0.88)"
+              textAnchor={textRight ? "start" : "end"}
+            >
+              {isUnknownTeam(c.timeA.nome) ? "?" : shortName(c.timeA.nome, 11)}
+            </text>
           </g>
-        )}
-      </g>
-    );
+        );
+      }
+    })();
 
-    // Render team B
-    const teamBEl = (
-      <g key={`tB-${side}-${c.numero}`}>
-        {isWinnerB && spec ? (
-          // Winner: group placed at origin (flagCX, bY), animateMotion moves it
-          <g transform={`translate(${flagCX}, ${bY})`}>
+    // ── Team B ──
+    const teamBEl = (() => {
+      if (isWinnerB && spec) {
+        // Winner B: CSS offset-path animation.
+        // Same structure as winner A: translate to origin, children at (0,0).
+        return (
+          <g
+            key={`tB-${side}-${c.numero}`}
+            transform={`translate(${flagCX}, ${bY})`}
+            className={`flag-${spec.uid}`}
+          >
             <FlagCircle
               slot={c.timeB}
               cx={0}
@@ -723,82 +718,62 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
             >
               {isUnknownTeam(c.timeB.nome) ? "?" : shortName(c.timeB.nome, 11)}
             </text>
-            <animateMotion
-              id={spec.animId}
-              dur={`${TRAVEL_DURATION}s`}
-              begin={smilBegin(spec.delayS)}
-              fill="freeze"
-              rotate="0"
-              calcMode="linear"
+          </g>
+        );
+      } else if (isWinnerA && spec) {
+        // Loser B: fade animation
+        return (
+          <g key={`tB-${side}-${c.numero}`} className={`loser-${spec.uid}`}>
+            <FlagCircle
+              slot={c.timeB}
+              cx={flagCX}
+              cy={bY}
+              r={FLAG_R32}
+              faded={false}
+              isBright={false}
+              uid={`r32${side}${c.numero}b`}
+            />
+            <text
+              x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
+              y={bY + 5}
+              fontSize={Math.max(10, FLAG_R32 * 0.28)}
+              fontFamily="system-ui, -apple-system, sans-serif"
+              fontWeight={400}
+              fill="rgba(255,255,255,0.88)"
+              textAnchor={textRight ? "start" : "end"}
             >
-              <mpath href={`#${spec.pathId}`} />
-            </animateMotion>
+              {isUnknownTeam(c.timeB.nome) ? "?" : shortName(c.timeB.nome, 11)}
+            </text>
           </g>
-        ) : (
-          // Loser B or undecided B: static position
-          <g>
-            {isWinnerA && spec ? (
-              // Loser: fade to 0.3 when winner starts moving
-              <g>
-                <FlagCircle
-                  slot={c.timeB}
-                  cx={flagCX}
-                  cy={bY}
-                  r={FLAG_R32}
-                  faded={false}
-                  isBright={false}
-                  uid={`r32${side}${c.numero}b`}
-                />
-                <text
-                  x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
-                  y={bY + 5}
-                  fontSize={Math.max(10, FLAG_R32 * 0.28)}
-                  fontFamily="system-ui, -apple-system, sans-serif"
-                  fontWeight={400}
-                  fill="rgba(255,255,255,0.88)"
-                  textAnchor={textRight ? "start" : "end"}
-                >
-                  {isUnknownTeam(c.timeB.nome) ? "?" : shortName(c.timeB.nome, 11)}
-                </text>
-                {/* SMIL opacity fade for loser */}
-                <animate
-                  attributeName="opacity"
-                  values="1;0.3"
-                  begin={loserFadeBegin}
-                  dur={loserFadeDur}
-                  fill="freeze"
-                  id={`fade-${side}-${c.numero}-b`}
-                />
-              </g>
-            ) : (
-              // Undecided
-              <g>
-                <FlagCircle
-                  slot={c.timeB}
-                  cx={flagCX}
-                  cy={bY}
-                  r={FLAG_R32}
-                  faded={false}
-                  isBright={!decided}
-                  uid={`r32${side}${c.numero}b`}
-                />
-                <text
-                  x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
-                  y={bY + 5}
-                  fontSize={Math.max(10, FLAG_R32 * 0.28)}
-                  fontFamily="system-ui, -apple-system, sans-serif"
-                  fontWeight={400}
-                  fill="rgba(255,255,255,0.88)"
-                  textAnchor={textRight ? "start" : "end"}
-                >
-                  {isUnknownTeam(c.timeB.nome) ? "?" : shortName(c.timeB.nome, 11)}
-                </text>
-              </g>
-            )}
+        );
+      } else {
+        // Undecided
+        return (
+          <g key={`tB-${side}-${c.numero}`}>
+            <FlagCircle
+              slot={c.timeB}
+              cx={flagCX}
+              cy={bY}
+              r={FLAG_R32}
+              faded={false}
+              isBright={!decided}
+              uid={`r32${side}${c.numero}b`}
+            />
+            <text
+              x={textRight ? flagCX + FLAG_R32 + 6 : flagCX - FLAG_R32 - 6}
+              y={bY + 5}
+              fontSize={Math.max(10, FLAG_R32 * 0.28)}
+              fontFamily="system-ui, -apple-system, sans-serif"
+              fontWeight={400}
+              fill="rgba(255,255,255,0.88)"
+              textAnchor={textRight ? "start" : "end"}
+            >
+              {isUnknownTeam(c.timeB.nome) ? "?" : shortName(c.timeB.nome, 11)}
+            </text>
           </g>
-        )}
-      </g>
-    );
+        );
+      }
+    })();
 
     return (
       <g key={`r32-${side}-${c.numero}`}>
@@ -852,7 +827,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
    */
   function renderR32toR16Connectors(
     side: "L" | "R",
-    r16Idx: number, // 0-3
+    r16Idx: number,
   ) {
     const g1 = r16Idx * 2;
     const g2 = r16Idx * 2 + 1;
@@ -870,8 +845,6 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
     const entryAY = r16TeamAY(r16Idx);
     const entryBY = r16TeamBY(r16Idx);
 
-    // Connector from game1 midpoint to R16 slot teamA entry
-    // Connector from game2 midpoint to R16 slot teamB entry
     return (
       <g key={`conn-r32-r16-${side}-${r16Idx}`}>
         <path
@@ -886,7 +859,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           stroke="rgba(255,255,255,0.42)"
           strokeWidth={2.5}
         />
-        {/* Vertical bar at R16 entry connecting teamA and teamB placeholders */}
+        {/* Vertical bar at R16 entry */}
         <line
           x1={side === "L" ? LR16_X + FLAG_R16 + 3 : RR16_X - FLAG_R16 - 3}
           y1={entryAY}
@@ -895,7 +868,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           stroke="rgba(255,255,255,0.42)"
           strokeWidth={1}
         />
-        {/* Placeholder circles for R16 slots */}
+        {/* Fix 1: very subtle placeholder circles for R16 slots */}
         <SlotPlaceholder
           cx={side === "L" ? LR16_X : RR16_X}
           cy={entryAY}
@@ -920,7 +893,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
   }
 
   /**
-   * Render QF slot (empty placeholder) + connectors.
+   * Render QF slot (subtle placeholder) + connectors.
    */
   function renderQFSlot(side: "L" | "R", qfIdx: number) {
     const flagCX = side === "L" ? LQF_X : RQF_X;
@@ -958,7 +931,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           stroke="rgba(255,255,255,0.40)"
           strokeWidth={1}
         />
-        {/* Placeholder slots */}
+        {/* Fix 1: subtle placeholder slots */}
         <SlotPlaceholder cx={flagCX} cy={aY} r={FLAG_QF} />
         <SlotPlaceholder cx={flagCX} cy={bY} r={FLAG_QF} />
         {/* Exit toward SF */}
@@ -975,7 +948,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
   }
 
   /**
-   * Render SF slot (empty placeholder) + connectors.
+   * Render SF slot (subtle placeholder) + connectors.
    */
   function renderSFSlot(side: "L" | "R") {
     const flagCX = side === "L" ? LSF_X : RSF_X;
@@ -1024,7 +997,7 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           stroke="rgba(255,255,255,0.40)"
           strokeWidth={1}
         />
-        {/* Placeholder slots */}
+        {/* Fix 1: subtle placeholder slots */}
         <SlotPlaceholder cx={flagCX} cy={aY} r={FLAG_SF} />
         <SlotPlaceholder cx={flagCX} cy={bY} r={FLAG_SF} />
         {/* SF → Final */}
@@ -1041,29 +1014,39 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
   }
 
   /**
-   * Render Final + Trophy at center.
+   * Fix 5: Render Final + Trophy at CENTER of SVG (CENTER_X, CENTER_Y = SVG_H/2).
+   * Trophy has strong golden glow. Finalist placeholders very subtle.
    */
   function renderFinal() {
-    const cy = finalY;
-    const TROPHY_SIZE = 100;
+    const cy = CENTER_Y; // true vertical center
+    const TROPHY_SIZE = 110;
 
     return (
       <g key="final">
-        {/* Glow aura */}
+        {/* Outer glow aura rings */}
         <circle
           cx={CENTER_X}
           cy={cy}
-          r={80}
+          r={100}
+          fill="none"
+          stroke="#FFD700"
+          strokeWidth={1}
+          opacity={0.08}
+        />
+        <circle
+          cx={CENTER_X}
+          cy={cy}
+          r={72}
           fill="none"
           stroke="#FFD700"
           strokeWidth={1}
           opacity={0.12}
         />
-        <circle cx={CENTER_X} cy={cy} r={55} fill="rgba(255,215,0,0.04)" />
-        {/* Trophy */}
+        <circle cx={CENTER_X} cy={cy} r={52} fill="rgba(255,215,0,0.04)" />
+        {/* Trophy — Fix 5: centered at (CENTER_X, CENTER_Y), strong golden glow */}
         <foreignObject
           x={CENTER_X - TROPHY_SIZE / 2}
-          y={cy - TROPHY_SIZE * 0.88}
+          y={cy - TROPHY_SIZE * 0.9}
           width={TROPHY_SIZE}
           height={TROPHY_SIZE}
         >
@@ -1074,21 +1057,21 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: TROPHY_SIZE * 0.82,
+              fontSize: TROPHY_SIZE * 0.80,
               lineHeight: 1,
-              filter: "drop-shadow(0 0 20px #FFD700AA)",
+              filter: "drop-shadow(0 0 20px rgba(255,215,0,0.6)) drop-shadow(0 0 40px rgba(255,215,0,0.3))",
             }}
           >
             🏆
           </div>
         </foreignObject>
-        {/* Placeholder slots for finalists */}
-        <SlotPlaceholder cx={CENTER_X - 100} cy={cy} r={FLAG_F} />
-        <SlotPlaceholder cx={CENTER_X + 100} cy={cy} r={FLAG_F} />
-        {/* "CAMPEÃO" label */}
+        {/* Fix 1: very subtle placeholder slots for finalists */}
+        <SlotPlaceholder cx={CENTER_X - 110} cy={cy} r={FLAG_F} />
+        <SlotPlaceholder cx={CENTER_X + 110} cy={cy} r={FLAG_F} />
+        {/* "CAMPEÃO" label below trophy */}
         <text
           x={CENTER_X}
-          y={cy + 28}
+          y={cy + 32}
           textAnchor="middle"
           fontSize={12}
           fontWeight={800}
@@ -1099,10 +1082,10 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
         >
           CAMPEÃO
         </text>
-        {/* J104 label */}
+        {/* J104 label above trophy */}
         <text
           x={CENTER_X}
-          y={cy - TROPHY_SIZE * 0.72}
+          y={cy - TROPHY_SIZE * 0.78}
           textAnchor="middle"
           fontSize={10}
           fill="rgba(255,215,0,0.45)"
@@ -1133,117 +1116,79 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
 
   return (
     <div>
-      {/* SVG bracket — escala fluida pra caber na viewport (sem scroll) */}
-      <div
+      {/* Fix 3: CSS offset-path animation styles injected via <style> in SVG */}
+      <svg
+        viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+        preserveAspectRatio="xMidYMid meet"
         style={{
+          display: "block",
           width: "100%",
+          height: "auto",
+          background:
+            "linear-gradient(135deg, #0a0e1a 0%, #111827 60%, #0d1520 100%)",
+          fontFamily: "system-ui, -apple-system, sans-serif",
           maxWidth: 1400,
-          marginInline: "auto",
+          margin: "0 auto",
         }}
+        aria-label="Chaveamento da Copa do Mundo 2026"
       >
-        <svg
-          viewBox={`0 0 ${SVG_W} ${SVG_H}`}
-          preserveAspectRatio="xMidYMid meet"
-          style={{
-            display: "block",
-            width: "100%",
-            height: "auto",
-            background:
-              "linear-gradient(135deg, #0a0e1a 0%, #111827 60%, #0d1520 100%)",
-            fontFamily: "system-ui, -apple-system, sans-serif",
-          }}
-          aria-label="Chaveamento da Copa do Mundo 2026"
-        >
-          <defs>
-            {/*
-              Motion paths for each advancing flag.
-              These are relative paths starting at M 0 0 (the flag's R32 origin).
-              animateMotion + mpath drives the flag's <g transform="translate"> group
-              along this path, so the group moves from (fromCX,fromCY) through the
-              right-angle bend to (toCX,toCY).
-            */}
-            {animSpecs.map((spec) => (
-              <path
-                key={spec.pathId}
-                id={spec.pathId}
-                d={spec.relPath}
-                fill="none"
-                stroke="none"
-              />
-            ))}
-          </defs>
+        <defs>
+          {/* CSS keyframes and offset-path rules for winner/loser animations */}
+          <style>{buildCSS()}</style>
+        </defs>
 
-          {/*
-            Loop anchor: a zero-size rect with a self-restarting <animate>.
-            begin="0s; loopAnchor.end" makes it fire at t=0, CYCLE, 2*CYCLE, ...
-            All animateMotion and loser-fade animations use:
-              begin="loopAnchor.begin + Xs"
-            which correctly chains across every loop iteration.
-          */}
-          <rect id="loopAnchorRect" width={0} height={0} opacity={0}>
-            <animate
-              id="loopAnchor"
-              attributeName="opacity"
-              values="0;0"
-              dur={`${CYCLE.toFixed(2)}s`}
-              begin={`0s; loopAnchor.end`}
-              fill="freeze"
-            />
-          </rect>
+        {/* Phase labels */}
+        {phaseLabels.map(([label, x]) => (
+          <text
+            key={`lbl-${label}-${x}`}
+            x={x}
+            y={28}
+            textAnchor="middle"
+            fontSize={label === "FINAL" ? 13 : 11}
+            fontWeight={700}
+            letterSpacing={1.5}
+            fill={label === "FINAL" ? "#FFD700" : "rgba(255,255,255,0.3)"}
+            fontFamily="system-ui"
+          >
+            {label}
+          </text>
+        ))}
 
-          {/* Phase labels */}
-          {phaseLabels.map(([label, x]) => (
-            <text
-              key={`lbl-${label}-${x}`}
-              x={x}
-              y={28}
-              textAnchor="middle"
-              fontSize={label === "FINAL" ? 13 : 11}
-              fontWeight={700}
-              letterSpacing={1.5}
-              fill={label === "FINAL" ? "#FFD700" : "rgba(255,255,255,0.3)"}
-              fontFamily="system-ui"
-            >
-              {label}
-            </text>
-          ))}
+        {/* ── LEFT SIDE R32 games ── */}
+        {leftR32.map((c, gi) =>
+          renderR32Game(c, gi, "L", LR32_X, true),
+        )}
 
-          {/* ── LEFT SIDE R32 games ── */}
-          {leftR32.map((c, gi) =>
-            renderR32Game(c, gi, "L", LR32_X, true),
-          )}
+        {/* ── LEFT SIDE R16 connectors + placeholder slots ── */}
+        {[0, 1, 2, 3].map((r16Idx) =>
+          renderR32toR16Connectors("L", r16Idx),
+        )}
 
-          {/* ── LEFT SIDE R16 connectors + placeholder slots ── */}
-          {[0, 1, 2, 3].map((r16Idx) =>
-            renderR32toR16Connectors("L", r16Idx),
-          )}
+        {/* ── LEFT SIDE QF placeholder slots ── */}
+        {[0, 1].map((qfIdx) => renderQFSlot("L", qfIdx))}
 
-          {/* ── LEFT SIDE QF placeholder slots ── */}
-          {[0, 1].map((qfIdx) => renderQFSlot("L", qfIdx))}
+        {/* ── LEFT SIDE SF placeholder slot ── */}
+        {renderSFSlot("L")}
 
-          {/* ── LEFT SIDE SF placeholder slot ── */}
-          {renderSFSlot("L")}
+        {/* ── RIGHT SIDE R32 games ── */}
+        {rightR32.map((c, gi) =>
+          renderR32Game(c, gi, "R", RR32_X, false),
+        )}
 
-          {/* ── RIGHT SIDE R32 games ── */}
-          {rightR32.map((c, gi) =>
-            renderR32Game(c, gi, "R", RR32_X, false),
-          )}
+        {/* ── RIGHT SIDE R16 connectors + placeholder slots ── */}
+        {[0, 1, 2, 3].map((r16Idx) =>
+          renderR32toR16Connectors("R", r16Idx),
+        )}
 
-          {/* ── RIGHT SIDE R16 connectors + placeholder slots ── */}
-          {[0, 1, 2, 3].map((r16Idx) =>
-            renderR32toR16Connectors("R", r16Idx),
-          )}
+        {/* ── RIGHT SIDE QF placeholder slots ── */}
+        {[0, 1].map((qfIdx) => renderQFSlot("R", qfIdx))}
 
-          {/* ── RIGHT SIDE QF placeholder slots ── */}
-          {[0, 1].map((qfIdx) => renderQFSlot("R", qfIdx))}
+        {/* ── RIGHT SIDE SF placeholder slot ── */}
+        {renderSFSlot("R")}
 
-          {/* ── RIGHT SIDE SF placeholder slot ── */}
-          {renderSFSlot("R")}
-
-          {/* ── FINAL + TROPHY ── */}
-          {renderFinal()}
-        </svg>
-      </div>
+        {/* ── FINAL + TROPHY at center ── */}
+        {renderFinal()}
+      </svg>
     </div>
   );
 }
