@@ -1,11 +1,6 @@
 /**
  * /chaveamento — Bracket mata-mata Copa 2026.
- * Variação A: horizontal clássico FIFA, esquerda → centro ← direita.
- * Linhas em ângulo reto (90°), taça central, vencedores avançam animados.
- *
- * Estado inicial: só R32. Vencedores reais animam para R16.
- * Toggle client-side: "Sem sobreposição" (default) / "Com sobreposição".
- *
+ * Layout vertical mobile-first: R32 → Oitavas → Quartas → Semi → Final.
  * NÃO listada no nav, sem sitemap, com noindex.
  */
 
@@ -24,18 +19,18 @@ export const metadata = {
   title: "Chaveamento · Bolão das IAs",
 };
 
-// ─── Types ─────────────────────────────────────────────────────────────────────
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 type Resultado = { jogo_numero: number; gols_a: number; gols_b: number };
 
-// ─── Pênaltis hardcoded (resultado regular: empate, avanço por pênaltis) ───────
+// ─── Pênaltis hardcoded (resultado regular: empate, avanço por pênaltis) ─────
 
 const PENALTY_WINNER: Record<number, "a" | "b"> = {
   74: "b", // Paraguai avança sobre Alemanha
   75: "b", // Marrocos avança sobre Países Baixos (Holanda)
 };
 
-// ─── Data loading ───────────────────────────────────────────────────────────────
+// ─── Data loading ─────────────────────────────────────────────────────────────
 
 async function carregarResultados(): Promise<Map<number, Resultado>> {
   const fp = path.join(process.cwd(), "public", "resultados.json");
@@ -48,13 +43,12 @@ async function carregarResultados(): Promise<Map<number, Resultado>> {
   }
 }
 
-// ─── Bracket builder ────────────────────────────────────────────────────────────
+// ─── Bracket builder ──────────────────────────────────────────────────────────
 
 function resolverVencedor(
   jogo: Jogo,
   resultado: Resultado | undefined,
 ): "a" | "b" | null {
-  // Pênaltis override: se resultado existe (mesmo empatado), aplica o PENALTY_WINNER
   if (PENALTY_WINNER[jogo.numero] !== undefined) {
     if (resultado !== undefined) return PENALTY_WINNER[jogo.numero];
     return null;
@@ -113,32 +107,21 @@ function buildConfrontos(
   });
 }
 
-// ─── Bracket ordering ────────────────────────────────────────────────────────────
-//
-// LEFT side (feeds SF101 via J97+J98):
-//   Top quarter (feeds J97 via J89+J90):
-//     Pair 0 → R16 J89: J74 (top), J77 (bottom)
-//     Pair 1 → R16 J90: J73 (top), J75 (bottom)
-//   Bottom quarter (feeds J98 via J93+J94):
-//     Pair 2 → R16 J93: J83 (top), J84 (bottom)
-//     Pair 3 → R16 J94: J81 (top), J82 (bottom)
-//
-// RIGHT side (feeds SF102 via J99+J100):
-//   Top quarter (feeds J99 via J91+J92):
-//     Pair 0 → R16 J91: J76 (top), J78 (bottom)
-//     Pair 1 → R16 J92: J79 (top), J80 (bottom)
-//   Bottom quarter (feeds J100 via J95+J96):
-//     Pair 2 → R16 J95: J86 (top), J88 (bottom)
-//     Pair 3 → R16 J96: J85 (top), J87 (bottom)
-//
-// Ordering: gi=0→J74, gi=1→J77, gi=2→J73, gi=3→J75, gi=4→J83, gi=5→J84, gi=6→J81, gi=7→J82
-// gi%2===0 = top of pair → feeds R16 teamA slot
-// gi%2===1 = bottom of pair → feeds R16 teamB slot
+// ─── Game number lists per phase ──────────────────────────────────────────────
 
-const LEFT_R32_NUMS = [74, 77, 73, 75, 83, 84, 81, 82];
-const RIGHT_R32_NUMS = [76, 78, 79, 80, 86, 88, 85, 87];
+// R32: J73-J88 in chronological order
+const R32_NUMS = [73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88];
 
-// ─── Page ────────────────────────────────────────────────────────────────────────
+// Oitavas: J89-J96
+const OITAVAS_NUMS = [89, 90, 91, 92, 93, 94, 95, 96];
+
+// Quartas: J97-J100
+const QUARTAS_NUMS = [97, 98, 99, 100];
+
+// Semis: J101-J102
+const SEMIS_NUMS = [101, 102];
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function ChaveamentoPage() {
   const [jogos, resultados, mapaPaises] = await Promise.all([
@@ -147,14 +130,18 @@ export default async function ChaveamentoPage() {
     carregarMapaPaises(),
   ]);
 
-  const leftR32 = buildConfrontos(jogos, resultados, mapaPaises, LEFT_R32_NUMS);
-  const rightR32 = buildConfrontos(jogos, resultados, mapaPaises, RIGHT_R32_NUMS);
+  const r32 = buildConfrontos(jogos, resultados, mapaPaises, R32_NUMS);
+  const oitavas = buildConfrontos(jogos, resultados, mapaPaises, OITAVAS_NUMS);
+  const quartas = buildConfrontos(jogos, resultados, mapaPaises, QUARTAS_NUMS);
+  const semis = buildConfrontos(jogos, resultados, mapaPaises, SEMIS_NUMS);
+  const [terceiro] = buildConfrontos(jogos, resultados, mapaPaises, [103]);
+  const [final] = buildConfrontos(jogos, resultados, mapaPaises, [104]);
 
   return (
     <main
       style={{
         minHeight: "100vh",
-        background: "#080d18",
+        background: "#0a0e1a",
         color: "#fff",
         fontFamily: "system-ui, -apple-system, sans-serif",
       }}
@@ -162,41 +149,56 @@ export default async function ChaveamentoPage() {
       {/* Header */}
       <div
         style={{
-          padding: "28px 24px 16px",
+          padding: "28px 16px 20px",
           textAlign: "center",
           borderBottom: "1px solid rgba(255,255,255,0.07)",
+          background:
+            "linear-gradient(180deg, rgba(255,215,0,0.04) 0%, transparent 100%)",
         }}
       >
         <h1
           style={{
-            fontSize: 24,
-            fontWeight: 800,
-            letterSpacing: 3,
+            fontSize: 22,
+            fontWeight: 900,
+            letterSpacing: 4,
             color: "#fff",
             margin: 0,
             lineHeight: 1.2,
+            textTransform: "uppercase",
+            fontFamily: "system-ui, -apple-system, sans-serif",
           }}
         >
           CHAVEAMENTO
         </h1>
         <p
           style={{
-            fontSize: 12,
-            color: "rgba(255,255,255,0.38)",
+            fontSize: 11,
+            color: "rgba(255,255,255,0.35)",
             marginTop: 6,
-            letterSpacing: 0.8,
+            letterSpacing: 0.5,
+            lineHeight: 1.5,
           }}
         >
-          Copa do Mundo FIFA 2026 · Mata-mata ·{" "}
-          <span lang="en">Knockout Stage</span> ·{" "}
-          <span lang="es">Eliminatorias</span> ·{" "}
+          Copa do Mundo FIFA 2026 · Mata-mata
+          <br />
+          <span lang="en">Knockout Stage</span>
+          {" · "}
+          <span lang="es">Eliminatorias</span>
+          {" · "}
           <span lang="fr">Phase finale</span>
         </p>
       </div>
 
-      {/* Bracket — client component handles toggle + animation */}
-      <section style={{ padding: "8px 0 48px" }}>
-        <BracketClient leftR32={leftR32} rightR32={rightR32} />
+      {/* Bracket */}
+      <section style={{ paddingTop: 24 }}>
+        <BracketClient
+          r32={r32}
+          oitavas={oitavas}
+          quartas={quartas}
+          semis={semis}
+          final={final}
+          terceiro={terceiro}
+        />
       </section>
     </main>
   );
