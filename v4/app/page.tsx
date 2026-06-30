@@ -8,6 +8,7 @@ import CaixaDeSugestao from "@/components/CaixaDeSugestao";
 import CelebracaoCristal from "@/components/CelebracaoCristal";
 import AgradecimentoContribuinte from "@/components/AgradecimentoContribuinte";
 import BolaoHumanosRecrutamento from "@/components/BolaoHumanosRecrutamento";
+import BannerR32 from "@/components/BannerR32";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 import { carregarAnaliseV2Publico } from "@/lib/analise-v2-publico";
@@ -272,6 +273,8 @@ export default async function Home() {
           </Link>
         </div>
       </section>
+
+      <BannerR32 locale={locale} />
 
       <BolaoHumanosRecrutamento locale={locale} />
 

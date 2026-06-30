@@ -14391,7 +14391,88 @@
       "gols_b": 1
     }
   ],
-  "lfm-40b": [],
+  "lfm-40b": [
+    {
+      "jogo_numero": 73,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 74,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 75,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 76,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 77,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 78,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 79,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 80,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 81,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 82,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 83,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 84,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 85,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 86,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 87,
+      "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 88,
+      "gols_a": 0,
+      "gols_b": 0
+    }
+  ],
   "lfm-7b": [],
   "llama-3-1-405b": [],
   "llama-3-1-70b": [
