@@ -1108,12 +1108,13 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
 
   return (
     <div>
-      {/* SVG cabe na tela: max-width 100% (até 1400) E max-height 85vh.
-          Browser usa o constraint MENOR (largura ou altura) e
-          preserveAspectRatio=meet escala mantendo proporção do bracket. */}
+      {/* Container externo com scroll horizontal pra mobile (SVG mantém
+          min-width pra bandeiras ficarem legíveis). Desktop: cabe inteiro. */}
       <div
         style={{
           width: "100%",
+          overflowX: "auto",
+          WebkitOverflowScrolling: "touch",
           textAlign: "center",
         }}
       >
@@ -1123,7 +1124,11 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
           style={{
             display: "inline-block",
             maxWidth: "100%",
-            maxHeight: "85vh",
+            // Desconta header (~180px) — garante caber sem scroll vertical
+            maxHeight: "calc(100vh - 180px)",
+            // Em telas estreitas, força tamanho mínimo (bandeiras legíveis)
+            // — usuário scrolla horizontalmente quando viewport < 1100px.
+            minWidth: 1100,
             width: "auto",
             height: "auto",
             background:
