@@ -1108,22 +1108,30 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
 
   return (
     <div>
-      {/* Fix 3: CSS offset-path animation styles injected via <style> in SVG */}
-      <svg
-        viewBox={`0 0 ${SVG_W} ${SVG_H}`}
-        preserveAspectRatio="xMidYMid meet"
+      {/* Container que limita ALTURA = 85vh e LARGURA = 100% (max 1400px),
+          mantendo aspect ratio do bracket. SVG dentro preenche 100%×100%. */}
+      <div
         style={{
-          display: "block",
           width: "100%",
-          height: "auto",
-          background:
-            "linear-gradient(135deg, #0a0e1a 0%, #111827 60%, #0d1520 100%)",
-          fontFamily: "system-ui, -apple-system, sans-serif",
           maxWidth: 1400,
+          maxHeight: "85vh",
+          aspectRatio: `${SVG_W} / ${SVG_H}`,
           margin: "0 auto",
         }}
-        aria-label="Chaveamento da Copa do Mundo 2026"
       >
+        <svg
+          viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+          preserveAspectRatio="xMidYMid meet"
+          style={{
+            display: "block",
+            width: "100%",
+            height: "100%",
+            background:
+              "linear-gradient(135deg, #0a0e1a 0%, #111827 60%, #0d1520 100%)",
+            fontFamily: "system-ui, -apple-system, sans-serif",
+          }}
+          aria-label="Chaveamento da Copa do Mundo 2026"
+        >
         <defs>
           {/* CSS keyframes and offset-path rules for winner/loser animations */}
           <style>{buildCSS()}</style>
@@ -1180,7 +1188,8 @@ export default function BracketClient({ leftR32, rightR32 }: Props) {
 
         {/* ── FINAL + TROPHY at center ── */}
         {renderFinal()}
-      </svg>
+        </svg>
+      </div>
     </div>
   );
 }
