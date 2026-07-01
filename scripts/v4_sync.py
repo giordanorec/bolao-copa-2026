@@ -630,6 +630,47 @@ def main() -> None:
     resumo = ", ".join(f"{c}={n}" for c, n in contagem_pais.most_common())
     print(f"paises: {resumo} -> {out_paises.name}")
 
+    # 6b. predicoes_campeao.json — última rodada de simulação de campeão
+    try:
+        pred_base = ROOT / "data" / "predicoes_campeao"
+        if pred_base.is_dir():
+            rodadas = sorted(
+                [p for p in pred_base.iterdir() if p.is_dir()],
+                reverse=True,
+            )
+            if rodadas:
+                ultima = rodadas[0]
+                ias_dados: dict[str, dict] = {}
+                cristal = None
+                for arq in sorted(ultima.glob("*.json")):
+                    if arq.stem == "_resumo":
+                        continue
+                    dados = json.loads(arq.read_text(encoding="utf-8"))
+                    if arq.stem == "_bola-de-cristal":
+                        cristal = dados
+                    else:
+                        # Só entra IA que tenha campeão válido (não "???"/"NomeDoTime")
+                        camp = (dados.get("campeao") or "").strip()
+                        if camp and camp not in ("???", "NomeDoTime"):
+                            ias_dados[dados["slug"]] = dados
+                pred_out = {
+                    "rodada": ultima.name,
+                    "cristal": cristal,
+                    "ias": ias_dados,
+                }
+                out_pred = V4_PUB / "predicoes_campeao.json"
+                out_pred.write_text(
+                    json.dumps(pred_out, ensure_ascii=False, separators=(",", ":")),
+                    encoding="utf-8",
+                )
+                camp_cristal = (cristal or {}).get("campeao", "n/a")
+                print(
+                    f"predições campeão: rodada {ultima.name}, "
+                    f"{len(ias_dados)} IAs válidas, cristal={camp_cristal} -> {out_pred.name}"
+                )
+    except Exception as e:
+        print(f"predições campeão: pulou ({e})")
+
     # 7. analise.json — features + clusters + similaridade (página /analise)
     try:
         import subprocess

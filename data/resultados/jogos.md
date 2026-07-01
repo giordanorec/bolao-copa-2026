@@ -89,3 +89,4 @@ no cálculo de pontuação.
 | 75 | R32 | Seg 29/06 | 22h00 | Monterrey | Países Baixos | 1 | 1 | Marrocos |
 | 78 | R32 | Ter 30/06 | 14h00 | Dallas | Costa do Marfim | 1 | 2 | Noruega |
 | 77 | R32 | Ter 30/06 | 18h00 | Nova York/NJ | França | 3 | 0 | Suécia |
+| 79 | R32 | Ter 30/06 | 22h00 | Cidade do México | México | 2 | 0 | Equador |
