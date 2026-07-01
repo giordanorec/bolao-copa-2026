@@ -1,0 +1,48 @@
+{
+  "slug": "qwen-3-max-web",
+  "rodada_em": "2026-07-01T10:04:30",
+  "campeao": "NomeDoTime",
+  "jornada": {
+    "R32": {
+      "73": "Canadá",
+      "74": "Paraguai",
+      "75": "Marrocos",
+      "76": "Brasil",
+      "77": "França",
+      "78": "Noruega",
+      "79": "???",
+      "80": "???",
+      "81": "???",
+      "82": "???",
+      "83": "???",
+      "84": "???",
+      "85": "???",
+      "86": "???",
+      "87": "???",
+      "88": "???"
+    },
+    "Oitavas": {
+      "89": "França",
+      "90": "Marrocos",
+      "91": "Brasil",
+      "92": "Argentina",
+      "93": "Alemanha",
+      "94": "Inglaterra",
+      "95": "Espanha",
+      "96": "Holanda"
+    },
+    "Quartas": {
+      "97": "França",
+      "98": "Alemanha",
+      "99": "Argentina",
+      "100": "Espanha"
+    },
+    "Semifinal": {
+      "101": "França",
+      "102": "Espanha"
+    },
+    "Final": {
+      "104": "NomeDoTime"
+    }
+  }
+}
