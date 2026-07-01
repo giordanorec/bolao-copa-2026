@@ -209,6 +209,7 @@ function parseArgs(argv) {
     else if (t === "--nowait") a.nowait = true; // envia mas NÃO espera
     else if (t === "--site") a.site = argv[++i];
     else if (t === "--cdp") a.cdp = argv[++i];
+    else if (t === "--prompt") a.prompt = argv[++i];
   }
   return a;
 }
@@ -221,8 +222,9 @@ function tabelaResultados() {
   return linhas.length ? linhas.join("\n") : "(sem resultados disponíveis)";
 }
 
-function montarPrompt() {
-  let base = fs.readFileSync(PROMPT_PATH, "utf8");
+function montarPrompt(customPath) {
+  const p = customPath ? path.resolve(ROOT, customPath) : PROMPT_PATH;
+  let base = fs.readFileSync(p, "utf8");
   // Remove o cabeçalho de instrução para o operador (tudo até a linha "---")
   const idx = base.indexOf("\n---\n");
   if (idx > 0) base = base.slice(idx + 5);
@@ -524,7 +526,7 @@ async function rodarSite(browser, key, args) {
   await page.waitForTimeout(1500);
   console.log(`  aba: ${page.url()}`);
 
-  const prompt = montarPrompt();
+  const prompt = montarPrompt(args.prompt);
   // SPAs pesadas (gemini/grok/meta) montam o editor depois do load. Em chat novo,
   // tenta achar a caixa por até ~24s antes de desistir.
   let input = await acharInput(page, cfg.input);
@@ -541,6 +543,11 @@ async function rodarSite(browser, key, args) {
   }
   await input.click();
   await page.waitForTimeout(300);
+  // Limpa qualquer conteúdo pré-existente na caixa (evita acumular prompts anteriores).
+  await page.keyboard.press("Control+A");
+  await page.waitForTimeout(100);
+  await page.keyboard.press("Delete");
+  await page.waitForTimeout(200);
   await page.keyboard.insertText(prompt);
   await page.waitForTimeout(500);
   console.log("  prompt colado. screenshot: " + path.relative(ROOT, await shot(page, `${cfg.slug}-pasted`)));
