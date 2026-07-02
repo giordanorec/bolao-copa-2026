@@ -159,25 +159,183 @@ nova que mostre palpite for criada, ela **tem** que seguir esse padrão.
 
 ## 8. Runbook — registrar resultado de um jogo
 
-Quando o usuário informar um placar em linguagem natural (ex.: "Alemanha 7 x 1
-Curaçao"), **atualizar TUDO**:
+Fonte de verdade única: `data/resultados/jogos.md`. Tudo o mais é derivado.
+Se você quiser fazer sem o assistente, siga o passo a passo abaixo.
 
-1. Localizar o jogo em `data/jogos.md` (conferir a **ordem Time A × Time B** — não
-   inverter os gols). Se o usuário informar a ordem trocada, mapear corretamente.
-2. Adicionar/corrigir a linha em `data/resultados/jogos.md` com os gols.
-3. `.venv/Scripts/python.exe -m bolao rodada` (parse + score + cristal + ranking
-   + render dos HTML nos 4 idiomas).
-4. `.venv/Scripts/python.exe scripts/v4_sync.py` (sincroniza JSON pro `v4/public/`).
-5. Ranking das IAs + Hall da Fama (`/ranking-geral`) atualizam sozinhos (mesma
-   fonte `ranking-ias.json`). Animações (corrida, bar race, gráficos) leem os
-   mesmos JSON — conferir que refletem o novo placar.
-6. Commit + push (Vercel e GitHub Pages publicam no push).
-   - **Pré-commit `end-of-file-fixer` mexe nos HTML no meio do commit** → o 1º
-     commit não entra; **re-stage e faça um NOVO commit** (nunca `--amend`).
-7. Se for caso de cravada da Bola de Cristal, considerar gerar card de celebração.
+### 8.0 Regra crítica de placar em mata-mata
 
-**Confirmar placares suspeitos** antes de propagar. Corrigir quando o usuário
-apontar erro (ex.: era 2×2, não 1×1) refazendo do passo 2.
+**Placar oficial FIFA ao final da partida**: inclui prorrogação, exclui
+pênaltis. Detalhes:
+
+- Jogo decidido nos pênaltis (0 gols no OT): registra o placar do fim da
+  prorrogação (ou do regulamentar se não teve prorrogação). Ex.: J74 Alemanha
+  1×1 Paraguai, 1-1 no regulamentar e no OT, Paraguai venceu 4×3 nos pênaltis
+  → **registrado 1-1**.
+- Jogo decidido dentro da prorrogação: vale o placar final da prorrogação.
+  Ex.: J82 Bélgica 3×2 Senegal, 2-2 no regulamentar, gol do Tielemans no 120'
+  → **registrado 3-2**.
+- Ver §8 completa em `docs/02_REGRAS_DE_NEGOCIO.md` (fonte canônica das regras
+  de scoring).
+
+**Se anotar o classificado por pênaltis** (para bracket): comentário lateral
+na linha, formato `<!-- classificado: Paraguai (pen 4x3) -->`. NÃO afeta
+pontuação; ajuda o bracket em `/chaveamento` (ver `PENALTY_WINNER` em
+`v4/app/chaveamento/page.tsx`).
+
+### 8.1 Passo a passo — pipeline completo (recomendado)
+
+Ordem obrigatória. Cada passo depende do anterior.
+
+**1) Editar `data/resultados/jogos.md`**
+
+- Localizar o jogo em `data/jogos.md` PRIMEIRO pra conferir a ordem
+  `Time A × Time B` (não inverter os gols).
+- Adicionar/corrigir a linha em `data/resultados/jogos.md` com o mesmo
+  formato: `| N | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B |`.
+- Mata-mata: seguir §8.0.
+
+**2) Rodar o pipeline Python**
+
+```bash
+.venv/Scripts/python.exe -m bolao rodada
+```
+
+Gera/atualiza:
+- `web/data/{jogos,resultados,palpites,ranking,bola_de_cristal}.json`
+- `web/index.html` + `web/jogos/*.html` + `web/ia/*.html` (4 idiomas)
+- `reports/<data>/pontuacao.json` + `resumo.txt`
+
+Checar o resumo: "Jogos apurados: N/104" tem que refletir os placares
+novos, e o top do ranking parcial faz sentido.
+
+**3) Rodar o sync pro v4**
+
+```bash
+.venv/Scripts/python.exe scripts/v4_sync.py
+```
+
+Copia/regenera em `v4/public/`:
+- `resultados.json`, `jogos.json` (com `gols_a/gols_b` mergidos)
+- `ranking-ias.json`, `ranking-ias-v2.json` (bifurcado v1 grupos + v2 grupos)
+- `bola_de_cristal.json`
+- `palpites_por_jogo.json`, `ias_dict.json`, `ias_paises.json`
+- `analise.json` (features + clusters, 66 IAs)
+- `predicoes_campeao.json` (jornada de campeão por IA — se `data/predicoes_campeao/` tem rodada)
+
+**4) Verificar propagação (o que atualiza sozinho vs. manual)**
+
+| Área | Como é alimentado | Precisa mexer? |
+|---|---|---|
+| `/ranking-ias`, `/ranking-geral` (competitivo) | `ranking-ias.json` + Supabase (humanos) | Não |
+| `/analise` | `analise.json` | Não |
+| `/jogos` + `/jogo/[num]` | `jogos.json` + `palpites_por_jogo.json` | Não |
+| `/chaveamento` | `resultados.json` + `jogos.json` | Não |
+| `/cristal`, `/ranking/hall-da-fama` | `bola_de_cristal.json` | Não |
+| `/ia/[slug]` | pipeline gerou HTML estático (v1) + Next.js (v4) | Não |
+| `CelebracaoMataMata` (home) | dinâmico via `resultados.json` + `palpites_por_jogo.json` | Não |
+| `BannerR32` (home) | **estático**, hardcoded em `v4/components/BannerR32.tsx` | **SIM** |
+| `NovoMomentoBanner`, banners pontuais | estático | SIM (se ainda relevante) |
+| Instagram cards/reels (`marketing/brainstorming_instagram/`) | estático — cada jogo é um post separado | Opcional |
+| Grafos por IA (`web/ia/*.html`) | pipeline regenerou no passo 2 | Não |
+
+**5) Atualizar `BannerR32` manualmente** (se ainda estiver visível na home)
+
+- Arquivo: `v4/components/BannerR32.tsx`.
+- Padrão: bloco `<h3>{titulo}</h3><p>{linha}</p>` por jogo — copiar um
+  existente e adaptar. Usar `pt/en/es/fr` (regra global: 4 idiomas).
+- Adicionar entradas em `farewells` (eliminados) e `congrats` (classificados)
+  com frase na língua nativa do país (padrão: idioma oficial ou majoritário).
+- Atualizar `proximos` pra refletir os jogos do dia seguinte.
+- Se o banner ficar longo demais (>5 jogos): considerar zerar e reiniciar
+  com os últimos 3-4 jogos, migrando o resto pra retrospectiva.
+
+**6) Instagram — cards/vídeos por jogo (opcional, task #95)**
+
+- Dir: `marketing/brainstorming_instagram/`.
+- Padrão de sequência numerada (`33_carrossel_novo-momento/`, etc.).
+- Cada jogo grande gera um card + reel opcional. Não é obrigatório —
+  fazer só pros jogos com narrativa (viradas, cravadas, azarões).
+
+**7) Commit + push**
+
+```bash
+git add data/resultados/jogos.md v4/public web/data web/*.html web/en web/es web/fr web/ia web/jogos web/cristal.html v4/components/BannerR32.tsx
+git commit -m "resultados: J## Time A N×M Time B (Fase)"
+```
+
+**Armadilha do pre-commit** (leia com atenção):
+- `end-of-file-fixer` e `trim-trailing-whitespace` mexem em vários HTML
+  no meio do commit → o 1º commit **não entra** (ele volta pra você com
+  arquivos "corrigidos" não stagedos).
+- Solução: **re-stage** os arquivos corrigidos e **crie um NOVO commit**.
+  **NUNCA use `--amend`**: como o commit anterior não foi criado, `--amend`
+  vai bater no commit ERRADO (o anterior) e pode destruir trabalho.
+- Padrão que funciona sempre:
+  ```bash
+  git diff --name-only | grep -v "^\.claude/" > /tmp/ps.txt
+  git add --pathspec-from-file=/tmp/ps.txt
+  git commit -m "..."
+  # Se falhar por HTML fixes:
+  git diff --name-only | grep -v "^\.claude/" > /tmp/ps.txt
+  git add --pathspec-from-file=/tmp/ps.txt
+  git commit -m "..."   # mesmo message, é um NOVO commit
+  ```
+
+**8) Deploy — merge homologacao → main**
+
+- Trabalho vai em `homologacao` (staging).
+- Produção só publica com `main`. Fazer fast-forward:
+  ```bash
+  git push origin homologacao        # backup do staging
+  git checkout main
+  git merge --ff-only homologacao
+  git push origin main               # Vercel + GH Pages publicam daqui
+  git checkout homologacao
+  ```
+- Se `main` divergiu (raro), abortar e investigar antes de forçar.
+
+### 8.2 Passo a passo — patch cirúrgico (só emergência)
+
+Se por algum motivo você NÃO puder rodar o pipeline (Python quebrado,
+diff enorme demais, etc.), dá pra atualizar SÓ o v4 à mão:
+
+1. `data/resultados/jogos.md` — adicionar linha (mesmo do fluxo normal).
+2. `v4/public/resultados.json` — adicionar objeto `{jogo_numero, gols_a, gols_b}`.
+3. `v4/public/jogos.json` — patchar `gols_a`, `gols_b` no jogo correto.
+4. `v4/public/ranking-ias.json` + `ranking-ias-v2.json` — recomputar delta
+   à mão (pontos por IA baseado nos palpites em `palpites_por_jogo.json` e
+   nas regras de scoring). **É fácil errar**; conferir top-8 contra Cristal.
+5. `v4/public/bola_de_cristal.json` — o cristal é derivado dos palpites,
+   não muda com resultado; só recalcular delta de pontuação do cristal.
+6. `v4/public/analise.json` — patchar `n_jogos_encerrados` e agregados por
+   perfil (exatos, vencedores, pontos, taxa_acerto). Similaridade/clusters
+   podem ficar stale — próxima rodada full reconcilia.
+7. **web/** NÃO É ATUALIZADO** nesse fluxo — GitHub Pages fica stale.
+   Só faça pipeline full na próxima vez.
+8. Commit + push + merge main (como no 8.1 passos 7-8).
+
+**Quando isso é aceitável:** quando você precisa desbloquear rápido e sabe
+que vai rodar o pipeline full na próxima. Não como padrão.
+
+### 8.3 Confirmar placares suspeitos
+
+- Antes de propagar, tenha CERTEZA. Web search + citar fonte (ESPN, FIFA,
+  Al Jazeera, etc.) no commit body.
+- Se o usuário apontar erro (ex.: era 2×2 no regulamentar, não 3×2), refazer
+  do passo 1 com o placar correto e recomitar. Não confiar em memória.
+
+### 8.4 Sanity checks pós-atualização
+
+Depois do push, abrir `https://bolao.arenadasias.com.br` e conferir:
+
+- Home mostra o(s) jogo(s) novo(s) na CelebracaoMataMata (top exatos).
+- `/chaveamento`: bandeiras dos vencedores animam do R32 pro R16.
+- `/ranking-ias`: top-3 faz sentido; a IA que cravou +14 pts subiu.
+- `/jogos` no jogo específico: placar bate, palpites destaque os exatos.
+- `/cristal`: se o Cristal cravou (exato ou vencedor+saldo), os pontos
+  atualizaram.
+- Ranking geral (humanos+IAs): rodar `carregarTodosHumanos()` é lazy;
+  se `opt_in_geral=true` funcionar, a lista humanos atualiza sozinha.
 
 ## 8.2 Palpite público quando opt_in_geral=true
 

@@ -77,13 +77,30 @@ export default function BannerR32({ locale }: { locale: Locale }) {
         ? "Consenso masivo: 62 de 63 IAs preveían victoria francesa, y 17 clavaron el 3×0 exacto (Grok 4 Fast salta a 404 pts liderando con holgura). Suecia se despide."
         : "Consensus massif : 62 IA sur 63 prévoyaient la victoire française, et 17 ont trouvé le 3×0 exact (Grok 4 Fast bondit à 404 pts, en tête confortable). La Suède dit au revoir.";
 
-  const proximos = pt
-    ? "Ainda hoje (30/06): 🇲🇽 México × Equador 🇪🇨 — 22h."
+  // Trio de 01/07 (J80, J81, J82) — Inglaterra, EUA e Bélgica avançam.
+  const trioTit = pt
+    ? "🇬🇧 Inglaterra · 🇺🇸 EUA · 🇧🇪 Bélgica — trio anglo-atlântico avança"
     : en
-      ? "Still today (30 June): 🇲🇽 Mexico × Ecuador 🇪🇨 — 22:00 BRT."
+      ? "🇬🇧 England · 🇺🇸 USA · 🇧🇪 Belgium — Anglo-Atlantic trio advances"
       : es
-        ? "Aún hoy (30/06): 🇲🇽 México × Ecuador 🇪🇨 — 22h."
-        : "Encore aujourd'hui (30/06) : 🇲🇽 Mexique × Équateur 🇪🇨 — 22h.";
+        ? "🇬🇧 Inglaterra · 🇺🇸 EE.UU. · 🇧🇪 Bélgica — trío anglo-atlántico avanza"
+        : "🇬🇧 Angleterre · 🇺🇸 États-Unis · 🇧🇪 Belgique — trio anglo-atlantique passe";
+
+  const trioLinha = pt
+    ? "Inglaterra 2×1 Congo (RD) 🇨🇩 — 3 IAs cravaram o exato (llama-4-scout, perplexity-sonar-reasoning, qwen-3-coder). EUA 2×0 Bósnia 🇧🇦 — 4 exatos (copilot-microsoft-web, le-chat-mistral-web, chatgpt-5-nano, llama-4-scout). Bélgica 3×2 Senegal 🇸🇳 — decidido na prorrogação (Tielemans no 120'), 1 exato (cohere-command-r-plus) e 36 IAs pegaram vencedor+saldo. Bola de Cristal palpitou 2×1 e ganhou 14 pts."
+    : en
+      ? "England 2×1 DR Congo 🇨🇩 — 3 AIs nailed the exact score (llama-4-scout, perplexity-sonar-reasoning, qwen-3-coder). USA 2×0 Bosnia 🇧🇦 — 4 exact (copilot-microsoft-web, le-chat-mistral-web, chatgpt-5-nano, llama-4-scout). Belgium 3×2 Senegal 🇸🇳 — decided in extra time (Tielemans in the 120th), 1 exact (cohere-command-r-plus) and 36 AIs got winner+goal-difference. Crystal Ball predicted 2×1 and earned 14 pts."
+      : es
+        ? "Inglaterra 2×1 Congo (RD) 🇨🇩 — 3 IAs clavaron el marcador exacto (llama-4-scout, perplexity-sonar-reasoning, qwen-3-coder). EE.UU. 2×0 Bosnia 🇧🇦 — 4 exactos (copilot-microsoft-web, le-chat-mistral-web, chatgpt-5-nano, llama-4-scout). Bélgica 3×2 Senegal 🇸🇳 — decidido en la prórroga (Tielemans en el 120'), 1 exacto (cohere-command-r-plus) y 36 IAs acertaron ganador+diferencia. Bola de Cristal predijo 2×1 y ganó 14 pts."
+        : "Angleterre 2×1 RD Congo 🇨🇩 — 3 IA ont trouvé le score exact (llama-4-scout, perplexity-sonar-reasoning, qwen-3-coder). USA 2×0 Bosnie 🇧🇦 — 4 exacts (copilot-microsoft-web, le-chat-mistral-web, chatgpt-5-nano, llama-4-scout). Belgique 3×2 Sénégal 🇸🇳 — décidé en prolongation (Tielemans à la 120e), 1 exact (cohere-command-r-plus) et 36 IA ont trouvé vainqueur+différence. La Boule de Cristal a prédit 2×1 et a gagné 14 pts.";
+
+  const proximos = pt
+    ? "Hoje (02/07): 🇵🇹 Portugal × Croácia 🇭🇷 — 20h; 🇪🇸 Espanha × Áustria 🇦🇹 — 16h. Amanhã fecha o R32."
+    : en
+      ? "Today (2 July): 🇵🇹 Portugal × Croatia 🇭🇷 — 20:00 BRT; 🇪🇸 Spain × Austria 🇦🇹 — 16:00. Tomorrow closes R32."
+      : es
+        ? "Hoy (02/07): 🇵🇹 Portugal × Croacia 🇭🇷 — 20h; 🇪🇸 España × Austria 🇦🇹 — 16h. Mañana cierra los 16avos."
+        : "Aujourd'hui (02/07) : 🇵🇹 Portugal × Croatie 🇭🇷 — 20h ; 🇪🇸 Espagne × Autriche 🇦🇹 — 16h. Demain clôt les 16es.";
 
   // Frases nas línguas nativas (sem tradução — descobrir é a graça).
   // Eliminados → "até a próxima". Classificados → parabéns + segue na Copa.
@@ -95,6 +112,10 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "de", flag: "🇩🇪", text: "Bis zum nächsten Mal, Mannschaft — Kopf hoch" },
     { lang: "fr", flag: "🇨🇮", text: "À la prochaine, les Éléphants — vous reviendrez plus forts" },
     { lang: "sv", flag: "🇸🇪", text: "Tack för matchen, Blågult — vi ses snart igen" },
+    { lang: "es", flag: "🇪🇨", text: "Hasta la próxima, Tricolor — la Copa continúa sin ustedes" },
+    { lang: "fr", flag: "🇨🇩", text: "À bientôt, Léopards — vous êtes revenus loin, et vous reviendrez plus fort" },
+    { lang: "bs", flag: "🇧🇦", text: "Doviđenja, Zmajevi — vidimo se u sljedećoj Copi" },
+    { lang: "wo", flag: "🇸🇳", text: "Ba beneen yoon, Lions de la Teranga — dinañu la ci mburu" },
   ];
 
   const congrats = [
@@ -103,6 +124,10 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "ar", flag: "🇲🇦", text: "مبروك يا أسود الأطلس — الطريق ما زال طويلًا" },
     { lang: "nb", flag: "🇳🇴", text: "Bra jobba, Løvene — vi sees i åttedelsfinalen!" },
     { lang: "fr", flag: "🇫🇷", text: "Allez les Bleus ! Le rêve continue — la coupe nous attend" },
+    { lang: "es", flag: "🇲🇽", text: "¡Vamos, Tri! A octavos después de 40 años — sigan haciéndonos soñar" },
+    { lang: "en", flag: "🇬🇧", text: "Come on, Three Lions — one more trophy, this could be the year" },
+    { lang: "en", flag: "🇺🇸", text: "Let's go, USMNT — host and hero, keep the crowd loud" },
+    { lang: "nl", flag: "🇧🇪", text: "Kom op, Rode Duivels — een gouden generatie die eindelijk terugkomt" },
   ];
 
   return (
@@ -140,12 +165,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Rodada R32 · 29/06"
+                ? "Rodada R32 · 29/06 → 01/07"
                 : en
-                  ? "Round of 32 · 29 June"
+                  ? "Round of 32 · 29 Jun → 1 Jul"
                   : es
-                    ? "Octavos · 29/06"
-                    : "8e de finale · 29/06"}
+                    ? "16avos · 29/06 → 01/07"
+                    : "8e de finale · 29/06 → 01/07"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>
@@ -211,6 +236,21 @@ export default function BannerR32({ locale }: { locale: Locale }) {
           </h3>
           <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
             {francaLinha}
+          </p>
+
+          <h3
+            style={{
+              fontSize: "clamp(17px, 2.6vw, 20px)",
+              fontWeight: 800,
+              marginBottom: 6,
+              lineHeight: 1.2,
+              color: "var(--fg)",
+            }}
+          >
+            {trioTit}
+          </h3>
+          <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
+            {trioLinha}
           </p>
 
           <p style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 18, color: "var(--fg-mid)" }}>

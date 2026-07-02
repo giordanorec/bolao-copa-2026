@@ -393,5 +393,20 @@
     "jogo_numero": 79,
     "gols_a": 2,
     "gols_b": 0
+  },
+  {
+    "jogo_numero": 80,
+    "gols_a": 2,
+    "gols_b": 1
+  },
+  {
+    "jogo_numero": 82,
+    "gols_a": 3,
+    "gols_b": 2
+  },
+  {
+    "jogo_numero": 81,
+    "gols_a": 2,
+    "gols_b": 0
   }
 ]
