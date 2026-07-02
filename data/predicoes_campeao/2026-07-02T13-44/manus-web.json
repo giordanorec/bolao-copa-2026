@@ -1,6 +1,6 @@
 {
   "slug": "manus-web",
-  "rodada_em": "2026-07-02T14:20:06",
+  "rodada_em": "2026-07-02T15:19:27",
   "campeao": "???",
   "jornada": {
     "R32": {
@@ -13,7 +13,13 @@
       "79": "México",
       "80": "Inglaterra",
       "81": "Estados Unidos",
-      "82": "Bélgica"
+      "82": "Bélgica",
+      "83": "Portugal",
+      "84": "Espanha",
+      "85": "Suíça",
+      "86": "Argentina",
+      "87": "Colômbia",
+      "88": "Egito"
     },
     "Oitavas": {
       "89": "???",

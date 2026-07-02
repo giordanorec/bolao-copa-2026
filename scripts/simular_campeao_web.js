@@ -87,7 +87,10 @@ const SITES = {
     conv: "b9bc9d0b-2573-4fc6-84a3-a7c7a4917a10",
     input: ["textarea", 'div[contenteditable="true"]'],
     send: "enter",
-    assistant: ".message-bubble, .response-content-markdown, .prose",
+    // Grok mistura user msgs e assistant no mesmo container. Diferenciamos
+    // pelo alignment: user = items-end, assistant = items-start. Selecionamos
+    // só a assistant.
+    assistant: '.items-start .response-content-markdown, .items-start .message-bubble',
     stop: 'button[aria-label*="Stop"]',
   },
   deepseek: {
@@ -162,7 +165,14 @@ const SITES = {
     host: "manus.im",
     url: "https://manus.im/app/rXDC1Kx2Tha2HzzXx5MqE2",
     conv: "rXDC1Kx2Tha2HzzXx5MqE2",
-    input: ["textarea", 'div[contenteditable="true"]'],
+    input: [
+      'textarea[placeholder*="Manus"]',
+      'textarea[placeholder*="Enviar"]',
+      'textarea[placeholder*="mensagem"]',
+      "textarea:visible",
+      "textarea",
+      'div[contenteditable="true"]',
+    ],
     send: "enter",
     assistant: ".prose, .markdown-body",
     stop: null,
@@ -481,7 +491,14 @@ async function enviarPrompt(browser, cfg, prompt, dry) {
   const input = await acharInputResiliente(page, cfg.input);
   if (!input) throw new Error("Não achei caixa de texto");
 
-  await input.click();
+  // force:true evita "not stable" / "obscured by another element" —
+  // alguns sites (Manus) têm promos flutuantes que interceptam clique.
+  try {
+    await input.click({ force: true, timeout: 8000 });
+  } catch {
+    // Se o clique ainda assim falhar (elemento escondido), foca via JS
+    try { await input.focus({ timeout: 3000 }); } catch {}
+  }
   await page.waitForTimeout(300);
   await page.keyboard.press("Control+A");
   await page.waitForTimeout(100);
