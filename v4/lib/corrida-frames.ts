@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { ehSerieA, slugWebSerieA, nomeSerieA } from "@/lib/serie-a";
+import { ehSerieA, slugWebSerieA, nomeSerieA, SLUGS_SERIE_A } from "@/lib/serie-a";
 
 // Fonte ÚNICA dos dados das animações da corrida (Modo A vista de cima,
 // Modo B bar race, Modo C gráfico de pontos). Usado tanto em
@@ -132,6 +132,11 @@ function montarFrames(
     pts: { ...acumulado },
   });
 
+  // Set das vitrines "-web" (slugs oficiais da Série A) — usado pra desempatar
+  // quando a vitrine E o irmão API palpitaram o MESMO jogo: preferimos o -web.
+  // Sem isso, o slug canonicalizado receberia +ambos e o placar dobraria.
+  const vitrinesWeb = new Set(SLUGS_SERIE_A);
+
   for (const r of resultadosFase) {
     const jogo = mapJogo.get(r.jogo_numero);
     if (!jogo) continue;
@@ -139,13 +144,27 @@ function montarFrames(
     const mataMata = !fase.startsWith("grupo");
     const dados = palpites[String(r.jogo_numero)];
     if (!dados) continue;
+
+    // Dedupe por slug canônico dentro de UM jogo. Se a vitrine "-web" e o irmão
+    // API palpitaram o mesmo jogo, ambos canonicalizam pro mesmo slug; sem
+    // dedupe, os dois somariam. Preferência: quem for vitrine "-web" vence
+    // (alinhado com SerieA.melhorFonte na home).
+    const ganhoPorCanon: Record<string, { ganho: number; fromWeb: boolean }> = {};
     for (const [slug, p] of Object.entries(dados.palpites)) {
-      const ganho = pts(p.gols_a, p.gols_b, r.gols_a, r.gols_b, mataMata);
       const c = canonical(slug);
-      if (c in acumulado) {
-        acumulado[c] = (acumulado[c] ?? 0) + ganho;
+      if (!(c in acumulado)) continue;
+      const ganho = pts(p.gols_a, p.gols_b, r.gols_a, r.gols_b, mataMata);
+      const fromWeb = vitrinesWeb.has(slug);
+      const prev = ganhoPorCanon[c];
+      // Prefere -web quando disponível; caso contrário mantém o primeiro visto.
+      if (!prev || (fromWeb && !prev.fromWeb)) {
+        ganhoPorCanon[c] = { ganho, fromWeb };
       }
     }
+    for (const [c, { ganho }] of Object.entries(ganhoPorCanon)) {
+      acumulado[c] = (acumulado[c] ?? 0) + ganho;
+    }
+
     frames.push({
       jogoNum: r.jogo_numero,
       rotulo: `Jogo ${r.jogo_numero}: ${jogo.time_a} ${r.gols_a}×${r.gols_b} ${jogo.time_b}`,
