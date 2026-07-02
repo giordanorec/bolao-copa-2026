@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import Link from "next/link";
+import { useState, useEffect } from "react";
 import IconeIA from "@/components/IconeIA";
 
 export type IALanding = {
@@ -31,25 +30,18 @@ type Props = {
   };
 };
 
-function flagUrl(iso: string): string {
-  return `https://hatscripts.github.io/circle-flags/flags/${iso.toLowerCase()}.svg`;
-}
-
 function IACard({
   ia,
   revealed,
-  onReveal,
-  isoCode,
+  onClick,
 }: {
   ia: IALanding;
   revealed: boolean;
-  onReveal: () => void;
-  isoCode?: string;
+  onClick: () => void;
 }) {
   return (
     <button
-      onClick={onReveal}
-      disabled={revealed}
+      onClick={onClick}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -63,7 +55,7 @@ function IACard({
           ? "1px solid rgba(74,222,128,0.35)"
           : "1px solid rgba(255,255,255,0.12)",
         borderRadius: 16,
-        cursor: revealed ? "default" : "pointer",
+        cursor: "pointer",
         transition: "all 0.35s ease",
         color: "#fff",
         fontFamily: "inherit",
@@ -75,16 +67,14 @@ function IACard({
         justifyContent: "center",
       }}
       onMouseEnter={(e) => {
-        if (!revealed) {
-          e.currentTarget.style.transform = "translateY(-3px)";
-          e.currentTarget.style.borderColor = "rgba(255,215,0,0.4)";
-        }
+        e.currentTarget.style.transform = "translateY(-3px)";
+        e.currentTarget.style.borderColor = "rgba(255,215,0,0.4)";
       }}
       onMouseLeave={(e) => {
-        if (!revealed) {
-          e.currentTarget.style.transform = "translateY(0)";
-          e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
-        }
+        e.currentTarget.style.transform = "translateY(0)";
+        e.currentTarget.style.borderColor = revealed
+          ? "rgba(74,222,128,0.35)"
+          : "rgba(255,255,255,0.12)";
       }}
     >
       <IconeIA slug={ia.slug} size={54} />
@@ -94,26 +84,18 @@ function IACard({
       {revealed ? (
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
             marginTop: 6,
-            animation: "revealIn 0.5s ease-out",
+            padding: "8px 14px",
+            background: "rgba(74,222,128,0.15)",
+            border: "1px solid rgba(74,222,128,0.35)",
+            borderRadius: 8,
+            color: "#4ADE80",
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: 0.5,
           }}
         >
-          {isoCode && (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={flagUrl(isoCode)}
-              alt={ia.campeao}
-              width={36}
-              height={36}
-              style={{ borderRadius: "50%", boxShadow: "0 2px 8px rgba(0,0,0,0.4)" }}
-            />
-          )}
-          <span style={{ fontSize: 16, fontWeight: 700, color: "#4ADE80" }}>
-            {ia.campeao} 🏆
-          </span>
+          ✓ Ver de novo
         </div>
       ) : (
         <div
@@ -129,15 +111,103 @@ function IACard({
             letterSpacing: 0.5,
           }}
         >
-          🎲 Revelar palpite
+          🎬 Ver a simulação
         </div>
       )}
       {!revealed && (
         <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>
-          Clique pra ver
+          O que essa IA prevê?
         </div>
       )}
     </button>
+  );
+}
+
+// Modal com iframe da animação. Recebe a URL a carregar.
+function IframeModal({
+  src,
+  onClose,
+}: {
+  src: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(5,7,12,0.92)",
+        backdropFilter: "blur(6px)",
+        zIndex: 100,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 20,
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          width: "min(1500px, 100%)",
+          height: "calc(100vh - 60px)",
+          background: "#05070c",
+          borderRadius: 14,
+          overflow: "hidden",
+          position: "relative",
+          boxShadow: "0 20px 80px rgba(0,0,0,0.6)",
+          border: "1px solid rgba(255,255,255,0.1)",
+        }}
+      >
+        <button
+          onClick={onClose}
+          aria-label="Fechar"
+          style={{
+            position: "absolute",
+            top: 12,
+            right: 12,
+            zIndex: 10,
+            width: 36,
+            height: 36,
+            borderRadius: "50%",
+            background: "rgba(0,0,0,0.5)",
+            color: "#fff",
+            border: "1px solid rgba(255,255,255,0.2)",
+            cursor: "pointer",
+            fontSize: 20,
+            fontWeight: 700,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          ✕
+        </button>
+        <iframe
+          src={src}
+          title="Simulação de campeão"
+          style={{
+            width: "100%",
+            height: "100%",
+            border: "none",
+            display: "block",
+          }}
+          allow="autoplay"
+        />
+      </div>
+    </div>
   );
 }
 
@@ -145,48 +215,32 @@ export default function LandingClient({
   ias,
   cristal,
   mapaPaises,
-  distribuicao,
   labels,
 }: Props) {
   const [revealedSlugs, setRevealedSlugs] = useState<Set<string>>(new Set());
+  const [modalSrc, setModalSrc] = useState<string | null>(null);
+  void mapaPaises; // reservado pra usar em futuras variações
 
   const totalIAs = ias.length;
   const revealadas = revealedSlugs.size;
-  const cristalUnlocked = revealadas === totalIAs && totalIAs > 0;
+  const cristalUnlocked = revealadas >= totalIAs && totalIAs > 0;
 
-  const reveal = (slug: string) => {
+  const openIA = (slug: string) => {
     setRevealedSlugs((prev) => {
-      if (prev.has(slug)) return prev;
       const next = new Set(prev);
       next.add(slug);
       return next;
     });
+    setModalSrc(`/design/chaveamento/index.html?ia=${encodeURIComponent(slug)}`);
   };
 
-  const cristalIsoCode = cristal ? mapaPaises[cristal.campeao] : undefined;
-
-  const bandeiraPreview = useMemo(
-    () =>
-      distribuicao.slice(0, 4).map(({ campeao }) => ({
-        campeao,
-        iso: mapaPaises[campeao],
-      })),
-    [distribuicao, mapaPaises],
-  );
+  const openCristal = () => {
+    setModalSrc(`/design/chaveamento/index.html`);
+  };
 
   return (
     <>
       <style jsx global>{`
-        @keyframes revealIn {
-          from {
-            opacity: 0;
-            transform: scale(0.85) translateY(-8px);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
-        }
         @keyframes cristalPulse {
           0%, 100% {
             box-shadow: 0 0 40px rgba(255, 215, 0, 0.25), inset 0 0 30px rgba(139, 92, 246, 0.15);
@@ -196,18 +250,9 @@ export default function LandingClient({
           }
         }
         @keyframes cristalUnlock {
-          0% {
-            transform: scale(0.95);
-            filter: hue-rotate(0deg);
-          }
-          50% {
-            transform: scale(1.06);
-            filter: hue-rotate(45deg);
-          }
-          100% {
-            transform: scale(1);
-            filter: hue-rotate(0deg);
-          }
+          0% { transform: scale(0.95); filter: hue-rotate(0deg); }
+          50% { transform: scale(1.06); filter: hue-rotate(45deg); }
+          100% { transform: scale(1); filter: hue-rotate(0deg); }
         }
       `}</style>
 
@@ -266,7 +311,7 @@ export default function LandingClient({
               color: cristalUnlocked ? "#FFD700" : "rgba(255,255,255,0.4)",
               fontWeight: 800,
               textTransform: "uppercase",
-              marginBottom: 12,
+              marginBottom: 16,
             }}
           >
             {labels.cristalLabel} · {cristal.votos_totais} votos
@@ -274,44 +319,20 @@ export default function LandingClient({
 
           {cristalUnlocked ? (
             <>
-              <div
+              <p
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 16,
-                  marginBottom: 22,
+                  fontSize: 15,
+                  color: "rgba(255,255,255,0.75)",
+                  maxWidth: 520,
+                  margin: "0 auto 22px",
+                  lineHeight: 1.55,
                 }}
               >
-                {cristalIsoCode && (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                    src={flagUrl(cristalIsoCode)}
-                    alt={cristal.campeao}
-                    width={68}
-                    height={68}
-                    style={{
-                      borderRadius: "50%",
-                      boxShadow: "0 4px 24px rgba(255,215,0,0.4)",
-                      border: "3px solid rgba(255,215,0,0.6)",
-                    }}
-                  />
-                )}
-                <h1
-                  style={{
-                    fontSize: "clamp(38px, 6vw, 60px)",
-                    fontWeight: 900,
-                    color: "#fff",
-                    letterSpacing: -1,
-                    lineHeight: 1,
-                    margin: 0,
-                  }}
-                >
-                  {cristal.campeao}
-                </h1>
-              </div>
-              <Link
-                href="/animacao-campeao/bracket"
+                Você viu todas as IAs. Agora vem o momento da verdade — o
+                consenso das 9. Sem spoiler antes.
+              </p>
+              <button
+                onClick={openCristal}
                 style={{
                   display: "inline-block",
                   padding: "14px 34px",
@@ -323,10 +344,13 @@ export default function LandingClient({
                   textDecoration: "none",
                   boxShadow: "0 6px 24px rgba(255,215,0,0.35)",
                   letterSpacing: 0.3,
+                  border: "none",
+                  cursor: "pointer",
+                  fontFamily: "inherit",
                 }}
               >
                 {labels.cristalUnlockedCta}
-              </Link>
+              </button>
             </>
           ) : (
             <>
@@ -356,30 +380,6 @@ export default function LandingClient({
                   ? labels.revealAllFirst
                   : labels.cristalLocked}
               </p>
-              {/* Preview de bandeiras (as opções) */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  gap: 8,
-                  marginTop: 14,
-                  opacity: 0.4,
-                }}
-              >
-                {bandeiraPreview.map((b) => (
-                  <div
-                    key={b.campeao}
-                    style={{
-                      width: 24,
-                      height: 24,
-                      borderRadius: "50%",
-                      background: b.iso ? `url(${flagUrl(b.iso)}) center/cover` : "rgba(255,255,255,0.1)",
-                      filter: "blur(2px)",
-                    }}
-                    title="?"
-                  />
-                ))}
-              </div>
             </>
           )}
         </section>
@@ -412,82 +412,14 @@ export default function LandingClient({
             key={ia.slug}
             ia={ia}
             revealed={revealedSlugs.has(ia.slug)}
-            onReveal={() => reveal(ia.slug)}
-            isoCode={mapaPaises[ia.campeao]}
+            onClick={() => openIA(ia.slug)}
           />
         ))}
       </div>
 
-      {/* ESTATÍSTICAS (só aparecem quando pelo menos 1 revelada) */}
-      {revealadas > 0 && (
-        <section
-          style={{
-            padding: "24px 20px",
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            borderRadius: 14,
-            marginTop: 20,
-          }}
-        >
-          <h4
-            style={{
-              fontSize: 13,
-              letterSpacing: 1.5,
-              color: "rgba(255,255,255,0.5)",
-              fontWeight: 700,
-              textTransform: "uppercase",
-              marginBottom: 16,
-              textAlign: "center",
-            }}
-          >
-            {labels.statsTitulo}
-          </h4>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 10,
-              justifyContent: "center",
-            }}
-          >
-            {distribuicao.map(({ campeao, n }) => {
-              const revealCount = ias
-                .filter((ia) => ia.campeao === campeao && revealedSlugs.has(ia.slug))
-                .length;
-              const iso = mapaPaises[campeao];
-              return (
-                <div
-                  key={campeao}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    padding: "8px 14px",
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    borderRadius: 999,
-                    fontSize: 13,
-                  }}
-                >
-                  {iso && (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img
-                      src={flagUrl(iso)}
-                      alt={campeao}
-                      width={22}
-                      height={22}
-                      style={{ borderRadius: "50%" }}
-                    />
-                  )}
-                  <span style={{ fontWeight: 600 }}>{campeao}</span>
-                  <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>
-                    {revealCount}/{n} {n === 1 ? "voto" : "votos"}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </section>
+      {/* MODAL COM IFRAME DA ANIMAÇÃO */}
+      {modalSrc && (
+        <IframeModal src={modalSrc} onClose={() => setModalSrc(null)} />
       )}
     </>
   );

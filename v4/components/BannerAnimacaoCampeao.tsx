@@ -27,44 +27,48 @@ const TX: Record<
     h1: ["As IAs já escolheram", "quem vai ganhar a Copa 🏆"],
     lede: "9 das maiores inteligências artificiais do planeta cravaram um campeão. A Bola de Cristal fez o consenso. Você vai deixar as IAs decidirem sozinhas — ou vem descobrir agora?",
     cta_ver: "Ver a animação →",
-    cta_ver_hint: "Acesso liberado pra você 🎬",
-    cta_lib: "Liberar por R$10 →",
-    cta_lib_hint: "Apoiadores (R$10+) veem tudo, sem tier",
+    cta_ver_hint: "Obrigado por sustentar o Bolão 💛",
+    cta_lib: "Contribuir para acessar →",
+    cta_lib_hint:
+      "Presente pra apoiadores, mantenedores e padrinhos que ajudam a manter o Bolão no ar",
     curiosidade:
-      "🎯 Cada IA foi consultada fase por fase · O consenso das 9 apontou UM único campeão",
+      "🎯 Cada IA foi consultada fase por fase até a Final",
   },
   en: {
     kicker: "🔮 EXCLUSIVE · CRYSTAL BALL",
     h1: ["The AIs have already picked", "who wins the World Cup 🏆"],
     lede: "9 of the world's biggest AIs nailed a champion. The Crystal Ball made the consensus. Are you going to let the AIs decide alone — or come discover now?",
     cta_ver: "Watch the animation →",
-    cta_ver_hint: "Access granted for you 🎬",
-    cta_lib: "Unlock for R$10 →",
-    cta_lib_hint: "Supporters (R$10+) see everything, no tier",
+    cta_ver_hint: "Thanks for supporting the Bolão 💛",
+    cta_lib: "Contribute to unlock →",
+    cta_lib_hint:
+      "A gift for supporters, maintainers and godparents who keep the Bolão running",
     curiosidade:
-      "🎯 Each AI was consulted phase by phase · The 9-AI consensus pointed to ONE champion",
+      "🎯 Each AI was consulted phase by phase up to the Final",
   },
   es: {
     kicker: "🔮 EXCLUSIVO · BOLA DE CRISTAL",
     h1: ["Las IAs ya eligieron", "quién gana la Copa 🏆"],
     lede: "9 de las mayores IAs del planeta eligieron un campeón. La Bola de Cristal hizo el consenso. ¿Vas a dejar que las IAs decidan solas — o vienes a descubrir ahora?",
     cta_ver: "Ver la animación →",
-    cta_ver_hint: "Acceso liberado para ti 🎬",
-    cta_lib: "Desbloquear por R$10 →",
-    cta_lib_hint: "Apoyadores (R$10+) ven todo, sin tier",
+    cta_ver_hint: "Gracias por sostener el Bolão 💛",
+    cta_lib: "Contribuir para acceder →",
+    cta_lib_hint:
+      "Regalo para apoyadores, mantenedores y padrinos que mantienen el Bolão vivo",
     curiosidade:
-      "🎯 Cada IA consultada fase por fase · El consenso de las 9 señaló UN solo campeón",
+      "🎯 Cada IA fue consultada fase por fase hasta la Final",
   },
   fr: {
     kicker: "🔮 EXCLUSIF · BOULE DE CRISTAL",
     h1: ["Les IA ont déjà choisi", "qui gagne la Coupe 🏆"],
     lede: "9 des plus grandes IA du monde ont choisi un champion. La Boule de Cristal a fait le consensus. Allez-vous laisser les IA décider seules — ou venir découvrir maintenant ?",
     cta_ver: "Voir l'animation →",
-    cta_ver_hint: "Accès accordé pour vous 🎬",
-    cta_lib: "Débloquer pour R$10 →",
-    cta_lib_hint: "Supporters (R$10+) voient tout, sans tier",
+    cta_ver_hint: "Merci de soutenir le Bolão 💛",
+    cta_lib: "Contribuer pour accéder →",
+    cta_lib_hint:
+      "Cadeau pour supporters, mainteneurs et parrains qui gardent le Bolão vivant",
     curiosidade:
-      "🎯 Chaque IA consultée phase par phase · Le consensus des 9 pointe UN seul champion",
+      "🎯 Chaque IA consultée phase par phase jusqu'à la Finale",
   },
 };
 

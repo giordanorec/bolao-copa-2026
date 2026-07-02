@@ -291,14 +291,9 @@ export default async function AnimacaoLandingPage() {
         }
       : null;
 
-  // Estatísticas: quantos votos por campeão
-  const votos: Record<string, number> = {};
-  for (const ia of ias) {
-    votos[ia.campeao] = (votos[ia.campeao] || 0) + 1;
-  }
-  const distribuicao = Object.entries(votos)
-    .map(([campeao, n]) => ({ campeao, n }))
-    .sort((a, b) => b.n - a.n);
+  // NÃO exibe distribuição de votos aqui — seria spoiler do consenso.
+  // O client tem tudo em memória mas revela só quando o user abre cada card.
+  const distribuicao: { campeao: string; n: number }[] = [];
 
   return (
     <main

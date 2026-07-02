@@ -86,6 +86,69 @@ const ISO={
   'Paraguai':'py','Suécia':'se','Bósnia-Herzegovina':'ba','Cabo Verde':'cv','Argélia':'dz','Noruega':'no'
 };
 
+// Fixtures do R32: pares na ordem do bracket (index j → jogo #)
+const R32_FIXTURES = {
+  left: [
+    {jogo:74, a:'Alemanha',       b:'Paraguai'},           // pair 0 (j=0,1)
+    {jogo:77, a:'França',         b:'Suécia'},             // pair 1
+    {jogo:73, a:'África do Sul',  b:'Canadá'},             // pair 2
+    {jogo:75, a:'Países Baixos',  b:'Marrocos'},           // pair 3
+    {jogo:83, a:'Portugal',       b:'Croácia'},            // pair 4
+    {jogo:84, a:'Espanha',        b:'Áustria'},            // pair 5
+    {jogo:81, a:'Estados Unidos', b:'Bósnia-Herzegovina'}, // pair 6
+    {jogo:82, a:'Bélgica',        b:'Senegal'},            // pair 7
+  ],
+  right: [
+    {jogo:76, a:'Brasil',         b:'Japão'},
+    {jogo:78, a:'Costa do Marfim',b:'Noruega'},
+    {jogo:79, a:'México',         b:'Equador'},
+    {jogo:80, a:'Inglaterra',     b:'Congo (RD)'},
+    {jogo:86, a:'Argentina',      b:'Cabo Verde'},
+    {jogo:88, a:'Austrália',      b:'Egito'},
+    {jogo:85, a:'Suíça',          b:'Argélia'},
+    {jogo:87, a:'Colômbia',       b:'Gana'},
+  ],
+};
+// Nomes curtos pra mostrar no bracket
+const SHORT_NAMES = {
+  'África do Sul':'Áf.Sul','Países Baixos':'P.Baixos','Estados Unidos':'EUA',
+  'Bósnia-Herzegovina':'Bósnia','Costa do Marfim':'C.Marfim','Congo (RD)':'Congo RD',
+};
+
+// Pairings pra derivar confrontos das fases seguintes (idêntico ao simular_campeao_web.js)
+const PAIRINGS = {
+  Oitavas: [
+    {j:89, wa:74, wb:77}, {j:90, wa:73, wb:75}, {j:91, wa:76, wb:78}, {j:92, wa:79, wb:80},
+    {j:93, wa:83, wb:84}, {j:94, wa:81, wb:82}, {j:95, wa:86, wb:88}, {j:96, wa:85, wb:87},
+  ],
+  Quartas: [
+    {j:97, wa:89, wb:90}, {j:98, wa:93, wb:94}, {j:99, wa:91, wb:92}, {j:100, wa:95, wb:96},
+  ],
+  Semifinal: [
+    {j:101, wa:97, wb:98}, {j:102, wa:99, wb:100},
+  ],
+  Final: [
+    {j:104, wa:101, wb:102},
+  ],
+};
+
+// Lê parâmetros da URL — ?ia=<slug> pra animar palpite de UMA IA,
+// ?cristal=1 (default) pra animar o consenso da Bola de Cristal.
+function parseQuery(){
+  const q = new URLSearchParams(window.location.search);
+  return { iaSlug: q.get('ia'), isCristal: q.get('ia')==null || q.get('cristal')==='1' };
+}
+
+async function loadPredicoes(){
+  try {
+    const r = await fetch('/predicoes_campeao.json', {cache:'no-store'});
+    return await r.json();
+  } catch(e){
+    console.warn('sem predicoes_campeao.json:', e);
+    return null;
+  }
+}
+
 class Component extends DCLogic {
   constructor(props){
     super(props);
@@ -490,7 +553,17 @@ class Component extends DCLogic {
     setTimeout(()=>{ this.playing=true; this.updateBtn(); this.runStep(0); }, 420);
   }
 
-  componentDidMount(){
+  async componentDidMount(){
+    // ANTES de renderizar, tenta carregar dados dinâmicos por IA (?ia=<slug>)
+    try {
+      const q = new URLSearchParams(window.location.search);
+      const iaSlug = q.get('ia');
+      if(iaSlug){
+        const r = await fetch('/predicoes_campeao.json', {cache:'no-store'});
+        const pred = await r.json();
+        this.overrideFromIA(iaSlug, pred);
+      }
+    } catch(e){ console.warn('override IA falhou:', e); }
     this.applyTheme();
     this.resetPositions();
     this.fit();
@@ -500,6 +573,60 @@ class Component extends DCLogic {
     if(this.props.autoStart!==false){
       this.timer=setTimeout(()=>{ if(!this.playing){ this.playing=true; this.updateBtn(); this.runStep(0); } }, 1600);
     }
+  }
+
+  // Substitui winners/champion/label pelos dados da IA especificada.
+  // Fallback pro Cristal quando a IA não respondeu alguma fase.
+  overrideFromIA(iaSlug, pred){
+    if(!pred || !pred.ias || !pred.ias[iaSlug]) return;
+    const ia = pred.ias[iaSlug];
+    const cristalJ = pred.cristal ? pred.cristal.jornada : {};
+    const iaJ = ia.jornada || {};
+    const win = (fase, jogoNum) => {
+      const v = iaJ[fase] && iaJ[fase][String(jogoNum)];
+      if(v && v !== '???') return v;
+      return (cristalJ[fase] && cristalJ[fase][String(jogoNum)]) || null;
+    };
+    // R32 winners na ordem dos pares (J74, J77, J73, J75, J83, J84, J81, J82) do lado esquerdo
+    const leftJogos = [74,77,73,75,83,84,81,82];
+    const rightJogos = [76,78,79,80,86,88,85,87];
+    const oitavasLeft = [89,90,93,94];
+    const oitavasRight = [91,92,95,96];
+    const quartasLeft = [97,98];
+    const quartasRight = [99,100];
+    this.winners = {
+      left: {
+        r1: leftJogos.map(j => win('R32', j)),
+        r2: oitavasLeft.map(j => win('Oitavas', j)),
+        r3: quartasLeft.map(j => win('Quartas', j)),
+        fin: [win('Semifinal', 101)],
+      },
+      right: {
+        r1: rightJogos.map(j => win('R32', j)),
+        r2: oitavasRight.map(j => win('Oitavas', j)),
+        r3: quartasRight.map(j => win('Quartas', j)),
+        fin: [win('Semifinal', 102)],
+      },
+    };
+    this.champion = ia.campeao || this.champion;
+    // Header
+    const nomeMap = {
+      'chatgpt-5-thinking-web': 'ChatGPT 5 Thinking',
+      'claude-opus-4-8-web': 'Claude Opus 4.8',
+      'gemini-2-5-pro-web': 'Gemini 2.5 Pro',
+      'grok-4-heavy-web': 'Grok 4 Heavy',
+      'deepseek-r1-web': 'DeepSeek R1',
+      'copilot-microsoft-web': 'Microsoft Copilot',
+      'perplexity-sonar-pro-web': 'Perplexity Sonar Pro',
+      'meta-llama-4-web': 'Meta AI (Llama 4)',
+      'qwen-3-max-web': 'Qwen 3 Max',
+    };
+    const nome = nomeMap[iaSlug] || iaSlug;
+    if(this.titleRef.current) this.titleRef.current.textContent = 'Palpite: ' + nome;
+    if(this.subRef.current) this.subRef.current.textContent = 'Simulação de campeão · Copa 2026';
+    // Rebuild the byCode index só por garantia (times não mudam, só winners)
+    this.byCode = {};
+    [...this.left, ...this.right].forEach(t => this.byCode[t.c] = t);
   }
   componentDidUpdate(){
     this.applyTheme();
