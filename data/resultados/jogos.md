@@ -92,3 +92,4 @@ no cálculo de pontuação.
 | 79 | R32 | Ter 30/06 | 22h00 | Cidade do México | México | 2 | 0 | Equador |
 | 80 | R32 | Qua 01/07 | 13h00 | Atlanta | Inglaterra | 2 | 1 | Congo (RD) |
 | 82 | R32 | Qua 01/07 | 17h00 | Seattle | Bélgica | 3 | 2 | Senegal |
+| 81 | R32 | Qua 01/07 | 21h00 | San Francisco | Estados Unidos | 2 | 0 | Bósnia-Herzegovina |
