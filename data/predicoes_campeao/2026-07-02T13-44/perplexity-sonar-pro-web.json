@@ -1,7 +1,7 @@
 {
   "slug": "perplexity-sonar-pro-web",
-  "rodada_em": "2026-07-02T14:24:26",
-  "campeao": "???",
+  "rodada_em": "2026-07-02T15:42:18",
+  "campeao": "França",
   "jornada": {
     "R32": {
       "73": "Canadá",
@@ -13,30 +13,36 @@
       "79": "México",
       "80": "Inglaterra",
       "81": "Estados Unidos",
-      "82": "Bélgica"
+      "82": "Bélgica",
+      "83": "Portugal",
+      "84": "Espanha",
+      "85": "Suíça",
+      "86": "Argentina",
+      "87": "Colômbia",
+      "88": "Egito"
     },
     "Oitavas": {
-      "89": "???",
-      "90": "???",
-      "91": "???",
-      "92": "???",
-      "93": "???",
-      "94": "???",
-      "95": "???",
-      "96": "???"
+      "89": "França",
+      "90": "Marrocos",
+      "91": "Brasil",
+      "92": "Inglaterra",
+      "93": "Espanha",
+      "94": "Bélgica",
+      "95": "Argentina",
+      "96": "Colômbia"
     },
     "Quartas": {
-      "97": "???",
-      "98": "???",
-      "99": "???",
-      "100": "???"
+      "97": "França",
+      "98": "Espanha",
+      "99": "Brasil",
+      "100": "Argentina"
     },
     "Semifinal": {
-      "101": "???",
-      "102": "???"
+      "101": "França",
+      "102": "Brasil"
     },
     "Final": {
-      "104": "???"
+      "104": "França"
     }
   }
 }
