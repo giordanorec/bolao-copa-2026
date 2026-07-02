@@ -33,6 +33,18 @@ export default function HeaderNavBar({ locale }: { locale: Locale }) {
               : "Campeão",
     },
     {
+      href: "/animacao-campeao",
+      emoji: "🎬",
+      label:
+        locale === "en"
+          ? "Animation"
+          : locale === "es"
+            ? "Animación"
+            : locale === "fr"
+              ? "Animation"
+              : "Animação",
+    },
+    {
       href: "/ranking-ias",
       emoji: "🏆",
       label:

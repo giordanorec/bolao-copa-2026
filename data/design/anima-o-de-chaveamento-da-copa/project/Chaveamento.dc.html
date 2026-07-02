@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{background:#05070c;font-family:system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
+  @keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 6px rgba(150,190,255,.4));}50%{filter:drop-shadow(0 0 18px rgba(150,190,255,.85));}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="width:100%;height:100vh;display:flex;flex-direction:column;background:radial-gradient(120% 90% at 50% -10%, #1a2436 0%, #0a0e16 55%, #05070c 100%);color:#eef1f6;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;">
+  <header ref="{{ headerRef }}" style="flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 22px;border-bottom:1px solid rgba(180,200,230,.12);flex-wrap:wrap;z-index:10;">
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div ref="{{ titleRef }}" style="font-weight:600;font-size:25px;line-height:1;letter-spacing:-.01em;color:#ffffff;">Caminho até a Glória</div>
+      <div ref="{{ subRef }}" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(235,240,248,.5);font-weight:600;">Mata-Mata · Copa do Mundo 2026</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button ref="{{ playBtnRef }}" onClick="{{ play }}" style="font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;background:linear-gradient(180deg,#4da3ff,#2b7fff);border:none;padding:10px 22px;border-radius:999px;cursor:pointer;box-shadow:0 4px 16px rgba(43,127,255,.35);">Iniciar</button>
+      <button ref="{{ replayBtnRef }}" onClick="{{ replay }}" style="font-size:13px;font-weight:600;letter-spacing:.02em;color:#eaf0fb;background:transparent;border:1px solid rgba(255,255,255,.2);padding:10px 18px;border-radius:999px;cursor:pointer;">Reiniciar</button>
+    </div>
+  </header>
+  <div ref="{{ stageRef }}" style="position:relative;flex:1 1 auto;overflow:hidden;">
+    <div ref="{{ overlayRef }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .7s;z-index:20;background:radial-gradient(80% 80% at 50% 40%, rgba(10,14,22,.82) 0%, rgba(5,7,12,.96) 70%);backdrop-filter:blur(6px);">
+      <div ref="{{ cardRef }}" style="width:min(560px,92%);display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;padding:32px 30px;border-radius:22px;background:rgba(20,26,36,.6);border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.6);">
+        <div ref="{{ champKickerRef }}" style="font-size:12px;letter-spacing:.4em;text-transform:uppercase;font-weight:700;color:#9cc0ff;padding-left:.4em;">Campeão Mundial</div>
+        <div data-slot="box" style="width:176px;height:176px;border-radius:30px;border:2px dashed rgba(160,190,240,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,.02);filter:drop-shadow(0 12px 30px rgba(0,0,0,.45));">
+          <div data-slot="ico" style="font-size:15px;letter-spacing:.01em;font-weight:600;color:rgba(200,220,255,.9);">Mascote</div>
+          <div data-slot="hint" style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:rgba(200,220,255,.5);">Arraste a imagem</div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:16px;">
+          <div ref="{{ champFlagRef }}" style="width:52px;height:52px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 3px 10px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.16);"></div>
+          <div ref="{{ champNameRef }}" style="font-weight:600;font-size:48px;line-height:1;letter-spacing:-.02em;color:#ffffff;">—</div>
+          <div data-slot="box" style="width:52px;height:52px;border-radius:50%;border:2px dashed rgba(160,190,240,.4);display:flex;align-items:center;justify-content:center;font-size:8px;letter-spacing:.06em;font-weight:600;text-transform:uppercase;color:rgba(200,220,255,.6);">Logo</div>
+        </div>
+        <div ref="{{ dividerRef }}" style="width:62%;height:1px;background:rgba(255,255,255,.16);margin:2px 0;"></div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:14px;opacity:.94;">
+          <div ref="{{ viceLabelRef }}" style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:rgba(200,220,255,.6);writing-mode:vertical-rl;transform:rotate(180deg);">Vice</div>
+          <div data-slot="box" style="width:82px;height:82px;border-radius:18px;border:2px dashed rgba(160,190,240,.34);display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:rgba(200,220,255,.55);background:rgba(255,255,255,.02);">Mascote</div>
+          <div ref="{{ viceFlagRef }}" style="width:34px;height:34px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 2px 7px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.14);"></div>
+          <div ref="{{ viceNameRef }}" style="font-weight:600;font-size:24px;line-height:1;letter-spacing:-.01em;color:#dfe7f5;">—</div>
+          <div data-slot="box" style="width:34px;height:34px;border-radius:50%;border:2px dashed rgba(160,190,240,.34);display:flex;align-items:center;justify-content:center;font-size:6.5px;letter-spacing:.04em;font-weight:600;text-transform:uppercase;color:rgba(200,220,255,.5);">Logo</div>
+        </div>
+        <button ref="{{ dismissBtnRef }}" onClick="{{ dismiss }}" style="margin-top:6px;font-size:12px;font-weight:600;letter-spacing:.04em;color:#eaf0fb;background:transparent;border:1px solid rgba(255,255,255,.2);padding:9px 20px;border-radius:999px;cursor:pointer;">Ver chaveamento</button>
+      </div>
+    </div>
+
+    <div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:1600px;height:940px;transform-origin:top left;">
+      {{ diagram }}
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Vanguarda&quot;,&quot;Nocturne&quot;,&quot;Atelier&quot;,&quot;Estádio&quot;,&quot;Bauhaus&quot;],&quot;default&quot;:&quot;Vanguarda&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Design System&quot;},&quot;flagStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Bandeira circular&quot;,&quot;Bandeira quadrada&quot;,&quot;Bola + emoji&quot;],&quot;default&quot;:&quot;Bandeira circular&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Bandeiras&quot;},&quot;tokenSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:56,&quot;min&quot;:34,&quot;max&quot;:78,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Bandeiras&quot;},&quot;flagBorder&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Bandeiras&quot;},&quot;speed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.9,&quot;min&quot;:0.5,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Animação&quot;},&quot;autoStart&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Animação&quot;}}">
+const SYS='system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
+const THEMES={
+  'Vanguarda':{
+    bg:'radial-gradient(120% 90% at 50% -10%, #1a2436 0%, #0a0e16 55%, #05070c 100%)',
+    scrim:'radial-gradient(80% 80% at 50% 40%, rgba(10,14,22,.82), rgba(5,7,12,.96))', blur:'blur(8px)',
+    fontDisplay:SYS, fontUI:SYS, labelFont:SYS, headFont:SYS,
+    accent:'#eef1f6', accentStrong:'#ffffff', sub:'rgba(235,240,248,.5)', champText:'#ffffff',
+    railDim:'rgba(180,205,240,.14)', railHot:'rgba(120,170,255,.95)', railW:1.6, railHotW:2.8, cap:'round', join:'round',
+    ring:'rgba(150,190,255,.9)', tokenBg:'radial-gradient(circle at 35% 28%, #2a3547, #0c111a)',
+    nodeShadow:'0 5px 18px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.1)', nodeShadowHot:'0 0 30px 8px rgba(120,170,255,.55), inset 0 1px 3px rgba(255,255,255,.14)',
+    labelColor:'rgba(222,230,242,.8)', labelWeight:600, labelTransform:'none', labelSpacing:'.01em', labelShadow:'0 1px 3px rgba(0,0,0,.8)',
+    headFill:'rgba(200,215,240,.44)', headStrong:'#eaf0fb', headWeight:600, headSpacing:'3', headTransform:'uppercase', headSize:12.5,
+    goldStops:['#eef4ff','#c3d2e8','#8ea4c4'], trophyStroke:'#dbe6f7', trophyAccent:'#bcd0ee',
+    btnBg:'linear-gradient(180deg,#4da3ff,#2b7fff)', btnColor:'#ffffff', btnShadow:'0 4px 16px rgba(43,127,255,.35)', line:'rgba(255,255,255,.2)', slotLine:'rgba(160,190,240,.4)',
+    cardBg:'rgba(20,26,36,.62)', cardBorder:'1px solid rgba(255,255,255,.12)', cardShadow:'0 30px 90px rgba(0,0,0,.6)', cardRadius:'22px'
+  },
+  'Nocturne':{
+    bg:'radial-gradient(120% 90% at 72% 0%, #16121f 0%, #0a0912 52%, #060510 100%)',
+    scrim:'radial-gradient(80% 80% at 50% 40%, rgba(14,11,22,.86), rgba(6,5,14,.97))', blur:'blur(7px)',
+    fontDisplay:'"Inter Tight",Inter,system-ui,sans-serif', fontUI:'"Inter Tight",Inter,system-ui,sans-serif', labelFont:'"Inter Tight",system-ui,sans-serif', headFont:'"Inter Tight",system-ui,sans-serif',
+    accent:'#c7c3d8', accentStrong:'#f4f1fb', sub:'rgba(180,175,205,.5)', champText:'#f6f3ff',
+    railDim:'rgba(160,140,240,.14)', railHot:'rgba(157,124,255,.98)', railW:1.4, railHotW:2.6, cap:'round', join:'round',
+    ring:'#9d7cff', tokenBg:'radial-gradient(circle at 35% 28%, #241f38, #100d1c)',
+    nodeShadow:'0 3px 12px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.06)', nodeShadowHot:'0 0 30px 8px rgba(157,124,255,.6), inset 0 1px 3px rgba(255,255,255,.12)',
+    labelColor:'rgba(202,196,228,.74)', labelWeight:600, labelTransform:'none', labelSpacing:'.02em', labelShadow:'0 1px 3px rgba(0,0,0,.85)',
+    headFill:'rgba(165,150,205,.5)', headStrong:'#b8a6ff', headWeight:700, headSpacing:'2.5', headTransform:'uppercase', headSize:12,
+    goldStops:['#e9e3ff','#a98cff','#6b4fd0'], trophyStroke:'#cbb8ff', trophyAccent:'#a98cff',
+    btnBg:'linear-gradient(180deg,#9d7cff,#6b4fd0)', btnColor:'#ffffff', btnShadow:'0 4px 16px rgba(107,79,208,.4)', line:'rgba(180,160,255,.28)', slotLine:'rgba(160,140,240,.36)',
+    cardBg:'rgba(18,16,28,.72)', cardBorder:'1px solid rgba(160,140,240,.2)', cardShadow:'0 30px 90px rgba(0,0,0,.66)', cardRadius:'16px'
+  },
+  'Atelier':{
+    bg:'radial-gradient(120% 95% at 50% 0%, #f7f3ea 0%, #efe8da 60%, #e7dfce 100%)',
+    scrim:'radial-gradient(80% 80% at 50% 40%, rgba(246,242,233,.9), rgba(228,219,201,.97))', blur:'blur(4px)',
+    fontDisplay:'"Playfair Display",Georgia,serif', fontUI:'"Manrope",system-ui,sans-serif', labelFont:'"Manrope",system-ui,sans-serif', headFont:'"Playfair Display",Georgia,serif',
+    accent:'#4a4436', accentStrong:'#2a2417', sub:'rgba(74,68,54,.6)', champText:'#2a2417',
+    railDim:'rgba(120,105,75,.24)', railHot:'rgba(150,90,50,.9)', railW:1.3, railHotW:2.4, cap:'round', join:'round',
+    ring:'#9c5f32', tokenBg:'radial-gradient(circle at 35% 28%, #efe7d6, #d8ccb2)',
+    nodeShadow:'0 3px 10px rgba(120,100,60,.24), inset 0 0 0 1px rgba(120,100,60,.14)', nodeShadowHot:'0 0 22px 6px rgba(156,95,50,.4), inset 0 1px 3px rgba(255,255,255,.5)',
+    labelColor:'rgba(74,68,54,.82)', labelWeight:700, labelTransform:'uppercase', labelSpacing:'.06em', labelShadow:'0 1px 2px rgba(255,250,240,.6)',
+    headFill:'rgba(90,80,58,.7)', headStrong:'#3a3220', headWeight:700, headSpacing:'1', headTransform:'none', headSize:15, headItalic:true,
+    goldStops:['#c99a5b','#9c5f32','#6e3d1c'], trophyStroke:'#7a4a25', trophyAccent:'#9c5f32',
+    btnBg:'linear-gradient(180deg,#3a3220,#221d10)', btnColor:'#f4ecd8', btnShadow:'0 4px 14px rgba(58,50,32,.3)', line:'rgba(74,68,54,.32)', slotLine:'rgba(120,90,50,.42)',
+    cardBg:'rgba(250,246,238,.9)', cardBorder:'1px solid rgba(120,100,60,.28)', cardShadow:'0 30px 80px rgba(80,65,40,.35)', cardRadius:'6px', light:true
+  },
+  'Estádio':{
+    bg:'radial-gradient(120% 85% at 50% -5%, #123b6b 0%, #050c16 70%),linear-gradient(155deg, #0b1f3a 0%, #071322 60%, #040a12 100%)',
+    scrim:'radial-gradient(80% 80% at 50% 40%, rgba(6,14,26,.85), rgba(3,8,16,.97))', blur:'blur(5px)',
+    fontDisplay:'"Anton",system-ui,sans-serif', fontUI:'"Space Grotesk",system-ui,sans-serif', labelFont:'"Space Grotesk",system-ui,sans-serif', headFont:'"Anton",system-ui,sans-serif',
+    accent:'#e6f0ff', accentStrong:'#ffffff', sub:'rgba(150,210,255,.62)', champText:'#eafcff',
+    railDim:'rgba(60,220,200,.18)', railHot:'rgba(35,255,190,.98)', railW:1.6, railHotW:3.2, cap:'round', join:'round',
+    ring:'#25ffbe', tokenBg:'radial-gradient(circle at 35% 28%, #113049, #05101c)',
+    nodeShadow:'0 4px 14px rgba(0,0,0,.6), inset 0 0 0 1px rgba(120,240,220,.18)', nodeShadowHot:'0 0 30px 9px rgba(35,255,190,.6), inset 0 1px 3px rgba(255,255,255,.16)',
+    labelColor:'rgba(190,235,255,.8)', labelWeight:600, labelTransform:'uppercase', labelSpacing:'.04em', labelShadow:'0 1px 4px rgba(0,0,0,.9)',
+    headFill:'rgba(120,200,255,.55)', headStrong:'#7dfbd8', headWeight:400, headSpacing:'2', headTransform:'uppercase', headSize:16,
+    goldStops:['#b6fff0','#25ffbe','#12b98c'], trophyStroke:'#7dfbd8', trophyAccent:'#25ffbe',
+    btnBg:'linear-gradient(180deg,#25ffbe,#12b98c)', btnColor:'#04121a', btnShadow:'0 4px 18px rgba(35,255,190,.4)', line:'rgba(120,240,220,.3)', slotLine:'rgba(60,220,200,.4)',
+    cardBg:'rgba(8,20,34,.72)', cardBorder:'1px solid rgba(60,220,200,.28)', cardShadow:'0 30px 90px rgba(0,0,0,.7)', cardRadius:'14px'
+  },
+  'Bauhaus':{
+    bg:'#f4f1ea',
+    scrim:'radial-gradient(80% 80% at 50% 40%, rgba(244,241,234,.92), rgba(228,224,214,.98))', blur:'blur(2px)',
+    fontDisplay:'"Space Grotesk",system-ui,sans-serif', fontUI:'"Space Mono",monospace', labelFont:'"Space Mono",monospace', headFont:'"Space Mono",monospace',
+    accent:'#1a1a1a', accentStrong:'#0a0a0a', sub:'rgba(30,30,30,.6)', champText:'#111111',
+    railDim:'rgba(20,20,20,.22)', railHot:'#e5322d', railW:1.4, railHotW:3, cap:'butt', join:'miter',
+    ring:'#e5322d', tokenBg:'radial-gradient(circle at 35% 28%, #ffffff, #e6e2d8)',
+    nodeShadow:'0 2px 0 rgba(20,20,20,.9), inset 0 0 0 1.5px #1a1a1a', nodeShadowHot:'0 3px 0 #e5322d, inset 0 0 0 2px #1a1a1a',
+    labelColor:'rgba(26,26,26,.9)', labelWeight:700, labelTransform:'uppercase', labelSpacing:'.02em', labelShadow:'none',
+    headFill:'rgba(26,26,26,.8)', headStrong:'#e5322d', headWeight:700, headSpacing:'1', headTransform:'uppercase', headSize:12,
+    goldStops:['#ffd447','#f5b400','#c98a00'], trophyStroke:'#1a1a1a', trophyAccent:'#e5322d',
+    btnBg:'#1a1a1a', btnColor:'#ffffff', btnShadow:'3px 3px 0 #e5322d', line:'rgba(26,26,26,.4)', slotLine:'rgba(26,26,26,.5)',
+    cardBg:'#faf8f2', cardBorder:'2px solid #1a1a1a', cardShadow:'8px 8px 0 #e5322d', cardRadius:'0px', light:true, square:true
+  }
+};
+const ISO={ARG:'ar',AUS:'au',ESP:'es',MAR:'ma',ENG:'gb-eng',JPN:'jp',NED:'nl',MEX:'mx',BRA:'br',KOR:'kr',POR:'pt',SUI:'ch',GER:'de',ECU:'ec',URU:'uy',GHA:'gh',FRA:'fr',SEN:'sn',USA:'us',CAN:'ca',BEL:'be',NGA:'ng',CRO:'hr',KSA:'sa',ITA:'it',COL:'co',DEN:'dk',POL:'pl',SRB:'rs',CIV:'ci',AUT:'at',EGY:'eg'};
+
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state={orient:'h'};
+    this.rootRef=React.createRef(); this.headerRef=React.createRef();
+    this.titleRef=React.createRef(); this.subRef=React.createRef();
+    this.stageRef=React.createRef(); this.canvasRef=React.createRef();
+    this.playBtnRef=React.createRef(); this.replayBtnRef=React.createRef();
+    this.trophyRef=React.createRef();
+    this.overlayRef=React.createRef(); this.cardRef=React.createRef();
+    this.champKickerRef=React.createRef(); this.dividerRef=React.createRef(); this.dismissBtnRef=React.createRef(); this.viceLabelRef=React.createRef();
+    this.champFlagRef=React.createRef(); this.champNameRef=React.createRef();
+    this.viceFlagRef=React.createRef(); this.viceNameRef=React.createRef();
+    this.nodes={}; this.inners={}; this.rails=[[],[],[],[],[]]; this.anims=[];
+    this.current={}; this.homePos={}; this._innerTf='scale(1,1)';
+    this.playing=false; this.timer=null; this.step=0;
+
+    this.left=[
+      {c:'ARG',f:'\uD83C\uDDE6\uD83C\uDDF7',n:'Argentina'},{c:'AUS',f:'\uD83C\uDDE6\uD83C\uDDFA',n:'Austrália'},
+      {c:'ESP',f:'\uD83C\uDDEA\uD83C\uDDF8',n:'Espanha'},{c:'MAR',f:'\uD83C\uDDF2\uD83C\uDDE6',n:'Marrocos'},
+      {c:'ENG',f:'\uD83C\uDDEC\uD83C\uDDE7',n:'Inglaterra'},{c:'JPN',f:'\uD83C\uDDEF\uD83C\uDDF5',n:'Japão'},
+      {c:'NED',f:'\uD83C\uDDF3\uD83C\uDDF1',n:'Holanda'},{c:'MEX',f:'\uD83C\uDDF2\uD83C\uDDFD',n:'México'},
+      {c:'BRA',f:'\uD83C\uDDE7\uD83C\uDDF7',n:'Brasil'},{c:'KOR',f:'\uD83C\uDDF0\uD83C\uDDF7',n:'Coreia'},
+      {c:'POR',f:'\uD83C\uDDF5\uD83C\uDDF9',n:'Portugal'},{c:'SUI',f:'\uD83C\uDDE8\uD83C\uDDED',n:'Suíça'},
+      {c:'GER',f:'\uD83C\uDDE9\uD83C\uDDEA',n:'Alemanha'},{c:'ECU',f:'\uD83C\uDDEA\uD83C\uDDE8',n:'Equador'},
+      {c:'URU',f:'\uD83C\uDDFA\uD83C\uDDFE',n:'Uruguai'},{c:'GHA',f:'\uD83C\uDDEC\uD83C\uDDED',n:'Gana'}
+    ];
+    this.right=[
+      {c:'FRA',f:'\uD83C\uDDEB\uD83C\uDDF7',n:'França'},{c:'SEN',f:'\uD83C\uDDF8\uD83C\uDDF3',n:'Senegal'},
+      {c:'USA',f:'\uD83C\uDDFA\uD83C\uDDF8',n:'EUA'},{c:'CAN',f:'\uD83C\uDDE8\uD83C\uDDE6',n:'Canadá'},
+      {c:'BEL',f:'\uD83C\uDDE7\uD83C\uDDEA',n:'Bélgica'},{c:'NGA',f:'\uD83C\uDDF3\uD83C\uDDEC',n:'Nigéria'},
+      {c:'CRO',f:'\uD83C\uDDED\uD83C\uDDF7',n:'Croácia'},{c:'KSA',f:'\uD83C\uDDF8\uD83C\uDDE6',n:'A. Saudita'},
+      {c:'ITA',f:'\uD83C\uDDEE\uD83C\uDDF9',n:'Itália'},{c:'COL',f:'\uD83C\uDDE8\uD83C\uDDF4',n:'Colômbia'},
+      {c:'DEN',f:'\uD83C\uDDE9\uD83C\uDDF0',n:'Dinamarca'},{c:'POL',f:'\uD83C\uDDF5\uD83C\uDDF1',n:'Polônia'},
+      {c:'SRB',f:'\uD83C\uDDF7\uD83C\uDDF8',n:'Sérvia'},{c:'CIV',f:'\uD83C\uDDE8\uD83C\uDDEE',n:'Costa do Marfim'},
+      {c:'AUT',f:'\uD83C\uDDE6\uD83C\uDDF9',n:'Áustria'},{c:'EGY',f:'\uD83C\uDDEA\uD83C\uDDEC',n:'Egito'}
+    ];
+    this.winners={
+      left:{ r1:['ARG','ESP','ENG','NED','BRA','POR','GER','URU'],
+             r2:['ARG','NED','BRA','GER'], r3:['ARG','BRA'], fin:['ARG'] },
+      right:{ r1:['FRA','USA','BEL','CRO','ITA','DEN','CIV','AUT'],
+              r2:['FRA','CRO','ITA','AUT'], r3:['FRA','ITA'], fin:['FRA'] }
+    };
+    this.champion='ARG';
+    this.byCode={};
+    [...this.left,...this.right].forEach(t=>this.byCode[t.c]=t);
+    this.L=this.layoutFor('h');
+  }
+
+  layoutFor(orient){
+    if(orient==='v'){
+      const W=900,H=1580,aStart=72,aEnd=42,aLen=W-aStart-aEnd;
+      return {orient,W,H,axis:'y',Cd:H/2,Doff:[668,478,300,150],Dfinal:36,
+        aStart,aLen,labelMode:'code',labelSize:10,headPlace:'gutter',headAlong:32};
+    }
+    const W=1600,H=940,aStart=48,aEnd=30,aLen=H-aStart-aEnd;
+    return {orient,W,H,axis:'x',Cd:W/2,Doff:[688,500,312,152],Dfinal:30,
+      aStart,aLen,labelMode:'name',labelSize:10,headPlace:'top',headAlong:26};
+  }
+
+  pal(){ return THEMES[this.props.theme] || THEMES['Vanguarda']; }
+  flagStyle(){ return this.props.flagStyle || 'Bandeira circular'; }
+  showBorder(){ return this.props.flagBorder===true; }
+  speed(){ return this.props.speed!=null?this.props.speed:1; }
+  circleFlag(code){ return 'https://hatscripts.github.io/circle-flags/flags/'+(ISO[code]||'xx')+'.svg'; }
+  flagPng(code){ return 'https://flagcdn.com/w320/'+(ISO[code]||'xx')+'.png'; }
+  tokSize(){ const base=this.props.tokenSize!=null?this.props.tokenSize:56; const cap=Math.floor(this.L.aLen/16*0.86); return Math.max(22,Math.min(base,cap)); }
+
+  sign(side){ return side==='left'?-1:1; }
+  depthOf(side,r){ return this.L.Cd + this.sign(side)*this.L.Doff[r]; }
+  finalDepthOf(side){ return this.L.Cd + this.sign(side)*this.L.Dfinal; }
+  alongOf(r,j){ const per=16/Math.pow(2,r); return this.L.aStart+(j+0.5)*this.L.aLen/per; }
+  alongCenter(){ return this.L.aStart+this.L.aLen/2; }
+  XY(depth,along){ return this.L.axis==='x' ? {x:depth,y:along} : {x:along,y:depth}; }
+  seedPt(side,r,j){ return this.XY(this.depthOf(side,r), this.alongOf(r,j)); }
+  finalPt(side){ return this.XY(this.finalDepthOf(side), this.alongCenter()); }
+  champPt(){ return this.XY(this.L.Cd, this.alongCenter()); }
+  toTranslate(pt){ const h=this.tokSize()/2; return `translate(${pt.x-h}px,${pt.y-h}px)`; }
+
+  nodeRadius(){
+    const p=this.pal(), size=this.tokSize(), fs=this.flagStyle();
+    if(p.square) return Math.round(size*0.14)+'px';
+    if(fs==='Bandeira quadrada') return Math.round(size*0.22)+'px';
+    return '50%';
+  }
+  setBaseStyle(code){
+    const p=this.pal(), n=this.nodes[code], iv=this.inners[code];
+    if(iv){ iv.style.border = this.showBorder() ? ('2px solid '+p.ring) : (p.square?('1.5px solid '+p.accentStrong):'none'); iv.style.boxShadow=p.nodeShadow; }
+    if(n){ n.style.opacity='1'; n.style.filter='none'; n.style.zIndex=3; }
+  }
+
+  buildTrophy(R){
+    const p=this.pal(), c=this.champPt(), size=this.tokSize();
+    const dx=c.x-800, dy=(c.y - size/2 - 92) - 130;
+    return R('g',{ref:this.trophyRef,transform:`translate(${dx},${dy})`,style:{opacity:.3,transition:'opacity .8s'}},
+      R('path',{d:'M772,86 L828,86 L824,122 Q800,144 776,122 Z',fill:'url(#goldgrad)',stroke:p.trophyStroke,strokeWidth:1.5}),
+      R('path',{d:'M773,92 q-21,0 -21,19 q0,13 17,16',fill:'none',stroke:p.trophyAccent,strokeWidth:3}),
+      R('path',{d:'M827,92 q21,0 21,19 q0,13 -17,16',fill:'none',stroke:p.trophyAccent,strokeWidth:3}),
+      R('rect',{x:794,y:142,width:12,height:18,fill:'url(#goldgrad)'}),
+      R('path',{d:'M781,160 L819,160 L825,175 L775,175 Z',fill:'url(#goldgrad)',stroke:p.trophyStroke,strokeWidth:1.5}),
+      R('circle',{cx:800,cy:105,r:5,fill:'#fff7da',opacity:.9})
+    );
+  }
+
+  buildDiagram(){
+    const R=React.createElement, p=this.pal(), L=this.L;
+    this.nodes={}; this.inners={}; this.rails=[[],[],[],[],[]];
+    const rails=[]; const sides=['left','right'];
+    const rp=(extra)=>Object.assign({fill:'none',stroke:p.railDim,strokeWidth:p.railW,strokeLinejoin:p.join,strokeLinecap:p.cap},extra);
+    const path4=(a,b,c,d)=>`${a.x},${a.y} ${b.x},${b.y} ${c.x},${c.y} ${d.x},${d.y}`;
+    for(let step=0;step<3;step++){
+      sides.forEach(side=>{
+        const r=step, r1=step+1, n1=16/Math.pow(2,r1);
+        const eD=(this.depthOf(side,r)+this.depthOf(side,r1))/2;
+        for(let j=0;j<n1;j++){
+          const child=this.seedPt(side,r1,j), cAlong=this.alongOf(r1,j);
+          [2*j,2*j+1].forEach(k=>{
+            const par=this.seedPt(side,r,k), pAlong=this.alongOf(r,k);
+            rails.push(R('polyline',rp({key:side+step+'-'+j+'-'+k, ref:el=>{if(el)this.rails[step].push(el);},
+              points:path4(par,this.XY(eD,pAlong),this.XY(eD,cAlong),child)})));
+          });
+        }
+      });
+    }
+    sides.forEach(side=>{
+      const eD=(this.depthOf(side,3)+this.finalDepthOf(side))/2, fin=this.finalPt(side), ac=this.alongCenter();
+      [0,1].forEach(k=>{
+        const par=this.seedPt(side,3,k), pAlong=this.alongOf(3,k);
+        rails.push(R('polyline',rp({key:side+'-fin-'+k, ref:el=>{if(el)this.rails[3].push(el);},
+          points:path4(par,this.XY(eD,pAlong),this.XY(eD,ac),fin)})));
+      });
+    });
+    sides.forEach(side=>{
+      const fin=this.finalPt(side), ch=this.champPt();
+      rails.push(R('polyline',rp({key:side+'-champ', ref:el=>{if(el)this.rails[4].push(el);},
+        points:`${fin.x},${fin.y} ${ch.x},${ch.y}`})));
+    });
+    const heads=['32-AVOS','OITAVAS','QUARTAS','SEMIFINAL'];
+    const headEls=[];
+    const mkHead=(key,txt,depth,strong)=>{
+      const pt=this.XY(depth, L.headAlong);
+      const rot=L.headPlace==='gutter'?`rotate(-90 ${pt.x} ${pt.y})`:'';
+      headEls.push(R('text',{key,x:pt.x,y:pt.y,transform:rot,textAnchor:'middle',dominantBaseline:'middle',
+        fill:strong?p.headStrong:p.headFill,fontSize:strong?p.headSize+1.5:p.headSize,fontWeight:p.headWeight,letterSpacing:p.headSpacing,
+        fontStyle:p.headItalic?'italic':'normal',fontFamily:p.headFont,style:{textTransform:p.headTransform}},
+        p.headTransform==='uppercase'?txt:txt.charAt(0)+txt.slice(1).toLowerCase()));
+    };
+    heads.forEach((h,r)=>{ sides.forEach(side=>mkHead('h'+side+r,h,this.depthOf(side,r),false)); });
+    mkHead('hf','FINAL',L.Cd,true);
+
+    const svg=R('svg',{key:'svg',width:L.W,height:L.H,viewBox:`0 0 ${L.W} ${L.H}`,style:{position:'absolute',left:0,top:0,overflow:'visible',zIndex:1}},
+      R('defs',null,
+        R('linearGradient',{id:'goldgrad',x1:'0',y1:'0',x2:'0',y2:'1'},
+          R('stop',{offset:'0%',stopColor:p.goldStops[0]}),R('stop',{offset:'52%',stopColor:p.goldStops[1]}),R('stop',{offset:'100%',stopColor:p.goldStops[2]}))
+      ),
+      ...rails, ...headEls, this.buildTrophy(R));
+
+    const size=this.tokSize(), fs=this.flagStyle(), radius=this.nodeRadius();
+    const border=this.showBorder()?('2px solid '+p.ring):(p.square?('1.5px solid '+p.accentStrong):'none');
+    const tokens=[];
+    const mk=(side,arr)=>arr.forEach((t,j)=>{
+      const pt=this.seedPt(side,0,j);
+      this.homePos[t.c]={x:pt.x,y:pt.y}; this.current[t.c]={x:pt.x,y:pt.y};
+      const vis={position:'relative',width:size+'px',height:size+'px',borderRadius:radius,
+        display:'flex',alignItems:'center',justifyContent:'center',border,boxShadow:p.nodeShadow,overflow:'visible',
+        transform:this._innerTf,transformOrigin:'center center',transition:'box-shadow .4s, border-color .4s'};
+      let glyph=null;
+      if(fs==='Bola + emoji'){
+        vis.background=p.tokenBg;
+        glyph=R('span',{style:{fontSize:Math.round(size*0.52)+'px',lineHeight:1}},t.f);
+      } else {
+        vis.backgroundColor=p.light?'#fff':'#0b1018';
+        vis.backgroundImage=`url(${fs==='Bandeira quadrada'?this.flagPng(t.c):this.circleFlag(t.c)})`;
+        vis.backgroundSize='cover'; vis.backgroundPosition='center';
+      }
+      const txt=L.labelMode==='code'?t.c:t.n;
+      const label=R('div',{style:{position:'absolute',top:(size+4)+'px',left:(size/2-50)+'px',width:'100px',textAlign:'center',fontSize:L.labelSize+'px',fontWeight:p.labelWeight,letterSpacing:p.labelSpacing,lineHeight:1.05,color:p.labelColor,textTransform:p.labelTransform,textShadow:p.labelShadow,fontFamily:p.labelFont,pointerEvents:'none'}},txt);
+      const inner=R('div',{ref:el=>{if(el)this.inners[t.c]=el;}, style:vis}, glyph, label);
+      const outer={position:'absolute',left:0,top:0,width:size+'px',height:size+'px',
+        transform:this.toTranslate(pt),transition:'opacity .5s, filter .5s',zIndex:3};
+      tokens.push(R('div',{key:t.c, ref:el=>{if(el)this.nodes[t.c]=el;}, style:outer}, inner));
+    });
+    mk('left',this.left); mk('right',this.right);
+    return R('div',{style:{position:'relative',width:L.W+'px',height:L.H+'px'}}, svg, ...tokens);
+  }
+
+  applyTheme(){
+    const p=this.pal();
+    if(this.rootRef.current){ this.rootRef.current.style.background=p.bg; this.rootRef.current.style.color=p.accent; this.rootRef.current.style.fontFamily=p.fontUI; }
+    if(this.headerRef.current) this.headerRef.current.style.borderBottom='1px solid '+p.line;
+    if(this.titleRef.current){ this.titleRef.current.style.color=p.accentStrong; this.titleRef.current.style.fontFamily=p.fontDisplay; this.titleRef.current.style.fontWeight=(p.fontDisplay.indexOf('Anton')>=0||p.fontDisplay.indexOf('Playfair')>=0)?'700':'600'; }
+    if(this.subRef.current){ this.subRef.current.style.color=p.sub; this.subRef.current.style.fontFamily=p.fontUI; }
+    if(this.playBtnRef.current){ this.playBtnRef.current.style.background=p.btnBg; this.playBtnRef.current.style.color=p.btnColor; this.playBtnRef.current.style.boxShadow=p.btnShadow; this.playBtnRef.current.style.fontFamily=p.fontUI; this.playBtnRef.current.style.borderRadius=p.square?'0':'999px'; }
+    if(this.replayBtnRef.current){ this.replayBtnRef.current.style.color=p.accent; this.replayBtnRef.current.style.border='1px solid '+p.line; this.replayBtnRef.current.style.fontFamily=p.fontUI; this.replayBtnRef.current.style.borderRadius=p.square?'0':'999px'; }
+    if(this.overlayRef.current){ this.overlayRef.current.style.background=p.scrim; this.overlayRef.current.style.backdropFilter=p.blur; }
+    if(this.cardRef.current){ this.cardRef.current.style.background=p.cardBg; this.cardRef.current.style.border=p.cardBorder; this.cardRef.current.style.boxShadow=p.cardShadow; this.cardRef.current.style.borderRadius=p.cardRadius; }
+    if(this.champKickerRef.current){ this.champKickerRef.current.style.color=p.railHot; this.champKickerRef.current.style.fontFamily=p.fontUI; }
+    if(this.dividerRef.current) this.dividerRef.current.style.background=p.line;
+    if(this.viceLabelRef.current) this.viceLabelRef.current.style.color=p.sub;
+    if(this.dismissBtnRef.current){ this.dismissBtnRef.current.style.color=p.accent; this.dismissBtnRef.current.style.border='1px solid '+p.line; this.dismissBtnRef.current.style.fontFamily=p.fontUI; this.dismissBtnRef.current.style.borderRadius=p.square?'0':'999px'; }
+    if(this.champNameRef.current){ this.champNameRef.current.style.color=p.champText; this.champNameRef.current.style.fontFamily=p.fontDisplay; }
+    if(this.viceNameRef.current){ this.viceNameRef.current.style.color=p.accent; this.viceNameRef.current.style.fontFamily=p.fontDisplay; }
+    document.querySelectorAll('[data-slot="box"]').forEach(b=>{ b.style.borderColor=p.slotLine; });
+    document.querySelectorAll('[data-slot="ico"]').forEach(b=>{ b.style.color=p.accent; b.style.fontFamily=p.fontUI; });
+  }
+
+  fit(){
+    const stage=this.stageRef.current, canvas=this.canvasRef.current;
+    if(!stage||!canvas) return;
+    const sw=stage.clientWidth, sh=stage.clientHeight;
+    if(!sw||!sh) return;
+    canvas.style.width=this.L.W+'px'; canvas.style.height=this.L.H+'px';
+    const sx=sw/this.L.W, sy=sh/this.L.H;
+    canvas.style.transformOrigin='top left';
+    canvas.style.transform=`scale(${sx},${sy})`;
+    this._innerTf=`scale(${1/sx},${1/sy})`;
+    Object.keys(this.inners).forEach(c=>{ const iv=this.inners[c]; if(iv) iv.style.transform=this._innerTf; });
+    const card=this.cardRef.current;
+    if(card){ card.style.transform='none'; const cw=card.offsetWidth, ch=card.offsetHeight; const cs=Math.min(1,(sw-40)/cw,(sh-32)/ch); card.style.transform='scale('+cs+')'; card.style.transformOrigin='center center'; }
+  }
+
+  hideOverlay(){ if(this.overlayRef.current){ this.overlayRef.current.style.opacity='0'; this.overlayRef.current.style.pointerEvents='none'; } }
+  dismiss(){ this.hideOverlay(); }
+
+  resetPositions(){
+    this.anims.forEach(a=>{try{a.cancel();}catch(e){}}); this.anims=[];
+    const p=this.pal();
+    Object.keys(this.nodes).forEach(c=>{
+      const n=this.nodes[c], h=this.homePos[c];
+      n.style.transform=this.toTranslate(h);
+      this.setBaseStyle(c);
+      this.current[c]={x:h.x,y:h.y};
+    });
+    this.active=new Set([...this.left,...this.right].map(t=>t.c));
+    this.step=0;
+    if(this.trophyRef.current){ this.trophyRef.current.style.opacity='0.3'; this.trophyRef.current.style.animation=''; }
+    this.hideOverlay();
+    this.rails.forEach(b=>b.forEach(pl=>{pl.style.stroke=p.railDim;pl.style.strokeWidth=p.railW;}));
+    this.updateBtn();
+  }
+
+  corners(from,to){
+    if(this.L.axis==='x') return [{x:(from.x+to.x)/2,y:from.y},{x:(from.x+to.x)/2,y:to.y}];
+    return [{x:from.x,y:(from.y+to.y)/2},{x:to.x,y:(from.y+to.y)/2}];
+  }
+  stepTargets(step){
+    const moves=[]; const na=new Set();
+    const push=(code,to)=>{ na.add(code); const from=this.current[code]; const [c1,c2]=this.corners(from,to); moves.push({code,from:{x:from.x,y:from.y},c1,c2,to}); };
+    if(step<3){
+      const dest=['r1','r2','r3'][step];
+      ['left','right'].forEach(side=>{ this.winners[side][dest].forEach((code,j)=>push(code,this.seedPt(side,step+1,j))); });
+    } else if(step===3){
+      ['left','right'].forEach(side=>push(this.winners[side].fin[0], this.finalPt(side)));
+    } else {
+      push(this.champion, this.champPt());
+    }
+    return {moves,newActive:na};
+  }
+
+  runStep(step){
+    if(step>=5){ this.finish(); return; }
+    const sp=this.speed(), p=this.pal();
+    const {moves,newActive}=this.stepTargets(step);
+    this.active.forEach(c=>{ if(!newActive.has(c)){ const n=this.nodes[c]; if(n){ n.style.opacity='.8'; n.style.filter='saturate(.9)'; } } });
+    (this.rails[step]||[]).forEach(pl=>{ pl.style.stroke=p.railHot; pl.style.strokeWidth=p.railHotW; });
+    let maxEnd=0;
+    const tr=(pt)=>this.toTranslate(pt);
+    moves.forEach((m,i)=>{
+      const n=this.nodes[m.code]; if(!n) return;
+      const delay=i*(70/sp), dur=1050/sp;
+      n.style.zIndex=6;
+      const a=n.animate([
+        {transform:tr(m.from)},
+        {transform:tr(m.c1),offset:.42},
+        {transform:tr(m.c2),offset:.62},
+        {transform:tr(m.to)}
+      ],{duration:dur,delay,easing:'cubic-bezier(.55,.06,.25,1)',fill:'forwards'});
+      this.anims.push(a);
+      a.onfinish=()=>{ n.style.transform=tr(m.to); };
+      this.current[m.code]={x:m.to.x,y:m.to.y};
+      maxEnd=Math.max(maxEnd,delay+dur);
+    });
+    this.active=newActive;
+    this.step=step+1;
+    this.timer=setTimeout(()=>{ if(this.playing) this.runStep(this.step); }, maxEnd+700/sp);
+  }
+
+  finish(){
+    this.playing=false; this.updateBtn();
+    const p=this.pal();
+    const n=this.nodes[this.champion];
+    if(n){
+      const base=this.toTranslate(this.champPt());
+      n.style.zIndex=9;
+      const a=n.animate([{transform:base+' scale(1)'},{transform:base+' scale(1.5)'}],{duration:700,fill:'forwards',easing:'cubic-bezier(.34,1.56,.64,1)'});
+      this.anims.push(a);
+      const iv=this.inners[this.champion];
+      if(iv){ iv.style.border='2px solid '+p.ring; iv.style.boxShadow=p.nodeShadowHot; }
+    }
+    if(this.trophyRef.current){ this.trophyRef.current.style.opacity='1'; this.trophyRef.current.style.animation='glowPulse 2.4s ease-in-out infinite'; }
+    const finalists=[this.winners.left.fin[0], this.winners.right.fin[0]];
+    const vice=finalists.find(c=>c!==this.champion) || finalists[1];
+    if(this.champFlagRef.current) this.champFlagRef.current.style.backgroundImage='url('+this.circleFlag(this.champion)+')';
+    if(this.champNameRef.current) this.champNameRef.current.textContent=(this.byCode[this.champion]||{}).n||'';
+    if(vice&&this.viceFlagRef.current) this.viceFlagRef.current.style.backgroundImage='url('+this.circleFlag(vice)+')';
+    if(vice&&this.viceNameRef.current) this.viceNameRef.current.textContent=(this.byCode[vice]||{}).n||'';
+    this.fit();
+    setTimeout(()=>{ if(this.overlayRef.current){ this.overlayRef.current.style.opacity='1'; this.overlayRef.current.style.pointerEvents='auto'; } }, 900);
+  }
+
+  updateBtn(){
+    if(!this.playBtnRef.current) return;
+    this.playBtnRef.current.textContent = this.playing ? 'Pausar' : (this.step>=5 ? 'Ver de novo' : (this.step>0 ? 'Continuar' : 'Iniciar'));
+  }
+
+  play(){
+    if(this.playing){ this.playing=false; clearTimeout(this.timer); this.updateBtn(); return; }
+    if(this.step>=5){ this.replay(); return; }
+    this.hideOverlay();
+    this.playing=true; this.updateBtn(); this.runStep(this.step);
+  }
+  replay(){
+    this.playing=false; clearTimeout(this.timer);
+    this.resetPositions();
+    setTimeout(()=>{ this.playing=true; this.updateBtn(); this.runStep(0); }, 420);
+  }
+
+  componentDidMount(){
+    this.applyTheme();
+    this.resetPositions();
+    this.fit();
+    this._ro=new ResizeObserver(()=>this.fit());
+    if(this.stageRef.current) this._ro.observe(this.stageRef.current);
+    this._onResize=()=>this.fit(); window.addEventListener('resize',this._onResize);
+    if(this.props.autoStart!==false){
+      this.timer=setTimeout(()=>{ if(!this.playing){ this.playing=true; this.updateBtn(); this.runStep(0); } }, 1600);
+    }
+  }
+  componentDidUpdate(){
+    this.applyTheme();
+    if(this._needReset){ this._needReset=false; clearTimeout(this.timer); this.playing=false; this.resetPositions(); this.fit(); }
+  }
+  componentWillUnmount(){
+    clearTimeout(this.timer);
+    if(this._ro) this._ro.disconnect();
+    if(this._onResize) window.removeEventListener('resize',this._onResize);
+  }
+
+  renderVals(){
+    this.L=this.layoutFor('h');
+    const sig=[this.props.theme,this.props.flagStyle,this.props.tokenSize,this.props.flagBorder].join('|');
+    if(this._sig!==sig){ this._sig=sig; this._diagram=this.buildDiagram(); if(this._mounted) this._needReset=true; }
+    this._mounted=true;
+    return {
+      rootRef:this.rootRef, headerRef:this.headerRef, titleRef:this.titleRef, subRef:this.subRef,
+      stageRef:this.stageRef, canvasRef:this.canvasRef, playBtnRef:this.playBtnRef, replayBtnRef:this.replayBtnRef,
+      overlayRef:this.overlayRef, cardRef:this.cardRef, champKickerRef:this.champKickerRef, dividerRef:this.dividerRef, dismissBtnRef:this.dismissBtnRef, viceLabelRef:this.viceLabelRef,
+      champFlagRef:this.champFlagRef, champNameRef:this.champNameRef, viceFlagRef:this.viceFlagRef, viceNameRef:this.viceNameRef,
+      diagram:this._diagram,
+      play:()=>this.play(), replay:()=>this.replay(), dismiss:()=>this.dismiss()
+    };
+  }
+}
+</script>
+</body>
+</html>

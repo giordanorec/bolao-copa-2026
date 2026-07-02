@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caminho até a Glória — Chaveamento animado</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{background:#05070c;font-family:system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
+  @keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 6px rgba(150,190,255,.4));}50%{filter:drop-shadow(0 0 18px rgba(150,190,255,.85));}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="width:100%;height:100vh;display:flex;flex-direction:column;background:radial-gradient(120% 90% at 50% -10%, #1a2436 0%, #0a0e16 55%, #05070c 100%);color:#eef1f6;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;">
+  <header ref="{{ headerRef }}" style="flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 22px;border-bottom:1px solid rgba(180,200,230,.12);flex-wrap:wrap;z-index:10;">
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div ref="{{ titleRef }}" style="font-weight:600;font-size:25px;line-height:1;letter-spacing:-.01em;color:#ffffff;">Caminho até a Glória</div>
+      <div ref="{{ subRef }}" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(235,240,248,.5);font-weight:600;">Bola de Cristal · Consenso das IAs · Copa 2026</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button ref="{{ playBtnRef }}" onClick="{{ play }}" style="font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;background:linear-gradient(180deg,#4da3ff,#2b7fff);border:none;padding:10px 22px;border-radius:999px;cursor:pointer;box-shadow:0 4px 16px rgba(43,127,255,.35);">Iniciar</button>
+      <button ref="{{ replayBtnRef }}" onClick="{{ replay }}" style="font-size:13px;font-weight:600;letter-spacing:.02em;color:#eaf0fb;background:transparent;border:1px solid rgba(255,255,255,.2);padding:10px 18px;border-radius:999px;cursor:pointer;">Reiniciar</button>
+    </div>
+  </header>
+  <div ref="{{ stageRef }}" style="position:relative;flex:1 1 auto;overflow:hidden;">
+    <div ref="{{ overlayRef }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .7s;z-index:20;background:radial-gradient(80% 80% at 50% 40%, rgba(10,14,22,.82) 0%, rgba(5,7,12,.96) 70%);backdrop-filter:blur(6px);">
+      <div ref="{{ cardRef }}" style="width:min(560px,92%);display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;padding:32px 30px;border-radius:22px;background:rgba(20,26,36,.6);border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.6);">
+        <div ref="{{ champKickerRef }}" style="font-size:12px;letter-spacing:.4em;text-transform:uppercase;font-weight:700;color:#9cc0ff;padding-left:.4em;">Campeão Mundial</div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:16px;">
+          <div ref="{{ champFlagRef }}" style="width:52px;height:52px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 3px 10px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.16);"></div>
+          <div ref="{{ champNameRef }}" style="font-weight:600;font-size:48px;line-height:1;letter-spacing:-.02em;color:#ffffff;">—</div>
+        </div>
+        <div ref="{{ dividerRef }}" style="width:62%;height:1px;background:rgba(255,255,255,.16);margin:2px 0;"></div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:14px;opacity:.94;">
+          <div ref="{{ viceLabelRef }}" style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:rgba(200,220,255,.6);writing-mode:vertical-rl;transform:rotate(180deg);">Vice</div>
+          <div ref="{{ viceFlagRef }}" style="width:34px;height:34px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 2px 7px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.14);"></div>
+          <div ref="{{ viceNameRef }}" style="font-weight:600;font-size:24px;line-height:1;letter-spacing:-.01em;color:#dfe7f5;">—</div>
+        </div>
+        <button ref="{{ dismissBtnRef }}" onClick="{{ dismiss }}" style="margin-top:6px;font-size:12px;font-weight:600;letter-spacing:.04em;color:#eaf0fb;background:transparent;border:1px solid rgba(255,255,255,.2);padding:9px 20px;border-radius:999px;cursor:pointer;">Ver chaveamento</button>
+      </div>
+    </div>
+
+    <div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:1600px;height:940px;transform-origin:top left;">
+      {{ diagram }}
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":"100%","height":"100%"},"theme":{"editor":"enum","options":["Vanguarda","Nocturne","Atelier","Estádio","Bauhaus"],"default":"Vanguarda","tsType":"string"},"flagStyle":{"editor":"enum","options":["Bandeira circular","Bandeira quadrada","Bola + emoji"],"default":"Bandeira circular","tsType":"string"},"tokenSize":{"editor":"range","default":56,"min":34,"max":78,"step":2,"unit":"px","tsType":"number"},"flagBorder":{"editor":"boolean","default":false,"tsType":"boolean"},"speed":{"editor":"range","default":0.9,"min":0.5,"max":2,"step":0.1,"unit":"x","tsType":"number"},"autoStart":{"editor":"boolean","default":true,"tsType":"boolean"}}'>
+const SYS='system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
+const THEMES={
+  'Vanguarda':{
+    bg:'radial-gradient(120% 90% at 50% -10%, #1a2436 0%, #0a0e16 55%, #05070c 100%)',
+    scrim:'radial-gradient(80% 80% at 50% 40%, rgba(10,14,22,.82), rgba(5,7,12,.96))', blur:'blur(8px)',
+    fontDisplay:SYS, fontUI:SYS, labelFont:SYS, headFont:SYS,
+    accent:'#eef1f6', accentStrong:'#ffffff', sub:'rgba(235,240,248,.5)', champText:'#ffffff',
+    railDim:'rgba(180,205,240,.14)', railHot:'rgba(120,170,255,.95)', railW:1.6, railHotW:2.8, cap:'round', join:'round',
+    ring:'rgba(150,190,255,.9)', tokenBg:'radial-gradient(circle at 35% 28%, #2a3547, #0c111a)',
+    nodeShadow:'0 5px 18px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.1)', nodeShadowHot:'0 0 30px 8px rgba(120,170,255,.55), inset 0 1px 3px rgba(255,255,255,.14)',
+    labelColor:'rgba(222,230,242,.8)', labelWeight:600, labelTransform:'none', labelSpacing:'.01em', labelShadow:'0 1px 3px rgba(0,0,0,.8)',
+    headFill:'rgba(200,215,240,.44)', headStrong:'#eaf0fb', headWeight:600, headSpacing:'3', headTransform:'uppercase', headSize:12.5,
+    goldStops:['#eef4ff','#c3d2e8','#8ea4c4'], trophyStroke:'#dbe6f7', trophyAccent:'#bcd0ee',
+    btnBg:'linear-gradient(180deg,#4da3ff,#2b7fff)', btnColor:'#ffffff', btnShadow:'0 4px 16px rgba(43,127,255,.35)', line:'rgba(255,255,255,.2)', slotLine:'rgba(160,190,240,.4)',
+    cardBg:'rgba(20,26,36,.62)', cardBorder:'1px solid rgba(255,255,255,.12)', cardShadow:'0 30px 90px rgba(0,0,0,.6)', cardRadius:'22px'
+  }
+};
+// Mapeamento nome brasileiro -> ISO alpha-2 (compatível com hatscripts/circle-flags)
+const ISO={
+  'Argentina':'ar','Austrália':'au','Espanha':'es','Marrocos':'ma','Inglaterra':'gb-eng',
+  'Japão':'jp','Países Baixos':'nl','México':'mx','Brasil':'br','Coreia do Sul':'kr',
+  'Portugal':'pt','Suíça':'ch','Alemanha':'de','Equador':'ec','Uruguai':'uy','Gana':'gh',
+  'França':'fr','Senegal':'sn','Estados Unidos':'us','Canadá':'ca','Bélgica':'be','Nigéria':'ng',
+  'Croácia':'hr','Arábia Saudita':'sa','Itália':'it','Colômbia':'co','Dinamarca':'dk','Polônia':'pl',
+  'Sérvia':'rs','Costa do Marfim':'ci','Áustria':'at','Egito':'eg','Congo (RD)':'cd','África do Sul':'za',
+  'Paraguai':'py','Suécia':'se','Bósnia-Herzegovina':'ba','Cabo Verde':'cv','Argélia':'dz','Noruega':'no'
+};
+
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state={orient:'h'};
+    this.rootRef=React.createRef(); this.headerRef=React.createRef();
+    this.titleRef=React.createRef(); this.subRef=React.createRef();
+    this.stageRef=React.createRef(); this.canvasRef=React.createRef();
+    this.playBtnRef=React.createRef(); this.replayBtnRef=React.createRef();
+    this.trophyRef=React.createRef();
+    this.overlayRef=React.createRef(); this.cardRef=React.createRef();
+    this.champKickerRef=React.createRef(); this.dividerRef=React.createRef(); this.dismissBtnRef=React.createRef(); this.viceLabelRef=React.createRef();
+    this.champFlagRef=React.createRef(); this.champNameRef=React.createRef();
+    this.viceFlagRef=React.createRef(); this.viceNameRef=React.createRef();
+    this.nodes={}; this.inners={}; this.rails=[[],[],[],[],[]]; this.anims=[];
+    this.current={}; this.homePos={}; this._innerTf='scale(1,1)';
+    this.playing=false; this.timer=null; this.step=0;
+
+    // ========================================================================
+    // DADOS REAIS DA COPA 2026 — rodada Bola de Cristal 2026-07-02T15-30
+    // ========================================================================
+    // Ordem por par:
+    // LEFT: J74 Alemanha×Paraguai · J77 França×Suécia · J73 Áf.Sul×Canadá ·
+    //       J75 P.Baixos×Marrocos · J83 Portugal×Croácia · J84 Espanha×Áustria ·
+    //       J81 EUA×Bósnia · J82 Bélgica×Senegal
+    this.left=[
+      {c:'Alemanha',      n:'Alemanha'},        {c:'Paraguai',        n:'Paraguai'},
+      {c:'França',        n:'França'},          {c:'Suécia',          n:'Suécia'},
+      {c:'África do Sul', n:'África do Sul'},   {c:'Canadá',          n:'Canadá'},
+      {c:'Países Baixos', n:'Países Baixos'},   {c:'Marrocos',        n:'Marrocos'},
+      {c:'Portugal',      n:'Portugal'},        {c:'Croácia',         n:'Croácia'},
+      {c:'Espanha',       n:'Espanha'},         {c:'Áustria',         n:'Áustria'},
+      {c:'Estados Unidos',n:'Estados Unidos'},  {c:'Bósnia-Herzegovina', n:'Bósnia'},
+      {c:'Bélgica',       n:'Bélgica'},         {c:'Senegal',         n:'Senegal'}
+    ];
+    // RIGHT: J76 Brasil×Japão · J78 C.Marfim×Noruega · J79 México×Equador ·
+    //        J80 Inglaterra×Congo · J86 Argentina×CV · J88 Austrália×Egito ·
+    //        J85 Suíça×Argélia · J87 Colômbia×Gana
+    this.right=[
+      {c:'Brasil',           n:'Brasil'},        {c:'Japão',           n:'Japão'},
+      {c:'Costa do Marfim',  n:'C. Marfim'},     {c:'Noruega',         n:'Noruega'},
+      {c:'México',           n:'México'},        {c:'Equador',         n:'Equador'},
+      {c:'Inglaterra',       n:'Inglaterra'},    {c:'Congo (RD)',      n:'Congo RD'},
+      {c:'Argentina',        n:'Argentina'},     {c:'Cabo Verde',      n:'Cabo Verde'},
+      {c:'Austrália',        n:'Austrália'},     {c:'Egito',           n:'Egito'},
+      {c:'Suíça',            n:'Suíça'},         {c:'Argélia',         n:'Argélia'},
+      {c:'Colômbia',         n:'Colômbia'},      {c:'Gana',            n:'Gana'}
+    ];
+    // Winners por rodada, direção CONSENSO da Bola de Cristal (rodada 2026-07-02T15-30)
+    // Left side: R32→Oitavas→Quartas→Semi→Final(left slot)
+    this.winners={
+      left:{
+        r1:['Paraguai','França','Canadá','Marrocos','Portugal','Espanha','Estados Unidos','Bélgica'],
+        r2:['França','Marrocos','Espanha','Bélgica'],
+        r3:['França','Espanha'],
+        fin:['França']
+      },
+      right:{
+        r1:['Brasil','Noruega','México','Inglaterra','Argentina','Egito','Suíça','Colômbia'],
+        r2:['Brasil','Inglaterra','Argentina','Colômbia'],
+        r3:['Brasil','Argentina'],
+        fin:['Argentina']
+      }
+    };
+    this.champion='França';
+    // ========================================================================
+
+    this.byCode={};
+    [...this.left,...this.right].forEach(t=>this.byCode[t.c]=t);
+    this.L=this.layoutFor('h');
+  }
+
+  layoutFor(orient){
+    if(orient==='v'){
+      const W=900,H=1580,aStart=72,aEnd=42,aLen=W-aStart-aEnd;
+      return {orient,W,H,axis:'y',Cd:H/2,Doff:[668,478,300,150],Dfinal:36,
+        aStart,aLen,labelMode:'code',labelSize:10,headPlace:'gutter',headAlong:32};
+    }
+    const W=1600,H=940,aStart=48,aEnd=30,aLen=H-aStart-aEnd;
+    return {orient,W,H,axis:'x',Cd:W/2,Doff:[688,500,312,152],Dfinal:30,
+      aStart,aLen,labelMode:'name',labelSize:10,headPlace:'top',headAlong:26};
+  }
+
+  pal(){ return THEMES[this.props.theme] || THEMES['Vanguarda']; }
+  flagStyle(){ return this.props.flagStyle || 'Bandeira circular'; }
+  showBorder(){ return this.props.flagBorder===true; }
+  speed(){ return this.props.speed!=null?this.props.speed:1; }
+  circleFlag(code){ return 'https://hatscripts.github.io/circle-flags/flags/'+(ISO[code]||'xx')+'.svg'; }
+  flagPng(code){ return 'https://flagcdn.com/w320/'+(ISO[code]||'xx')+'.png'; }
+  tokSize(){ const base=this.props.tokenSize!=null?this.props.tokenSize:56; const cap=Math.floor(this.L.aLen/16*0.86); return Math.max(22,Math.min(base,cap)); }
+
+  sign(side){ return side==='left'?-1:1; }
+  depthOf(side,r){ return this.L.Cd + this.sign(side)*this.L.Doff[r]; }
+  finalDepthOf(side){ return this.L.Cd + this.sign(side)*this.L.Dfinal; }
+  alongOf(r,j){ const per=16/Math.pow(2,r); return this.L.aStart+(j+0.5)*this.L.aLen/per; }
+  alongCenter(){ return this.L.aStart+this.L.aLen/2; }
+  XY(depth,along){ return this.L.axis==='x' ? {x:depth,y:along} : {x:along,y:depth}; }
+  seedPt(side,r,j){ return this.XY(this.depthOf(side,r), this.alongOf(r,j)); }
+  finalPt(side){ return this.XY(this.finalDepthOf(side), this.alongCenter()); }
+  champPt(){ return this.XY(this.L.Cd, this.alongCenter()); }
+  toTranslate(pt){ const h=this.tokSize()/2; return `translate(${pt.x-h}px,${pt.y-h}px)`; }
+
+  nodeRadius(){
+    const p=this.pal(), size=this.tokSize(), fs=this.flagStyle();
+    if(p.square) return Math.round(size*0.14)+'px';
+    if(fs==='Bandeira quadrada') return Math.round(size*0.22)+'px';
+    return '50%';
+  }
+  setBaseStyle(code){
+    const p=this.pal(), n=this.nodes[code], iv=this.inners[code];
+    if(iv){ iv.style.border = this.showBorder() ? ('2px solid '+p.ring) : (p.square?('1.5px solid '+p.accentStrong):'none'); iv.style.boxShadow=p.nodeShadow; }
+    if(n){ n.style.opacity='1'; n.style.filter='none'; n.style.zIndex=3; }
+  }
+
+  buildTrophy(R){
+    const p=this.pal(), c=this.champPt(), size=this.tokSize();
+    const dx=c.x-800, dy=(c.y - size/2 - 92) - 130;
+    return R('g',{ref:this.trophyRef,transform:`translate(${dx},${dy})`,style:{opacity:.3,transition:'opacity .8s'}},
+      R('path',{d:'M772,86 L828,86 L824,122 Q800,144 776,122 Z',fill:'url(#goldgrad)',stroke:p.trophyStroke,strokeWidth:1.5}),
+      R('path',{d:'M773,92 q-21,0 -21,19 q0,13 17,16',fill:'none',stroke:p.trophyAccent,strokeWidth:3}),
+      R('path',{d:'M827,92 q21,0 21,19 q0,13 -17,16',fill:'none',stroke:p.trophyAccent,strokeWidth:3}),
+      R('rect',{x:794,y:142,width:12,height:18,fill:'url(#goldgrad)'}),
+      R('path',{d:'M781,160 L819,160 L825,175 L775,175 Z',fill:'url(#goldgrad)',stroke:p.trophyStroke,strokeWidth:1.5}),
+      R('circle',{cx:800,cy:105,r:5,fill:'#fff7da',opacity:.9})
+    );
+  }
+
+  buildDiagram(){
+    const R=React.createElement, p=this.pal(), L=this.L;
+    this.nodes={}; this.inners={}; this.rails=[[],[],[],[],[]];
+    const rails=[]; const sides=['left','right'];
+    const rp=(extra)=>Object.assign({fill:'none',stroke:p.railDim,strokeWidth:p.railW,strokeLinejoin:p.join,strokeLinecap:p.cap},extra);
+    const path4=(a,b,c,d)=>`${a.x},${a.y} ${b.x},${b.y} ${c.x},${c.y} ${d.x},${d.y}`;
+    for(let step=0;step<3;step++){
+      sides.forEach(side=>{
+        const r=step, r1=step+1, n1=16/Math.pow(2,r1);
+        const eD=(this.depthOf(side,r)+this.depthOf(side,r1))/2;
+        for(let j=0;j<n1;j++){
+          const child=this.seedPt(side,r1,j), cAlong=this.alongOf(r1,j);
+          [2*j,2*j+1].forEach(k=>{
+            const par=this.seedPt(side,r,k), pAlong=this.alongOf(r,k);
+            rails.push(R('polyline',rp({key:side+step+'-'+j+'-'+k, ref:el=>{if(el)this.rails[step].push(el);},
+              points:path4(par,this.XY(eD,pAlong),this.XY(eD,cAlong),child)})));
+          });
+        }
+      });
+    }
+    sides.forEach(side=>{
+      const eD=(this.depthOf(side,3)+this.finalDepthOf(side))/2, fin=this.finalPt(side), ac=this.alongCenter();
+      [0,1].forEach(k=>{
+        const par=this.seedPt(side,3,k), pAlong=this.alongOf(3,k);
+        rails.push(R('polyline',rp({key:side+'-fin-'+k, ref:el=>{if(el)this.rails[3].push(el);},
+          points:path4(par,this.XY(eD,pAlong),this.XY(eD,ac),fin)})));
+      });
+    });
+    sides.forEach(side=>{
+      const fin=this.finalPt(side), ch=this.champPt();
+      rails.push(R('polyline',rp({key:side+'-champ', ref:el=>{if(el)this.rails[4].push(el);},
+        points:`${fin.x},${fin.y} ${ch.x},${ch.y}`})));
+    });
+    const heads=['32-AVOS','OITAVAS','QUARTAS','SEMIFINAL'];
+    const headEls=[];
+    const mkHead=(key,txt,depth,strong)=>{
+      const pt=this.XY(depth, L.headAlong);
+      const rot=L.headPlace==='gutter'?`rotate(-90 ${pt.x} ${pt.y})`:'';
+      headEls.push(R('text',{key,x:pt.x,y:pt.y,transform:rot,textAnchor:'middle',dominantBaseline:'middle',
+        fill:strong?p.headStrong:p.headFill,fontSize:strong?p.headSize+1.5:p.headSize,fontWeight:p.headWeight,letterSpacing:p.headSpacing,
+        fontStyle:p.headItalic?'italic':'normal',fontFamily:p.headFont,style:{textTransform:p.headTransform}},
+        p.headTransform==='uppercase'?txt:txt.charAt(0)+txt.slice(1).toLowerCase()));
+    };
+    heads.forEach((h,r)=>{ sides.forEach(side=>mkHead('h'+side+r,h,this.depthOf(side,r),false)); });
+    mkHead('hf','FINAL',L.Cd,true);
+
+    const svg=R('svg',{key:'svg',width:L.W,height:L.H,viewBox:`0 0 ${L.W} ${L.H}`,style:{position:'absolute',left:0,top:0,overflow:'visible',zIndex:1}},
+      R('defs',null,
+        R('linearGradient',{id:'goldgrad',x1:'0',y1:'0',x2:'0',y2:'1'},
+          R('stop',{offset:'0%',stopColor:p.goldStops[0]}),R('stop',{offset:'52%',stopColor:p.goldStops[1]}),R('stop',{offset:'100%',stopColor:p.goldStops[2]}))
+      ),
+      ...rails, ...headEls, this.buildTrophy(R));
+
+    const size=this.tokSize(), fs=this.flagStyle(), radius=this.nodeRadius();
+    const border=this.showBorder()?('2px solid '+p.ring):(p.square?('1.5px solid '+p.accentStrong):'none');
+    const tokens=[];
+    const mk=(side,arr)=>arr.forEach((t,j)=>{
+      const pt=this.seedPt(side,0,j);
+      this.homePos[t.c]={x:pt.x,y:pt.y}; this.current[t.c]={x:pt.x,y:pt.y};
+      const vis={position:'relative',width:size+'px',height:size+'px',borderRadius:radius,
+        display:'flex',alignItems:'center',justifyContent:'center',border,boxShadow:p.nodeShadow,overflow:'visible',
+        transform:this._innerTf,transformOrigin:'center center',transition:'box-shadow .4s, border-color .4s'};
+      vis.backgroundColor=p.light?'#fff':'#0b1018';
+      vis.backgroundImage=`url(${this.circleFlag(t.c)})`;
+      vis.backgroundSize='cover'; vis.backgroundPosition='center';
+      const txt=L.labelMode==='code'?t.c:t.n;
+      const label=R('div',{style:{position:'absolute',top:(size+4)+'px',left:(size/2-50)+'px',width:'100px',textAlign:'center',fontSize:L.labelSize+'px',fontWeight:p.labelWeight,letterSpacing:p.labelSpacing,lineHeight:1.05,color:p.labelColor,textTransform:p.labelTransform,textShadow:p.labelShadow,fontFamily:p.labelFont,pointerEvents:'none'}},txt);
+      const inner=React.createElement('div',{ref:el=>{if(el)this.inners[t.c]=el;}, style:vis}, label);
+      const outer={position:'absolute',left:0,top:0,width:size+'px',height:size+'px',
+        transform:this.toTranslate(pt),transition:'opacity .5s, filter .5s',zIndex:3};
+      tokens.push(R('div',{key:t.c, ref:el=>{if(el)this.nodes[t.c]=el;}, style:outer}, inner));
+    });
+    mk('left',this.left); mk('right',this.right);
+    return R('div',{style:{position:'relative',width:L.W+'px',height:L.H+'px'}}, svg, ...tokens);
+  }
+
+  applyTheme(){
+    const p=this.pal();
+    if(this.rootRef.current){ this.rootRef.current.style.background=p.bg; this.rootRef.current.style.color=p.accent; this.rootRef.current.style.fontFamily=p.fontUI; }
+    if(this.headerRef.current) this.headerRef.current.style.borderBottom='1px solid '+p.line;
+    if(this.titleRef.current){ this.titleRef.current.style.color=p.accentStrong; this.titleRef.current.style.fontFamily=p.fontDisplay; this.titleRef.current.style.fontWeight=(p.fontDisplay.indexOf('Anton')>=0||p.fontDisplay.indexOf('Playfair')>=0)?'700':'600'; }
+    if(this.subRef.current){ this.subRef.current.style.color=p.sub; this.subRef.current.style.fontFamily=p.fontUI; }
+    if(this.playBtnRef.current){ this.playBtnRef.current.style.background=p.btnBg; this.playBtnRef.current.style.color=p.btnColor; this.playBtnRef.current.style.boxShadow=p.btnShadow; this.playBtnRef.current.style.fontFamily=p.fontUI; this.playBtnRef.current.style.borderRadius=p.square?'0':'999px'; }
+    if(this.replayBtnRef.current){ this.replayBtnRef.current.style.color=p.accent; this.replayBtnRef.current.style.border='1px solid '+p.line; this.replayBtnRef.current.style.fontFamily=p.fontUI; this.replayBtnRef.current.style.borderRadius=p.square?'0':'999px'; }
+    if(this.overlayRef.current){ this.overlayRef.current.style.background=p.scrim; this.overlayRef.current.style.backdropFilter=p.blur; }
+    if(this.cardRef.current){ this.cardRef.current.style.background=p.cardBg; this.cardRef.current.style.border=p.cardBorder; this.cardRef.current.style.boxShadow=p.cardShadow; this.cardRef.current.style.borderRadius=p.cardRadius; }
+    if(this.champKickerRef.current){ this.champKickerRef.current.style.color=p.railHot; this.champKickerRef.current.style.fontFamily=p.fontUI; }
+    if(this.dividerRef.current) this.dividerRef.current.style.background=p.line;
+    if(this.viceLabelRef.current) this.viceLabelRef.current.style.color=p.sub;
+    if(this.dismissBtnRef.current){ this.dismissBtnRef.current.style.color=p.accent; this.dismissBtnRef.current.style.border='1px solid '+p.line; this.dismissBtnRef.current.style.fontFamily=p.fontUI; this.dismissBtnRef.current.style.borderRadius=p.square?'0':'999px'; }
+    if(this.champNameRef.current){ this.champNameRef.current.style.color=p.champText; this.champNameRef.current.style.fontFamily=p.fontDisplay; }
+    if(this.viceNameRef.current){ this.viceNameRef.current.style.color=p.accent; this.viceNameRef.current.style.fontFamily=p.fontDisplay; }
+  }
+
+  fit(){
+    const stage=this.stageRef.current, canvas=this.canvasRef.current;
+    if(!stage||!canvas) return;
+    const sw=stage.clientWidth, sh=stage.clientHeight;
+    if(!sw||!sh) return;
+    canvas.style.width=this.L.W+'px'; canvas.style.height=this.L.H+'px';
+    const sx=sw/this.L.W, sy=sh/this.L.H;
+    canvas.style.transformOrigin='top left';
+    canvas.style.transform=`scale(${sx},${sy})`;
+    this._innerTf=`scale(${1/sx},${1/sy})`;
+    Object.keys(this.inners).forEach(c=>{ const iv=this.inners[c]; if(iv) iv.style.transform=this._innerTf; });
+    const card=this.cardRef.current;
+    if(card){ card.style.transform='none'; const cw=card.offsetWidth, ch=card.offsetHeight; const cs=Math.min(1,(sw-40)/cw,(sh-32)/ch); card.style.transform='scale('+cs+')'; card.style.transformOrigin='center center'; }
+  }
+
+  hideOverlay(){ if(this.overlayRef.current){ this.overlayRef.current.style.opacity='0'; this.overlayRef.current.style.pointerEvents='none'; } }
+  dismiss(){ this.hideOverlay(); }
+
+  resetPositions(){
+    this.anims.forEach(a=>{try{a.cancel();}catch(e){}}); this.anims=[];
+    const p=this.pal();
+    Object.keys(this.nodes).forEach(c=>{
+      const n=this.nodes[c], h=this.homePos[c];
+      n.style.transform=this.toTranslate(h);
+      this.setBaseStyle(c);
+      this.current[c]={x:h.x,y:h.y};
+    });
+    this.active=new Set([...this.left,...this.right].map(t=>t.c));
+    this.step=0;
+    if(this.trophyRef.current){ this.trophyRef.current.style.opacity='0.3'; this.trophyRef.current.style.animation=''; }
+    this.hideOverlay();
+    this.rails.forEach(b=>b.forEach(pl=>{pl.style.stroke=p.railDim;pl.style.strokeWidth=p.railW;}));
+    this.updateBtn();
+  }
+
+  corners(from,to){
+    if(this.L.axis==='x') return [{x:(from.x+to.x)/2,y:from.y},{x:(from.x+to.x)/2,y:to.y}];
+    return [{x:from.x,y:(from.y+to.y)/2},{x:to.x,y:(from.y+to.y)/2}];
+  }
+  stepTargets(step){
+    const moves=[]; const na=new Set();
+    const push=(code,to)=>{ na.add(code); const from=this.current[code]; const [c1,c2]=this.corners(from,to); moves.push({code,from:{x:from.x,y:from.y},c1,c2,to}); };
+    if(step<3){
+      const dest=['r1','r2','r3'][step];
+      ['left','right'].forEach(side=>{ this.winners[side][dest].forEach((code,j)=>push(code,this.seedPt(side,step+1,j))); });
+    } else if(step===3){
+      ['left','right'].forEach(side=>push(this.winners[side].fin[0], this.finalPt(side)));
+    } else {
+      push(this.champion, this.champPt());
+    }
+    return {moves,newActive:na};
+  }
+
+  runStep(step){
+    if(step>=5){ this.finish(); return; }
+    const sp=this.speed(), p=this.pal();
+    const {moves,newActive}=this.stepTargets(step);
+    this.active.forEach(c=>{ if(!newActive.has(c)){ const n=this.nodes[c]; if(n){ n.style.opacity='.8'; n.style.filter='saturate(.9)'; } } });
+    (this.rails[step]||[]).forEach(pl=>{ pl.style.stroke=p.railHot; pl.style.strokeWidth=p.railHotW; });
+    let maxEnd=0;
+    const tr=(pt)=>this.toTranslate(pt);
+    moves.forEach((m,i)=>{
+      const n=this.nodes[m.code]; if(!n) return;
+      const delay=i*(70/sp), dur=1050/sp;
+      n.style.zIndex=6;
+      const a=n.animate([
+        {transform:tr(m.from)},
+        {transform:tr(m.c1),offset:.42},
+        {transform:tr(m.c2),offset:.62},
+        {transform:tr(m.to)}
+      ],{duration:dur,delay,easing:'cubic-bezier(.55,.06,.25,1)',fill:'forwards'});
+      this.anims.push(a);
+      a.onfinish=()=>{ n.style.transform=tr(m.to); };
+      this.current[m.code]={x:m.to.x,y:m.to.y};
+      maxEnd=Math.max(maxEnd,delay+dur);
+    });
+    this.active=newActive;
+    this.step=step+1;
+    this.timer=setTimeout(()=>{ if(this.playing) this.runStep(this.step); }, maxEnd+700/sp);
+  }
+
+  finish(){
+    this.playing=false; this.updateBtn();
+    const p=this.pal();
+    const n=this.nodes[this.champion];
+    if(n){
+      const base=this.toTranslate(this.champPt());
+      n.style.zIndex=9;
+      const a=n.animate([{transform:base+' scale(1)'},{transform:base+' scale(1.5)'}],{duration:700,fill:'forwards',easing:'cubic-bezier(.34,1.56,.64,1)'});
+      this.anims.push(a);
+      const iv=this.inners[this.champion];
+      if(iv){ iv.style.border='2px solid '+p.ring; iv.style.boxShadow=p.nodeShadowHot; }
+    }
+    if(this.trophyRef.current){ this.trophyRef.current.style.opacity='1'; this.trophyRef.current.style.animation='glowPulse 2.4s ease-in-out infinite'; }
+    const finalists=[this.winners.left.fin[0], this.winners.right.fin[0]];
+    const vice=finalists.find(c=>c!==this.champion) || finalists[1];
+    if(this.champFlagRef.current) this.champFlagRef.current.style.backgroundImage='url('+this.circleFlag(this.champion)+')';
+    if(this.champNameRef.current) this.champNameRef.current.textContent=(this.byCode[this.champion]||{}).n||'';
+    if(vice&&this.viceFlagRef.current) this.viceFlagRef.current.style.backgroundImage='url('+this.circleFlag(vice)+')';
+    if(vice&&this.viceNameRef.current) this.viceNameRef.current.textContent=(this.byCode[vice]||{}).n||'';
+    this.fit();
+    setTimeout(()=>{ if(this.overlayRef.current){ this.overlayRef.current.style.opacity='1'; this.overlayRef.current.style.pointerEvents='auto'; } }, 900);
+  }
+
+  updateBtn(){
+    if(!this.playBtnRef.current) return;
+    this.playBtnRef.current.textContent = this.playing ? 'Pausar' : (this.step>=5 ? 'Ver de novo' : (this.step>0 ? 'Continuar' : 'Iniciar'));
+  }
+
+  play(){
+    if(this.playing){ this.playing=false; clearTimeout(this.timer); this.updateBtn(); return; }
+    if(this.step>=5){ this.replay(); return; }
+    this.hideOverlay();
+    this.playing=true; this.updateBtn(); this.runStep(this.step);
+  }
+  replay(){
+    this.playing=false; clearTimeout(this.timer);
+    this.resetPositions();
+    setTimeout(()=>{ this.playing=true; this.updateBtn(); this.runStep(0); }, 420);
+  }
+
+  componentDidMount(){
+    this.applyTheme();
+    this.resetPositions();
+    this.fit();
+    this._ro=new ResizeObserver(()=>this.fit());
+    if(this.stageRef.current) this._ro.observe(this.stageRef.current);
+    this._onResize=()=>this.fit(); window.addEventListener('resize',this._onResize);
+    if(this.props.autoStart!==false){
+      this.timer=setTimeout(()=>{ if(!this.playing){ this.playing=true; this.updateBtn(); this.runStep(0); } }, 1600);
+    }
+  }
+  componentDidUpdate(){
+    this.applyTheme();
+    if(this._needReset){ this._needReset=false; clearTimeout(this.timer); this.playing=false; this.resetPositions(); this.fit(); }
+  }
+  componentWillUnmount(){
+    clearTimeout(this.timer);
+    if(this._ro) this._ro.disconnect();
+    if(this._onResize) window.removeEventListener('resize',this._onResize);
+  }
+
+  renderVals(){
+    this.L=this.layoutFor('h');
+    const sig=[this.props.theme,this.props.flagStyle,this.props.tokenSize,this.props.flagBorder].join('|');
+    if(this._sig!==sig){ this._sig=sig; this._diagram=this.buildDiagram(); if(this._mounted) this._needReset=true; }
+    this._mounted=true;
+    return {
+      rootRef:this.rootRef, headerRef:this.headerRef, titleRef:this.titleRef, subRef:this.subRef,
+      stageRef:this.stageRef, canvasRef:this.canvasRef, playBtnRef:this.playBtnRef, replayBtnRef:this.replayBtnRef,
+      overlayRef:this.overlayRef, cardRef:this.cardRef, champKickerRef:this.champKickerRef, dividerRef:this.dividerRef, dismissBtnRef:this.dismissBtnRef, viceLabelRef:this.viceLabelRef,
+      champFlagRef:this.champFlagRef, champNameRef:this.champNameRef, viceFlagRef:this.viceFlagRef, viceNameRef:this.viceNameRef,
+      diagram:this._diagram,
+      play:()=>this.play(), replay:()=>this.replay(), dismiss:()=>this.dismiss()
+    };
+  }
+}
+</script>
+</body>
+</html>
