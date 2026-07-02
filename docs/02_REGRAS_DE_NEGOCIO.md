@@ -14,7 +14,7 @@ Cada palpite vale pontos conforme o acerto:
 
 **Multiplicador**: jogos de **mata-mata** (R32, Oitavas, Quartas, Semifinal, 3º lugar, Final) valem **2×** a pontuação acima. Fase de grupos vale 1×.
 
-Vale o resultado do **tempo regulamentar (90 min)** — prorrogação e pênaltis são ignorados para fins de placar do palpite. Vencedor por penalty shootout em mata-mata: o palpite só pontua se cravou empate no regulamentar; a IA que classificou para a próxima fase é apurada por separado para fins de "vencedor" do mata-mata.
+Vale o **placar oficial da FIFA ao final da partida**: inclui prorrogação, exclui a disputa de pênaltis. Se o jogo foi decidido nos pênaltis, registra-se o placar do final da prorrogação (ou do regulamentar, se não houve prorrogação — ex.: J74 Alemanha 1×1 Paraguai, 1-1 no regulamentar e sem gols na prorrogação, Paraguai venceu 4×3 nos pênaltis → registrado 1-1). Se o jogo foi decidido dentro da prorrogação, vale o placar final da prorrogação (ex.: J82 Bélgica 3×2 Senegal, 2-2 no regulamentar, pênalti do Tielemans no 120' → registrado 3-2). A IA que se classificou para a próxima fase pode ser apurada em separado para fins de "vencedor" do mata-mata, mas não afeta a pontuação de placar.
 
 ## Regras de leitura de palpites
 
@@ -28,7 +28,7 @@ Vale o resultado do **tempo regulamentar (90 min)** — prorrogação e pênalti
 
 - Resultado é entrado em `data/resultados/jogos.md` (mesmo formato da tabela), preenchendo `Gols A` e `Gols B`.
 - Edição manual pelo Giordano, ou via MCP de futebol no futuro.
-- Resultado de mata-mata: registrar placar do tempo regulamentar. Adicionalmente, anotar quem se classificou em comentário lateral (formato: `<!-- classificado: Brasil (pen 4x3) -->`).
+- Resultado de mata-mata: registrar placar oficial da FIFA (regulamentar + prorrogação, sem pênaltis). Se decidido nos pênaltis, opcionalmente anotar quem se classificou em comentário lateral (formato: `<!-- classificado: Brasil (pen 4x3) -->`).
 
 ## Invariantes (obrigatórias)
 
