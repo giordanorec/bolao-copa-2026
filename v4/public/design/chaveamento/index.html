@@ -22,31 +22,31 @@
 </style>
 </helmet>
 <div ref="{{ rootRef }}" style="width:100%;height:100vh;display:flex;flex-direction:column;background:radial-gradient(120% 90% at 50% -10%, #1a2436 0%, #0a0e16 55%, #05070c 100%);color:#eef1f6;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;">
-  <header ref="{{ headerRef }}" style="flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 22px;border-bottom:1px solid rgba(180,200,230,.12);flex-wrap:wrap;z-index:10;">
-    <div style="display:flex;flex-direction:column;gap:4px;">
-      <div ref="{{ titleRef }}" style="font-weight:600;font-size:25px;line-height:1;letter-spacing:-.01em;color:#ffffff;">Caminho até a Glória</div>
-      <div ref="{{ subRef }}" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(235,240,248,.5);font-weight:600;">Bola de Cristal · Consenso das IAs · Copa 2026</div>
+  <header ref="{{ headerRef }}" style="flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 20px;border-bottom:1px solid rgba(180,200,230,.12);flex-wrap:wrap;z-index:10;">
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <div ref="{{ titleRef }}" style="font-weight:600;font-size:18px;line-height:1;letter-spacing:-.01em;color:#ffffff;">Caminho até a Glória</div>
+      <div ref="{{ subRef }}" style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(235,240,248,.5);font-weight:600;">Bola de Cristal · Consenso das IAs · Copa 2026</div>
     </div>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <button ref="{{ playBtnRef }}" onClick="{{ play }}" style="font-size:13px;font-weight:600;letter-spacing:.02em;color:#fff;background:linear-gradient(180deg,#4da3ff,#2b7fff);border:none;padding:10px 22px;border-radius:999px;cursor:pointer;box-shadow:0 4px 16px rgba(43,127,255,.35);">Iniciar</button>
-      <button ref="{{ replayBtnRef }}" onClick="{{ replay }}" style="font-size:13px;font-weight:600;letter-spacing:.02em;color:#eaf0fb;background:transparent;border:1px solid rgba(255,255,255,.2);padding:10px 18px;border-radius:999px;cursor:pointer;">Reiniciar</button>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button ref="{{ playBtnRef }}" onClick="{{ play }}" style="font-size:12px;font-weight:600;letter-spacing:.02em;color:#fff;background:linear-gradient(180deg,#4da3ff,#2b7fff);border:none;padding:7px 18px;border-radius:999px;cursor:pointer;box-shadow:0 4px 16px rgba(43,127,255,.35);">Iniciar</button>
+      <button ref="{{ replayBtnRef }}" onClick="{{ replay }}" style="font-size:12px;font-weight:600;letter-spacing:.02em;color:#eaf0fb;background:transparent;border:1px solid rgba(255,255,255,.2);padding:7px 14px;border-radius:999px;cursor:pointer;">Reiniciar</button>
     </div>
   </header>
   <div ref="{{ stageRef }}" style="position:relative;flex:1 1 auto;overflow:hidden;">
     <div ref="{{ overlayRef }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .7s;z-index:20;background:radial-gradient(80% 80% at 50% 40%, rgba(10,14,22,.82) 0%, rgba(5,7,12,.96) 70%);backdrop-filter:blur(6px);">
-      <div ref="{{ cardRef }}" style="width:min(560px,92%);display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;padding:32px 30px;border-radius:22px;background:rgba(20,26,36,.6);border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.6);">
-        <div ref="{{ champKickerRef }}" style="font-size:12px;letter-spacing:.4em;text-transform:uppercase;font-weight:700;color:#9cc0ff;padding-left:.4em;">Campeão Mundial</div>
-        <div style="display:flex;align-items:center;justify-content:center;gap:16px;">
-          <div ref="{{ champFlagRef }}" style="width:52px;height:52px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 3px 10px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.16);"></div>
-          <div ref="{{ champNameRef }}" style="font-weight:600;font-size:48px;line-height:1;letter-spacing:-.02em;color:#ffffff;">—</div>
+      <div ref="{{ cardRef }}" style="width:min(500px,92%);display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:26px 26px;border-radius:22px;background:rgba(20,26,36,.6);border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.6);">
+        <div ref="{{ champKickerRef }}" style="font-size:11px;letter-spacing:.4em;text-transform:uppercase;font-weight:700;color:#9cc0ff;padding-left:.4em;">Campeão Mundial</div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:14px;">
+          <div ref="{{ champFlagRef }}" style="width:48px;height:48px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 3px 10px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.16);"></div>
+          <div ref="{{ champNameRef }}" style="font-weight:600;font-size:38px;line-height:1;letter-spacing:-.02em;color:#ffffff;">—</div>
         </div>
-        <div ref="{{ dividerRef }}" style="width:62%;height:1px;background:rgba(255,255,255,.16);margin:2px 0;"></div>
-        <div style="display:flex;align-items:center;justify-content:center;gap:14px;opacity:.94;">
-          <div ref="{{ viceLabelRef }}" style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:rgba(200,220,255,.6);writing-mode:vertical-rl;transform:rotate(180deg);">Vice</div>
-          <div ref="{{ viceFlagRef }}" style="width:34px;height:34px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 2px 7px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.14);"></div>
-          <div ref="{{ viceNameRef }}" style="font-weight:600;font-size:24px;line-height:1;letter-spacing:-.01em;color:#dfe7f5;">—</div>
+        <div ref="{{ dividerRef }}" style="width:62%;height:1px;background:rgba(255,255,255,.16);margin:6px 0;"></div>
+        <div ref="{{ viceLabelRef }}" style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:rgba(200,220,255,.6);">Vice-Campeão</div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;opacity:.94;">
+          <div ref="{{ viceFlagRef }}" style="width:36px;height:36px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 2px 7px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.14);"></div>
+          <div ref="{{ viceNameRef }}" style="font-weight:600;font-size:22px;line-height:1;letter-spacing:-.01em;color:#dfe7f5;">—</div>
         </div>
-        <button ref="{{ dismissBtnRef }}" onClick="{{ dismiss }}" style="margin-top:6px;font-size:12px;font-weight:600;letter-spacing:.04em;color:#eaf0fb;background:transparent;border:1px solid rgba(255,255,255,.2);padding:9px 20px;border-radius:999px;cursor:pointer;">Ver chaveamento</button>
+        <button ref="{{ dismissBtnRef }}" onClick="{{ dismiss }}" style="margin-top:8px;font-size:12px;font-weight:600;letter-spacing:.04em;color:#eaf0fb;background:transparent;border:1px solid rgba(255,255,255,.2);padding:8px 18px;border-radius:999px;cursor:pointer;">Ver chaveamento</button>
       </div>
     </div>
 
@@ -150,6 +150,50 @@ class Component extends DCLogic {
       }
     };
     this.champion='França';
+
+    // Ordem CRONOLÓGICA em que cada avanço deve ser animado por fase.
+    // Referência para R32: datas dos jogos J73-J88 em data/resultados/jogos.md
+    // + data/jogos.md (fixture). Cada item = índice j do winner na fase.
+    this.order = {
+      0: [ // R32 → Oitavas (16 avanços; J73 Sun 28/06 é o primeiro)
+        {side:'left',  j:2}, // J73 Canadá     - Dom 28/06 16h
+        {side:'right', j:0}, // J76 Brasil     - Seg 29/06 14h
+        {side:'left',  j:0}, // J74 Paraguai   - Seg 29/06 17h30
+        {side:'left',  j:3}, // J75 Marrocos   - Seg 29/06 22h
+        {side:'right', j:1}, // J78 Noruega    - Ter 30/06 14h
+        {side:'left',  j:1}, // J77 França     - Ter 30/06 18h
+        {side:'right', j:2}, // J79 México     - Ter 30/06 22h
+        {side:'right', j:3}, // J80 Inglaterra - Qua 01/07 13h
+        {side:'left',  j:7}, // J82 Bélgica    - Qua 01/07 17h
+        {side:'left',  j:6}, // J81 EUA        - Qua 01/07 21h
+        {side:'right', j:6}, // J85 Suíça      - Sex 03/07 00h (predição)
+        {side:'left',  j:5}, // J84 Espanha    - Qui 02/07 16h (predição)
+        {side:'left',  j:4}, // J83 Portugal   - Qui 02/07 20h (predição)
+        {side:'right', j:5}, // J88 Egito      - Sex 03/07 15h (predição)
+        {side:'right', j:4}, // J86 Argentina  - Sex 03/07 19h (predição)
+        {side:'right', j:7}, // J87 Colômbia   - Sex 03/07 22h30 (predição)
+      ],
+      1: [ // Oitavas → Quartas (8 avanços) — ordem por número do jogo (J89..J96)
+        {side:'left',  j:0}, // J89
+        {side:'left',  j:1}, // J90
+        {side:'right', j:0}, // J91
+        {side:'right', j:1}, // J92
+        {side:'left',  j:2}, // J93
+        {side:'left',  j:3}, // J94
+        {side:'right', j:2}, // J95
+        {side:'right', j:3}, // J96
+      ],
+      2: [ // Quartas → Semi (4)
+        {side:'left',  j:0}, // J97
+        {side:'left',  j:1}, // J98
+        {side:'right', j:0}, // J99
+        {side:'right', j:1}, // J100
+      ],
+      3: [ // Semi → Final (2)
+        {side:'left',  j:0}, // J101
+        {side:'right', j:0}, // J102
+      ],
+    };
     // ========================================================================
 
     this.byCode={};
@@ -245,7 +289,7 @@ class Component extends DCLogic {
       rails.push(R('polyline',rp({key:side+'-champ', ref:el=>{if(el)this.rails[4].push(el);},
         points:`${fin.x},${fin.y} ${ch.x},${ch.y}`})));
     });
-    const heads=['32-AVOS','OITAVAS','QUARTAS','SEMIFINAL'];
+    const heads=['16-AVOS','OITAVAS','QUARTAS','SEMIFINAL'];
     const headEls=[];
     const mkHead=(key,txt,depth,strong)=>{
       const pt=this.XY(depth, L.headAlong);
@@ -349,10 +393,17 @@ class Component extends DCLogic {
     const moves=[]; const na=new Set();
     const push=(code,to)=>{ na.add(code); const from=this.current[code]; const [c1,c2]=this.corners(from,to); moves.push({code,from:{x:from.x,y:from.y},c1,c2,to}); };
     if(step<3){
+      // Usa this.order[step] pra iterar na ORDEM cronológica dos jogos
       const dest=['r1','r2','r3'][step];
-      ['left','right'].forEach(side=>{ this.winners[side][dest].forEach((code,j)=>push(code,this.seedPt(side,step+1,j))); });
+      const seq = this.order[step] || [];
+      seq.forEach(({side, j})=>{
+        const code = this.winners[side][dest][j];
+        if(code) push(code, this.seedPt(side, step+1, j));
+      });
     } else if(step===3){
-      ['left','right'].forEach(side=>push(this.winners[side].fin[0], this.finalPt(side)));
+      // Semi → Final: esquerdo primeiro (J101), depois direito (J102)
+      const seq = this.order[3] || [{side:'left',j:0},{side:'right',j:0}];
+      seq.forEach(({side})=>push(this.winners[side].fin[0], this.finalPt(side)));
     } else {
       push(this.champion, this.champPt());
     }
@@ -364,12 +415,22 @@ class Component extends DCLogic {
     const sp=this.speed(), p=this.pal();
     const {moves,newActive}=this.stepTargets(step);
     this.active.forEach(c=>{ if(!newActive.has(c)){ const n=this.nodes[c]; if(n){ n.style.opacity='.8'; n.style.filter='saturate(.9)'; } } });
-    (this.rails[step]||[]).forEach(pl=>{ pl.style.stroke=p.railHot; pl.style.strokeWidth=p.railHotW; });
+    // Animação SEQUENCIAL: um por vez. dur curto (600ms) e delay = i*perMove
+    // pra cada movimento começar quando o anterior está terminando.
+    const dur = Math.max(400, 700/sp);
+    const perMove = dur + 60; // gap curto entre um e outro
     let maxEnd=0;
     const tr=(pt)=>this.toTranslate(pt);
     moves.forEach((m,i)=>{
       const n=this.nodes[m.code]; if(!n) return;
-      const delay=i*(70/sp), dur=1050/sp;
+      const delay = i * perMove;
+      // Rail correspondente acende quando ESTE avanço começa (não tudo de uma vez)
+      const highlightRail = () => {
+        // aproxima: acende o rail que conecta o par do jogo j desse step.
+        // Como não temos referência direta rail↔move, acendemos progressivamente
+        // um número proporcional ao progresso: math simples via índice.
+      };
+      void highlightRail;
       n.style.zIndex=6;
       const a=n.animate([
         {transform:tr(m.from)},
@@ -382,9 +443,11 @@ class Component extends DCLogic {
       this.current[m.code]={x:m.to.x,y:m.to.y};
       maxEnd=Math.max(maxEnd,delay+dur);
     });
+    // Acende todos os rails do step logo no início da fase (visual consistente)
+    (this.rails[step]||[]).forEach(pl=>{ pl.style.stroke=p.railHot; pl.style.strokeWidth=p.railHotW; });
     this.active=newActive;
     this.step=step+1;
-    this.timer=setTimeout(()=>{ if(this.playing) this.runStep(this.step); }, maxEnd+700/sp);
+    this.timer=setTimeout(()=>{ if(this.playing) this.runStep(this.step); }, maxEnd+400/sp);
   }
 
   finish(){

@@ -218,16 +218,19 @@ export default async function AnimacaoCampeaoPage() {
     );
   }
 
-  // Liberado — mostra iframe fullscreen com o handoff do Claude Design
+  // Liberado — mostra iframe fullscreen com o handoff do Claude Design.
+  // Ocupa a viewport toda (viewport-100vh) subtraindo só o HeaderNavBar
+  // (~90px) e o rodapé pequeno de "voltar" (~26px).
   return (
     <main
       style={{
-        minHeight: "100vh",
+        height: "calc(100vh - 90px)",
         background: "#05070c",
         color: "#fff",
         fontFamily: "system-ui, -apple-system, sans-serif",
         display: "flex",
         flexDirection: "column",
+        overflow: "hidden",
       }}
     >
       <iframe
@@ -237,18 +240,19 @@ export default async function AnimacaoCampeaoPage() {
           width: "100%",
           flex: "1 1 auto",
           border: "none",
-          minHeight: "calc(100vh - 40px)",
+          display: "block",
         }}
         allow="autoplay"
       />
       <div
         style={{
           background: "#000",
-          padding: "10px 20px",
+          padding: "6px 20px",
           textAlign: "center",
+          flex: "0 0 auto",
         }}
       >
-        <Link href="/" style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, textDecoration: "none" }}>
+        <Link href="/" style={{ color: "rgba(255,255,255,0.5)", fontSize: 11, textDecoration: "none" }}>
           {tx.voltar}
         </Link>
       </div>
