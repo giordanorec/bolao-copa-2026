@@ -130,8 +130,9 @@ const SITES = {
     slug: "le-chat-mistral-web",
     name: "Le Chat (Mistral)",
     host: "chat.mistral.ai",
-    url: "https://chat.mistral.ai/chat/9f813fd9-df18-4ae5-b4c4-bb4bac0d87c1",
-    conv: "9f813fd9-df18-4ae5-b4c4-bb4bac0d87c1",
+    // Conv antigo (9f813fd9-...) foi deletado — abrir novo chat sempre
+    url: "https://chat.mistral.ai/chat",
+    conv: null,
     input: ["textarea", 'div[contenteditable="true"]'],
     send: "enter",
     assistant: ".prose",
@@ -370,6 +371,9 @@ function parseVencedores(texto, jogosEsperados) {
     // Limpa markdown + espaço; ignora resposta óbvia de placeholder
     const time = m[2].trim().replace(/[*_`"]/g, "").replace(/\s+/g, " ");
     if (!time || /^(nome|time|team|equipe|todo|tbd|\?+)/i.test(time)) continue;
+    // Se o "vencedor" contém " vs " (ou " x "), é a IA ecoando o confronto
+    // sem escolher. Considera inválido.
+    if (/\s(?:vs|x|×|-)\s/i.test(time)) continue;
     resultado[num] = time;
   }
   // Fill missing with "???"

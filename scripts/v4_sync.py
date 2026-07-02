@@ -649,9 +649,16 @@ def main() -> None:
                     if arq.stem == "_bola-de-cristal":
                         cristal = dados
                     else:
-                        # Só entra IA que tenha campeão válido (não "???"/"NomeDoTime")
+                        # Só entra IA que tenha campeão válido (não "???"/"NomeDoTime";
+                        # também rejeita respostas ecoando confrontos com " vs ")
                         camp = (dados.get("campeao") or "").strip()
-                        if camp and camp not in ("???", "NomeDoTime"):
+                        if (
+                            camp
+                            and camp not in ("???", "NomeDoTime")
+                            and " vs " not in camp
+                            and " x " not in camp
+                            and len(camp) < 40
+                        ):
                             ias_dados[dados["slug"]] = dados
                 pred_out = {
                     "rodada": ultima.name,

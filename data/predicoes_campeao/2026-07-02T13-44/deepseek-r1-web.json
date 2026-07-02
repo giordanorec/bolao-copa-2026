@@ -1,7 +1,7 @@
 {
   "slug": "deepseek-r1-web",
-  "rodada_em": "2026-07-02T14:13:41",
-  "campeao": "???",
+  "rodada_em": "2026-07-02T17:51:03",
+  "campeao": "Argentina",
   "jornada": {
     "R32": {
       "73": "Canadá",
@@ -13,30 +13,36 @@
       "79": "México",
       "80": "Inglaterra",
       "81": "Estados Unidos",
-      "82": "Bélgica"
+      "82": "Bélgica",
+      "83": "Portugal",
+      "84": "Espanha",
+      "85": "Suíça",
+      "86": "Argentina",
+      "87": "Colômbia",
+      "88": "Egito"
     },
     "Oitavas": {
-      "89": "???",
-      "90": "???",
-      "91": "???",
-      "92": "???",
-      "93": "???",
-      "94": "???",
-      "95": "???",
-      "96": "???"
+      "89": "França",
+      "90": "Canadá",
+      "91": "Brasil",
+      "92": "Inglaterra",
+      "93": "Portugal",
+      "94": "Estados Unidos",
+      "95": "Argentina",
+      "96": "Suíça"
     },
     "Quartas": {
-      "97": "???",
-      "98": "???",
-      "99": "???",
-      "100": "???"
+      "97": "França",
+      "98": "Portugal",
+      "99": "Brasil",
+      "100": "Argentina"
     },
     "Semifinal": {
-      "101": "???",
-      "102": "???"
+      "101": "França",
+      "102": "Argentina"
     },
     "Final": {
-      "104": "???"
+      "104": "Argentina"
     }
   }
 }
