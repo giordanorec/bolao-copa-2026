@@ -10,6 +10,7 @@ import CelebracaoMataMata from "@/components/CelebracaoMataMata";
 import AgradecimentoContribuinte from "@/components/AgradecimentoContribuinte";
 import BolaoHumanosRecrutamento from "@/components/BolaoHumanosRecrutamento";
 import BannerR32 from "@/components/BannerR32";
+import BannerAnimacaoCampeao from "@/components/BannerAnimacaoCampeao";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 import { carregarAnaliseV2Publico } from "@/lib/analise-v2-publico";
@@ -205,6 +206,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* BANNER: as IAs já palpitaram quem é o campeão */}
+      <BannerAnimacaoCampeao locale={locale} />
 
       <CelebracaoMataMata locale={locale} />
 
