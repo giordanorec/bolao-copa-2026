@@ -301,10 +301,14 @@ function parseArgs(argv) {
     else if (t.startsWith("--site=")) a.site = t.slice(7);
     else if (t.startsWith("--rodada=")) a.rodada = t.slice(9);
     else if (t.startsWith("--cdp=")) a.cdp = t.slice(6);
+    else if (t.startsWith("--dossie=")) a.dossie = t.slice(9);
+    else if (t.startsWith("--sites=")) a.sites = t.slice(8).split(",");
+    else if (t === "--sites" && argv[i + 1]) a.sites = argv[++i].split(",");
     // Allow --site <name> form too
     else if (t === "--site" && argv[i + 1]) a.site = argv[++i];
     else if (t === "--rodada" && argv[i + 1]) a.rodada = argv[++i];
     else if (t === "--cdp" && argv[i + 1]) a.cdp = argv[++i];
+    else if (t === "--dossie" && argv[i + 1]) a.dossie = argv[++i];
   }
   return a;
 }
@@ -323,33 +327,42 @@ function ensureDir(d) {
 }
 
 // Build prompt for a phase
-function buildPrompt(fase, confrontos) {
+function buildPrompt(fase, confrontos, dossie = "") {
   const linhas = confrontos.map(({ j, a, b }) => `| J${j} | ${a} vs ${b} |`).join("\n");
   const tabela = `| Jogo | Confronto |\n|------|----------|\n${linhas}`;
 
+  const contextoBlocos = [];
+  if (dossie && dossie.trim()) {
+    contextoBlocos.push("## Contexto (dossiê da Copa 2026)\n");
+    contextoBlocos.push(dossie.trim());
+    contextoBlocos.push("\n---\n");
+  }
+  const contexto = contextoBlocos.join("\n");
+
   if (fase === "Final") {
-    // Short final prompt
     return [
-      "Bolão Copa 2026 — Simulação do CAMPEÃO.\n",
-      "**NÃO PALPITE PLACAR. NÃO PESQUISE NA INTERNET.**\n",
-      `Fase: Final. Confronto:\n\n${tabela}\n`,
+      "Bolão Copa 2026 — Consenso de campeão (fase FINAL).\n",
+      contexto,
+      "Você está participando de um bolão coletivo. As fases anteriores (R32, Oitavas, Quartas, Semifinal) foram decididas por CONSENSO das IAs. Agora chegamos à FINAL:\n",
+      tabela,
+      "\n**USE O DOSSIÊ ACIMA como base. Não invente dados. Não pesquise novos.**\n",
       "Quem é o campeão? Responda apenas:\n",
       "- J104: NomeDoTime",
-    ].join("\n");
+    ].filter(Boolean).join("\n");
   }
 
   return [
-    "Bolão Copa 2026 — Simulação do CAMPEÃO.\n",
-    "Você compete contra ChatGPT, Claude, Gemini, Grok e outras.",
-    "**Objetivo: prever a JORNADA COMPLETA do vencedor da Copa.**\n",
-    "**NÃO PALPITE PLACAR. NÃO PESQUISE NA INTERNET.**\n",
-    `Fase: ${fase}. Confrontos pendentes:\n\n${tabela}\n`,
+    `Bolão Copa 2026 — Consenso por fase (fase: ${fase}).\n`,
+    contexto,
+    "Você está participando de um bolão coletivo com outras IAs (ChatGPT, Claude, Gemini, Grok, etc.). Cada fase é decidida por CONSENSO majoritário das nossas respostas — os vencedores da fase anterior já foram consolidados, e agora precisamos decidir os desta fase.\n",
+    `Confrontos desta fase (${fase}):\n\n${tabela}\n`,
+    "**USE O DOSSIÊ ACIMA como base pra escolher. Não invente informações que não estão lá. Não pesquise na internet.**\n",
     "Responda **apenas com o vencedor de cada jogo**, uma linha por jogo, exatamente neste formato:\n",
     "- J{{numero}}: NomeDoTime",
     "- J{{numero}}: NomeDoTime",
     "...\n",
     "Sem comentário. Só o nome do time que avança pra próxima fase.",
-  ].join("\n");
+  ].filter(Boolean).join("\n");
 }
 
 // Parse lines like "- J79: México" or "J79: México" from response text.
@@ -712,15 +725,70 @@ function carregarResultados(dir) {
 // Main
 // ---------------------------------------------------------------------------
 
+// Coleta os palpites de UMA fase para o conjunto de IAs `alvo`, usando os
+// MESMOS confrontos pra todas. Retorna { <slug>: { <j>: 'timeName' } }.
+async function coletarFase(browser, alvo, faseNome, confrontos, dossie, dry) {
+  const respostas = {};
+  const prompt = buildPrompt(faseNome, confrontos, dossie);
+  console.log(`\n=== FASE ${faseNome} (${confrontos.length} jogos) ===`);
+  console.log(`  prompt: ${prompt.length} chars (dossiê incluído: ${dossie.length > 0})`);
+
+  for (const key of alvo) {
+    const cfg = SITES[key];
+    console.log(`  [${faseNome}] ${cfg.name}...`);
+    let texto = null;
+    if (!dry) {
+      try {
+        texto = await enviarPrompt(browser, cfg, prompt, false);
+      } catch (e) {
+        console.log(`    FAIL: ${e.message}`);
+      }
+    }
+    const jogosEsperados = confrontos.map((c) => c.j);
+    if (!texto) {
+      respostas[cfg.slug] = Object.fromEntries(jogosEsperados.map((j) => [j, "???"]));
+    } else {
+      respostas[cfg.slug] = parseVencedores(texto, jogosEsperados);
+      const preview = jogosEsperados
+        .map((j) => `J${j}=${respostas[cfg.slug][j]}`)
+        .slice(0, 3)
+        .join(", ");
+      console.log(`    OK: ${preview}${jogosEsperados.length > 3 ? "..." : ""}`);
+    }
+    // Delay entre IAs pra evitar throttle
+    await new Promise((r) => setTimeout(r, 1500));
+  }
+  return respostas;
+}
+
+// Consenso majoritário por confronto: pra cada j, pega o time mais votado
+// entre as respostas das IAs. Retorna { <j>: 'nomeTime' }.
+function consensoPorConfronto(respostas, jogosEsperados, fallbackA, fallbackB) {
+  const out = {};
+  for (const j of jogosEsperados) {
+    const votos = Object.values(respostas)
+      .map((r) => r?.[j])
+      .filter((v) => v && v !== "???");
+    if (!votos.length) {
+      out[j] = `${fallbackA(j) || "??"} vs ${fallbackB(j) || "??"}`;
+      continue;
+    }
+    const contagem = {};
+    for (const v of votos) contagem[v] = (contagem[v] || 0) + 1;
+    out[j] = Object.entries(contagem).sort((a, b) => b[1] - a[1])[0][0];
+  }
+  return out;
+}
+
 async function main() {
   const args = parseArgs(process.argv);
   const rodada = args.rodada || agora();
   const dir = outDir(rodada);
 
-  console.log(`\nSimulador de Campeão — rodada ${rodada}`);
+  console.log(`\nSimulador de Campeão (WATERFALL/consenso) — rodada ${rodada}`);
   console.log(`Output: ${path.relative(ROOT, dir)}`);
 
-  // --cristal-only: só agrega JSON existentes
+  // --cristal-only: recomputa Cristal a partir dos JSONs já gravados
   if (args.cristalOnly) {
     console.log("\n[--cristal-only] Lendo resultados existentes...");
     const resultados = carregarResultados(dir);
@@ -731,39 +799,55 @@ async function main() {
     const cristal = agregarCristal(resultados);
     salvarResultado(dir, cristal);
     const resumo = {
+      slug: "_resumo",
       rodada,
       campeoes: Object.fromEntries(resultados.map((r) => [r.slug, r.campeao])),
     };
     resumo.campeoes["_bola-de-cristal"] = cristal.campeao;
-    salvarResultado(dir, { slug: "_resumo", ...resumo });
+    salvarResultado(dir, resumo);
     console.log(`\nBola de Cristal: ${cristal.campeao}`);
     return;
   }
 
-  // Decide quais IAs rodar
-  const alvo = args.all
+  // Alvo (que IAs rodar):
+  //   --sites=a,b,c → lista explícita (preferido pra rodar N IAs juntas)
+  //   --all → todas as IAs configuradas
+  //   --site=X → uma só (útil pra debug, mas Cristal fica com 1 voto/jogo)
+  const alvo = args.sites
+    ? args.sites
+    : args.all
     ? Object.keys(SITES)
     : args.site
     ? [args.site]
     : [];
 
   if (!alvo.length) {
-    console.log("Nada a fazer. Use --site=<nome> ou --all.");
+    console.log("Nada a fazer. Use --sites=a,b,c ou --all ou --site=<nome>.");
     console.log("Sites:", Object.keys(SITES).join(", "));
     return;
   }
+  console.log(`Alvo: ${alvo.length} IAs — ${alvo.join(", ")}`);
 
-  // Verifica sites válidos
   for (const key of alvo) {
     if (!SITES[key]) {
-      console.error(`Site desconhecido: ${key}. Sites válidos: ${Object.keys(SITES).join(", ")}`);
+      console.error(`Site desconhecido: ${key}.`);
       process.exit(1);
     }
   }
 
-  if (args.dry) {
-    console.log("[--dry] modo seco: não envia nada.");
+  // Carrega dossiê (--dossie=<path> ou default data/dossie/campeao-<rodada>.md)
+  const dossiePath =
+    args.dossie ||
+    path.join(ROOT, "data", "dossie", `campeao-${rodada.slice(0, 10)}.md`);
+  let dossie = "";
+  if (fs.existsSync(dossiePath)) {
+    dossie = fs.readFileSync(dossiePath, "utf8");
+    console.log(`Dossiê carregado: ${path.relative(ROOT, dossiePath)} (${dossie.length} chars)`);
+  } else {
+    console.log(`AVISO: dossiê não encontrado em ${path.relative(ROOT, dossiePath)}. Rodando SEM contexto extra.`);
   }
+
+  if (args.dry) console.log("[--dry] modo seco: não envia nada.");
 
   let browser;
   if (!args.dry) {
@@ -773,58 +857,210 @@ async function main() {
       } catch (e) {
         if (tent === 2) {
           console.error(`\nNão consegui conectar via CDP em ${args.cdp}`);
-          console.error('Abra o Chrome com: scripts/abrir_chrome_debug.ps1 -Profile "Profile 7"');
           console.error(`Detalhe: ${e.message}\n`);
           process.exit(1);
         }
-        console.error(`  CDP falhou (tentativa ${tent}/2): ${e.message.split("\n")[0]} — retentando...`);
+        console.error(`  CDP falhou (tentativa ${tent}/2) — retentando...`);
       }
     }
   }
 
-  const resultados = [];
+  // --- Estado ---
+  //   jornadas[slug][fase][j] = time (o palpite dessa IA pra esse confronto)
+  //   cristalJornada[fase][j] = consenso majoritário
+  //   vencedores[j] = time que o consenso mandou pra próxima fase
+  const jornadas = {};
+  const cristalJornada = {};
+  const vencedores = { ...R32_DECIDIDOS };
 
+  // Inicializa jornadas de cada IA com os R32 decididos IRL
   for (const key of alvo) {
     const cfg = SITES[key];
-    try {
-      const resultado = await simularIA(browser, key, cfg, rodada, args.dry);
-      resultados.push(resultado);
-      salvarResultado(dir, resultado);
-    } catch (e) {
-      console.error(`  FAIL ${key}: ${e.message}`);
-    }
+    jornadas[cfg.slug] = { R32: { ...R32_DECIDIDOS } };
+  }
+  cristalJornada.R32 = { ...R32_DECIDIDOS };
 
-    // Delay entre IAs para evitar sobrecarga
-    if (alvo.indexOf(key) < alvo.length - 1) {
-      await new Promise((r) => setTimeout(r, 2000));
+  // --- RESUME: se já existem arquivos na rodada, carrega o estado ---
+  // Uma fase é "concluída" se cristalJornada[fase] tem TODOS os jogos e nenhum é "???".
+  // Cada IA carrega a jornada até onde tem dado; se a IA falhou em algum passo, aquela
+  // fase pode ficar ??? mas não impede o resume — só é ??? pra ela.
+  if (fs.existsSync(dir)) {
+    console.log(`\n[RESUME] Carregando estado existente de ${path.relative(ROOT, dir)}`);
+    try {
+      const cristalPath = path.join(dir, "_bola-de-cristal.json");
+      if (fs.existsSync(cristalPath)) {
+        const cd = JSON.parse(fs.readFileSync(cristalPath, "utf8"));
+        for (const [fase, jogs] of Object.entries(cd.jornada || {})) {
+          const jogosArr = Object.values(jogs);
+          // Rejeita fase se algum valor for "???" OU contém " vs " (fallback quando
+          // ninguém votou coerentemente — significa que a fase FALHOU).
+          const invalido = (v) => !v || v === "???" || / vs /i.test(v) || / x /i.test(v);
+          const completa = jogosArr.length > 0 && !jogosArr.some(invalido);
+          if (completa) {
+            cristalJornada[fase] = { ...jogs };
+            for (const [j, t] of Object.entries(jogs)) vencedores[j] = t;
+            console.log(`  [RESUME] fase ${fase} já completa (consenso preservado)`);
+          }
+        }
+      }
+      // Carrega jornada de cada IA
+      for (const key of alvo) {
+        const cfg = SITES[key];
+        const iap = path.join(dir, `${cfg.slug}.json`);
+        if (fs.existsSync(iap)) {
+          const ad = JSON.parse(fs.readFileSync(iap, "utf8"));
+          for (const [fase, jogs] of Object.entries(ad.jornada || {})) {
+            const jogosArr = Object.values(jogs);
+            const completa = jogosArr.length > 0 && jogosArr.every((v) => v && v !== "???");
+            if (completa && cristalJornada[fase]) {
+              // Só preserva se a fase está no consenso (evita resgatar respostas mixed)
+              jornadas[cfg.slug][fase] = { ...jogs };
+            }
+          }
+        }
+      }
+    } catch (e) {
+      console.warn(`  [RESUME] falhou lendo estado: ${e.message}. Recomeça do zero.`);
     }
   }
 
-  // Roda Cristal se tiver mais de 1 resultado
-  if (resultados.length > 0) {
-    // Carrega todos (pode ter outros de rodadas anteriores no mesmo dir)
-    const todos = carregarResultados(dir);
-    const efetivos = todos.length ? todos : resultados;
-    const cristal = agregarCristal(efetivos);
-    salvarResultado(dir, cristal);
-
-    const resumo = {
-      slug: "_resumo",
-      rodada,
-      campeoes: Object.fromEntries(efetivos.map((r) => [r.slug, r.campeao])),
-    };
-    resumo.campeoes["_bola-de-cristal"] = cristal.campeao;
-    salvarResultado(dir, resumo);
-
-    console.log("\n--- RESUMO ---");
-    for (const [slug, camp] of Object.entries(resumo.campeoes)) {
-      console.log(`  ${slug}: ${camp}`);
+  // Salva snapshot incremental — se algo travar no meio, temos até essa fase
+  function persistirSnapshot() {
+    ensureDir(dir);
+    const rodadaEm = new Date().toISOString().slice(0, 19);
+    for (const key of alvo) {
+      const cfg = SITES[key];
+      const campeao = jornadas[cfg.slug]?.Final?.[104] || "???";
+      salvarResultado(dir, {
+        slug: cfg.slug,
+        rodada_em: rodadaEm,
+        campeao,
+        jornada: jornadas[cfg.slug] || {},
+      });
     }
+    const cristalCampeao = cristalJornada.Final?.[104] || "???";
+    salvarResultado(dir, {
+      slug: "_bola-de-cristal",
+      rodada_em: rodadaEm,
+      campeao: cristalCampeao,
+      jornada: cristalJornada,
+      votos_totais: alvo.length,
+    });
+  }
+
+  // --- Fase R32 (pendentes) ---
+  const r32JaCompleta =
+    cristalJornada.R32 &&
+    R32_PENDENTES.every((c) => cristalJornada.R32[c.j] && cristalJornada.R32[c.j] !== "???");
+  if (R32_PENDENTES.length > 0 && !r32JaCompleta) {
+    const respostasR32 = await coletarFase(
+      browser,
+      alvo,
+      "R32 (16-avos, pendentes)",
+      R32_PENDENTES,
+      dossie,
+      args.dry,
+    );
+    const jogosPendentes = R32_PENDENTES.map((c) => c.j);
+    const fallbackA = (j) => R32_PENDENTES.find((c) => c.j === j)?.a;
+    const fallbackB = (j) => R32_PENDENTES.find((c) => c.j === j)?.b;
+    const consensoR32 = consensoPorConfronto(respostasR32, jogosPendentes, fallbackA, fallbackB);
+    console.log(`  [R32 consenso] ${JSON.stringify(consensoR32)}`);
+    // Atualiza cristal e vencedores
+    for (const j of jogosPendentes) {
+      cristalJornada.R32[j] = consensoR32[j];
+      vencedores[j] = consensoR32[j];
+    }
+    // Atualiza jornada de cada IA (R32 = decididos IRL + palpite dela pros pendentes)
+    for (const key of alvo) {
+      const cfg = SITES[key];
+      for (const j of jogosPendentes) {
+        jornadas[cfg.slug].R32[j] = respostasR32[cfg.slug]?.[j] || "???";
+      }
+    }
+    persistirSnapshot();
+  } else if (r32JaCompleta) {
+    console.log("\n[R32] fase já consolidada no snapshot — pulando (--resume).");
+  } else {
+    console.log("\n[R32] sem pendentes — todos decididos IRL.");
+  }
+
+  // --- Fases seguintes (Oitavas → Final) ---
+  for (const fase of FASES) {
+    // Confrontos derivam dos vencedores acumulados (consenso das fases anteriores)
+    const confrontos = fase.jogos.map(({ j, wa, wb }) => ({
+      j,
+      a: vencedores[wa] || `Venc.J${wa}`,
+      b: vencedores[wb] || `Venc.J${wb}`,
+    }));
+
+    // Skip se essa fase já está consolidada no cristal
+    const jaFeita =
+      cristalJornada[fase.nome] &&
+      fase.jogos.every(
+        (c) => cristalJornada[fase.nome][c.j] && cristalJornada[fase.nome][c.j] !== "???",
+      );
+    if (jaFeita) {
+      console.log(`\n[${fase.nome}] fase já consolidada — pulando (--resume).`);
+      continue;
+    }
+
+    const respostas = await coletarFase(
+      browser,
+      alvo,
+      fase.nome,
+      confrontos,
+      dossie,
+      args.dry,
+    );
+
+    const jogos = confrontos.map((c) => c.j);
+    const faA = (j) => confrontos.find((c) => c.j === j)?.a;
+    const faB = (j) => confrontos.find((c) => c.j === j)?.b;
+    const consenso = consensoPorConfronto(respostas, jogos, faA, faB);
+    console.log(`  [${fase.nome} consenso] ${JSON.stringify(consenso)}`);
+
+    cristalJornada[fase.nome] = consenso;
+    for (const j of jogos) vencedores[j] = consenso[j];
+
+    for (const key of alvo) {
+      const cfg = SITES[key];
+      jornadas[cfg.slug][fase.nome] = respostas[cfg.slug] || {};
+    }
+    persistirSnapshot();
+  }
+
+  // --- Resumo final ---
+  const resumo = {
+    slug: "_resumo",
+    rodada,
+    campeoes: {},
+  };
+  for (const key of alvo) {
+    const cfg = SITES[key];
+    resumo.campeoes[cfg.slug] = jornadas[cfg.slug]?.Final?.[104] || "???";
+  }
+  resumo.campeoes["_bola-de-cristal"] = cristalJornada.Final?.[104] || "???";
+  salvarResultado(dir, resumo);
+
+  console.log("\n--- RESUMO ---");
+  for (const [slug, camp] of Object.entries(resumo.campeoes)) {
+    console.log(`  ${slug}: ${camp}`);
   }
 
   if (browser) await browser.close();
   console.log("\nfim.");
 }
+
+// Playwright às vezes cospe erros não capturados de dialog interno (Meta AI é
+// o principal culpado). Não deixamos que isso mate o processo inteiro.
+process.on("unhandledRejection", (reason) => {
+  const msg = reason instanceof Error ? reason.message : String(reason);
+  console.warn(`  [unhandledRejection ignorado] ${msg.slice(0, 200)}`);
+});
+process.on("uncaughtException", (err) => {
+  console.warn(`  [uncaughtException ignorado] ${err.message.slice(0, 200)}`);
+});
 
 main().catch((e) => {
   console.error("Erro fatal:", e.message);
