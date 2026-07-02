@@ -76,21 +76,29 @@ const PAIRINGS: Record<Fase, { j: number; wa: number; wb: number }[]> = {
 };
 
 /**
- * Deriva a jornada do CAMPEÃO como uma lista dos OPONENTES que ele derrotou
- * em cada fase (R32 → Oitavas → Quartas → Semifinal). O campeão em si aparece
- * só no fim, com a taça. No R32 usa r32Confrontos pra achar o oponente
- * (o jornada.R32 guarda só o vencedor).
- *
- * Retorna [{fase, oponente}...] em ordem cronológica R32 → Semi + item final
- * com a taça.
+ * Deriva a jornada do CAMPEÃO como lista dos OPONENTES em cada fase
+ * (R32 → Oitavas → Quartas → Semifinal). Se a jornada da IA estiver
+ * incompleta (o parser falhou em alguma fase), usa o Cristal como
+ * fallback pra traçar o caminho — no waterfall todas as IAs viram os
+ * MESMOS confrontos, então usar Cristal pra localizar o campeão em
+ * cada fase é sempre coerente.
  */
 function derivarJornadaDoCampeao(
   jornada: JornadaJSON,
   r32Confrontos: R32Confronto[],
+  cristalFallback?: JornadaJSON | null,
 ): { fase: Fase; oponente: string }[] {
   const finalMap = jornada.Final ?? {};
   const campeao = finalMap[104];
   if (!campeao || campeao === "???") return [];
+
+  // Helper: pega o vencedor de um jogo em uma fase, preferindo a jornada
+  // da IA e caindo pro Cristal se a IA não tem dado ali.
+  function pegar(fase: Fase, jogo: number): string | undefined {
+    const ia = jornada[fase]?.[String(jogo)];
+    if (ia && ia !== "???") return ia;
+    return cristalFallback?.[fase]?.[String(jogo)];
+  }
 
   // Trilha reversa: descobrir em qual jogo o campeão jogou em cada fase.
   const jogosDoCampeao: Partial<Record<Fase, number>> = { Final: 104 };
@@ -105,14 +113,14 @@ function derivarJornadaDoCampeao(
     if (jogo == null) break;
     const pair = PAIRINGS[fase].find((p) => p.j === jogo);
     if (!pair) break;
-    const wa = jornada[anterior]?.[String(pair.wa)];
-    const wb = jornada[anterior]?.[String(pair.wb)];
+    const wa = pegar(anterior, pair.wa);
+    const wb = pegar(anterior, pair.wb);
     if (wa === campeao) jogosDoCampeao[anterior] = pair.wa;
     else if (wb === campeao) jogosDoCampeao[anterior] = pair.wb;
     else break;
   }
 
-  // Agora, oponentes em cada fase (R32 → Semifinal)
+  // Oponentes em cada fase (R32 → Semifinal)
   const r32ConfrontoMap = new Map(r32Confrontos.map((c) => [c.jogo, c]));
   const path: { fase: Fase; oponente: string }[] = [];
   const ordem: Fase[] = ["R32", "Oitavas", "Quartas", "Semifinal"];
@@ -122,13 +130,11 @@ function derivarJornadaDoCampeao(
 
     let oponente = "???";
     if (fase === "R32") {
-      // R32: oponente = o outro time do confronto (r32Confrontos)
       const conf = r32ConfrontoMap.get(jogo);
       if (conf) {
         oponente = conf.timeA === campeao ? conf.timeB : conf.timeA;
       }
     } else {
-      // Oitavas/QF/Semi: oponente = o time que perdeu na fase anterior no pair
       const faseAnterior: Fase =
         fase === "Oitavas"
           ? "R32"
@@ -137,8 +143,8 @@ function derivarJornadaDoCampeao(
             : "Quartas";
       const pair = PAIRINGS[fase].find((p) => p.j === jogo);
       if (pair) {
-        const wa = jornada[faseAnterior]?.[String(pair.wa)];
-        const wb = jornada[faseAnterior]?.[String(pair.wb)];
+        const wa = pegar(faseAnterior, pair.wa);
+        const wb = pegar(faseAnterior, pair.wb);
         oponente = wa === campeao ? wb ?? "???" : wa ?? "???";
       }
     }
@@ -224,15 +230,17 @@ function TrilhaJornada({
   campeao,
   mapaPaises,
   r32Confrontos,
+  cristalFallback,
   compact = false,
 }: {
   jornada: JornadaJSON;
   campeao: string;
   mapaPaises: Record<string, string>;
   r32Confrontos: R32Confronto[];
+  cristalFallback?: JornadaJSON | null;
   compact?: boolean;
 }) {
-  const oponentes = derivarJornadaDoCampeao(jornada, r32Confrontos);
+  const oponentes = derivarJornadaDoCampeao(jornada, r32Confrontos, cristalFallback);
 
   // Cada "passo" na animação = 1 oponente derrotado + o passo final (taça)
   const totalPassos = oponentes.length + 1;
@@ -502,6 +510,7 @@ export default function PredicoesClient({
                   campeao={ia.campeao}
                   mapaPaises={mapaPaises}
                   r32Confrontos={r32Confrontos}
+                  cristalFallback={cristal?.jornada ?? null}
                   compact
                 />
               </div>
