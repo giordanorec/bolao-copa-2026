@@ -170,34 +170,71 @@ const SITES = {
 };
 
 // ---------------------------------------------------------------------------
-// Estado inicial do R32
-// Jogos decididos IRL (hardcode): timeA=true, timeB=false
-// J73: Canadá (B), J74: Paraguai (B-pênaltis), J75: Marrocos (B-pênaltis)
-// J76: Brasil (A), J77: França (A), J78: Noruega (B)
+// Estado inicial do R32 (derivado dinamicamente de data/resultados/jogos.md
+// e data/jogos.md). Se um jogo do R32 tem placar registrado, entra em
+// R32_DECIDIDOS. Se não, entra em R32_PENDENTES.
+// Empates com decisão por pênaltis são anotados em PENALTY_WINNER abaixo,
+// já que o placar sozinho não diz quem avança.
 // ---------------------------------------------------------------------------
-const R32_DECIDIDOS = {
-  73: "Canadá",
-  74: "Paraguai",
-  75: "Marrocos",
-  76: "Brasil",
-  77: "França",
-  78: "Noruega",
+const PENALTY_WINNER = {
+  74: "b", // Paraguai avança sobre Alemanha
+  75: "b", // Marrocos avança sobre Países Baixos
 };
 
-// Confrontos do R32 pendentes (IRL em 2026-07-01+)
-// Cada item: { j, a, b } — número do jogo, Time A, Time B
-const R32_PENDENTES = [
-  { j: 79, a: "México",      b: "Equador" },
-  { j: 80, a: "Inglaterra",  b: "Congo (RD)" },
-  { j: 81, a: "Estados Unidos", b: "Bósnia-Herzegovina" },
-  { j: 82, a: "Bélgica",     b: "Senegal" },
-  { j: 83, a: "Portugal",    b: "Croácia" },
-  { j: 84, a: "Espanha",     b: "Áustria" },
-  { j: 85, a: "Suíça",       b: "Argélia" },
-  { j: 86, a: "Argentina",   b: "Cabo Verde" },
-  { j: 87, a: "Colômbia",    b: "Gana" },
-  { j: 88, a: "Austrália",   b: "Egito" },
-];
+function derivarEstadoR32() {
+  // Lê data/jogos.md (fixtures) e data/resultados/jogos.md
+  const fixturesRaw = fs.readFileSync(path.join(ROOT, "data", "jogos.md"), "utf8");
+  const resultsRaw = fs.readFileSync(path.join(ROOT, "data", "resultados", "jogos.md"), "utf8");
+
+  function parseTabela(raw) {
+    const out = [];
+    for (const linha of raw.split("\n")) {
+      const m = linha.match(/^\|\s*(\d+)\s*\|\s*([^|]+)\|\s*[^|]+\|\s*[^|]+\|\s*[^|]+\|\s*([^|]+)\|\s*([^|]*)\|\s*([^|]*)\|\s*([^|]+)\|/);
+      if (!m) continue;
+      const [, num, fase, timeA, gA, gB, timeB] = m;
+      out.push({
+        num: parseInt(num, 10),
+        fase: fase.trim(),
+        timeA: timeA.trim(),
+        timeB: timeB.trim(),
+        gA: gA.trim() === "" ? null : parseInt(gA, 10),
+        gB: gB.trim() === "" ? null : parseInt(gB, 10),
+      });
+    }
+    return out;
+  }
+
+  const fixtures = parseTabela(fixturesRaw).filter((j) => j.fase === "R32");
+  const results = parseTabela(resultsRaw).filter((j) => j.fase === "R32");
+  const resPorNum = new Map(results.map((r) => [r.num, r]));
+
+  const decididos = {};
+  const pendentes = [];
+  for (const fx of fixtures) {
+    const res = resPorNum.get(fx.num);
+    if (res && res.gA != null && res.gB != null) {
+      // Determina vencedor
+      let vencedor;
+      if (PENALTY_WINNER[fx.num]) {
+        vencedor = PENALTY_WINNER[fx.num] === "a" ? fx.timeA : fx.timeB;
+      } else if (res.gA > res.gB) {
+        vencedor = fx.timeA;
+      } else if (res.gB > res.gA) {
+        vencedor = fx.timeB;
+      } else {
+        // Empate sem PENALTY_WINNER — não sabemos quem avança
+        console.warn(`  AVISO: J${fx.num} ${fx.timeA} ${res.gA}×${res.gB} ${fx.timeB} empate sem PENALTY_WINNER — pulando`);
+        continue;
+      }
+      decididos[fx.num] = vencedor;
+    } else {
+      pendentes.push({ j: fx.num, a: fx.timeA, b: fx.timeB });
+    }
+  }
+  return { decididos, pendentes };
+}
+
+const { decididos: R32_DECIDIDOS, pendentes: R32_PENDENTES } = derivarEstadoR32();
 
 // Mapa de pareamentos das fases seguintes
 // Cada item: { j, wa, wb } — jogo e quais vencedores se enfrentam
@@ -304,19 +341,26 @@ function buildPrompt(fase, confrontos) {
   ].join("\n");
 }
 
-// Parse lines like "- J79: México" or "J79: México" from response text
+// Parse lines like "- J79: México" or "J79: México" from response text.
+// Aceita variações comuns: "J79 -", "J79.", "J79)", "J79 →", "| J79 | México |",
+// "**J79**: México", "79: México" (sem prefixo J).
 function parseVencedores(texto, jogosEsperados) {
   const resultado = {};
   const lines = texto.split("\n");
+  const esperadosSet = new Set(jogosEsperados);
+  // Regex principal: aceita J-opcional, separadores :.-)|→ e vários espaços
+  // Tenta capturar o nome do time até o final da linha, delimitador de tabela,
+  // parênteses de comentário ou traços/emdashes explicativos.
+  const re = /(?:^|\|)\s*[*_`]*\s*(?:[Jj]ogo\s*|[Jj])?(\d{1,3})[*_`]*\s*(?:[:.)\|]|—|→|->|-)\s*[*_`]*([^\n|(—→\-]+?)\s*[*_`]*(?:\|.*|\([^)]*\).*|$)/;
   for (const linha of lines) {
-    // Match: optional bullet, J<num>: <team>
-    const m = linha.match(/[-*]?\s*J(\d+)\s*[:：]\s*(.+)/i);
+    const m = linha.match(re);
     if (!m) continue;
     const num = parseInt(m[1], 10);
-    const time = m[2].trim().replace(/[*_`]/g, ""); // strip markdown
-    if (jogosEsperados.includes(num)) {
-      resultado[num] = time;
-    }
+    if (!esperadosSet.has(num)) continue;
+    // Limpa markdown + espaço; ignora resposta óbvia de placeholder
+    const time = m[2].trim().replace(/[*_`"]/g, "").replace(/\s+/g, " ");
+    if (!time || /^(nome|time|team|equipe|todo|tbd|\?+)/i.test(time)) continue;
+    resultado[num] = time;
   }
   // Fill missing with "???"
   for (const j of jogosEsperados) {
@@ -370,6 +414,36 @@ async function acharInput(page, seletores) {
   return null;
 }
 
+// Versão com retry — se input não achado, espera + rola pra fundo + tenta de novo.
+// Alguns sites (Copilot, Manus) fazem lazy-mount do textarea; outros mostram
+// modal ou o textarea some por rate-limit.
+async function acharInputResiliente(page, seletores, maxTentativas = 6) {
+  for (let tentativa = 1; tentativa <= maxTentativas; tentativa++) {
+    const loc = await acharInput(page, seletores);
+    if (loc) return loc;
+    // Estratégias antes de tentar de novo
+    if (tentativa === 2) {
+      // Rola pro fundo pra forçar renderização
+      try {
+        await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      } catch {}
+    } else if (tentativa === 3) {
+      // Clica no meio da página pra fechar modal/tooltip
+      try {
+        const vp = page.viewportSize();
+        if (vp) await page.mouse.click(vp.width / 2, vp.height / 2);
+      } catch {}
+    } else if (tentativa === 5) {
+      // Último recurso antes de desistir: reload
+      try {
+        await page.reload({ waitUntil: "domcontentloaded" });
+      } catch {}
+    }
+    await page.waitForTimeout(2500);
+  }
+  return null;
+}
+
 // Extrai o innerText da última mensagem do assistente (simples — não precisa
 // reconstituir tabela, pois a resposta é lista de linhas "- J##: Time")
 async function extrairTextoResposta(page, cfg) {
@@ -404,14 +478,7 @@ async function enviarPrompt(browser, cfg, prompt, dry) {
   await page.bringToFront();
   await page.waitForTimeout(1000);
 
-  let input = await acharInput(page, cfg.input);
-  if (!input) {
-    // Wait up to ~15s for SPA to mount input
-    for (let t = 0; t < 5 && !input; t++) {
-      await page.waitForTimeout(3000);
-      input = await acharInput(page, cfg.input);
-    }
-  }
+  const input = await acharInputResiliente(page, cfg.input);
   if (!input) throw new Error("Não achei caixa de texto");
 
   await input.click();

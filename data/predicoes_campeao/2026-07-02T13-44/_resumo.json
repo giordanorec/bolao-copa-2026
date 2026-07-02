@@ -1,0 +1,18 @@
+{
+  "slug": "_resumo",
+  "rodada": "2026-07-02T13-44",
+  "campeoes": {
+    "chatgpt-5-thinking-web": "Brasil",
+    "claude-opus-4-8-web": "???",
+    "copilot-microsoft-web": "França",
+    "deepseek-r1-web": "???",
+    "gemini-2-5-pro-web": "Brasil",
+    "grok-4-heavy-web": "???",
+    "le-chat-mistral-web": "???",
+    "manus-web": "???",
+    "meta-llama-4-web": "???",
+    "perplexity-sonar-pro-web": "???",
+    "qwen-3-max-web": "França",
+    "_bola-de-cristal": "Brasil"
+  }
+}

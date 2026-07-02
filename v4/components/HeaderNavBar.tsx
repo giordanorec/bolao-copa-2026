@@ -21,6 +21,18 @@ export default function HeaderNavBar({ locale }: { locale: Locale }) {
       label: t(locale, "nav.cristal").replace(" ↗", ""),
     },
     {
+      href: "/predicoes-campeao",
+      emoji: "👑",
+      label:
+        locale === "en"
+          ? "Champion"
+          : locale === "es"
+            ? "Campeón"
+            : locale === "fr"
+              ? "Champion"
+              : "Campeão",
+    },
+    {
       href: "/ranking-ias",
       emoji: "🏆",
       label:
