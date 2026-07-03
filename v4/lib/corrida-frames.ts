@@ -226,11 +226,21 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
   const nomeDe = (slug: string): string =>
     nomeSerieA(slug) ?? nomePorSlug.get(slug) ?? slug;
 
-  // Conjunto de slugs ativos (IAs que de fato palpitaram)
+  // Conjunto de slugs ativos (IAs que de fato palpitaram). Exclui as
+  // vitrines "-web" da Série A (chatgpt-5-thinking-web, claude-opus-4-8-web,
+  // etc.) — o irmão sem-web já representa a marca com dados completos
+  // (grupos+matamata) e mascote via arquivoMascote(). Ter as duas rende
+  // mascote duplicado do mesmo modelo (Claude Opus 4.7 + Claude Opus 4.8 lado
+  // a lado). Manus fica de fora também porque foi substituído por Kimi K2.
   const slugsAtivos = new Set<string>();
   for (const ia of ranking.ias) {
     if (ia.slug === "bola-de-cristal") continue;
     if ((ia.palpites_total ?? 0) === 0) continue;
+    // Vitrine -web da Série A que TEM irmão sem-web: pula (o irmão já
+    // representa a marca com mascote via arquivoMascote). Slugs sem irmão
+    // (ex.: claude-fable-5) ficam.
+    if (SLUGS_SERIE_A_SET.has(ia.slug) && FALLBACK_NAO_WEB[ia.slug]) continue;
+    if (ia.slug === "manus-web" || ia.slug === "manus") continue;
     slugsAtivos.add(ia.slug);
   }
   // Mapa "slug tem pontos > 0" pra fonteDoSlug decidir se cai pro sem-web

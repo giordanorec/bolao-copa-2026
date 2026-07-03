@@ -6,13 +6,13 @@ import { marcaDe } from "@/lib/ias";
 import { SLUGS_SERIE_A, SLUGS_SERIE_A_DADOS, SIBLING_PARA_WEB } from "@/lib/serie-a";
 import { track } from "@/lib/analytics";
 
-// Slugs que têm arquivo de mascote em /public/mascots/<slug>.png (= Série A).
-// Inclui tanto as vitrines "-web" (nomes originais dos arquivos) quanto os
-// irmãos sem-web (o slug que aparece no ranking com dados completos). Cada
-// irmão sem-web reusa o mascote do -web via SIBLING_PARA_WEB.
+// Só a Série A tem mascote (vitrines -web + Fable) + os irmãos sem-web que
+// representam essas marcas na corrida (o slug com dados completos). Cada
+// irmão sem-web reusa o arquivo mascote da vitrine -web via SIBLING_PARA_WEB.
+// Todos os outros modelos usam ícone da família (via IconeIA).
 const COM_MASCOTE = new Set([...SLUGS_SERIE_A, ...SLUGS_SERIE_A_DADOS]);
-// slug do arquivo do mascote pra um slug (Série A). Se é -web usa direto; se
-// é sem-web mapeia pra vitrine -web (que é o nome do arquivo).
+// Nome do arquivo do mascote pra um slug (Série A). Se é vitrine -web usa
+// direto; se é irmão sem-web mapeia pra vitrine -web (o arquivo).
 export function arquivoMascote(slug: string): string {
   if (SLUGS_SERIE_A.includes(slug)) return slug;
   return SIBLING_PARA_WEB[slug] ?? slug;
