@@ -77,6 +77,21 @@ const KB_W2 = (2 * Math.PI) / 8.5; // freq. da respiração de zoom (rad/s)
 // Linha de chegada = FIM DA COPA inteira (104 jogos), bem distante; só aparece
 // no zoom-out final.
 const TOTAL_JOGOS = 104;
+// Peso de cada partida: grupos = 1, mata-mata = 2 (vale o dobro dos pontos).
+// A pista é medida em PESO ACUMULADO — cada partida do mata-mata ocupa o
+// dobro do espaçamento de uma partida de grupos.
+const GROUP_LAST = 72;
+const TOTAL_WEIGHT = GROUP_LAST + (TOTAL_JOGOS - GROUP_LAST) * 2; // 136
+// Peso acumulado até o jogo jn (inclusive).
+const pesoAcum = (jn: number): number => {
+  const j = Math.max(0, Math.min(TOTAL_JOGOS, jn));
+  return j <= GROUP_LAST ? j : GROUP_LAST + (j - GROUP_LAST) * 2;
+};
+// Inverso: dado peso acumulado, retorna o número do jogo aproximado.
+const jogoAt = (peso: number): number => {
+  if (peso <= GROUP_LAST) return peso;
+  return GROUP_LAST + (peso - GROUP_LAST) / 2;
+};
 // Piso em faixas alternadas (parallax) — cor muda por FASE do torneio. A troca
 // entre fases é SECA (sem degradê): cada fase tem uma cor radicalmente diferente.
 const BAND_W = 0.038; // largura de cada faixa (fração da corrida)
@@ -251,9 +266,12 @@ export default function CorridaTopDown({
     [frames, ordenadas],
   );
 
-  // Chegada = fim da Copa inteira. O líder atual (w=1) jogou `ultimo` jogos; a
-  // Copa tem TOTAL_JOGOS ⇒ a chegada fica lá em w = TOTAL_JOGOS / ultimo.
-  const worldFinish = TOTAL_JOGOS / Math.max(1, ultimo);
+  // Chegada = fim da Copa inteira, medida em PESO ACUMULADO (grupos=1,
+  // mata-mata=2) pra cada partida do mata-mata ocupar 2× o espaçamento. O líder
+  // atual (w=1) jogou até o jogo `jogoUltimo`; a chegada fica em w = TOTAL_WEIGHT
+  // / pesoAcum(jogoUltimo).
+  const jogoUltimo = frames[ultimo]?.jogoNum ?? 0;
+  const worldFinish = TOTAL_WEIGHT / Math.max(1, pesoAcum(jogoUltimo));
 
   // Estatísticas do pelotão na posição contínua p: w (fração) de cada IA agora,
   // e a ordem (ranking) nos frames inteiro a e b — pra detectar trocas de posição.
@@ -602,8 +620,14 @@ export default function CorridaTopDown({
     const wPct = (BAND_W / camW) * 100;
     for (let b = b0; b <= b1; b++) {
       // jogo aproximado representado por esta faixa (w → nº de jogo).
+      // Usa o mapeamento ponderado: mata-mata "estica" a pista (uma partida
+      // ocupa 2× o espaçamento de uma partida de grupos).
       const wMid = (b + 0.5) * BAND_W;
-      const jn = clamp(Math.round(wMid * ultimo), 1, TOTAL_JOGOS);
+      const jn = clamp(
+        Math.round(jogoAt(wMid * pesoAcum(jogoUltimo))),
+        1,
+        TOTAL_JOGOS,
+      );
       const cores = coresFase(jn);
       const dark = (((b % 2) + 2) % 2) === 0;
       bandas.push({

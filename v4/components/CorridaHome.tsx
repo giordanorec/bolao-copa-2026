@@ -67,7 +67,7 @@ export default async function CorridaHome({
           grupos={grupos}
           matamata={matamata}
           geral={geral}
-          faseInicial="grupos"
+          faseInicial="geral"
         />
 
         <div style={{ marginTop: 18, textAlign: "center" }}>

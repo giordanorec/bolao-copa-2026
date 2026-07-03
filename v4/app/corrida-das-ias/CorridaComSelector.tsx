@@ -37,7 +37,7 @@ export default function CorridaComSelector({
   grupos,
   matamata,
   geral,
-  faseInicial = "matamata",
+  faseInicial = "geral",
 }: {
   grupos: DadosFase;
   matamata: DadosFase;

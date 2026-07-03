@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { ehSerieA, slugWebSerieA, nomeSerieA, SLUGS_SERIE_A } from "@/lib/serie-a";
+import { nomeSerieA } from "@/lib/serie-a";
 
 // Fonte ÚNICA dos dados das animações da corrida (Modo A vista de cima,
 // Modo B bar race, Modo C gráfico de pontos). Usado tanto em
@@ -132,11 +132,6 @@ function montarFrames(
     pts: { ...acumulado },
   });
 
-  // Set das vitrines "-web" (slugs oficiais da Série A) — usado pra desempatar
-  // quando a vitrine E o irmão API palpitaram o MESMO jogo: preferimos o -web.
-  // Sem isso, o slug canonicalizado receberia +ambos e o placar dobraria.
-  const vitrinesWeb = new Set(SLUGS_SERIE_A);
-
   for (const r of resultadosFase) {
     const jogo = mapJogo.get(r.jogo_numero);
     if (!jogo) continue;
@@ -145,24 +140,14 @@ function montarFrames(
     const dados = palpites[String(r.jogo_numero)];
     if (!dados) continue;
 
-    // Dedupe por slug canônico dentro de UM jogo. Se a vitrine "-web" e o irmão
-    // API palpitaram o mesmo jogo, ambos canonicalizam pro mesmo slug; sem
-    // dedupe, os dois somariam. Preferência: quem for vitrine "-web" vence
-    // (alinhado com SerieA.melhorFonte na home).
-    const ganhoPorCanon: Record<string, { ganho: number; fromWeb: boolean }> = {};
+    // Acumula 1:1 com os slugs do ranking-ias.json — nada de canonicalizar
+    // "-web" + irmão sem "-web" no mesmo slot. Se a gente somasse os dois, o
+    // total mostrado na corrida ficaria diferente do total do ranking geral,
+    // que exibe cada fonte como uma linha separada. Isso é bug recorrente.
     for (const [slug, p] of Object.entries(dados.palpites)) {
-      const c = canonical(slug);
-      if (!(c in acumulado)) continue;
+      if (!(slug in acumulado)) continue;
       const ganho = pts(p.gols_a, p.gols_b, r.gols_a, r.gols_b, mataMata);
-      const fromWeb = vitrinesWeb.has(slug);
-      const prev = ganhoPorCanon[c];
-      // Prefere -web quando disponível; caso contrário mantém o primeiro visto.
-      if (!prev || (fromWeb && !prev.fromWeb)) {
-        ganhoPorCanon[c] = { ganho, fromWeb };
-      }
-    }
-    for (const [c, { ganho }] of Object.entries(ganhoPorCanon)) {
-      acumulado[c] = (acumulado[c] ?? 0) + ganho;
+      acumulado[slug] = (acumulado[slug] ?? 0) + ganho;
     }
 
     frames.push({
@@ -197,23 +182,22 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
 
   const mapJogo = new Map(jogos.map((j) => [j.numero, j]));
 
-  // Série A colhida via interface web tem palpites_total=0 no -web; os
-  // palpites reais ficam no slug "irmão" sem -web. Canonicalizamos pro
-  // slug -web pra cada Série A aparecer UMA vez, com a marca certa.
-  const canonical = (slug: string): string =>
-    ehSerieA(slug) ? slugWebSerieA(slug) : slug;
+  // Sem canonicalização: cada slug do ranking-ias.json é uma linha na corrida,
+  // pra bater 1:1 com o total exibido no ranking geral. Se um modelo tem duas
+  // fontes (ex.: qwen-3-max API + qwen-3-max-web Série A), ambas correm.
   const nomePorSlug = new Map(
     ranking.ias.map((ia) => [ia.slug, ia.nome_display]),
   );
-  const nomeDe = (canon: string): string =>
-    nomeSerieA(canon) ?? nomePorSlug.get(canon) ?? canon;
+  const canonical = (slug: string): string => slug;
+  const nomeDe = (slug: string): string =>
+    nomeSerieA(slug) ?? nomePorSlug.get(slug) ?? slug;
 
   // Conjunto de slugs ativos (IAs que de fato palpitaram)
   const slugsAtivos = new Set<string>();
   for (const ia of ranking.ias) {
     if (ia.slug === "bola-de-cristal") continue;
     if ((ia.palpites_total ?? 0) === 0) continue;
-    slugsAtivos.add(canonical(ia.slug));
+    slugsAtivos.add(ia.slug);
   }
 
   const resultOrdenados = [...resultados].sort(
