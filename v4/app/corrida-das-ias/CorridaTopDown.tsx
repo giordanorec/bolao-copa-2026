@@ -3,11 +3,20 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import IconeIA from "@/components/IconeIA";
 import { marcaDe } from "@/lib/ias";
-import { SLUGS_SERIE_A } from "@/lib/serie-a";
+import { SLUGS_SERIE_A, SLUGS_SERIE_A_DADOS, SIBLING_PARA_WEB } from "@/lib/serie-a";
 import { track } from "@/lib/analytics";
 
 // Slugs que têm arquivo de mascote em /public/mascots/<slug>.png (= Série A).
-const COM_MASCOTE = new Set(SLUGS_SERIE_A);
+// Inclui tanto as vitrines "-web" (nomes originais dos arquivos) quanto os
+// irmãos sem-web (o slug que aparece no ranking com dados completos). Cada
+// irmão sem-web reusa o mascote do -web via SIBLING_PARA_WEB.
+const COM_MASCOTE = new Set([...SLUGS_SERIE_A, ...SLUGS_SERIE_A_DADOS]);
+// slug do arquivo do mascote pra um slug (Série A). Se é -web usa direto; se
+// é sem-web mapeia pra vitrine -web (que é o nome do arquivo).
+export function arquivoMascote(slug: string): string {
+  if (SLUGS_SERIE_A.includes(slug)) return slug;
+  return SIBLING_PARA_WEB[slug] ?? slug;
+}
 
 type IA = {
   slug: string;
@@ -828,7 +837,7 @@ export default function CorridaTopDown({
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
                   className="cn-mascote"
-                  src={`/mascots/${ia.slug}.png`}
+                  src={`/mascots/${arquivoMascote(ia.slug)}.png`}
                   alt={ia.nome_display}
                 />
               ) : (

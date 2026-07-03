@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import IASelector from "./IASelector";
 import CorridaTopDown from "./CorridaTopDown";
-import { SLUGS_SERIE_A as SLUGS_SERIE_A_LISTA } from "@/lib/serie-a";
+import { SLUGS_SERIE_A_DADOS } from "@/lib/serie-a";
 import { track } from "@/lib/analytics";
 import type { DadosFase, FaseCorrida } from "@/lib/corrida-frames";
 
@@ -19,7 +19,11 @@ type Frame = {
   pts: Record<string, number>;
 };
 
-const SLUGS_SERIE_A = new Set(SLUGS_SERIE_A_LISTA);
+// Na corrida usamos os slugs sem-web (dados completos: 88 palpites) + Fable
+// em vez das vitrines "-web" (que só têm 16 palpites do mata-mata). Assim os
+// pontos batem 1:1 com o ranking geral e a Série A aparece com dados de
+// verdade em qualquer fase.
+const SLUGS_SERIE_A = new Set(SLUGS_SERIE_A_DADOS);
 
 const LABELS_FASE: Record<FaseCorrida, string> = {
   grupos: "Grupos",

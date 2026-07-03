@@ -59,6 +59,15 @@ export const SIBLING_PARA_WEB: Record<string, string> = Object.fromEntries(
 // Conjunto dos irmãos não-web (slugs que carregam os palpites da Série A)
 export const SLUGS_SIBLINGS_SERIE_A = new Set(Object.values(FALLBACK_NAO_WEB));
 
+// Slugs da Série A pra usar em contextos onde precisamos dos DADOS COMPLETOS
+// (fase de grupos + mata-mata). As vitrines "-web" só têm palpites do mata-
+// -mata (16 jogos), então na corrida/ranking as marcas devem ser representadas
+// pelos irmãos sem-web (88 palpites) + Fable. Mesmo pool, dados de verdade.
+export const SLUGS_SERIE_A_DADOS: string[] = [
+  ...Object.values(FALLBACK_NAO_WEB), // 11 irmãos sem-web
+  SLUG_FABLE, // Fable já tem 88 palpites
+];
+
 // Qualquer slug que pertença à Série A (vitrine -web, irmão não-web, ou Fable)
 export function ehSerieA(slug: string): boolean {
   return (
@@ -66,11 +75,12 @@ export function ehSerieA(slug: string): boolean {
   );
 }
 
-// Nome de marca da Série A pra um slug (web, irmão não-web ou Fable). null se não for.
+// Nome de marca da Série A. Retorna null se o slug NÃO é vitrine -web ou Fable.
+// IMPORTANTE: irmãos sem-web (ex.: `claude-opus-4-7`, `qwen-3-max`) devolvem
+// null — eles mantêm o `nome_display` original do ranking. Antes o nome da
+// vitrine sobrescrevia o irmão e ficava confuso (Opus 4.7 aparecia como 4.8).
 export function nomeSerieA(slug: string): string | null {
   if (APELIDOS_SERIE_A[slug]) return APELIDOS_SERIE_A[slug].nome;
-  const web = SIBLING_PARA_WEB[slug];
-  if (web && APELIDOS_SERIE_A[web]) return APELIDOS_SERIE_A[web].nome;
   return null;
 }
 
