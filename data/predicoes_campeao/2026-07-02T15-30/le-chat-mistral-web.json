@@ -1,6 +1,6 @@
 {
-  "slug": "_bola-de-cristal",
-  "rodada_em": "2026-07-03T13:09:43",
+  "slug": "le-chat-mistral-web",
+  "rodada_em": "2026-07-03T13:09:32",
   "campeao": "França",
   "jornada": {
     "R32": {
@@ -44,6 +44,5 @@
     "Final": {
       "104": "França"
     }
-  },
-  "votos_totais": 10
+  }
 }
