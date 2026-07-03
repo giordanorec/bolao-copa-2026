@@ -1,6 +1,6 @@
 {
   "slug": "le-chat-mistral-web",
-  "rodada_em": "2026-07-03T11:46:00",
+  "rodada_em": "2026-07-03T12:04:06",
   "campeao": "Argentina",
   "jornada": {
     "R32": {
@@ -22,23 +22,23 @@
       "88": "Egito"
     },
     "Oitavas": {
-      "89": "França",
+      "89": "Paraguai",
       "90": "Marrocos",
       "91": "Brasil",
       "92": "México",
       "93": "Espanha",
-      "94": "Bélgica",
+      "94": "Inglaterra",
       "95": "Argentina",
       "96": "Colômbia"
     },
     "Quartas": {
-      "97": "França",
+      "97": "Marrocos",
       "98": "Espanha",
-      "99": "Inglaterra",
+      "99": "Brasil",
       "100": "Argentina"
     },
     "Semifinal": {
-      "101": "França",
+      "101": "Espanha",
       "102": "Argentina"
     },
     "Final": {

@@ -1,7 +1,7 @@
 {
   "slug": "claude-opus-4-8-web",
-  "rodada_em": "2026-07-03T11:46:00",
-  "campeao": "França",
+  "rodada_em": "2026-07-03T12:04:06",
+  "campeao": "Argentina",
   "jornada": {
     "R32": {
       "73": "Canadá",
@@ -34,7 +34,7 @@
     "Quartas": {
       "97": "França",
       "98": "Espanha",
-      "99": "Inglaterra",
+      "99": "Brasil",
       "100": "Argentina"
     },
     "Semifinal": {
@@ -42,7 +42,7 @@
       "102": "Argentina"
     },
     "Final": {
-      "104": "França"
+      "104": "Argentina"
     }
   }
 }

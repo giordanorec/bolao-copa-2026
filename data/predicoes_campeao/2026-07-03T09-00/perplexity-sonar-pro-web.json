@@ -1,6 +1,6 @@
 {
   "slug": "perplexity-sonar-pro-web",
-  "rodada_em": "2026-07-03T11:46:00",
+  "rodada_em": "2026-07-03T12:04:06",
   "campeao": "França",
   "jornada": {
     "R32": {
@@ -27,19 +27,19 @@
       "91": "Brasil",
       "92": "Inglaterra",
       "93": "Espanha",
-      "94": "México",
+      "94": "Estados Unidos",
       "95": "Argentina",
-      "96": "Colômbia"
+      "96": "Suíça"
     },
     "Quartas": {
       "97": "França",
       "98": "Espanha",
-      "99": "Inglaterra",
+      "99": "Brasil",
       "100": "Argentina"
     },
     "Semifinal": {
       "101": "França",
-      "102": "Argentina"
+      "102": "Brasil"
     },
     "Final": {
       "104": "França"
