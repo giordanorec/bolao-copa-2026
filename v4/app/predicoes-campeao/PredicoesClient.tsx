@@ -92,11 +92,20 @@ function derivarJornadaDoCampeao(
   const campeao = finalMap[104];
   if (!campeao || campeao === "???") return [];
 
-  // Helper: pega o vencedor de um jogo em uma fase, preferindo a jornada
-  // da IA e caindo pro Cristal se a IA não tem dado ali.
+  // Se a IA escolheu o mesmo campeão do Cristal, prioriza a rota do
+  // Cristal (que é sempre coerente com o bracket por construção). Isso
+  // cobre IAs que palpitaram campeão certo mas com rota "solta" —
+  // ex.: Manus escolheu França mas J90=França onde J75/J76 são
+  // Marrocos/Brasil, então a rota individual dele quebra na Oitavas.
+  const cristalCampeao = cristalFallback?.Final?.["104"];
+  const jornadaEfetiva: JornadaJSON =
+    cristalFallback && cristalCampeao === campeao ? cristalFallback : jornada;
+
+  // Helper: pega o vencedor de um jogo em uma fase, preferindo a
+  // jornadaEfetiva e caindo pro Cristal se ela não tem dado ali.
   function pegar(fase: Fase, jogo: number): string | undefined {
-    const ia = jornada[fase]?.[String(jogo)];
-    if (ia && ia !== "???") return ia;
+    const efet = jornadaEfetiva[fase]?.[String(jogo)];
+    if (efet && efet !== "???") return efet;
     return cristalFallback?.[fase]?.[String(jogo)];
   }
 
@@ -130,10 +139,17 @@ function derivarJornadaDoCampeao(
     }
   }
 
-  // Oponentes em cada fase (R32 → Semifinal)
+  // Oponentes em cada fase (R32 → Final). Na Final o "oponente" é o
+  // vice-campeão — quem o campeão derrotou pra levantar a taça.
   const r32ConfrontoMap = new Map(r32Confrontos.map((c) => [c.jogo, c]));
   const path: { fase: Fase; oponente: string }[] = [];
-  const ordem: Fase[] = ["R32", "Oitavas", "Quartas", "Semifinal"];
+  const ordem: Fase[] = ["R32", "Oitavas", "Quartas", "Semifinal", "Final"];
+  const anteriorMap: Record<Exclude<Fase, "R32">, Fase> = {
+    Oitavas: "R32",
+    Quartas: "Oitavas",
+    Semifinal: "Quartas",
+    Final: "Semifinal",
+  };
   for (const fase of ordem) {
     const jogo = jogosDoCampeao[fase];
     if (jogo == null) break;
@@ -145,12 +161,7 @@ function derivarJornadaDoCampeao(
         oponente = conf.timeA === campeao ? conf.timeB : conf.timeA;
       }
     } else {
-      const faseAnterior: Fase =
-        fase === "Oitavas"
-          ? "R32"
-          : fase === "Quartas"
-            ? "Oitavas"
-            : "Quartas";
+      const faseAnterior = anteriorMap[fase];
       const pair = PAIRINGS[fase].find((p) => p.j === jogo);
       if (pair) {
         const wa = pegar(faseAnterior, pair.wa);
