@@ -764,6 +764,7 @@ async function coletarFase(browser, alvo, faseNome, confrontos, dossie, dry) {
     const jogosEsperados = confrontos.map((c) => c.j);
     if (!texto) {
       respostas[cfg.slug] = Object.fromEntries(jogosEsperados.map((j) => [j, "???"]));
+      console.log(`    FAIL: sem resposta (timeout do driver)`);
     } else {
       respostas[cfg.slug] = parseVencedores(texto, jogosEsperados);
       const preview = jogosEsperados
@@ -771,6 +772,11 @@ async function coletarFase(browser, alvo, faseNome, confrontos, dossie, dry) {
         .slice(0, 3)
         .join(", ");
       console.log(`    OK: ${preview}${jogosEsperados.length > 3 ? "..." : ""}`);
+      const todosQQ = jogosEsperados.every((j) => respostas[cfg.slug][j] === "???");
+      if (todosQQ) {
+        const clip = texto.replace(/\s+/g, " ").slice(0, 500);
+        console.log(`    [debug] resposta (500 chars): "${clip}${texto.length > 500 ? "…" : ""}"`);
+      }
     }
     // Delay entre IAs pra evitar throttle
     await new Promise((r) => setTimeout(r, 1500));
