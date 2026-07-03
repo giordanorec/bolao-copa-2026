@@ -367,7 +367,8 @@ function buildPrompt(fase, confrontos, dossie = "") {
 
 // Parse lines like "- J79: México" or "J79: México" from response text.
 // Aceita variações comuns: "J79 -", "J79.", "J79)", "J79 →", "| J79 | México |",
-// "**J79**: México", "79: México" (sem prefixo J).
+// "**J79**: México", "79: México" (sem prefixo J), e também prosa tipo
+// "J79 é México", "J79 avança México", "vencedor da J79: México" (Le Chat).
 function parseVencedores(texto, jogosEsperados) {
   const resultado = {};
   const lines = texto.split("\n");
@@ -376,18 +377,34 @@ function parseVencedores(texto, jogosEsperados) {
   // Tenta capturar o nome do time até o final da linha, delimitador de tabela,
   // parênteses de comentário ou traços/emdashes explicativos.
   const re = /(?:^|\|)\s*[*_`]*\s*(?:[Jj]ogo\s*|[Jj])?(\d{1,3})[*_`]*\s*(?:[:.)\|]|—|→|->|-)\s*[*_`]*([^\n|(—→\-]+?)\s*[*_`]*(?:\|.*|\([^)]*\).*|$)/;
+  // Regex secundário (prosa): "J89 é México", "J89 avança/vence/ganha México",
+  // "J89 → México", "Vencedor da J89 é México".
+  const rePros = /\b[Jj](\d{1,3})\b[^.\n]*?(?:\bé\s+|\bavança\b[^.\n]*?|\bvence[m]?\b[^.\n]*?|\bganha\b[^.\n]*?|\bcomo vencedor(?:a)?\b[^.\n]*?|\b:\s*)([A-ZÁÉÍÓÚÂÊÔÃÕÇ][^.,\n(|]{2,40})/;
+  const limpar = (t) => t.trim().replace(/[*_`"]/g, "").replace(/\s+/g, " ");
+  const invalido = (t) =>
+    !t ||
+    /^(nome|time|team|equipe|todo|tbd|\?+)/i.test(t) ||
+    /\s(?:vs|x|×|-)\s/i.test(t);
   for (const linha of lines) {
-    const m = linha.match(re);
-    if (!m) continue;
-    const num = parseInt(m[1], 10);
-    if (!esperadosSet.has(num)) continue;
-    // Limpa markdown + espaço; ignora resposta óbvia de placeholder
-    const time = m[2].trim().replace(/[*_`"]/g, "").replace(/\s+/g, " ");
-    if (!time || /^(nome|time|team|equipe|todo|tbd|\?+)/i.test(time)) continue;
-    // Se o "vencedor" contém " vs " (ou " x "), é a IA ecoando o confronto
-    // sem escolher. Considera inválido.
-    if (/\s(?:vs|x|×|-)\s/i.test(time)) continue;
-    resultado[num] = time;
+    let m = linha.match(re);
+    if (m) {
+      const num = parseInt(m[1], 10);
+      if (esperadosSet.has(num)) {
+        const time = limpar(m[2]);
+        if (!invalido(time)) resultado[num] = time;
+      }
+    }
+    // Fallback prosa: só usa se o regex principal não achou nada nessa linha
+    if (!m) {
+      const mp = linha.match(rePros);
+      if (mp) {
+        const num = parseInt(mp[1], 10);
+        if (esperadosSet.has(num) && !resultado[num]) {
+          const time = limpar(mp[2]);
+          if (!invalido(time)) resultado[num] = time;
+        }
+      }
+    }
   }
   // Fill missing with "???"
   for (const j of jogosEsperados) {
@@ -481,7 +498,7 @@ async function extrairTextoResposta(page, cfg) {
   }, cfg.assistant);
 }
 
-async function esperarEstavel(page, cfg, { maxMs = 120000, estavelMs = 6000 } = {}) {
+async function esperarEstavel(page, cfg, { maxMs = 240000, estavelMs = 8000 } = {}) {
   const t0 = Date.now();
   let ultimo = "";
   let estavelDesde = Date.now();
