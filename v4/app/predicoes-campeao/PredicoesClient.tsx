@@ -86,25 +86,46 @@ const PAIRINGS: Record<Fase, { j: number; wa: number; wb: number }[]> = {
 function derivarJornadaDoCampeao(
   jornada: JornadaJSON,
   r32Confrontos: R32Confronto[],
+  cristalFallback?: JornadaJSON | null,
 ): { fase: Fase; oponente: string }[] {
   const finalMap = jornada.Final ?? {};
   const campeao = finalMap[104];
   if (!campeao || campeao === "???") return [];
 
-  // Só usa dados da própria IA — cada palpite é independente do Cristal.
+  // Prioridade: dados da IA. Se ela deixou uma fase VAZIA (parser
+  // falhou na coleta e o objeto veio {}) E o Cristal chegou ao MESMO
+  // campeão que ela, preenchemos os buracos com o Cristal pra evitar
+  // "?" em cascata. Não sobrescrevemos palpites que a IA deu — se ela
+  // preencheu, é dela.
   function pegar(fase: Fase, jogo: number): string | undefined {
     const v = jornada[fase]?.[String(jogo)];
-    return v && v !== "???" ? v : undefined;
+    if (v && v !== "???") return v;
+    const iaFaseVazia =
+      !jornada[fase] || Object.keys(jornada[fase] ?? {}).length === 0;
+    const cristalCampeao = cristalFallback?.Final?.["104"];
+    if (iaFaseVazia && cristalFallback && cristalCampeao === campeao) {
+      const c = cristalFallback[fase]?.[String(jogo)];
+      if (c && c !== "???") return c;
+    }
+    return undefined;
   }
 
-  // Descobre em qual jogo da fase o campeão apareceu como vencedor. Busca
-  // direta na jornada da IA — independente da fase anterior. Se a IA não
-  // preencheu esta fase (ex.: parser falhou), retorna undefined e o path
-  // marca esse passo como "???" sem propagar pra fases posteriores.
+  // Descobre em qual jogo da fase o campeão apareceu como vencedor. Se a
+  // fase da IA está vazia (parser falhou) mas o Cristal chegou ao MESMO
+  // campeão, cai pro Cristal — assim ChatGPT/Copilot que só têm R32 e
+  // Final não ficam com "?" em cascata na trilha.
   function jogoDoCampeao(fase: Fase): number | undefined {
     const map = jornada[fase] || {};
     for (const [jogo, time] of Object.entries(map)) {
       if (time === campeao) return parseInt(jogo, 10);
+    }
+    const iaFaseVazia = Object.keys(map).length === 0;
+    const cristalCampeao = cristalFallback?.Final?.["104"];
+    if (iaFaseVazia && cristalFallback && cristalCampeao === campeao) {
+      const cMap = cristalFallback[fase] || {};
+      for (const [jogo, time] of Object.entries(cMap)) {
+        if (time === campeao) return parseInt(jogo, 10);
+      }
     }
     return undefined;
   }
@@ -233,15 +254,17 @@ function TrilhaJornada({
   campeao,
   mapaPaises,
   r32Confrontos,
+  cristalFallback,
   compact = false,
 }: {
   jornada: JornadaJSON;
   campeao: string;
   mapaPaises: Record<string, string>;
   r32Confrontos: R32Confronto[];
+  cristalFallback?: JornadaJSON | null;
   compact?: boolean;
 }) {
-  const oponentes = derivarJornadaDoCampeao(jornada, r32Confrontos);
+  const oponentes = derivarJornadaDoCampeao(jornada, r32Confrontos, cristalFallback);
 
   // Cada "passo" na animação = 1 oponente derrotado + o passo final (taça)
   const totalPassos = oponentes.length + 1;
@@ -533,6 +556,7 @@ export default function PredicoesClient({
                   campeao={ia.campeao}
                   mapaPaises={mapaPaises}
                   r32Confrontos={r32Confrontos}
+                  cristalFallback={cristal?.jornada ?? null}
                   compact
                 />
                 <button
