@@ -94,3 +94,4 @@ no cálculo de pontuação.
 | 82 | R32 | Qua 01/07 | 17h00 | Seattle | Bélgica | 3 | 2 | Senegal |
 | 81 | R32 | Qua 01/07 | 21h00 | San Francisco | Estados Unidos | 2 | 0 | Bósnia-Herzegovina |
 | 84 | R32 | Qui 02/07 | 16h00 | Los Angeles | Espanha | 3 | 0 | Áustria |
+| 83 | R32 | Qui 02/07 | 20h00 | Toronto | Portugal | 2 | 1 | Croácia |
