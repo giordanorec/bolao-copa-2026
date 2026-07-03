@@ -1,0 +1,59 @@
+
+Simulador de Campeão (WATERFALL/consenso) — rodada 2026-07-02T15-30
+Output: data\predicoes_campeao\2026-07-02T15-30
+Alvo: 1 IAs — lechat
+Dossiê carregado: data\dossie\campeao-2026-07-02.md (20498 chars)
+
+[RESUME] Carregando estado existente de data\predicoes_campeao\2026-07-02T15-30
+
+=== FASE R32 (16-avos, pendentes) (3 jogos) ===
+  prompt: 21388 chars (dossiê incluído: true)
+  [R32 (16-avos, pendentes)] Le Chat (Mistral)...
+    aguardando resposta...
+    OK: J88=Egito, J86=Argentina, J87=Colômbia
+  [R32 consenso] {"86":"Argentina","87":"Colômbia","88":"Egito"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\le-chat-mistral-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+
+=== FASE Oitavas (8 jogos) ===
+  prompt: 21504 chars (dossiê incluído: true)
+  [Oitavas] Le Chat (Mistral)...
+    aguardando resposta...
+    OK: J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas consenso] {"89":"França","90":"Marrocos","91":"Brasil","92":"Inglaterra","93":"Espanha","94":"Bélgica","95":"Argentina","96":"Colômbia"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\le-chat-mistral-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+
+=== FASE Quartas (4 jogos) ===
+  prompt: 21386 chars (dossiê incluído: true)
+  [Quartas] Le Chat (Mistral)...
+    aguardando resposta...
+    OK: J97=França, J98=Espanha, J99=Brasil...
+  [Quartas consenso] {"97":"França","98":"Espanha","99":"Brasil","100":"Argentina"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\le-chat-mistral-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+
+=== FASE Semifinal (2 jogos) ===
+  prompt: 21328 chars (dossiê incluído: true)
+  [Semifinal] Le Chat (Mistral)...
+    aguardando resposta...
+    OK: J101=França, J102=Argentina
+  [Semifinal consenso] {"101":"França","102":"Argentina"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\le-chat-mistral-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+
+=== FASE Final (1 jogos) ===
+  prompt: 20956 chars (dossiê incluído: true)
+  [Final] Le Chat (Mistral)...
+    aguardando resposta...
+    OK: J104=França
+  [Final consenso] {"104":"França"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\le-chat-mistral-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  le-chat-mistral-web: França
+  _bola-de-cristal: França
+
+fim.

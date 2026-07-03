@@ -7,39 +7,39 @@
     "vencedores_acertados": 0
   },
   "chatgpt-5": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
-    "placares_exatos": 12,
-    "pontos": 405,
-    "vencedores_acertados": 53
+    "placares_exatos": 13,
+    "pontos": 425,
+    "vencedores_acertados": 54
   },
   "chatgpt-5-mini": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 8,
     "pontos": 400,
     "vencedores_acertados": 55
   },
   "chatgpt-5-nano": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 14,
     "pontos": 415,
     "vencedores_acertados": 52
   },
   "chatgpt-5-thinking": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
-    "placares_exatos": 11,
-    "pontos": 396,
-    "vencedores_acertados": 53
+    "placares_exatos": 12,
+    "pontos": 416,
+    "vencedores_acertados": 54
   },
   "chatgpt-5-thinking-web": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
-    "placares_exatos": 3,
-    "pontos": 134,
-    "vencedores_acertados": 10
+    "placares_exatos": 4,
+    "pontos": 154,
+    "vencedores_acertados": 11
   },
   "chatgpt-5-web": {
     "jogos_palpitados": 0,
@@ -49,11 +49,11 @@
     "vencedores_acertados": 0
   },
   "claude-fable-5": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
-    "placares_exatos": 12,
-    "pontos": 407,
-    "vencedores_acertados": 53
+    "placares_exatos": 13,
+    "pontos": 427,
+    "vencedores_acertados": 54
   },
   "claude-haiku-3-5": {
     "jogos_palpitados": 72,
@@ -63,11 +63,11 @@
     "vencedores_acertados": 45
   },
   "claude-haiku-4-5": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
-    "placares_exatos": 10,
-    "pontos": 383,
-    "vencedores_acertados": 50
+    "placares_exatos": 11,
+    "pontos": 403,
+    "vencedores_acertados": 51
   },
   "claude-haiku-4-5-web": {
     "jogos_palpitados": 0,
@@ -84,25 +84,25 @@
     "vencedores_acertados": 0
   },
   "claude-opus-4-5": {
-    "jogos_palpitados": 85,
-    "palpites_total": 88,
-    "placares_exatos": 16,
-    "pontos": 424,
-    "vencedores_acertados": 54
-  },
-  "claude-opus-4-7": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 17,
-    "pontos": 443,
-    "vencedores_acertados": 56
+    "pontos": 444,
+    "vencedores_acertados": 55
+  },
+  "claude-opus-4-7": {
+    "jogos_palpitados": 86,
+    "palpites_total": 88,
+    "placares_exatos": 18,
+    "pontos": 463,
+    "vencedores_acertados": 57
   },
   "claude-opus-4-8-web": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
-    "placares_exatos": 2,
-    "pontos": 100,
-    "vencedores_acertados": 8
+    "placares_exatos": 3,
+    "pontos": 120,
+    "vencedores_acertados": 9
   },
   "claude-sonnet-3-5": {
     "jogos_palpitados": 0,
@@ -119,14 +119,14 @@
     "vencedores_acertados": 0
   },
   "claude-sonnet-4-5": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
-    "placares_exatos": 13,
-    "pontos": 378,
-    "vencedores_acertados": 49
+    "placares_exatos": 14,
+    "pontos": 398,
+    "vencedores_acertados": 50
   },
   "claude-sonnet-4-6": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 15,
     "pontos": 418,
@@ -140,7 +140,7 @@
     "vencedores_acertados": 0
   },
   "codestral": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 10,
     "pontos": 339,
@@ -154,21 +154,21 @@
     "vencedores_acertados": 0
   },
   "cohere-command-a": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
     "placares_exatos": 2,
     "pontos": 94,
     "vencedores_acertados": 7
   },
   "cohere-command-r": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
-    "placares_exatos": 4,
-    "pontos": 319,
-    "vencedores_acertados": 47
+    "placares_exatos": 5,
+    "pontos": 339,
+    "vencedores_acertados": 48
   },
   "cohere-command-r-plus": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 9,
     "pontos": 335,
@@ -182,11 +182,11 @@
     "vencedores_acertados": 41
   },
   "copilot-microsoft-web": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
-    "placares_exatos": 2,
-    "pontos": 128,
-    "vencedores_acertados": 10
+    "placares_exatos": 3,
+    "pontos": 148,
+    "vencedores_acertados": 11
   },
   "dbrx-instruct": {
     "jogos_palpitados": 0,
@@ -196,28 +196,28 @@
     "vencedores_acertados": 0
   },
   "deepseek-r1": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 9,
     "pontos": 376,
     "vencedores_acertados": 51
   },
   "deepseek-r1-web": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
-    "placares_exatos": 3,
-    "pontos": 120,
-    "vencedores_acertados": 9
+    "placares_exatos": 4,
+    "pontos": 140,
+    "vencedores_acertados": 10
   },
   "deepseek-v3": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 10,
     "pontos": 400,
     "vencedores_acertados": 55
   },
   "deepseek-v3-1": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 11,
     "pontos": 424,
@@ -231,7 +231,7 @@
     "vencedores_acertados": 0
   },
   "deepseek-v3-2": {
-    "jogos_palpitados": 78,
+    "jogos_palpitados": 79,
     "palpites_total": 81,
     "placares_exatos": 12,
     "pontos": 386,
@@ -294,14 +294,14 @@
     "vencedores_acertados": 0
   },
   "gemini-2-5-flash": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 15,
     "pontos": 428,
     "vencedores_acertados": 54
   },
   "gemini-2-5-flash-lite": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 13,
     "pontos": 402,
@@ -315,18 +315,18 @@
     "vencedores_acertados": 0
   },
   "gemini-2-5-pro": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 9,
     "pontos": 356,
     "vencedores_acertados": 49
   },
   "gemini-2-5-pro-web": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
-    "placares_exatos": 3,
-    "pontos": 124,
-    "vencedores_acertados": 9
+    "placares_exatos": 4,
+    "pontos": 144,
+    "vencedores_acertados": 10
   },
   "gemma-2-27b": {
     "jogos_palpitados": 0,
@@ -336,14 +336,14 @@
     "vencedores_acertados": 0
   },
   "gemma-3-12b": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 8,
     "pontos": 381,
     "vencedores_acertados": 54
   },
   "gemma-3-27b": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 7,
     "pontos": 391,
@@ -364,14 +364,14 @@
     "vencedores_acertados": 0
   },
   "gpt-4-1": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 14,
     "pontos": 430,
     "vencedores_acertados": 56
   },
   "gpt-4o": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 13,
     "pontos": 413,
@@ -399,21 +399,21 @@
     "vencedores_acertados": 0
   },
   "grok-4": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 12,
     "pontos": 401,
     "vencedores_acertados": 53
   },
   "grok-4-fast": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 16,
     "pontos": 468,
     "vencedores_acertados": 60
   },
   "grok-4-heavy": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 15,
     "pontos": 421,
@@ -462,21 +462,21 @@
     "vencedores_acertados": 0
   },
   "jamba-1-5-large": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 5,
     "pontos": 361,
     "vencedores_acertados": 50
   },
   "kimi-k2": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 15,
     "pontos": 424,
     "vencedores_acertados": 49
   },
   "le-chat-mistral": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 14,
     "pontos": 414,
@@ -490,11 +490,11 @@
     "vencedores_acertados": 0
   },
   "lfm-40b": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
     "placares_exatos": 0,
-    "pontos": 20,
-    "vencedores_acertados": 2
+    "pontos": 30,
+    "vencedores_acertados": 3
   },
   "lfm-7b": {
     "jogos_palpitados": 0,
@@ -511,7 +511,7 @@
     "vencedores_acertados": 0
   },
   "llama-3-1-70b": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 11,
     "pontos": 377,
@@ -525,7 +525,7 @@
     "vencedores_acertados": 0
   },
   "llama-3-3-70b": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 8,
     "pontos": 362,
@@ -539,14 +539,14 @@
     "vencedores_acertados": 0
   },
   "llama-4-maverick": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 12,
     "pontos": 417,
     "vencedores_acertados": 52
   },
   "llama-4-scout": {
-    "jogos_palpitados": 33,
+    "jogos_palpitados": 34,
     "palpites_total": 36,
     "placares_exatos": 4,
     "pontos": 169,
@@ -560,7 +560,7 @@
     "vencedores_acertados": 43
   },
   "manus-web": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
     "placares_exatos": 0,
     "pontos": 82,
@@ -574,18 +574,18 @@
     "vencedores_acertados": 0
   },
   "meta-llama-4": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 6,
     "pontos": 354,
     "vencedores_acertados": 48
   },
   "meta-llama-4-web": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
-    "placares_exatos": 3,
-    "pontos": 120,
-    "vencedores_acertados": 9
+    "placares_exatos": 4,
+    "pontos": 140,
+    "vencedores_acertados": 10
   },
   "minimax-abab": {
     "jogos_palpitados": 0,
@@ -595,28 +595,28 @@
     "vencedores_acertados": 0
   },
   "ministral-8b": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 10,
     "pontos": 397,
     "vencedores_acertados": 53
   },
   "mistral-medium-3": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 13,
     "pontos": 423,
     "vencedores_acertados": 54
   },
   "mistral-small-3": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 17,
     "pontos": 448,
     "vencedores_acertados": 56
   },
   "mixtral-8x22b": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 11,
     "pontos": 373,
@@ -658,25 +658,25 @@
     "vencedores_acertados": 0
   },
   "o1": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
-    "placares_exatos": 11,
-    "pontos": 401,
-    "vencedores_acertados": 55
+    "placares_exatos": 12,
+    "pontos": 421,
+    "vencedores_acertados": 56
   },
   "o3": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
-    "placares_exatos": 16,
-    "pontos": 427,
-    "vencedores_acertados": 55
+    "placares_exatos": 17,
+    "pontos": 447,
+    "vencedores_acertados": 56
   },
   "o4-mini": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
-    "placares_exatos": 15,
-    "pontos": 430,
-    "vencedores_acertados": 53
+    "placares_exatos": 16,
+    "pontos": 450,
+    "vencedores_acertados": 54
   },
   "olmo-2-32b": {
     "jogos_palpitados": 0,
@@ -686,46 +686,46 @@
     "vencedores_acertados": 0
   },
   "perplexity-sonar-large": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 14,
     "pontos": 403,
     "vencedores_acertados": 51
   },
   "perplexity-sonar-pro": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 11,
     "pontos": 381,
     "vencedores_acertados": 51
   },
   "perplexity-sonar-pro-web": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
-    "placares_exatos": 3,
-    "pontos": 134,
-    "vencedores_acertados": 10
+    "placares_exatos": 4,
+    "pontos": 154,
+    "vencedores_acertados": 11
   },
   "perplexity-sonar-reasoning": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
-    "placares_exatos": 12,
-    "pontos": 410,
-    "vencedores_acertados": 53
+    "placares_exatos": 13,
+    "pontos": 430,
+    "vencedores_acertados": 54
   },
   "phi-4": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
-    "placares_exatos": 2,
-    "pontos": 100,
-    "vencedores_acertados": 8
+    "placares_exatos": 3,
+    "pontos": 120,
+    "vencedores_acertados": 9
   },
   "phi-4-mini": {
-    "jogos_palpitados": 84,
+    "jogos_palpitados": 85,
     "palpites_total": 87,
     "placares_exatos": 9,
-    "pontos": 253,
-    "vencedores_acertados": 35
+    "pontos": 263,
+    "vencedores_acertados": 36
   },
   "pixtral-12b": {
     "jogos_palpitados": 0,
@@ -742,35 +742,35 @@
     "vencedores_acertados": 0
   },
   "qwen-2-5-72b": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 7,
     "pontos": 363,
     "vencedores_acertados": 51
   },
   "qwen-3-235b": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 13,
     "pontos": 400,
     "vencedores_acertados": 51
   },
   "qwen-3-coder": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 9,
     "pontos": 386,
     "vencedores_acertados": 51
   },
   "qwen-3-max": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 15,
     "pontos": 405,
     "vencedores_acertados": 51
   },
   "qwen-3-max-web": {
-    "jogos_palpitados": 13,
+    "jogos_palpitados": 14,
     "palpites_total": 16,
     "placares_exatos": 4,
     "pontos": 164,
@@ -847,7 +847,7 @@
     "vencedores_acertados": 0
   },
   "wizardlm-2-8x22b": {
-    "jogos_palpitados": 85,
+    "jogos_palpitados": 86,
     "palpites_total": 88,
     "placares_exatos": 16,
     "pontos": 452,

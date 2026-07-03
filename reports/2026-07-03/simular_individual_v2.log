@@ -1,0 +1,27 @@
+Dossiê: 20498 chars
+Rodada: 2026-07-03T09-00
+Alvo: 11 IAs — chatgpt, claude, copilot, gemini, grok, mistral, meta, deepseek, perplexity, qwen, kimi
+  [ChatGPT 5                ] OK campeao=França [t1=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\chatgpt-5-thinking-web.json
+  [Claude Opus 4.8          ] OK campeao=Argentina [t1=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\claude-opus-4-8-web.json
+  [Microsoft Copilot        ] OK campeao=França [t1=1err, t2=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\copilot-microsoft-web.json
+  [Gemini 2.5 Pro           ] OK campeao=França [t1=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\gemini-2-5-pro-web.json
+  [Grok 4 Heavy             ] OK campeao=França [t1=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\grok-4-heavy-web.json
+  [Le Chat (Mistral)        ] OK campeao=Argentina [t1=1err, t2=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\le-chat-mistral-web.json
+  [Meta AI (Llama 4)        ] OK campeao=Argentina [t1=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\meta-llama-4-web.json
+  [DeepSeek R1              ] OK campeao=França [t1=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\deepseek-r1-web.json
+  [Perplexity Sonar Pro     ] OK campeao=França [t1=1err, t2=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\perplexity-sonar-pro-web.json
+  [Qwen 3 Max               ] OK campeao=Argentina [t1=2err, t2=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\qwen-3-max-web.json
+  [Kimi K2                  ] OK campeao=Argentina [t1=0err]
+    salvo: data\predicoes_campeao\2026-07-03T09-00\kimi-k2-web.json
+
+OK. Cristal (_bola-de-cristal.json) NÃO tocado — ele vem do simular_campeao_api.py.

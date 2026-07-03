@@ -1,0 +1,31 @@
+
+Simulador de Campeão (WATERFALL/consenso) — rodada 2026-07-02T15-30
+Output: data\predicoes_campeao\2026-07-02T15-30
+Alvo: 3 IAs — grok, lechat, manus
+Dossiê carregado: data\dossie\campeao-2026-07-02.md (20498 chars)
+
+[RESUME] Carregando estado existente de data\predicoes_campeao\2026-07-02T15-30
+  [RESUME] fase R32 já completa (consenso preservado)
+  [RESUME] fase Oitavas já completa (consenso preservado)
+  [RESUME] fase Quartas já completa (consenso preservado)
+  [RESUME] fase Semifinal já completa (consenso preservado)
+  [RESUME] fase Final já completa (consenso preservado)
+
+[R32] fase já consolidada no snapshot — pulando (--resume).
+
+[Oitavas] fase já consolidada — pulando (--resume).
+
+[Quartas] fase já consolidada — pulando (--resume).
+
+[Semifinal] fase já consolidada — pulando (--resume).
+
+[Final] fase já consolidada — pulando (--resume).
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  grok-4-heavy-web: ???
+  le-chat-mistral-web: ???
+  manus-web: ???
+  _bola-de-cristal: França
+
+fim.

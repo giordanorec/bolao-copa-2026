@@ -1,0 +1,211 @@
+===10:46:34 claude===
+  [Quartas] enviando prompt (594 chars)
+  FAIL Quartas: Não achei caixa de texto
+  AVISO: sem resposta em Quartas — marcando ???
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: Não achei caixa de texto
+  AVISO: sem resposta em Semifinal — marcando ???
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\claude-opus-4-8-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  _bola-de-cristal: Brasil
+
+fim.
+===10:48:22 gemini===
+    aguardando resposta...
+  [Quartas] vencedores: {"97":"França","98":"Espanha","99":"Brasil","100":"Argentina"}
+  [Semifinal] enviando prompt (571 chars)
+    aguardando resposta...
+  [Semifinal] vencedores: {"101":"França","102":"Brasil"}
+  [Final] enviando prompt (241 chars)
+    aguardando resposta...
+  [Final] vencedores: {"104":"Brasil"}
+  CAMPEAO PREVISTO: Brasil
+  salvo: data\predicoes_campeao\2026-07-02T13-44\gemini-2-5-pro-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  gemini-2-5-pro-web: Brasil
+  _bola-de-cristal: Brasil
+
+fim.
+===10:50:12 grok===
+  AVISO: sem resposta em Quartas — marcando ???
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: Não achei caixa de texto
+  AVISO: sem resposta em Semifinal — marcando ???
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\grok-4-heavy-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  _bola-de-cristal: Brasil
+
+fim.
+===10:51:42 deepseek===
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: Não achei caixa de texto
+  AVISO: sem resposta em Semifinal — marcando ???
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\deepseek-r1-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  _bola-de-cristal: Brasil
+
+fim.
+===10:53:29 copilot===
+    aguardando resposta...
+  [Semifinal] vencedores: {"101":"França","102":"Brasil"}
+  [Final] enviando prompt (241 chars)
+    aguardando resposta...
+  [Final] vencedores: {"104":"???"}
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\copilot-microsoft-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  copilot-microsoft-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  _bola-de-cristal: Brasil
+
+fim.
+===10:54:50 perplexity===
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\perplexity-sonar-pro-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  copilot-microsoft-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  perplexity-sonar-pro-web: ???
+  _bola-de-cristal: Brasil
+
+fim.
+===10:57:34 lechat===
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\le-chat-mistral-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  copilot-microsoft-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  le-chat-mistral-web: ???
+  perplexity-sonar-pro-web: ???
+  _bola-de-cristal: Brasil
+
+fim.
+===10:59:04 meta===
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\meta-llama-4-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  copilot-microsoft-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  le-chat-mistral-web: ???
+  meta-llama-4-web: ???
+  perplexity-sonar-pro-web: ???
+  _bola-de-cristal: Brasil
+
+fim.
+===11:00:34 qwen===
+  [Final] vencedores: {"104":"França"}
+  CAMPEAO PREVISTO: França
+  salvo: data\predicoes_campeao\2026-07-02T13-44\qwen-3-max-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  copilot-microsoft-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  le-chat-mistral-web: ???
+  meta-llama-4-web: ???
+  perplexity-sonar-pro-web: ???
+  qwen-3-max-web: França
+  _bola-de-cristal: Brasil
+
+fim.
+===11:03:05 manus===
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\manus-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  copilot-microsoft-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  le-chat-mistral-web: ???
+  manus-web: ???
+  meta-llama-4-web: ???
+  perplexity-sonar-pro-web: ???
+  qwen-3-max-web: França
+  _bola-de-cristal: Brasil
+
+fim.
+===11:05:50 FIM===

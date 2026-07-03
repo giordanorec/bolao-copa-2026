@@ -1,0 +1,48 @@
+===12:36:37 perplexity===
+  [R32] enviando prompt (691 chars)
+  [R32] vencedores: {"83":"???","84":"???","85":"???","86":"???","87":"???","88":"???"}
+  [Oitavas] enviando prompt (725 chars)
+  [Oitavas] vencedores: {"89":"???","90":"???","91":"???","92":"???","93":"???","94":"???","95":"???","96":"???"}
+  [Quartas] enviando prompt (594 chars)
+  [Quartas] vencedores: {"97":"???","98":"???","99":"???","100":"???"}
+  [Semifinal] enviando prompt (555 chars)
+  [Semifinal] vencedores: {"101":"???","102":"???"}
+  [Final] enviando prompt (235 chars)
+  [Final] vencedores: {"104":"???"}
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\perplexity-sonar-pro-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+===12:37:55 lechat===
+  [R32] enviando prompt (691 chars)
+  FAIL R32: Não achei caixa de texto
+  AVISO: sem resposta no R32 — marcando todos como ???
+  [Oitavas] enviando prompt (725 chars)
+  FAIL Oitavas: Não achei caixa de texto
+  AVISO: sem resposta em Oitavas — marcando ???
+  [Quartas] enviando prompt (594 chars)
+  FAIL Quartas: Não achei caixa de texto
+  AVISO: sem resposta em Quartas — marcando ???
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: Não achei caixa de texto
+  AVISO: sem resposta em Semifinal — marcando ???
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+===12:39:52 meta===
+  [R32] enviando prompt (691 chars)
+  FAIL R32: Não achei caixa de texto
+  AVISO: sem resposta no R32 — marcando todos como ???
+  [Oitavas] enviando prompt (725 chars)
+  FAIL Oitavas: Não achei caixa de texto
+  AVISO: sem resposta em Oitavas — marcando ???
+  [Quartas] enviando prompt (594 chars)
+  FAIL Quartas: Não achei caixa de texto
+  AVISO: sem resposta em Quartas — marcando ???
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: Não achei caixa de texto
+  AVISO: sem resposta em Semifinal — marcando ???
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+===12:41:34 FIM===

@@ -1,0 +1,31 @@
+===12:13:48 manus===
+  [R32] enviando prompt (691 chars)
+  FAIL R32: locator.click: Timeout 30000ms exceeded.
+  [Oitavas] enviando prompt (725 chars)
+  FAIL Oitavas: locator.click: Timeout 30000ms exceeded.
+  [Quartas] enviando prompt (594 chars)
+  FAIL Quartas: locator.click: Timeout 30000ms exceeded.
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: locator.click: Timeout 30000ms exceeded.
+  [Final] enviando prompt (235 chars)
+  FAIL Final: locator.click: Timeout 30000ms exceeded.
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\manus-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+===12:16:35 grok===
+  [R32] enviando prompt (691 chars)
+  [R32] vencedores: {"83":"???","84":"???","85":"???","86":"???","87":"???","88":"???"}
+  [Oitavas] enviando prompt (725 chars)
+  [Oitavas] vencedores: {"89":"???","90":"???","91":"???","92":"???","93":"???","94":"???","95":"???","96":"???"}
+  [Quartas] enviando prompt (594 chars)
+  [Quartas] vencedores: {"97":"???","98":"???","99":"???","100":"???"}
+  [Semifinal] enviando prompt (555 chars)
+  [Semifinal] vencedores: {"101":"???","102":"???"}
+  [Final] enviando prompt (235 chars)
+  [Final] vencedores: {"104":"???"}
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\grok-4-heavy-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+===12:27:17 FIM===

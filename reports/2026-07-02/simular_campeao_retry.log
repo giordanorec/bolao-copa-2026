@@ -1,0 +1,249 @@
+===11:09:57 claude===
+
+=== Claude Opus 4.8 (claude-opus-4-8-web) ===
+  [R32] enviando prompt (691 chars)
+  FAIL R32: Não achei caixa de texto
+  AVISO: sem resposta no R32 — marcando todos como ???
+  [Oitavas] enviando prompt (725 chars)
+  FAIL Oitavas: Não achei caixa de texto
+  AVISO: sem resposta em Oitavas — marcando ???
+  [Quartas] enviando prompt (594 chars)
+  FAIL Quartas: Não achei caixa de texto
+  AVISO: sem resposta em Quartas — marcando ???
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: Não achei caixa de texto
+  AVISO: sem resposta em Semifinal — marcando ???
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\claude-opus-4-8-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  gemini-2-5-pro-web: Brasil
+  qwen-3-max-web: França
+  _bola-de-cristal: Brasil
+
+fim.
+===11:11:50 deepseek===
+=== DeepSeek R1 (deepseek-r1-web) ===
+  [R32] enviando prompt (691 chars)
+  FAIL R32: Não achei caixa de texto
+  AVISO: sem resposta no R32 — marcando todos como ???
+  [Oitavas] enviando prompt (725 chars)
+  FAIL Oitavas: Não achei caixa de texto
+  AVISO: sem resposta em Oitavas — marcando ???
+  [Quartas] enviando prompt (594 chars)
+  FAIL Quartas: Não achei caixa de texto
+  AVISO: sem resposta em Quartas — marcando ???
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: Não achei caixa de texto
+  AVISO: sem resposta em Semifinal — marcando ???
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\deepseek-r1-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  qwen-3-max-web: França
+  _bola-de-cristal: Brasil
+
+fim.
+===11:13:41 grok===
+[2m  - element was detached from the DOM, retrying[22m
+
+  AVISO: sem resposta no R32 — marcando todos como ???
+  [Oitavas] enviando prompt (725 chars)
+  FAIL Oitavas: Não achei caixa de texto
+  AVISO: sem resposta em Oitavas — marcando ???
+  [Quartas] enviando prompt (594 chars)
+  FAIL Quartas: Não achei caixa de texto
+  AVISO: sem resposta em Quartas — marcando ???
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: Não achei caixa de texto
+  AVISO: sem resposta em Semifinal — marcando ???
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\grok-4-heavy-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  qwen-3-max-web: França
+  _bola-de-cristal: Brasil
+
+fim.
+===11:15:43 lechat===
+  FAIL R32: Não achei caixa de texto
+  AVISO: sem resposta no R32 — marcando todos como ???
+  [Oitavas] enviando prompt (725 chars)
+  FAIL Oitavas: Não achei caixa de texto
+  AVISO: sem resposta em Oitavas — marcando ???
+  [Quartas] enviando prompt (594 chars)
+  FAIL Quartas: Não achei caixa de texto
+  AVISO: sem resposta em Quartas — marcando ???
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: Não achei caixa de texto
+  AVISO: sem resposta em Semifinal — marcando ???
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\le-chat-mistral-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  le-chat-mistral-web: ???
+  qwen-3-max-web: França
+  _bola-de-cristal: Brasil
+
+fim.
+===11:17:21 manus===
+[2m      - done scrolling[22m
+[2m      - <div class="absolute start-0 top-0 z-0 origin-top-left rtl:origin-top-right rounded-[inherit] overflow-hidden bg-menu-white backdrop-blur-[40px] h-[48px] w-[72px]">…</div> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    55 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <div class="absolute start-0 top-0 z-0 origin-top-left rtl:origin-top-right rounded-[inherit] overflow-hidden bg-menu-white backdrop-blur-[40px] h-[48px] w-[72px]">…</div> intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\manus-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  le-chat-mistral-web: ???
+  manus-web: ???
+  qwen-3-max-web: França
+  _bola-de-cristal: Brasil
+
+fim.
+===11:20:06 meta===
+  [Oitavas] enviando prompt (725 chars)
+  FAIL Oitavas: Não achei caixa de texto
+  AVISO: sem resposta em Oitavas — marcando ???
+  [Quartas] enviando prompt (594 chars)
+  FAIL Quartas: Não achei caixa de texto
+  AVISO: sem resposta em Quartas — marcando ???
+  [Semifinal] enviando prompt (555 chars)
+  FAIL Semifinal: Não achei caixa de texto
+  AVISO: sem resposta em Semifinal — marcando ???
+  [Final] enviando prompt (235 chars)
+  FAIL Final: Não achei caixa de texto
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\meta-llama-4-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  le-chat-mistral-web: ???
+  manus-web: ???
+  meta-llama-4-web: ???
+  qwen-3-max-web: França
+  _bola-de-cristal: Brasil
+
+fim.
+===11:21:41 perplexity===
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    55 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <div class="mb-4 font-sans text-quiet  text-sm selection:bg-super/50 selection:text-foreground dark:selection:bg-super/10 dark:selection:text-super">Nós e os nossos parceiros utilizamos cookies, pix…</div> from <div role="dialog" aria-modal="false" id="cookie-consent" aria-labelledby="_r_6k_" aria-describedby="_r_6l_" class="bottom-sm inset-x-sm fixed z-[2000] max-w-md border shadow-sm pointer-events-auto md:left-auto border-subtlest ring-subtlest divide-subtlest bg-base rounded-lg p-md">…</div> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+  AVISO: sem resposta em Final — marcando ???
+  CAMPEAO PREVISTO: ???
+  salvo: data\predicoes_campeao\2026-07-02T13-44\perplexity-sonar-pro-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  le-chat-mistral-web: ???
+  manus-web: ???
+  meta-llama-4-web: ???
+  perplexity-sonar-pro-web: ???
+  qwen-3-max-web: França
+  _bola-de-cristal: Brasil
+
+fim.
+===11:24:26 copilot===
+  [Oitavas] vencedores: {"89":"França","90":"Marrocos","91":"Brasil","92":"Inglaterra","93":"Espanha","94":"Estados Unidos","95":"Argentina","96":"Colômbia"}
+  [Quartas] enviando prompt (638 chars)
+    aguardando resposta...
+  [Quartas] vencedores: {"97":"França","98":"Espanha","99":"Brasil","100":"Argentina"}
+  [Semifinal] enviando prompt (571 chars)
+    aguardando resposta...
+  [Semifinal] vencedores: {"101":"França","102":"Brasil"}
+  [Final] enviando prompt (241 chars)
+    aguardando resposta...
+  [Final] vencedores: {"104":"França"}
+  CAMPEAO PREVISTO: França
+  salvo: data\predicoes_campeao\2026-07-02T13-44\copilot-microsoft-web.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T13-44\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: Brasil
+  claude-opus-4-8-web: ???
+  copilot-microsoft-web: França
+  deepseek-r1-web: ???
+  gemini-2-5-pro-web: Brasil
+  grok-4-heavy-web: ???
+  le-chat-mistral-web: ???
+  manus-web: ???
+  meta-llama-4-web: ???
+  perplexity-sonar-pro-web: ???
+  qwen-3-max-web: França
+  _bola-de-cristal: Brasil
+
+fim.
+===11:25:44 FIM===

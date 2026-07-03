@@ -1,0 +1,108 @@
+    aguardando resposta...
+    OK: J104=???
+  [Final consenso] {"104":"Paraguai vs França vs Canadá vs Marrocos vs Portugal vs Croácia vs Espanha vs Áustria vs Estados Unidos vs Bélgica vs Brasil vs Noruega vs México vs Inglaterra vs Argentina vs Cabo Verde vs Austrália vs Egito vs Suíça vs Argélia vs Colômbia vs Gana"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\chatgpt-5-thinking-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  chatgpt-5-thinking-web: ???
+  _bola-de-cristal: Paraguai vs França vs Canadá vs Marrocos vs Portugal vs Croácia vs Espanha vs Áustria vs Estados Unidos vs Bélgica vs Brasil vs Noruega vs México vs Inglaterra vs Argentina vs Cabo Verde vs Austrália vs Egito vs Suíça vs Argélia vs Colômbia vs Gana
+
+fim.
+    aguardando resposta...
+    OK: J104=França
+  [Final consenso] {"104":"França"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\claude-opus-4-8-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  claude-opus-4-8-web: França
+  _bola-de-cristal: França
+
+fim.
+    aguardando resposta...
+    OK: J104=França
+  [Final consenso] {"104":"França"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\gemini-2-5-pro-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  gemini-2-5-pro-web: França
+  _bola-de-cristal: França
+
+fim.
+  [Final] Grok 4 Heavy...
+    aguardando resposta...
+  [Final consenso] {"104":"Paraguai vs França vs Canadá vs Marrocos vs Portugal vs Croácia vs Espanha vs Áustria vs Estados Unidos vs Bélgica vs Brasil vs Noruega vs México vs Inglaterra vs Argentina vs Cabo Verde vs Austrália vs Egito vs Suíça vs Argélia vs Colômbia vs Gana"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\grok-4-heavy-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  grok-4-heavy-web: ???
+  _bola-de-cristal: Paraguai vs França vs Canadá vs Marrocos vs Portugal vs Croácia vs Espanha vs Áustria vs Estados Unidos vs Bélgica vs Brasil vs Noruega vs México vs Inglaterra vs Argentina vs Cabo Verde vs Austrália vs Egito vs Suíça vs Argélia vs Colômbia vs Gana
+
+fim.
+    aguardando resposta...
+    OK: J104=Argentina
+  [Final consenso] {"104":"Argentina"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\deepseek-r1-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  deepseek-r1-web: Argentina
+  _bola-de-cristal: Argentina
+
+fim.
+    aguardando resposta...
+    OK: J104=França
+  [Final consenso] {"104":"França"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\copilot-microsoft-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  copilot-microsoft-web: França
+  _bola-de-cristal: França
+
+fim.
+    aguardando resposta...
+    OK: J104=França
+  [Final consenso] {"104":"França"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\perplexity-sonar-pro-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  perplexity-sonar-pro-web: França
+  _bola-de-cristal: França
+
+fim.
+    aguardando resposta...
+    OK: J104=França
+  [Final consenso] {"104":"França"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\meta-llama-4-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  meta-llama-4-web: França
+  _bola-de-cristal: França
+
+fim.
+    aguardando resposta...
+    OK: J104=???
+  [Final consenso] {"104":"Paraguai vs França vs Canadá vs Marrocos vs Portugal vs Croácia vs Espanha vs Áustria vs Estados Unidos vs Bélgica vs Brasil vs Noruega vs México vs Inglaterra vs Argentina vs Cabo Verde vs Austrália vs Egito vs Suíça vs Argélia vs Colômbia vs Gana"}
+  salvo: data\predicoes_campeao\2026-07-02T15-30\qwen-3-max-web.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-02T15-30\_resumo.json
+
+--- RESUMO ---
+  qwen-3-max-web: ???
+  _bola-de-cristal: Paraguai vs França vs Canadá vs Marrocos vs Portugal vs Croácia vs Espanha vs Áustria vs Estados Unidos vs Bélgica vs Brasil vs Noruega vs México vs Inglaterra vs Argentina vs Cabo Verde vs Austrália vs Egito vs Suíça vs Argélia vs Colômbia vs Gana
+
+fim.
