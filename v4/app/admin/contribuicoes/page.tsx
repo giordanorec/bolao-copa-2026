@@ -407,23 +407,30 @@ export default async function ContribuicoesAdminPage({
 
       {/* Enviar foto de Pix — individual detalhado OU relatório com vários */}
       <section className="cbox">
-        <h2 className="ctitle">📷 Foto de Pix (1 ou mais contribuintes)</h2>
+        <h2 className="ctitle">📷 Fotos de Pix (1 ou várias)</h2>
         <p className="csub">
-          Suba o print do Pix — seja um recebimento individual detalhado, seja um
-          extrato com vários. Os nomes/valores são identificados depois, ao processar.
+          Suba um ou vários prints/extratos de Pix de uma vez. Cada arquivo vira
+          um rascunho separado — nomes/valores são identificados depois, ao processar.
         </p>
         <form action={adicionarFotoPix} className="cform">
           <div className="cfield cfield-wide">
-            <label>Imagem do Pix *</label>
-            <input className="input" name="comprovante" type="file" accept="image/*,application/pdf" required />
+            <label>Imagens do Pix * (segure Ctrl/⌘ pra selecionar várias)</label>
+            <input
+              className="input"
+              name="comprovante"
+              type="file"
+              accept="image/*,application/pdf"
+              multiple
+              required
+            />
           </div>
           <div className="cfield cfield-wide">
-            <label>Nota (opcional)</label>
+            <label>Nota (opcional, aplica a todos os arquivos)</label>
             <input className="input" name="nota" placeholder="ex.: extrato de 24/jun" />
           </div>
           <div className="cfield-wide">
             <button type="submit" className="btn primary small">
-              Enviar foto
+              Enviar fotos
             </button>
           </div>
         </form>

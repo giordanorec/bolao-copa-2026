@@ -118,28 +118,57 @@ export async function adicionarContribuicao(formData: FormData) {
 export async function adicionarFotoPix(formData: FormData) {
   const admin = await requireAdmin();
 
-  const file = formData.get("comprovante") as File | null;
-  if (!file || typeof file.size !== "number" || file.size === 0) {
-    throw new Error("Selecione uma imagem do Pix.");
+  // Aceita 1 ou N arquivos no mesmo campo. Cada arquivo vira 1 rascunho
+  // independente pra facilitar a identificação individual depois.
+  const files = formData
+    .getAll("comprovante")
+    .filter((f): f is File => f instanceof File && typeof f.size === "number" && f.size > 0);
+  if (files.length === 0) {
+    throw new Error("Selecione ao menos uma imagem do Pix.");
   }
-  const ext = (file.name.split(".").pop() || "bin").toLowerCase().slice(0, 8);
-  const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-  const buf = Buffer.from(await file.arrayBuffer());
-  const { error: upErr } = await admin.storage
-    .from(BUCKET)
-    .upload(path, buf, { contentType: file.type || "application/octet-stream", upsert: false });
-  if (upErr) throw new Error("Falha ao subir imagem: " + upErr.message);
 
   const nota = (formData.get("nota") as string)?.trim() || null;
-  const { error } = await admin.from("contribuicoes").insert({
-    nome: "📷 Foto de Pix (a identificar)",
-    valor: 0,
-    nota,
-    comprovante_url: path,
-    status: "rascunho",
-  });
-  if (error) throw new Error(error.message);
+  const erros: string[] = [];
+
+  for (const file of files) {
+    try {
+      const ext = (file.name.split(".").pop() || "bin").toLowerCase().slice(0, 8);
+      const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const buf = Buffer.from(await file.arrayBuffer());
+      const { error: upErr } = await admin.storage
+        .from(BUCKET)
+        .upload(path, buf, {
+          contentType: file.type || "application/octet-stream",
+          upsert: false,
+        });
+      if (upErr) {
+        erros.push(`${file.name}: upload falhou (${upErr.message})`);
+        continue;
+      }
+      const { error } = await admin.from("contribuicoes").insert({
+        nome: "📷 Foto de Pix (a identificar)",
+        valor: 0,
+        nota: nota && files.length > 1 ? `${nota} · ${file.name}` : nota,
+        comprovante_url: path,
+        status: "rascunho",
+      });
+      if (error) erros.push(`${file.name}: insert falhou (${error.message})`);
+    } catch (e) {
+      erros.push(`${file.name}: ${(e as Error).message}`);
+    }
+  }
+
+  if (erros.length === files.length) {
+    throw new Error("Nenhum arquivo subiu:\n" + erros.join("\n"));
+  }
   revalidatePath("/admin/contribuicoes");
+  if (erros.length > 0) {
+    // Sobe parcial mas avisa quais falharam
+    throw new Error(
+      `${files.length - erros.length}/${files.length} subiram. Falhas:\n` +
+        erros.join("\n"),
+    );
+  }
 }
 
 /**
