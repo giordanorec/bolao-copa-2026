@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { nomeSerieA } from "@/lib/serie-a";
+import { nomeSerieA, SLUGS_SERIE_A, FALLBACK_NAO_WEB } from "@/lib/serie-a";
 
 // Fonte ÚNICA dos dados das animações da corrida (Modo A vista de cima,
 // Modo B bar race, Modo C gráfico de pontos). Usado tanto em
@@ -77,6 +77,35 @@ function pts(
   return mataMata ? base * 2 : base;
 }
 
+// Mapa reverso: irmão sem-web -> vitrine -web (pra localizar a fonte oficial
+// do mata-mata quando o slug alvo é o irmão sem-web).
+const IRMAO_PARA_WEB: Record<string, string> = Object.fromEntries(
+  Object.entries(FALLBACK_NAO_WEB).map(([web, irmao]) => [irmao, web]),
+);
+const SLUGS_SERIE_A_SET = new Set<string>(SLUGS_SERIE_A);
+
+/** Retorna o slug cujos palpites devem ser SOMADOS na fase dada, pra o slug
+ *  alvo. Regra: merge por fase pra Série A. Se a vitrine -web tem 0 pontos
+ *  no ranking (palpites fantasmas/inválidos), cai pro irmão sem-web também
+ *  no mata-mata — assim a corrida bate 1:1 com a Série A oficial.
+ */
+function fonteDoSlug(
+  slug: string,
+  mataMata: boolean,
+  temPontos: (s: string) => boolean,
+): string {
+  if (SLUGS_SERIE_A_SET.has(slug)) {
+    if (!mataMata) return FALLBACK_NAO_WEB[slug] ?? slug; // grupos → irmão
+    return temPontos(slug) ? slug : FALLBACK_NAO_WEB[slug] ?? slug;
+  }
+  if (IRMAO_PARA_WEB[slug]) {
+    if (!mataMata) return slug; // grupos → o próprio (irmão)
+    const web = IRMAO_PARA_WEB[slug];
+    return temPontos(web) ? web : slug;
+  }
+  return slug;
+}
+
 // Cache por fase para evitar re-leitura de disco
 const cacheTodasFases: Map<FaseCorrida, DadosFase> = new Map();
 
@@ -117,6 +146,7 @@ function montarFrames(
   mapJogo: Map<number, Jogo>,
   canonical: (s: string) => string,
   nomeDe: (s: string) => string,
+  temPontos: (s: string) => boolean,
   rotuloInicial: string,
 ): DadosFase {
   // Acumulado inicializado em 0 para todos os slugs ativos
@@ -140,12 +170,16 @@ function montarFrames(
     const dados = palpites[String(r.jogo_numero)];
     if (!dados) continue;
 
-    // Acumula 1:1 com os slugs do ranking-ias.json — nada de canonicalizar
-    // "-web" + irmão sem "-web" no mesmo slot. Se a gente somasse os dois, o
-    // total mostrado na corrida ficaria diferente do total do ranking geral,
-    // que exibe cada fonte como uma linha separada. Isso é bug recorrente.
-    for (const [slug, p] of Object.entries(dados.palpites)) {
-      if (!(slug in acumulado)) continue;
+    // Acumula pra cada slug ativo, com regra especial pra Série A: se o slug
+    // alvo é irmão sem-web de uma vitrine (ex.: claude-opus-4-7 <-> claude-
+    // opus-4-8-web), no MATA-MATA a fonte oficial é a vitrine -web (mesmo
+    // critério da /ranking-ias oficial, que faz "melhor fonte por fase"). Na
+    // fase de grupos usamos o próprio slug sem-web (que tem os 72 jogos).
+    // Assim os pontos da corrida batem 1:1 com os da Série A oficial.
+    for (const slug of Object.keys(acumulado)) {
+      const fontePref = fonteDoSlug(slug, mataMata, temPontos);
+      const p = dados.palpites[fontePref] ?? dados.palpites[slug];
+      if (!p) continue;
       const ganho = pts(p.gols_a, p.gols_b, r.gols_a, r.gols_b, mataMata);
       acumulado[slug] = (acumulado[slug] ?? 0) + ganho;
     }
@@ -199,6 +233,12 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
     if ((ia.palpites_total ?? 0) === 0) continue;
     slugsAtivos.add(ia.slug);
   }
+  // Mapa "slug tem pontos > 0" pra fonteDoSlug decidir se cai pro sem-web
+  // quando a vitrine -web tem palpites fantasmas (registrados mas 0 pts).
+  const pontosPorSlug = new Map(
+    ranking.ias.map((ia) => [ia.slug, ia.pontos ?? 0]),
+  );
+  const temPontos = (s: string) => (pontosPorSlug.get(s) ?? 0) > 0;
 
   const resultOrdenados = [...resultados].sort(
     (a, b) => a.jogo_numero - b.jogo_numero,
@@ -216,6 +256,7 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
     mapJogo,
     canonical,
     nomeDe,
+    temPontos,
     "Antes do 1º jogo",
   );
 
@@ -226,6 +267,7 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
     mapJogo,
     canonical,
     nomeDe,
+    temPontos,
     "Início do mata-mata",
   );
 
@@ -236,6 +278,7 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
     mapJogo,
     canonical,
     nomeDe,
+    temPontos,
     "Antes do 1º jogo",
   );
 
