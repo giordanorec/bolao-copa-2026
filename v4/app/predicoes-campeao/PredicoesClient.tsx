@@ -295,9 +295,8 @@ function TrilhaJornada({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: compact ? 6 : 10,
-        flexWrap: "nowrap",
-        overflowX: "auto",
+        gap: compact ? 4 : 8,
+        flexWrap: "wrap",
         padding: "8px 4px",
       }}
     >
@@ -509,7 +508,7 @@ export default function PredicoesClient({
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(560px, 1fr))",
               gap: 16,
             }}
           >

@@ -544,6 +544,31 @@ class Component extends DCLogic {
     if(this.trophyRef.current){ this.trophyRef.current.style.opacity='1'; this.trophyRef.current.style.animation='glowPulse 2.4s ease-in-out infinite'; }
     const finalists=[this.winners.left.fin[0], this.winners.right.fin[0]];
     const vice=finalists.find(c=>c!==this.champion) || finalists[1];
+    // Vice cai (translateY) pra ficar EMBAIXO do campeão. Fica menor pra
+    // não competir de tamanho. Cristal + campeão ficam no centro; vice
+    // desliza pra baixo com bounce curto.
+    if(vice){
+      const vSide = this.winners.left.fin[0] === this.champion ? 'right' : 'left';
+      const vNode = this.nodes[vice];
+      if(vNode){
+        const ts = this.tokSize();
+        const cp = this.champPt();
+        // deltaY suficiente pra ficar visível abaixo do campeão em scale 1.5
+        const dy = this.L.axis === 'x' ? ts * 1.9 : 0;
+        const dx = this.L.axis === 'y' ? ts * 1.9 : 0;
+        const from = this.toTranslate(this.finalPt(vSide));
+        const to = this.toTranslate({ x: cp.x + dx, y: cp.y + dy });
+        vNode.style.zIndex = 7;
+        const va = vNode.animate(
+          [
+            { transform: from + ' scale(1)' },
+            { transform: to + ' scale(0.85)' }
+          ],
+          { duration: 900, fill: 'forwards', easing: 'cubic-bezier(.34,1.56,.64,1)', delay: 250 }
+        );
+        this.anims.push(va);
+      }
+    }
     if(this.champFlagRef.current) this.champFlagRef.current.style.backgroundImage='url('+this.circleFlag(this.champion)+')';
     if(this.champNameRef.current) this.champNameRef.current.textContent=(this.byCode[this.champion]||{}).n||'';
     if(vice&&this.viceFlagRef.current) this.viceFlagRef.current.style.backgroundImage='url('+this.circleFlag(vice)+')';
