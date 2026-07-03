@@ -71,3 +71,5 @@ v4/public/ig-posts/
 
 # Vinhetas geradas (vão pro Supabase Storage, não pro git)
 marketing/vinhetas/
+marketing/videos_2026-07-02/*.mp4
+marketing/videos_2026-07-02/*.webm

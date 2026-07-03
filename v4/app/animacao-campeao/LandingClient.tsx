@@ -211,6 +211,26 @@ function IframeModal({
   );
 }
 
+const STORAGE_KEY = "bolao_ias_assistidas_v1";
+
+function carregarAssistidas(): Set<string> {
+  if (typeof window === "undefined") return new Set();
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return new Set();
+    const arr = JSON.parse(raw);
+    if (Array.isArray(arr)) return new Set(arr.filter((x) => typeof x === "string"));
+  } catch {}
+  return new Set();
+}
+
+function persistirAssistidas(set: Set<string>) {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+  } catch {}
+}
+
 export default function LandingClient({
   ias,
   cristal,
@@ -221,14 +241,22 @@ export default function LandingClient({
   const [modalSrc, setModalSrc] = useState<string | null>(null);
   void mapaPaises; // reservado pra usar em futuras variações
 
+  // Hidrata do localStorage no client (evita mismatch SSR/CSR).
+  useEffect(() => {
+    const carregado = carregarAssistidas();
+    if (carregado.size > 0) setRevealedSlugs(carregado);
+  }, []);
+
   const totalIAs = ias.length;
   const revealadas = revealedSlugs.size;
   const cristalUnlocked = revealadas >= totalIAs && totalIAs > 0;
 
   const openIA = (slug: string) => {
     setRevealedSlugs((prev) => {
+      if (prev.has(slug)) return prev;
       const next = new Set(prev);
       next.add(slug);
+      persistirAssistidas(next);
       return next;
     });
     setModalSrc(`/design/chaveamento/index.html?ia=${encodeURIComponent(slug)}`);

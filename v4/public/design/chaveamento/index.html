@@ -34,23 +34,23 @@
   </header>
   <div ref="{{ stageRef }}" style="position:relative;flex:1 1 auto;overflow:hidden;">
     <div ref="{{ overlayRef }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .7s;z-index:20;background:radial-gradient(80% 80% at 50% 40%, rgba(10,14,22,.82) 0%, rgba(5,7,12,.96) 70%);backdrop-filter:blur(6px);">
-      <div ref="{{ cardRef }}" style="width:min(500px,92%);display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:26px 26px;border-radius:22px;background:rgba(20,26,36,.6);border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.6);">
-        <div ref="{{ champKickerRef }}" style="font-size:11px;letter-spacing:.4em;text-transform:uppercase;font-weight:700;color:#9cc0ff;padding-left:.4em;">Campeão Mundial</div>
-        <div style="display:flex;align-items:center;justify-content:center;gap:14px;">
-          <div ref="{{ champFlagRef }}" style="width:48px;height:48px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 3px 10px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.16);"></div>
-          <div ref="{{ champNameRef }}" style="font-weight:600;font-size:38px;line-height:1;letter-spacing:-.02em;color:#ffffff;">—</div>
+      <div ref="{{ cardRef }}" style="width:min(560px,92%);display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;padding:36px 30px;border-radius:22px;background:rgba(20,26,36,.62);border:1px solid rgba(255,215,0,.28);box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 60px rgba(255,215,0,.12);">
+        <div ref="{{ champKickerRef }}" style="font-size:12px;letter-spacing:.42em;text-transform:uppercase;font-weight:800;color:#FFD700;padding-left:.4em;">🏆 Campeão Mundial</div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+          <div ref="{{ champFlagRef }}" style="width:120px;height:120px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 6px 24px rgba(0,0,0,.6), 0 0 30px rgba(255,215,0,.35), inset 0 0 0 3px rgba(255,215,0,.5);"></div>
+          <div ref="{{ champNameRef }}" style="font-weight:800;font-size:56px;line-height:1;letter-spacing:-.03em;color:#ffffff;text-shadow:0 2px 12px rgba(0,0,0,.5);">—</div>
         </div>
         <div ref="{{ dividerRef }}" style="width:62%;height:1px;background:rgba(255,255,255,.16);margin:6px 0;"></div>
-        <div ref="{{ viceLabelRef }}" style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:rgba(200,220,255,.6);">Vice-Campeão</div>
-        <div style="display:flex;align-items:center;justify-content:center;gap:12px;opacity:.94;">
-          <div ref="{{ viceFlagRef }}" style="width:36px;height:36px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 2px 7px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.14);"></div>
-          <div ref="{{ viceNameRef }}" style="font-weight:600;font-size:22px;line-height:1;letter-spacing:-.01em;color:#dfe7f5;">—</div>
+        <div ref="{{ viceLabelRef }}" style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:rgba(200,220,255,.55);">Vice-Campeão</div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;opacity:.9;">
+          <div ref="{{ viceFlagRef }}" style="width:52px;height:52px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 3px 10px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.18);"></div>
+          <div ref="{{ viceNameRef }}" style="font-weight:600;font-size:26px;line-height:1;letter-spacing:-.01em;color:#dfe7f5;">—</div>
         </div>
         <button ref="{{ dismissBtnRef }}" onClick="{{ dismiss }}" style="margin-top:8px;font-size:12px;font-weight:600;letter-spacing:.04em;color:#eaf0fb;background:transparent;border:1px solid rgba(255,255,255,.2);padding:8px 18px;border-radius:999px;cursor:pointer;">Ver chaveamento</button>
       </div>
     </div>
 
-    <div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:1600px;height:940px;transform-origin:top left;">
+    <div ref="{{ canvasRef }}" style="position:absolute;left:0;top:0;width:1600px;height:940px;transform-origin:top left;background:#0a0e16;">
       {{ diagram }}
     </div>
 
@@ -70,7 +70,7 @@ const THEMES={
     nodeShadow:'0 5px 18px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.1)', nodeShadowHot:'0 0 30px 8px rgba(120,170,255,.55), inset 0 1px 3px rgba(255,255,255,.14)',
     labelColor:'rgba(222,230,242,.8)', labelWeight:600, labelTransform:'none', labelSpacing:'.01em', labelShadow:'0 1px 3px rgba(0,0,0,.8)',
     headFill:'rgba(200,215,240,.44)', headStrong:'#eaf0fb', headWeight:600, headSpacing:'3', headTransform:'uppercase', headSize:12.5,
-    goldStops:['#eef4ff','#c3d2e8','#8ea4c4'], trophyStroke:'#dbe6f7', trophyAccent:'#bcd0ee',
+    goldStops:['#FFF3B0','#FFD700','#8B5A00'], trophyStroke:'#FFD700', trophyAccent:'#FFC300',
     btnBg:'linear-gradient(180deg,#4da3ff,#2b7fff)', btnColor:'#ffffff', btnShadow:'0 4px 16px rgba(43,127,255,.35)', line:'rgba(255,255,255,.2)', slotLine:'rgba(160,190,240,.4)',
     cardBg:'rgba(20,26,36,.62)', cardBorder:'1px solid rgba(255,255,255,.12)', cardShadow:'0 30px 90px rgba(0,0,0,.6)', cardRadius:'22px'
   }
@@ -261,14 +261,22 @@ class Component extends DCLogic {
 
     this.byCode={};
     [...this.left,...this.right].forEach(t=>this.byCode[t.c]=t);
-    this.L=this.layoutFor('h');
+    // Layout: 'v' se ?vertical=1 na URL OU se viewport for portrait (mobile)
+    let initOrient = 'h';
+    try {
+      const q = new URLSearchParams(window.location.search);
+      if(q.get('vertical')==='1') initOrient='v';
+      else if(window.innerHeight > window.innerWidth * 1.05) initOrient='v';
+    } catch(e){}
+    this.L=this.layoutFor(initOrient);
   }
 
   layoutFor(orient){
     if(orient==='v'){
-      const W=900,H=1580,aStart=72,aEnd=42,aLen=W-aStart-aEnd;
-      return {orient,W,H,axis:'y',Cd:H/2,Doff:[668,478,300,150],Dfinal:36,
-        aStart,aLen,labelMode:'code',labelSize:10,headPlace:'gutter',headAlong:32};
+      // Mobile-first: 1080x1920 canvas com bandeiras maiores.
+      const W=1080,H=1920,aStart=80,aEnd=50,aLen=W-aStart-aEnd;
+      return {orient,W,H,axis:'y',Cd:H/2,Doff:[810,580,360,180],Dfinal:44,
+        aStart,aLen,labelMode:'code',labelSize:12,headPlace:'gutter',headAlong:36};
     }
     const W=1600,H=940,aStart=48,aEnd=30,aLen=H-aStart-aEnd;
     return {orient,W,H,axis:'x',Cd:W/2,Doff:[688,500,312,152],Dfinal:30,
@@ -281,7 +289,15 @@ class Component extends DCLogic {
   speed(){ return this.props.speed!=null?this.props.speed:1; }
   circleFlag(code){ return 'https://hatscripts.github.io/circle-flags/flags/'+(ISO[code]||'xx')+'.svg'; }
   flagPng(code){ return 'https://flagcdn.com/w320/'+(ISO[code]||'xx')+'.png'; }
-  tokSize(){ const base=this.props.tokenSize!=null?this.props.tokenSize:56; const cap=Math.floor(this.L.aLen/16*0.86); return Math.max(22,Math.min(base,cap)); }
+  tokSize(){
+    const base=this.props.tokenSize!=null?this.props.tokenSize:56;
+    // Vertical (mobile) permite tokens maiores: cap mais generoso (1.05 vs 0.86 horizontal)
+    const factor = this.L && this.L.orient==='v' ? 1.05 : 0.86;
+    const cap=Math.floor(this.L.aLen/16*factor);
+    // Mínimo maior em vertical pra bandeiras "grudarem" — visualmente é a diferença
+    const minSize = this.L && this.L.orient==='v' ? 42 : 22;
+    return Math.max(minSize, Math.min(base, cap));
+  }
 
   sign(side){ return side==='left'?-1:1; }
   depthOf(side,r){ return this.L.Cd + this.sign(side)*this.L.Doff[r]; }
@@ -639,8 +655,14 @@ class Component extends DCLogic {
   }
 
   renderVals(){
-    this.L=this.layoutFor('h');
-    const sig=[this.props.theme,this.props.flagStyle,this.props.tokenSize,this.props.flagBorder].join('|');
+    let orient='h';
+    try {
+      const q = new URLSearchParams(window.location.search);
+      if(q.get('vertical')==='1') orient='v';
+      else if(window.innerHeight > window.innerWidth * 1.05) orient='v';
+    } catch(e){}
+    this.L=this.layoutFor(orient);
+    const sig=[this.props.theme,this.props.flagStyle,this.props.tokenSize,this.props.flagBorder,orient].join('|');
     if(this._sig!==sig){ this._sig=sig; this._diagram=this.buildDiagram(); if(this._mounted) this._needReset=true; }
     this._mounted=true;
     return {
