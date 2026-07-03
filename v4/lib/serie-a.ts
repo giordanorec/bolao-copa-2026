@@ -16,7 +16,7 @@ export const SLUGS_SERIE_A: string[] = [
   "meta-llama-4-web",
   "le-chat-mistral-web",
   "qwen-3-max-web",
-  "manus-web",
+  "kimi-k2-web",
   SLUG_FABLE,
 ];
 
@@ -27,12 +27,12 @@ export const APELIDOS_SERIE_A: Record<string, { nome: string; modelo: string }> 
     "gemini-2-5-pro-web": { nome: "Gemini 2.5 Pro", modelo: "Google Gemini 2.5 Pro" },
     "grok-4-heavy-web": { nome: "Grok 4 Heavy", modelo: "xAI Grok 4 Heavy" },
     "deepseek-r1-web": { nome: "DeepSeek R1", modelo: "DeepSeek R1 Reasoning" },
-    "copilot-microsoft-web": { nome: "Microsoft Copilot", modelo: "Copilot (GPT-5 base)" },
+    "copilot-microsoft-web": { nome: "Microsoft Copilot", modelo: "Copilot (GPT-4o base)" },
     "perplexity-sonar-pro-web": { nome: "Perplexity Sonar", modelo: "Sonar Pro w/ search" },
     "meta-llama-4-web": { nome: "Meta Llama 4", modelo: "Llama 4 Maverick" },
-    "le-chat-mistral-web": { nome: "Le Chat Mistral", modelo: "Mistral Large 2" },
+    "le-chat-mistral-web": { nome: "Le Chat Mistral", modelo: "Mistral Medium 3.1" },
     "qwen-3-max-web": { nome: "Qwen 3 Max", modelo: "Alibaba Qwen 3 Max" },
-    "manus-web": { nome: "Manus", modelo: "Manus · Technical Inference" },
+    "kimi-k2-web": { nome: "Kimi K2", modelo: "Moonshot Kimi K2" },
     [SLUG_FABLE]: { nome: "Claude Code + Fable", modelo: "Claude Code (Opus) + Fable 5" },
   };
 
@@ -48,7 +48,7 @@ export const FALLBACK_NAO_WEB: Record<string, string> = {
   "meta-llama-4-web": "meta-llama-4",
   "le-chat-mistral-web": "le-chat-mistral",
   "qwen-3-max-web": "qwen-3-max",
-  "manus-web": "manus",
+  "kimi-k2-web": "kimi-k2",
 };
 
 // irmão sem "-web" -> slug "-web" (reverso)

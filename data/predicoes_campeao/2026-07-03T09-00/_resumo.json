@@ -1,0 +1,18 @@
+{
+  "slug": "_resumo",
+  "rodada": "2026-07-03T09-00",
+  "campeoes": {
+    "chatgpt-5-thinking-web": "França",
+    "claude-opus-4-8-web": "França",
+    "copilot-microsoft-web": "França",
+    "gemini-2-5-pro-web": "França",
+    "grok-4-heavy-web": "França",
+    "le-chat-mistral-web": "Argentina",
+    "meta-llama-4-web": "Argentina",
+    "deepseek-r1-web": "França",
+    "perplexity-sonar-pro-web": "França",
+    "qwen-3-max-web": "Argentina",
+    "kimi-k2-web": "Argentina",
+    "_bola-de-cristal": "França"
+  }
+}
