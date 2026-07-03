@@ -261,12 +261,12 @@ class Component extends DCLogic {
 
     this.byCode={};
     [...this.left,...this.right].forEach(t=>this.byCode[t.c]=t);
-    // Layout: 'v' se ?vertical=1 na URL OU se viewport for portrait (mobile)
+    // Layout: SEMPRE horizontal por padrão. Só troca pra vertical quando
+    // ?vertical=1 na URL (usado só pra gravar vídeo em formato mobile).
     let initOrient = 'h';
     try {
       const q = new URLSearchParams(window.location.search);
       if(q.get('vertical')==='1') initOrient='v';
-      else if(window.innerHeight > window.innerWidth * 1.05) initOrient='v';
     } catch(e){}
     this.L=this.layoutFor(initOrient);
   }
@@ -659,7 +659,6 @@ class Component extends DCLogic {
     try {
       const q = new URLSearchParams(window.location.search);
       if(q.get('vertical')==='1') orient='v';
-      else if(window.innerHeight > window.innerWidth * 1.05) orient='v';
     } catch(e){}
     this.L=this.layoutFor(orient);
     const sig=[this.props.theme,this.props.flagStyle,this.props.tokenSize,this.props.flagBorder,orient].join('|');
