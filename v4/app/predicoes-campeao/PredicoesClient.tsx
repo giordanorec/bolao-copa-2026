@@ -97,28 +97,16 @@ function derivarJornadaDoCampeao(
     return v && v !== "???" ? v : undefined;
   }
 
-  // Trilha reversa: descobrir em qual jogo o campeão jogou em cada fase.
-  // Se a IA foi incoerente numa fase (colocou o campeão num jogo em que
-  // ele nem estava, comum em alucinação de LLM), esse elo fica undefined,
-  // mas as demais fases continuam sendo tentadas usando o pair da fase
-  // "atual" — não da fase quebrada.
-  const jogosDoCampeao: Partial<Record<Fase, number>> = { Final: 104 };
-  const OrdemDesc: Array<[Fase, Fase]> = [
-    ["Final", "Semifinal"],
-    ["Semifinal", "Quartas"],
-    ["Quartas", "Oitavas"],
-    ["Oitavas", "R32"],
-  ];
-  for (const [fase, anterior] of OrdemDesc) {
-    const jogo = jogosDoCampeao[fase];
-    if (jogo == null) continue;
-    const pair = PAIRINGS[fase].find((p) => p.j === jogo);
-    if (!pair) continue;
-    const wa = pegar(anterior, pair.wa);
-    const wb = pegar(anterior, pair.wb);
-    if (wa === campeao) jogosDoCampeao[anterior] = pair.wa;
-    else if (wb === campeao) jogosDoCampeao[anterior] = pair.wb;
-    // Senão, deixa `anterior` undefined — aquela fase vira "???" no path.
+  // Descobre em qual jogo da fase o campeão apareceu como vencedor. Busca
+  // direta na jornada da IA — independente da fase anterior. Se a IA não
+  // preencheu esta fase (ex.: parser falhou), retorna undefined e o path
+  // marca esse passo como "???" sem propagar pra fases posteriores.
+  function jogoDoCampeao(fase: Fase): number | undefined {
+    const map = jornada[fase] || {};
+    for (const [jogo, time] of Object.entries(map)) {
+      if (time === campeao) return parseInt(jogo, 10);
+    }
+    return undefined;
   }
 
   // Oponentes em cada fase (R32 → Final). Na Final o "oponente" é o
@@ -133,9 +121,8 @@ function derivarJornadaDoCampeao(
     Final: "Semifinal",
   };
   for (const fase of ordem) {
-    const jogo = jogosDoCampeao[fase];
+    const jogo = jogoDoCampeao(fase);
     if (jogo == null) {
-      // Fase sem match — mostra passo como "???" mas segue as demais.
       path.push({ fase, oponente: "???" });
       continue;
     }
@@ -150,9 +137,18 @@ function derivarJornadaDoCampeao(
       const faseAnterior = anteriorMap[fase];
       const pair = PAIRINGS[fase].find((p) => p.j === jogo);
       if (pair) {
+        // O jogo do campeão nesta fase é W(pair.wa) × W(pair.wb). O
+        // oponente é aquele W(...) que NÃO é o campeão. Buscamos direto
+        // na fase anterior da própria IA — mesmo se ela foi incoerente
+        // com o bracket ("colocou" o campeão num jogo em que ele nem
+        // estava), mostramos o adversário do par oficial.
         const wa = pegar(faseAnterior, pair.wa);
         const wb = pegar(faseAnterior, pair.wb);
-        oponente = wa === campeao ? wb ?? "???" : wa ?? "???";
+        if (wa && wa === campeao && wb) oponente = wb;
+        else if (wb && wb === campeao && wa) oponente = wa;
+        else if (wa && !wb) oponente = wa;
+        else if (wb && !wa) oponente = wb;
+        else if (wa && wb) oponente = wa; // ambos existem, nenhum é o campeão
       }
     }
     path.push({ fase, oponente });
@@ -164,8 +160,8 @@ const FASE_LABELS: Record<Fase, string> = {
   R32: "R32",
   Oitavas: "Oitavas",
   Quartas: "Quartas",
-  Semifinal: "Semifinal",
-  Final: "Final",
+  Semifinal: "Semi",
+  Final: "Vice",
 };
 
 // ─── Componente de bandeira redonda ─────────────────────────────────────────
@@ -345,7 +341,8 @@ function TrilhaJornada({
         →
       </span>
 
-      {/* Campeão + taça */}
+      {/* Campeão (bloco de destaque). Sem emoji embaixo pra evitar
+          empilhar taça 2× visualmente. O label do topo já traz o 🏆. */}
       <div
         style={{
           display: "flex",
@@ -353,6 +350,7 @@ function TrilhaJornada({
           alignItems: "center",
           gap: 4,
           minWidth: finalSize + 16,
+          paddingRight: compact ? 4 : 8,
         }}
       >
         <span
@@ -360,12 +358,13 @@ function TrilhaJornada({
             fontSize: compact ? 9 : 10,
             fontFamily: "monospace",
             letterSpacing: 0.5,
-            color: foco === oponentes.length ? "#FFD700" : "rgba(255,255,255,0.35)",
+            color: foco === oponentes.length ? "#FFD700" : "rgba(255,215,0,0.7)",
             textTransform: "uppercase",
             transition: "color 0.3s",
+            whiteSpace: "nowrap",
           }}
         >
-          Campeão
+          🏆 Campeão
         </span>
         <BandeiraCircular
           time={campeao}
@@ -387,7 +386,6 @@ function TrilhaJornada({
         >
           {campeao}
         </span>
-        <span style={{ fontSize: compact ? 18 : 24, lineHeight: 1 }}>🏆</span>
       </div>
     </div>
   );
