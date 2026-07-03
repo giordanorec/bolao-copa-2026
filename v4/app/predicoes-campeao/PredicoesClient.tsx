@@ -86,30 +86,22 @@ const PAIRINGS: Record<Fase, { j: number; wa: number; wb: number }[]> = {
 function derivarJornadaDoCampeao(
   jornada: JornadaJSON,
   r32Confrontos: R32Confronto[],
-  cristalFallback?: JornadaJSON | null,
 ): { fase: Fase; oponente: string }[] {
   const finalMap = jornada.Final ?? {};
   const campeao = finalMap[104];
   if (!campeao || campeao === "???") return [];
 
-  // Se a IA escolheu o mesmo campeão do Cristal, prioriza a rota do
-  // Cristal (que é sempre coerente com o bracket por construção). Isso
-  // cobre IAs que palpitaram campeão certo mas com rota "solta" —
-  // ex.: Manus escolheu França mas J90=França onde J75/J76 são
-  // Marrocos/Brasil, então a rota individual dele quebra na Oitavas.
-  const cristalCampeao = cristalFallback?.Final?.["104"];
-  const jornadaEfetiva: JornadaJSON =
-    cristalFallback && cristalCampeao === campeao ? cristalFallback : jornada;
-
-  // Helper: pega o vencedor de um jogo em uma fase, preferindo a
-  // jornadaEfetiva e caindo pro Cristal se ela não tem dado ali.
+  // Só usa dados da própria IA — cada palpite é independente do Cristal.
   function pegar(fase: Fase, jogo: number): string | undefined {
-    const efet = jornadaEfetiva[fase]?.[String(jogo)];
-    if (efet && efet !== "???") return efet;
-    return cristalFallback?.[fase]?.[String(jogo)];
+    const v = jornada[fase]?.[String(jogo)];
+    return v && v !== "???" ? v : undefined;
   }
 
   // Trilha reversa: descobrir em qual jogo o campeão jogou em cada fase.
+  // Se a IA foi incoerente numa fase (colocou o campeão num jogo em que
+  // ele nem estava, comum em alucinação de LLM), esse elo fica undefined,
+  // mas as demais fases continuam sendo tentadas usando o pair da fase
+  // "atual" — não da fase quebrada.
   const jogosDoCampeao: Partial<Record<Fase, number>> = { Final: 104 };
   const OrdemDesc: Array<[Fase, Fase]> = [
     ["Final", "Semifinal"],
@@ -119,24 +111,14 @@ function derivarJornadaDoCampeao(
   ];
   for (const [fase, anterior] of OrdemDesc) {
     const jogo = jogosDoCampeao[fase];
-    if (jogo == null) break;
+    if (jogo == null) continue;
     const pair = PAIRINGS[fase].find((p) => p.j === jogo);
-    if (!pair) break;
+    if (!pair) continue;
     const wa = pegar(anterior, pair.wa);
     const wb = pegar(anterior, pair.wb);
     if (wa === campeao) jogosDoCampeao[anterior] = pair.wa;
     else if (wb === campeao) jogosDoCampeao[anterior] = pair.wb;
-    else {
-      // IA incoerente com o bracket (ex.: Manus disse J90=França mas
-      // J75=Marrocos, J76=Brasil — França não estava nesse confronto).
-      // Fallback puro pro Cristal: se o Cristal também levou o mesmo
-      // campeão até a Final, usa a rota do Cristal daqui pra baixo.
-      const waC = cristalFallback?.[anterior]?.[String(pair.wa)];
-      const wbC = cristalFallback?.[anterior]?.[String(pair.wb)];
-      if (waC === campeao) jogosDoCampeao[anterior] = pair.wa;
-      else if (wbC === campeao) jogosDoCampeao[anterior] = pair.wb;
-      else break;
-    }
+    // Senão, deixa `anterior` undefined — aquela fase vira "???" no path.
   }
 
   // Oponentes em cada fase (R32 → Final). Na Final o "oponente" é o
@@ -152,7 +134,11 @@ function derivarJornadaDoCampeao(
   };
   for (const fase of ordem) {
     const jogo = jogosDoCampeao[fase];
-    if (jogo == null) break;
+    if (jogo == null) {
+      // Fase sem match — mostra passo como "???" mas segue as demais.
+      path.push({ fase, oponente: "???" });
+      continue;
+    }
 
     let oponente = "???";
     if (fase === "R32") {
@@ -251,17 +237,15 @@ function TrilhaJornada({
   campeao,
   mapaPaises,
   r32Confrontos,
-  cristalFallback,
   compact = false,
 }: {
   jornada: JornadaJSON;
   campeao: string;
   mapaPaises: Record<string, string>;
   r32Confrontos: R32Confronto[];
-  cristalFallback?: JornadaJSON | null;
   compact?: boolean;
 }) {
-  const oponentes = derivarJornadaDoCampeao(jornada, r32Confrontos, cristalFallback);
+  const oponentes = derivarJornadaDoCampeao(jornada, r32Confrontos);
 
   // Cada "passo" na animação = 1 oponente derrotado + o passo final (taça)
   const totalPassos = oponentes.length + 1;
@@ -551,7 +535,6 @@ export default function PredicoesClient({
                   campeao={ia.campeao}
                   mapaPaises={mapaPaises}
                   r32Confrontos={r32Confrontos}
-                  cristalFallback={cristal?.jornada ?? null}
                   compact
                 />
                 <button
