@@ -251,15 +251,46 @@ def parseJornada(texto: str) -> dict[str, dict[str, str]] | None:
     return None
 
 
+# Sinônimos aceitos como igual ao nome canônico (evita falsa incoerência
+# tipo "EUA" != "Estados Unidos" ou "Costa do Marfim" != "Costa do Marfil").
+SINONIMOS = {
+    "EUA": "Estados Unidos",
+    "USA": "Estados Unidos",
+    "United States": "Estados Unidos",
+    "Estados Unidos da América": "Estados Unidos",
+    "Coréia do Sul": "Coreia do Sul",
+    "Coreia": "Coreia do Sul",
+    "Bosnia": "Bósnia-Herzegovina",
+    "Bósnia": "Bósnia-Herzegovina",
+    "Congo": "Congo (RD)",
+    "RD Congo": "Congo (RD)",
+    "República Democrática do Congo": "Congo (RD)",
+    "Costa do Marfil": "Costa do Marfim",
+    "Marfim": "Costa do Marfim",
+    "Ivory Coast": "Costa do Marfim",
+    "Netherlands": "Países Baixos",
+    "Holanda": "Países Baixos",
+    "Bosnia and Herzegovina": "Bósnia-Herzegovina",
+    "Saudi Arabia": "Arábia Saudita",
+}
+
+
+def canonizar(t: str | None) -> str | None:
+    if not t:
+        return t
+    ts = t.strip()
+    return SINONIMOS.get(ts, ts)
+
+
 def validar_coerencia(jornada: dict, r32_completo: dict) -> list[str]:
     """Checa se a jornada respeita o bracket. Retorna lista de erros."""
     erros = []
-    vencedores = dict(r32_completo)  # {j: time}
+    vencedores = dict(r32_completo)  # {j: time canônico}
     # R32 pendentes
     r32_j = jornada.get("R32", {}) or {}
     for c in R32_PENDENTES:
         j = str(c["j"])
-        t = r32_j.get(j)
+        t = canonizar(r32_j.get(j))
         if not t:
             erros.append(f"R32 J{j}: sem palpite")
             continue
@@ -274,7 +305,7 @@ def validar_coerencia(jornada: dict, r32_completo: dict) -> list[str]:
             j = str(g["j"])
             wa = vencedores.get(g["wa"])
             wb = vencedores.get(g["wb"])
-            t = f_j.get(j)
+            t = canonizar(f_j.get(j))
             if not t:
                 erros.append(f"{fase} J{j}: sem palpite")
                 continue
@@ -287,37 +318,74 @@ def validar_coerencia(jornada: dict, r32_completo: dict) -> list[str]:
 
 
 def normalizar_jornada(jornada: dict) -> dict[str, dict[str, str]]:
-    """Preenche R32 completo (decididos + pendentes) e garante strings."""
+    """Preenche R32 completo (decididos + pendentes) e canoniza nomes."""
     out = {}
     r32 = {str(j): t for j, t in R32_DECIDIDOS.items()}
     for j, t in (jornada.get("R32", {}) or {}).items():
-        r32[str(j)] = str(t) if t else "???"
-    # Garante que R32 pendentes existam
+        r32[str(j)] = canonizar(str(t)) if t else "???"
     for c in R32_PENDENTES:
         r32.setdefault(str(c["j"]), "???")
     out["R32"] = r32
     for fase in ("Oitavas", "Quartas", "Semifinal", "Final"):
         m = jornada.get(fase, {}) or {}
-        out[fase] = {str(j): str(t) if t else "???" for j, t in m.items()}
-        # Garante todos os jogos da fase
+        out[fase] = {str(j): (canonizar(str(t)) if t else "???") for j, t in m.items()}
         for g in PAIRINGS.get(fase, []):
             out[fase].setdefault(str(g["j"]), "???")
     return out
 
 
-def rodar_uma(key: str, dossie: str) -> tuple[str, dict | None, list[str], str]:
+def rodar_uma(
+    key: str, dossie: str, max_retries: int = 3
+) -> tuple[str, dict | None, list[str], str]:
+    """Roda 1 IA. Se a resposta tiver incoerências (time fora do confronto),
+    reformula o prompt com o feedback específico e pede pra IA corrigir.
+    Continua até 0 incoerências OU esgotar tentativas."""
     cfg = IAS[key]
-    prompt = buildPrompt(dossie)
-    ok, txt = perguntar(cfg["model"], prompt)
-    if not ok:
-        return key, None, [f"API: {txt}"], "FAIL"
-    jornada = parseJornada(txt)
-    if not jornada:
-        return key, None, ["parser: JSON não encontrado"], f"FAIL parse (500 chars: {txt[:500]})"
-    normalizada = normalizar_jornada(jornada)
-    erros = validar_coerencia(normalizada, {j: t for j, t in R32_DECIDIDOS.items()})
-    campeao = normalizada.get("Final", {}).get("104", "???")
-    return key, normalizada, erros, f"OK campeao={campeao}, {len(erros)} incoerência(s)"
+    prompt_base = buildPrompt(dossie)
+    ultima_jornada = None
+    ultimos_erros = ["nunca rodou"]
+    log_iter = []
+    r32_ref = {j: t for j, t in R32_DECIDIDOS.items()}
+    for tent in range(1, max_retries + 1):
+        if tent == 1:
+            prompt = prompt_base
+        else:
+            # Feedback: mostra os erros específicos e pede correção
+            feedback = "\n".join(f"- {e}" for e in ultimos_erros[:12])
+            prompt = (
+                prompt_base
+                + "\n\n---\n\n"
+                + f"Sua tentativa {tent - 1} teve INCOERÊNCIAS com o bracket:\n\n"
+                + feedback
+                + "\n\nUma vitória num jogo só é válida se o time ESTAVA no confronto "
+                + "(um dos 2 vencedores das fases anteriores segundo o pairing). "
+                + "Reveja seus palpites e responda o JSON completo de novo, "
+                + "corrigindo especificamente esses erros. Não invente times "
+                + "que não estão no bracket. Só o JSON."
+            )
+        ok, txt = perguntar(cfg["model"], prompt)
+        if not ok:
+            log_iter.append(f"t{tent}=API-FAIL")
+            continue
+        jornada = parseJornada(txt)
+        if not jornada:
+            log_iter.append(f"t{tent}=parse-fail")
+            continue
+        normalizada = normalizar_jornada(jornada)
+        erros = validar_coerencia(normalizada, r32_ref)
+        ultima_jornada = normalizada
+        ultimos_erros = erros
+        log_iter.append(f"t{tent}={len(erros)}err")
+        if not erros:
+            campeao = normalizada.get("Final", {}).get("104", "???")
+            return key, normalizada, [], (f"OK campeao={campeao} [{', '.join(log_iter)}]")
+    campeao = (ultima_jornada or {}).get("Final", {}).get("104", "???")
+    return (
+        key,
+        ultima_jornada,
+        ultimos_erros,
+        (f"parcial campeao={campeao}, {len(ultimos_erros)} incoerência(s) [{', '.join(log_iter)}]"),
+    )
 
 
 def main() -> int:
