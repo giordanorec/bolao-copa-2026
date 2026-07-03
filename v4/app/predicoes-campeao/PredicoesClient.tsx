@@ -117,7 +117,17 @@ function derivarJornadaDoCampeao(
     const wb = pegar(anterior, pair.wb);
     if (wa === campeao) jogosDoCampeao[anterior] = pair.wa;
     else if (wb === campeao) jogosDoCampeao[anterior] = pair.wb;
-    else break;
+    else {
+      // IA incoerente com o bracket (ex.: Manus disse J90=França mas
+      // J75=Marrocos, J76=Brasil — França não estava nesse confronto).
+      // Fallback puro pro Cristal: se o Cristal também levou o mesmo
+      // campeão até a Final, usa a rota do Cristal daqui pra baixo.
+      const waC = cristalFallback?.[anterior]?.[String(pair.wa)];
+      const wbC = cristalFallback?.[anterior]?.[String(pair.wb)];
+      if (waC === campeao) jogosDoCampeao[anterior] = pair.wa;
+      else if (wbC === campeao) jogosDoCampeao[anterior] = pair.wb;
+      else break;
+    }
   }
 
   // Oponentes em cada fase (R32 → Semifinal)
@@ -397,6 +407,7 @@ export default function PredicoesClient({
   r32Confrontos,
   labels,
 }: Props) {
+  const [modalSrc, setModalSrc] = useState<string | null>(null);
   return (
     <>
       {/* ── CRISTAL ── */}
@@ -441,6 +452,25 @@ export default function PredicoesClient({
             mapaPaises={mapaPaises}
             r32Confrontos={r32Confrontos}
           />
+          <button
+            type="button"
+            onClick={() => setModalSrc("/design/chaveamento/index.html?ia=_bola-de-cristal")}
+            style={{
+              marginTop: 20,
+              padding: "12px 26px",
+              background: "linear-gradient(180deg, #FFD700, #F0B400)",
+              color: "#0a0e1a",
+              border: 0,
+              borderRadius: 999,
+              fontWeight: 800,
+              fontSize: 14,
+              cursor: "pointer",
+              letterSpacing: 0.2,
+              boxShadow: "0 8px 24px rgba(255,215,0,0.25)",
+            }}
+          >
+            🎬 Ver simulação do consenso →
+          </button>
         </section>
       )}
 
@@ -513,10 +543,85 @@ export default function PredicoesClient({
                   cristalFallback={cristal?.jornada ?? null}
                   compact
                 />
+                <button
+                  type="button"
+                  onClick={() => setModalSrc(`/design/chaveamento/index.html?ia=${encodeURIComponent(ia.slug)}`)}
+                  style={{
+                    marginTop: 14,
+                    width: "100%",
+                    padding: "10px 14px",
+                    background: "linear-gradient(180deg, #FFD700, #F0B400)",
+                    color: "#0a0e1a",
+                    border: 0,
+                    borderRadius: 999,
+                    fontWeight: 800,
+                    fontSize: 13,
+                    cursor: "pointer",
+                    letterSpacing: 0.2,
+                  }}
+                >
+                  🎬 Ver simulação →
+                </button>
               </div>
             ))}
           </div>
         </>
+      )}
+
+      {modalSrc && (
+        <div
+          onClick={() => setModalSrc(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.85)",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 20,
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: "relative",
+              width: "min(1400px, 96vw)",
+              height: "min(85vh, 900px)",
+              background: "#0a0e16",
+              borderRadius: 14,
+              overflow: "hidden",
+              boxShadow: "0 30px 80px rgba(0,0,0,0.6)",
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setModalSrc(null)}
+              aria-label="Fechar"
+              style={{
+                position: "absolute",
+                top: 10,
+                right: 12,
+                zIndex: 2,
+                background: "rgba(0,0,0,0.6)",
+                color: "#fff",
+                border: 0,
+                borderRadius: 999,
+                width: 36,
+                height: 36,
+                fontSize: 20,
+                cursor: "pointer",
+              }}
+            >
+              ×
+            </button>
+            <iframe
+              src={modalSrc}
+              title="Simulação"
+              style={{ width: "100%", height: "100%", border: 0 }}
+            />
+          </div>
+        </div>
       )}
     </>
   );
