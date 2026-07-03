@@ -1,6 +1,6 @@
 {
-  "slug": "_bola-de-cristal",
-  "rodada_em": "2026-07-03T13:19:39",
+  "slug": "manus-web",
+  "rodada_em": "2026-07-03T13:19:24",
   "campeao": "França",
   "jornada": {
     "R32": {
@@ -22,19 +22,19 @@
       "88": "Egito"
     },
     "Oitavas": {
-      "89": "França",
-      "90": "Marrocos",
-      "91": "Brasil",
+      "89": "Canadá",
+      "90": "França",
+      "91": "Noruega",
       "92": "Inglaterra",
       "93": "Espanha",
-      "94": "Bélgica",
+      "94": "Portugal",
       "95": "Argentina",
       "96": "Colômbia"
     },
     "Quartas": {
       "97": "França",
       "98": "Espanha",
-      "99": "Brasil",
+      "99": "Inglaterra",
       "100": "Argentina"
     },
     "Semifinal": {
@@ -44,6 +44,5 @@
     "Final": {
       "104": "França"
     }
-  },
-  "votos_totais": 11
+  }
 }
