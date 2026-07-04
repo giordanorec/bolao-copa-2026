@@ -11,6 +11,7 @@ import AgradecimentoContribuinte from "@/components/AgradecimentoContribuinte";
 import BolaoHumanosRecrutamento from "@/components/BolaoHumanosRecrutamento";
 import BannerR32 from "@/components/BannerR32";
 import BannerAnimacaoCampeao from "@/components/BannerAnimacaoCampeao";
+import BannerNovosPalpitesOitavas from "@/components/BannerNovosPalpitesOitavas";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
 import { carregarAnaliseV2Publico } from "@/lib/analise-v2-publico";
@@ -206,6 +207,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* BANNER GRANDE: novos palpites das IAs pras Oitavas saíram */}
+      <BannerNovosPalpitesOitavas locale={locale} />
 
       {/* BANNER: as IAs já palpitaram quem é o campeão */}
       <BannerAnimacaoCampeao locale={locale} />

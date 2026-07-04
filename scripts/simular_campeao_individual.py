@@ -94,12 +94,11 @@ R32_DECIDIDOS = {
     83: "Portugal",
     84: "Espanha",
     85: "Suíça",
+    86: "Argentina",
+    87: "Colômbia",
+    88: "Egito",
 }
-R32_PENDENTES = [
-    {"j": 86, "a": "Argentina", "b": "Cabo Verde"},
-    {"j": 87, "a": "Colômbia", "b": "Gana"},
-    {"j": 88, "a": "Austrália", "b": "Egito"},
-]
+R32_PENDENTES: list[dict] = []
 
 # Pairings do bracket (mesmos do simular_campeao_api.py)
 PAIRINGS = {

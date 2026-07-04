@@ -78,7 +78,7 @@ IAS = {
     "kimi": {"slug": "kimi-k2-web", "nome": "Kimi K2", "model": "moonshotai/kimi-k2"},
 }
 
-# R32 decididos IRL (jogos 73-85). J86/87/88 são pendentes.
+# R32 100% decidido (jogos 73-88, todos jogados). Sem pendentes.
 R32_DECIDIDOS = {
     73: ("Canadá", None),
     74: ("Paraguai", None),
@@ -93,12 +93,11 @@ R32_DECIDIDOS = {
     83: ("Portugal", None),
     84: ("Espanha", None),
     85: ("Suíça", None),
+    86: ("Argentina", None),
+    87: ("Colômbia", None),
+    88: ("Egito", None),
 }
-R32_PENDENTES = [
-    {"j": 86, "a": "Argentina", "b": "Cabo Verde"},
-    {"j": 87, "a": "Colômbia", "b": "Gana"},
-    {"j": 88, "a": "Austrália", "b": "Egito"},
-]
+R32_PENDENTES: list[dict] = []
 
 FASES = [
     {
