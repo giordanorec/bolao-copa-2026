@@ -97,3 +97,4 @@ no cálculo de pontuação.
 | 83 | R32 | Qui 02/07 | 20h00 | Toronto | Portugal | 2 | 1 | Croácia |
 | 85 | R32 | Sex 03/07 | 00h00 | Vancouver | Suíça | 2 | 0 | Argélia |
 | 88 | R32 | Sex 03/07 | 15h00 | Dallas | Austrália | 1 | 1 | Egito |
+| 86 | R32 | Sex 03/07 | 19h00 | Miami | Argentina | 3 | 2 | Cabo Verde |
