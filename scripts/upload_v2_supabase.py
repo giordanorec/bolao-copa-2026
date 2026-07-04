@@ -47,6 +47,7 @@ ROOT = Path(__file__).resolve().parent.parent
 V2_DIR = ROOT / "data" / "palpites_v2"
 V3_DIR = ROOT / "data" / "palpites_v3"
 MM_DIR = ROOT / "data" / "palpites_matamata"
+OITAVAS_DIR = ROOT / "data" / "palpites_oitavas"
 
 SUPABASE_URL = os.environ.get("SUPABASE_URL") or os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
@@ -55,9 +56,14 @@ SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
 JOGOS_VALIDOS = {
     "v2": set(range(41, 73)),  # fase de grupos restante (41-72)
     "v3": {61, 62, 67, 68, 69, 70, 71, 72},  # 8 finais dos Grupos I/J/K/L
-    "mata-mata": set(range(73, 89)),  # 16-avos (R32)
+    "mata-mata": set(range(73, 97)),  # R32 (73-88) + Oitavas (89-96)
 }
-DEFAULT_VERSAO_POR_DIR = {V2_DIR: "v2", V3_DIR: "v3", MM_DIR: "mata-mata"}
+DEFAULT_VERSAO_POR_DIR = {
+    V2_DIR: "v2",
+    V3_DIR: "v3",
+    MM_DIR: "mata-mata",
+    OITAVAS_DIR: "mata-mata",
+}
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -195,8 +201,10 @@ def _dirs_alvo(argv: list[str]) -> list[Path]:
     if so == "v3":
         return [V3_DIR]
     if so in ("mata-mata", "matamata", "mm"):
-        return [MM_DIR]
-    return [V2_DIR, V3_DIR, MM_DIR]
+        return [MM_DIR, OITAVAS_DIR]
+    if so in ("oitavas", "oit"):
+        return [OITAVAS_DIR]
+    return [V2_DIR, V3_DIR, MM_DIR, OITAVAS_DIR]
 
 
 def main() -> None:
