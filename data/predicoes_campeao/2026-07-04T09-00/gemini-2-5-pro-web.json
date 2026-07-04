@@ -1,0 +1,48 @@
+{
+  "slug": "gemini-2-5-pro-web",
+  "rodada_em": "2026-07-04T00:46:02",
+  "campeao": "França",
+  "jornada": {
+    "R32": {
+      "73": "Canadá",
+      "74": "Paraguai",
+      "75": "Marrocos",
+      "76": "Brasil",
+      "77": "França",
+      "78": "Noruega",
+      "79": "México",
+      "80": "Inglaterra",
+      "81": "Estados Unidos",
+      "82": "Bélgica",
+      "83": "Portugal",
+      "84": "Espanha",
+      "85": "Suíça",
+      "86": "Argentina",
+      "87": "Colômbia",
+      "88": "Egito"
+    },
+    "Oitavas": {
+      "89": "França",
+      "90": "Marrocos",
+      "91": "Noruega",
+      "92": "México",
+      "93": "Espanha",
+      "94": "Estados Unidos",
+      "95": "Argentina",
+      "96": "Colômbia"
+    },
+    "Quartas": {
+      "97": "França",
+      "98": "Espanha",
+      "99": "Inglaterra",
+      "100": "Argentina"
+    },
+    "Semifinal": {
+      "101": "França",
+      "102": "Argentina"
+    },
+    "Final": {
+      "104": "França"
+    }
+  }
+}
