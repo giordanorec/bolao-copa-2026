@@ -1,0 +1,23 @@
+<!-- ia: cohere-command-r -->
+<!-- slug: cohere-command-r -->
+<!-- versao: mata-mata -->
+<!-- fase: R32 -->
+<!-- corte: 2026-07-04 -->
+<!-- modo: api -->
+<!-- modelo: cohere/command-r-08-2024 -->
+<!-- coletado_em: 2026-07-04T00:54:38-03:00 -->
+<!-- status: palpitou via api -->
+
+# Palpite mata-mata R32 — cohere-command-r (via OpenRouter)
+<!-- ia: Command R 08-2024; fase: oitavas; data: 2026-07-04 -->
+
+| Jogo | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B |
+|---|---|---|---|---|---|---|---|---|
+| 89 | Oitavas | Sáb 04/07 | 18h00 | Filadélfia | Paraguai | 0 | 3 | França |
+| 90 | Oitavas | Sáb 04/07 | 14h00 | Houston | Canadá | 2 | 1 | Marrocos |
+| 91 | Oitavas | Dom 05/07 | 17h00 | Nova York/NJ | Brasil | 1 | 0 | Noruega |
+| 92 | Oitavas | Dom 05/07 | 21h00 | Cidade do México | México | 2 | 1 | Inglaterra |
+| 93 | Oitavas | Seg 06/07 | 16h00 | Dallas | Portugal | 0 | 1 | Espanha |
+| 94 | Oitavas | Seg 06/07 | 21h00 | Seattle | Estados Unidos | 2 | 1 | Bélgica |
+| 95 | Oitavas | Ter 07/07 | 13h00 | Atlanta | Argentina | 2 | 0 | Egito |
+| 96 | Oitavas | Ter 07/07 | 17h00 | Vancouver | Suíça | 0 | 2 | Colômbia |

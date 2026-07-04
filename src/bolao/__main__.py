@@ -40,6 +40,7 @@ ROOT = Path.cwd()
 JOGOS_PATH = ROOT / "data" / "jogos.md"
 PALPITES_DIR = ROOT / "data" / "palpites_ias"
 PALPITES_MATAMATA_DIR = ROOT / "data" / "palpites_matamata"
+PALPITES_OITAVAS_DIR = ROOT / "data" / "palpites_oitavas"
 RESULTADOS_PATH = ROOT / "data" / "resultados" / "jogos.md"
 WEB_DIR = ROOT / "web"
 WEB_DATA_DIR = WEB_DIR / "data"
@@ -115,6 +116,8 @@ def _carregar_tudo() -> tuple[list, dict, list]:  # type: ignore[type-arg]
     jogos = carregar_jogos(JOGOS_PATH)
     palpites = carregar_palpites(PALPITES_DIR, jogos=jogos)
     palpites = _fundir_palpites_matamata(palpites, PALPITES_MATAMATA_DIR, jogos)
+    # Palpites das Oitavas (jogos 89-96) — mesma lógica de fusão, dir novo.
+    palpites = _fundir_palpites_matamata(palpites, PALPITES_OITAVAS_DIR, jogos)
     resultados = carregar_resultados(RESULTADOS_PATH)
     return jogos, palpites, resultados
 

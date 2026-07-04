@@ -14,27 +14,27 @@ const TX: Record<
 > = {
   pt: {
     kicker: "🔥 NOVOS PALPITES · OITAVAS DE FINAL",
-    h1: "As IAs REPALPITARAM. O bracket mudou.",
-    lede: "R32 fechou com 5 empates e 2 zebras. Agora as 11 IAs da Série A refizeram suas simulações da Copa toda — do R32 completo até o Campeão. Novo consenso, novas jornadas individuais. Vem ver qual IA cravou o campeão certo.",
-    cta: "Ver as novas simulações →",
+    h1: "As IAs REPALPITARAM. Palpites de placar dos 8 jogos das Oitavas!",
+    lede: "R32 fechou com 5 empates e 2 zebras. Agora os 8 confrontos das Oitavas estão definidos — 52 IAs mandaram seus placares exatos pra cada jogo, com dossiê completo (odds, lesões, forma). Vem descobrir quem palpitou o quê.",
+    cta: "Ver os palpites por jogo →",
   },
   en: {
     kicker: "🔥 NEW PREDICTIONS · ROUND OF 16",
-    h1: "The AIs updated. The bracket has changed.",
-    lede: "R32 closed with 5 draws and 2 upsets. Now the 11 Premier League AIs redid their entire World Cup simulations — full R32 through Champion. New consensus, new individual journeys. Come see which AI called it.",
-    cta: "See the new predictions →",
+    h1: "The AIs updated. Score predictions for all 8 Round of 16 games!",
+    lede: "R32 closed with 5 draws and 2 upsets. Now the 8 Round of 16 matches are set — 52 AIs sent their exact score predictions, with full dossier (odds, injuries, form). Come see who called what.",
+    cta: "See predictions per game →",
   },
   es: {
     kicker: "🔥 NUEVOS PRONÓSTICOS · OCTAVOS DE FINAL",
-    h1: "Las IAs actualizaron. El bracket cambió.",
-    lede: "Los 16avos cerraron con 5 empates y 2 sorpresas. Ahora las 11 IAs de Liga A rehicieron sus simulaciones enteras — 16avos completos hasta el Campeón. Nuevo consenso, nuevos caminos individuales.",
-    cta: "Ver los nuevos pronósticos →",
+    h1: "Las IAs actualizaron. ¡Marcadores para los 8 partidos de Octavos!",
+    lede: "Los 16avos cerraron con 5 empates y 2 sorpresas. Ya están definidos los 8 cruces de Octavos — 52 IAs mandaron sus marcadores exactos, con dossier completo (cuotas, lesiones, forma).",
+    cta: "Ver pronósticos por partido →",
   },
   fr: {
     kicker: "🔥 NOUVEAUX PRONOSTICS · 8e DE FINALE",
-    h1: "Les IA ont refait leurs pronostics. Le tableau a changé.",
-    lede: "Le R32 s'est terminé avec 5 nuls et 2 surprises. Les 11 IA de la Ligue A ont refait leurs simulations complètes — R32 complet jusqu'au Champion. Nouveau consensus, nouveaux parcours individuels.",
-    cta: "Voir les nouveaux pronostics →",
+    h1: "Les IA ont refait leurs pronos. Scores pour les 8 matchs des 8es !",
+    lede: "Le R32 s'est terminé avec 5 nuls et 2 surprises. Les 8 confrontations des 8es sont fixées — 52 IA ont envoyé leurs scores exacts, avec dossier complet (cotes, blessures, forme).",
+    cta: "Voir les pronos par match →",
   },
 };
 
@@ -111,7 +111,7 @@ export default function BannerNovosPalpitesOitavas({ locale }: { locale: Locale 
           {tx.lede}
         </p>
         <Link
-          href="/predicoes-campeao"
+          href="/jogos#89"
           style={{
             display: "inline-block",
             padding: "18px 42px",
@@ -137,7 +137,7 @@ export default function BannerNovosPalpitesOitavas({ locale }: { locale: Locale 
             fontStyle: "italic",
           }}
         >
-          Consenso das 11 IAs + jornada individual de cada uma · atualizado agora
+          52 IAs · 8 jogos das Oitavas · placar exato de cada uma · atualizado agora
         </div>
       </div>
     </section>
