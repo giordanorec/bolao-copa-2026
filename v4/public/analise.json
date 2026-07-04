@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-07-04T03:58:32.733909Z",
+  "gerado_em": "2026-07-04T04:04:56.610632Z",
   "n_ias": 66,
   "n_jogos_encerrados": 88,
   "perfis": [
@@ -4432,17 +4432,17 @@
           "media_pts": 13.33,
           "taxa_acerto": 1.0
         },
-        "CONMEBOL": {
-          "jogos": 5,
-          "pts": 50,
-          "media_pts": 10.0,
-          "taxa_acerto": 0.8
-        },
         "UEFA": {
           "jogos": 10,
           "pts": 60,
           "media_pts": 6.0,
           "taxa_acerto": 0.5
+        },
+        "CONMEBOL": {
+          "jogos": 5,
+          "pts": 50,
+          "media_pts": 10.0,
+          "taxa_acerto": 0.8
         },
         "AFC": {
           "jogos": 2,
@@ -4569,17 +4569,17 @@
           "media_pts": 14.67,
           "taxa_acerto": 1.0
         },
-        "CONMEBOL": {
-          "jogos": 5,
-          "pts": 54,
-          "media_pts": 10.8,
-          "taxa_acerto": 0.6
-        },
         "UEFA": {
           "jogos": 10,
           "pts": 60,
           "media_pts": 6.0,
           "taxa_acerto": 0.5
+        },
+        "CONMEBOL": {
+          "jogos": 5,
+          "pts": 54,
+          "media_pts": 10.8,
+          "taxa_acerto": 0.6
         },
         "AFC": {
           "jogos": 2,
@@ -4706,15 +4706,15 @@
           "media_pts": 0.0,
           "taxa_acerto": 0.0
         },
-        "CONMEBOL": {
-          "jogos": 5,
-          "pts": 10,
-          "media_pts": 2.0,
-          "taxa_acerto": 0.2
-        },
         "UEFA": {
           "jogos": 10,
           "pts": 20,
+          "media_pts": 2.0,
+          "taxa_acerto": 0.2
+        },
+        "CONMEBOL": {
+          "jogos": 5,
+          "pts": 10,
           "media_pts": 2.0,
           "taxa_acerto": 0.2
         },

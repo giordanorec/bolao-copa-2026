@@ -104,14 +104,14 @@ Horários no **horário de Brasília (BRT)**. Fase de grupos com times definidos
 
 | Jogo | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B |
 |---|---|---|---|---|---|---|---|---|
-| 90 | Oitavas | Sáb 04/07 | 14h00 | Houston | Venc. J73 | | | Venc. J75 |
-| 89 | Oitavas | Sáb 04/07 | 18h00 | Filadélfia | Venc. J74 | | | Venc. J77 |
-| 91 | Oitavas | Dom 05/07 | 17h00 | Nova York/NJ | Venc. J76 | | | Venc. J78 |
-| 92 | Oitavas | Dom 05/07 | 21h00 | Cidade do México | Venc. J79 | | | Venc. J80 |
-| 93 | Oitavas | Seg 06/07 | 16h00 | Dallas | Venc. J83 | | | Venc. J84 |
-| 94 | Oitavas | Seg 06/07 | 21h00 | Seattle | Venc. J81 | | | Venc. J82 |
-| 95 | Oitavas | Ter 07/07 | 13h00 | Atlanta | Venc. J86 | | | Venc. J88 |
-| 96 | Oitavas | Ter 07/07 | 17h00 | Vancouver | Venc. J85 | | | Venc. J87 |
+| 90 | Oitavas | Sáb 04/07 | 14h00 | Houston | Canadá | | | Marrocos |
+| 89 | Oitavas | Sáb 04/07 | 18h00 | Filadélfia | Paraguai | | | França |
+| 91 | Oitavas | Dom 05/07 | 17h00 | Nova York/NJ | Brasil | | | Noruega |
+| 92 | Oitavas | Dom 05/07 | 21h00 | Cidade do México | México | | | Inglaterra |
+| 93 | Oitavas | Seg 06/07 | 16h00 | Dallas | Portugal | | | Espanha |
+| 94 | Oitavas | Seg 06/07 | 21h00 | Seattle | Estados Unidos | | | Bélgica |
+| 95 | Oitavas | Ter 07/07 | 13h00 | Atlanta | Argentina | | | Egito |
+| 96 | Oitavas | Ter 07/07 | 17h00 | Vancouver | Suíça | | | Colômbia |
 
 ## Quartas de final
 

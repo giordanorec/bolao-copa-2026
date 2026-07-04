@@ -1,0 +1,84 @@
+Dossiê: data\dossie\campeao-2026-07-04.md (20498 chars)
+Rodada: 2026-07-04T09-00
+Output: data\predicoes_campeao\2026-07-04T09-00
+Alvo: 11 IAs — chatgpt, claude, copilot, gemini, grok, mistral, meta, deepseek, perplexity, qwen, kimi
+
+=== Oitavas (8 jogos) — 11 IAs em paralelo ===
+  [Oitavas] ChatGPT 5                 OK  J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas] Claude Opus 4.8           OK  J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas] Microsoft Copilot         OK  J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas] Gemini 2.5 Pro            OK  J89=???, J90=???, J91=???...
+  [Oitavas] Grok 4 Heavy              OK  J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas] Le Chat (Mistral)         OK  J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas] Meta AI (Llama 4)         OK  J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas] DeepSeek R1               OK  J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas] Perplexity Sonar Pro      OK  J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas] Qwen 3 Max                OK  J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas] Kimi K2                   OK  J89=França, J90=Marrocos, J91=Brasil...
+  [Oitavas consenso] {89: 'França', 90: 'Marrocos', 91: 'Brasil', 92: 'Inglaterra', 93: 'Espanha', 94: 'Bélgica', 95: 'Argentina', 96: 'Colômbia'}
+
+=== Quartas (4 jogos) — 11 IAs em paralelo ===
+  [Quartas] ChatGPT 5                 OK  J97=França, J98=Espanha, J99=Inglaterra...
+  [Quartas] Claude Opus 4.8           OK  J97=França, J98=Espanha, J99=Brasil...
+  [Quartas] Microsoft Copilot         OK  J97=França, J98=Espanha, J99=Inglaterra...
+  [Quartas] Gemini 2.5 Pro            OK  J97=???, J98=???, J99=???...
+  [Quartas] Grok 4 Heavy              OK  J97=França, J98=Espanha, J99=Inglaterra...
+  [Quartas] Le Chat (Mistral)         OK  J97=França, J98=Espanha, J99=Inglaterra...
+  [Quartas] Meta AI (Llama 4)         OK  J97=França, J98=Espanha, J99=Brasil...
+  [Quartas] DeepSeek R1               OK  J97=França, J98=Espanha, J99=Brasil...
+  [Quartas] Perplexity Sonar Pro      OK  J97=França, J98=Espanha, J99=Brasil...
+  [Quartas] Qwen 3 Max                OK  J97=França, J98=Espanha, J99=Brasil...
+  [Quartas] Kimi K2                   OK  J97=França, J98=Espanha, J99=Brasil...
+  [Quartas consenso] {97: 'França', 98: 'Espanha', 99: 'Brasil', 100: 'Argentina'}
+
+=== Semifinal (2 jogos) — 11 IAs em paralelo ===
+  [Semifinal] ChatGPT 5                 OK  J101=França, J102=Argentina
+  [Semifinal] Claude Opus 4.8           OK  J101=França, J102=Argentina
+  [Semifinal] Microsoft Copilot         OK  J101=França, J102=Argentina
+  [Semifinal] Gemini 2.5 Pro            OK  J101=França, J102=Argentina
+  [Semifinal] Grok 4 Heavy              OK  J101=França, J102=Argentina
+  [Semifinal] Le Chat (Mistral)         OK  J101=França, J102=Argentina
+  [Semifinal] Meta AI (Llama 4)         OK  J101=França, J102=Argentina
+  [Semifinal] DeepSeek R1               OK  J101=França, J102=Argentina
+  [Semifinal] Perplexity Sonar Pro      OK  J101=França, J102=Argentina
+  [Semifinal] Qwen 3 Max                OK  J101=França, J102=Argentina
+  [Semifinal] Kimi K2                   OK  J101=França, J102=Argentina
+  [Semifinal consenso] {101: 'França', 102: 'Argentina'}
+
+=== Final (1 jogos) — 11 IAs em paralelo ===
+  [Final] ChatGPT 5                 OK  J104=França
+  [Final] Claude Opus 4.8           OK  J104=França
+  [Final] Microsoft Copilot         OK  J104=França
+  [Final] Gemini 2.5 Pro            OK  J104=França
+  [Final] Grok 4 Heavy              OK  J104=França
+  [Final] Le Chat (Mistral)         OK  J104=Argentina
+  [Final] Meta AI (Llama 4)         OK  J104=Argentina
+  [Final] DeepSeek R1               OK  J104=França
+  [Final] Perplexity Sonar Pro      OK  J104=França
+  [Final] Qwen 3 Max                OK  J104=Argentina
+  [Final] Kimi K2                   OK  J104=França
+  [Final consenso] {104: 'França'}
+  salvo: data\predicoes_campeao\2026-07-04T09-00\chatgpt-5-thinking-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\claude-opus-4-8-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\copilot-microsoft-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\gemini-2-5-pro-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\grok-4-heavy-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\le-chat-mistral-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\meta-llama-4-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\deepseek-r1-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\perplexity-sonar-pro-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\qwen-3-max-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\kimi-k2-web.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\_bola-de-cristal.json
+  salvo: data\predicoes_campeao\2026-07-04T09-00\_resumo.json
+Traceback (most recent call last):
+  File "C:\Users\grec\OneDrive - Stanford\Documents\Projetos\Bolao da Copa\scripts\simular_campeao_api.py", line 443, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\grec\OneDrive - Stanford\Documents\Projetos\Bolao da Copa\scripts\simular_campeao_api.py", line 438, in main
+    print(f"\n\U0001f3c6 Bola de Cristal: {cristal_campeao}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\grec\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f3c6' in position 2: character maps to <undefined>

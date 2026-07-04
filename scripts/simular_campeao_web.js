@@ -190,6 +190,7 @@ const SITES = {
 const PENALTY_WINNER = {
   74: "b", // Paraguai avança sobre Alemanha
   75: "b", // Marrocos avança sobre Países Baixos
+  88: "b", // Egito avança sobre Austrália
 };
 
 function derivarEstadoR32() {

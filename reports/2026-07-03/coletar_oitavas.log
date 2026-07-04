@@ -1,0 +1,118 @@
+coletar-matamata: 58 IA(s) · jogos=89-96
+  - chatgpt-5                        -> openai/gpt-5  (tier 1)
+  - chatgpt-5-thinking               -> openai/gpt-5-pro  (tier 1)
+  - claude-opus-4-7                  -> anthropic/claude-opus-4.7  (tier 1)
+  - claude-sonnet-4-6                -> anthropic/claude-sonnet-4.6  (tier 1)
+  - claude-haiku-4-5                 -> anthropic/claude-haiku-4.5  (tier 1)
+  - gemini-2-5-pro                   -> google/gemini-2.5-pro  (tier 1)
+  - gemini-2-5-flash                 -> google/gemini-2.5-flash  (tier 1)
+  - grok-4                           -> x-ai/grok-4.20  (tier 1)
+  - grok-4-heavy                     -> x-ai/grok-4.20-multi-agent  (tier 1)
+  - deepseek-r1                      -> deepseek/deepseek-r1  (tier 1)
+  - deepseek-v3-1                    -> deepseek/deepseek-chat-v3.1  (tier 1)
+  - perplexity-sonar-pro             -> perplexity/sonar-pro  (tier 1)
+  - le-chat-mistral                  -> mistralai/mistral-large-2512  (tier 1)
+  - meta-llama-4                     -> meta-llama/llama-4-maverick  (tier 1)
+  - qwen-3-max                       -> qwen/qwen3-max  (tier 1)
+  - chatgpt-5-mini                   -> openai/gpt-5-mini  (tier 2)
+  - chatgpt-5-nano                   -> openai/gpt-5-nano  (tier 2)
+  - o3                               -> openai/o3  (tier 2)
+  - o4-mini                          -> openai/o4-mini  (tier 2)
+  - claude-opus-4-5                  -> anthropic/claude-opus-4.5  (tier 2)
+  - claude-sonnet-4-5                -> anthropic/claude-sonnet-4.5  (tier 2)
+  - gemini-2-5-flash-lite            -> google/gemini-2.5-flash-lite  (tier 2)
+  - grok-4-fast                      -> x-ai/grok-4.3  (tier 2)
+  - deepseek-v3-2                    -> deepseek/deepseek-v3.2  (tier 2)
+  - mistral-medium-3                 -> mistralai/mistral-medium-3.1  (tier 2)
+  - mistral-small-3                  -> mistralai/mistral-small-3.2-24b-instruct  (tier 2)
+  - cohere-command-r-plus            -> cohere/command-r-plus-08-2024  (tier 2)
+  - llama-4-maverick                 -> meta-llama/llama-4-maverick  (tier 3)
+  - llama-4-scout                    -> meta-llama/llama-4-scout  (tier 3)
+  - llama-3-3-70b                    -> meta-llama/llama-3.3-70b-instruct  (tier 3)
+  - llama-3-1-70b                    -> meta-llama/llama-3.1-70b-instruct  (tier 3)
+  - mixtral-8x22b                    -> mistralai/mixtral-8x22b-instruct  (tier 3)
+  - ministral-8b                     -> mistralai/ministral-8b-2512  (tier 3)
+  - codestral                        -> mistralai/codestral-2508  (tier 3)
+  - qwen-3-235b                      -> qwen/qwen3-235b-a22b  (tier 3)
+  - qwen-3-coder                     -> qwen/qwen3-coder  (tier 3)
+  - qwen-2-5-72b                     -> qwen/qwen-2.5-72b-instruct  (tier 3)
+  - gpt-4o                           -> openai/gpt-4o  (tier 5)
+  - gpt-4-1                          -> openai/gpt-4.1  (tier 5)
+  - o1                               -> openai/o1  (tier 5)
+  - claude-haiku-3-5                 -> anthropic/claude-3.5-haiku  (tier 5)
+  - deepseek-v3                      -> deepseek/deepseek-chat-v3-0324  (tier 5)
+  - llama-3-70b                      -> meta-llama/llama-3-70b-instruct  (tier 5)
+  - gemma-2-27b                      -> google/gemma-2-27b-it  (tier 5)
+  - gemma-3-27b                      -> google/gemma-3-27b-it  (tier 6)
+  - gemma-3-12b                      -> google/gemma-3-12b-it  (tier 6)
+  - phi-4                            -> microsoft/phi-4  (tier 6)
+  - phi-4-mini                       -> microsoft/phi-4-mini-instruct  (tier 6)
+  - wizardlm-2-8x22b                 -> microsoft/wizardlm-2-8x22b  (tier 6)
+  - cohere-command-a                 -> cohere/command-a  (tier 7)
+  - cohere-command-r                 -> cohere/command-r-08-2024  (tier 7)
+  - kimi-k2                          -> moonshotai/kimi-k2  (tier 7)
+  - jamba-1-5-large                  -> ai21/jamba-large-1.7  (tier 7)
+  - perplexity-sonar-reasoning       -> perplexity/sonar-reasoning-pro  (tier 8)
+  - perplexity-sonar-large           -> perplexity/sonar  (tier 8)
+  - inflection-3                     -> inflection/inflection-3-productivity  (tier 8)
+  - inflection-pi                    -> inflection/inflection-3-pi  (tier 8)
+  - lfm-40b                          -> liquid/lfm-2-24b-a2b  (tier 8)
+  OK   grok-4  -> grok-4.md
+  OK   gemini-2-5-flash  -> gemini-2-5-flash.md
+  OK   claude-haiku-4-5  -> claude-haiku-4-5.md
+  OK   claude-opus-4-7  -> claude-opus-4-7.md
+  OK   claude-sonnet-4-6  -> claude-sonnet-4-6.md
+  OK   perplexity-sonar-pro  -> perplexity-sonar-pro.md
+  OK   grok-4-heavy  -> grok-4-heavy.md
+  OK   deepseek-v3-1  -> deepseek-v3-1.md
+  OK   le-chat-mistral  -> le-chat-mistral.md
+  OK   meta-llama-4  -> meta-llama-4.md
+  OK   qwen-3-max  -> qwen-3-max.md
+  OK   o3  -> o3.md
+  OK   gemini-2-5-flash-lite  -> gemini-2-5-flash-lite.md
+  OK   chatgpt-5-mini  -> chatgpt-5-mini.md
+  OK   claude-opus-4-5  -> claude-opus-4-5.md
+  OK   claude-sonnet-4-5  -> claude-sonnet-4-5.md
+  OK   deepseek-v3-2  -> deepseek-v3-2.md
+  OK   chatgpt-5-nano  -> chatgpt-5-nano.md
+  OK   mistral-medium-3  -> mistral-medium-3.md
+  OK   o4-mini  -> o4-mini.md
+  OK   llama-4-scout  -> llama-4-scout.md
+  OK   grok-4-fast  -> grok-4-fast.md
+  OK   mistral-small-3  -> mistral-small-3.md
+  OK   gemini-2-5-pro  -> gemini-2-5-pro.md
+  OK   chatgpt-5  -> chatgpt-5.md
+  OK   llama-4-maverick  -> llama-4-maverick.md
+  OK   mixtral-8x22b  -> mixtral-8x22b.md
+  OK   ministral-8b  -> ministral-8b.md
+  OK   codestral  -> codestral.md
+  OK   gpt-4o  -> gpt-4o.md
+  OK   gpt-4-1  -> gpt-4-1.md
+  FAIL claude-haiku-3-5: HTTP 404: {"error":{"message":"No endpoints found for anthropic/claude-3.5-haiku.","code":404},"user_id":"user_39CSa3Ctx0KfEO9fiMVsCq2XqUr"}
+  OK   qwen-3-coder  -> qwen-3-coder.md
+  FAIL llama-3-70b: HTTP 404: {"error":{"message":"No endpoints found for meta-llama/llama-3-70b-instruct.","code":404},"user_id":"user_39CSa3Ctx0KfEO9fiMVsCq2XqUr"}
+  OK   cohere-command-r-plus  -> cohere-command-r-plus.md
+  OK   llama-3-1-70b  -> llama-3-1-70b.md
+  OK   gemma-2-27b  -> gemma-2-27b.md
+  FAIL phi-4: HTTP 400: {"error":{"message":"This endpoint's maximum context length is 16384 tokens. However, you requested about 20531 tokens (20531 of text input). Please reduce the length of either one, or use the context-compression plugin to compress your prompt automatically.","code":400,"metadata":{"provider_name":null}},"user_id":"user_39CSa3Ctx0KfEO9fiMVsCq2XqUr"}
+  FAIL phi-4-mini: HTTP 404: {"error":{"message":"No endpoints found for microsoft/phi-4-mini-instruct.","code":404},"user_id":"user_39CSa3Ctx0KfEO9fiMVsCq2XqUr"}
+  OK   gemma-3-12b  -> gemma-3-12b.md
+  OK   deepseek-v3  -> deepseek-v3.md
+  OK   llama-3-3-70b  -> llama-3-3-70b.md
+  OK   wizardlm-2-8x22b  -> wizardlm-2-8x22b.md
+  OK   qwen-2-5-72b  -> qwen-2-5-72b.md
+  OK   qwen-3-235b  -> qwen-3-235b.md
+  OK   gemma-3-27b  -> gemma-3-27b.md
+  OK   cohere-command-a  -> cohere-command-a.md
+  OK   perplexity-sonar-large  -> perplexity-sonar-large.md
+  OK   kimi-k2  -> kimi-k2.md
+  OK   jamba-1-5-large  -> jamba-1-5-large.md
+  OK   lfm-40b  -> lfm-40b.md
+  OK   o1  -> o1.md
+  OK   cohere-command-r  -> cohere-command-r.md
+  OK   perplexity-sonar-reasoning  -> perplexity-sonar-reasoning.md
+  FAIL inflection-3: 'choices'
+  FAIL inflection-pi: 'choices'
+  OK   deepseek-r1  -> deepseek-r1.md
+  OK   chatgpt-5-thinking  -> chatgpt-5-thinking.md
+coletar-matamata: 52/58 sucesso
