@@ -36,7 +36,7 @@
   },
   "chatgpt-5-thinking-web": {
     "jogos_palpitados": 16,
-    "palpites_total": 16,
+    "palpites_total": 24,
     "placares_exatos": 5,
     "pontos": 184,
     "vencedores_acertados": 13
@@ -99,7 +99,7 @@
   },
   "claude-opus-4-8-web": {
     "jogos_palpitados": 16,
-    "palpites_total": 16,
+    "palpites_total": 24,
     "placares_exatos": 4,
     "pontos": 150,
     "vencedores_acertados": 11
@@ -183,7 +183,7 @@
   },
   "copilot-microsoft-web": {
     "jogos_palpitados": 16,
-    "palpites_total": 16,
+    "palpites_total": 24,
     "placares_exatos": 3,
     "pontos": 158,
     "vencedores_acertados": 12
@@ -204,7 +204,7 @@
   },
   "deepseek-r1-web": {
     "jogos_palpitados": 16,
-    "palpites_total": 16,
+    "palpites_total": 24,
     "placares_exatos": 5,
     "pontos": 170,
     "vencedores_acertados": 12
@@ -323,7 +323,7 @@
   },
   "gemini-2-5-pro-web": {
     "jogos_palpitados": 16,
-    "palpites_total": 16,
+    "palpites_total": 24,
     "placares_exatos": 4,
     "pontos": 164,
     "vencedores_acertados": 12
@@ -484,7 +484,7 @@
   },
   "le-chat-mistral-web": {
     "jogos_palpitados": 0,
-    "palpites_total": 0,
+    "palpites_total": 8,
     "placares_exatos": 0,
     "pontos": 0,
     "vencedores_acertados": 0
@@ -560,11 +560,11 @@
     "vencedores_acertados": 43
   },
   "manus-web": {
-    "jogos_palpitados": 16,
-    "palpites_total": 16,
-    "placares_exatos": 0,
-    "pontos": 106,
-    "vencedores_acertados": 9
+    "jogos_palpitados": 32,
+    "palpites_total": 32,
+    "placares_exatos": 16,
+    "pontos": 426,
+    "vencedores_acertados": 25
   },
   "mathstral": {
     "jogos_palpitados": 0,
@@ -582,7 +582,7 @@
   },
   "meta-llama-4-web": {
     "jogos_palpitados": 16,
-    "palpites_total": 16,
+    "palpites_total": 24,
     "placares_exatos": 5,
     "pontos": 170,
     "vencedores_acertados": 12
@@ -701,7 +701,7 @@
   },
   "perplexity-sonar-pro-web": {
     "jogos_palpitados": 16,
-    "palpites_total": 16,
+    "palpites_total": 24,
     "placares_exatos": 5,
     "pontos": 184,
     "vencedores_acertados": 13
@@ -771,7 +771,7 @@
   },
   "qwen-3-max-web": {
     "jogos_palpitados": 16,
-    "palpites_total": 16,
+    "palpites_total": 24,
     "placares_exatos": 5,
     "pontos": 194,
     "vencedores_acertados": 14

@@ -1,0 +1,10 @@
+
+=== RUN copilot (copilot-microsoft-web) [NEW CHAT] ===
+  aba: https://copilot.microsoft.com/
+  arquivo anexado: data\resultados\jogos.md
+  prompt colado. screenshot: scripts\_shots\copilot-microsoft-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\copilot-microsoft-web.md (699 chars) via=table jogos=8
+
+fim. (nada foi commitado)

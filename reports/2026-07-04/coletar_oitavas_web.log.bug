@@ -1,0 +1,16 @@
+
+=== RUN chatgpt (chatgpt-5-thinking-web) [NEW CHAT] ===
+  aba: https://chatgpt.com/
+  prompt colado. screenshot: scripts\_shots\chatgpt-5-thinking-web-pasted.png
+  enviado.
+  aguardando resposta...
+  FAIL chatgpt: page.evaluate: ReferenceError: LIMIAR is not defined
+    at eval (eval at evaluate (:302:30), <anonymous>:37:26)
+    at UtilityScript.evaluate (<anonymous>:304:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+
+=== RUN claude (claude-opus-4-8-web) [NEW CHAT] ===
+  aba: https://claude.ai/new
+  prompt colado. screenshot: scripts\_shots\claude-opus-4-8-web-pasted.png
+  enviado.
+  aguardando resposta...

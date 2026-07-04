@@ -1,0 +1,7 @@
+
+=== RUN manus (manus-web) [NEW CHAT] ===
+  aba: https://manus.im/app
+  !! falha ao anexar: locator.setInputFiles: Timeout 15000ms exceeded.
+  prompt colado. screenshot: scripts\_shots\manus-web-pasted.png
+  enviado.
+  aguardando resposta...

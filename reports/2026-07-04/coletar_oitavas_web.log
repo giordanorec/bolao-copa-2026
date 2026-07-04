@@ -1,0 +1,102 @@
+
+=== RUN chatgpt (chatgpt-5-thinking-web) [NEW CHAT] ===
+  aba: https://chatgpt.com/
+  prompt colado. screenshot: scripts\_shots\chatgpt-5-thinking-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\chatgpt-5-thinking-web.md (699 chars) via=table jogos=8
+
+=== RUN claude (claude-opus-4-8-web) [NEW CHAT] ===
+  aba: https://claude.ai/new
+  prompt colado. screenshot: scripts\_shots\claude-opus-4-8-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\claude-opus-4-8-web.md (699 chars) via=table jogos=8
+
+=== RUN gemini (gemini-2-5-pro-web) [NEW CHAT] ===
+  aba: https://gemini.google.com/u/1/app
+  prompt colado. screenshot: scripts\_shots\gemini-2-5-pro-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\gemini-2-5-pro-web.md (699 chars) via=table jogos=8
+
+=== RUN grok (grok-4-heavy-web) [NEW CHAT] ===
+  aba: https://grok.com/
+  FAIL grok: locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('div[contenteditable="true"]').last()[22m
+[2m    - locator resolved to <div tabindex="0" role="textbox" translate="no" aria-multiline="true" aria-disabled="false" contenteditable="true" aria-label="Ask Grok anything" class="tiptap ProseMirror w-full px-2 bg-transparent focus:outline-none text-primary align-bottom max-h-[400px] overflow-y-auto !max-w-none prose [&_ul>li>p]:my-0 [&_ol>li>p]:my-0 [&_li>ol]:my-0 [&_li>ul]:my-0 [&_p]:my-0 [&_ul]:my-0 [&_ol]:my-0 pt-4 my-0 scroll-feather-y">…</div>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex-1 overflow-hidden">…</div> from <div id="dialog-portal">…</div> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex-1 overflow-hidden">…</div> from <div id="dialog-portal">…</div> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    53 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <div class="flex-1 overflow-hidden">…</div> from <div id="dialog-portal">…</div> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+=== RUN deepseek (deepseek-r1-web) [NEW CHAT] ===
+  aba: https://chat.deepseek.com/
+  prompt colado. screenshot: scripts\_shots\deepseek-r1-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\deepseek-r1-web.md (699 chars) via=table jogos=8
+
+=== RUN copilot (copilot-microsoft-web) [NEW CHAT] ===
+  aba: https://copilot.microsoft.com/
+  prompt colado. screenshot: scripts\_shots\copilot-microsoft-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\copilot-microsoft-web.md (278 chars) via=none jogos=0
+
+=== RUN perplexity (perplexity-sonar-pro-web) [NEW CHAT] ===
+  aba: https://www.perplexity.ai/
+  prompt colado. screenshot: scripts\_shots\perplexity-sonar-pro-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\perplexity-sonar-pro-web.md (699 chars) via=table jogos=8
+
+=== RUN lechat (le-chat-mistral-web) [NEW CHAT] ===
+  aba: https://chat.mistral.ai/chat
+  prompt colado. screenshot: scripts\_shots\le-chat-mistral-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\le-chat-mistral-web.md (699 chars) via=linhas jogos=8
+
+=== RUN meta (meta-llama-4-web) [NEW CHAT] ===
+  aba: https://www.meta.ai/
+  prompt colado. screenshot: scripts\_shots\meta-llama-4-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\meta-llama-4-web.md (699 chars) via=table jogos=8
+
+=== RUN qwen (qwen-3-max-web) [NEW CHAT] ===
+  aba: https://chat.qwen.ai/
+  prompt colado. screenshot: scripts\_shots\qwen-3-max-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\qwen-3-max-web.md (699 chars) via=table jogos=8
+
+=== RUN manus (manus-web) [NEW CHAT] ===
+  aba: https://manus.im/app
+  prompt colado. screenshot: scripts\_shots\manus-web-pasted.png
+  enviado.
+  aguardando resposta...
+  salvo: data\palpites_oitavas\manus-web.md (13610 chars) via=none jogos=0
+
+fim. (nada foi commitado)
