@@ -13415,7 +13415,48 @@
       "gols_b": 1
     }
   ],
-  "grok-4-heavy-web": [],
+  "grok-4-heavy-web": [
+    {
+      "jogo_numero": 89,
+      "gols_a": 0,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 90,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 91,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 92,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 93,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 94,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 95,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 96,
+      "gols_a": 1,
+      "gols_b": 1
+    }
+  ],
   "grok-4-heavy": [
     {
       "jogo_numero": 1,
@@ -26686,86 +26727,6 @@
     },
     {
       "jogo_numero": 88,
-      "gols_a": 1,
-      "gols_b": 0
-    },
-    {
-      "jogo_numero": 73,
-      "gols_a": 0,
-      "gols_b": 1
-    },
-    {
-      "jogo_numero": 76,
-      "gols_a": 2,
-      "gols_b": 1
-    },
-    {
-      "jogo_numero": 74,
-      "gols_a": 1,
-      "gols_b": 1
-    },
-    {
-      "jogo_numero": 75,
-      "gols_a": 1,
-      "gols_b": 1
-    },
-    {
-      "jogo_numero": 78,
-      "gols_a": 1,
-      "gols_b": 2
-    },
-    {
-      "jogo_numero": 77,
-      "gols_a": 3,
-      "gols_b": 0
-    },
-    {
-      "jogo_numero": 79,
-      "gols_a": 2,
-      "gols_b": 0
-    },
-    {
-      "jogo_numero": 80,
-      "gols_a": 2,
-      "gols_b": 1
-    },
-    {
-      "jogo_numero": 82,
-      "gols_a": 3,
-      "gols_b": 2
-    },
-    {
-      "jogo_numero": 81,
-      "gols_a": 2,
-      "gols_b": 0
-    },
-    {
-      "jogo_numero": 84,
-      "gols_a": 3,
-      "gols_b": 0
-    },
-    {
-      "jogo_numero": 83,
-      "gols_a": 2,
-      "gols_b": 1
-    },
-    {
-      "jogo_numero": 85,
-      "gols_a": 2,
-      "gols_b": 0
-    },
-    {
-      "jogo_numero": 88,
-      "gols_a": 1,
-      "gols_b": 1
-    },
-    {
-      "jogo_numero": 86,
-      "gols_a": 3,
-      "gols_b": 2
-    },
-    {
-      "jogo_numero": 87,
       "gols_a": 1,
       "gols_b": 0
     }

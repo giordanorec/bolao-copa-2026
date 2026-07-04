@@ -421,7 +421,7 @@
   },
   "grok-4-heavy-web": {
     "jogos_palpitados": 0,
-    "palpites_total": 0,
+    "palpites_total": 8,
     "placares_exatos": 0,
     "pontos": 0,
     "vencedores_acertados": 0
@@ -560,11 +560,11 @@
     "vencedores_acertados": 43
   },
   "manus-web": {
-    "jogos_palpitados": 32,
-    "palpites_total": 32,
-    "placares_exatos": 16,
-    "pontos": 426,
-    "vencedores_acertados": 25
+    "jogos_palpitados": 16,
+    "palpites_total": 16,
+    "placares_exatos": 0,
+    "pontos": 106,
+    "vencedores_acertados": 9
   },
   "mathstral": {
     "jogos_palpitados": 0,
