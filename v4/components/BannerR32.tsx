@@ -138,10 +138,10 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "en", flag: "🇦🇺", text: "Cheers, Socceroos — one goal short in Dallas, but a fight to remember" },
     { lang: "pt", flag: "🇨🇻", text: "Até à próxima, Tubarões Azuis — orgulho de uma ilha inteira que virou lenda" },
     { lang: "en", flag: "🇬🇭", text: "See you later, Black Stars — you fought hard, come back stronger" },
+    { lang: "fr", flag: "🇨🇦", text: "À la prochaine, les Canucks — 0–3 contre le Maroc, mais l'hôte a fait rêver le pays" },
   ];
 
   const congrats = [
-    { lang: "en", flag: "🇨🇦", text: "Way to go, Canada — round of 16, here we come, eh!" },
     { lang: "gn", flag: "🇵🇾", text: "¡Iporã, Albirroja! Tereguahē porãite ko'ãgaite — vamos por más" },
     { lang: "ar", flag: "🇲🇦", text: "مبروك يا أسود الأطلس — الطريق ما زال طويلًا" },
     { lang: "nb", flag: "🇳🇴", text: "Bra jobba, Løvene — vi sees i åttedelsfinalen!" },
@@ -194,12 +194,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "R32 completo · 29/06 → 04/07 · 16 classificados"
+                ? "Oitavas em curso · 1ª sentença: Marrocos 3×0 Canadá"
                 : en
-                  ? "R32 done · 29 Jun → 4 Jul · 16 through"
+                  ? "Round of 16 underway · 1st verdict: Morocco 3×0 Canada"
                   : es
-                    ? "16avos completos · 29/06 → 04/07 · 16 clasificados"
-                    : "R32 terminé · 29/06 → 04/07 · 16 qualifiés"}
+                    ? "Octavos en curso · 1ª sentencia: Marruecos 3×0 Canadá"
+                    : "8es en cours · 1er verdict : Maroc 3×0 Canada"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>
