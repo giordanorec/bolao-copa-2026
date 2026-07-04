@@ -95,12 +95,28 @@ export default function BannerR32({ locale }: { locale: Locale }) {
         : "Angleterre 2×1 RD Congo 🇨🇩 — 3 IA ont trouvé le score exact (llama-4-scout, perplexity-sonar-reasoning, qwen-3-coder). USA 2×0 Bosnie 🇧🇦 — 4 exacts (copilot-microsoft-web, le-chat-mistral-web, chatgpt-5-nano, llama-4-scout). Belgique 3×2 Sénégal 🇸🇳 — décidé en prolongation (Tielemans à la 120e), 1 exact (cohere-command-r-plus) et 36 IA ont trouvé vainqueur+différence. La Boule de Cristal a prédit 2×1 et a gagné 14 pts.";
 
   const proximos = pt
-    ? "Hoje (02/07): 🇵🇹 Portugal × Croácia 🇭🇷 — 20h; 🇪🇸 Espanha × Áustria 🇦🇹 — 16h. Amanhã fecha o R32."
+    ? "Falta apenas 🇨🇴 Colômbia × Gana 🇬🇭 pra fechar o R32. Argentina, Egito, Suíça, Portugal, Espanha e Marrocos foram nos pen ou prorrogação em algum momento — R32 histórico."
     : en
-      ? "Today (2 July): 🇵🇹 Portugal × Croatia 🇭🇷 — 20:00 BRT; 🇪🇸 Spain × Austria 🇦🇹 — 16:00. Tomorrow closes R32."
+      ? "Only 🇨🇴 Colombia × Ghana 🇬🇭 left to close R32. Argentina, Egypt, Switzerland, Portugal, Spain and Morocco all had extra-time or penalty moments — a historic R32."
       : es
-        ? "Hoy (02/07): 🇵🇹 Portugal × Croacia 🇭🇷 — 20h; 🇪🇸 España × Austria 🇦🇹 — 16h. Mañana cierra los 16avos."
-        : "Aujourd'hui (02/07) : 🇵🇹 Portugal × Croatie 🇭🇷 — 20h ; 🇪🇸 Espagne × Autriche 🇦🇹 — 16h. Demain clôt les 16es.";
+        ? "Solo falta 🇨🇴 Colombia × Ghana 🇬🇭 para cerrar los 16avos. Argentina, Egipto, Suiza, Portugal, España y Marruecos pasaron por prórroga o penales — 16avos históricos."
+        : "Il ne reste que 🇨🇴 Colombie × Ghana 🇬🇭 pour clore le R32. Argentine, Égypte, Suisse, Portugal, Espagne et Maroc sont passés par la prolongation ou les tirs au but — un R32 historique.";
+
+  const cincoJogos = pt
+    ? "🇵🇹 Portugal 2×1 Croácia 🇭🇷 · 🇪🇸 Espanha 3×0 Áustria 🇦🇹 · 🇨🇭 Suíça 2×0 Argélia 🇩🇿 · 🇦🇺 Austrália 1×1 Egito 🇪🇬 (Egito nos pên.) · 🇦🇷 Argentina 3×2 Cabo Verde 🇨🇻 (na prorrogação)"
+    : en
+      ? "🇵🇹 Portugal 2×1 Croatia 🇭🇷 · 🇪🇸 Spain 3×0 Austria 🇦🇹 · 🇨🇭 Switzerland 2×0 Algeria 🇩🇿 · 🇦🇺 Australia 1×1 Egypt 🇪🇬 (Egypt on pens) · 🇦🇷 Argentina 3×2 Cape Verde 🇨🇻 (extra time)"
+      : es
+        ? "🇵🇹 Portugal 2×1 Croacia 🇭🇷 · 🇪🇸 España 3×0 Austria 🇦🇹 · 🇨🇭 Suiza 2×0 Argelia 🇩🇿 · 🇦🇺 Australia 1×1 Egipto 🇪🇬 (Egipto en penales) · 🇦🇷 Argentina 3×2 Cabo Verde 🇨🇻 (en la prórroga)"
+        : "🇵🇹 Portugal 2×1 Croatie 🇭🇷 · 🇪🇸 Espagne 3×0 Autriche 🇦🇹 · 🇨🇭 Suisse 2×0 Algérie 🇩🇿 · 🇦🇺 Australie 1×1 Égypte 🇪🇬 (Égypte aux TAB) · 🇦🇷 Argentine 3×2 Cap-Vert 🇨🇻 (prolongation)";
+
+  const cincoJogosTit = pt
+    ? "⚡ Últimos 5 jogos do R32 (02-03/07)"
+    : en
+      ? "⚡ Last 5 R32 games (2-3 Jul)"
+      : es
+        ? "⚡ Últimos 5 partidos de 16avos (02-03/07)"
+        : "⚡ Derniers 5 matchs du R32 (02-03/07)";
 
   // Frases nas línguas nativas (sem tradução — descobrir é a graça).
   // Eliminados → "até a próxima". Classificados → parabéns + segue na Copa.
@@ -116,6 +132,11 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "fr", flag: "🇨🇩", text: "À bientôt, Léopards — vous êtes revenus loin, et vous reviendrez plus fort" },
     { lang: "bs", flag: "🇧🇦", text: "Doviđenja, Zmajevi — vidimo se u sljedećoj Copi" },
     { lang: "wo", flag: "🇸🇳", text: "Ba beneen yoon, Lions de la Teranga — dinañu la ci mburu" },
+    { lang: "hr", flag: "🇭🇷", text: "Doviđenja, Vatreni — hvala na nezaboravnoj generaciji" },
+    { lang: "de", flag: "🇦🇹", text: "Auf Wiedersehen, Nationalteam — nach 72 Jahren wieder hier, kommt bald zurück" },
+    { lang: "ar", flag: "🇩🇿", text: "إلى اللقاء يا محاربي الصحراء — ستعودون أقوى" },
+    { lang: "en", flag: "🇦🇺", text: "Cheers, Socceroos — one goal short in Dallas, but a fight to remember" },
+    { lang: "pt", flag: "🇨🇻", text: "Até à próxima, Tubarões Azuis — orgulho de uma ilha inteira que virou lenda" },
   ];
 
   const congrats = [
@@ -128,6 +149,11 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "en", flag: "🇬🇧", text: "Come on, Three Lions — one more trophy, this could be the year" },
     { lang: "en", flag: "🇺🇸", text: "Let's go, USMNT — host and hero, keep the crowd loud" },
     { lang: "nl", flag: "🇧🇪", text: "Kom op, Rode Duivels — een gouden generatie die eindelijk terugkomt" },
+    { lang: "pt", flag: "🇵🇹", text: "Força, Seleção das Quinas — vamos com CR7 até onde ele quiser!" },
+    { lang: "es", flag: "🇪🇸", text: "¡Vamos, La Roja! Yamal, Rodri y la generación que quiere el segundo mundial" },
+    { lang: "de", flag: "🇨🇭", text: "Hopp Schwiiz — Nati wiiter uf em Weg, mir sind so stolz!" },
+    { lang: "ar", flag: "🇪🇬", text: "مبروك يا فراعنة — أول ثمن نهائي في تاريخ الحديث، صلاح إن شاء الله معنا" },
+    { lang: "es", flag: "🇦🇷", text: "¡Vamos, Argentina! Messi otra vez a los octavos — bicampeones vienen fuertes" },
   ];
 
   return (
@@ -165,12 +191,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Rodada R32 · 29/06 → 01/07"
+                ? "Rodada R32 · 29/06 → 03/07"
                 : en
-                  ? "Round of 32 · 29 Jun → 1 Jul"
+                  ? "Round of 32 · 29 Jun → 3 Jul"
                   : es
-                    ? "16avos · 29/06 → 01/07"
-                    : "8e de finale · 29/06 → 01/07"}
+                    ? "16avos · 29/06 → 03/07"
+                    : "8e de finale · 29/06 → 03/07"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>
@@ -251,6 +277,21 @@ export default function BannerR32({ locale }: { locale: Locale }) {
           </h3>
           <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
             {trioLinha}
+          </p>
+
+          <h3
+            style={{
+              fontSize: "clamp(17px, 2.6vw, 20px)",
+              fontWeight: 800,
+              marginBottom: 6,
+              lineHeight: 1.2,
+              color: "var(--fg)",
+            }}
+          >
+            {cincoJogosTit}
+          </h3>
+          <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
+            {cincoJogos}
           </p>
 
           <p style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 18, color: "var(--fg-mid)" }}>
