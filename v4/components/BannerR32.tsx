@@ -95,12 +95,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
         : "Angleterre 2×1 RD Congo 🇨🇩 — 3 IA ont trouvé le score exact (llama-4-scout, perplexity-sonar-reasoning, qwen-3-coder). USA 2×0 Bosnie 🇧🇦 — 4 exacts (copilot-microsoft-web, le-chat-mistral-web, chatgpt-5-nano, llama-4-scout). Belgique 3×2 Sénégal 🇸🇳 — décidé en prolongation (Tielemans à la 120e), 1 exact (cohere-command-r-plus) et 36 IA ont trouvé vainqueur+différence. La Boule de Cristal a prédit 2×1 et a gagné 14 pts.";
 
   const proximos = pt
-    ? "Falta apenas 🇨🇴 Colômbia × Gana 🇬🇭 pra fechar o R32. Argentina, Egito, Suíça, Portugal, Espanha e Marrocos foram nos pen ou prorrogação em algum momento — R32 histórico."
+    ? "🇦🇷🇧🇷🇨🇴🇵🇾 Parabéns aos sul-americanos! Argentina, Brasil, Colômbia e Paraguai TODOS nas Oitavas — nunca 4 seleções da CONMEBOL avançaram juntas em uma Copa fora da América desde 2002. As Oitavas começam agora com bracket bombado."
     : en
-      ? "Only 🇨🇴 Colombia × Ghana 🇬🇭 left to close R32. Argentina, Egypt, Switzerland, Portugal, Spain and Morocco all had extra-time or penalty moments — a historic R32."
+      ? "🇦🇷🇧🇷🇨🇴🇵🇾 Congrats to the South Americans! Argentina, Brazil, Colombia and Paraguay ALL through — 4 CONMEBOL sides haven't reached R16 together outside South America since 2002. Round of 16 kicks off with a stacked bracket."
       : es
-        ? "Solo falta 🇨🇴 Colombia × Ghana 🇬🇭 para cerrar los 16avos. Argentina, Egipto, Suiza, Portugal, España y Marruecos pasaron por prórroga o penales — 16avos históricos."
-        : "Il ne reste que 🇨🇴 Colombie × Ghana 🇬🇭 pour clore le R32. Argentine, Égypte, Suisse, Portugal, Espagne et Maroc sont passés par la prolongation ou les tirs au but — un R32 historique.";
+        ? "🇦🇷🇧🇷🇨🇴🇵🇾 ¡Felicitaciones a los sudamericanos! Argentina, Brasil, Colombia y Paraguay TODOS en octavos — nunca 4 selecciones CONMEBOL avanzaron juntas fuera de Sudamérica desde 2002. Los octavos arrancan con un bracket estelar."
+        : "🇦🇷🇧🇷🇨🇴🇵🇾 Bravo aux Sud-Américains ! Argentine, Brésil, Colombie et Paraguay TOUS en 8es — 4 sélections CONMEBOL n'étaient jamais toutes en 8es hors d'Amérique du Sud depuis 2002. Les 8es de finale commencent avec un tableau incroyable.";
 
   const cincoJogos = pt
     ? "🇵🇹 Portugal 2×1 Croácia 🇭🇷 · 🇪🇸 Espanha 3×0 Áustria 🇦🇹 · 🇨🇭 Suíça 2×0 Argélia 🇩🇿 · 🇦🇺 Austrália 1×1 Egito 🇪🇬 (Egito nos pên.) · 🇦🇷 Argentina 3×2 Cabo Verde 🇨🇻 (na prorrogação)"
@@ -137,6 +137,7 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "ar", flag: "🇩🇿", text: "إلى اللقاء يا محاربي الصحراء — ستعودون أقوى" },
     { lang: "en", flag: "🇦🇺", text: "Cheers, Socceroos — one goal short in Dallas, but a fight to remember" },
     { lang: "pt", flag: "🇨🇻", text: "Até à próxima, Tubarões Azuis — orgulho de uma ilha inteira que virou lenda" },
+    { lang: "en", flag: "🇬🇭", text: "See you later, Black Stars — you fought hard, come back stronger" },
   ];
 
   const congrats = [
@@ -154,7 +155,9 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "de", flag: "🇨🇭", text: "Hopp Schwiiz — Nati wiiter uf em Weg, mir sind so stolz!" },
     { lang: "ar", flag: "🇪🇬", text: "مبروك يا فراعنة — أول ثمن نهائي في تاريخ الحديث، صلاح إن شاء الله معنا" },
     { lang: "es", flag: "🇦🇷", text: "¡Vamos, Argentina! Messi otra vez a los octavos — bicampeones vienen fuertes" },
+    { lang: "es", flag: "🇨🇴", text: "¡Fuerza, Cafeteros! Luis Díaz, James y una defensa de hierro — a soñar con la Copa" },
   ];
+
 
   return (
     <section className="section" style={{ paddingTop: 8, paddingBottom: 8 }}>
@@ -191,12 +194,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Rodada R32 · 29/06 → 03/07"
+                ? "R32 completo · 29/06 → 04/07 · 16 classificados"
                 : en
-                  ? "Round of 32 · 29 Jun → 3 Jul"
+                  ? "R32 done · 29 Jun → 4 Jul · 16 through"
                   : es
-                    ? "16avos · 29/06 → 03/07"
-                    : "8e de finale · 29/06 → 03/07"}
+                    ? "16avos completos · 29/06 → 04/07 · 16 clasificados"
+                    : "R32 terminé · 29/06 → 04/07 · 16 qualifiés"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>

@@ -98,3 +98,4 @@ no cálculo de pontuação.
 | 85 | R32 | Sex 03/07 | 00h00 | Vancouver | Suíça | 2 | 0 | Argélia |
 | 88 | R32 | Sex 03/07 | 15h00 | Dallas | Austrália | 1 | 1 | Egito |
 | 86 | R32 | Sex 03/07 | 19h00 | Miami | Argentina | 3 | 2 | Cabo Verde |
+| 87 | R32 | Sáb 04/07 | 15h00 | Kansas City | Colômbia | 1 | 0 | Gana |
