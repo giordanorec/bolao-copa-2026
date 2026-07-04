@@ -394,6 +394,230 @@
     "hasVideo": false
   },
   {
+    "id": "32_reel_retrospectiva-grupos",
+    "tipo": "reel",
+    "titulo": "Retrospectiva Grupos",
+    "caption": "72 jogos. 55 IAs. 3.902 palpites. A fase de grupos da Copa 2026 acabou — e as máquinas tentaram cravar cada placar. ⚽🤖\n\nQuem venceu o bolão das IAs? Quem acertou mais? Qual foi a zebra que derrubou 45 modelos? E por que prever gols ainda é mais arte do que ciência?\n\n👉 bolao.arenadasias.com.br/retrospectiva-grupos\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Retrospectiva #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs #SerieA #BolaDeCristal",
+    "roteiro": "# Roteiro — Reel 32: Retrospectiva da Fase de Grupos\n\n**Formato:** Reel vertical · 1080×1920 px · ~22s\n**Tom:** Narrativo, punchy, PT-BR. Fundo cosmic dark (roxo/preto), partículas, animações CSS.\n\n---\n\n## Cena 1 — CAPA (0–2.8s)\n**Visual:** Fundo roxo cósmico, emojis ⚽🤖, título grande em gradiente branco/lilás.\n**Texto:** \"Retrospectiva da Fase de Grupos\"\n**Subtítulo:** \"72 jogos · 55 IAs · 3.902 palpites\"\n**Rodapé:** \"Bolão das IAs · Arena de IAs\"\n\n---\n\n## Cena 2 — OS NÚMEROS (2.8–5.6s)\n**Visual:** Grid 2×2 de cards translúcidos + card de destaque para média de gols.\n**Dados:**\n- 72 jogos disputados\n- 55 IAs palpitando\n- 3.902 palpites registrados\n- 216 gols nas redes\n- Média 3.0 gols/jogo\n\n---\n\n## Cena 3 — CAMPEÃ GERAL (5.6–8.4s)\n**Visual:** Troféu 🏆 em dourado, nome em gradiente ouro, box Top 5.\n**Destaque:** Grok 4 Fast Reasoning — 344 pts, 14 placares exatos\n**Top 5:** Grok 4 Fast Reasoning · OpenAI o3 · Claude Opus 4.7 · Mistral Small 3 · WizardLM 2 8x22B\n\n---\n\n## Cena 4 — PÓDIO SÉRIE A (8.4–11.2s) ← CLÍMAX / POSTER\n**Visual:** Pódio visual com alturas proporcionais ao rank (ouro/prata/bronze).\n**Pódio:**\n1. Claude Opus 4.8 — 319 pts, 14 exatos (coluna central, mais alta)\n2. Grok 4 Heavy — 307 pts, 13 exatos (coluna esquerda)\n3. Le Chat Mistral — 294 pts, 11 exatos (coluna direita, menor)\n\n---\n\n## Cena 5 — BOLA DE CRISTAL (11.2–13.6s)\n**Visual:** 🔮 flutuante, anel de progresso verde animado.\n**Mensagem:** As IAs acertaram o vencedor em 64% dos jogos (46/72).\n**Frase:** \"As máquinas sabem quem ganha — na média.\"\n\n---\n\n## Cena 6 — PLACAR EXATO (13.6–16.0s)\n**Visual:** Dois anéis (verde 64% vs rosa 17%) lado a lado com \"vs\" entre eles.\n**Contraste:** 64% vencedor vs apenas 17% placar exato (12/72).\n**Frase:** \"Prever gols é mais arte que ciência.\"\n\n---\n\n## Cena 7 — A ZEBRA (16.0–18.8s)\n**Visual:** 🦓, card com placar gigante, tagline em roxo.\n**Jogo:** Qatar 1×1 Suíça (Jogo #8)\n**Drama:** 45 IAs cravaram 0×2. O resultado virou tudo de cabeça pra baixo.\n**Tagline:** \"Futebol 1, Algoritmos 0.\"\n\n---\n\n## Cena 8 — CTA (18.8–22s)\n**Visual:** 🤖⚽, URL em box gradiente roxo, handle, hashtags.\n**CTA:** bolao.arenadasias.com.br/retrospectiva-grupos\n**Handle:** @arena.das.ias\n**Hashtags:** #BolaoDasIAs #Copa2026 #ArenaDasIAs #Grok #Claude #ChatGPT #Gemini",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/32_reel_retrospectiva-grupos/poster.png"
+    ],
+    "hasVideo": true
+  },
+  {
+    "id": "33_carrossel_novo-momento",
+    "tipo": "carrossel",
+    "titulo": "Novo Momento",
+    "caption": "A Arena das IAs entrou em campo — e tudo mudou. ⚽🤖\n\n55+ inteligências artificiais palpitando a Copa 2026. E agora os palpites de todas elas são **grátis pra todo mundo** — sem cadeado, sem Pix pra ver.\n\nArrasta e descobre o que tem de novo no site:\n🔓 Palpites das IAs abertos a qualquer um\n🔮 Bola de Cristal: oitavas já disponíveis (acertou o vencedor em 64% dos jogos da fase de grupos)\n📊 Retrospectiva completa da fase de grupos\n🏆 Ranking Geral: Geral · Série A · Humanos × IAs\n🏁 Corrida das IAs — animação placar a placar\n\nE o grande anúncio: **vem aí o Bolão da Arena das IAs — Humanos × IAs**. Qualquer pessoa entra, faz seus palpites do mata-mata e disputa no mesmo ranking que as máquinas. De graça.\n\nVocê acha que bate as IAs? Entra e prova. 👇\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs #HumanosXIAs #BolaDeCristal #SerieA",
+    "roteiro": "# Carrossel 33 — Novo Momento da Arena das IAs\n\n**Formato:** 8 slides · 1080×1350 · Fundo cosmic purple (#0a0518 → #2a1257) · Sora + Archivo Black\n\n| Slide | Título visual | Conteúdo chave |\n|-------|---------------|----------------|\n| 01 — CAPA | \"A Arena das IAs entrou em campo\" | Hook de abertura. Badge \"Copa 2026 · Novo Momento\". Subtítulo: 55+ IAs, palpites grátis, maior anúncio por vir. CTA \"arraste pra descobrir\". |\n| 02 — PALPITES GRÁTIS | \"Palpites grátis pra todo mundo\" | Destaque principal. Antes/Depois (🔒 → 🔓). Stat box 55+ IAs com palpites visíveis. Copy: 3.902 palpites de graça agora. |\n| 03 — BOLA DE CRISTAL | \"A Bola de Cristal aponta o placar mais votado\" | Ring animado 64%. Badges: disponível grupos E mata-mata / oitavas já disponíveis. |\n| 04 — TOUR SITE | \"O que tem de novo\" | 4 features em lista: Retrospectiva · Ranking Geral · Corrida das IAs · Palpites mata-mata (destaque dourado). |\n| 05 — NÚMEROS | \"Fase de grupos em números\" | Grid 2×2: 3.902 palpites · 55+ IAs · 72 jogos · 64% Bola de Cristal. |\n| 06 — GRANDE ANÚNCIO (teaser) | \"Bolão da Arena das IAs\" | Sirene 🚨. Badge \"Vem aí\". Título Humanos × IAs em gradient dourado. Teaser \"Qualquer pessoa pode entrar\". |\n| 07 — HUMANOS × IAs | \"Você acha que bate as IAs?\" | VS visual: Você 🧠 vs 55+ IAs 🤖. CTA direto. Pill \"Gratuito · Mata-mata · Já disponível\". |\n| 08 — CTA | \"Entra e prova\" | Resumo dos 3 pilares (palpites grátis / bola de cristal / ranking). Box roxo com URL. Rodapé @arena.das.ias. |\n\n**Tom:** empolgado, convite à ação, foco no \"o que mudou\" e no que vem.\n**Paleta:** #0a0518 bg · #9d4edd accent · #ffd34d gold · #cdb4ff lilac · #4ade80 verde acerto.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-01.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-02.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-03.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-04.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-05.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-06.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-07.png",
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-08.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "34_reel_novo-momento",
+    "tipo": "reel",
+    "titulo": "Novo Momento",
+    "caption": "A Arena das IAs entrou em campo. ⚽🤖🚀\n\n55+ IAs palpitando a Copa 2026 — e agora tudo grátis pra qualquer pessoa ver. Sem cadeado. Sem Pix. Bola de Cristal no mata-mata. Ranking Humanos × IAs. E uma novidade que muda o jogo.\n\nVocê acha que bate as IAs? Entra e prova.\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs #HumanosXIAs #BolaDeCristal #SerieA",
+    "roteiro": "# Reel 34 — Novo Momento da Arena das IAs\n\n**Formato:** 1080×1920 · ~23s · h264 yuv420p +faststart · Sora + Archivo Black · Cosmic purple bg\n**Poster:** frame t=21s do mp4 — cena Humanos × IAs (clímax).\n\n| Cena | CSS offset | Conteúdo |\n|------|-----------|----------|\n| 1 — CAPA | 0s | 🚀🤖 · \"A Arena das IAs entrou em campo\" · \"Novo momento · Copa 2026\" · Badge Bolão das IAs |\n| 2 — PALPITES GRÁTIS | 2.6s | 🔓 · \"Palpites das IAs agora são grátis\" · Antes/Depois (🔒 → 🔓) · Stat 55+ IAs |\n| 3 — BOLA DE CRISTAL | 5.2s | 🔮 flutuante · Ring animado 64% verde · Badges: grupos + oitavas disponíveis |\n| 4 — TOUR DO SITE | 7.8s | Lista 4 features: Retrospectiva · Ranking Geral · Corrida das IAs · Palpites mata-mata |\n| 5 — NÚMEROS | 10.4s | Grid 2×2: 3.902 / 55+ / 72 / 64% |\n| 6 — HUMANOS × IAs (anúncio) | 13s | 🚨 \"Vem aí\" · \"Bolão da Arena — Humanos × IAs\" · VS visual · \"Qualquer pessoa entra. De graça.\" |\n| 7 — CLÍMAX | 15.8s | ⚽🏆 · \"Você acha que bate as IAs?\" · 3 bullets (palpites / bola de cristal / você vs IAs) |\n| 8 — CTA | 18.6s | 🤖⚽ · \"Acessa agora\" · Box roxo bolao.arenadasias.com.br · @arena.das.ias · hashtags |\n\n**Tom:** build de tensão progressivo, clímax na cena 6-7 com o anúncio Humanos × IAs, CTA na última cena.\n**Nota técnica:** poster extraído do mp4 via ffmpeg em t=21s (cena 6 visível e completamente renderizada com fontes carregadas).",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/34_reel_novo-momento/poster.png"
+    ],
+    "hasVideo": true
+  },
+  {
+    "id": "39_reel_oitavas-paraguai-x-franca",
+    "tipo": "reel",
+    "titulo": "Oitavas Paraguai X Franca",
+    "caption": "🔮 **Paraguai × França** — as IAs cravaram: **0×2**\r\n\r\nNas Oitavas da Copa 2026, 50 das 59 IAs que palpitaram este jogo apontaram **0×2** como placar mais provável (85% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #paraguai #franca #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J89: Paraguai × França\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Paraguai VS França |\r\n| 2.0–4.5s | Placar consenso enorme: **0×2** com \"85% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/39_reel_oitavas-paraguai-x-franca/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/39_reel_oitavas-paraguai-x-franca/reel.mp4",
+    "hasVideo": true
+  },
+  {
+    "id": "40_reel_oitavas-canada-x-marrocos",
+    "tipo": "reel",
+    "titulo": "Oitavas Canada X Marrocos",
+    "caption": "🔮 **Canadá × Marrocos** — as IAs cravaram: **1×2**\r\n\r\nNas Oitavas da Copa 2026, 19 das 59 IAs que palpitaram este jogo apontaram **1×2** como placar mais provável (32% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #canada #marrocos #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J90: Canadá × Marrocos\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Canadá VS Marrocos |\r\n| 2.0–4.5s | Placar consenso enorme: **1×2** com \"32% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/40_reel_oitavas-canada-x-marrocos/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/40_reel_oitavas-canada-x-marrocos/reel.mp4",
+    "hasVideo": true
+  },
+  {
+    "id": "41_reel_oitavas-brasil-x-noruega",
+    "tipo": "reel",
+    "titulo": "Oitavas Brasil X Noruega",
+    "caption": "🔮 **Brasil × Noruega** — as IAs cravaram: **2×1**\r\n\r\nNas Oitavas da Copa 2026, 26 das 59 IAs que palpitaram este jogo apontaram **2×1** como placar mais provável (44% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #brasil #noruega #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J91: Brasil × Noruega\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Brasil VS Noruega |\r\n| 2.0–4.5s | Placar consenso enorme: **2×1** com \"44% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/41_reel_oitavas-brasil-x-noruega/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/41_reel_oitavas-brasil-x-noruega/reel.mp4",
+    "hasVideo": true
+  },
+  {
+    "id": "42_reel_oitavas-mexico-x-inglaterra",
+    "tipo": "reel",
+    "titulo": "Oitavas Mexico X Inglaterra",
+    "caption": "🔮 **México × Inglaterra** — as IAs cravaram: **1×1**\r\n\r\nNas Oitavas da Copa 2026, 34 das 59 IAs que palpitaram este jogo apontaram **1×1** como placar mais provável (58% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #mexico #inglaterra #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J92: México × Inglaterra\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto México VS Inglaterra |\r\n| 2.0–4.5s | Placar consenso enorme: **1×1** com \"58% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/42_reel_oitavas-mexico-x-inglaterra/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/42_reel_oitavas-mexico-x-inglaterra/reel.mp4",
+    "hasVideo": true
+  },
+  {
+    "id": "43_reel_oitavas-portugal-x-espanha",
+    "tipo": "reel",
+    "titulo": "Oitavas Portugal X Espanha",
+    "caption": "🔮 **Portugal × Espanha** — as IAs cravaram: **1×2**\r\n\r\nNas Oitavas da Copa 2026, 32 das 59 IAs que palpitaram este jogo apontaram **1×2** como placar mais provável (54% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #portugal #espanha #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J93: Portugal × Espanha\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Portugal VS Espanha |\r\n| 2.0–4.5s | Placar consenso enorme: **1×2** com \"54% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/43_reel_oitavas-portugal-x-espanha/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/43_reel_oitavas-portugal-x-espanha/reel.mp4",
+    "hasVideo": true
+  },
+  {
+    "id": "44_reel_oitavas-estados-unidos-x-belgica",
+    "tipo": "reel",
+    "titulo": "Oitavas Estados Unidos X Belgica",
+    "caption": "🔮 **Estados Unidos × Bélgica** — as IAs cravaram: **1×1**\r\n\r\nNas Oitavas da Copa 2026, 30 das 59 IAs que palpitaram este jogo apontaram **1×1** como placar mais provável (51% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #estadosunidos #belgica #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J94: Estados Unidos × Bélgica\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Estados Unidos VS Bélgica |\r\n| 2.0–4.5s | Placar consenso enorme: **1×1** com \"51% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/44_reel_oitavas-estados-unidos-x-belgica/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/44_reel_oitavas-estados-unidos-x-belgica/reel.mp4",
+    "hasVideo": true
+  },
+  {
+    "id": "45_reel_oitavas-argentina-x-egito",
+    "tipo": "reel",
+    "titulo": "Oitavas Argentina X Egito",
+    "caption": "🔮 **Argentina × Egito** — as IAs cravaram: **2×0**\r\n\r\nNas Oitavas da Copa 2026, 44 das 59 IAs que palpitaram este jogo apontaram **2×0** como placar mais provável (75% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #argentina #egito #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J95: Argentina × Egito\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Argentina VS Egito |\r\n| 2.0–4.5s | Placar consenso enorme: **2×0** com \"75% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/45_reel_oitavas-argentina-x-egito/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/45_reel_oitavas-argentina-x-egito/reel.mp4",
+    "hasVideo": true
+  },
+  {
+    "id": "46_reel_oitavas-suica-x-colombia",
+    "tipo": "reel",
+    "titulo": "Oitavas Suica X Colombia",
+    "caption": "🔮 **Suíça × Colômbia** — as IAs cravaram: **1×1**\r\n\r\nNas Oitavas da Copa 2026, 27 das 59 IAs que palpitaram este jogo apontaram **1×1** como placar mais provável (46% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #suica #colombia #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J96: Suíça × Colômbia\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Suíça VS Colômbia |\r\n| 2.0–4.5s | Placar consenso enorme: **1×1** com \"46% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/46_reel_oitavas-suica-x-colombia/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/46_reel_oitavas-suica-x-colombia/reel.mp4",
+    "hasVideo": true
+  },
+  {
+    "id": "47_card_oitavas-paraguai-x-franca",
+    "tipo": "card",
+    "titulo": "Oitavas Paraguai X Franca",
+    "caption": "**Paraguai × França** — palpite consenso das IAs: **0×2** 🔮\r\n\r\nNas Oitavas da Copa 2026, 85% das 59 IAs que palpitaram este jogo apontaram **0×2**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #paraguai #franca #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/47_card_oitavas-paraguai-x-franca/card.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "48_card_oitavas-canada-x-marrocos",
+    "tipo": "card",
+    "titulo": "Oitavas Canada X Marrocos",
+    "caption": "**Canadá × Marrocos** — palpite consenso das IAs: **1×2** 🔮\r\n\r\nNas Oitavas da Copa 2026, 32% das 59 IAs que palpitaram este jogo apontaram **1×2**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #canada #marrocos #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/48_card_oitavas-canada-x-marrocos/card.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "49_card_oitavas-brasil-x-noruega",
+    "tipo": "card",
+    "titulo": "Oitavas Brasil X Noruega",
+    "caption": "**Brasil × Noruega** — palpite consenso das IAs: **2×1** 🔮\r\n\r\nNas Oitavas da Copa 2026, 44% das 59 IAs que palpitaram este jogo apontaram **2×1**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #brasil #noruega #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/49_card_oitavas-brasil-x-noruega/card.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "50_card_oitavas-mexico-x-inglaterra",
+    "tipo": "card",
+    "titulo": "Oitavas Mexico X Inglaterra",
+    "caption": "**México × Inglaterra** — palpite consenso das IAs: **1×1** 🔮\r\n\r\nNas Oitavas da Copa 2026, 58% das 59 IAs que palpitaram este jogo apontaram **1×1**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #mexico #inglaterra #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/50_card_oitavas-mexico-x-inglaterra/card.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "51_card_oitavas-portugal-x-espanha",
+    "tipo": "card",
+    "titulo": "Oitavas Portugal X Espanha",
+    "caption": "**Portugal × Espanha** — palpite consenso das IAs: **1×2** 🔮\r\n\r\nNas Oitavas da Copa 2026, 54% das 59 IAs que palpitaram este jogo apontaram **1×2**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #portugal #espanha #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/51_card_oitavas-portugal-x-espanha/card.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "52_card_oitavas-estados-unidos-x-belgica",
+    "tipo": "card",
+    "titulo": "Oitavas Estados Unidos X Belgica",
+    "caption": "**Estados Unidos × Bélgica** — palpite consenso das IAs: **1×1** 🔮\r\n\r\nNas Oitavas da Copa 2026, 51% das 59 IAs que palpitaram este jogo apontaram **1×1**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #estadosunidos #belgica #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/52_card_oitavas-estados-unidos-x-belgica/card.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "53_card_oitavas-argentina-x-egito",
+    "tipo": "card",
+    "titulo": "Oitavas Argentina X Egito",
+    "caption": "**Argentina × Egito** — palpite consenso das IAs: **2×0** 🔮\r\n\r\nNas Oitavas da Copa 2026, 75% das 59 IAs que palpitaram este jogo apontaram **2×0**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #argentina #egito #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/53_card_oitavas-argentina-x-egito/card.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "54_card_oitavas-suica-x-colombia",
+    "tipo": "card",
+    "titulo": "Oitavas Suica X Colombia",
+    "caption": "**Suíça × Colômbia** — palpite consenso das IAs: **1×1** 🔮\r\n\r\nNas Oitavas da Copa 2026, 46% das 59 IAs que palpitaram este jogo apontaram **1×1**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #suica #colombia #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/54_card_oitavas-suica-x-colombia/card.png"
+    ],
+    "hasVideo": false
+  },
+  {
     "id": "60_reel_corrida-das-ias",
     "tipo": "reel",
     "titulo": "Corrida Das Ias",
@@ -617,276 +841,6 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_04.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_05.png"
     ],
-    "hasVideo": false
-  },
-  {
-    "id": "vinheta-J73-za-ca",
-    "tipo": "reel",
-    "titulo": "África do Sul × Canadá — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — África do Sul × Canadá**\n\nAs 122 IAs apontam **0×1** pra essa oitava de final da Copa 2026. 35 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #AfricadoSul #Canada #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — África do Sul × Canadá (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (África do Sul ← → Canadá) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 0×1 |\n| 3.3s | \"35 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de África do Sul contra Canadá. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J73-za-ca/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J73-za-ca/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J74-de-py",
-    "tipo": "reel",
-    "titulo": "Alemanha × Paraguai — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Alemanha × Paraguai**\n\nAs 122 IAs apontam **2×0** pra essa oitava de final da Copa 2026. 39 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Alemanha #Paraguai #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Alemanha × Paraguai (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Alemanha ← → Paraguai) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 2×0 |\n| 3.3s | \"39 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Alemanha contra Paraguai. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J74-de-py/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J74-de-py/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J75-nl-ma",
-    "tipo": "reel",
-    "titulo": "Países Baixos × Marrocos — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Países Baixos × Marrocos**\n\nAs 122 IAs apontam **2×1** pra essa oitava de final da Copa 2026. 48 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #PaisesBaixos #Marrocos #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Países Baixos × Marrocos (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Países Baixos ← → Marrocos) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 2×1 |\n| 3.3s | \"48 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Países Baixos contra Marrocos. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J75-nl-ma/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J75-nl-ma/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J76-br-jp",
-    "tipo": "reel",
-    "titulo": "Brasil × Japão — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Brasil × Japão**\n\nAs 122 IAs apontam **2×0** pra essa oitava de final da Copa 2026. 43 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Brasil #Japao #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Brasil × Japão (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Brasil ← → Japão) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 2×0 |\n| 3.3s | \"43 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Brasil contra Japão. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J76-br-jp/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J76-br-jp/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J77-fr-se",
-    "tipo": "reel",
-    "titulo": "França × Suécia — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — França × Suécia**\n\nAs 122 IAs apontam **2×0** pra essa oitava de final da Copa 2026. 28 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Franca #Suecia #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — França × Suécia (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (França ← → Suécia) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 2×0 |\n| 3.3s | \"28 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de França contra Suécia. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J77-fr-se/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J77-fr-se/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J78-ci-no",
-    "tipo": "reel",
-    "titulo": "Costa do Marfim × Noruega — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Costa do Marfim × Noruega**\n\nAs 122 IAs apontam **1×1** pra essa oitava de final da Copa 2026. 29 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #CostadoMarfim #Noruega #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Costa do Marfim × Noruega (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Costa do Marfim ← → Noruega) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 1×1 |\n| 3.3s | \"29 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Costa do Marfim contra Noruega. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J78-ci-no/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J78-ci-no/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J79-mx-ec",
-    "tipo": "reel",
-    "titulo": "México × Equador — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — México × Equador**\n\nAs 122 IAs apontam **1×0** pra essa oitava de final da Copa 2026. 43 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Mexico #Equador #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — México × Equador (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (México ← → Equador) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 1×0 |\n| 3.3s | \"43 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de México contra Equador. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J79-mx-ec/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J79-mx-ec/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J80-gb-eng-cd",
-    "tipo": "reel",
-    "titulo": "Inglaterra × Congo (RD) — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Inglaterra × Congo (RD)**\n\nAs 122 IAs apontam **1×0** pra essa oitava de final da Copa 2026. 40 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Inglaterra #CongoRD #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Inglaterra × Congo (RD) (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Inglaterra ← → Congo (RD)) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 1×0 |\n| 3.3s | \"40 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Inglaterra contra Congo (RD). Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J80-gb-eng-cd/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J80-gb-eng-cd/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J81-us-ba",
-    "tipo": "reel",
-    "titulo": "Estados Unidos × Bósnia-Herzegovina — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Estados Unidos × Bósnia-Herzegovina**\n\nAs 122 IAs apontam **2×1** pra essa oitava de final da Copa 2026. 43 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #EstadosUnidos #BosniaHerzegovina #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Estados Unidos × Bósnia-Herzegovina (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Estados Unidos ← → Bósnia-Herzegovina) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 2×1 |\n| 3.3s | \"43 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Estados Unidos contra Bósnia-Herzegovina. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J81-us-ba/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J81-us-ba/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J82-be-sn",
-    "tipo": "reel",
-    "titulo": "Bélgica × Senegal — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Bélgica × Senegal**\n\nAs 122 IAs apontam **2×0** pra essa oitava de final da Copa 2026. 43 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Belgica #Senegal #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Bélgica × Senegal (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Bélgica ← → Senegal) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 2×0 |\n| 3.3s | \"43 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Bélgica contra Senegal. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J82-be-sn/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J82-be-sn/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J83-pt-hr",
-    "tipo": "reel",
-    "titulo": "Portugal × Croácia — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Portugal × Croácia**\n\nAs 122 IAs apontam **1×0** pra essa oitava de final da Copa 2026. 38 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Portugal #Croacia #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Portugal × Croácia (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Portugal ← → Croácia) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 1×0 |\n| 3.3s | \"38 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Portugal contra Croácia. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J83-pt-hr/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J83-pt-hr/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J84-es-at",
-    "tipo": "reel",
-    "titulo": "Espanha × Áustria — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Espanha × Áustria**\n\nAs 122 IAs apontam **2×0** pra essa oitava de final da Copa 2026. 45 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Espanha #Austria #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Espanha × Áustria (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Espanha ← → Áustria) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 2×0 |\n| 3.3s | \"45 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Espanha contra Áustria. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J84-es-at/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J84-es-at/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J85-ch-dz",
-    "tipo": "reel",
-    "titulo": "Suíça × Argélia — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Suíça × Argélia**\n\nAs 122 IAs apontam **1×0** pra essa oitava de final da Copa 2026. 28 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Suica #Argelia #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Suíça × Argélia (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Suíça ← → Argélia) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 1×0 |\n| 3.3s | \"28 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Suíça contra Argélia. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J85-ch-dz/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J85-ch-dz/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J86-ar-cv",
-    "tipo": "reel",
-    "titulo": "Argentina × Cabo Verde — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Argentina × Cabo Verde**\n\nAs 122 IAs apontam **2×0** pra essa oitava de final da Copa 2026. 43 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Argentina #CaboVerde #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Argentina × Cabo Verde (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Argentina ← → Cabo Verde) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 2×0 |\n| 3.3s | \"43 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Argentina contra Cabo Verde. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J86-ar-cv/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J86-ar-cv/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J87-co-gh",
-    "tipo": "reel",
-    "titulo": "Colômbia × Gana — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Colômbia × Gana**\n\nAs 122 IAs apontam **1×1** pra essa oitava de final da Copa 2026. 50 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Colombia #Gana #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Colômbia × Gana (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Colômbia ← → Gana) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 1×1 |\n| 3.3s | \"50 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Colômbia contra Gana. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J87-co-gh/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J87-co-gh/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "vinheta-J88-au-eg",
-    "tipo": "reel",
-    "titulo": "Austrália × Egito — Oitavas",
-    "caption": "**Bola de Cristal 🔮 — Austrália × Egito**\n\nAs 122 IAs apontam **0×1** pra essa oitava de final da Copa 2026. 31 das 122 IAs cravaram exatamente esse placar.\n\nE você, concorda com as máquinas? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Australia #Egito #IA #ArenaDasIAs #BolaDeCristal #Reels",
-    "roteiro": "# Vinheta — Austrália × Egito (Oitavas)\n\n**Duração:** ~6s · 1080×1920 · vertical (Reels/Stories)\n\n| t | cena |\n|---|---|\n| 0.0s | 🔮 Bola de cristal + \"Bola de Cristal das IAs\" |\n| 1.0s | Bandeiras entram (Austrália ← → Egito) + \"×\" |\n| 2.7s | Placar mais votado estampa no centro: 0×1 |\n| 3.3s | \"31 de 122 IAs cravam esse placar\" |\n| 4.2s | CTA: \"E você, concorda com as máquinas?\" + site + @arena.das.ias |\n\n**Áudio sugerido:** beat misterioso com build-up e \"hit\" no momento do placar.\n**Narração (opcional):** \"As 122 IAs já cravaram o placar de Austrália contra Egito. Você concorda?\"",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J88-au-eg/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/vinheta-J88-au-eg/vinheta.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "32_reel_retrospectiva-grupos",
-    "tipo": "reel",
-    "titulo": "Retrospectiva Grupos",
-    "caption": "72 jogos. 55 IAs. 3.902 palpites. A fase de grupos da Copa 2026 acabou — e as máquinas tentaram cravar cada placar. ⚽🤖\n\nQuem venceu o bolão das IAs? Quem acertou mais? Qual foi a zebra que derrubou 45 modelos? E por que prever gols ainda é mais arte do que ciência?\n\n👉 bolao.arenadasias.com.br/retrospectiva-grupos\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Retrospectiva #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs #SerieA #BolaDeCristal",
-    "roteiro": "# Roteiro — Reel 32: Retrospectiva da Fase de Grupos\n\n**Formato:** Reel vertical · 1080×1920 px · ~22s\n**Tom:** Narrativo, punchy, PT-BR. Fundo cosmic dark (roxo/preto), partículas, animações CSS.\n\n---\n\n## Cena 1 — CAPA (0–2.8s)\n**Visual:** Fundo roxo cósmico, emojis ⚽🤖, título grande em gradiente branco/lilás.\n**Texto:** \"Retrospectiva da Fase de Grupos\"\n**Subtítulo:** \"72 jogos · 55 IAs · 3.902 palpites\"\n**Rodapé:** \"Bolão das IAs · Arena de IAs\"\n\n---\n\n## Cena 2 — OS NÚMEROS (2.8–5.6s)\n**Visual:** Grid 2×2 de cards translúcidos + card de destaque para média de gols.\n**Dados:**\n- 72 jogos disputados\n- 55 IAs palpitando\n- 3.902 palpites registrados\n- 216 gols nas redes\n- Média 3.0 gols/jogo\n\n---\n\n## Cena 3 — CAMPEÃ GERAL (5.6–8.4s)\n**Visual:** Troféu 🏆 em dourado, nome em gradiente ouro, box Top 5.\n**Destaque:** Grok 4 Fast Reasoning — 344 pts, 14 placares exatos\n**Top 5:** Grok 4 Fast Reasoning · OpenAI o3 · Claude Opus 4.7 · Mistral Small 3 · WizardLM 2 8x22B\n\n---\n\n## Cena 4 — PÓDIO SÉRIE A (8.4–11.2s) ← CLÍMAX / POSTER\n**Visual:** Pódio visual com alturas proporcionais ao rank (ouro/prata/bronze).\n**Pódio:**\n1. Claude Opus 4.8 — 319 pts, 14 exatos (coluna central, mais alta)\n2. Grok 4 Heavy — 307 pts, 13 exatos (coluna esquerda)\n3. Le Chat Mistral — 294 pts, 11 exatos (coluna direita, menor)\n\n---\n\n## Cena 5 — BOLA DE CRISTAL (11.2–13.6s)\n**Visual:** 🔮 flutuante, anel de progresso verde animado.\n**Mensagem:** As IAs acertaram o vencedor em 64% dos jogos (46/72).\n**Frase:** \"As máquinas sabem quem ganha — na média.\"\n\n---\n\n## Cena 6 — PLACAR EXATO (13.6–16.0s)\n**Visual:** Dois anéis (verde 64% vs rosa 17%) lado a lado com \"vs\" entre eles.\n**Contraste:** 64% vencedor vs apenas 17% placar exato (12/72).\n**Frase:** \"Prever gols é mais arte que ciência.\"\n\n---\n\n## Cena 7 — A ZEBRA (16.0–18.8s)\n**Visual:** 🦓, card com placar gigante, tagline em roxo.\n**Jogo:** Qatar 1×1 Suíça (Jogo #8)\n**Drama:** 45 IAs cravaram 0×2. O resultado virou tudo de cabeça pra baixo.\n**Tagline:** \"Futebol 1, Algoritmos 0.\"\n\n---\n\n## Cena 8 — CTA (18.8–22s)\n**Visual:** 🤖⚽, URL em box gradiente roxo, handle, hashtags.\n**CTA:** bolao.arenadasias.com.br/retrospectiva-grupos\n**Handle:** @arena.das.ias\n**Hashtags:** #BolaoDasIAs #Copa2026 #ArenaDasIAs #Grok #Claude #ChatGPT #Gemini",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/32_reel_retrospectiva-grupos/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/32_reel_retrospectiva-grupos/reel.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "33_carrossel_novo-momento",
-    "tipo": "carrossel",
-    "titulo": "Novo Momento",
-    "caption": "A Arena das IAs entrou em campo — e tudo mudou. ⚽🤖\n\n55+ inteligências artificiais palpitando a Copa 2026. E agora os palpites de todas elas são **grátis pra todo mundo** — sem cadeado, sem Pix pra ver.\n\nArrasta e descobre o que tem de novo no site:\n🔓 Palpites das IAs abertos a qualquer um\n🔮 Bola de Cristal: oitavas já disponíveis (acertou o vencedor em 64% dos jogos da fase de grupos)\n📊 Retrospectiva completa da fase de grupos\n🏆 Ranking Geral: Geral · Série A · Humanos × IAs\n🏁 Corrida das IAs — animação placar a placar\n\nE o grande anúncio: **vem aí o Bolão da Arena das IAs — Humanos × IAs**. Qualquer pessoa entra, faz seus palpites do mata-mata e disputa no mesmo ranking que as máquinas. De graça.\n\nVocê acha que bate as IAs? Entra e prova. 👇\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs #HumanosXIAs #BolaDeCristal #SerieA",
-    "roteiro": "# Carrossel 33 — Novo Momento da Arena das IAs\n\n**Formato:** 8 slides · 1080×1350 · Fundo cosmic purple (#0a0518 → #2a1257) · Sora + Archivo Black\n\n| Slide | Título visual | Conteúdo chave |\n|-------|---------------|----------------|\n| 01 — CAPA | \"A Arena das IAs entrou em campo\" | Hook de abertura. Badge \"Copa 2026 · Novo Momento\". Subtítulo: 55+ IAs, palpites grátis, maior anúncio por vir. CTA \"arraste pra descobrir\". |\n| 02 — PALPITES GRÁTIS | \"Palpites grátis pra todo mundo\" | Destaque principal. Antes/Depois (🔒 → 🔓). Stat box 55+ IAs com palpites visíveis. Copy: 3.902 palpites de graça agora. |\n| 03 — BOLA DE CRISTAL | \"A Bola de Cristal aponta o placar mais votado\" | Ring animado 64%. Badges: disponível grupos E mata-mata / oitavas já disponíveis. |\n| 04 — TOUR SITE | \"O que tem de novo\" | 4 features em lista: Retrospectiva · Ranking Geral · Corrida das IAs · Palpites mata-mata (destaque dourado). |\n| 05 — NÚMEROS | \"Fase de grupos em números\" | Grid 2×2: 3.902 palpites · 55+ IAs · 72 jogos · 64% Bola de Cristal. |\n| 06 — GRANDE ANÚNCIO (teaser) | \"Bolão da Arena das IAs\" | Sirene 🚨. Badge \"Vem aí\". Título Humanos × IAs em gradient dourado. Teaser \"Qualquer pessoa pode entrar\". |\n| 07 — HUMANOS × IAs | \"Você acha que bate as IAs?\" | VS visual: Você 🧠 vs 55+ IAs 🤖. CTA direto. Pill \"Gratuito · Mata-mata · Já disponível\". |\n| 08 — CTA | \"Entra e prova\" | Resumo dos 3 pilares (palpites grátis / bola de cristal / ranking). Box roxo com URL. Rodapé @arena.das.ias. |\n\n**Tom:** empolgado, convite à ação, foco no \"o que mudou\" e no que vem.\n**Paleta:** #0a0518 bg · #9d4edd accent · #ffd34d gold · #cdb4ff lilac · #4ade80 verde acerto.",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-01.png",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-02.png",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-03.png",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-04.png",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-05.png",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-06.png",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-07.png",
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/33_carrossel_novo-momento/slide-08.png"
-    ],
-    "hasVideo": false
-  },
-  {
-    "id": "34_reel_novo-momento",
-    "tipo": "reel",
-    "titulo": "Novo Momento",
-    "caption": "A Arena das IAs entrou em campo. ⚽🤖🚀\n\n55+ IAs palpitando a Copa 2026 — e agora tudo grátis pra qualquer pessoa ver. Sem cadeado. Sem Pix. Bola de Cristal no mata-mata. Ranking Humanos × IAs. E uma novidade que muda o jogo.\n\nVocê acha que bate as IAs? Entra e prova.\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs #HumanosXIAs #BolaDeCristal #SerieA",
-    "roteiro": "# Reel 34 — Novo Momento da Arena das IAs\n\n**Formato:** 1080×1920 · ~23s · h264 yuv420p +faststart · Sora + Archivo Black · Cosmic purple bg\n**Poster:** frame t=21s do mp4 — cena Humanos × IAs (clímax).\n\n| Cena | CSS offset | Conteúdo |\n|------|-----------|----------|\n| 1 — CAPA | 0s | 🚀🤖 · \"A Arena das IAs entrou em campo\" · \"Novo momento · Copa 2026\" · Badge Bolão das IAs |\n| 2 — PALPITES GRÁTIS | 2.6s | 🔓 · \"Palpites das IAs agora são grátis\" · Antes/Depois (🔒 → 🔓) · Stat 55+ IAs |\n| 3 — BOLA DE CRISTAL | 5.2s | 🔮 flutuante · Ring animado 64% verde · Badges: grupos + oitavas disponíveis |\n| 4 — TOUR DO SITE | 7.8s | Lista 4 features: Retrospectiva · Ranking Geral · Corrida das IAs · Palpites mata-mata |\n| 5 — NÚMEROS | 10.4s | Grid 2×2: 3.902 / 55+ / 72 / 64% |\n| 6 — HUMANOS × IAs (anúncio) | 13s | 🚨 \"Vem aí\" · \"Bolão da Arena — Humanos × IAs\" · VS visual · \"Qualquer pessoa entra. De graça.\" |\n| 7 — CLÍMAX | 15.8s | ⚽🏆 · \"Você acha que bate as IAs?\" · 3 bullets (palpites / bola de cristal / você vs IAs) |\n| 8 — CTA | 18.6s | 🤖⚽ · \"Acessa agora\" · Box roxo bolao.arenadasias.com.br · @arena.das.ias · hashtags |\n\n**Tom:** build de tensão progressivo, clímax na cena 6-7 com o anúncio Humanos × IAs, CTA na última cena.\n**Nota técnica:** poster extraído do mp4 via ffmpeg em t=21s (cena 6 visível e completamente renderizada com fontes carregadas).",
-    "images": [
-      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/34_reel_novo-momento/poster.png"
-    ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/34_reel_novo-momento/reel.mp4",
-    "hasVideo": true
-  },
-  {
-    "id": "35_carrossel_4-ias-cravando-mata-mata",
-    "tipo": "carrossel",
-    "titulo": "4 IAs Cravando o Mata-mata",
-    "caption": "**4 IAs estão CRAVANDO o mata-mata** 🎯\n\nDe 4 jogos do R32 já decididos, ChatGPT 5 Thinking, DeepSeek R1, Meta Llama 4 e Qwen 3 Max acertaram TRÊS placares exatos cada. Não é chute. É leitura.\n\n🇿🇦 0×1 🇨🇦 ✓\n🇳🇱 1×1 🇲🇦 ✓\n🇧🇷 2×1 🇯🇵 ✓\n\nQuem vai cravar próximo? Confere no site 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #ChatGPT #DeepSeek #LlamaIA #Qwen #IA #ArenaDasIAs #MataMata #SerieA",
-    "roteiro": "# Carrossel 35 — 4 IAs Cravando o Mata-mata\n\n**Formato:** 1080×1350 · 6 slides · paleta amber/red/dark · Sora display + Inter\n\n| Slide | Conteúdo |\n|---|---|\n| 1 — CAPA | Badge \"🏆 SÉRIE A NO MATA-MATA\" topo. Título HUGE: \"4 IAs CRAVANDO o MATA-MATA\". Sub: \"3 placares exatos em 4 jogos\". Mascotes pequenos no canto. |\n| 2 — OS 4 | Grid 2×2 com logo + nome: ChatGPT 5 Thinking, DeepSeek R1, Meta Llama 4, Qwen 3 Max. Cada um com \"3 ✓\". |\n| 3 — J73 | África do Sul 0×1 Canadá. Linha do tempo: \"Coletado 27/06, jogou 28/06\". \"Cravado por 7 IAs\" |\n| 4 — J75 | Holanda 1×1 Marrocos. \"Cravado por 4 das 7 Série A via Web\" (todas as 4 do top). |\n| 5 — J76 | Brasil 2×1 Japão. \"11 IAs cravaram (7 da Série A via Web)\" |\n| 6 — CTA | \"Quer ver quem cravar próximo?\" → bolao.arenadasias.com.br · QR opcional |\n\n**Dinâmico:** este post tem que ser regenerado a cada novo resultado do R32 (números mudam: 3→4→5 etc.). Idealmente um script que lê resultados.json + palpites_por_jogo.json e gera as artes.",
-    "images": [],
-    "hasVideo": false
-  },
-  {
-    "id": "36_reel_brasil-2x1-japao-11-cravaram",
-    "tipo": "reel",
-    "titulo": "Brasil 2×1 Japão — 11 IAs Cravaram",
-    "caption": "**11 IAs CRAVARAM o 2×1 do Brasil ontem** 🇧🇷⚽🇯🇵\n\nDe 122 modelos palpitando a Copa, 11 cravaram o placar exato Brasil 2×1 Japão — incluindo 7 das 12 da Série A via interface Web (ChatGPT 5 Thinking, Claude Opus 4.8, Gemini 2.5 Pro, DeepSeek R1, Meta Llama 4, Perplexity Sonar, Qwen 3 Max).\n\nDá pra bater elas? Entra no bolão público 👉 bolao.arenadasias.com.br\n\n日本、あなたは素晴らしい対戦相手でした 🇯🇵\n\n#BolaoDasIAs #Brasil #Japao #Copa2026 #FifaWorldCup2026 #ChatGPT #IA #ArenaDasIAs #Reels",
-    "roteiro": "# Reel 36 — 11 IAs cravaram Brasil 2×1 Japão\n\n**Duração:** ~10s · 1080×1920\n\n| t | cena |\n|---|---|\n| 0s | Badge \"R32 · 29/06\" + 🇧🇷 |\n| 0.5s | Título POP \"2×1\" gigante (amarelo/verde gradient) com bandeiras Brasil/Japão dos lados |\n| 2.5s | Texto: \"11 IAs CRAVARAM o placar\" (contador animado 0→11) |\n| 4.5s | Carrossel rápido das 7 logos da Série A (0.4s cada) |\n| 7.5s | Texto japonês: 日本、あなたは素晴らしい対戦相手でした (fade in, lento) |\n| 9s | CTA: \"Quem vai cravar próximo? bolao.arenadasias.com.br\" |\n\n**Áudio:** beat de comemoração, redução pro momento japonês.\n**Tom:** celebração + respeito ao adversário.",
-    "images": [],
-    "hasVideo": false
-  },
-  {
-    "id": "37_carrossel_classificados-r32-vs-ias",
-    "tipo": "carrossel",
-    "titulo": "Classificados R32 vs. o que as IAs Previam",
-    "caption": "**4 classificados, 4 surpresas?** 🎯\n\nDe ontem (29/06), 4 países seguem na Copa: 🇨🇦 Canadá, 🇧🇷 Brasil, 🇵🇾 Paraguai e 🇲🇦 Marrocos.\n\nMas o que as 122 IAs previam? Pra Canadá vs. África do Sul: 7 das 7 IAs Série A via Web cravaram. Pra Paraguai (que venceu nos pênaltis): só UMA IA chutou empate. Pros pênaltis do Marrocos: 4 cravaram 1×1.\n\nVeja todos os palpites jogo-a-jogo 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #IA #ArenaDasIAs #R32",
-    "roteiro": "# Carrossel 37 — Classificados R32 vs. previsões IAs\n\n**Formato:** 1080×1350 · 6 slides\n\n| Slide | Conteúdo |\n|---|---|\n| 1 — CAPA | \"4 CLASSIFICADOS\" + 4 bandeiras (CA/BR/PY/MA) num grid 2×2. Subtítulo: \"o que as 122 IAs previam?\" |\n| 2 — Canadá 1×0 África | \"7 das 7 IAs Série A via Web cravaram 0×1\". Bandeiras Canadá em destaque. |\n| 3 — Brasil 2×1 Japão | \"11 IAs cravaram o placar. 7 da Série A via Web\". 🇧🇷 grande. |\n| 4 — Paraguai (pen) Alemanha | \"Só 1 IA chutou empate: Liquid LFM-40B (0×0). Paraguai venceu nos pênaltis.\". 🇵🇾 + 🇩🇪 cortando. |\n| 5 — Marrocos (pen) Holanda | \"4 IAs Série A cravaram 1×1. Marrocos venceu 3×2 nos pênaltis.\". 🇲🇦 + 🇳🇱 cortando. |\n| 6 — CTA | \"Quem ainda na corrida? Holanda fora, África fora, Alemanha fora, Japão fora\". CTA. |",
-    "images": [],
-    "hasVideo": false
-  },
-  {
-    "id": "38_card_holanda-x-marrocos-4-cravaram",
-    "tipo": "card",
-    "titulo": "Holanda 1×1 Marrocos — 4 IAs Cravaram",
-    "caption": "**4 IAs Série A cravaram 1×1 Holanda × Marrocos** 🇳🇱🤝🇲🇦\n\nChatGPT 5 Thinking, DeepSeek R1, Meta Llama 4 e Qwen 3 Max. As outras 3 (Claude Opus, Gemini Pro, Perplexity) chutaram vitória da Holanda 2×1.\n\nMarrocos venceu 3×2 nos pênaltis e segue. Bedankt voor de strijd, Nederland 🇳🇱\n\n👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Marrocos #Holanda #IA #ChatGPT #DeepSeek",
-    "roteiro": "# Card 38 — Holanda × Marrocos\n\n**Formato:** 1080×1080 estático\n\n- Centro: \"1 × 1\" gigante, bandeiras Holanda/Marrocos pequenas em cima de cada número\n- Topo: badge \"R32 · 29/06\"\n- Embaixo dos números: \"4 IAs Série A cravaram o placar\"\n- Lista compacta dos 4 nomes/logos\n- Rodapé: \"Marrocos venceu 3×2 nos pênaltis\" + \"Bedankt voor de strijd, Nederland\"",
-    "images": [],
     "hasVideo": false
   }
 ]
