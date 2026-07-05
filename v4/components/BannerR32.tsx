@@ -139,10 +139,10 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "pt", flag: "🇨🇻", text: "Até à próxima, Tubarões Azuis — orgulho de uma ilha inteira que virou lenda" },
     { lang: "en", flag: "🇬🇭", text: "See you later, Black Stars — you fought hard, come back stronger" },
     { lang: "fr", flag: "🇨🇦", text: "À la prochaine, les Canucks — 0–3 contre le Maroc, mais l'hôte a fait rêver le pays" },
+    { lang: "gn", flag: "🇵🇾", text: "Jajotopatajevýta, Albirroja — 0–1 la Francia-pe, ha katu ojeguerova'e ojerure porãite" },
   ];
 
   const congrats = [
-    { lang: "gn", flag: "🇵🇾", text: "¡Iporã, Albirroja! Tereguahē porãite ko'ãgaite — vamos por más" },
     { lang: "ar", flag: "🇲🇦", text: "مبروك يا أسود الأطلس — الطريق ما زال طويلًا" },
     { lang: "nb", flag: "🇳🇴", text: "Bra jobba, Løvene — vi sees i åttedelsfinalen!" },
     { lang: "fr", flag: "🇫🇷", text: "Allez les Bleus ! Le rêve continue — la coupe nous attend" },
@@ -194,12 +194,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Oitavas em curso · 1ª sentença: Marrocos 3×0 Canadá"
+                ? "Oitavas · 2/8 jogos: Marrocos e França já em Quartas"
                 : en
-                  ? "Round of 16 underway · 1st verdict: Morocco 3×0 Canada"
+                  ? "Round of 16 · 2/8: Morocco and France into QF"
                   : es
-                    ? "Octavos en curso · 1ª sentencia: Marruecos 3×0 Canadá"
-                    : "8es en cours · 1er verdict : Maroc 3×0 Canada"}
+                    ? "Octavos · 2/8: Marruecos y Francia en Cuartos"
+                    : "8es · 2/8 : Maroc et France en Quarts"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>

@@ -100,3 +100,4 @@ no cálculo de pontuação.
 | 86 | R32 | Sex 03/07 | 19h00 | Miami | Argentina | 3 | 2 | Cabo Verde |
 | 87 | R32 | Sáb 04/07 | 15h00 | Kansas City | Colômbia | 1 | 0 | Gana |
 | 90 | Oitavas | Sáb 04/07 | 14h00 | Houston | Canadá | 0 | 3 | Marrocos |
+| 89 | Oitavas | Sáb 04/07 | 18h00 | Filadélfia | Paraguai | 0 | 1 | França |
