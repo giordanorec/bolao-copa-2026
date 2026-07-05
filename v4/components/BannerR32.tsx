@@ -140,6 +140,7 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "en", flag: "🇬🇭", text: "See you later, Black Stars — you fought hard, come back stronger" },
     { lang: "fr", flag: "🇨🇦", text: "À la prochaine, les Canucks — 0–3 contre le Maroc, mais l'hôte a fait rêver le pays" },
     { lang: "gn", flag: "🇵🇾", text: "Jajotopatajevýta, Albirroja — 0–1 la Francia-pe, ha katu ojeguerova'e ojerure porãite" },
+    { lang: "pt", flag: "🇧🇷", text: "Doeu, Canarinho. 1×2 pra Noruega em Nova York — o Brasil inteiro chora junto. Ainda vai ser hexa, um dia. 💔" },
   ];
 
   const congrats = [
@@ -194,12 +195,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Oitavas · 2/8 jogos: Marrocos e França já em Quartas"
+                ? "Oitavas · 3/8 jogos · 💔 Brasil eliminado pela Noruega (1×2)"
                 : en
-                  ? "Round of 16 · 2/8: Morocco and France into QF"
+                  ? "Round of 16 · 3/8 · 💔 Brazil out, Norway wins 2×1"
                   : es
-                    ? "Octavos · 2/8: Marruecos y Francia en Cuartos"
-                    : "8es · 2/8 : Maroc et France en Quarts"}
+                    ? "Octavos · 3/8 · 💔 Brasil eliminado por Noruega (1×2)"
+                    : "8es · 3/8 · 💔 Brésil éliminé, Norvège gagne 2×1"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>
