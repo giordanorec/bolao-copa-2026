@@ -102,3 +102,4 @@ no cálculo de pontuação.
 | 90 | Oitavas | Sáb 04/07 | 14h00 | Houston | Canadá | 0 | 3 | Marrocos |
 | 89 | Oitavas | Sáb 04/07 | 18h00 | Filadélfia | Paraguai | 0 | 1 | França |
 | 91 | Oitavas | Dom 05/07 | 17h00 | Nova York/NJ | Brasil | 1 | 2 | Noruega |
+| 92 | Oitavas | Dom 05/07 | 21h00 | Cidade do México | México | 2 | 3 | Inglaterra |

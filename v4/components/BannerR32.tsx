@@ -141,13 +141,13 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "fr", flag: "🇨🇦", text: "À la prochaine, les Canucks — 0–3 contre le Maroc, mais l'hôte a fait rêver le pays" },
     { lang: "gn", flag: "🇵🇾", text: "Jajotopatajevýta, Albirroja — 0–1 la Francia-pe, ha katu ojeguerova'e ojerure porãite" },
     { lang: "pt", flag: "🇧🇷", text: "Doeu, Canarinho. 1×2 pra Noruega em Nova York — o Brasil inteiro chora junto. Ainda vai ser hexa, um dia. 💔" },
+    { lang: "es", flag: "🇲🇽", text: "Hasta la próxima, Tri — 2×3 con Inglaterra en el Azteca, un partidazo. México sale de cabeza erguida" },
   ];
 
   const congrats = [
     { lang: "ar", flag: "🇲🇦", text: "مبروك يا أسود الأطلس — الطريق ما زال طويلًا" },
     { lang: "nb", flag: "🇳🇴", text: "Bra jobba, Løvene — vi sees i åttedelsfinalen!" },
     { lang: "fr", flag: "🇫🇷", text: "Allez les Bleus ! Le rêve continue — la coupe nous attend" },
-    { lang: "es", flag: "🇲🇽", text: "¡Vamos, Tri! A octavos después de 40 años — sigan haciéndonos soñar" },
     { lang: "en", flag: "🇬🇧", text: "Come on, Three Lions — one more trophy, this could be the year" },
     { lang: "en", flag: "🇺🇸", text: "Let's go, USMNT — host and hero, keep the crowd loud" },
     { lang: "nl", flag: "🇧🇪", text: "Kom op, Rode Duivels — een gouden generatie die eindelijk terugkomt" },
@@ -195,12 +195,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Oitavas · 3/8 jogos · 💔 Brasil eliminado pela Noruega (1×2)"
+                ? "Oitavas · 4/8 jogos · Inglaterra 3×2 México no Azteca · Marrocos, França, Noruega e Inglaterra em Quartas"
                 : en
-                  ? "Round of 16 · 3/8 · 💔 Brazil out, Norway wins 2×1"
+                  ? "Round of 16 · 4/8 · England 3×2 Mexico at Azteca · Morocco, France, Norway and England into QF"
                   : es
-                    ? "Octavos · 3/8 · 💔 Brasil eliminado por Noruega (1×2)"
-                    : "8es · 3/8 · 💔 Brésil éliminé, Norvège gagne 2×1"}
+                    ? "Octavos · 4/8 · Inglaterra 3×2 México en el Azteca · Marruecos, Francia, Noruega e Inglaterra a Cuartos"
+                    : "8es · 4/8 · Angleterre 3×2 Mexique à l'Azteca · Maroc, France, Norvège et Angleterre en Quarts"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>
