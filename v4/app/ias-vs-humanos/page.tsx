@@ -393,6 +393,54 @@ export default async function IAsVsHumanosPage({
 
   return (
     <div style={{ marginTop: 40, paddingBottom: 64 }}>
+      <style>{`
+        /* Placar IAs × Humanos: em mobile o × grande no meio comprime os números */
+        .ivh-placar-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; }
+        @media (max-width: 480px) {
+          .ivh-placar-grid { grid-template-columns: 1fr; gap: 8px; }
+          .ivh-placar-x { font-size: 22px !important; padding: 4px 0; }
+        }
+        /* Stats grid: 4 colunas na mesa apertam demais em 375px — stack em mobile */
+        .ivh-stats-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 8px; }
+        .ivh-stats-header { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+        @media (max-width: 560px) {
+          .ivh-stats-grid {
+            grid-template-columns: 1fr;
+            gap: 6px;
+            padding: 14px 16px !important;
+          }
+          .ivh-stats-grid > *:first-child {
+            border-bottom: 1px dashed var(--line);
+            padding-bottom: 6px;
+            text-align: left !important;
+          }
+          .ivh-stats-grid .ivh-stat-cell {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            text-align: left !important;
+            font-size: 18px !important;
+          }
+          .ivh-stats-grid .ivh-stat-cell::before {
+            content: attr(data-label);
+            font-family: var(--ff-mono);
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--fg-muted);
+            font-weight: 700;
+            margin-right: 8px;
+          }
+          .ivh-stats-header { display: none; }
+        }
+        /* "Quem lidera" — evita overflow em strings longas */
+        .ivh-lider {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: normal;
+          word-break: break-word;
+        }
+      `}</style>
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
         style={{
@@ -515,14 +563,7 @@ export default async function IAsVsHumanosPage({
             padding: "36px 24px",
           }}
         >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr auto 1fr",
-              gap: 16,
-              alignItems: "center",
-            }}
-          >
+          <div className="ivh-placar-grid">
             {/* Melhor humano */}
             <div style={{ textAlign: "center" }}>
               <div
@@ -568,11 +609,13 @@ export default async function IAsVsHumanosPage({
 
             {/* Divisor */}
             <div
+              className="ivh-placar-x"
               style={{
                 fontSize: "clamp(24px, 5vw, 40px)",
                 fontWeight: 900,
                 color: "var(--fg-dim)",
                 userSelect: "none",
+                textAlign: "center",
               }}
             >
               ×
@@ -613,6 +656,7 @@ export default async function IAsVsHumanosPage({
 
           {/* Quem lidera */}
           <div
+            className="ivh-lider"
             style={{
               marginTop: 24,
               textAlign: "center",
@@ -621,6 +665,7 @@ export default async function IAsVsHumanosPage({
               borderRadius: "var(--r-m)",
               fontSize: "clamp(14px, 2.5vw, 17px)",
               fontWeight: 700,
+              lineHeight: 1.35,
               color:
                 lideraHumano
                   ? "var(--primary)"
@@ -655,14 +700,7 @@ export default async function IAsVsHumanosPage({
         </h2>
 
         {/* Header da grade */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
-            gap: 8,
-            marginBottom: 8,
-          }}
-        >
+        <div className="ivh-stats-header">
           <div />
           {[tx(locale, "serie_a"), tx(locale, "todas_ias"), tx(locale, "humanos")].map((col) => (
             <div
@@ -684,51 +722,52 @@ export default async function IAsVsHumanosPage({
         </div>
 
         {/* Linhas de stats */}
-        {statsRows.map((row, i) => (
-          <div
-            key={row.label}
-            className="card"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
-              gap: 8,
-              marginBottom: 10,
-              padding: "16px 20px",
-              alignItems: "center",
-              background: i % 2 === 0 ? "var(--bg-2)" : "var(--bg-1)",
-            }}
-          >
+        {statsRows.map((row, i) => {
+          const cols = [
+            { val: row.serieA, label: tx(locale, "serie_a"), color: "var(--secondary)" },
+            { val: row.todasIAs, label: tx(locale, "todas_ias"), color: "var(--fg)" },
+            { val: row.humanos, label: tx(locale, "humanos"), color: "var(--primary)" },
+          ];
+          return (
             <div
+              key={row.label}
+              className="card ivh-stats-grid"
               style={{
-                fontSize: "clamp(13px, 2vw, 15px)",
-                fontWeight: 600,
-                color: "var(--fg-mid)",
+                marginBottom: 10,
+                padding: "16px 20px",
+                alignItems: "center",
+                background: i % 2 === 0 ? "var(--bg-2)" : "var(--bg-1)",
               }}
             >
-              {row.label}
-            </div>
-            {[row.serieA, row.todasIAs, row.humanos].map((val, j) => (
               <div
-                key={j}
                 style={{
-                  textAlign: "center",
-                  fontSize: "clamp(18px, 3vw, 26px)",
-                  fontFamily: "var(--ff-display)",
-                  fontVariationSettings: "var(--ff-display-vs)",
-                  fontWeight: 800,
-                  color:
-                    j === 0
-                      ? "var(--secondary)"
-                      : j === 1
-                        ? "var(--fg)"
-                        : "var(--primary)",
+                  fontSize: "clamp(13px, 2vw, 15px)",
+                  fontWeight: 700,
+                  color: "var(--fg-mid)",
                 }}
               >
-                {val}
+                {row.label}
               </div>
-            ))}
-          </div>
-        ))}
+              {cols.map((c, j) => (
+                <div
+                  key={j}
+                  className="ivh-stat-cell"
+                  data-label={c.label}
+                  style={{
+                    textAlign: "center",
+                    fontSize: "clamp(18px, 3vw, 26px)",
+                    fontFamily: "var(--ff-display)",
+                    fontVariationSettings: "var(--ff-display-vs)",
+                    fontWeight: 800,
+                    color: c.color,
+                  }}
+                >
+                  {c.val}
+                </div>
+              ))}
+            </div>
+          );
+        })}
       </section>
 
       {/* ── TOP HUMANOS (unificado opt-in + privados) ─────────────────────── */}
