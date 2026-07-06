@@ -6,117 +6,20 @@ export default function BannerR32({ locale }: { locale: Locale }) {
   const es = locale === "es";
 
   const tit = pt
-    ? "🇧🇷 BRASIL 2×1 JAPÃO!"
+    ? "💔 Brasil eliminado nas Oitavas — 1×2 pra Noruega"
     : en
-      ? "🇧🇷 BRAZIL 2×1 JAPAN!"
+      ? "💔 Brazil out in the Round of 16 — Norway wins 2×1"
       : es
-        ? "🇧🇷 ¡BRASIL 2×1 JAPÓN!"
-        : "🇧🇷 BRÉSIL 2×1 JAPON !";
+        ? "💔 Brasil eliminado en Octavos — Noruega 2×1"
+        : "💔 Le Brésil éliminé en 8es — Norvège 2×1";
 
   const brasilLinha = pt
-    ? "11 IAs cravaram o placar exato — incluindo 7 da Série A via Web (ChatGPT 5 Thinking, Claude Opus 4.8, Gemini 2.5 Pro, DeepSeek R1, Meta Llama 4, Perplexity Sonar, Qwen 3 Max)."
+    ? "Meus pêsames à torcida brasileira. Só 2 de 59 IAs (llama-3-1-70b e llama-3-3-70b) tinham previsto vitória norueguesa — e AS DUAS cravaram o 1×2 exato. Cabeça erguida, Canarinho. A jornada continua em 2030, e o hexa vai vir."
     : en
-      ? "11 AIs nailed the exact score — including 7 of the Premier League via Web (ChatGPT 5 Thinking, Claude Opus 4.8, Gemini 2.5 Pro, DeepSeek R1, Meta Llama 4, Perplexity Sonar, Qwen 3 Max)."
+      ? "Condolences to Brazilian fans. Only 2 of 59 AIs (llama-3-1-70b and llama-3-3-70b) had predicted a Norway win — and BOTH nailed the exact 1×2. Head up, Canarinho. The road continues in 2030, and the sixth title will come."
       : es
-        ? "11 IAs clavaron el marcador exacto — incluyendo 7 de la Liga A via Web (ChatGPT 5 Thinking, Claude Opus 4.8, Gemini 2.5 Pro, DeepSeek R1, Meta Llama 4, Perplexity Sonar, Qwen 3 Max)."
-        : "11 IA ont trouvé le score exact — dont 7 de la Ligue A via Web (ChatGPT 5 Thinking, Claude Opus 4.8, Gemini 2.5 Pro, DeepSeek R1, Meta Llama 4, Perplexity Sonar, Qwen 3 Max).";
-
-  const empatesTit = pt
-    ? "🤝 Duas batalhas decididas nos pênaltis"
-    : en
-      ? "🤝 Two battles decided on penalties"
-      : es
-        ? "🤝 Dos batallas decididas en penales"
-        : "🤝 Deux batailles décidées aux tirs au but";
-
-  const alePara = pt
-    ? "🇩🇪 Alemanha 1×1 Paraguai 🇵🇾 — só UMA IA cravou que ia dar empate (Liquid LFM-40B chutou 0×0). Paraguai venceu nos pênaltis."
-    : en
-      ? "🇩🇪 Germany 1×1 Paraguay 🇵🇾 — only ONE AI predicted a tie (Liquid LFM-40B picked 0×0). Paraguay won on penalties."
-      : es
-        ? "🇩🇪 Alemania 1×1 Paraguay 🇵🇾 — solo UNA IA acertó que sería empate (Liquid LFM-40B pronosticó 0×0). Paraguay ganó en penales."
-        : "🇩🇪 Allemagne 1×1 Paraguay 🇵🇾 — une SEULE IA a prédit le match nul (Liquid LFM-40B a misé 0×0). Le Paraguay a gagné aux tirs au but.";
-
-  const holMar = pt
-    ? "🇳🇱 Holanda 1×1 Marrocos 🇲🇦 — 6 IAs cravaram o placar exato (meta-llama-4, deepseek-v3-1, deepseek-v3-2, ministral-8b, chatgpt-5, llama-4-maverick). Marrocos venceu por 3×2 nos pênaltis."
-    : en
-      ? "🇳🇱 Netherlands 1×1 Morocco 🇲🇦 — 6 AIs nailed the exact 1×1 (meta-llama-4, deepseek-v3-1, deepseek-v3-2, ministral-8b, chatgpt-5, llama-4-maverick). Morocco won 3×2 on penalties."
-      : es
-        ? "🇳🇱 Países Bajos 1×1 Marruecos 🇲🇦 — 6 IAs clavaron el 1×1 exacto (meta-llama-4, deepseek-v3-1, deepseek-v3-2, ministral-8b, chatgpt-5, llama-4-maverick). Marruecos ganó 3×2 en penales."
-        : "🇳🇱 Pays-Bas 1×1 Maroc 🇲🇦 — 6 IA ont trouvé le 1×1 exact (meta-llama-4, deepseek-v3-1, deepseek-v3-2, ministral-8b, chatgpt-5, llama-4-maverick). Le Maroc s'est imposé 3×2 aux tirs au but.";
-
-  const noruegaTit = pt
-    ? "🇨🇮 Costa do Marfim 1×2 Noruega 🇳🇴 — fim da tarde 🌅"
-    : en
-      ? "🇨🇮 Ivory Coast 1×2 Norway 🇳🇴 — late afternoon 🌅"
-      : es
-        ? "🇨🇮 Costa de Marfil 1×2 Noruega 🇳🇴 — al final de la tarde 🌅"
-        : "🇨🇮 Côte d'Ivoire 1×2 Norvège 🇳🇴 — fin d'après-midi 🌅";
-
-  const noruegaLinha = pt
-    ? "Vitória aliada à massa: 23 IAs cravaram o 1×2 exato. Noruega vai pras oitavas."
-    : en
-      ? "Vindicated by the crowd: 23 AIs nailed the exact 1×2. Norway moves on to round 16."
-      : es
-        ? "Vindicación de la masa: 23 IAs clavaron el 1×2 exacto. Noruega va a octavos."
-        : "Vindiqué par la foule : 23 IA ont trouvé le 1×2 exact. La Norvège passe en 8es.";
-
-  const francaTit = pt
-    ? "🇫🇷 França 3×0 Suécia 🇸🇪 — passeio europeu 🏰"
-    : en
-      ? "🇫🇷 France 3×0 Sweden 🇸🇪 — European cruise 🏰"
-      : es
-        ? "🇫🇷 Francia 3×0 Suecia 🇸🇪 — paseo europeo 🏰"
-        : "🇫🇷 France 3×0 Suède 🇸🇪 — promenade européenne 🏰";
-
-  const francaLinha = pt
-    ? "Consenso massivo: 62 de 63 IAs viam vitória francesa, e 17 cravaram o 3×0 exato (Grok 4 Fast salta pra 404 pts liderando com folga). Suécia segue calorosa, mas dá adeus."
-    : en
-      ? "Massive consensus: 62 of 63 AIs predicted a French win, and 17 nailed the exact 3×0 (Grok 4 Fast jumps to 404 pts, leading comfortably). Sweden bows out warmly."
-      : es
-        ? "Consenso masivo: 62 de 63 IAs preveían victoria francesa, y 17 clavaron el 3×0 exacto (Grok 4 Fast salta a 404 pts liderando con holgura). Suecia se despide."
-        : "Consensus massif : 62 IA sur 63 prévoyaient la victoire française, et 17 ont trouvé le 3×0 exact (Grok 4 Fast bondit à 404 pts, en tête confortable). La Suède dit au revoir.";
-
-  // Trio de 01/07 (J80, J81, J82) — Inglaterra, EUA e Bélgica avançam.
-  const trioTit = pt
-    ? "🇬🇧 Inglaterra · 🇺🇸 EUA · 🇧🇪 Bélgica — trio anglo-atlântico avança"
-    : en
-      ? "🇬🇧 England · 🇺🇸 USA · 🇧🇪 Belgium — Anglo-Atlantic trio advances"
-      : es
-        ? "🇬🇧 Inglaterra · 🇺🇸 EE.UU. · 🇧🇪 Bélgica — trío anglo-atlántico avanza"
-        : "🇬🇧 Angleterre · 🇺🇸 États-Unis · 🇧🇪 Belgique — trio anglo-atlantique passe";
-
-  const trioLinha = pt
-    ? "Inglaterra 2×1 Congo (RD) 🇨🇩 — 3 IAs cravaram o exato (llama-4-scout, perplexity-sonar-reasoning, qwen-3-coder). EUA 2×0 Bósnia 🇧🇦 — 4 exatos (copilot-microsoft-web, le-chat-mistral-web, chatgpt-5-nano, llama-4-scout). Bélgica 3×2 Senegal 🇸🇳 — decidido na prorrogação (Tielemans no 120'), 1 exato (cohere-command-r-plus) e 36 IAs pegaram vencedor+saldo. Bola de Cristal palpitou 2×1 e ganhou 14 pts."
-    : en
-      ? "England 2×1 DR Congo 🇨🇩 — 3 AIs nailed the exact score (llama-4-scout, perplexity-sonar-reasoning, qwen-3-coder). USA 2×0 Bosnia 🇧🇦 — 4 exact (copilot-microsoft-web, le-chat-mistral-web, chatgpt-5-nano, llama-4-scout). Belgium 3×2 Senegal 🇸🇳 — decided in extra time (Tielemans in the 120th), 1 exact (cohere-command-r-plus) and 36 AIs got winner+goal-difference. Crystal Ball predicted 2×1 and earned 14 pts."
-      : es
-        ? "Inglaterra 2×1 Congo (RD) 🇨🇩 — 3 IAs clavaron el marcador exacto (llama-4-scout, perplexity-sonar-reasoning, qwen-3-coder). EE.UU. 2×0 Bosnia 🇧🇦 — 4 exactos (copilot-microsoft-web, le-chat-mistral-web, chatgpt-5-nano, llama-4-scout). Bélgica 3×2 Senegal 🇸🇳 — decidido en la prórroga (Tielemans en el 120'), 1 exacto (cohere-command-r-plus) y 36 IAs acertaron ganador+diferencia. Bola de Cristal predijo 2×1 y ganó 14 pts."
-        : "Angleterre 2×1 RD Congo 🇨🇩 — 3 IA ont trouvé le score exact (llama-4-scout, perplexity-sonar-reasoning, qwen-3-coder). USA 2×0 Bosnie 🇧🇦 — 4 exacts (copilot-microsoft-web, le-chat-mistral-web, chatgpt-5-nano, llama-4-scout). Belgique 3×2 Sénégal 🇸🇳 — décidé en prolongation (Tielemans à la 120e), 1 exact (cohere-command-r-plus) et 36 IA ont trouvé vainqueur+différence. La Boule de Cristal a prédit 2×1 et a gagné 14 pts.";
-
-  const proximos = pt
-    ? "🇦🇷🇧🇷🇨🇴🇵🇾 Parabéns aos sul-americanos! Argentina, Brasil, Colômbia e Paraguai TODOS nas Oitavas — nunca 4 seleções da CONMEBOL avançaram juntas em uma Copa fora da América desde 2002. As Oitavas começam agora com bracket bombado."
-    : en
-      ? "🇦🇷🇧🇷🇨🇴🇵🇾 Congrats to the South Americans! Argentina, Brazil, Colombia and Paraguay ALL through — 4 CONMEBOL sides haven't reached R16 together outside South America since 2002. Round of 16 kicks off with a stacked bracket."
-      : es
-        ? "🇦🇷🇧🇷🇨🇴🇵🇾 ¡Felicitaciones a los sudamericanos! Argentina, Brasil, Colombia y Paraguay TODOS en octavos — nunca 4 selecciones CONMEBOL avanzaron juntas fuera de Sudamérica desde 2002. Los octavos arrancan con un bracket estelar."
-        : "🇦🇷🇧🇷🇨🇴🇵🇾 Bravo aux Sud-Américains ! Argentine, Brésil, Colombie et Paraguay TOUS en 8es — 4 sélections CONMEBOL n'étaient jamais toutes en 8es hors d'Amérique du Sud depuis 2002. Les 8es de finale commencent avec un tableau incroyable.";
-
-  const cincoJogos = pt
-    ? "🇵🇹 Portugal 2×1 Croácia 🇭🇷 · 🇪🇸 Espanha 3×0 Áustria 🇦🇹 · 🇨🇭 Suíça 2×0 Argélia 🇩🇿 · 🇦🇺 Austrália 1×1 Egito 🇪🇬 (Egito nos pên.) · 🇦🇷 Argentina 3×2 Cabo Verde 🇨🇻 (na prorrogação)"
-    : en
-      ? "🇵🇹 Portugal 2×1 Croatia 🇭🇷 · 🇪🇸 Spain 3×0 Austria 🇦🇹 · 🇨🇭 Switzerland 2×0 Algeria 🇩🇿 · 🇦🇺 Australia 1×1 Egypt 🇪🇬 (Egypt on pens) · 🇦🇷 Argentina 3×2 Cape Verde 🇨🇻 (extra time)"
-      : es
-        ? "🇵🇹 Portugal 2×1 Croacia 🇭🇷 · 🇪🇸 España 3×0 Austria 🇦🇹 · 🇨🇭 Suiza 2×0 Argelia 🇩🇿 · 🇦🇺 Australia 1×1 Egipto 🇪🇬 (Egipto en penales) · 🇦🇷 Argentina 3×2 Cabo Verde 🇨🇻 (en la prórroga)"
-        : "🇵🇹 Portugal 2×1 Croatie 🇭🇷 · 🇪🇸 Espagne 3×0 Autriche 🇦🇹 · 🇨🇭 Suisse 2×0 Algérie 🇩🇿 · 🇦🇺 Australie 1×1 Égypte 🇪🇬 (Égypte aux TAB) · 🇦🇷 Argentine 3×2 Cap-Vert 🇨🇻 (prolongation)";
-
-  const cincoJogosTit = pt
-    ? "⚡ Últimos 5 jogos do R32 (02-03/07)"
-    : en
-      ? "⚡ Last 5 R32 games (2-3 Jul)"
-      : es
-        ? "⚡ Últimos 5 partidos de 16avos (02-03/07)"
-        : "⚡ Derniers 5 matchs du R32 (02-03/07)";
+        ? "Mis condolencias a la afición brasileña. Solo 2 de 59 IAs (llama-3-1-70b y llama-3-3-70b) habían pronosticado la victoria noruega — y AMBAS clavaron el 1×2 exacto. Cabeza en alto, Canarinho. El camino sigue en 2030 y el hexa llegará."
+        : "Toutes nos condoléances aux supporters brésiliens. Seulement 2 des 59 IA (llama-3-1-70b et llama-3-3-70b) avaient prédit la victoire norvégienne — et les DEUX ont trouvé le 1×2 exact. Tête haute, Canarinho. La route continue en 2030, et le sixième titre viendra.";
 
   // Frases nas línguas nativas (sem tradução — descobrir é a graça).
   // Eliminados → "até a próxima". Classificados → parabéns + segue na Copa.
@@ -220,88 +123,6 @@ export default function BannerR32({ locale }: { locale: Locale }) {
             {brasilLinha}
           </p>
 
-          <h3
-            style={{
-              fontSize: "clamp(17px, 2.6vw, 20px)",
-              fontWeight: 800,
-              marginBottom: 8,
-              lineHeight: 1.2,
-              color: "var(--fg)",
-            }}
-          >
-            {empatesTit}
-          </h3>
-          <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 10, color: "var(--fg-mid)" }}>
-            {alePara}
-          </p>
-          <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
-            {holMar}
-          </p>
-
-          <h3
-            style={{
-              fontSize: "clamp(17px, 2.6vw, 20px)",
-              fontWeight: 800,
-              marginBottom: 6,
-              lineHeight: 1.2,
-              color: "var(--fg)",
-            }}
-          >
-            {noruegaTit}
-          </h3>
-          <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
-            {noruegaLinha}
-          </p>
-
-          <h3
-            style={{
-              fontSize: "clamp(17px, 2.6vw, 20px)",
-              fontWeight: 800,
-              marginBottom: 6,
-              lineHeight: 1.2,
-              color: "var(--fg)",
-            }}
-          >
-            {francaTit}
-          </h3>
-          <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
-            {francaLinha}
-          </p>
-
-          <h3
-            style={{
-              fontSize: "clamp(17px, 2.6vw, 20px)",
-              fontWeight: 800,
-              marginBottom: 6,
-              lineHeight: 1.2,
-              color: "var(--fg)",
-            }}
-          >
-            {trioTit}
-          </h3>
-          <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
-            {trioLinha}
-          </p>
-
-          <h3
-            style={{
-              fontSize: "clamp(17px, 2.6vw, 20px)",
-              fontWeight: 800,
-              marginBottom: 6,
-              lineHeight: 1.2,
-              color: "var(--fg)",
-            }}
-          >
-            {cincoJogosTit}
-          </h3>
-          <p style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 18, color: "var(--fg-mid)" }}>
-            {cincoJogos}
-          </p>
-
-          <p style={{ fontSize: 14, lineHeight: 1.6, marginBottom: 18, color: "var(--fg-mid)" }}>
-            {proximos}
-          </p>
-
           {/* Bloco BRASIL + recados em línguas nativas */}
           <div
             style={{
@@ -321,7 +142,7 @@ export default function BannerR32({ locale }: { locale: Locale }) {
                 letterSpacing: "0.02em",
               }}
             >
-              VAAAAAAI BRASIL 🇧🇷
+              Até 2030, Brasil 🇧🇷 💚💛
             </p>
 
             <div style={{ marginTop: 22 }}>
