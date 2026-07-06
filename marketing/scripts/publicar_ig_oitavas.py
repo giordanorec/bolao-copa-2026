@@ -61,7 +61,7 @@ def legenda_reel(jogo: dict, dados: dict) -> str:
 
 Nas Oitavas da Copa 2026, {votos} das {total} IAs que palpitaram este jogo apontaram **{placar}** como placar mais provável ({pct}% do consenso).
 
-Todos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.
+Todos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 47) estão públicos no site.
 
 Vai bater as IAs? 👉 bolao.arenadasias.com.br
 
