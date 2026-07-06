@@ -231,7 +231,7 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
   // etc.) — o irmão sem-web já representa a marca com dados completos
   // (grupos+matamata) e mascote via arquivoMascote(). Ter as duas rende
   // mascote duplicado do mesmo modelo (Claude Opus 4.7 + Claude Opus 4.8 lado
-  // a lado). Manus fica de fora também porque foi substituído por Kimi K2.
+  // a lado).
   const slugsAtivos = new Set<string>();
   for (const ia of ranking.ias) {
     if (ia.slug === "bola-de-cristal") continue;
