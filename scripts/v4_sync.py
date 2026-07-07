@@ -468,6 +468,37 @@ def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
     # palpites de mata-mata (vivem só no Supabase) — tudo público agora
     matamata = _fetch_matamata()
 
+    # Fallback: em máquina sem creds Supabase, preserva palpites de mata-mata
+    # do palpites_por_jogo.json anterior. Sem isso, o sync zera os jogos 73+
+    # e o modal do card mostra "Sem palpites das IAs ainda".
+    if not matamata:
+        prev_path = V4_PUB / "palpites_por_jogo.json"
+        if prev_path.is_file():
+            try:
+                prev = json.loads(prev_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                prev = {}
+            preservados = 0
+            for k, entry in prev.items():
+                try:
+                    num = int(k)
+                except ValueError:
+                    continue
+                if num < 73:
+                    continue
+                palps = entry.get("palpites") or {}
+                if not palps:
+                    continue
+                matamata[num] = {
+                    slug: {"gols_a": int(p["gols_a"]), "gols_b": int(p["gols_b"])}
+                    for slug, p in palps.items()
+                }
+                preservados += 1
+            if preservados:
+                print(
+                    f"matamata: fallback do JSON anterior — {preservados} jogos preservados"
+                )
+
     # agrega
     por_jogo: dict[str, dict] = {}
     for jogo in jogos:
