@@ -106,3 +106,4 @@ no cálculo de pontuação.
 | 93 | Oitavas | Seg 06/07 | 16h00 | Dallas | Portugal | 0 | 1 | Espanha |
 | 94 | Oitavas | Seg 06/07 | 21h00 | Seattle | Estados Unidos | 1 | 4 | Bélgica |
 | 95 | Oitavas | Ter 07/07 | 13h00 | Atlanta | Argentina | 3 | 2 | Egito |
+| 96 | Oitavas | Ter 07/07 | 17h00 | Vancouver | Suíça | 1 | 1 | Colômbia |
