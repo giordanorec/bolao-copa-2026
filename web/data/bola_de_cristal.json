@@ -2481,7 +2481,7 @@
   "74": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 41,
+    "votos": 43,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -2501,9 +2501,11 @@
       "deepseek-r1",
       "deepseek-r1-web",
       "deepseek-v3-1",
+      "deepseek-v3-2",
       "gemini-2-5-flash",
       "gemini-2-5-pro",
       "gemini-2-5-pro-web",
+      "gemma-2-27b",
       "gemma-3-12b",
       "gpt-4-1",
       "grok-4-fast",
@@ -2529,7 +2531,7 @@
   "75": {
     "gols_a": 2,
     "gols_b": 1,
-    "votos": 49,
+    "votos": 51,
     "fonte_ias": [
       "chatgpt-5-mini",
       "chatgpt-5-nano",
@@ -2551,6 +2553,7 @@
       "gemini-2-5-flash-lite",
       "gemini-2-5-pro",
       "gemini-2-5-pro-web",
+      "gemma-2-27b",
       "gemma-3-12b",
       "gemma-3-27b",
       "gpt-4-1",
@@ -2561,6 +2564,7 @@
       "jamba-1-5-large",
       "kimi-k2",
       "le-chat-mistral",
+      "le-chat-mistral-web",
       "llama-3-3-70b",
       "llama-4-scout",
       "manus-web",
@@ -2585,7 +2589,7 @@
   "76": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 43,
+    "votos": 44,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -2612,6 +2616,7 @@
       "grok-4-fast",
       "grok-4-heavy",
       "le-chat-mistral",
+      "le-chat-mistral-web",
       "llama-3-1-70b",
       "llama-3-3-70b",
       "llama-4-maverick",
@@ -2635,7 +2640,7 @@
   "77": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 29,
+    "votos": 30,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-thinking",
@@ -2650,6 +2655,7 @@
       "deepseek-v3-2",
       "gemini-2-5-pro",
       "gemini-2-5-pro-web",
+      "gemma-2-27b",
       "gemma-3-27b",
       "gpt-4-1",
       "grok-4-fast",
@@ -2671,7 +2677,7 @@
   "78": {
     "gols_a": 1,
     "gols_b": 1,
-    "votos": 31,
+    "votos": 32,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-thinking",
@@ -2685,6 +2691,7 @@
       "codestral",
       "cohere-command-a",
       "cohere-command-r",
+      "deepseek-v3-2",
       "gemini-2-5-flash",
       "gemini-2-5-pro",
       "gemini-2-5-pro-web",
@@ -2741,7 +2748,7 @@
   "80": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 40,
+    "votos": 41,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -2767,6 +2774,7 @@
       "grok-4-fast",
       "grok-4-heavy",
       "le-chat-mistral",
+      "le-chat-mistral-web",
       "llama-4-maverick",
       "manus-web",
       "meta-llama-4",
@@ -2842,7 +2850,7 @@
   "82": {
     "gols_a": 2,
     "gols_b": 1,
-    "votos": 32,
+    "votos": 33,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-nano",
@@ -2864,6 +2872,7 @@
       "grok-4-fast",
       "grok-4-heavy",
       "jamba-1-5-large",
+      "le-chat-mistral-web",
       "manus-web",
       "mistral-medium-3",
       "o1",
@@ -2939,7 +2948,7 @@
   "84": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 46,
+    "votos": 47,
     "fonte_ias": [
       "chatgpt-5-mini",
       "chatgpt-5-nano",
@@ -2970,6 +2979,7 @@
       "grok-4-heavy",
       "jamba-1-5-large",
       "le-chat-mistral",
+      "le-chat-mistral-web",
       "llama-3-1-70b",
       "llama-4-maverick",
       "manus-web",
@@ -3028,7 +3038,7 @@
   "86": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 43,
+    "votos": 45,
     "fonte_ias": [
       "chatgpt-5-mini",
       "chatgpt-5-thinking-web",
@@ -3047,6 +3057,7 @@
       "gemini-2-5-flash",
       "gemini-2-5-flash-lite",
       "gemini-2-5-pro",
+      "gemma-2-27b",
       "gemma-3-12b",
       "gpt-4o",
       "grok-4",
@@ -3054,6 +3065,7 @@
       "jamba-1-5-large",
       "kimi-k2",
       "le-chat-mistral",
+      "le-chat-mistral-web",
       "llama-4-maverick",
       "meta-llama-4",
       "meta-llama-4-web",

@@ -104,3 +104,4 @@ no cálculo de pontuação.
 | 91 | Oitavas | Dom 05/07 | 17h00 | Nova York/NJ | Brasil | 1 | 2 | Noruega |
 | 92 | Oitavas | Dom 05/07 | 21h00 | Cidade do México | México | 2 | 3 | Inglaterra |
 | 93 | Oitavas | Seg 06/07 | 16h00 | Dallas | Portugal | 0 | 1 | Espanha |
+| 94 | Oitavas | Seg 06/07 | 21h00 | Seattle | Estados Unidos | 1 | 4 | Bélgica |
