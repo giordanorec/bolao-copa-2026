@@ -41,6 +41,7 @@ JOGOS_PATH = ROOT / "data" / "jogos.md"
 PALPITES_DIR = ROOT / "data" / "palpites_ias"
 PALPITES_MATAMATA_DIR = ROOT / "data" / "palpites_matamata"
 PALPITES_OITAVAS_DIR = ROOT / "data" / "palpites_oitavas"
+PALPITES_QUARTAS_DIR = ROOT / "data" / "palpites_quartas"
 RESULTADOS_PATH = ROOT / "data" / "resultados" / "jogos.md"
 WEB_DIR = ROOT / "web"
 WEB_DATA_DIR = WEB_DIR / "data"
@@ -118,6 +119,8 @@ def _carregar_tudo() -> tuple[list, dict, list]:  # type: ignore[type-arg]
     palpites = _fundir_palpites_matamata(palpites, PALPITES_MATAMATA_DIR, jogos)
     # Palpites das Oitavas (jogos 89-96) — mesma lógica de fusão, dir novo.
     palpites = _fundir_palpites_matamata(palpites, PALPITES_OITAVAS_DIR, jogos)
+    # Palpites das Quartas (jogos 97-100) — mesma lógica.
+    palpites = _fundir_palpites_matamata(palpites, PALPITES_QUARTAS_DIR, jogos)
     resultados = carregar_resultados(RESULTADOS_PATH)
     return jogos, palpites, resultados
 
@@ -434,6 +437,8 @@ def _cmd_coletar(args: argparse.Namespace) -> int:
         return 1
 
     dossie_path = Path(args.dossie) if args.dossie else _achar_dossie_default()
+    prompt_path = Path(args.prompt) if args.prompt else PROMPT_API_PATH
+    out_dir = Path(args.out_dir) if args.out_dir else PALPITES_DIR
     if not args.dry_run:
         if dossie_path is None:
             print(
@@ -445,13 +450,14 @@ def _cmd_coletar(args: argparse.Namespace) -> int:
         if not dossie_path.is_file():
             print(f"erro: dossiê {dossie_path} não existe", file=sys.stderr)
             return 1
-        if not PROMPT_API_PATH.is_file():
-            print(f"erro: prompt não encontrado em {PROMPT_API_PATH}", file=sys.stderr)
+        if not prompt_path.is_file():
+            print(f"erro: prompt não encontrado em {prompt_path}", file=sys.stderr)
             return 1
 
     dossie_label = dossie_path.name if dossie_path else "(nenhum)"
+    out_label = out_dir.relative_to(ROOT) if out_dir.is_relative_to(ROOT) else out_dir
     print(
-        f"coletar: {len(ias)} IA(s) alvo · dossiê={dossie_label} · max_paralelo={args.max_paralelo}"
+        f"coletar: {len(ias)} IA(s) alvo · prompt={prompt_path.name} · dossiê={dossie_label} · out={out_label} · max_paralelo={args.max_paralelo}"
     )
     for item in ias:
         print(f"  - {item['slug']:32s} -> {item['model']}  (tier {item['tier']})")
@@ -467,13 +473,17 @@ def _cmd_coletar(args: argparse.Namespace) -> int:
         return 1
 
     assert dossie_path is not None
-    prompt_texto = PROMPT_API_PATH.read_text(encoding="utf-8")
+    prompt_texto = prompt_path.read_text(encoding="utf-8")
     dossie_texto = dossie_path.read_text(encoding="utf-8")
     if "{{DOSSIE}}" in prompt_texto:
         prompt_texto = prompt_texto.replace("{{DOSSIE}}", dossie_texto)
         dossie_param = ""
     else:
         dossie_param = dossie_texto
+    if "{{RESULTADOS}}" in prompt_texto and RESULTADOS_PATH.is_file():
+        prompt_texto = prompt_texto.replace(
+            "{{RESULTADOS}}", RESULTADOS_PATH.read_text(encoding="utf-8")
+        )
 
     import asyncio
 
@@ -482,7 +492,7 @@ def _cmd_coletar(args: argparse.Namespace) -> int:
             ias=[{"slug": i["slug"], "model": i["model"]} for i in ias],
             prompt=prompt_texto,
             dossie=dossie_param,
-            palpites_dir=PALPITES_DIR,
+            palpites_dir=out_dir,
             max_paralelo=args.max_paralelo,
         )
     )
@@ -563,6 +573,20 @@ def main(argv: list[str] | None = None) -> int:
                 "--dossie",
                 default=None,
                 help="path do dossiê .md (default: último em data/dossie/ com prefixo v2-)",
+            )
+            sp.add_argument(
+                "--prompt",
+                default=None,
+                help=f"path do prompt .md (default: {PROMPT_API_PATH.relative_to(ROOT)})",
+            )
+            sp.add_argument(
+                "--out-dir",
+                default=None,
+                help=(
+                    "diretório de saída dos palpites (default: data/palpites_ias). "
+                    "Pra mata-mata use data/palpites_matamata, data/palpites_oitavas "
+                    "ou data/palpites_quartas."
+                ),
             )
             sp.add_argument(
                 "--dry-run",

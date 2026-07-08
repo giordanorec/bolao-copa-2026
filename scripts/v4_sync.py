@@ -468,6 +468,26 @@ def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
     # palpites de mata-mata (vivem só no Supabase) — tudo público agora
     matamata = _fetch_matamata()
 
+    # Palpites de mata-mata coletados via API que vivem em disco
+    # (data/palpites_matamata, palpites_oitavas, palpites_quartas) — funde por
+    # cima do Supabase. Sem creds, este é o único caminho pra J97+ aparecer.
+    for subdir in ("palpites_matamata", "palpites_oitavas", "palpites_quartas"):
+        disk_dir = ROOT / "data" / subdir
+        if not disk_dir.is_dir():
+            continue
+        disk = carregar_palpites(disk_dir)
+        adicionados = 0
+        for slug, lista in disk.items():
+            for p in lista:
+                if p.jogo_numero < 73:
+                    continue
+                por_jogo_mm = matamata.setdefault(p.jogo_numero, {})
+                if slug not in por_jogo_mm:
+                    por_jogo_mm[slug] = {"gols_a": p.gols_a, "gols_b": p.gols_b}
+                    adicionados += 1
+        if adicionados:
+            print(f"matamata: {adicionados} palpites lidos de data/{subdir}/")
+
     # Fallback: em máquina sem creds Supabase, preserva palpites de mata-mata
     # do palpites_por_jogo.json anterior. Sem isso, o sync zera os jogos 73+
     # e o modal do card mostra "Sem palpites das IAs ainda".

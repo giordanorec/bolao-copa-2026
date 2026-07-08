@@ -480,6 +480,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "chatgpt-5-nano": [
@@ -962,6 +982,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 2
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 3
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "chatgpt-5-thinking-web": [
@@ -1566,6 +1606,26 @@
       "jogo_numero": 96,
       "gols_a": 0,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "chatgpt-5-web": [],
@@ -2047,6 +2107,26 @@
     },
     {
       "jogo_numero": 96,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
       "gols_a": 1,
       "gols_b": 1
     }
@@ -3336,6 +3416,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 0
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "claude-opus-3": [],
@@ -3819,6 +3919,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "claude-opus-4-7": [
@@ -4299,6 +4419,26 @@
     },
     {
       "jogo_numero": 96,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
       "gols_a": 1,
       "gols_b": 1
     }
@@ -4907,6 +5047,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "claude-sonnet-4-6-web": [],
@@ -5388,6 +5548,26 @@
     },
     {
       "jogo_numero": 96,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
       "gols_a": 1,
       "gols_b": 1
     }
@@ -5872,6 +6052,26 @@
       "jogo_numero": 96,
       "gols_a": 0,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "cohere-aya-expanse": [],
@@ -5995,6 +6195,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 2
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "cohere-command-r-plus": [
@@ -6476,6 +6696,26 @@
     {
       "jogo_numero": 96,
       "gols_a": 0,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
       "gols_b": 0
     }
   ],
@@ -6959,6 +7199,26 @@
       "jogo_numero": 96,
       "gols_a": 0,
       "gols_b": 2
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "copilot-microsoft-web": [
@@ -8048,6 +8308,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "deepseek-v3-1-web": [],
@@ -8531,6 +8811,26 @@
       "jogo_numero": 96,
       "gols_a": 0,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 2,
+      "gols_b": 0
     }
   ],
   "deepseek-v3-2": [
@@ -8947,6 +9247,26 @@
     {
       "jogo_numero": 88,
       "gols_a": 0,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
       "gols_b": 1
     }
   ],
@@ -9430,6 +9750,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 2
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "doubao": [],
@@ -10403,6 +10743,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "gemini-2-5-pro-web": [
@@ -11007,6 +11367,26 @@
       "jogo_numero": 96,
       "gols_a": 0,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "gemma-2-27b": [
@@ -11571,6 +11951,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 0
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 0,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "gemma-3-27b": [
@@ -12053,6 +12453,26 @@
       "jogo_numero": 96,
       "gols_a": 2,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "glm-4-5-air": [],
@@ -12537,6 +12957,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "gpt-4o": [
@@ -13018,6 +13458,26 @@
     {
       "jogo_numero": 96,
       "gols_a": 0,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
       "gols_b": 1
     }
   ],
@@ -13504,6 +13964,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "grok-4-heavy-web": [
@@ -14028,6 +14508,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "grok-4-web": [],
@@ -14509,6 +15009,26 @@
     },
     {
       "jogo_numero": 96,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
       "gols_a": 1,
       "gols_b": 1
     }
@@ -14997,6 +15517,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 0
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "kimi-k2": [
@@ -15479,6 +16019,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 2
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "le-chat-mistral-web": [
@@ -16083,6 +16643,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "lfm-40b": [
@@ -16649,6 +17229,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 2
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "llama-3-2-90b-vision": [],
@@ -17131,6 +17731,26 @@
     {
       "jogo_numero": 96,
       "gols_a": 0,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
       "gols_b": 1
     }
   ],
@@ -17615,6 +18235,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 2
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "llama-4-scout": [
@@ -17836,6 +18476,26 @@
     {
       "jogo_numero": 96,
       "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 3,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 3
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 2,
       "gols_b": 0
     }
   ],
@@ -18804,6 +19464,26 @@
       "jogo_numero": 96,
       "gols_a": 0,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "minimax-abab": [],
@@ -19287,6 +19967,26 @@
       "jogo_numero": 96,
       "gols_a": 0,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 0,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "mistral-medium-3": [
@@ -19769,6 +20469,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "mistral-small-3": [
@@ -20250,6 +20970,26 @@
     {
       "jogo_numero": 96,
       "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 2,
       "gols_b": 1
     }
   ],
@@ -20733,6 +21473,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 2
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "mixtral-8x7b": [],
@@ -21220,6 +21980,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "o3": [
@@ -21702,6 +22482,26 @@
       "jogo_numero": 96,
       "gols_a": 0,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "o4-mini": [
@@ -22184,6 +22984,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 2
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 2,
+      "gols_b": 1
     }
   ],
   "olmo-2-32b": [],
@@ -22667,6 +23487,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 2
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 3
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "perplexity-sonar-pro-web": [
@@ -23271,6 +24111,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "perplexity-sonar-reasoning": [
@@ -23752,6 +24612,26 @@
     {
       "jogo_numero": 96,
       "gols_a": 0,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
       "gols_b": 1
     }
   ],
@@ -24756,6 +25636,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 2,
+      "gols_b": 0
     }
   ],
   "qwen-3-235b": [
@@ -25238,6 +26138,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "qwen-3-coder": [
@@ -25719,6 +26639,26 @@
     {
       "jogo_numero": 96,
       "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 2,
       "gols_b": 1
     }
   ],
@@ -26324,6 +27264,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 0
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 2,
+      "gols_b": 1
     }
   ],
   "qwen-vl-max": [],
@@ -26816,6 +27776,26 @@
       "jogo_numero": 96,
       "gols_a": 1,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 97,
+      "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 98,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 99,
+      "gols_a": 1,
+      "gols_b": 2
+    },
+    {
+      "jogo_numero": 100,
+      "gols_a": 1,
+      "gols_b": 0
     }
   ],
   "yi-large": [],
