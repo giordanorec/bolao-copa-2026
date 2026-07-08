@@ -117,10 +117,10 @@ Horários no **horário de Brasília (BRT)**. Fase de grupos com times definidos
 
 | Jogo | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B |
 |---|---|---|---|---|---|---|---|---|
-| 97 | Quartas | Qui 09/07 | 17h00 | Boston | Venc. J89 | | | Venc. J90 |
-| 98 | Quartas | Sex 10/07 | 16h00 | Los Angeles | Venc. J93 | | | Venc. J94 |
-| 99 | Quartas | Sáb 11/07 | 18h00 | Miami | Venc. J91 | | | Venc. J92 |
-| 100 | Quartas | Sáb 11/07 | 22h00 | Kansas City | Venc. J95 | | | Venc. J96 |
+| 97 | Quartas | Qui 09/07 | 17h00 | Boston | França | | | Marrocos |
+| 98 | Quartas | Sex 10/07 | 16h00 | Los Angeles | Espanha | | | Bélgica |
+| 99 | Quartas | Sáb 11/07 | 18h00 | Miami | Noruega | | | Inglaterra |
+| 100 | Quartas | Sáb 11/07 | 22h00 | Kansas City | Argentina | | | Suíça |
 
 ## Semifinais, 3º lugar e Final
 
