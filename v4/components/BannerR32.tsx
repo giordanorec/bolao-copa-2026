@@ -46,10 +46,10 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "pt", flag: "🇧🇷", text: "Doeu, Canarinho. 1×2 pra Noruega em Nova York — o Brasil inteiro chora junto. Ainda vai ser hexa, um dia. 💔" },
     { lang: "es", flag: "🇲🇽", text: "Hasta la próxima, Tri — 2×3 con Inglaterra en el Azteca, un partidazo. México sale de cabeza erguida" },
     { lang: "pt", flag: "🇵🇹", text: "Até à próxima, Seleção das Quinas — 0×1 frente à Espanha em Dallas. CR7 despede-se com honra, o legado fica" },
+    { lang: "ar", flag: "🇲🇦", text: "إلى اللقاء يا أسود الأطلس — 0×2 أمام فرنسا في بوسطن، لكن مغاربة العالم فخورون بجيل استثنائي" },
   ];
 
   const congrats = [
-    { lang: "ar", flag: "🇲🇦", text: "مبروك يا أسود الأطلس — الطريق ما زال طويلًا" },
     { lang: "nb", flag: "🇳🇴", text: "Bra jobba, Løvene — vi sees i åttedelsfinalen!" },
     { lang: "fr", flag: "🇫🇷", text: "Allez les Bleus ! Le rêve continue — la coupe nous attend" },
     { lang: "en", flag: "🇬🇧", text: "Come on, Three Lions — one more trophy, this could be the year" },
@@ -98,12 +98,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Oitavas · 5/8 jogos · Espanha 1×0 Portugal em Dallas · CR7 dá adeus, Espanha nas Quartas"
+                ? "Quartas · 1/4 jogos · França 2×0 Marrocos em Boston · Bleus na Semi"
                 : en
-                  ? "Round of 16 · 5/8 · Spain 1×0 Portugal in Dallas · CR7 bows out, Spain into QF"
+                  ? "Quarterfinals · 1/4 · France 2×0 Morocco in Boston · Les Bleus into Semi"
                   : es
-                    ? "Octavos · 5/8 · España 1×0 Portugal en Dallas · CR7 se despide, España a Cuartos"
-                    : "8es · 5/8 · Espagne 1×0 Portugal à Dallas · CR7 tire sa révérence, l'Espagne en Quarts"}
+                    ? "Cuartos · 1/4 · Francia 2×0 Marruecos en Boston · Les Bleus a Semi"
+                    : "Quarts · 1/4 · France 2×0 Maroc à Boston · Les Bleus en Demi"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>

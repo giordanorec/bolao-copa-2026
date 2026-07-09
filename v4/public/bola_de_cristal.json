@@ -3490,7 +3490,7 @@
   "97": {
     "gols_a": 2,
     "gols_b": 0,
-    "votos": 22,
+    "votos": 23,
     "fonte_ias": [
       "chatgpt-5-mini",
       "claude-haiku-4-5",
@@ -3506,6 +3506,7 @@
       "grok-4",
       "kimi-k2",
       "llama-4-maverick",
+      "manus",
       "meta-llama-4",
       "mistral-medium-3",
       "mistral-small-3",
@@ -3519,7 +3520,7 @@
   "98": {
     "gols_a": 1,
     "gols_b": 0,
-    "votos": 43,
+    "votos": 44,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -3549,6 +3550,7 @@
       "llama-3-1-70b",
       "llama-3-3-70b",
       "llama-4-maverick",
+      "manus",
       "meta-llama-4",
       "ministral-8b",
       "mistral-medium-3",
@@ -3569,7 +3571,7 @@
   "99": {
     "gols_a": 1,
     "gols_b": 2,
-    "votos": 48,
+    "votos": 49,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -3603,6 +3605,7 @@
       "llama-3-1-70b",
       "llama-3-3-70b",
       "llama-4-maverick",
+      "manus",
       "meta-llama-4",
       "meta-llama-4-web",
       "mistral-medium-3",
@@ -3624,7 +3627,7 @@
   "100": {
     "gols_a": 1,
     "gols_b": 1,
-    "votos": 27,
+    "votos": 28,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-thinking",
@@ -3648,6 +3651,7 @@
       "llama-3-1-70b",
       "llama-3-3-70b",
       "llama-4-maverick",
+      "manus",
       "meta-llama-4",
       "ministral-8b",
       "mixtral-8x22b",
