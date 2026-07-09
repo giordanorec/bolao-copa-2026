@@ -92,10 +92,13 @@ export default async function RankingDoBolao({
   bolaoId: _bolaoId,
   slug,
   membros,
+  incluirIAs = false,
 }: {
   bolaoId: string;
   slug: string;
   membros: MembroRow[];
+  /** Bolões privados NÃO incluem IAs no ranking — só membros humanos. */
+  incluirIAs?: boolean;
 }) {
   void _bolaoId;
   if (membros.length === 0) {
@@ -146,8 +149,8 @@ export default async function RankingDoBolao({
     };
   });
 
-  // IAs (todas inscritas automaticamente, com os palpites já dados)
-  const linhasIAs = await carregarLinhasIAs(jogos);
+  // IAs só entram em bolões públicos (default: bolões privados são só humanos).
+  const linhasIAs = incluirIAs ? await carregarLinhasIAs(jogos) : [];
 
   // Colocação com empate na MESMA posição (1º, 1º, 3º).
   const linhas: Linha[] = [...linhasHumanos, ...linhasIAs].sort(

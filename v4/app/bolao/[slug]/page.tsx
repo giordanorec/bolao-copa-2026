@@ -188,6 +188,7 @@ export default async function BolaoPage({
           bolaoId={bolao.id}
           slug={bolao.slug}
           membros={membrosTyped}
+          incluirIAs={ehPublico}
         />
       </section>
 
