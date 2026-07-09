@@ -515,9 +515,7 @@ def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
                 }
                 preservados += 1
             if preservados:
-                print(
-                    f"matamata: fallback do JSON anterior — {preservados} jogos preservados"
-                )
+                print(f"matamata: fallback do JSON anterior — {preservados} jogos preservados")
 
     # agrega
     por_jogo: dict[str, dict] = {}

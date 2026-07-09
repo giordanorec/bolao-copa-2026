@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-07-09T12:18:43-03:00",
+  "atualizado_em": "2026-07-09T12:54:35-03:00",
   "ias": [
     {
       "slug": "grok-4-fast",
@@ -1716,7 +1716,7 @@
       "placares_exatos": 4,
       "vencedores_acertados": 15,
       "jogos_palpitados": 24,
-      "palpites_total": 24,
+      "palpites_total": 28,
       "rank": 62,
       "grupos": {
         "pontos": 0,

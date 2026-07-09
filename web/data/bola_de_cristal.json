@@ -3568,7 +3568,7 @@
   "99": {
     "gols_a": 1,
     "gols_b": 2,
-    "votos": 45,
+    "votos": 46,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -3582,6 +3582,7 @@
       "claude-sonnet-4-6",
       "cohere-command-a",
       "cohere-command-r",
+      "copilot-microsoft-web",
       "deepseek-r1",
       "deepseek-v3",
       "deepseek-v3-1",
