@@ -1,6 +1,6 @@
 {
-  "gerado_em": "2026-07-08T20:20:11.391611Z",
-  "n_ias": 69,
+  "gerado_em": "2026-07-09T15:18:52.911580Z",
+  "n_ias": 68,
   "n_jogos_encerrados": 96,
   "perfis": [
     {
@@ -361,7 +361,7 @@
       "jogos_equilibrados": 13,
       "pts_em_jogos_equilibrados": 99,
       "media_pts_jogos_equilibrados": 7.62,
-      "cluster": 0
+      "cluster": 1
     },
     {
       "slug": "o4-mini",
@@ -577,7 +577,7 @@
       "jogos_equilibrados": 13,
       "pts_em_jogos_equilibrados": 94,
       "media_pts_jogos_equilibrados": 7.23,
-      "cluster": 0
+      "cluster": 1
     },
     {
       "slug": "gemini-2-5-flash",
@@ -1009,7 +1009,7 @@
       "jogos_equilibrados": 13,
       "pts_em_jogos_equilibrados": 109,
       "media_pts_jogos_equilibrados": 8.38,
-      "cluster": 0
+      "cluster": 1
     },
     {
       "slug": "le-chat-mistral",
@@ -1297,7 +1297,7 @@
       "jogos_equilibrados": 13,
       "pts_em_jogos_equilibrados": 89,
       "media_pts_jogos_equilibrados": 6.85,
-      "cluster": 2
+      "cluster": 0
     },
     {
       "slug": "deepseek-v3-1",
@@ -2161,7 +2161,7 @@
       "jogos_equilibrados": 13,
       "pts_em_jogos_equilibrados": 75,
       "media_pts_jogos_equilibrados": 5.77,
-      "cluster": 3
+      "cluster": 0
     },
     {
       "slug": "gemini-2-5-flash-lite",
@@ -2593,7 +2593,7 @@
       "jogos_equilibrados": 13,
       "pts_em_jogos_equilibrados": 54,
       "media_pts_jogos_equilibrados": 4.15,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "deepseek-v3",
@@ -3025,7 +3025,7 @@
       "jogos_equilibrados": 13,
       "pts_em_jogos_equilibrados": 64,
       "media_pts_jogos_equilibrados": 4.92,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "meta-llama-4",
@@ -3353,17 +3353,17 @@
           "media_pts": 4.65,
           "taxa_acerto": 0.627
         },
-        "CONMEBOL": {
-          "jogos": 23,
-          "pts": 109,
-          "media_pts": 4.74,
-          "taxa_acerto": 0.609
-        },
         "CONCACAF": {
           "jogos": 19,
           "pts": 129,
           "media_pts": 6.79,
           "taxa_acerto": 0.842
+        },
+        "CONMEBOL": {
+          "jogos": 23,
+          "pts": 109,
+          "media_pts": 4.74,
+          "taxa_acerto": 0.609
         },
         "CAF": {
           "jogos": 36,
@@ -3385,7 +3385,7 @@
       "jogos_equilibrados": 10,
       "pts_em_jogos_equilibrados": 52,
       "media_pts_jogos_equilibrados": 5.2,
-      "cluster": 3
+      "cluster": 0
     },
     {
       "slug": "cohere-command-r",
@@ -3745,7 +3745,7 @@
       "jogos_equilibrados": 9,
       "pts_em_jogos_equilibrados": 35,
       "media_pts_jogos_equilibrados": 3.89,
-      "cluster": 2
+      "cluster": 3
     },
     {
       "slug": "copilot-microsoft",
@@ -4033,78 +4033,6 @@
       "jogos_equilibrados": 13,
       "pts_em_jogos_equilibrados": 75,
       "media_pts_jogos_equilibrados": 5.77,
-      "cluster": 3
-    },
-    {
-      "slug": "le-chat-mistral-web",
-      "nome_display": "Le Chat Mistral (via Web)",
-      "serie_a": false,
-      "n_palpites": 100,
-      "n_encerrados_palpitou": 96,
-      "pct_empates_palpitados": 0.25,
-      "avg_gols_total": 2.27,
-      "avg_saldo_abs": 1.33,
-      "tendencia_continente": {
-        "CONCACAF": 0.292,
-        "CAF": 0.19,
-        "AFC": 0.069,
-        "UEFA": 0.611,
-        "CONMEBOL": 0.607,
-        "OFC": 0.0
-      },
-      "pontos": 533,
-      "exatos": 16,
-      "saldo_acertados": 8,
-      "venc_acertados": 37,
-      "emp_acertados": 4,
-      "erros": 31,
-      "taxa_acerto": 0.677,
-      "taxa_exato": 0.167,
-      "acerto_por_continente": {
-        "CONCACAF": {
-          "jogos": 24,
-          "pts": 144,
-          "media_pts": 6.0,
-          "taxa_acerto": 0.708
-        },
-        "CAF": {
-          "jogos": 41,
-          "pts": 258,
-          "media_pts": 6.29,
-          "taxa_acerto": 0.659
-        },
-        "AFC": {
-          "jogos": 29,
-          "pts": 132,
-          "media_pts": 4.55,
-          "taxa_acerto": 0.69
-        },
-        "UEFA": {
-          "jogos": 60,
-          "pts": 307,
-          "media_pts": 5.12,
-          "taxa_acerto": 0.65
-        },
-        "CONMEBOL": {
-          "jogos": 27,
-          "pts": 157,
-          "media_pts": 5.81,
-          "taxa_acerto": 0.667
-        },
-        "OFC": {
-          "jogos": 3,
-          "pts": 17,
-          "media_pts": 5.67,
-          "taxa_acerto": 1.0
-        }
-      },
-      "concordancia_cristal": 0.71,
-      "jogos_com_favorito": 83,
-      "pts_em_jogos_com_favorito": 441,
-      "media_pts_jogos_com_favorito": 5.31,
-      "jogos_equilibrados": 13,
-      "pts_em_jogos_equilibrados": 92,
-      "media_pts_jogos_equilibrados": 7.08,
       "cluster": 0
     },
     {
@@ -4537,7 +4465,7 @@
       "jogos_equilibrados": 13,
       "pts_em_jogos_equilibrados": 99,
       "media_pts_jogos_equilibrados": 7.62,
-      "cluster": 0
+      "cluster": 1
     },
     {
       "slug": "cohere-command-a",
@@ -4576,17 +4504,17 @@
           "media_pts": 9.82,
           "taxa_acerto": 0.727
         },
-        "UEFA": {
-          "jogos": 16,
-          "pts": 98,
-          "media_pts": 6.12,
-          "taxa_acerto": 0.5
-        },
         "CONMEBOL": {
           "jogos": 9,
           "pts": 88,
           "media_pts": 9.78,
           "taxa_acerto": 0.667
+        },
+        "UEFA": {
+          "jogos": 16,
+          "pts": 98,
+          "media_pts": 6.12,
+          "taxa_acerto": 0.5
         },
         "AFC": {
           "jogos": 2,
@@ -4641,17 +4569,17 @@
           "media_pts": 11.11,
           "taxa_acerto": 0.667
         },
-        "UEFA": {
-          "jogos": 10,
-          "pts": 60,
-          "media_pts": 6.0,
-          "taxa_acerto": 0.5
-        },
         "CONMEBOL": {
           "jogos": 5,
           "pts": 50,
           "media_pts": 10.0,
           "taxa_acerto": 0.8
+        },
+        "UEFA": {
+          "jogos": 10,
+          "pts": 60,
+          "media_pts": 6.0,
+          "taxa_acerto": 0.5
         },
         "AFC": {
           "jogos": 2,
@@ -4667,72 +4595,7 @@
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 20,
       "media_pts_jogos_equilibrados": 10.0,
-      "cluster": 0
-    },
-    {
-      "slug": "gemma-2-27b",
-      "nome_display": "Gemma 2 27B (legacy)",
-      "serie_a": false,
-      "n_palpites": 16,
-      "n_encerrados_palpitou": 16,
-      "pct_empates_palpitados": 0.0,
-      "avg_gols_total": 2.44,
-      "avg_saldo_abs": 1.19,
-      "tendencia_continente": {
-        "CAF": 0.333,
-        "CONCACAF": 0.667,
-        "UEFA": 0.571,
-        "CONMEBOL": 0.8,
-        "AFC": 0.0
-      },
-      "pontos": 152,
-      "exatos": 3,
-      "saldo_acertados": 3,
-      "venc_acertados": 5,
-      "emp_acertados": 0,
-      "erros": 5,
-      "taxa_acerto": 0.688,
-      "taxa_exato": 0.188,
-      "acerto_por_continente": {
-        "CONCACAF": {
-          "jogos": 3,
-          "pts": 24,
-          "media_pts": 8.0,
-          "taxa_acerto": 0.667
-        },
-        "CAF": {
-          "jogos": 9,
-          "pts": 82,
-          "media_pts": 9.11,
-          "taxa_acerto": 0.667
-        },
-        "UEFA": {
-          "jogos": 10,
-          "pts": 84,
-          "media_pts": 8.4,
-          "taxa_acerto": 0.6
-        },
-        "CONMEBOL": {
-          "jogos": 5,
-          "pts": 44,
-          "media_pts": 8.8,
-          "taxa_acerto": 0.6
-        },
-        "AFC": {
-          "jogos": 2,
-          "pts": 30,
-          "media_pts": 15.0,
-          "taxa_acerto": 1.0
-        }
-      },
-      "concordancia_cristal": 0.25,
-      "jogos_com_favorito": 14,
-      "pts_em_jogos_com_favorito": 128,
-      "media_pts_jogos_com_favorito": 9.14,
-      "jogos_equilibrados": 2,
-      "pts_em_jogos_equilibrados": 24,
-      "media_pts_jogos_equilibrados": 12.0,
-      "cluster": 0
+      "cluster": 1
     },
     {
       "slug": "manus-web",
@@ -4804,7 +4667,79 @@
       "jogos_equilibrados": 9,
       "pts_em_jogos_equilibrados": 35,
       "media_pts_jogos_equilibrados": 3.89,
-      "cluster": 2
+      "cluster": 3
+    },
+    {
+      "slug": "le-chat-mistral-web",
+      "nome_display": "Le Chat Mistral (via Web)",
+      "serie_a": false,
+      "n_palpites": 100,
+      "n_encerrados_palpitou": 96,
+      "pct_empates_palpitados": 0.25,
+      "avg_gols_total": 2.27,
+      "avg_saldo_abs": 1.33,
+      "tendencia_continente": {
+        "CONCACAF": 0.292,
+        "CAF": 0.19,
+        "AFC": 0.069,
+        "UEFA": 0.611,
+        "CONMEBOL": 0.607,
+        "OFC": 0.0
+      },
+      "pontos": 533,
+      "exatos": 16,
+      "saldo_acertados": 8,
+      "venc_acertados": 37,
+      "emp_acertados": 4,
+      "erros": 31,
+      "taxa_acerto": 0.677,
+      "taxa_exato": 0.167,
+      "acerto_por_continente": {
+        "CONCACAF": {
+          "jogos": 24,
+          "pts": 144,
+          "media_pts": 6.0,
+          "taxa_acerto": 0.708
+        },
+        "CAF": {
+          "jogos": 41,
+          "pts": 258,
+          "media_pts": 6.29,
+          "taxa_acerto": 0.659
+        },
+        "AFC": {
+          "jogos": 29,
+          "pts": 132,
+          "media_pts": 4.55,
+          "taxa_acerto": 0.69
+        },
+        "UEFA": {
+          "jogos": 60,
+          "pts": 307,
+          "media_pts": 5.12,
+          "taxa_acerto": 0.65
+        },
+        "CONMEBOL": {
+          "jogos": 27,
+          "pts": 157,
+          "media_pts": 5.81,
+          "taxa_acerto": 0.667
+        },
+        "OFC": {
+          "jogos": 3,
+          "pts": 17,
+          "media_pts": 5.67,
+          "taxa_acerto": 1.0
+        }
+      },
+      "concordancia_cristal": 0.71,
+      "jogos_com_favorito": 83,
+      "pts_em_jogos_com_favorito": 441,
+      "media_pts_jogos_com_favorito": 5.31,
+      "jogos_equilibrados": 13,
+      "pts_em_jogos_equilibrados": 92,
+      "media_pts_jogos_equilibrados": 7.08,
+      "cluster": 0
     },
     {
       "slug": "grok-4-heavy-web",
@@ -4915,15 +4850,15 @@
           "media_pts": 2.22,
           "taxa_acerto": 0.222
         },
-        "UEFA": {
-          "jogos": 10,
-          "pts": 20,
-          "media_pts": 2.0,
-          "taxa_acerto": 0.2
-        },
         "CONMEBOL": {
           "jogos": 5,
           "pts": 10,
+          "media_pts": 2.0,
+          "taxa_acerto": 0.2
+        },
+        "UEFA": {
+          "jogos": 10,
+          "pts": 20,
           "media_pts": 2.0,
           "taxa_acerto": 0.2
         },
@@ -4941,7 +4876,7 @@
       "jogos_equilibrados": 2,
       "pts_em_jogos_equilibrados": 10,
       "media_pts_jogos_equilibrados": 5.0,
-      "cluster": 1
+      "cluster": 2
     }
   ],
   "similaridade": {
@@ -5002,7 +4937,6 @@
       "chatgpt-5-thinking-web": 0.47,
       "llama-4-scout": 0.271,
       "perplexity-sonar-pro-web": 0.51,
-      "le-chat-mistral-web": 0.54,
       "meta-llama-4-web": 0.37,
       "gemini-2-5-pro-web": 0.48,
       "deepseek-r1-web": 0.49,
@@ -5011,8 +4945,8 @@
       "claude-opus-4-8-web": 0.6,
       "cohere-command-a": 0.429,
       "phi-4": 0.562,
-      "gemma-2-27b": 0.375,
       "manus-web": 0.389,
+      "le-chat-mistral-web": 0.54,
       "grok-4-heavy-web": 0.53,
       "lfm-40b": 0.0
     },
@@ -5073,7 +5007,6 @@
       "chatgpt-5-thinking-web": 0.42,
       "llama-4-scout": 0.208,
       "perplexity-sonar-pro-web": 0.56,
-      "le-chat-mistral-web": 0.61,
       "meta-llama-4-web": 0.33,
       "gemini-2-5-pro-web": 0.48,
       "deepseek-r1-web": 0.45,
@@ -5082,8 +5015,8 @@
       "claude-opus-4-8-web": 0.46,
       "cohere-command-a": 0.5,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.319,
+      "le-chat-mistral-web": 0.61,
       "grok-4-heavy-web": 0.51,
       "lfm-40b": 0.0
     },
@@ -5144,7 +5077,6 @@
       "chatgpt-5-thinking-web": 0.47,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.53,
-      "le-chat-mistral-web": 0.6,
       "meta-llama-4-web": 0.33,
       "gemini-2-5-pro-web": 0.5,
       "deepseek-r1-web": 0.52,
@@ -5153,8 +5085,8 @@
       "claude-opus-4-8-web": 0.53,
       "cohere-command-a": 0.357,
       "phi-4": 0.562,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.319,
+      "le-chat-mistral-web": 0.6,
       "grok-4-heavy-web": 0.55,
       "lfm-40b": 0.0
     },
@@ -5215,7 +5147,6 @@
       "chatgpt-5-thinking-web": 0.53,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.56,
-      "le-chat-mistral-web": 0.54,
       "meta-llama-4-web": 0.39,
       "gemini-2-5-pro-web": 0.52,
       "deepseek-r1-web": 0.46,
@@ -5224,8 +5155,8 @@
       "claude-opus-4-8-web": 0.51,
       "cohere-command-a": 0.571,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.347,
+      "le-chat-mistral-web": 0.54,
       "grok-4-heavy-web": 0.53,
       "lfm-40b": 0.0
     },
@@ -5286,7 +5217,6 @@
       "chatgpt-5-thinking-web": 0.59,
       "llama-4-scout": 0.271,
       "perplexity-sonar-pro-web": 0.54,
-      "le-chat-mistral-web": 0.55,
       "meta-llama-4-web": 0.34,
       "gemini-2-5-pro-web": 0.59,
       "deepseek-r1-web": 0.51,
@@ -5295,8 +5225,8 @@
       "claude-opus-4-8-web": 1.0,
       "cohere-command-a": 0.5,
       "phi-4": 0.688,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.417,
+      "le-chat-mistral-web": 0.55,
       "grok-4-heavy-web": 0.56,
       "lfm-40b": 0.0
     },
@@ -5357,7 +5287,6 @@
       "chatgpt-5-thinking-web": 0.5,
       "llama-4-scout": 0.167,
       "perplexity-sonar-pro-web": 0.51,
-      "le-chat-mistral-web": 0.53,
       "meta-llama-4-web": 0.33,
       "gemini-2-5-pro-web": 0.49,
       "deepseek-r1-web": 0.41,
@@ -5366,8 +5295,8 @@
       "claude-opus-4-8-web": 0.49,
       "cohere-command-a": 0.571,
       "phi-4": 0.562,
-      "gemma-2-27b": 0.312,
       "manus-web": 0.264,
+      "le-chat-mistral-web": 0.53,
       "grok-4-heavy-web": 0.47,
       "lfm-40b": 0.0
     },
@@ -5428,7 +5357,6 @@
       "chatgpt-5-thinking-web": 0.77,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.57,
-      "le-chat-mistral-web": 0.52,
       "meta-llama-4-web": 0.38,
       "gemini-2-5-pro-web": 0.71,
       "deepseek-r1-web": 0.51,
@@ -5437,8 +5365,8 @@
       "claude-opus-4-8-web": 0.64,
       "cohere-command-a": 0.536,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.125,
       "manus-web": 0.389,
+      "le-chat-mistral-web": 0.52,
       "grok-4-heavy-web": 0.59,
       "lfm-40b": 0.0
     },
@@ -5499,7 +5427,6 @@
       "chatgpt-5-thinking-web": 0.61,
       "llama-4-scout": 0.292,
       "perplexity-sonar-pro-web": 0.55,
-      "le-chat-mistral-web": 0.58,
       "meta-llama-4-web": 0.41,
       "gemini-2-5-pro-web": 0.63,
       "deepseek-r1-web": 0.54,
@@ -5508,8 +5435,8 @@
       "claude-opus-4-8-web": 0.64,
       "cohere-command-a": 0.536,
       "phi-4": 0.625,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.306,
+      "le-chat-mistral-web": 0.58,
       "grok-4-heavy-web": 0.59,
       "lfm-40b": 0.0
     },
@@ -5570,7 +5497,6 @@
       "chatgpt-5-thinking-web": 0.5,
       "llama-4-scout": 0.167,
       "perplexity-sonar-pro-web": 0.52,
-      "le-chat-mistral-web": 0.52,
       "meta-llama-4-web": 0.41,
       "gemini-2-5-pro-web": 0.52,
       "deepseek-r1-web": 0.46,
@@ -5579,8 +5505,8 @@
       "claude-opus-4-8-web": 0.62,
       "cohere-command-a": 0.5,
       "phi-4": 0.625,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.431,
+      "le-chat-mistral-web": 0.52,
       "grok-4-heavy-web": 0.59,
       "lfm-40b": 0.0
     },
@@ -5641,7 +5567,6 @@
       "chatgpt-5-thinking-web": 0.56,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.57,
-      "le-chat-mistral-web": 0.54,
       "meta-llama-4-web": 0.38,
       "gemini-2-5-pro-web": 0.6,
       "deepseek-r1-web": 0.43,
@@ -5650,8 +5575,8 @@
       "claude-opus-4-8-web": 0.56,
       "cohere-command-a": 0.607,
       "phi-4": 0.625,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.347,
+      "le-chat-mistral-web": 0.54,
       "grok-4-heavy-web": 1.0,
       "lfm-40b": 0.0
     },
@@ -5712,7 +5637,6 @@
       "chatgpt-5-thinking-web": 0.44,
       "llama-4-scout": 0.271,
       "perplexity-sonar-pro-web": 0.58,
-      "le-chat-mistral-web": 0.62,
       "meta-llama-4-web": 0.35,
       "gemini-2-5-pro-web": 0.51,
       "deepseek-r1-web": 0.44,
@@ -5721,8 +5645,8 @@
       "claude-opus-4-8-web": 0.46,
       "cohere-command-a": 0.429,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.292,
+      "le-chat-mistral-web": 0.62,
       "grok-4-heavy-web": 0.55,
       "lfm-40b": 0.0
     },
@@ -5783,7 +5707,6 @@
       "chatgpt-5-thinking-web": 0.51,
       "llama-4-scout": 0.312,
       "perplexity-sonar-pro-web": 0.6,
-      "le-chat-mistral-web": 0.52,
       "meta-llama-4-web": 0.36,
       "gemini-2-5-pro-web": 0.58,
       "deepseek-r1-web": 0.47,
@@ -5792,8 +5715,8 @@
       "claude-opus-4-8-web": 0.55,
       "cohere-command-a": 0.429,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.375,
+      "le-chat-mistral-web": 0.52,
       "grok-4-heavy-web": 0.52,
       "lfm-40b": 0.0
     },
@@ -5854,7 +5777,6 @@
       "chatgpt-5-thinking-web": 0.6,
       "llama-4-scout": 0.25,
       "perplexity-sonar-pro-web": 0.6,
-      "le-chat-mistral-web": 0.56,
       "meta-llama-4-web": 0.35,
       "gemini-2-5-pro-web": 0.61,
       "deepseek-r1-web": 0.49,
@@ -5863,8 +5785,8 @@
       "claude-opus-4-8-web": 0.65,
       "cohere-command-a": 0.536,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.403,
+      "le-chat-mistral-web": 0.56,
       "grok-4-heavy-web": 0.62,
       "lfm-40b": 0.0
     },
@@ -5925,7 +5847,6 @@
       "chatgpt-5-thinking-web": 0.64,
       "llama-4-scout": 0.271,
       "perplexity-sonar-pro-web": 0.62,
-      "le-chat-mistral-web": 0.59,
       "meta-llama-4-web": 0.32,
       "gemini-2-5-pro-web": 0.65,
       "deepseek-r1-web": 0.51,
@@ -5934,8 +5855,8 @@
       "claude-opus-4-8-web": 0.61,
       "cohere-command-a": 0.536,
       "phi-4": 0.562,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.431,
+      "le-chat-mistral-web": 0.59,
       "grok-4-heavy-web": 0.56,
       "lfm-40b": 0.0
     },
@@ -5996,7 +5917,6 @@
       "chatgpt-5-thinking-web": 0.52,
       "llama-4-scout": 0.333,
       "perplexity-sonar-pro-web": 0.57,
-      "le-chat-mistral-web": 1.0,
       "meta-llama-4-web": 0.38,
       "gemini-2-5-pro-web": 0.52,
       "deepseek-r1-web": 0.52,
@@ -6005,8 +5925,8 @@
       "claude-opus-4-8-web": 0.55,
       "cohere-command-a": 0.5,
       "phi-4": 0.562,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.264,
+      "le-chat-mistral-web": 1.0,
       "grok-4-heavy-web": 0.54,
       "lfm-40b": 0.0
     },
@@ -6067,7 +5987,6 @@
       "chatgpt-5-thinking-web": 0.39,
       "llama-4-scout": 0.188,
       "perplexity-sonar-pro-web": 0.34,
-      "le-chat-mistral-web": 0.39,
       "meta-llama-4-web": 0.67,
       "gemini-2-5-pro-web": 0.44,
       "deepseek-r1-web": 0.37,
@@ -6076,8 +5995,8 @@
       "claude-opus-4-8-web": 0.38,
       "cohere-command-a": 0.464,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.25,
+      "le-chat-mistral-web": 0.39,
       "grok-4-heavy-web": 0.42,
       "lfm-40b": 0.0
     },
@@ -6138,7 +6057,6 @@
       "chatgpt-5-thinking-web": 0.32,
       "llama-4-scout": 0.292,
       "perplexity-sonar-pro-web": 0.35,
-      "le-chat-mistral-web": 0.37,
       "meta-llama-4-web": 0.25,
       "gemini-2-5-pro-web": 0.32,
       "deepseek-r1-web": 0.28,
@@ -6147,8 +6065,8 @@
       "claude-opus-4-8-web": 0.36,
       "cohere-command-a": 0.286,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.306,
+      "le-chat-mistral-web": 0.37,
       "grok-4-heavy-web": 0.41,
       "lfm-40b": 0.0
     },
@@ -6209,7 +6127,6 @@
       "chatgpt-5-thinking-web": 0.33,
       "llama-4-scout": 0.271,
       "perplexity-sonar-pro-web": 0.39,
-      "le-chat-mistral-web": 0.36,
       "meta-llama-4-web": 0.27,
       "gemini-2-5-pro-web": 0.37,
       "deepseek-r1-web": 0.33,
@@ -6218,8 +6135,8 @@
       "claude-opus-4-8-web": 0.4,
       "cohere-command-a": 0.536,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.333,
+      "le-chat-mistral-web": 0.36,
       "grok-4-heavy-web": 0.44,
       "lfm-40b": 0.0
     },
@@ -6280,7 +6197,6 @@
       "chatgpt-5-thinking-web": 0.41,
       "llama-4-scout": 0.188,
       "perplexity-sonar-pro-web": 0.39,
-      "le-chat-mistral-web": 0.46,
       "meta-llama-4-web": 0.29,
       "gemini-2-5-pro-web": 0.44,
       "deepseek-r1-web": 0.45,
@@ -6289,8 +6205,8 @@
       "claude-opus-4-8-web": 0.43,
       "cohere-command-a": 0.464,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.125,
       "manus-web": 0.236,
+      "le-chat-mistral-web": 0.46,
       "grok-4-heavy-web": 0.46,
       "lfm-40b": 0.0
     },
@@ -6351,7 +6267,6 @@
       "chatgpt-5-thinking-web": 1.0,
       "llama-4-scout": 0.292,
       "perplexity-sonar-pro-web": 0.57,
-      "le-chat-mistral-web": 0.52,
       "meta-llama-4-web": 0.37,
       "gemini-2-5-pro-web": 0.67,
       "deepseek-r1-web": 0.47,
@@ -6360,8 +6275,8 @@
       "claude-opus-4-8-web": 0.59,
       "cohere-command-a": 0.536,
       "phi-4": 0.312,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.361,
+      "le-chat-mistral-web": 0.52,
       "grok-4-heavy-web": 0.56,
       "lfm-40b": 0.062
     },
@@ -6422,7 +6337,6 @@
       "chatgpt-5-thinking-web": 0.47,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.45,
-      "le-chat-mistral-web": 0.5,
       "meta-llama-4-web": 0.42,
       "gemini-2-5-pro-web": 0.58,
       "deepseek-r1-web": 0.51,
@@ -6431,8 +6345,8 @@
       "claude-opus-4-8-web": 0.44,
       "cohere-command-a": 0.5,
       "phi-4": 0.562,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.292,
+      "le-chat-mistral-web": 0.5,
       "grok-4-heavy-web": 0.53,
       "lfm-40b": 0.0
     },
@@ -6493,7 +6407,6 @@
       "chatgpt-5-thinking-web": 0.54,
       "llama-4-scout": 0.25,
       "perplexity-sonar-pro-web": 0.63,
-      "le-chat-mistral-web": 0.59,
       "meta-llama-4-web": 0.42,
       "gemini-2-5-pro-web": 0.54,
       "deepseek-r1-web": 0.45,
@@ -6502,8 +6415,8 @@
       "claude-opus-4-8-web": 0.55,
       "cohere-command-a": 0.5,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.125,
       "manus-web": 0.333,
+      "le-chat-mistral-web": 0.59,
       "grok-4-heavy-web": 0.69,
       "lfm-40b": 0.0
     },
@@ -6564,7 +6477,6 @@
       "chatgpt-5-thinking-web": 0.74,
       "llama-4-scout": 0.25,
       "perplexity-sonar-pro-web": 0.62,
-      "le-chat-mistral-web": 0.53,
       "meta-llama-4-web": 0.36,
       "gemini-2-5-pro-web": 0.67,
       "deepseek-r1-web": 0.51,
@@ -6573,8 +6485,8 @@
       "claude-opus-4-8-web": 0.55,
       "cohere-command-a": 0.5,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.306,
+      "le-chat-mistral-web": 0.53,
       "grok-4-heavy-web": 0.58,
       "lfm-40b": 0.0
     },
@@ -6635,7 +6547,6 @@
       "chatgpt-5-thinking-web": 0.48,
       "llama-4-scout": 0.208,
       "perplexity-sonar-pro-web": 0.48,
-      "le-chat-mistral-web": 0.49,
       "meta-llama-4-web": 0.39,
       "gemini-2-5-pro-web": 0.55,
       "deepseek-r1-web": 0.43,
@@ -6644,8 +6555,8 @@
       "claude-opus-4-8-web": 0.44,
       "cohere-command-a": 0.429,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.333,
+      "le-chat-mistral-web": 0.49,
       "grok-4-heavy-web": 0.59,
       "lfm-40b": 0.0
     },
@@ -6706,7 +6617,6 @@
       "chatgpt-5-thinking-web": 0.36,
       "llama-4-scout": 0.208,
       "perplexity-sonar-pro-web": 0.43,
-      "le-chat-mistral-web": 0.41,
       "meta-llama-4-web": 0.31,
       "gemini-2-5-pro-web": 0.43,
       "deepseek-r1-web": 0.33,
@@ -6715,8 +6625,8 @@
       "claude-opus-4-8-web": 0.36,
       "cohere-command-a": 0.5,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.375,
       "manus-web": 0.236,
+      "le-chat-mistral-web": 0.41,
       "grok-4-heavy-web": 0.46,
       "lfm-40b": 0.0
     },
@@ -6777,7 +6687,6 @@
       "chatgpt-5-thinking-web": 0.28,
       "llama-4-scout": 0.292,
       "perplexity-sonar-pro-web": 0.29,
-      "le-chat-mistral-web": 0.26,
       "meta-llama-4-web": 0.32,
       "gemini-2-5-pro-web": 0.25,
       "deepseek-r1-web": 0.3,
@@ -6786,8 +6695,8 @@
       "claude-opus-4-8-web": 0.34,
       "cohere-command-a": 0.464,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.0,
       "manus-web": 0.25,
+      "le-chat-mistral-web": 0.26,
       "grok-4-heavy-web": 0.31,
       "lfm-40b": 0.0
     },
@@ -6848,7 +6757,6 @@
       "chatgpt-5-thinking-web": 0.42,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.45,
-      "le-chat-mistral-web": 0.48,
       "meta-llama-4-web": 0.36,
       "gemini-2-5-pro-web": 0.49,
       "deepseek-r1-web": 0.42,
@@ -6857,8 +6765,8 @@
       "claude-opus-4-8-web": 0.53,
       "cohere-command-a": 0.5,
       "phi-4": 0.562,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.389,
+      "le-chat-mistral-web": 0.48,
       "grok-4-heavy-web": 0.5,
       "lfm-40b": 0.0
     },
@@ -6919,7 +6827,6 @@
       "chatgpt-5-thinking-web": 0.43,
       "llama-4-scout": 0.271,
       "perplexity-sonar-pro-web": 0.43,
-      "le-chat-mistral-web": 0.47,
       "meta-llama-4-web": 0.28,
       "gemini-2-5-pro-web": 0.47,
       "deepseek-r1-web": 0.37,
@@ -6928,8 +6835,8 @@
       "claude-opus-4-8-web": 0.4,
       "cohere-command-a": 0.5,
       "phi-4": 0.312,
-      "gemma-2-27b": 0.312,
       "manus-web": 0.306,
+      "le-chat-mistral-web": 0.47,
       "grok-4-heavy-web": 0.38,
       "lfm-40b": 0.0
     },
@@ -6990,7 +6897,6 @@
       "chatgpt-5-thinking-web": 0.58,
       "llama-4-scout": 0.292,
       "perplexity-sonar-pro-web": 0.57,
-      "le-chat-mistral-web": 0.59,
       "meta-llama-4-web": 0.39,
       "gemini-2-5-pro-web": 0.55,
       "deepseek-r1-web": 0.51,
@@ -6999,8 +6905,8 @@
       "claude-opus-4-8-web": 0.65,
       "cohere-command-a": 0.607,
       "phi-4": 0.625,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.333,
+      "le-chat-mistral-web": 0.59,
       "grok-4-heavy-web": 0.51,
       "lfm-40b": 0.0
     },
@@ -7061,7 +6967,6 @@
       "chatgpt-5-thinking-web": 0.57,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 1.0,
-      "le-chat-mistral-web": 0.57,
       "meta-llama-4-web": 0.33,
       "gemini-2-5-pro-web": 0.54,
       "deepseek-r1-web": 0.49,
@@ -7070,8 +6975,8 @@
       "claude-opus-4-8-web": 0.54,
       "cohere-command-a": 0.429,
       "phi-4": 0.625,
-      "gemma-2-27b": 0.125,
       "manus-web": 0.278,
+      "le-chat-mistral-web": 0.57,
       "grok-4-heavy-web": 0.57,
       "lfm-40b": 0.0
     },
@@ -7132,7 +7037,6 @@
       "chatgpt-5-thinking-web": 0.302,
       "llama-4-scout": 0.318,
       "perplexity-sonar-pro-web": 0.323,
-      "le-chat-mistral-web": 0.417,
       "meta-llama-4-web": 0.26,
       "gemini-2-5-pro-web": 0.333,
       "deepseek-r1-web": 0.281,
@@ -7141,8 +7045,8 @@
       "claude-opus-4-8-web": 0.375,
       "cohere-command-a": 0.333,
       "phi-4": 0.375,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.236,
+      "le-chat-mistral-web": 0.417,
       "grok-4-heavy-web": 0.396,
       "lfm-40b": 0.0
     },
@@ -7203,7 +7107,6 @@
       "chatgpt-5-thinking-web": 0.47,
       "llama-4-scout": 0.146,
       "perplexity-sonar-pro-web": 0.49,
-      "le-chat-mistral-web": 0.52,
       "meta-llama-4-web": 0.4,
       "gemini-2-5-pro-web": 0.57,
       "deepseek-r1-web": 1.0,
@@ -7212,8 +7115,8 @@
       "claude-opus-4-8-web": 0.51,
       "cohere-command-a": 0.536,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.125,
       "manus-web": 0.278,
+      "le-chat-mistral-web": 0.52,
       "grok-4-heavy-web": 0.43,
       "lfm-40b": 0.0
     },
@@ -7274,7 +7177,6 @@
       "chatgpt-5-thinking-web": 0.49,
       "llama-4-scout": 0.312,
       "perplexity-sonar-pro-web": 0.49,
-      "le-chat-mistral-web": 0.57,
       "meta-llama-4-web": 0.36,
       "gemini-2-5-pro-web": 0.6,
       "deepseek-r1-web": 0.54,
@@ -7283,8 +7185,8 @@
       "claude-opus-4-8-web": 0.53,
       "cohere-command-a": 0.536,
       "phi-4": 0.625,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.236,
+      "le-chat-mistral-web": 0.57,
       "grok-4-heavy-web": 0.56,
       "lfm-40b": 0.0
     },
@@ -7345,7 +7247,6 @@
       "chatgpt-5-thinking-web": 0.36,
       "llama-4-scout": 0.188,
       "perplexity-sonar-pro-web": 0.32,
-      "le-chat-mistral-web": 0.44,
       "meta-llama-4-web": 0.39,
       "gemini-2-5-pro-web": 0.42,
       "deepseek-r1-web": 0.36,
@@ -7354,8 +7255,8 @@
       "claude-opus-4-8-web": 0.4,
       "cohere-command-a": 0.5,
       "phi-4": 0.688,
-      "gemma-2-27b": 0.312,
       "manus-web": 0.319,
+      "le-chat-mistral-web": 0.44,
       "grok-4-heavy-web": 0.41,
       "lfm-40b": 0.0
     },
@@ -7416,7 +7317,6 @@
       "chatgpt-5-thinking-web": 0.4,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.33,
-      "le-chat-mistral-web": 0.26,
       "meta-llama-4-web": 0.34,
       "gemini-2-5-pro-web": 0.34,
       "deepseek-r1-web": 0.32,
@@ -7425,8 +7325,8 @@
       "claude-opus-4-8-web": 0.36,
       "cohere-command-a": 0.536,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.333,
+      "le-chat-mistral-web": 0.26,
       "grok-4-heavy-web": 0.32,
       "lfm-40b": 0.0
     },
@@ -7487,7 +7387,6 @@
       "chatgpt-5-thinking-web": 0.21,
       "llama-4-scout": 0.25,
       "perplexity-sonar-pro-web": 0.23,
-      "le-chat-mistral-web": 0.31,
       "meta-llama-4-web": 0.26,
       "gemini-2-5-pro-web": 0.24,
       "deepseek-r1-web": 0.23,
@@ -7496,8 +7395,8 @@
       "claude-opus-4-8-web": 0.25,
       "cohere-command-a": 0.393,
       "phi-4": 0.25,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.153,
+      "le-chat-mistral-web": 0.31,
       "grok-4-heavy-web": 0.26,
       "lfm-40b": 0.0
     },
@@ -7558,7 +7457,6 @@
       "chatgpt-5-thinking-web": 0.47,
       "llama-4-scout": 0.292,
       "perplexity-sonar-pro-web": 0.49,
-      "le-chat-mistral-web": 0.52,
       "meta-llama-4-web": 0.36,
       "gemini-2-5-pro-web": 0.59,
       "deepseek-r1-web": 0.61,
@@ -7567,8 +7465,8 @@
       "claude-opus-4-8-web": 0.47,
       "cohere-command-a": 0.5,
       "phi-4": 0.375,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.236,
+      "le-chat-mistral-web": 0.52,
       "grok-4-heavy-web": 0.42,
       "lfm-40b": 0.0
     },
@@ -7629,7 +7527,6 @@
       "chatgpt-5-thinking-web": 0.2,
       "llama-4-scout": 0.167,
       "perplexity-sonar-pro-web": 0.28,
-      "le-chat-mistral-web": 0.23,
       "meta-llama-4-web": 0.24,
       "gemini-2-5-pro-web": 0.25,
       "deepseek-r1-web": 0.24,
@@ -7638,8 +7535,8 @@
       "claude-opus-4-8-web": 0.29,
       "cohere-command-a": 0.25,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.375,
       "manus-web": 0.361,
+      "le-chat-mistral-web": 0.23,
       "grok-4-heavy-web": 0.31,
       "lfm-40b": 0.0
     },
@@ -7700,7 +7597,6 @@
       "chatgpt-5-thinking-web": 0.29,
       "llama-4-scout": 0.188,
       "perplexity-sonar-pro-web": 0.36,
-      "le-chat-mistral-web": 0.48,
       "meta-llama-4-web": 0.31,
       "gemini-2-5-pro-web": 0.34,
       "deepseek-r1-web": 0.31,
@@ -7709,8 +7605,8 @@
       "claude-opus-4-8-web": 0.36,
       "cohere-command-a": 0.429,
       "phi-4": 0.562,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.222,
+      "le-chat-mistral-web": 0.48,
       "grok-4-heavy-web": 0.38,
       "lfm-40b": 0.0
     },
@@ -7771,7 +7667,6 @@
       "chatgpt-5-thinking-web": 0.34,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.33,
-      "le-chat-mistral-web": 0.33,
       "meta-llama-4-web": 0.35,
       "gemini-2-5-pro-web": 0.33,
       "deepseek-r1-web": 0.27,
@@ -7780,8 +7675,8 @@
       "claude-opus-4-8-web": 0.31,
       "cohere-command-a": 0.321,
       "phi-4": 0.25,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.264,
+      "le-chat-mistral-web": 0.33,
       "grok-4-heavy-web": 0.32,
       "lfm-40b": 0.0
     },
@@ -7842,7 +7737,6 @@
       "chatgpt-5-thinking-web": 0.432,
       "llama-4-scout": 0.25,
       "perplexity-sonar-pro-web": 0.386,
-      "le-chat-mistral-web": 0.375,
       "meta-llama-4-web": 0.284,
       "gemini-2-5-pro-web": 0.432,
       "deepseek-r1-web": 0.409,
@@ -7851,8 +7745,8 @@
       "claude-opus-4-8-web": 0.625,
       "cohere-command-a": 0.438,
       "phi-4": 0.688,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.542,
+      "le-chat-mistral-web": 0.375,
       "grok-4-heavy-web": 0.432,
       "lfm-40b": 0.0
     },
@@ -7913,7 +7807,6 @@
       "chatgpt-5-thinking-web": 0.38,
       "llama-4-scout": 0.188,
       "perplexity-sonar-pro-web": 0.36,
-      "le-chat-mistral-web": 0.36,
       "meta-llama-4-web": 0.35,
       "gemini-2-5-pro-web": 0.41,
       "deepseek-r1-web": 0.39,
@@ -7922,8 +7815,8 @@
       "claude-opus-4-8-web": 0.36,
       "cohere-command-a": 0.429,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.278,
+      "le-chat-mistral-web": 0.36,
       "grok-4-heavy-web": 0.38,
       "lfm-40b": 0.0
     },
@@ -7984,7 +7877,6 @@
       "chatgpt-5-thinking-web": 0.37,
       "llama-4-scout": 0.208,
       "perplexity-sonar-pro-web": 0.33,
-      "le-chat-mistral-web": 0.38,
       "meta-llama-4-web": 1.0,
       "gemini-2-5-pro-web": 0.4,
       "deepseek-r1-web": 0.4,
@@ -7993,8 +7885,8 @@
       "claude-opus-4-8-web": 0.34,
       "cohere-command-a": 0.5,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.222,
+      "le-chat-mistral-web": 0.38,
       "grok-4-heavy-web": 0.38,
       "lfm-40b": 0.062
     },
@@ -8055,7 +7947,6 @@
       "chatgpt-5-thinking-web": 0.34,
       "llama-4-scout": 0.354,
       "perplexity-sonar-pro-web": 0.3,
-      "le-chat-mistral-web": 0.36,
       "meta-llama-4-web": 0.23,
       "gemini-2-5-pro-web": 0.34,
       "deepseek-r1-web": 0.26,
@@ -8064,8 +7955,8 @@
       "claude-opus-4-8-web": 0.37,
       "cohere-command-a": 0.321,
       "phi-4": 0.312,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.25,
+      "le-chat-mistral-web": 0.36,
       "grok-4-heavy-web": 0.32,
       "lfm-40b": 0.0
     },
@@ -8126,7 +8017,6 @@
       "chatgpt-5-thinking-web": 0.3,
       "llama-4-scout": 0.208,
       "perplexity-sonar-pro-web": 0.34,
-      "le-chat-mistral-web": 0.36,
       "meta-llama-4-web": 0.27,
       "gemini-2-5-pro-web": 0.34,
       "deepseek-r1-web": 0.31,
@@ -8135,8 +8025,8 @@
       "claude-opus-4-8-web": 0.36,
       "cohere-command-a": 0.429,
       "phi-4": 0.75,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.306,
+      "le-chat-mistral-web": 0.36,
       "grok-4-heavy-web": 0.33,
       "lfm-40b": 0.0
     },
@@ -8197,7 +8087,6 @@
       "chatgpt-5-thinking-web": 0.67,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.54,
-      "le-chat-mistral-web": 0.52,
       "meta-llama-4-web": 0.4,
       "gemini-2-5-pro-web": 1.0,
       "deepseek-r1-web": 0.57,
@@ -8206,8 +8095,8 @@
       "claude-opus-4-8-web": 0.59,
       "cohere-command-a": 0.536,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.319,
+      "le-chat-mistral-web": 0.52,
       "grok-4-heavy-web": 0.6,
       "lfm-40b": 0.0
     },
@@ -8268,7 +8157,6 @@
       "chatgpt-5-thinking-web": 0.54,
       "llama-4-scout": 0.189,
       "perplexity-sonar-pro-web": 0.494,
-      "le-chat-mistral-web": 0.54,
       "meta-llama-4-web": 0.379,
       "gemini-2-5-pro-web": 0.609,
       "deepseek-r1-web": 0.563,
@@ -8277,8 +8165,8 @@
       "claude-opus-4-8-web": 0.517,
       "cohere-command-a": 0.6,
       "phi-4": 0.625,
-      "gemma-2-27b": 0.125,
       "manus-web": 0.299,
+      "le-chat-mistral-web": 0.54,
       "grok-4-heavy-web": 0.517,
       "lfm-40b": 0.0
     },
@@ -8339,7 +8227,6 @@
       "chatgpt-5-thinking-web": 0.34,
       "llama-4-scout": 0.188,
       "perplexity-sonar-pro-web": 0.27,
-      "le-chat-mistral-web": 0.29,
       "meta-llama-4-web": 0.21,
       "gemini-2-5-pro-web": 0.27,
       "deepseek-r1-web": 0.24,
@@ -8348,8 +8235,8 @@
       "claude-opus-4-8-web": 0.32,
       "cohere-command-a": 0.429,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.312,
       "manus-web": 0.347,
+      "le-chat-mistral-web": 0.29,
       "grok-4-heavy-web": 0.23,
       "lfm-40b": 0.0
     },
@@ -8410,7 +8297,6 @@
       "chatgpt-5-thinking-web": 0.19,
       "llama-4-scout": 0.146,
       "perplexity-sonar-pro-web": 0.14,
-      "le-chat-mistral-web": 0.19,
       "meta-llama-4-web": 0.19,
       "gemini-2-5-pro-web": 0.21,
       "deepseek-r1-web": 0.13,
@@ -8419,8 +8305,8 @@
       "claude-opus-4-8-web": 0.18,
       "cohere-command-a": 0.286,
       "phi-4": 0.312,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.111,
+      "le-chat-mistral-web": 0.19,
       "grok-4-heavy-web": 0.21,
       "lfm-40b": 0.0
     },
@@ -8481,7 +8367,6 @@
       "chatgpt-5-thinking-web": 0.375,
       "llama-4-scout": 0.35,
       "perplexity-sonar-pro-web": 0.417,
-      "le-chat-mistral-web": 0.444,
       "meta-llama-4-web": 0.222,
       "gemini-2-5-pro-web": 0.333,
       "deepseek-r1-web": 0.278,
@@ -8490,8 +8375,8 @@
       "claude-opus-4-8-web": 0.417,
       "cohere-command-a": 0.0,
       "phi-4": 0.0,
-      "gemma-2-27b": 0.0,
       "manus-web": 0.306,
+      "le-chat-mistral-web": 0.444,
       "grok-4-heavy-web": 0.319,
       "lfm-40b": 0.0
     },
@@ -8552,7 +8437,6 @@
       "chatgpt-5-thinking-web": 0.08,
       "llama-4-scout": 0.139,
       "perplexity-sonar-pro-web": 0.115,
-      "le-chat-mistral-web": 0.126,
       "meta-llama-4-web": 0.161,
       "gemini-2-5-pro-web": 0.103,
       "deepseek-r1-web": 0.126,
@@ -8561,8 +8445,8 @@
       "claude-opus-4-8-web": 0.115,
       "cohere-command-a": 0.25,
       "phi-4": 0.188,
-      "gemma-2-27b": 0.125,
       "manus-web": 0.141,
+      "le-chat-mistral-web": 0.126,
       "grok-4-heavy-web": 0.103,
       "lfm-40b": 0.375
     },
@@ -8623,7 +8507,6 @@
       "chatgpt-5-thinking-web": 0.361,
       "llama-4-scout": 0.25,
       "perplexity-sonar-pro-web": 0.278,
-      "le-chat-mistral-web": 0.264,
       "meta-llama-4-web": 0.222,
       "gemini-2-5-pro-web": 0.319,
       "deepseek-r1-web": 0.278,
@@ -8632,8 +8515,8 @@
       "claude-opus-4-8-web": 0.417,
       "cohere-command-a": 0.0,
       "phi-4": 0.0,
-      "gemma-2-27b": 0.0,
       "manus-web": 1.0,
+      "le-chat-mistral-web": 0.264,
       "grok-4-heavy-web": 0.347,
       "lfm-40b": 0.0
     },
@@ -8694,7 +8577,6 @@
       "chatgpt-5-thinking-web": 0.569,
       "llama-4-scout": 0.25,
       "perplexity-sonar-pro-web": 0.542,
-      "le-chat-mistral-web": 0.389,
       "meta-llama-4-web": 0.292,
       "gemini-2-5-pro-web": 0.5,
       "deepseek-r1-web": 0.347,
@@ -8703,8 +8585,8 @@
       "claude-opus-4-8-web": 0.5,
       "cohere-command-a": 0.0,
       "phi-4": 0.0,
-      "gemma-2-27b": 0.0,
       "manus-web": 0.333,
+      "le-chat-mistral-web": 0.389,
       "grok-4-heavy-web": 0.417,
       "lfm-40b": 0.0
     },
@@ -8765,7 +8647,6 @@
       "chatgpt-5-thinking-web": 1.0,
       "llama-4-scout": 0.292,
       "perplexity-sonar-pro-web": 0.57,
-      "le-chat-mistral-web": 0.52,
       "meta-llama-4-web": 0.37,
       "gemini-2-5-pro-web": 0.67,
       "deepseek-r1-web": 0.47,
@@ -8774,8 +8655,8 @@
       "claude-opus-4-8-web": 0.59,
       "cohere-command-a": 0.536,
       "phi-4": 0.312,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.361,
+      "le-chat-mistral-web": 0.52,
       "grok-4-heavy-web": 0.56,
       "lfm-40b": 0.062
     },
@@ -8836,7 +8717,6 @@
       "chatgpt-5-thinking-web": 0.292,
       "llama-4-scout": 1.0,
       "perplexity-sonar-pro-web": 0.229,
-      "le-chat-mistral-web": 0.333,
       "meta-llama-4-web": 0.208,
       "gemini-2-5-pro-web": 0.229,
       "deepseek-r1-web": 0.146,
@@ -8845,8 +8725,8 @@
       "claude-opus-4-8-web": 0.271,
       "cohere-command-a": 0.286,
       "phi-4": 0.125,
-      "gemma-2-27b": 0.125,
       "manus-web": 0.25,
+      "le-chat-mistral-web": 0.333,
       "grok-4-heavy-web": 0.229,
       "lfm-40b": 0.062
     },
@@ -8907,7 +8787,6 @@
       "chatgpt-5-thinking-web": 0.57,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 1.0,
-      "le-chat-mistral-web": 0.57,
       "meta-llama-4-web": 0.33,
       "gemini-2-5-pro-web": 0.54,
       "deepseek-r1-web": 0.49,
@@ -8916,80 +8795,9 @@
       "claude-opus-4-8-web": 0.54,
       "cohere-command-a": 0.429,
       "phi-4": 0.625,
-      "gemma-2-27b": 0.125,
       "manus-web": 0.278,
+      "le-chat-mistral-web": 0.57,
       "grok-4-heavy-web": 0.57,
-      "lfm-40b": 0.0
-    },
-    "le-chat-mistral-web": {
-      "grok-4-fast": 0.54,
-      "mistral-small-3": 0.61,
-      "wizardlm-2-8x22b": 0.6,
-      "gpt-4-1": 0.54,
-      "claude-opus-4-7": 0.55,
-      "o4-mini": 0.53,
-      "chatgpt-5": 0.52,
-      "claude-opus-4-5": 0.58,
-      "gemini-2-5-flash": 0.52,
-      "grok-4-heavy": 0.54,
-      "mistral-medium-3": 0.62,
-      "o1": 0.52,
-      "claude-sonnet-4-6": 0.56,
-      "o3": 0.59,
-      "le-chat-mistral": 1.0,
-      "llama-4-maverick": 0.39,
-      "chatgpt-5-nano": 0.37,
-      "qwen-3-235b": 0.36,
-      "deepseek-v3-1": 0.46,
-      "chatgpt-5-thinking": 0.52,
-      "chatgpt-5-mini": 0.5,
-      "grok-4": 0.59,
-      "perplexity-sonar-reasoning": 0.53,
-      "gpt-4o": 0.49,
-      "qwen-3-coder": 0.41,
-      "llama-3-1-70b": 0.26,
-      "perplexity-sonar-large": 0.48,
-      "kimi-k2": 0.47,
-      "claude-sonnet-4-5": 0.59,
-      "perplexity-sonar-pro": 0.57,
-      "gemini-2-5-flash-lite": 0.417,
-      "deepseek-r1": 0.52,
-      "qwen-3-max": 0.57,
-      "claude-haiku-4-5": 0.44,
-      "ministral-8b": 0.26,
-      "gemma-3-27b": 0.31,
-      "deepseek-v3": 0.52,
-      "gemma-3-12b": 0.23,
-      "mixtral-8x22b": 0.48,
-      "llama-3-3-70b": 0.33,
-      "claude-fable-5": 0.375,
-      "jamba-1-5-large": 0.36,
-      "meta-llama-4": 0.38,
-      "qwen-2-5-72b": 0.36,
-      "codestral": 0.36,
-      "gemini-2-5-pro": 0.52,
-      "deepseek-v3-2": 0.54,
-      "cohere-command-r": 0.29,
-      "cohere-command-r-plus": 0.19,
-      "claude-haiku-3-5": 0.444,
-      "phi-4-mini": 0.126,
-      "manus": 0.264,
-      "copilot-microsoft": 0.389,
-      "chatgpt-5-thinking-web": 0.52,
-      "llama-4-scout": 0.333,
-      "perplexity-sonar-pro-web": 0.57,
-      "le-chat-mistral-web": 1.0,
-      "meta-llama-4-web": 0.38,
-      "gemini-2-5-pro-web": 0.52,
-      "deepseek-r1-web": 0.52,
-      "qwen-3-max-web": 0.57,
-      "copilot-microsoft-web": 0.389,
-      "claude-opus-4-8-web": 0.55,
-      "cohere-command-a": 0.5,
-      "phi-4": 0.562,
-      "gemma-2-27b": 0.25,
-      "manus-web": 0.264,
-      "grok-4-heavy-web": 0.54,
       "lfm-40b": 0.0
     },
     "meta-llama-4-web": {
@@ -9049,7 +8857,6 @@
       "chatgpt-5-thinking-web": 0.37,
       "llama-4-scout": 0.208,
       "perplexity-sonar-pro-web": 0.33,
-      "le-chat-mistral-web": 0.38,
       "meta-llama-4-web": 1.0,
       "gemini-2-5-pro-web": 0.4,
       "deepseek-r1-web": 0.4,
@@ -9058,8 +8865,8 @@
       "claude-opus-4-8-web": 0.34,
       "cohere-command-a": 0.5,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.222,
+      "le-chat-mistral-web": 0.38,
       "grok-4-heavy-web": 0.38,
       "lfm-40b": 0.062
     },
@@ -9120,7 +8927,6 @@
       "chatgpt-5-thinking-web": 0.67,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.54,
-      "le-chat-mistral-web": 0.52,
       "meta-llama-4-web": 0.4,
       "gemini-2-5-pro-web": 1.0,
       "deepseek-r1-web": 0.57,
@@ -9129,8 +8935,8 @@
       "claude-opus-4-8-web": 0.59,
       "cohere-command-a": 0.536,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.319,
+      "le-chat-mistral-web": 0.52,
       "grok-4-heavy-web": 0.6,
       "lfm-40b": 0.0
     },
@@ -9191,7 +8997,6 @@
       "chatgpt-5-thinking-web": 0.47,
       "llama-4-scout": 0.146,
       "perplexity-sonar-pro-web": 0.49,
-      "le-chat-mistral-web": 0.52,
       "meta-llama-4-web": 0.4,
       "gemini-2-5-pro-web": 0.57,
       "deepseek-r1-web": 1.0,
@@ -9200,8 +9005,8 @@
       "claude-opus-4-8-web": 0.51,
       "cohere-command-a": 0.536,
       "phi-4": 0.5,
-      "gemma-2-27b": 0.125,
       "manus-web": 0.278,
+      "le-chat-mistral-web": 0.52,
       "grok-4-heavy-web": 0.43,
       "lfm-40b": 0.0
     },
@@ -9262,7 +9067,6 @@
       "chatgpt-5-thinking-web": 0.49,
       "llama-4-scout": 0.312,
       "perplexity-sonar-pro-web": 0.49,
-      "le-chat-mistral-web": 0.57,
       "meta-llama-4-web": 0.36,
       "gemini-2-5-pro-web": 0.6,
       "deepseek-r1-web": 0.54,
@@ -9271,8 +9075,8 @@
       "claude-opus-4-8-web": 0.53,
       "cohere-command-a": 0.536,
       "phi-4": 0.625,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.236,
+      "le-chat-mistral-web": 0.57,
       "grok-4-heavy-web": 0.56,
       "lfm-40b": 0.0
     },
@@ -9333,7 +9137,6 @@
       "chatgpt-5-thinking-web": 0.569,
       "llama-4-scout": 0.25,
       "perplexity-sonar-pro-web": 0.542,
-      "le-chat-mistral-web": 0.389,
       "meta-llama-4-web": 0.292,
       "gemini-2-5-pro-web": 0.5,
       "deepseek-r1-web": 0.347,
@@ -9342,8 +9145,8 @@
       "claude-opus-4-8-web": 0.5,
       "cohere-command-a": 0.0,
       "phi-4": 0.0,
-      "gemma-2-27b": 0.0,
       "manus-web": 0.333,
+      "le-chat-mistral-web": 0.389,
       "grok-4-heavy-web": 0.417,
       "lfm-40b": 0.0
     },
@@ -9404,7 +9207,6 @@
       "chatgpt-5-thinking-web": 0.59,
       "llama-4-scout": 0.271,
       "perplexity-sonar-pro-web": 0.54,
-      "le-chat-mistral-web": 0.55,
       "meta-llama-4-web": 0.34,
       "gemini-2-5-pro-web": 0.59,
       "deepseek-r1-web": 0.51,
@@ -9413,8 +9215,8 @@
       "claude-opus-4-8-web": 1.0,
       "cohere-command-a": 0.5,
       "phi-4": 0.688,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.417,
+      "le-chat-mistral-web": 0.55,
       "grok-4-heavy-web": 0.56,
       "lfm-40b": 0.0
     },
@@ -9475,7 +9277,6 @@
       "chatgpt-5-thinking-web": 0.536,
       "llama-4-scout": 0.286,
       "perplexity-sonar-pro-web": 0.429,
-      "le-chat-mistral-web": 0.5,
       "meta-llama-4-web": 0.5,
       "gemini-2-5-pro-web": 0.536,
       "deepseek-r1-web": 0.536,
@@ -9484,8 +9285,8 @@
       "claude-opus-4-8-web": 0.5,
       "cohere-command-a": 1.0,
       "phi-4": 0.438,
-      "gemma-2-27b": 0.25,
       "manus-web": 0.0,
+      "le-chat-mistral-web": 0.5,
       "grok-4-heavy-web": 0.607,
       "lfm-40b": 0.0
     },
@@ -9546,7 +9347,6 @@
       "chatgpt-5-thinking-web": 0.312,
       "llama-4-scout": 0.125,
       "perplexity-sonar-pro-web": 0.625,
-      "le-chat-mistral-web": 0.562,
       "meta-llama-4-web": 0.438,
       "gemini-2-5-pro-web": 0.5,
       "deepseek-r1-web": 0.5,
@@ -9555,80 +9355,9 @@
       "claude-opus-4-8-web": 0.688,
       "cohere-command-a": 0.438,
       "phi-4": 1.0,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.0,
+      "le-chat-mistral-web": 0.562,
       "grok-4-heavy-web": 0.625,
-      "lfm-40b": 0.0
-    },
-    "gemma-2-27b": {
-      "grok-4-fast": 0.375,
-      "mistral-small-3": 0.188,
-      "wizardlm-2-8x22b": 0.25,
-      "gpt-4-1": 0.25,
-      "claude-opus-4-7": 0.188,
-      "o4-mini": 0.312,
-      "chatgpt-5": 0.125,
-      "claude-opus-4-5": 0.188,
-      "gemini-2-5-flash": 0.188,
-      "grok-4-heavy": 0.188,
-      "mistral-medium-3": 0.188,
-      "o1": 0.188,
-      "claude-sonnet-4-6": 0.25,
-      "o3": 0.188,
-      "le-chat-mistral": 0.25,
-      "llama-4-maverick": 0.25,
-      "chatgpt-5-nano": 0.188,
-      "qwen-3-235b": 0.188,
-      "deepseek-v3-1": 0.125,
-      "chatgpt-5-thinking": 0.25,
-      "chatgpt-5-mini": 0.25,
-      "grok-4": 0.125,
-      "perplexity-sonar-reasoning": 0.25,
-      "gpt-4o": 0.188,
-      "qwen-3-coder": 0.375,
-      "llama-3-1-70b": 0.0,
-      "perplexity-sonar-large": 0.188,
-      "kimi-k2": 0.312,
-      "claude-sonnet-4-5": 0.25,
-      "perplexity-sonar-pro": 0.125,
-      "gemini-2-5-flash-lite": 0.25,
-      "deepseek-r1": 0.125,
-      "qwen-3-max": 0.188,
-      "claude-haiku-4-5": 0.312,
-      "ministral-8b": 0.188,
-      "gemma-3-27b": 0.188,
-      "deepseek-v3": 0.25,
-      "gemma-3-12b": 0.375,
-      "mixtral-8x22b": 0.25,
-      "llama-3-3-70b": 0.188,
-      "claude-fable-5": 0.188,
-      "jamba-1-5-large": 0.25,
-      "meta-llama-4": 0.188,
-      "qwen-2-5-72b": 0.188,
-      "codestral": 0.188,
-      "gemini-2-5-pro": 0.25,
-      "deepseek-v3-2": 0.125,
-      "cohere-command-r": 0.312,
-      "cohere-command-r-plus": 0.188,
-      "claude-haiku-3-5": 0.0,
-      "phi-4-mini": 0.125,
-      "manus": 0.0,
-      "copilot-microsoft": 0.0,
-      "chatgpt-5-thinking-web": 0.25,
-      "llama-4-scout": 0.125,
-      "perplexity-sonar-pro-web": 0.125,
-      "le-chat-mistral-web": 0.25,
-      "meta-llama-4-web": 0.188,
-      "gemini-2-5-pro-web": 0.25,
-      "deepseek-r1-web": 0.125,
-      "qwen-3-max-web": 0.188,
-      "copilot-microsoft-web": 0.0,
-      "claude-opus-4-8-web": 0.188,
-      "cohere-command-a": 0.25,
-      "phi-4": 0.188,
-      "gemma-2-27b": 1.0,
-      "manus-web": 0.0,
-      "grok-4-heavy-web": 0.188,
       "lfm-40b": 0.0
     },
     "manus-web": {
@@ -9688,7 +9417,6 @@
       "chatgpt-5-thinking-web": 0.361,
       "llama-4-scout": 0.25,
       "perplexity-sonar-pro-web": 0.278,
-      "le-chat-mistral-web": 0.264,
       "meta-llama-4-web": 0.222,
       "gemini-2-5-pro-web": 0.319,
       "deepseek-r1-web": 0.278,
@@ -9697,9 +9425,79 @@
       "claude-opus-4-8-web": 0.417,
       "cohere-command-a": 0.0,
       "phi-4": 0.0,
-      "gemma-2-27b": 0.0,
       "manus-web": 1.0,
+      "le-chat-mistral-web": 0.264,
       "grok-4-heavy-web": 0.347,
+      "lfm-40b": 0.0
+    },
+    "le-chat-mistral-web": {
+      "grok-4-fast": 0.54,
+      "mistral-small-3": 0.61,
+      "wizardlm-2-8x22b": 0.6,
+      "gpt-4-1": 0.54,
+      "claude-opus-4-7": 0.55,
+      "o4-mini": 0.53,
+      "chatgpt-5": 0.52,
+      "claude-opus-4-5": 0.58,
+      "gemini-2-5-flash": 0.52,
+      "grok-4-heavy": 0.54,
+      "mistral-medium-3": 0.62,
+      "o1": 0.52,
+      "claude-sonnet-4-6": 0.56,
+      "o3": 0.59,
+      "le-chat-mistral": 1.0,
+      "llama-4-maverick": 0.39,
+      "chatgpt-5-nano": 0.37,
+      "qwen-3-235b": 0.36,
+      "deepseek-v3-1": 0.46,
+      "chatgpt-5-thinking": 0.52,
+      "chatgpt-5-mini": 0.5,
+      "grok-4": 0.59,
+      "perplexity-sonar-reasoning": 0.53,
+      "gpt-4o": 0.49,
+      "qwen-3-coder": 0.41,
+      "llama-3-1-70b": 0.26,
+      "perplexity-sonar-large": 0.48,
+      "kimi-k2": 0.47,
+      "claude-sonnet-4-5": 0.59,
+      "perplexity-sonar-pro": 0.57,
+      "gemini-2-5-flash-lite": 0.417,
+      "deepseek-r1": 0.52,
+      "qwen-3-max": 0.57,
+      "claude-haiku-4-5": 0.44,
+      "ministral-8b": 0.26,
+      "gemma-3-27b": 0.31,
+      "deepseek-v3": 0.52,
+      "gemma-3-12b": 0.23,
+      "mixtral-8x22b": 0.48,
+      "llama-3-3-70b": 0.33,
+      "claude-fable-5": 0.375,
+      "jamba-1-5-large": 0.36,
+      "meta-llama-4": 0.38,
+      "qwen-2-5-72b": 0.36,
+      "codestral": 0.36,
+      "gemini-2-5-pro": 0.52,
+      "deepseek-v3-2": 0.54,
+      "cohere-command-r": 0.29,
+      "cohere-command-r-plus": 0.19,
+      "claude-haiku-3-5": 0.444,
+      "phi-4-mini": 0.126,
+      "manus": 0.264,
+      "copilot-microsoft": 0.389,
+      "chatgpt-5-thinking-web": 0.52,
+      "llama-4-scout": 0.333,
+      "perplexity-sonar-pro-web": 0.57,
+      "meta-llama-4-web": 0.38,
+      "gemini-2-5-pro-web": 0.52,
+      "deepseek-r1-web": 0.52,
+      "qwen-3-max-web": 0.57,
+      "copilot-microsoft-web": 0.389,
+      "claude-opus-4-8-web": 0.55,
+      "cohere-command-a": 0.5,
+      "phi-4": 0.562,
+      "manus-web": 0.264,
+      "le-chat-mistral-web": 1.0,
+      "grok-4-heavy-web": 0.54,
       "lfm-40b": 0.0
     },
     "grok-4-heavy-web": {
@@ -9759,7 +9557,6 @@
       "chatgpt-5-thinking-web": 0.56,
       "llama-4-scout": 0.229,
       "perplexity-sonar-pro-web": 0.57,
-      "le-chat-mistral-web": 0.54,
       "meta-llama-4-web": 0.38,
       "gemini-2-5-pro-web": 0.6,
       "deepseek-r1-web": 0.43,
@@ -9768,8 +9565,8 @@
       "claude-opus-4-8-web": 0.56,
       "cohere-command-a": 0.607,
       "phi-4": 0.625,
-      "gemma-2-27b": 0.188,
       "manus-web": 0.347,
+      "le-chat-mistral-web": 0.54,
       "grok-4-heavy-web": 1.0,
       "lfm-40b": 0.0
     },
@@ -9830,7 +9627,6 @@
       "chatgpt-5-thinking-web": 0.062,
       "llama-4-scout": 0.062,
       "perplexity-sonar-pro-web": 0.0,
-      "le-chat-mistral-web": 0.0,
       "meta-llama-4-web": 0.062,
       "gemini-2-5-pro-web": 0.0,
       "deepseek-r1-web": 0.0,
@@ -9839,8 +9635,8 @@
       "claude-opus-4-8-web": 0.0,
       "cohere-command-a": 0.0,
       "phi-4": 0.0,
-      "gemma-2-27b": 0.0,
       "manus-web": 0.0,
+      "le-chat-mistral-web": 0.0,
       "grok-4-heavy-web": 0.0,
       "lfm-40b": 1.0
     }
@@ -9852,14 +9648,14 @@
       "nome": "Os Sniper",
       "descricao": "alta taxa de placares exatos.",
       "eh_lider": true,
-      "n_ias": 25,
-      "pct_empates_palpitados": 0.194,
-      "avg_gols_total": 2.19,
-      "avg_saldo_abs": 1.29,
-      "concordancia_cristal": 0.659,
-      "taxa_exato": 0.176,
-      "taxa_acerto": 0.682,
-      "media_pontos": 512.3,
+      "n_ias": 23,
+      "pct_empates_palpitados": 0.19,
+      "avg_gols_total": 2.21,
+      "avg_saldo_abs": 1.31,
+      "concordancia_cristal": 0.66,
+      "taxa_exato": 0.164,
+      "taxa_acerto": 0.681,
+      "media_pontos": 536.1,
       "ias_exemplo": [
         "Grok 4 Fast Reasoning",
         "Mistral Small 3",
@@ -9870,42 +9666,46 @@
     },
     {
       "id": 1,
-      "emoji": "🦓",
-      "nome": "Os Rebeldes",
-      "descricao": "fogem da manada — apostam no improvável. 100% dos palpites em empate · média só 0.0 gols/jogo",
+      "emoji": "🤝",
+      "nome": "Os Pacifistas",
+      "descricao": "apostam muito em empate. 25% dos palpites em empate · média só 2.1 gols/jogo",
       "eh_lider": false,
-      "n_ias": 1,
-      "pct_empates_palpitados": 1.0,
-      "avg_gols_total": 0.0,
-      "avg_saldo_abs": 0.0,
-      "concordancia_cristal": 0.0,
-      "taxa_exato": 0.0,
-      "taxa_acerto": 0.188,
-      "media_pontos": 30.0,
+      "n_ias": 5,
+      "pct_empates_palpitados": 0.25,
+      "avg_gols_total": 2.07,
+      "avg_saldo_abs": 1.22,
+      "concordancia_cristal": 0.675,
+      "taxa_exato": 0.206,
+      "taxa_acerto": 0.673,
+      "media_pontos": 462.6,
       "ias_exemplo": [
-        "Liquid AI LFM-40B"
+        "Claude Opus 4.7",
+        "Claude Opus 4.8 (via Web)",
+        "Claude Opus 4.5",
+        "OpenAI o3",
+        "Phi-4"
       ]
     },
     {
       "id": 2,
-      "emoji": "⚔️",
-      "nome": "Os Decididos",
-      "descricao": "quase nunca apostam em empate. média só 2.0 gols/jogo",
+      "emoji": "🦓",
+      "nome": "Os Rebeldes",
+      "descricao": "fogem da manada — apostam no improvável. média só 1.8 gols/jogo",
       "eh_lider": false,
-      "n_ias": 17,
-      "pct_empates_palpitados": 0.135,
-      "avg_gols_total": 1.96,
-      "avg_saldo_abs": 1.33,
-      "concordancia_cristal": 0.337,
-      "taxa_exato": 0.104,
-      "taxa_acerto": 0.655,
-      "media_pontos": 448.4,
+      "n_ias": 13,
+      "pct_empates_palpitados": 0.233,
+      "avg_gols_total": 1.77,
+      "avg_saldo_abs": 1.19,
+      "concordancia_cristal": 0.291,
+      "taxa_exato": 0.091,
+      "taxa_acerto": 0.603,
+      "media_pontos": 419.7,
       "ias_exemplo": [
-        "Qwen 3 235B",
         "Llama 3.1 70B",
-        "Gemma 3 27B",
         "Ministral 8B",
-        "AI21 Jamba 1.5 Large"
+        "Gemma 3 12B",
+        "Llama 3.3 70B",
+        "Meta AI (Llama 4)"
       ]
     },
     {
@@ -9914,14 +9714,14 @@
       "nome": "Os Goleadeiros",
       "descricao": "preveem placares elásticos.",
       "eh_lider": false,
-      "n_ias": 26,
-      "pct_empates_palpitados": 0.169,
-      "avg_gols_total": 2.26,
-      "avg_saldo_abs": 1.39,
-      "concordancia_cristal": 0.564,
-      "taxa_exato": 0.136,
-      "taxa_acerto": 0.658,
-      "media_pontos": 469.5,
+      "n_ias": 27,
+      "pct_empates_palpitados": 0.145,
+      "avg_gols_total": 2.23,
+      "avg_saldo_abs": 1.41,
+      "concordancia_cristal": 0.53,
+      "taxa_exato": 0.131,
+      "taxa_acerto": 0.663,
+      "media_pontos": 459.8,
       "ias_exemplo": [
         "Llama 4 Maverick",
         "ChatGPT 5 nano",
@@ -9966,11 +9766,6 @@
         "valor": 0.0
       },
       {
-        "slug": "gemma-2-27b",
-        "nome": "Gemma 2 27B (legacy)",
-        "valor": 0.0
-      },
-      {
         "slug": "manus-web",
         "nome": "Manus Web",
         "valor": 0.0
@@ -9983,6 +9778,11 @@
       {
         "slug": "gemma-3-27b",
         "nome": "Gemma 3 27B",
+        "valor": 0.08
+      },
+      {
+        "slug": "gemma-3-12b",
+        "nome": "Gemma 3 12B",
         "valor": 0.08
       }
     ],
@@ -10084,14 +9884,14 @@
         "valor": 0.18
       },
       {
-        "slug": "gemma-2-27b",
-        "nome": "Gemma 2 27B (legacy)",
-        "valor": 0.25
-      },
-      {
         "slug": "gemma-3-12b",
         "nome": "Gemma 3 12B",
         "valor": 0.26
+      },
+      {
+        "slug": "cohere-command-r",
+        "nome": "Cohere Command R",
+        "valor": 0.29
       }
     ],
     "maior_taxa_exato": [
@@ -10123,11 +9923,6 @@
     ],
     "melhor_em_jogos_equilibrados": [
       {
-        "slug": "gemma-2-27b",
-        "nome": "Gemma 2 27B (legacy)",
-        "valor": 12.0
-      },
-      {
         "slug": "phi-4",
         "nome": "Phi-4",
         "valor": 10.0
@@ -10145,6 +9940,11 @@
       {
         "slug": "o1",
         "nome": "OpenAI o1 (legacy)",
+        "valor": 7.62
+      },
+      {
+        "slug": "claude-opus-4-8-web",
+        "nome": "Claude Opus 4.8 (via Web)",
         "valor": 7.62
       }
     ]
