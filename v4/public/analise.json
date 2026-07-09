@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-07-09T15:54:49.055889Z",
+  "gerado_em": "2026-07-09T15:58:19.135034Z",
   "n_ias": 68,
   "n_jogos_encerrados": 96,
   "perfis": [
@@ -4492,22 +4492,16 @@
       "taxa_acerto": 0.625,
       "taxa_exato": 0.125,
       "acerto_por_continente": {
-        "CONCACAF": {
-          "jogos": 6,
-          "pts": 54,
-          "media_pts": 9.0,
-          "taxa_acerto": 0.667
-        },
         "CAF": {
           "jogos": 11,
           "pts": 108,
           "media_pts": 9.82,
           "taxa_acerto": 0.727
         },
-        "CONMEBOL": {
-          "jogos": 9,
-          "pts": 88,
-          "media_pts": 9.78,
+        "CONCACAF": {
+          "jogos": 6,
+          "pts": 54,
+          "media_pts": 9.0,
           "taxa_acerto": 0.667
         },
         "UEFA": {
@@ -4515,6 +4509,12 @@
           "pts": 98,
           "media_pts": 6.12,
           "taxa_acerto": 0.5
+        },
+        "CONMEBOL": {
+          "jogos": 9,
+          "pts": 88,
+          "media_pts": 9.78,
+          "taxa_acerto": 0.667
         },
         "AFC": {
           "jogos": 2,
@@ -4557,29 +4557,29 @@
       "taxa_acerto": 0.688,
       "taxa_exato": 0.25,
       "acerto_por_continente": {
-        "CONCACAF": {
-          "jogos": 3,
-          "pts": 40,
-          "media_pts": 13.33,
-          "taxa_acerto": 1.0
-        },
         "CAF": {
           "jogos": 9,
           "pts": 100,
           "media_pts": 11.11,
           "taxa_acerto": 0.667
         },
-        "CONMEBOL": {
-          "jogos": 5,
-          "pts": 50,
-          "media_pts": 10.0,
-          "taxa_acerto": 0.8
+        "CONCACAF": {
+          "jogos": 3,
+          "pts": 40,
+          "media_pts": 13.33,
+          "taxa_acerto": 1.0
         },
         "UEFA": {
           "jogos": 10,
           "pts": 60,
           "media_pts": 6.0,
           "taxa_acerto": 0.5
+        },
+        "CONMEBOL": {
+          "jogos": 5,
+          "pts": 50,
+          "media_pts": 10.0,
+          "taxa_acerto": 0.8
         },
         "AFC": {
           "jogos": 2,
@@ -4838,27 +4838,27 @@
       "taxa_acerto": 0.188,
       "taxa_exato": 0.0,
       "acerto_por_continente": {
-        "CONCACAF": {
-          "jogos": 3,
-          "pts": 0,
-          "media_pts": 0.0,
-          "taxa_acerto": 0.0
-        },
         "CAF": {
           "jogos": 9,
           "pts": 20,
           "media_pts": 2.22,
           "taxa_acerto": 0.222
         },
-        "CONMEBOL": {
-          "jogos": 5,
-          "pts": 10,
-          "media_pts": 2.0,
-          "taxa_acerto": 0.2
+        "CONCACAF": {
+          "jogos": 3,
+          "pts": 0,
+          "media_pts": 0.0,
+          "taxa_acerto": 0.0
         },
         "UEFA": {
           "jogos": 10,
           "pts": 20,
+          "media_pts": 2.0,
+          "taxa_acerto": 0.2
+        },
+        "CONMEBOL": {
+          "jogos": 5,
+          "pts": 10,
           "media_pts": 2.0,
           "taxa_acerto": 0.2
         },

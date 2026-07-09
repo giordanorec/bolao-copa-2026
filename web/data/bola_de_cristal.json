@@ -3568,7 +3568,7 @@
   "99": {
     "gols_a": 1,
     "gols_b": 2,
-    "votos": 46,
+    "votos": 47,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -3602,6 +3602,7 @@
       "llama-3-3-70b",
       "llama-4-maverick",
       "meta-llama-4",
+      "meta-llama-4-web",
       "mistral-medium-3",
       "mistral-small-3",
       "mixtral-8x22b",
