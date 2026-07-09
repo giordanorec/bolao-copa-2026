@@ -6,20 +6,20 @@ export default function BannerR32({ locale }: { locale: Locale }) {
   const es = locale === "es";
 
   const tit = pt
-    ? "💔 Brasil eliminado nas Oitavas — 1×2 pra Noruega"
+    ? "🇫🇷 Les Bleus 2×0 Marrocos — 23 IAs cravaram + Bola de Cristal ACERTOU!"
     : en
-      ? "💔 Brazil out in the Round of 16 — Norway wins 2×1"
+      ? "🇫🇷 Les Bleus 2×0 Morocco — 23 AIs nailed it + Crystal Ball got it right!"
       : es
-        ? "💔 Brasil eliminado en Octavos — Noruega 2×1"
-        : "💔 Le Brésil éliminé en 8es — Norvège 2×1";
+        ? "🇫🇷 Les Bleus 2×0 Marruecos — 23 IAs clavaron + ¡Bola de Cristal acertó!"
+        : "🇫🇷 Les Bleus 2×0 Maroc — 23 IA ont trouvé + La Boule de Cristal a réussi !";
 
   const brasilLinha = pt
-    ? "Meus pêsames à torcida brasileira. Só 2 de 59 IAs (llama-3-1-70b e llama-3-3-70b) tinham previsto vitória norueguesa — e AS DUAS cravaram o 1×2 exato. Cabeça erguida, Canarinho. A jornada continua em 2030, e o hexa vai vir."
+    ? "Primeira Quartas da Copa 2026 em Boston. 57 de 60 IAs (95%) previram vitória francesa; 23 cravaram o 0×2 exato (chatgpt-5-mini, claude-haiku, claude-sonnet-4-5, deepseek-r1, deepseek-v3, gemini-2-5-pro e mais 17). A Bola de Cristal também apostou 2×0 e ganhou 20 pts. França encara vencedor de Espanha × Bélgica na Semi."
     : en
-      ? "Condolences to Brazilian fans. Only 2 of 59 AIs (llama-3-1-70b and llama-3-3-70b) had predicted a Norway win — and BOTH nailed the exact 1×2. Head up, Canarinho. The road continues in 2030, and the sixth title will come."
+      ? "First quarterfinal of Copa 2026 in Boston. 57 of 60 AIs (95%) predicted a French win; 23 nailed the exact 0×2 (chatgpt-5-mini, claude-haiku, claude-sonnet-4-5, deepseek-r1, deepseek-v3, gemini-2-5-pro and 17 more). The Crystal Ball also called 2×0 and scored 20 pts. France meets the winner of Spain × Belgium in the Semi."
       : es
-        ? "Mis condolencias a la afición brasileña. Solo 2 de 59 IAs (llama-3-1-70b y llama-3-3-70b) habían pronosticado la victoria noruega — y AMBAS clavaron el 1×2 exacto. Cabeza en alto, Canarinho. El camino sigue en 2030 y el hexa llegará."
-        : "Toutes nos condoléances aux supporters brésiliens. Seulement 2 des 59 IA (llama-3-1-70b et llama-3-3-70b) avaient prédit la victoire norvégienne — et les DEUX ont trouvé le 1×2 exact. Tête haute, Canarinho. La route continue en 2030, et le sixième titre viendra.";
+        ? "Primer partido de Cuartos de Copa 2026 en Boston. 57 de 60 IAs (95%) pronosticaron victoria francesa; 23 clavaron el 0×2 exacto (chatgpt-5-mini, claude-haiku, claude-sonnet-4-5, deepseek-r1, deepseek-v3, gemini-2-5-pro y 17 más). La Bola de Cristal también apostó 2×0 y ganó 20 pts. Francia enfrenta al ganador de España × Bélgica en Semifinales."
+        : "Premier Quart de la Coupe 2026 à Boston. 57 des 60 IA (95%) ont prédit la victoire française ; 23 ont trouvé le 0×2 exact (chatgpt-5-mini, claude-haiku, claude-sonnet-4-5, deepseek-r1, deepseek-v3, gemini-2-5-pro et 17 autres). La Boule de Cristal a également misé 2×0 et gagné 20 pts. La France affronte le vainqueur d'Espagne × Belgique en Demi.";
 
   // Frases nas línguas nativas (sem tradução — descobrir é a graça).
   // Eliminados → "até a próxima". Classificados → parabéns + segue na Copa.

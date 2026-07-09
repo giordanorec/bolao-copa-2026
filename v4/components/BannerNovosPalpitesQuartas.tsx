@@ -13,39 +13,39 @@ const TX: Record<
 > = {
   pt: {
     kicker: "🔥 NOVOS PALPITES · QUARTAS DE FINAL",
-    h1: "As IAs REPALPITARAM. 52 placares pras 4 Quartas — e Argentina×Suíça surpreendeu.",
+    h1: "As IAs REPALPITARAM. 60 placares pras 4 Quartas — e Argentina×Suíça surpreendeu.",
     lede:
       "Oitavas fecharam: França, Marrocos, Espanha, Bélgica, Noruega, Inglaterra, Argentina e Suíça estão vivos. As IAs cravaram consensos claros — Espanha 1×0 (79%), Inglaterra 2×1 (85%) — e uma surpresa: 55% preveem Argentina 1×1 Suíça no regulamentar. Dossiê completo com odds, lesões (Onana fora, Saibari dúvida, doença varre elenco norueguês) e escalações prováveis.",
     cta: "Ver os palpites por jogo →",
     rodape:
-      "52 IAs · 4 jogos das Quartas · placar exato de cada uma · atualizado agora",
+      "60 IAs · 4 jogos das Quartas · placar exato de cada uma · atualizado agora",
   },
   en: {
     kicker: "🔥 NEW PREDICTIONS · QUARTERFINALS",
-    h1: "The AIs updated. 52 predictions for the 4 QFs — and Argentina×Switzerland shocked.",
+    h1: "The AIs updated. 60 predictions for the 4 QFs — and Argentina×Switzerland shocked.",
     lede:
       "Round of 16 closed: France, Morocco, Spain, Belgium, Norway, England, Argentina and Switzerland are still alive. The AIs delivered strong consensus — Spain 1×0 (79%), England 2×1 (85%) — and one surprise: 55% predict Argentina 1×1 Switzerland in regulation. Full dossier with odds, injuries (Onana out, Saibari doubtful, Norway hit by illness), and probable lineups.",
     cta: "See predictions per game →",
     rodape:
-      "52 AIs · 4 QF matches · exact score from each · updated just now",
+      "60 AIs · 4 QF matches · exact score from each · updated just now",
   },
   es: {
     kicker: "🔥 NUEVOS PRONÓSTICOS · CUARTOS DE FINAL",
-    h1: "Las IAs actualizaron. 52 pronósticos para los 4 de Cuartos — Argentina×Suiza sorprende.",
+    h1: "Las IAs actualizaron. 60 pronósticos para los 4 de Cuartos — Argentina×Suiza sorprende.",
     lede:
       "Los Octavos cerraron: Francia, Marruecos, España, Bélgica, Noruega, Inglaterra, Argentina y Suiza siguen vivos. Consenso claro — España 1×0 (79%), Inglaterra 2×1 (85%) — y una sorpresa: 55% predice Argentina 1×1 Suiza en el 90'. Dossier completo con cuotas, lesiones (Onana fuera, Saibari dudoso, brote de gripe en Noruega) y alineaciones probables.",
     cta: "Ver pronósticos por partido →",
     rodape:
-      "52 IAs · 4 partidos de Cuartos · marcador exacto de cada una · actualizado ahora",
+      "60 IAs · 4 partidos de Cuartos · marcador exacto de cada una · actualizado ahora",
   },
   fr: {
     kicker: "🔥 NOUVEAUX PRONOSTICS · QUARTS DE FINALE",
-    h1: "Les IA ont refait leurs pronos. 52 scores pour les 4 Quarts — Argentine×Suisse crée la surprise.",
+    h1: "Les IA ont refait leurs pronos. 60 scores pour les 4 Quarts — Argentine×Suisse crée la surprise.",
     lede:
       "Les 8es sont bouclés : France, Maroc, Espagne, Belgique, Norvège, Angleterre, Argentine et Suisse restent en lice. Consensus net — Espagne 1×0 (79%), Angleterre 2×1 (85%) — et une surprise : 55% prédisent Argentine 1×1 Suisse dans le temps réglementaire. Dossier complet avec cotes, blessures (Onana forfait, Saibari incertain, virus dans le camp norvégien) et compositions probables.",
     cta: "Voir les pronos par match →",
     rodape:
-      "52 IA · 4 matchs des Quarts · score exact de chacune · mis à jour à l'instant",
+      "60 IA · 4 matchs des Quarts · score exact de chacune · mis à jour à l'instant",
   },
 };
 

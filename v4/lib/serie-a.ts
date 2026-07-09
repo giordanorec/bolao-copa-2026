@@ -48,7 +48,10 @@ export const FALLBACK_NAO_WEB: Record<string, string> = {
   "meta-llama-4-web": "meta-llama-4",
   "le-chat-mistral-web": "le-chat-mistral",
   "qwen-3-max-web": "qwen-3-max",
-  "manus-web": "manus",
+  // Manus-web usa dados de Kimi K2 (moonshotai/kimi-k2) porque a coleta web
+  // do Manus quebrou pra sempre. Kimi K2 tem 100 jogos completos (grupos +
+  // R32 + Oitavas + Quartas), enquanto o slug "manus" só tem 76.
+  "manus-web": "kimi-k2",
 };
 
 // irmão sem "-web" -> slug "-web" (reverso)
