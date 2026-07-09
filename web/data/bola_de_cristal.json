@@ -3519,7 +3519,7 @@
   "98": {
     "gols_a": 1,
     "gols_b": 0,
-    "votos": 42,
+    "votos": 43,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -3545,6 +3545,7 @@
       "jamba-1-5-large",
       "kimi-k2",
       "le-chat-mistral",
+      "le-chat-mistral-web",
       "llama-3-1-70b",
       "llama-3-3-70b",
       "llama-4-maverick",
@@ -3568,7 +3569,7 @@
   "99": {
     "gols_a": 1,
     "gols_b": 2,
-    "votos": 47,
+    "votos": 48,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -3595,6 +3596,7 @@
       "grok-4",
       "grok-4-fast",
       "grok-4-heavy",
+      "grok-4-heavy-web",
       "jamba-1-5-large",
       "kimi-k2",
       "le-chat-mistral",
