@@ -223,8 +223,14 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
     ranking.ias.map((ia) => [ia.slug, ia.nome_display]),
   );
   const canonical = (slug: string): string => slug;
+  // Kimi K2 é o irmão (sibling) do slot Manus na Série A — o mascote é Manus
+  // (via SIBLING_PARA_WEB no CorridaTopDown), então o nome também precisa ser
+  // "Manus", não "Kimi K2".
+  const APELIDO_OVERRIDE: Record<string, string> = {
+    "kimi-k2": "Manus",
+  };
   const nomeDe = (slug: string): string =>
-    nomeSerieA(slug) ?? nomePorSlug.get(slug) ?? slug;
+    APELIDO_OVERRIDE[slug] ?? nomeSerieA(slug) ?? nomePorSlug.get(slug) ?? slug;
 
   // Conjunto de slugs ativos (IAs que de fato palpitaram). Exclui as
   // vitrines "-web" da Série A (chatgpt-5-thinking-web, claude-opus-4-8-web,
