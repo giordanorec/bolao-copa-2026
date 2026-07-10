@@ -47,6 +47,7 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "es", flag: "🇲🇽", text: "Hasta la próxima, Tri — 2×3 con Inglaterra en el Azteca, un partidazo. México sale de cabeza erguida" },
     { lang: "pt", flag: "🇵🇹", text: "Até à próxima, Seleção das Quinas — 0×1 frente à Espanha em Dallas. CR7 despede-se com honra, o legado fica" },
     { lang: "ar", flag: "🇲🇦", text: "إلى اللقاء يا أسود الأطلس — 0×2 أمام فرنسا في بوسطن، لكن مغاربة العالم فخورون بجيل استثنائي" },
+    { lang: "nl", flag: "🇧🇪", text: "Tot ziens, Rode Duivels — 1×2 tegen Spanje in Los Angeles, maar de gouden generatie liet alles op het veld" },
   ];
 
   const congrats = [
@@ -54,7 +55,6 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "fr", flag: "🇫🇷", text: "Allez les Bleus ! Le rêve continue — la coupe nous attend" },
     { lang: "en", flag: "🇬🇧", text: "Come on, Three Lions — one more trophy, this could be the year" },
     { lang: "en", flag: "🇺🇸", text: "Let's go, USMNT — host and hero, keep the crowd loud" },
-    { lang: "nl", flag: "🇧🇪", text: "Kom op, Rode Duivels — een gouden generatie die eindelijk terugkomt" },
     { lang: "es", flag: "🇪🇸", text: "¡Vamos, La Roja! Yamal, Rodri y la generación que quiere el segundo mundial" },
     { lang: "de", flag: "🇨🇭", text: "Hopp Schwiiz — Nati wiiter uf em Weg, mir sind so stolz!" },
     { lang: "ar", flag: "🇪🇬", text: "مبروك يا فراعنة — أول ثمن نهائي في تاريخ الحديث، صلاح إن شاء الله معنا" },
@@ -98,12 +98,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Quartas · 1/4 jogos · França 2×0 Marrocos em Boston · Bleus na Semi"
+                ? "Quartas · 2/4 jogos · Espanha 2×1 Bélgica em LA · França × Espanha na Semi!"
                 : en
-                  ? "Quarterfinals · 1/4 · France 2×0 Morocco in Boston · Les Bleus into Semi"
+                  ? "Quarterfinals · 2/4 · Spain 2×1 Belgium in LA · France × Spain in the Semi!"
                   : es
-                    ? "Cuartos · 1/4 · Francia 2×0 Marruecos en Boston · Les Bleus a Semi"
-                    : "Quarts · 1/4 · France 2×0 Maroc à Boston · Les Bleus en Demi"}
+                    ? "Cuartos · 2/4 · España 2×1 Bélgica en LA · ¡Francia × España en Semis!"
+                    : "Quarts · 2/4 · Espagne 2×1 Belgique à LA · France × Espagne en Demi !"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>
