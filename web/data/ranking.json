@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-07-12T03:14:08-03:00",
+  "atualizado_em": "2026-07-12T03:19:11-03:00",
   "ias": [
     {
       "slug": "mistral-small-3",
@@ -1660,7 +1660,7 @@
       "placares_exatos": 5,
       "vencedores_acertados": 18,
       "jogos_palpitados": 28,
-      "palpites_total": 28,
+      "palpites_total": 30,
       "rank": 60,
       "grupos": {
         "pontos": 0,
@@ -1828,7 +1828,7 @@
       "placares_exatos": 3,
       "vencedores_acertados": 8,
       "jogos_palpitados": 12,
-      "palpites_total": 12,
+      "palpites_total": 14,
       "rank": 66,
       "grupos": {
         "pontos": 0,

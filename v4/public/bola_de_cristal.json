@@ -3662,7 +3662,7 @@
   "101": {
     "gols_a": 1,
     "gols_b": 1,
-    "votos": 47,
+    "votos": 49,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -3673,6 +3673,7 @@
       "claude-sonnet-4-5",
       "claude-sonnet-4-6",
       "codestral",
+      "copilot-microsoft-web",
       "deepseek-r1",
       "deepseek-r1-web",
       "deepseek-v3",
@@ -3688,6 +3689,7 @@
       "grok-4",
       "grok-4-fast",
       "grok-4-heavy",
+      "grok-4-heavy-web",
       "jamba-1-5-large",
       "kimi-k2",
       "le-chat-mistral",
@@ -3716,7 +3718,7 @@
   "102": {
     "gols_a": 1,
     "gols_b": 2,
-    "votos": 30,
+    "votos": 32,
     "fonte_ias": [
       "chatgpt-5",
       "chatgpt-5-mini",
@@ -3725,6 +3727,7 @@
       "claude-opus-4-7",
       "claude-sonnet-4-5",
       "claude-sonnet-4-6",
+      "copilot-microsoft-web",
       "deepseek-r1",
       "deepseek-r1-web",
       "deepseek-v3-1",
@@ -3733,6 +3736,7 @@
       "grok-4",
       "grok-4-fast",
       "grok-4-heavy",
+      "grok-4-heavy-web",
       "le-chat-mistral-web",
       "llama-4-maverick",
       "llama-4-scout",

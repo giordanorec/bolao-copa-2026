@@ -7551,6 +7551,16 @@
       "jogo_numero": 100,
       "gols_a": 2,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 101,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 102,
+      "gols_a": 1,
+      "gols_b": 2
     }
   ],
   "copilot-microsoft": [
@@ -14345,6 +14355,16 @@
       "jogo_numero": 100,
       "gols_a": 2,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 101,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 102,
+      "gols_a": 1,
+      "gols_b": 2
     }
   ],
   "grok-4-heavy": [
