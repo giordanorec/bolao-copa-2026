@@ -471,7 +471,7 @@ def _gerar_palpites_por_jogo() -> tuple[dict, dict, dict]:
     # Palpites de mata-mata coletados via API que vivem em disco
     # (data/palpites_matamata, palpites_oitavas, palpites_quartas) — funde por
     # cima do Supabase. Sem creds, este é o único caminho pra J97+ aparecer.
-    for subdir in ("palpites_matamata", "palpites_oitavas", "palpites_quartas"):
+    for subdir in ("palpites_matamata", "palpites_oitavas", "palpites_quartas", "palpites_semis"):
         disk_dir = ROOT / "data" / subdir
         if not disk_dir.is_dir():
             continue
