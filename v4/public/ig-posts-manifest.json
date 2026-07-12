@@ -437,103 +437,95 @@
     "id": "39_reel_oitavas-paraguai-x-franca",
     "tipo": "reel",
     "titulo": "Oitavas Paraguai X Franca",
-    "caption": "🔮 **Paraguai × França** — as IAs cravaram: **0×2**\r\n\r\nNas Oitavas da Copa 2026, 50 das 59 IAs que palpitaram este jogo apontaram **0×2** como placar mais provável (85% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #paraguai #franca #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
-    "roteiro": "# Reel — Oitavas J89: Paraguai × França\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Paraguai VS França |\r\n| 2.0–4.5s | Placar consenso enorme: **0×2** com \"85% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "caption": "🔮 **Paraguai × França** — as IAs cravaram: **0×2**\n\nNas Oitavas da Copa 2026, 50 das 59 IAs que palpitaram este jogo apontaram **0×2** como placar mais provável (85% do consenso).\n\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 47) estão públicos no site.\n\nVai bater as IAs? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #paraguai #franca #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J89: Paraguai × França\n\n**Duração:** 8s · 1080×1920\n\n| t | cena |\n|---|---|\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Paraguai VS França |\n| 2.0–4.5s | Placar consenso enorme: **0×2** com \"85% das 59 IAs cravaram\" e badge de força do consenso |\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\n\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\n\n**Poster:** frame do placar consenso (3.5s).\n\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/39_reel_oitavas-paraguai-x-franca/poster.png"
     ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/39_reel_oitavas-paraguai-x-franca/reel.mp4",
     "hasVideo": true
   },
   {
     "id": "40_reel_oitavas-canada-x-marrocos",
     "tipo": "reel",
     "titulo": "Oitavas Canada X Marrocos",
-    "caption": "🔮 **Canadá × Marrocos** — as IAs cravaram: **1×2**\r\n\r\nNas Oitavas da Copa 2026, 19 das 59 IAs que palpitaram este jogo apontaram **1×2** como placar mais provável (32% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #canada #marrocos #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
-    "roteiro": "# Reel — Oitavas J90: Canadá × Marrocos\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Canadá VS Marrocos |\r\n| 2.0–4.5s | Placar consenso enorme: **1×2** com \"32% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "caption": "🔮 **Canadá × Marrocos** — as IAs cravaram: **1×2**\n\nNas Oitavas da Copa 2026, 19 das 59 IAs que palpitaram este jogo apontaram **1×2** como placar mais provável (32% do consenso).\n\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 47) estão públicos no site.\n\nVai bater as IAs? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #canada #marrocos #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J90: Canadá × Marrocos\n\n**Duração:** 8s · 1080×1920\n\n| t | cena |\n|---|---|\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Canadá VS Marrocos |\n| 2.0–4.5s | Placar consenso enorme: **1×2** com \"32% das 59 IAs cravaram\" e badge de força do consenso |\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\n\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\n\n**Poster:** frame do placar consenso (3.5s).\n\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/40_reel_oitavas-canada-x-marrocos/poster.png"
     ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/40_reel_oitavas-canada-x-marrocos/reel.mp4",
     "hasVideo": true
   },
   {
     "id": "41_reel_oitavas-brasil-x-noruega",
     "tipo": "reel",
     "titulo": "Oitavas Brasil X Noruega",
-    "caption": "🔮 **Brasil × Noruega** — as IAs cravaram: **2×1**\r\n\r\nNas Oitavas da Copa 2026, 26 das 59 IAs que palpitaram este jogo apontaram **2×1** como placar mais provável (44% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #brasil #noruega #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
-    "roteiro": "# Reel — Oitavas J91: Brasil × Noruega\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Brasil VS Noruega |\r\n| 2.0–4.5s | Placar consenso enorme: **2×1** com \"44% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "caption": "🔮 **Brasil × Noruega** — as IAs cravaram: **2×1**\n\nNas Oitavas da Copa 2026, 26 das 59 IAs que palpitaram este jogo apontaram **2×1** como placar mais provável (44% do consenso).\n\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 47) estão públicos no site.\n\nVai bater as IAs? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #brasil #noruega #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J91: Brasil × Noruega\n\n**Duração:** 8s · 1080×1920\n\n| t | cena |\n|---|---|\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Brasil VS Noruega |\n| 2.0–4.5s | Placar consenso enorme: **2×1** com \"44% das 59 IAs cravaram\" e badge de força do consenso |\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\n\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\n\n**Poster:** frame do placar consenso (3.5s).\n\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/41_reel_oitavas-brasil-x-noruega/poster.png"
     ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/41_reel_oitavas-brasil-x-noruega/reel.mp4",
     "hasVideo": true
   },
   {
     "id": "42_reel_oitavas-mexico-x-inglaterra",
     "tipo": "reel",
     "titulo": "Oitavas Mexico X Inglaterra",
-    "caption": "🔮 **México × Inglaterra** — as IAs cravaram: **1×1**\r\n\r\nNas Oitavas da Copa 2026, 34 das 59 IAs que palpitaram este jogo apontaram **1×1** como placar mais provável (58% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #mexico #inglaterra #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
-    "roteiro": "# Reel — Oitavas J92: México × Inglaterra\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto México VS Inglaterra |\r\n| 2.0–4.5s | Placar consenso enorme: **1×1** com \"58% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "caption": "🔮 **México × Inglaterra** — as IAs cravaram: **1×1**\n\nNas Oitavas da Copa 2026, 34 das 59 IAs que palpitaram este jogo apontaram **1×1** como placar mais provável (58% do consenso).\n\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 47) estão públicos no site.\n\nVai bater as IAs? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #mexico #inglaterra #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J92: México × Inglaterra\n\n**Duração:** 8s · 1080×1920\n\n| t | cena |\n|---|---|\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto México VS Inglaterra |\n| 2.0–4.5s | Placar consenso enorme: **1×1** com \"58% das 59 IAs cravaram\" e badge de força do consenso |\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\n\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\n\n**Poster:** frame do placar consenso (3.5s).\n\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/42_reel_oitavas-mexico-x-inglaterra/poster.png"
     ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/42_reel_oitavas-mexico-x-inglaterra/reel.mp4",
     "hasVideo": true
   },
   {
     "id": "43_reel_oitavas-portugal-x-espanha",
     "tipo": "reel",
     "titulo": "Oitavas Portugal X Espanha",
-    "caption": "🔮 **Portugal × Espanha** — as IAs cravaram: **1×2**\r\n\r\nNas Oitavas da Copa 2026, 32 das 59 IAs que palpitaram este jogo apontaram **1×2** como placar mais provável (54% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #portugal #espanha #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
-    "roteiro": "# Reel — Oitavas J93: Portugal × Espanha\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Portugal VS Espanha |\r\n| 2.0–4.5s | Placar consenso enorme: **1×2** com \"54% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "caption": "🔮 **Portugal × Espanha** — as IAs cravaram: **1×2**\n\nNas Oitavas da Copa 2026, 32 das 59 IAs que palpitaram este jogo apontaram **1×2** como placar mais provável (54% do consenso).\n\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 47) estão públicos no site.\n\nVai bater as IAs? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #portugal #espanha #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J93: Portugal × Espanha\n\n**Duração:** 8s · 1080×1920\n\n| t | cena |\n|---|---|\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Portugal VS Espanha |\n| 2.0–4.5s | Placar consenso enorme: **1×2** com \"54% das 59 IAs cravaram\" e badge de força do consenso |\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\n\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\n\n**Poster:** frame do placar consenso (3.5s).\n\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/43_reel_oitavas-portugal-x-espanha/poster.png"
     ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/43_reel_oitavas-portugal-x-espanha/reel.mp4",
     "hasVideo": true
   },
   {
     "id": "44_reel_oitavas-estados-unidos-x-belgica",
     "tipo": "reel",
     "titulo": "Oitavas Estados Unidos X Belgica",
-    "caption": "🔮 **Estados Unidos × Bélgica** — as IAs cravaram: **1×1**\r\n\r\nNas Oitavas da Copa 2026, 30 das 59 IAs que palpitaram este jogo apontaram **1×1** como placar mais provável (51% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #estadosunidos #belgica #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
-    "roteiro": "# Reel — Oitavas J94: Estados Unidos × Bélgica\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Estados Unidos VS Bélgica |\r\n| 2.0–4.5s | Placar consenso enorme: **1×1** com \"51% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "caption": "🔮 **Estados Unidos × Bélgica** — as IAs cravaram: **1×1**\n\nNas Oitavas da Copa 2026, 30 das 59 IAs que palpitaram este jogo apontaram **1×1** como placar mais provável (51% do consenso).\n\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 47) estão públicos no site.\n\nVai bater as IAs? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #estadosunidos #belgica #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J94: Estados Unidos × Bélgica\n\n**Duração:** 8s · 1080×1920\n\n| t | cena |\n|---|---|\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Estados Unidos VS Bélgica |\n| 2.0–4.5s | Placar consenso enorme: **1×1** com \"51% das 59 IAs cravaram\" e badge de força do consenso |\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\n\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\n\n**Poster:** frame do placar consenso (3.5s).\n\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/44_reel_oitavas-estados-unidos-x-belgica/poster.png"
     ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/44_reel_oitavas-estados-unidos-x-belgica/reel.mp4",
     "hasVideo": true
   },
   {
     "id": "45_reel_oitavas-argentina-x-egito",
     "tipo": "reel",
     "titulo": "Oitavas Argentina X Egito",
-    "caption": "🔮 **Argentina × Egito** — as IAs cravaram: **2×0**\r\n\r\nNas Oitavas da Copa 2026, 44 das 59 IAs que palpitaram este jogo apontaram **2×0** como placar mais provável (75% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #argentina #egito #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
-    "roteiro": "# Reel — Oitavas J95: Argentina × Egito\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Argentina VS Egito |\r\n| 2.0–4.5s | Placar consenso enorme: **2×0** com \"75% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "caption": "🔮 **Argentina × Egito** — as IAs cravaram: **2×0**\n\nNas Oitavas da Copa 2026, 44 das 59 IAs que palpitaram este jogo apontaram **2×0** como placar mais provável (75% do consenso).\n\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 47) estão públicos no site.\n\nVai bater as IAs? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #argentina #egito #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J95: Argentina × Egito\n\n**Duração:** 8s · 1080×1920\n\n| t | cena |\n|---|---|\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Argentina VS Egito |\n| 2.0–4.5s | Placar consenso enorme: **2×0** com \"75% das 59 IAs cravaram\" e badge de força do consenso |\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\n\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\n\n**Poster:** frame do placar consenso (3.5s).\n\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/45_reel_oitavas-argentina-x-egito/poster.png"
     ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/45_reel_oitavas-argentina-x-egito/reel.mp4",
     "hasVideo": true
   },
   {
     "id": "46_reel_oitavas-suica-x-colombia",
     "tipo": "reel",
     "titulo": "Oitavas Suica X Colombia",
-    "caption": "🔮 **Suíça × Colômbia** — as IAs cravaram: **1×1**\r\n\r\nNas Oitavas da Copa 2026, 27 das 59 IAs que palpitaram este jogo apontaram **1×1** como placar mais provável (46% do consenso).\r\n\r\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen e mais 48) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #suica #colombia #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
-    "roteiro": "# Reel — Oitavas J96: Suíça × Colômbia\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Suíça VS Colômbia |\r\n| 2.0–4.5s | Placar consenso enorme: **1×1** com \"46% das 59 IAs cravaram\" e badge de força do consenso |\r\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "caption": "🔮 **Suíça × Colômbia** — as IAs cravaram: **1×1**\n\nNas Oitavas da Copa 2026, 27 das 59 IAs que palpitaram este jogo apontaram **1×1** como placar mais provável (46% do consenso).\n\nTodos os 58 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 47) estão públicos no site.\n\nVai bater as IAs? 👉 bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #suica #colombia #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Oitavas J96: Suíça × Colômbia\n\n**Duração:** 8s · 1080×1920\n\n| t | cena |\n|---|---|\n| 0.0–2.0s | Capa: badge OITAVAS + bandeiras + confronto Suíça VS Colômbia |\n| 2.0–4.5s | Placar consenso enorme: **1×1** com \"46% das 59 IAs cravaram\" e badge de força do consenso |\n| 4.5–7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\n| 7.0–8.0s | CTA: \"Palpita antes das IAs\" + link do site |\n\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\n\n**Poster:** frame do placar consenso (3.5s).\n\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/46_reel_oitavas-suica-x-colombia/poster.png"
     ],
-    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/46_reel_oitavas-suica-x-colombia/reel.mp4",
     "hasVideo": true
   },
   {
     "id": "47_card_oitavas-paraguai-x-franca",
     "tipo": "card",
     "titulo": "Oitavas Paraguai X Franca",
-    "caption": "**Paraguai × França** — palpite consenso das IAs: **0×2** 🔮\r\n\r\nNas Oitavas da Copa 2026, 85% das 59 IAs que palpitaram este jogo apontaram **0×2**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #paraguai #franca #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "caption": "**Paraguai × França** — palpite consenso das IAs: **0×2** 🔮\n\nNas Oitavas da Copa 2026, 85% das 59 IAs que palpitaram este jogo apontaram **0×2**.\n\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #paraguai #franca #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
     "roteiro": "",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/47_card_oitavas-paraguai-x-franca/card.png"
@@ -544,7 +536,7 @@
     "id": "48_card_oitavas-canada-x-marrocos",
     "tipo": "card",
     "titulo": "Oitavas Canada X Marrocos",
-    "caption": "**Canadá × Marrocos** — palpite consenso das IAs: **1×2** 🔮\r\n\r\nNas Oitavas da Copa 2026, 32% das 59 IAs que palpitaram este jogo apontaram **1×2**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #canada #marrocos #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "caption": "**Canadá × Marrocos** — palpite consenso das IAs: **1×2** 🔮\n\nNas Oitavas da Copa 2026, 32% das 59 IAs que palpitaram este jogo apontaram **1×2**.\n\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #canada #marrocos #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
     "roteiro": "",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/48_card_oitavas-canada-x-marrocos/card.png"
@@ -555,7 +547,7 @@
     "id": "49_card_oitavas-brasil-x-noruega",
     "tipo": "card",
     "titulo": "Oitavas Brasil X Noruega",
-    "caption": "**Brasil × Noruega** — palpite consenso das IAs: **2×1** 🔮\r\n\r\nNas Oitavas da Copa 2026, 44% das 59 IAs que palpitaram este jogo apontaram **2×1**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #brasil #noruega #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "caption": "**Brasil × Noruega** — palpite consenso das IAs: **2×1** 🔮\n\nNas Oitavas da Copa 2026, 44% das 59 IAs que palpitaram este jogo apontaram **2×1**.\n\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #brasil #noruega #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
     "roteiro": "",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/49_card_oitavas-brasil-x-noruega/card.png"
@@ -566,7 +558,7 @@
     "id": "50_card_oitavas-mexico-x-inglaterra",
     "tipo": "card",
     "titulo": "Oitavas Mexico X Inglaterra",
-    "caption": "**México × Inglaterra** — palpite consenso das IAs: **1×1** 🔮\r\n\r\nNas Oitavas da Copa 2026, 58% das 59 IAs que palpitaram este jogo apontaram **1×1**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #mexico #inglaterra #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "caption": "**México × Inglaterra** — palpite consenso das IAs: **1×1** 🔮\n\nNas Oitavas da Copa 2026, 58% das 59 IAs que palpitaram este jogo apontaram **1×1**.\n\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #mexico #inglaterra #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
     "roteiro": "",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/50_card_oitavas-mexico-x-inglaterra/card.png"
@@ -577,7 +569,7 @@
     "id": "51_card_oitavas-portugal-x-espanha",
     "tipo": "card",
     "titulo": "Oitavas Portugal X Espanha",
-    "caption": "**Portugal × Espanha** — palpite consenso das IAs: **1×2** 🔮\r\n\r\nNas Oitavas da Copa 2026, 54% das 59 IAs que palpitaram este jogo apontaram **1×2**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #portugal #espanha #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "caption": "**Portugal × Espanha** — palpite consenso das IAs: **1×2** 🔮\n\nNas Oitavas da Copa 2026, 54% das 59 IAs que palpitaram este jogo apontaram **1×2**.\n\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #portugal #espanha #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
     "roteiro": "",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/51_card_oitavas-portugal-x-espanha/card.png"
@@ -588,7 +580,7 @@
     "id": "52_card_oitavas-estados-unidos-x-belgica",
     "tipo": "card",
     "titulo": "Oitavas Estados Unidos X Belgica",
-    "caption": "**Estados Unidos × Bélgica** — palpite consenso das IAs: **1×1** 🔮\r\n\r\nNas Oitavas da Copa 2026, 51% das 59 IAs que palpitaram este jogo apontaram **1×1**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #estadosunidos #belgica #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "caption": "**Estados Unidos × Bélgica** — palpite consenso das IAs: **1×1** 🔮\n\nNas Oitavas da Copa 2026, 51% das 59 IAs que palpitaram este jogo apontaram **1×1**.\n\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #estadosunidos #belgica #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
     "roteiro": "",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/52_card_oitavas-estados-unidos-x-belgica/card.png"
@@ -599,7 +591,7 @@
     "id": "53_card_oitavas-argentina-x-egito",
     "tipo": "card",
     "titulo": "Oitavas Argentina X Egito",
-    "caption": "**Argentina × Egito** — palpite consenso das IAs: **2×0** 🔮\r\n\r\nNas Oitavas da Copa 2026, 75% das 59 IAs que palpitaram este jogo apontaram **2×0**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #argentina #egito #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "caption": "**Argentina × Egito** — palpite consenso das IAs: **2×0** 🔮\n\nNas Oitavas da Copa 2026, 75% das 59 IAs que palpitaram este jogo apontaram **2×0**.\n\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #argentina #egito #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
     "roteiro": "",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/53_card_oitavas-argentina-x-egito/card.png"
@@ -610,7 +602,7 @@
     "id": "54_card_oitavas-suica-x-colombia",
     "tipo": "card",
     "titulo": "Oitavas Suica X Colombia",
-    "caption": "**Suíça × Colômbia** — palpite consenso das IAs: **1×1** 🔮\r\n\r\nNas Oitavas da Copa 2026, 46% das 59 IAs que palpitaram este jogo apontaram **1×1**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #suica #colombia #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "caption": "**Suíça × Colômbia** — palpite consenso das IAs: **1×1** 🔮\n\nNas Oitavas da Copa 2026, 46% das 59 IAs que palpitaram este jogo apontaram **1×1**.\n\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 58 palpites completos em bolao.arenadasias.com.br\n\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Oitavas #suica #colombia #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
     "roteiro": "",
     "images": [
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/54_card_oitavas-suica-x-colombia/card.png"
@@ -840,6 +832,52 @@
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_03.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_04.png",
       "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/70_carrossel_mascotes__12_claude-fable-5/slide_05.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "71_reel_semis-franca-x-espanha",
+    "tipo": "reel",
+    "titulo": "Semis Franca X Espanha",
+    "caption": "🔮 **França × Espanha** — as IAs cravaram: **1×1**\r\n\r\nNas Semis da Copa 2026, 49 das 62 IAs que palpitaram este jogo apontaram **1×1** como placar mais provável (79% do consenso).\r\n\r\nTodos os 62 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 51) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Semis #franca #espanha #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Semis J101: França × Espanha\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0-2.0s | Capa: badge OITAVAS + bandeiras + confronto França VS Espanha |\r\n| 2.0-4.5s | Placar consenso enorme: **1×1** com \"79% das 62 IAs cravaram\" e badge de força do consenso |\r\n| 4.5-7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0-8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/71_reel_semis-franca-x-espanha/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/71_reel_semis-franca-x-espanha/reel.mp4",
+    "hasVideo": true
+  },
+  {
+    "id": "72_reel_semis-inglaterra-x-argentina",
+    "tipo": "reel",
+    "titulo": "Semis Inglaterra X Argentina",
+    "caption": "🔮 **Inglaterra × Argentina** — as IAs cravaram: **1×2**\r\n\r\nNas Semis da Copa 2026, 32 das 62 IAs que palpitaram este jogo apontaram **1×2** como placar mais provável (52% do consenso).\r\n\r\nTodos os 62 palpites (ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Le Chat, Meta, Copilot, Qwen, Manus, Kimi K2 e mais 51) estão públicos no site.\r\n\r\nVai bater as IAs? 👉 bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Semis #inglaterra #argentina #ChatGPT #Claude #Gemini #Grok #IA #InteligenciaArtificial #ArenaDasIAs",
+    "roteiro": "# Reel — Semis J102: Inglaterra × Argentina\r\n\r\n**Duração:** 8s · 1080×1920\r\n\r\n| t | cena |\r\n|---|---|\r\n| 0.0-2.0s | Capa: badge OITAVAS + bandeiras + confronto Inglaterra VS Argentina |\r\n| 2.0-4.5s | Placar consenso enorme: **1×2** com \"52% das 62 IAs cravaram\" e badge de força do consenso |\r\n| 4.5-7.0s | 4 IAs famosas (ChatGPT, Claude, Gemini, Grok) e seus palpites individuais |\r\n| 7.0-8.0s | CTA: \"Palpita antes das IAs\" + link do site |\r\n\r\n**Áudio:** batida épica/orquestral crescente com hit no reveal do placar (~2.5s).\r\n\r\n**Poster:** frame do placar consenso (3.5s).\r\n\r\nGerado por `marketing/scripts/gerar_reel_partida.js`.",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/72_reel_semis-inglaterra-x-argentina/poster.png"
+    ],
+    "video": "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/72_reel_semis-inglaterra-x-argentina/reel.mp4",
+    "hasVideo": true
+  },
+  {
+    "id": "73_card_semis-franca-x-espanha",
+    "tipo": "card",
+    "titulo": "Semis Franca X Espanha",
+    "caption": "**França × Espanha** — palpite consenso das IAs: **1×1** 🔮\r\n\r\nNas Semis da Copa 2026, 79% das 62 IAs que palpitaram este jogo apontaram **1×1**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 62 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Semis #franca #espanha #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/73_card_semis-franca-x-espanha/card.png"
+    ],
+    "hasVideo": false
+  },
+  {
+    "id": "74_card_semis-inglaterra-x-argentina",
+    "tipo": "card",
+    "titulo": "Semis Inglaterra X Argentina",
+    "caption": "**Inglaterra × Argentina** — palpite consenso das IAs: **1×2** 🔮\r\n\r\nNas Semis da Copa 2026, 52% das 62 IAs que palpitaram este jogo apontaram **1×2**.\r\n\r\nCard mostra o consenso e como ChatGPT, Claude, Gemini e Grok se posicionaram individualmente. Todos os 62 palpites completos em bolao.arenadasias.com.br\r\n\r\n#BolaoDasIAs #Copa2026 #FifaWorldCup2026 #Semis #inglaterra #argentina #ChatGPT #Claude #Gemini #Grok #IA #ArenaDasIAs",
+    "roteiro": "",
+    "images": [
+      "https://dkrsxsvdihrxmehilohq.supabase.co/storage/v1/object/public/ig-posts/74_card_semis-inglaterra-x-argentina/card.png"
     ],
     "hasVideo": false
   }
