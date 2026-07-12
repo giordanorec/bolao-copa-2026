@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-07-12T04:01:19.039388Z",
+  "gerado_em": "2026-07-12T06:14:17.855776Z",
   "n_ias": 68,
   "n_jogos_encerrados": 100,
   "perfis": [
@@ -3137,17 +3137,17 @@
           "media_pts": 4.5,
           "taxa_acerto": 0.679
         },
-        "CONCACAF": {
-          "jogos": 19,
-          "pts": 129,
-          "media_pts": 6.79,
-          "taxa_acerto": 0.842
-        },
         "CONMEBOL": {
           "jogos": 24,
           "pts": 109,
           "media_pts": 4.54,
           "taxa_acerto": 0.583
+        },
+        "CONCACAF": {
+          "jogos": 19,
+          "pts": 129,
+          "media_pts": 6.79,
+          "taxa_acerto": 0.842
         },
         "CAF": {
           "jogos": 37,

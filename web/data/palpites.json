@@ -1164,6 +1164,16 @@
       "jogo_numero": 100,
       "gols_a": 2,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 101,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 102,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "chatgpt-5-thinking": [
@@ -4673,6 +4683,16 @@
       "jogo_numero": 100,
       "gols_a": 2,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 101,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 102,
+      "gols_a": 1,
+      "gols_b": 1
     }
   ],
   "claude-sonnet-3-5": [],
@@ -8036,6 +8056,16 @@
       "jogo_numero": 100,
       "gols_a": 2,
       "gols_b": 0
+    },
+    {
+      "jogo_numero": 101,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 102,
+      "gols_a": 1,
+      "gols_b": 2
     }
   ],
   "deepseek-r1": [
@@ -11164,6 +11194,16 @@
     {
       "jogo_numero": 100,
       "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 101,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 102,
+      "gols_a": 1,
       "gols_b": 1
     }
   ],
@@ -16420,6 +16460,16 @@
       "jogo_numero": 100,
       "gols_a": 1,
       "gols_b": 0
+    },
+    {
+      "jogo_numero": 101,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 102,
+      "gols_a": 1,
+      "gols_b": 2
     }
   ],
   "le-chat-mistral": [
@@ -19340,6 +19390,16 @@
     {
       "jogo_numero": 100,
       "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 101,
+      "gols_a": 1,
+      "gols_b": 0
+    },
+    {
+      "jogo_numero": 102,
+      "gols_a": 1,
       "gols_b": 1
     }
   ],
@@ -24098,6 +24158,16 @@
       "jogo_numero": 100,
       "gols_a": 2,
       "gols_b": 1
+    },
+    {
+      "jogo_numero": 101,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 102,
+      "gols_a": 1,
+      "gols_b": 2
     }
   ],
   "perplexity-sonar-pro": [
@@ -27330,6 +27400,16 @@
     {
       "jogo_numero": 100,
       "gols_a": 2,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 101,
+      "gols_a": 1,
+      "gols_b": 1
+    },
+    {
+      "jogo_numero": 102,
+      "gols_a": 1,
       "gols_b": 1
     }
   ],

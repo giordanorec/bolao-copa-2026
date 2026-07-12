@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-07-12T01:00:26-03:00",
+  "atualizado_em": "2026-07-12T03:14:08-03:00",
   "ias": [
     {
       "slug": "mistral-small-3",
@@ -1436,7 +1436,7 @@
       "placares_exatos": 8,
       "vencedores_acertados": 22,
       "jogos_palpitados": 28,
-      "palpites_total": 28,
+      "palpites_total": 30,
       "rank": 52,
       "grupos": {
         "pontos": 0,
@@ -1548,7 +1548,7 @@
       "placares_exatos": 7,
       "vencedores_acertados": 20,
       "jogos_palpitados": 28,
-      "palpites_total": 28,
+      "palpites_total": 30,
       "rank": 56,
       "grupos": {
         "pontos": 0,
@@ -1604,7 +1604,7 @@
       "placares_exatos": 7,
       "vencedores_acertados": 20,
       "jogos_palpitados": 28,
-      "palpites_total": 28,
+      "palpites_total": 30,
       "rank": 58,
       "grupos": {
         "pontos": 0,
@@ -1632,7 +1632,7 @@
       "placares_exatos": 6,
       "vencedores_acertados": 19,
       "jogos_palpitados": 28,
-      "palpites_total": 28,
+      "palpites_total": 30,
       "rank": 59,
       "grupos": {
         "pontos": 0,
@@ -1688,7 +1688,7 @@
       "placares_exatos": 5,
       "vencedores_acertados": 18,
       "jogos_palpitados": 28,
-      "palpites_total": 28,
+      "palpites_total": 30,
       "rank": 61,
       "grupos": {
         "pontos": 0,
@@ -1716,7 +1716,7 @@
       "placares_exatos": 5,
       "vencedores_acertados": 18,
       "jogos_palpitados": 28,
-      "palpites_total": 28,
+      "palpites_total": 30,
       "rank": 61,
       "grupos": {
         "pontos": 0,
@@ -1772,7 +1772,7 @@
       "placares_exatos": 5,
       "vencedores_acertados": 17,
       "jogos_palpitados": 28,
-      "palpites_total": 28,
+      "palpites_total": 30,
       "rank": 64,
       "grupos": {
         "pontos": 0,
@@ -1884,7 +1884,7 @@
       "placares_exatos": 1,
       "vencedores_acertados": 8,
       "jogos_palpitados": 12,
-      "palpites_total": 12,
+      "palpites_total": 14,
       "rank": 68,
       "grupos": {
         "pontos": 0,
