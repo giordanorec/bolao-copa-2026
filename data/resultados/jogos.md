@@ -109,3 +109,5 @@ no cálculo de pontuação.
 | 96 | Oitavas | Ter 07/07 | 17h00 | Vancouver | Suíça | 1 | 1 | Colômbia |
 | 97 | Quartas | Qui 09/07 | 17h00 | Boston | França | 2 | 0 | Marrocos |
 | 98 | Quartas | Sex 10/07 | 16h00 | Los Angeles | Espanha | 2 | 1 | Bélgica |
+| 99 | Quartas | Sáb 11/07 | 18h00 | Miami | Noruega | 1 | 2 | Inglaterra |
+| 100 | Quartas | Sáb 11/07 | 22h00 | Kansas City | Argentina | 3 | 1 | Suíça |

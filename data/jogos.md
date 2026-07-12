@@ -126,8 +126,8 @@ Horários no **horário de Brasília (BRT)**. Fase de grupos com times definidos
 
 | Jogo | Fase | Data | Hora | Local | Time A | Gols A | Gols B | Time B |
 |---|---|---|---|---|---|---|---|---|
-| 101 | Semifinal | Ter 14/07 | 16h00 | Dallas | Venc. J97 | | | Venc. J98 |
-| 102 | Semifinal | Qua 15/07 | 16h00 | Atlanta | Venc. J99 | | | Venc. J100 |
+| 101 | Semifinal | Ter 14/07 | 16h00 | Dallas | França | | | Espanha |
+| 102 | Semifinal | Qua 15/07 | 16h00 | Atlanta | Inglaterra | | | Argentina |
 | 103 | 3º lugar | Sáb 18/07 | 18h00 | Miami | Perd. J101 | | | Perd. J102 |
 | 104 | Final | Dom 19/07 | 16h00 | Nova York/NJ | Venc. J101 | | | Venc. J102 |
 

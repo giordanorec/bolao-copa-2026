@@ -48,6 +48,8 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "pt", flag: "🇵🇹", text: "Até à próxima, Seleção das Quinas — 0×1 frente à Espanha em Dallas. CR7 despede-se com honra, o legado fica" },
     { lang: "ar", flag: "🇲🇦", text: "إلى اللقاء يا أسود الأطلس — 0×2 أمام فرنسا في بوسطن، لكن مغاربة العالم فخورون بجيل استثنائي" },
     { lang: "nl", flag: "🇧🇪", text: "Tot ziens, Rode Duivels — 1×2 tegen Spanje in Los Angeles, maar de gouden generatie liet alles op het veld" },
+    { lang: "nb", flag: "🇳🇴", text: "Takk for kampen, Løvene — 1×2 mot England i Miami, men dere gjorde hele Skandinavia stolt" },
+    { lang: "de", flag: "🇨🇭", text: "Uf Wiederluege, Nati — 1×3 gäge Argentinie in Kansas City, aber s'Team het bis am Schluss kämpft" },
   ];
 
   const congrats = [
@@ -98,12 +100,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Quartas · 2/4 jogos · Espanha 2×1 Bélgica em LA · França × Espanha na Semi!"
+                ? "Semis definidas · França × Espanha (14/07) e Inglaterra × Argentina (15/07)"
                 : en
-                  ? "Quarterfinals · 2/4 · Spain 2×1 Belgium in LA · France × Spain in the Semi!"
+                  ? "Semis are set · France × Spain (14/07) and England × Argentina (15/07)"
                   : es
-                    ? "Cuartos · 2/4 · España 2×1 Bélgica en LA · ¡Francia × España en Semis!"
-                    : "Quarts · 2/4 · Espagne 2×1 Belgique à LA · France × Espagne en Demi !"}
+                    ? "Semis definidas · Francia × España (14/07) e Inglaterra × Argentina (15/07)"
+                    : "Demis fixées · France × Espagne (14/07) et Angleterre × Argentine (15/07)"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>
