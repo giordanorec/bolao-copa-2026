@@ -50,11 +50,10 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "nl", flag: "🇧🇪", text: "Tot ziens, Rode Duivels — 1×2 tegen Spanje in Los Angeles, maar de gouden generatie liet alles op het veld" },
     { lang: "nb", flag: "🇳🇴", text: "Takk for kampen, Løvene — 1×2 mot England i Miami, men dere gjorde hele Skandinavia stolt" },
     { lang: "de", flag: "🇨🇭", text: "Uf Wiederluege, Nati — 1×3 gäge Argentinie in Kansas City, aber s'Team het bis am Schluss kämpft" },
+    { lang: "fr", flag: "🇫🇷", text: "Adieu les Bleus — 0×2 face à l'Espagne à Dallas, Yamal a fait la différence. Mbappé pleure, mais quelle génération" },
   ];
 
   const congrats = [
-    { lang: "nb", flag: "🇳🇴", text: "Bra jobba, Løvene — vi sees i åttedelsfinalen!" },
-    { lang: "fr", flag: "🇫🇷", text: "Allez les Bleus ! Le rêve continue — la coupe nous attend" },
     { lang: "en", flag: "🇬🇧", text: "Come on, Three Lions — one more trophy, this could be the year" },
     { lang: "en", flag: "🇺🇸", text: "Let's go, USMNT — host and hero, keep the crowd loud" },
     { lang: "es", flag: "🇪🇸", text: "¡Vamos, La Roja! Yamal, Rodri y la generación que quiere el segundo mundial" },
@@ -100,12 +99,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Semis definidas · França × Espanha (14/07) e Inglaterra × Argentina (15/07)"
+                ? "Semis 1/2 · 🇪🇸 Espanha 2×0 França em Dallas · La Roja na Final · quem vem: Inglaterra ou Argentina?"
                 : en
-                  ? "Semis are set · France × Spain (14/07) and England × Argentina (15/07)"
+                  ? "Semis 1/2 · 🇪🇸 Spain 2×0 France in Dallas · La Roja into the Final · England or Argentina next?"
                   : es
-                    ? "Semis definidas · Francia × España (14/07) e Inglaterra × Argentina (15/07)"
-                    : "Demis fixées · France × Espagne (14/07) et Angleterre × Argentine (15/07)"}
+                    ? "Semis 1/2 · 🇪🇸 España 2×0 Francia en Dallas · ¡La Roja a la Final! · Inglaterra o Argentina?"
+                    : "Demis 1/2 · 🇪🇸 Espagne 2×0 France à Dallas · La Roja en Finale · Angleterre ou Argentine ?"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>
