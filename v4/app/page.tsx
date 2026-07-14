@@ -208,8 +208,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* BANNER GRANDE: novos palpites das IAs pras Quartas saíram */}
-      <BannerNovosPalpitesQuartas locale={locale} />
+      {/* Banner de "novos palpites Quartas" removido — Quartas ja aconteceram,
+          estamos nas Semis (J101 Espanha 2x0 Franca; J102 Ing×Arg 15/07). */}
 
       {/* BANNER: as IAs já palpitaram quem é o campeão */}
       <BannerAnimacaoCampeao locale={locale} />

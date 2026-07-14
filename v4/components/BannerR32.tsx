@@ -6,20 +6,20 @@ export default function BannerR32({ locale }: { locale: Locale }) {
   const es = locale === "es";
 
   const tit = pt
-    ? "🇫🇷 Les Bleus 2×0 Marrocos — 23 IAs cravaram + Bola de Cristal ACERTOU!"
+    ? "🇪🇸 Espanha 2×0 França — ZEBRA HISTÓRICA! 0 de 62 IAs previram vitória espanhola"
     : en
-      ? "🇫🇷 Les Bleus 2×0 Morocco — 23 AIs nailed it + Crystal Ball got it right!"
+      ? "🇪🇸 Spain 2×0 France — HISTORIC UPSET! 0 of 62 AIs predicted a Spanish win"
       : es
-        ? "🇫🇷 Les Bleus 2×0 Marruecos — 23 IAs clavaron + ¡Bola de Cristal acertó!"
-        : "🇫🇷 Les Bleus 2×0 Maroc — 23 IA ont trouvé + La Boule de Cristal a réussi !";
+        ? "🇪🇸 España 2×0 Francia — ¡SORPRESA HISTÓRICA! 0 de 62 IAs pronosticaron la victoria"
+        : "🇪🇸 Espagne 2×0 France — SURPRISE HISTORIQUE ! 0 des 62 IA n'a prédit la victoire espagnole";
 
   const brasilLinha = pt
-    ? "Primeira Quartas da Copa 2026 em Boston. 57 de 60 IAs (95%) previram vitória francesa; 23 cravaram o 0×2 exato (chatgpt-5-mini, claude-haiku, claude-sonnet-4-5, deepseek-r1, deepseek-v3, gemini-2-5-pro e mais 17). A Bola de Cristal também apostou 2×0 e ganhou 20 pts. França encara vencedor de Espanha × Bélgica na Semi."
+    ? "Semifinal em Dallas: La Roja bate a França com Yamal (18) e Pedri dominando o meio. Consenso quase absoluto das IAs era empate (1×1 com 43 votos, 69%) ou vitória francesa. NENHUMA IA e nem a Bola de Cristal apostaram na Espanha — todos zeraram este jogo. La Roja vai à Final e espera o vencedor de Inglaterra × Argentina (15/07 Atlanta)."
     : en
-      ? "First quarterfinal of Copa 2026 in Boston. 57 of 60 AIs (95%) predicted a French win; 23 nailed the exact 0×2 (chatgpt-5-mini, claude-haiku, claude-sonnet-4-5, deepseek-r1, deepseek-v3, gemini-2-5-pro and 17 more). The Crystal Ball also called 2×0 and scored 20 pts. France meets the winner of Spain × Belgium in the Semi."
+      ? "Semi in Dallas: La Roja beats France with Yamal (18) and Pedri controlling midfield. AI consensus was overwhelmingly a draw (1×1 with 43 votes, 69%) or French win. NO AI, not even the Crystal Ball, called Spain — everyone zeroed this match. La Roja goes to the Final and awaits the winner of England × Argentina (15/07 Atlanta)."
       : es
-        ? "Primer partido de Cuartos de Copa 2026 en Boston. 57 de 60 IAs (95%) pronosticaron victoria francesa; 23 clavaron el 0×2 exacto (chatgpt-5-mini, claude-haiku, claude-sonnet-4-5, deepseek-r1, deepseek-v3, gemini-2-5-pro y 17 más). La Bola de Cristal también apostó 2×0 y ganó 20 pts. Francia enfrenta al ganador de España × Bélgica en Semifinales."
-        : "Premier Quart de la Coupe 2026 à Boston. 57 des 60 IA (95%) ont prédit la victoire française ; 23 ont trouvé le 0×2 exact (chatgpt-5-mini, claude-haiku, claude-sonnet-4-5, deepseek-r1, deepseek-v3, gemini-2-5-pro et 17 autres). La Boule de Cristal a également misé 2×0 et gagné 20 pts. La France affronte le vainqueur d'Espagne × Belgique en Demi.";
+        ? "Semi en Dallas: La Roja bate a Francia con Yamal (18) y Pedri dominando el mediocampo. Consenso IA fue casi absoluto por empate (1×1 con 43 votos, 69%) o victoria francesa. NINGUNA IA ni la Bola de Cristal apostaron por España — todos ceraron este juego. La Roja va a la Final y espera al ganador de Inglaterra × Argentina (15/07 Atlanta)."
+        : "Demi à Dallas : La Roja bat la France avec Yamal (18) et Pedri dominant le milieu. Le consensus IA était massivement un nul (1×1 avec 43 votes, 69%) ou une victoire française. AUCUNE IA ni la Boule de Cristal n'a misé sur l'Espagne — tous ont fait zéro sur ce match. La Roja va en Finale et attend le vainqueur d'Angleterre × Argentine (15/07 Atlanta).";
 
   // Frases nas línguas nativas (sem tradução — descobrir é a graça).
   // Eliminados → "até a próxima". Classificados → parabéns + segue na Copa.
