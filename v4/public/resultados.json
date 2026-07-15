@@ -503,5 +503,10 @@
     "jogo_numero": 101,
     "gols_a": 0,
     "gols_b": 2
+  },
+  {
+    "jogo_numero": 102,
+    "gols_a": 1,
+    "gols_b": 2
   }
 ]

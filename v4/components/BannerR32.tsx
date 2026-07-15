@@ -6,20 +6,20 @@ export default function BannerR32({ locale }: { locale: Locale }) {
   const es = locale === "es";
 
   const tit = pt
-    ? "🇪🇸 Espanha 2×0 França — ZEBRA HISTÓRICA! 0 de 62 IAs previram vitória espanhola"
+    ? "🇦🇷 Argentina 2×1 Inglaterra em Atlanta — FINAL DEFINIDA: Espanha × Argentina! 32 de 62 IAs cravaram o 2×1"
     : en
-      ? "🇪🇸 Spain 2×0 France — HISTORIC UPSET! 0 of 62 AIs predicted a Spanish win"
+      ? "🇦🇷 Argentina 2×1 England in Atlanta — THE FINAL IS SET: Spain × Argentina! 32 of 62 AIs nailed the 2×1"
       : es
-        ? "🇪🇸 España 2×0 Francia — ¡SORPRESA HISTÓRICA! 0 de 62 IAs pronosticaron la victoria"
-        : "🇪🇸 Espagne 2×0 France — SURPRISE HISTORIQUE ! 0 des 62 IA n'a prédit la victoire espagnole";
+        ? "🇦🇷 Argentina 2×1 Inglaterra en Atlanta — ¡FINAL DEFINIDA: España × Argentina! 32 de 62 IAs acertaron el 2×1 exacto"
+        : "🇦🇷 Argentine 2×1 Angleterre à Atlanta — LA FINALE EST FIXÉE : Espagne × Argentine ! 32 des 62 IA ont trouvé le score exact 2×1";
 
   const brasilLinha = pt
-    ? "Semifinal em Dallas: La Roja bate a França com Yamal (18) e Pedri dominando o meio. Consenso quase absoluto das IAs era empate (1×1 com 43 votos, 69%) ou vitória francesa. NENHUMA IA e nem a Bola de Cristal apostaram na Espanha — todos zeraram este jogo. La Roja vai à Final e espera o vencedor de Inglaterra × Argentina (15/07 Atlanta)."
+    ? "Semifinal em Atlanta: Messi e a Albiceleste batem a Inglaterra e chegam à decisão em busca do bicampeonato. Dessa vez as IAs acertaram em cheio — maioria (34 de 62) apostava na vitória argentina e 32 cravaram o 2×1 exato. A Final é Espanha × Argentina em Nova York/NJ (19/07). Antes disso, disputa de 3º lugar: França × Inglaterra em Miami (18/07)."
     : en
-      ? "Semi in Dallas: La Roja beats France with Yamal (18) and Pedri controlling midfield. AI consensus was overwhelmingly a draw (1×1 with 43 votes, 69%) or French win. NO AI, not even the Crystal Ball, called Spain — everyone zeroed this match. La Roja goes to the Final and awaits the winner of England × Argentina (15/07 Atlanta)."
+      ? "Semi in Atlanta: Messi and Albiceleste beat England to reach the final in search of back-to-back titles. This time the AIs nailed it — most (34 of 62) picked an Argentina win, and 32 called the exact 2×1. The Final is Spain × Argentina in New York/NJ (19/07). Before that, the 3rd-place match: France × England in Miami (18/07)."
       : es
-        ? "Semi en Dallas: La Roja bate a Francia con Yamal (18) y Pedri dominando el mediocampo. Consenso IA fue casi absoluto por empate (1×1 con 43 votos, 69%) o victoria francesa. NINGUNA IA ni la Bola de Cristal apostaron por España — todos ceraron este juego. La Roja va a la Final y espera al ganador de Inglaterra × Argentina (15/07 Atlanta)."
-        : "Demi à Dallas : La Roja bat la France avec Yamal (18) et Pedri dominant le milieu. Le consensus IA était massivement un nul (1×1 avec 43 votes, 69%) ou une victoire française. AUCUNE IA ni la Boule de Cristal n'a misé sur l'Espagne — tous ont fait zéro sur ce match. La Roja va en Finale et attend le vainqueur d'Angleterre × Argentine (15/07 Atlanta).";
+        ? "Semi en Atlanta: Messi y la Albiceleste vencen a Inglaterra y llegan a la definición en busca del bicampeonato. Esta vez las IAs acertaron de lleno — la mayoría (34 de 62) apostaba por la victoria argentina y 32 clavaron el 2×1 exacto. La Final es España × Argentina en Nueva York/NJ (19/07). Antes, el partido por el 3er puesto: Francia × Inglaterra en Miami (18/07)."
+        : "Demi à Atlanta : Messi et l'Albiceleste battent l'Angleterre et atteignent la finale à la recherche du back-to-back. Cette fois, les IA ont vu juste — la majorité (34 sur 62) misait sur une victoire argentine, et 32 ont trouvé le score exact 2×1. La Finale sera Espagne × Argentine à New York/NJ (19/07). Avant cela, la petite finale : France × Angleterre à Miami (18/07).";
 
   // Frases nas línguas nativas (sem tradução — descobrir é a graça).
   // Eliminados → "até a próxima". Classificados → parabéns + segue na Copa.
@@ -51,16 +51,15 @@ export default function BannerR32({ locale }: { locale: Locale }) {
     { lang: "nb", flag: "🇳🇴", text: "Takk for kampen, Løvene — 1×2 mot England i Miami, men dere gjorde hele Skandinavia stolt" },
     { lang: "de", flag: "🇨🇭", text: "Uf Wiederluege, Nati — 1×3 gäge Argentinie in Kansas City, aber s'Team het bis am Schluss kämpft" },
     { lang: "fr", flag: "🇫🇷", text: "Adieu les Bleus — 0×2 face à l'Espagne à Dallas, Yamal a fait la différence. Mbappé pleure, mais quelle génération" },
+    { lang: "en", flag: "🇺🇸", text: "So long, USMNT — 1×4 to Belgium in Seattle, but the home crowd showed up big all tournament" },
+    { lang: "ar", flag: "🇪🇬", text: "إلى اللقاء يا فراعنة — 2×3 أمام الأرجنتين في أتلانتا، صلاح ورفاقه رفعوا الرأس عاليًا" },
+    { lang: "es", flag: "🇨🇴", text: "Hasta la próxima, Cafeteros — 1×1 con Suiza en Vancouver, eliminados en los penaltis" },
+    { lang: "en", flag: "🇬🇧", text: "Unlucky, Three Lions — 1×2 to Argentina in Atlanta, so close to the final. Bronze match in Miami now" },
   ];
 
   const congrats = [
-    { lang: "en", flag: "🇬🇧", text: "Come on, Three Lions — one more trophy, this could be the year" },
-    { lang: "en", flag: "🇺🇸", text: "Let's go, USMNT — host and hero, keep the crowd loud" },
-    { lang: "es", flag: "🇪🇸", text: "¡Vamos, La Roja! Yamal, Rodri y la generación que quiere el segundo mundial" },
-    { lang: "de", flag: "🇨🇭", text: "Hopp Schwiiz — Nati wiiter uf em Weg, mir sind so stolz!" },
-    { lang: "ar", flag: "🇪🇬", text: "مبروك يا فراعنة — أول ثمن نهائي في تاريخ الحديث، صلاح إن شاء الله معنا" },
-    { lang: "es", flag: "🇦🇷", text: "¡Vamos, Argentina! Messi otra vez a los octavos — bicampeones vienen fuertes" },
-    { lang: "es", flag: "🇨🇴", text: "¡Fuerza, Cafeteros! Luis Díaz, James y una defensa de hierro — a soñar con la Copa" },
+    { lang: "es", flag: "🇪🇸", text: "¡Vamos, La Roja! Yamal, Rodri y la generación que va por la segunda estrella — a la Final en Nueva York" },
+    { lang: "es", flag: "🇦🇷", text: "¡Vamos, Argentina! Messi busca el bicampeonato en Nueva York — toda la Albiceleste unida por una estrella más" },
   ];
 
 
@@ -99,12 +98,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Semis 1/2 · 🇪🇸 Espanha 2×0 França em Dallas · La Roja na Final · quem vem: Inglaterra ou Argentina?"
+                ? "Semis completas · FINAL: 🇪🇸 Espanha × 🇦🇷 Argentina em Nova York/NJ (19/07) · 3º lugar: França × Inglaterra (18/07, Miami)"
                 : en
-                  ? "Semis 1/2 · 🇪🇸 Spain 2×0 France in Dallas · La Roja into the Final · England or Argentina next?"
+                  ? "Semis complete · FINAL: 🇪🇸 Spain × 🇦🇷 Argentina in New York/NJ (19/07) · 3rd place: France × England (18/07, Miami)"
                   : es
-                    ? "Semis 1/2 · 🇪🇸 España 2×0 Francia en Dallas · ¡La Roja a la Final! · Inglaterra o Argentina?"
-                    : "Demis 1/2 · 🇪🇸 Espagne 2×0 France à Dallas · La Roja en Finale · Angleterre ou Argentine ?"}
+                    ? "Semis completas · FINAL: 🇪🇸 España × 🇦🇷 Argentina en Nueva York/NJ (19/07) · 3er puesto: Francia × Inglaterra (18/07, Miami)"
+                    : "Demies terminées · FINALE : 🇪🇸 Espagne × 🇦🇷 Argentine à New York/NJ (19/07) · 3e place : France × Angleterre (18/07, Miami)"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>

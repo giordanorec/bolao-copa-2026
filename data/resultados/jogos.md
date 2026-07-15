@@ -112,3 +112,4 @@ no cálculo de pontuação.
 | 99 | Quartas | Sáb 11/07 | 18h00 | Miami | Noruega | 1 | 2 | Inglaterra |
 | 100 | Quartas | Sáb 11/07 | 22h00 | Kansas City | Argentina | 3 | 1 | Suíça |
 | 101 | Semifinal | Ter 14/07 | 16h00 | Dallas | França | 0 | 2 | Espanha |
+| 102 | Semifinal | Qua 15/07 | 16h00 | Atlanta | Inglaterra | 1 | 2 | Argentina |
