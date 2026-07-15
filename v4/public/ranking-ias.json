@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-07-15T18:08:45-03:00",
+  "atualizado_em": "2026-07-15T18:47:04-03:00",
   "ias": [
     {
       "slug": "mistral-small-3",
@@ -8,7 +8,7 @@
       "placares_exatos": 22,
       "vencedores_acertados": 69,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 1,
       "grupos": {
         "pontos": 318,
@@ -36,7 +36,7 @@
       "placares_exatos": 20,
       "vencedores_acertados": 72,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 2,
       "grupos": {
         "pontos": 344,
@@ -64,7 +64,7 @@
       "placares_exatos": 21,
       "vencedores_acertados": 65,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 3,
       "grupos": {
         "pontos": 286,
@@ -92,7 +92,7 @@
       "placares_exatos": 20,
       "vencedores_acertados": 66,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 4,
       "grupos": {
         "pontos": 310,
@@ -120,7 +120,7 @@
       "placares_exatos": 18,
       "vencedores_acertados": 66,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 5,
       "grupos": {
         "pontos": 295,
@@ -148,7 +148,7 @@
       "placares_exatos": 19,
       "vencedores_acertados": 68,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 6,
       "grupos": {
         "pontos": 314,
@@ -176,7 +176,7 @@
       "placares_exatos": 17,
       "vencedores_acertados": 68,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 7,
       "grupos": {
         "pontos": 287,
@@ -204,7 +204,7 @@
       "placares_exatos": 21,
       "vencedores_acertados": 67,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 8,
       "grupos": {
         "pontos": 319,
@@ -232,7 +232,7 @@
       "placares_exatos": 18,
       "vencedores_acertados": 65,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 9,
       "grupos": {
         "pontos": 281,
@@ -260,7 +260,7 @@
       "placares_exatos": 21,
       "vencedores_acertados": 65,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 10,
       "grupos": {
         "pontos": 300,
@@ -288,7 +288,7 @@
       "placares_exatos": 18,
       "vencedores_acertados": 67,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 11,
       "grupos": {
         "pontos": 306,
@@ -316,7 +316,7 @@
       "placares_exatos": 20,
       "vencedores_acertados": 63,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 12,
       "grupos": {
         "pontos": 300,
@@ -344,7 +344,7 @@
       "placares_exatos": 15,
       "vencedores_acertados": 67,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 13,
       "grupos": {
         "pontos": 290,
@@ -372,7 +372,7 @@
       "placares_exatos": 20,
       "vencedores_acertados": 66,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 14,
       "grupos": {
         "pontos": 323,
@@ -400,7 +400,7 @@
       "placares_exatos": 14,
       "vencedores_acertados": 67,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 15,
       "grupos": {
         "pontos": 270,
@@ -428,7 +428,7 @@
       "placares_exatos": 19,
       "vencedores_acertados": 66,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 16,
       "grupos": {
         "pontos": 307,
@@ -456,7 +456,7 @@
       "placares_exatos": 16,
       "vencedores_acertados": 63,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 17,
       "grupos": {
         "pontos": 263,
@@ -484,7 +484,7 @@
       "placares_exatos": 17,
       "vencedores_acertados": 63,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 18,
       "grupos": {
         "pontos": 272,
@@ -512,7 +512,7 @@
       "placares_exatos": 14,
       "vencedores_acertados": 64,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 19,
       "grupos": {
         "pontos": 254,
@@ -540,7 +540,7 @@
       "placares_exatos": 17,
       "vencedores_acertados": 64,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 20,
       "grupos": {
         "pontos": 277,
@@ -568,7 +568,7 @@
       "placares_exatos": 17,
       "vencedores_acertados": 62,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 21,
       "grupos": {
         "pontos": 269,
@@ -596,7 +596,7 @@
       "placares_exatos": 17,
       "vencedores_acertados": 63,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 22,
       "grupos": {
         "pontos": 276,
@@ -624,7 +624,7 @@
       "placares_exatos": 16,
       "vencedores_acertados": 64,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 23,
       "grupos": {
         "pontos": 284,
@@ -652,7 +652,7 @@
       "placares_exatos": 18,
       "vencedores_acertados": 64,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 24,
       "grupos": {
         "pontos": 314,
@@ -680,7 +680,7 @@
       "placares_exatos": 17,
       "vencedores_acertados": 65,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 25,
       "grupos": {
         "pontos": 294,
@@ -708,7 +708,7 @@
       "placares_exatos": 19,
       "vencedores_acertados": 60,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 26,
       "grupos": {
         "pontos": 274,
@@ -736,7 +736,7 @@
       "placares_exatos": 16,
       "vencedores_acertados": 63,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 27,
       "grupos": {
         "pontos": 267,
@@ -764,7 +764,7 @@
       "placares_exatos": 15,
       "vencedores_acertados": 62,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 28,
       "grupos": {
         "pontos": 252,
@@ -792,7 +792,7 @@
       "placares_exatos": 14,
       "vencedores_acertados": 64,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 29,
       "grupos": {
         "pontos": 281,
@@ -820,7 +820,7 @@
       "placares_exatos": 18,
       "vencedores_acertados": 57,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 30,
       "grupos": {
         "pontos": 272,
@@ -848,7 +848,7 @@
       "placares_exatos": 11,
       "vencedores_acertados": 61,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 31,
       "grupos": {
         "pontos": 229,
@@ -876,7 +876,7 @@
       "placares_exatos": 14,
       "vencedores_acertados": 62,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 32,
       "grupos": {
         "pontos": 267,
@@ -904,7 +904,7 @@
       "placares_exatos": 17,
       "vencedores_acertados": 60,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 33,
       "grupos": {
         "pontos": 271,
@@ -932,7 +932,7 @@
       "placares_exatos": 15,
       "vencedores_acertados": 61,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 34,
       "grupos": {
         "pontos": 263,
@@ -960,7 +960,7 @@
       "placares_exatos": 14,
       "vencedores_acertados": 59,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 35,
       "grupos": {
         "pontos": 249,
@@ -988,7 +988,7 @@
       "placares_exatos": 13,
       "vencedores_acertados": 63,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 36,
       "grupos": {
         "pontos": 282,
@@ -1016,7 +1016,7 @@
       "placares_exatos": 10,
       "vencedores_acertados": 59,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 37,
       "grupos": {
         "pontos": 214,
@@ -1044,7 +1044,7 @@
       "placares_exatos": 9,
       "vencedores_acertados": 65,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 38,
       "grupos": {
         "pontos": 267,
@@ -1072,7 +1072,7 @@
       "placares_exatos": 13,
       "vencedores_acertados": 59,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 39,
       "grupos": {
         "pontos": 243,
@@ -1100,7 +1100,7 @@
       "placares_exatos": 11,
       "vencedores_acertados": 58,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 40,
       "grupos": {
         "pontos": 234,
@@ -1128,7 +1128,7 @@
       "placares_exatos": 11,
       "vencedores_acertados": 61,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 41,
       "grupos": {
         "pontos": 269,
@@ -1156,7 +1156,7 @@
       "placares_exatos": 9,
       "vencedores_acertados": 61,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 42,
       "grupos": {
         "pontos": 261,
@@ -1184,7 +1184,7 @@
       "placares_exatos": 8,
       "vencedores_acertados": 59,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 43,
       "grupos": {
         "pontos": 245,
@@ -1212,7 +1212,7 @@
       "placares_exatos": 13,
       "vencedores_acertados": 58,
       "jogos_palpitados": 98,
-      "palpites_total": 98,
+      "palpites_total": 100,
       "rank": 44,
       "grupos": {
         "pontos": 274,
@@ -1240,7 +1240,7 @@
       "placares_exatos": 13,
       "vencedores_acertados": 57,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 45,
       "grupos": {
         "pontos": 252,
@@ -1268,7 +1268,7 @@
       "placares_exatos": 15,
       "vencedores_acertados": 56,
       "jogos_palpitados": 87,
-      "palpites_total": 87,
+      "palpites_total": 88,
       "rank": 46,
       "grupos": {
         "pontos": 276,
@@ -1296,7 +1296,7 @@
       "placares_exatos": 13,
       "vencedores_acertados": 55,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 47,
       "grupos": {
         "pontos": 249,
@@ -1324,7 +1324,7 @@
       "placares_exatos": 10,
       "vencedores_acertados": 55,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 48,
       "grupos": {
         "pontos": 225,
@@ -1352,7 +1352,7 @@
       "placares_exatos": 8,
       "vencedores_acertados": 56,
       "jogos_palpitados": 102,
-      "palpites_total": 102,
+      "palpites_total": 104,
       "rank": 49,
       "grupos": {
         "pontos": 227,
@@ -1436,7 +1436,7 @@
       "placares_exatos": 6,
       "vencedores_acertados": 31,
       "jogos_palpitados": 50,
-      "palpites_total": 50,
+      "palpites_total": 52,
       "rank": 52,
       "grupos": {
         "pontos": 65,
@@ -1464,7 +1464,7 @@
       "placares_exatos": 8,
       "vencedores_acertados": 22,
       "jogos_palpitados": 30,
-      "palpites_total": 30,
+      "palpites_total": 32,
       "rank": 53,
       "grupos": {
         "pontos": 0,
@@ -1492,7 +1492,7 @@
       "placares_exatos": 8,
       "vencedores_acertados": 21,
       "jogos_palpitados": 30,
-      "palpites_total": 30,
+      "palpites_total": 32,
       "rank": 54,
       "grupos": {
         "pontos": 0,
@@ -1576,7 +1576,7 @@
       "placares_exatos": 7,
       "vencedores_acertados": 20,
       "jogos_palpitados": 30,
-      "palpites_total": 30,
+      "palpites_total": 32,
       "rank": 57,
       "grupos": {
         "pontos": 0,
@@ -1632,7 +1632,7 @@
       "placares_exatos": 7,
       "vencedores_acertados": 20,
       "jogos_palpitados": 30,
-      "palpites_total": 30,
+      "palpites_total": 32,
       "rank": 59,
       "grupos": {
         "pontos": 0,
@@ -1660,7 +1660,7 @@
       "placares_exatos": 6,
       "vencedores_acertados": 19,
       "jogos_palpitados": 30,
-      "palpites_total": 30,
+      "palpites_total": 32,
       "rank": 60,
       "grupos": {
         "pontos": 0,
@@ -1688,7 +1688,7 @@
       "placares_exatos": 5,
       "vencedores_acertados": 18,
       "jogos_palpitados": 30,
-      "palpites_total": 30,
+      "palpites_total": 32,
       "rank": 61,
       "grupos": {
         "pontos": 0,
@@ -1716,7 +1716,7 @@
       "placares_exatos": 5,
       "vencedores_acertados": 18,
       "jogos_palpitados": 30,
-      "palpites_total": 30,
+      "palpites_total": 32,
       "rank": 61,
       "grupos": {
         "pontos": 0,
@@ -1744,7 +1744,7 @@
       "placares_exatos": 5,
       "vencedores_acertados": 16,
       "jogos_palpitados": 30,
-      "palpites_total": 30,
+      "palpites_total": 32,
       "rank": 63,
       "grupos": {
         "pontos": 0,
@@ -1772,7 +1772,7 @@
       "placares_exatos": 5,
       "vencedores_acertados": 17,
       "jogos_palpitados": 30,
-      "palpites_total": 30,
+      "palpites_total": 32,
       "rank": 64,
       "grupos": {
         "pontos": 0,
@@ -1800,7 +1800,7 @@
       "placares_exatos": 5,
       "vencedores_acertados": 12,
       "jogos_palpitados": 18,
-      "palpites_total": 18,
+      "palpites_total": 20,
       "rank": 65,
       "grupos": {
         "pontos": 0,
@@ -1828,7 +1828,7 @@
       "placares_exatos": 4,
       "vencedores_acertados": 9,
       "jogos_palpitados": 14,
-      "palpites_total": 14,
+      "palpites_total": 16,
       "rank": 66,
       "grupos": {
         "pontos": 0,
@@ -1856,7 +1856,7 @@
       "placares_exatos": 2,
       "vencedores_acertados": 9,
       "jogos_palpitados": 14,
-      "palpites_total": 14,
+      "palpites_total": 16,
       "rank": 67,
       "grupos": {
         "pontos": 0,
@@ -1884,7 +1884,7 @@
       "placares_exatos": 0,
       "vencedores_acertados": 9,
       "jogos_palpitados": 16,
-      "palpites_total": 16,
+      "palpites_total": 18,
       "rank": 68,
       "grupos": {
         "pontos": 0,
@@ -2136,7 +2136,7 @@
       "placares_exatos": 0,
       "vencedores_acertados": 0,
       "jogos_palpitados": 0,
-      "palpites_total": 0,
+      "palpites_total": 2,
       "rank": 70,
       "grupos": {
         "pontos": 0,

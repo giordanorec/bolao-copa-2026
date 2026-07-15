@@ -43,6 +43,7 @@ PALPITES_MATAMATA_DIR = ROOT / "data" / "palpites_matamata"
 PALPITES_OITAVAS_DIR = ROOT / "data" / "palpites_oitavas"
 PALPITES_QUARTAS_DIR = ROOT / "data" / "palpites_quartas"
 PALPITES_SEMIS_DIR = ROOT / "data" / "palpites_semis"
+PALPITES_FINAL_DIR = ROOT / "data" / "palpites_final"
 RESULTADOS_PATH = ROOT / "data" / "resultados" / "jogos.md"
 WEB_DIR = ROOT / "web"
 WEB_DATA_DIR = WEB_DIR / "data"
@@ -124,6 +125,8 @@ def _carregar_tudo() -> tuple[list, dict, list]:  # type: ignore[type-arg]
     palpites = _fundir_palpites_matamata(palpites, PALPITES_QUARTAS_DIR, jogos)
     # Palpites das Semis (jogos 101-102) — mesma lógica.
     palpites = _fundir_palpites_matamata(palpites, PALPITES_SEMIS_DIR, jogos)
+    # Palpites da Final (jogos 103-104) — mesma lógica.
+    palpites = _fundir_palpites_matamata(palpites, PALPITES_FINAL_DIR, jogos)
     resultados = carregar_resultados(RESULTADOS_PATH)
     return jogos, palpites, resultados
 
