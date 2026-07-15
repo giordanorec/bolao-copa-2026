@@ -923,8 +923,8 @@
     "data": "2026-07-18",
     "hora": "18:00",
     "local": "Miami",
-    "time_a": "Perd. J101",
-    "time_b": "Perd. J102"
+    "time_a": "França",
+    "time_b": "Inglaterra"
   },
   {
     "numero": 104,
@@ -932,7 +932,7 @@
     "data": "2026-07-19",
     "hora": "16:00",
     "local": "Nova York/NJ",
-    "time_a": "Venc. J101",
-    "time_b": "Venc. J102"
+    "time_a": "Espanha",
+    "time_b": "Argentina"
   }
 ]
