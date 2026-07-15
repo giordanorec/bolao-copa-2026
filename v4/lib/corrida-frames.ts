@@ -39,6 +39,7 @@ type IARanking = {
   placares_exatos: number;
   jogos_palpitados: number;
   palpites_total?: number;
+  matamata?: { jogos_palpitados: number };
 };
 
 type Resultado = { jogo_numero: number; gols_a: number; gols_b: number };
@@ -85,23 +86,28 @@ const IRMAO_PARA_WEB: Record<string, string> = Object.fromEntries(
 const SLUGS_SERIE_A_SET = new Set<string>(SLUGS_SERIE_A);
 
 /** Retorna o slug cujos palpites devem ser SOMADOS na fase dada, pra o slug
- *  alvo. Regra: merge por fase pra Série A. Se a vitrine -web tem 0 pontos
- *  no ranking (palpites fantasmas/inválidos), cai pro irmão sem-web também
- *  no mata-mata — assim a corrida bate 1:1 com a Série A oficial.
+ *  alvo. Regra: merge por fase pra Série A, mesmo critério do componente
+ *  oficial `SerieA.tsx` (melhorFonte): no mata-mata, escolhe a fonte (vitrine
+ *  -web OU irmão sem-web) com MAIS jogos apurados NAQUELA FASE — nunca um
+ *  mix jogo-a-jogo, que cherry-picka o placar mais alto por partida e infla
+ *  o total acima do que qualquer fonte real atingiu (bug: "Manus" aparecendo
+ *  em 1º na corrida por misturar os 16 jogos do manus-web com os 14 melhores
+ *  do kimi-k2 em vez de escolher UMA fonte inteira pro mata-mata).
  */
 function fonteDoSlug(
   slug: string,
   mataMata: boolean,
-  temPontos: (s: string) => boolean,
+  jogosMataMataDe: (s: string) => number,
 ): string {
   if (SLUGS_SERIE_A_SET.has(slug)) {
     if (!mataMata) return FALLBACK_NAO_WEB[slug] ?? slug; // grupos → irmão
-    return temPontos(slug) ? slug : FALLBACK_NAO_WEB[slug] ?? slug;
+    const irmao = FALLBACK_NAO_WEB[slug] ?? slug;
+    return jogosMataMataDe(irmao) > jogosMataMataDe(slug) ? irmao : slug;
   }
   if (IRMAO_PARA_WEB[slug]) {
     if (!mataMata) return slug; // grupos → o próprio (irmão)
     const web = IRMAO_PARA_WEB[slug];
-    return temPontos(web) ? web : slug;
+    return jogosMataMataDe(slug) > jogosMataMataDe(web) ? slug : web;
   }
   return slug;
 }
@@ -146,7 +152,7 @@ function montarFrames(
   mapJogo: Map<number, Jogo>,
   canonical: (s: string) => string,
   nomeDe: (s: string) => string,
-  temPontos: (s: string) => boolean,
+  jogosMataMataDe: (s: string) => number,
   rotuloInicial: string,
 ): DadosFase {
   // Acumulado inicializado em 0 para todos os slugs ativos
@@ -177,7 +183,7 @@ function montarFrames(
     // fase de grupos usamos o próprio slug sem-web (que tem os 72 jogos).
     // Assim os pontos da corrida batem 1:1 com os da Série A oficial.
     for (const slug of Object.keys(acumulado)) {
-      const fontePref = fonteDoSlug(slug, mataMata, temPontos);
+      const fontePref = fonteDoSlug(slug, mataMata, jogosMataMataDe);
       const p = dados.palpites[fontePref] ?? dados.palpites[slug];
       if (!p) continue;
       const ganho = pts(p.gols_a, p.gols_b, r.gols_a, r.gols_b, mataMata);
@@ -249,12 +255,13 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
     if (ia.slug === "manus-web" || ia.slug === "manus") continue;
     slugsAtivos.add(ia.slug);
   }
-  // Mapa "slug tem pontos > 0" pra fonteDoSlug decidir se cai pro sem-web
-  // quando a vitrine -web tem palpites fantasmas (registrados mas 0 pts).
-  const pontosPorSlug = new Map(
-    ranking.ias.map((ia) => [ia.slug, ia.pontos ?? 0]),
+  // Mapa "jogos apurados no mata-mata" por slug — mesmo critério do
+  // SerieA.tsx (melhorFonte): a fonte com MAIS jogos naquela fase vence,
+  // como um bloco inteiro, nunca um mix jogo-a-jogo.
+  const jogosMataMataPorSlug = new Map(
+    ranking.ias.map((ia) => [ia.slug, ia.matamata?.jogos_palpitados ?? 0]),
   );
-  const temPontos = (s: string) => (pontosPorSlug.get(s) ?? 0) > 0;
+  const jogosMataMataDe = (s: string) => jogosMataMataPorSlug.get(s) ?? 0;
 
   const resultOrdenados = [...resultados].sort(
     (a, b) => a.jogo_numero - b.jogo_numero,
@@ -272,7 +279,7 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
     mapJogo,
     canonical,
     nomeDe,
-    temPontos,
+    jogosMataMataDe,
     "Antes do 1º jogo",
   );
 
@@ -283,7 +290,7 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
     mapJogo,
     canonical,
     nomeDe,
-    temPontos,
+    jogosMataMataDe,
     "Início do mata-mata",
   );
 
@@ -294,7 +301,7 @@ export async function carregarCorridaTodasFases(): Promise<TodasFases> {
     mapJogo,
     canonical,
     nomeDe,
-    temPontos,
+    jogosMataMataDe,
     "Antes do 1º jogo",
   );
 
