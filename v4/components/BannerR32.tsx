@@ -6,20 +6,20 @@ export default function BannerR32({ locale }: { locale: Locale }) {
   const es = locale === "es";
 
   const tit = pt
-    ? "🇦🇷 Argentina 2×1 Inglaterra em Atlanta — FINAL DEFINIDA: Espanha × Argentina! 32 de 62 IAs cravaram o 2×1"
+    ? "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra 6×4 França em Miami — JOGO LOUCO no 3º lugar! Só 5 de 63 IAs previram vitória inglesa, NINGUÉM cravou o placar"
     : en
-      ? "🇦🇷 Argentina 2×1 England in Atlanta — THE FINAL IS SET: Spain × Argentina! 32 of 62 AIs nailed the 2×1"
+      ? "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England 6×4 France in Miami — WILD 3rd-place game! Only 5 of 63 AIs called an English win, NOBODY nailed the score"
       : es
-        ? "🇦🇷 Argentina 2×1 Inglaterra en Atlanta — ¡FINAL DEFINIDA: España × Argentina! 32 de 62 IAs acertaron el 2×1 exacto"
-        : "🇦🇷 Argentine 2×1 Angleterre à Atlanta — LA FINALE EST FIXÉE : Espagne × Argentine ! 32 des 62 IA ont trouvé le score exact 2×1";
+        ? "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra 6×4 Francia en Miami — ¡PARTIDO LOCO por el 3er puesto! Solo 5 de 63 IAs previeron la victoria inglesa, NADIE acertó el marcador"
+        : "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Angleterre 6×4 France à Miami — MATCH FOU pour la 3e place ! Seules 5 des 63 IA ont prédit la victoire anglaise, PERSONNE n'a trouvé le score exact";
 
   const brasilLinha = pt
-    ? "Semifinal em Atlanta: Messi e a Albiceleste batem a Inglaterra e chegam à decisão em busca do bicampeonato. Dessa vez as IAs acertaram em cheio — maioria (34 de 62) apostava na vitória argentina e 32 cravaram o 2×1 exato. A Final é Espanha × Argentina em Nova York/NJ (19/07). Antes disso, disputa de 3º lugar: França × Inglaterra em Miami (18/07)."
+    ? "Disputa de 3º lugar em Miami vira um vendaval: Inglaterra bate a França de virada por 6×4, 10 gols na conta, na última partida de Didier Deschamps no comando francês. As IAs não viram nada disso vindo — só 5 de 63 apostavam em vitória inglesa e nenhuma cravou o placar exato. Agora só falta a Final: Espanha × Argentina em Nova York/NJ (19/07), com as IAs empatadas no maior consenso do mata-mata (1×1)."
     : en
-      ? "Semi in Atlanta: Messi and Albiceleste beat England to reach the final in search of back-to-back titles. This time the AIs nailed it — most (34 of 62) picked an Argentina win, and 32 called the exact 2×1. The Final is Spain × Argentina in New York/NJ (19/07). Before that, the 3rd-place match: France × England in Miami (18/07)."
+      ? "The 3rd-place match in Miami turns into a goal-fest: England comes from behind to beat France 6×4, 10 goals total, in Didier Deschamps' last game in charge of Les Bleus. The AIs never saw it coming — only 5 of 63 picked an English win, and none called the exact score. Now only the Final remains: Spain × Argentina in New York/NJ (19/07), with the AIs at their biggest mata-mata consensus yet (1×1)."
       : es
-        ? "Semi en Atlanta: Messi y la Albiceleste vencen a Inglaterra y llegan a la definición en busca del bicampeonato. Esta vez las IAs acertaron de lleno — la mayoría (34 de 62) apostaba por la victoria argentina y 32 clavaron el 2×1 exacto. La Final es España × Argentina en Nueva York/NJ (19/07). Antes, el partido por el 3er puesto: Francia × Inglaterra en Miami (18/07)."
-        : "Demi à Atlanta : Messi et l'Albiceleste battent l'Angleterre et atteignent la finale à la recherche du back-to-back. Cette fois, les IA ont vu juste — la majorité (34 sur 62) misait sur une victoire argentine, et 32 ont trouvé le score exact 2×1. La Finale sera Espagne × Argentine à New York/NJ (19/07). Avant cela, la petite finale : France × Angleterre à Miami (18/07).";
+        ? "El partido por el 3er puesto en Miami se convierte en un vendaval: Inglaterra remonta y vence a Francia 6×4, 10 goles en total, en el último partido de Didier Deschamps al mando de Francia. Las IAs no lo vieron venir — solo 5 de 63 apostaban por la victoria inglesa y ninguna acertó el marcador exacto. Ahora solo queda la Final: España × Argentina en Nueva York/NJ (19/07), con las IAs en el mayor consenso del mata-mata (1×1)."
+        : "La petite finale à Miami tourne à la folie offensive : l'Angleterre renverse la France 6×4, 10 buts au total, lors du dernier match de Didier Deschamps à la tête des Bleus. Les IA n'ont rien vu venir — seules 5 des 63 misaient sur une victoire anglaise, et aucune n'a trouvé le score exact. Il ne reste plus que la Finale : Espagne × Argentine à New York/NJ (19/07), avec le plus grand consensus IA de tout le tournoi (1×1).";
 
   // Frases nas línguas nativas (sem tradução — descobrir é a graça).
   // Eliminados → "até a próxima". Classificados → parabéns + segue na Copa.
@@ -98,12 +98,12 @@ export default function BannerR32({ locale }: { locale: Locale }) {
               }}
             >
               {pt
-                ? "Semis completas · FINAL: 🇪🇸 Espanha × 🇦🇷 Argentina em Nova York/NJ (19/07) · 3º lugar: França × Inglaterra (18/07, Miami)"
+                ? "3º lugar: 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra 6×4 França em Miami · Falta só a FINAL: 🇪🇸 Espanha × 🇦🇷 Argentina em Nova York/NJ (19/07)"
                 : en
-                  ? "Semis complete · FINAL: 🇪🇸 Spain × 🇦🇷 Argentina in New York/NJ (19/07) · 3rd place: France × England (18/07, Miami)"
+                  ? "3rd place: 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England 6×4 France in Miami · Only the FINAL remains: 🇪🇸 Spain × 🇦🇷 Argentina in New York/NJ (19/07)"
                   : es
-                    ? "Semis completas · FINAL: 🇪🇸 España × 🇦🇷 Argentina en Nueva York/NJ (19/07) · 3er puesto: Francia × Inglaterra (18/07, Miami)"
-                    : "Demies terminées · FINALE : 🇪🇸 Espagne × 🇦🇷 Argentine à New York/NJ (19/07) · 3e place : France × Angleterre (18/07, Miami)"}
+                    ? "3er puesto: 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra 6×4 Francia en Miami · Solo falta la FINAL: 🇪🇸 España × 🇦🇷 Argentina en Nueva York/NJ (19/07)"
+                    : "3e place : 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Angleterre 6×4 France à Miami · Il ne reste que la FINALE : 🇪🇸 Espagne × 🇦🇷 Argentine à New York/NJ (19/07)"}
             </span>
             <span style={{ fontSize: 28, lineHeight: 1 }}>⚽</span>
           </div>
