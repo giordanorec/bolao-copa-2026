@@ -1,24 +1,31 @@
 import Link from "next/link";
 import SerieA from "@/components/SerieA";
-import PodioGrupos from "@/components/PodioGrupos";
-import HeroCTAs from "@/components/HeroCTAs";
+import HeroCampeoes from "@/components/HeroCampeoes";
+import ResumoExperimento from "@/components/ResumoExperimento";
 import SeguirInstagram from "@/components/SeguirInstagram";
 import CorridaHome from "@/components/CorridaHome";
-import CaixaDeSugestao from "@/components/CaixaDeSugestao";
-import CelebracaoCristal from "@/components/CelebracaoCristal";
-import CelebracaoMataMata from "@/components/CelebracaoMataMata";
 import AgradecimentoContribuinte from "@/components/AgradecimentoContribuinte";
-import BolaoHumanosRecrutamento from "@/components/BolaoHumanosRecrutamento";
-import BannerR32 from "@/components/BannerR32";
-import BannerAnimacaoCampeao from "@/components/BannerAnimacaoCampeao";
-import BannerNovosPalpitesQuartas from "@/components/BannerNovosPalpitesQuartas";
 import { resolverLocale } from "@/lib/locale-server";
 import { t } from "@/lib/i18n";
-import { carregarAnaliseV2Publico } from "@/lib/analise-v2-publico";
 
+/**
+ * Home — site definitivo/arquivo do experimento (a Copa 2026 acabou em
+ * 19/07). Estrutura: hero de celebração dos campeões → resumo do
+ * experimento → vitrine Série A → corrida animada → atalhos pras seções →
+ * Instagram → agradecimento a contribuintes → regras (referência) → footer.
+ *
+ * Removido nesta remodelagem (arquivo continua no repo, só não é mais
+ * chamado aqui): BannerR32 (banner de resultado ao vivo — obsoleto, a Copa
+ * acabou), BannerAnimacaoCampeao (previa "Brasil campeão" pré-Copa, não
+ * bate mais com o resultado real), CelebracaoMataMata e PodioGrupos
+ * (memórias de fases intermediárias, superadas pelo pódio final no hero),
+ * BolaoHumanosRecrutamento (recrutamento pro bolão — encerrado),
+ * CaixaDeSugestao (pedia sugestões "pras próximas rodadas" — não há mais
+ * rodadas), callout de melhoria v1→v2 (mensagem de meio de torneio),
+ * card promocional de "próximo jogo" (jogos#73) e CTA de "crie seu bolão".
+ */
 export default async function Home() {
   const locale = await resolverLocale();
-  const retroV2 = await carregarAnaliseV2Publico();
 
   const pt = locale === "pt";
   const en = locale === "en";
@@ -26,115 +33,101 @@ export default async function Home() {
 
   const destinos = [
     {
+      href: "/retrospectiva",
+      emoji: "🎬",
+      titulo: pt ? "A Retrospectiva Completa" : en ? "The Full Retrospective" : es ? "La Retrospectiva Completa" : "La Rétrospective Complète",
+      sub: pt ? "O experimento, do início ao fim" : en ? "The experiment, start to finish" : es ? "El experimento, de principio a fin" : "L'expérience, du début à la fin",
+      desc: pt
+        ? "Como cada fase virou o ranking, os maiores acertos, as maiores zebras — e como tudo terminou."
+        : en
+          ? "How each stage reshaped the ranking, the biggest hits, the biggest upsets — and how it all ended."
+          : es
+            ? "Cómo cada fase cambió el ranking, los mayores aciertos, las mayores sorpresas — y cómo terminó todo."
+            : "Comment chaque phase a changé le classement, les plus beaux coups, les plus grosses surprises — et comment tout s'est terminé.",
+      cta: pt ? "Explorar →" : en ? "Explore →" : es ? "Explorar →" : "Explorer →",
+    },
+    {
+      href: "/ranking-geral",
+      emoji: "🏅",
+      titulo: pt ? "Hall da Fama" : en ? "Hall of Fame" : es ? "Salón de la Fama" : "Panthéon",
+      sub: pt ? "124 IAs + humanos, um só placar" : en ? "124 AIs + humans, one scoreboard" : es ? "124 IAs + humanos, un solo marcador" : "124 IA + humains, un seul tableau",
+      desc: pt
+        ? "O ranking geral final: quem chutou melhor entre todo mundo — IA ou humano — do primeiro ao último jogo."
+        : en
+          ? "The final overall ranking: who called it best across the board — AI or human — from first match to last."
+          : es
+            ? "El ranking general final: quién acertó más entre todos — IA o humano — del primer al último partido."
+            : "Le classement général final : qui a le mieux deviné — IA ou humain — du premier au dernier match.",
+      cta: pt ? "Ver o ranking →" : en ? "See the ranking →" : es ? "Ver el ranking →" : "Voir le classement →",
+    },
+    {
       href: "/ranking-ias",
       emoji: "🏆",
       titulo: pt ? "Série A das IAs" : en ? "AI Premier League" : es ? "La Liga de las IAs" : "Ligue des IA",
-      sub: pt ? "Os 10 cabeças de chave" : en ? "The top 10" : es ? "Las 10 cabezas de serie" : "Les 10 têtes de série",
+      sub: pt ? "Os 12 cabeças de chave" : en ? "The top 12" : es ? "Las 12 cabezas de serie" : "Les 12 têtes de série",
       desc: pt
-        ? "ChatGPT, Claude, Gemini, Grok, DeepSeek, Copilot, Perplexity, Le Chat, Meta AI e Qwen — coletados via interface web com search."
+        ? "ChatGPT, Claude, Gemini, Grok, DeepSeek, Copilot, Perplexity, Le Chat, Meta AI, Qwen, Manus e o Fable — coletados via interface web, resultado final."
         : en
-          ? "ChatGPT, Claude, Gemini, Grok, DeepSeek, Copilot, Perplexity, Le Chat, Meta AI, Qwen — gathered via web with search."
+          ? "ChatGPT, Claude, Gemini, Grok, DeepSeek, Copilot, Perplexity, Le Chat, Meta AI, Qwen, Manus and Fable — gathered via web, final result."
           : es
-            ? "ChatGPT, Claude, Gemini, Grok, DeepSeek, Copilot, Perplexity, Le Chat, Meta AI, Qwen — recogidos vía web con búsqueda."
-            : "ChatGPT, Claude, Gemini, Grok, DeepSeek, Copilot, Perplexity, Le Chat, Meta AI, Qwen — via interface web avec recherche.",
-      cta: pt ? "Ver os 10 →" : en ? "See the 10 →" : es ? "Ver los 10 →" : "Voir les 10 →",
+            ? "ChatGPT, Claude, Gemini, Grok, DeepSeek, Copilot, Perplexity, Le Chat, Meta AI, Qwen, Manus y Fable — recogidos vía web, resultado final."
+            : "ChatGPT, Claude, Gemini, Grok, DeepSeek, Copilot, Perplexity, Le Chat, Meta AI, Qwen, Manus et Fable — via le web, résultat final.",
+      cta: pt ? "Ver os 12 →" : en ? "See the 12 →" : es ? "Ver los 12 →" : "Voir les 12 →",
     },
     {
       href: "/jogos",
       emoji: "⚽",
       titulo: pt ? "Palpites jogo a jogo" : en ? "Match by match" : es ? "Partido por partido" : "Match par match",
-      sub: pt ? "Pra usar no seu bolão" : en ? "To use in your pool" : es ? "Para tu polla" : "Pour votre cagnotte",
+      sub: pt ? "Os 104 jogos, um por um" : en ? "All 104 matches" : es ? "Los 104 partidos" : "Les 104 matches",
       desc: pt
-        ? "Pros 104 jogos: qual placar cada IA chutou, quantas concordam, o consenso. Sem precisar criar conta."
+        ? "Pra cada jogo da Copa: o placar que cada IA chutou, o consenso, e quantas acertaram."
         : en
-          ? "For all 104 matches: which score each AI predicted, how many agree, the consensus. No account needed."
+          ? "For every match: which score each AI predicted, the consensus, and how many got it right."
           : es
-            ? "Para los 104 partidos: qué marcador predijo cada IA, cuántas concuerdan, el consenso. Sin cuenta."
-            : "Pour les 104 matches: quel score chaque IA a prédit, combien sont d'accord. Sans compte.",
-      cta: pt ? "Espiar →" : en ? "Peek →" : es ? "Espiar →" : "Voir →",
+            ? "Para cada partido: qué marcador predijo cada IA, el consenso, y cuántas acertaron."
+            : "Pour chaque match : le score pronostiqué par chaque IA, le consensus, et combien ont eu raison.",
+      cta: pt ? "Ver os jogos →" : en ? "See the matches →" : es ? "Ver los partidos →" : "Voir les matches →",
     },
     {
-      href: "/signup",
-      emoji: "🎯",
-      titulo: pt ? "Crie seu bolão" : en ? "Start your pool" : es ? "Crea tu polla" : "Créez votre cagnotte",
-      sub: pt ? "Privado, pra galera" : en ? "Private, for your group" : es ? "Privada, para tu grupo" : "Privée, pour votre groupe",
+      href: "/chaveamento",
+      emoji: "🗂️",
+      titulo: pt ? "Chaveamento" : en ? "Bracket" : es ? "Eliminatoria" : "Tableau final",
+      sub: pt ? "O mata-mata inteiro" : en ? "The whole knockout stage" : es ? "Toda la eliminatoria" : "Toute la phase finale",
       desc: pt
-        ? "Link único pra convidar amigos. Palpita do celular (ou aproveita de qualquer IA num clique). Ranking automático."
+        ? "Dos 16-avos até a Final, com o caminho que cada seleção percorreu — e onde as IAs previram diferente."
         : en
-          ? "Unique invite link. Predict from your phone (or borrow any AI's prediction). Auto ranking."
+          ? "From the round of 32 to the Final, with each team's path — and where the AIs called it differently."
           : es
-            ? "Enlace único para amigos. Pronostica desde el móvil. Ranking automático."
-            : "Lien d'invitation unique. Pronostiquez depuis votre mobile. Classement auto.",
-      cta: pt ? "Criar conta →" : en ? "Create account →" : es ? "Crear cuenta →" : "Créer un compte →",
-    },
-    {
-      href: "/como-funciona",
-      emoji: "📘",
-      titulo: pt ? "Como funciona" : en ? "How it works" : es ? "Cómo funciona" : "Comment ça marche",
-      sub: pt ? "Regras e pontuação" : en ? "Rules and scoring" : es ? "Reglas y puntuación" : "Règles et score",
-      desc: pt
-        ? "Placar exato vale 10, vencedor com saldo 7, vencedor 5, errado 0. Mata-mata vale 2×. Tudo explicado."
-        : en
-          ? "Exact score = 10 pts, winner+goal diff = 7, winner alone = 5, wrong = 0. Knockout counts 2×."
-          : es
-            ? "Marcador exacto = 10 pts, ganador+saldo = 7, ganador solo = 5, fallado = 0. Eliminatorias 2×."
-            : "Score exact = 10 pts, vainqueur+diff = 7, vainqueur = 5, faux = 0. Phases finales 2×.",
-      cta: pt ? "Ver regras →" : en ? "See rules →" : es ? "Ver reglas →" : "Voir →",
-    },
-    {
-      href: "/ias-vs-humanos",
-      emoji: "⚔️",
-      titulo: pt ? "IAs × Humanos" : en ? "AIs × Humans" : es ? "IAs × Humanos" : "IA × Humains",
-      sub: pt ? "Quem prevê melhor?" : en ? "Who predicts better?" : es ? "¿Quién predice mejor?" : "Qui prédit mieux ?",
-      desc: pt
-        ? "Comparativo ao vivo: médias, medianas, % de placares exatos, e pódio lado a lado de humanos e IAs."
-        : en
-          ? "Live comparison: averages, medians, % exact scores, and a side-by-side podium of humans and AIs."
-          : es
-            ? "Comparativo en vivo: promedios, medianas, % de marcadores exactos y podio lado a lado de humanos e IAs."
-            : "Comparatif en direct : moyennes, médianes, % de scores exacts, et podium côte à côte humains/IA.",
-      cta: pt ? "Ver análise →" : en ? "See analysis →" : es ? "Ver análisis →" : "Voir l'analyse →",
+            ? "De los dieciseisavos a la Final, con el camino de cada selección — y dónde las IAs fallaron."
+            : "Des seizièmes à la Finale, avec le parcours de chaque équipe — et où les IA se sont trompées.",
+      cta: pt ? "Ver o chaveamento →" : en ? "See the bracket →" : es ? "Ver la eliminatoria →" : "Voir le tableau →",
     },
     {
       href: "/cristal",
       emoji: "🔮",
       titulo: pt ? "Bola de Cristal" : en ? "Crystal Ball" : es ? "Bola de Cristal" : "Boule de Cristal",
-      sub: pt ? "O palpite consenso" : en ? "The consensus prediction" : es ? "El pronóstico consenso" : "Le pronostic consensus",
+      sub: pt ? "O consenso das 124 IAs" : en ? "The consensus of 124 AIs" : es ? "El consenso de las 124 IAs" : "Le consensus des 124 IA",
       desc: pt
-        ? "Pra cada jogo, juntamos o placar mais votado entre TODAS as 122 IAs. Sabedoria das massas aplicada a futebol."
+        ? "Pra cada jogo, o placar mais votado entre todas as IAs. Sabedoria das massas aplicada a futebol."
         : en
-          ? "For each match, the score most voted by ALL 122 AIs. Wisdom of the crowd applied to football."
+          ? "For each match, the score most voted by every AI. Wisdom of the crowd applied to football."
           : es
-            ? "Para cada partido, el marcador más votado por las 122 IAs."
-            : "Pour chaque match, le score le plus voté par les 122 IA.",
+            ? "Para cada partido, el marcador más votado por todas las IAs. La sabiduría de las masas aplicada al fútbol."
+            : "Pour chaque match, le score le plus voté par toutes les IA. La sagesse des foules appliquée au football.",
       cta: pt ? "Olhar a Cristal →" : en ? "See the Ball →" : es ? "Ver la Bola →" : "Voir la Boule →",
-    },
-    {
-      href: "/corrida-das-ias",
-      emoji: "🏁",
-      titulo: pt ? "Corrida das IAs" : en ? "AI Race" : es ? "Carrera de las IAs" : "Course des IA",
-      sub: pt ? "Quem está na frente" : en ? "Who's ahead" : es ? "Quién va al frente" : "Qui mène",
-      desc: pt
-        ? "Visualizações animadas do ranking jogo a jogo: corrida vista de cima com mascotes, bar race, gráfico de pontos acumulados. A Série A trotando na pista."
-        : en
-          ? "Animated views of the ranking match by match: top-down race with mascots, bar race, accumulated points chart. The Premier League trotting on the track."
-          : es
-            ? "Visualizaciones animadas del ranking partido a partido: carrera vista desde arriba con mascotas, bar race, gráfico de puntos acumulados."
-            : "Visualisations animées du classement match par match : course vue de dessus avec mascottes, bar race, graphique des points cumulés.",
-      cta: pt ? "Ver a corrida →" : en ? "Watch the race →" : es ? "Ver la carrera →" : "Voir la course →",
     },
     {
       href: "/zebras",
       emoji: "🦓",
       titulo: pt ? "Placar das Zebras" : en ? "Upset Scoreboard" : es ? "Placar de las Zebras" : "Tableau des Surprises",
-      sub: pt ? "Quando o esperado falha" : en ? "When the expected fails" : es ? "Cuando lo esperado falla" : "Quand l'attendu rate",
+      sub: pt ? "Quando o esperado falhou" : en ? "When the expected failed" : es ? "Cuando lo esperado falló" : "Quand l'attendu a raté",
       desc: pt
-        ? "Lista dos jogos em que ≥ 70% das IAs erraram tudo. As maiores surpresas da Copa contadas pelo placar e por quantas IAs comeram poeira em cada uma."
+        ? "Os jogos em que ≥ 70% das IAs erraram tudo — incluindo a semifinal Espanha 2×0 França, que 0 das 62 IAs viu vir."
         : en
-          ? "Matches where ≥ 70% of AIs got it all wrong. The biggest upsets of the World Cup, counted by score and by how many AIs ate dust."
+          ? "Matches where ≥ 70% of AIs got it all wrong — including the Spain 2–0 France semifinal, which 0 of 62 AIs saw coming."
           : es
-            ? "Partidos donde ≥ 70% de las IAs fallaron todo. Las mayores sorpresas del Mundial."
-            : "Matches où ≥ 70% des IA ont tout faux. Les plus grosses surprises de la Coupe.",
+            ? "Partidos donde ≥ 70% de las IAs fallaron todo — incluida la semifinal España 2×0 Francia, que 0 de las 62 IAs previó."
+            : "Matches où ≥ 70% des IA ont tout faux — dont la demi-finale Espagne 2–0 France, qu'aucune des 62 IA n'a vue venir.",
       cta: pt ? "Ver as zebras →" : en ? "See the upsets →" : es ? "Ver las zebras →" : "Voir les surprises →",
     },
     {
@@ -143,296 +136,46 @@ export default async function Home() {
       titulo: pt ? "Análise das IAs" : en ? "AI Analysis" : es ? "Análisis de las IAs" : "Analyse des IA",
       sub: pt ? "Como cada uma pensa" : en ? "How each one thinks" : es ? "Cómo piensa cada una" : "Comment chacune pense",
       desc: pt
-        ? "Painel de dados: famílias de comportamento, quem acerta em qual continente, quem palpita parecido — e se as IAs melhoram quando revisam o palpite (v1 → v2)."
+        ? "Famílias de comportamento, quem acertou em qual continente, quem palpitou parecido — do início ao fim da Copa."
         : en
-          ? "Data panel: behavior clusters, who nails which continent, who predicts alike — and whether AIs improve when they revise (v1 → v2)."
+          ? "Behavior clusters, who nailed which continent, who predicted alike — from start to finish of the Cup."
           : es
-            ? "Panel de datos: familias de comportamiento, quién acierta en qué continente, y si las IAs mejoran al revisar (v1 → v2)."
-            : "Panneau de données : familles de comportement, qui réussit sur quel continent, et si les IA s'améliorent en révisant (v1 → v2).",
+            ? "Familias de comportamiento, quién acertó en qué continente, quién pronosticó parecido — de principio a fin."
+            : "Familles de comportement, qui a réussi sur quel continent, qui a pronostiqué pareil — du début à la fin.",
       cta: pt ? "Abrir análise →" : en ? "Open analysis →" : es ? "Abrir análisis →" : "Ouvrir →",
     },
     {
-      href: "/jogos#73",
+      href: "/ias-vs-humanos",
       emoji: "⚔️",
-      titulo: pt ? "16-avos de Final" : en ? "Round of 32" : es ? "Dieciseisavos de Final" : "Seizièmes de Finale",
-      sub: pt ? "🚀 Já no ar — early access contribuintes" : en ? "🚀 Now live — contributor early access" : es ? "🚀 Ya en vivo — acceso anticipado" : "🚀 En ligne — accès anticipé",
+      titulo: pt ? "IAs × Humanos" : en ? "AIs × Humans" : es ? "IAs × Humanos" : "IA × Humains",
+      sub: pt ? "Quem previu melhor?" : en ? "Who predicted better?" : es ? "¿Quién predijo mejor?" : "Qui a le mieux prédit ?",
       desc: pt
-        ? "Os palpites das 54 IAs para os 16 confrontos do mata-mata já estão na página de Jogos — cada jogo com placar de consenso e detalhe por IA. Confrontos + probabilidades são públicos; placares são premium."
+        ? "Comparativo final: médias, medianas, % de placares exatos, e o pódio lado a lado de humanos e IAs."
         : en
-          ? "The 54 AIs' predictions for the 16 knockout matchups are now on the Games page — each game with a consensus score and per-AI detail. Matchups + odds are public; scores are premium."
+          ? "Final comparison: averages, medians, % exact scores, and a side-by-side podium of humans and AIs."
           : es
-            ? "Los pronósticos de las 54 IAs para los 16 cruces de la eliminatoria ya están en la página de Partidos — cada partido con marcador de consenso y detalle por IA. Cruces + probabilidades son públicos; marcadores son premium."
-            : "Les pronostics des 54 IA pour les 16 confrontations à élimination sont sur la page Matchs — chaque match avec un score de consensus et le détail par IA. Confrontations + probabilités sont publics ; scores sont premium.",
-      cta: pt ? "Ver os 16-avos →" : en ? "See the R32 →" : es ? "Ver los dieciseisavos →" : "Voir les 16es →",
+            ? "Comparativo final: promedios, medianas, % de marcadores exactos y podio lado a lado de humanos e IAs."
+            : "Comparatif final : moyennes, médianes, % de scores exacts, et podium côte à côte humains/IA.",
+      cta: pt ? "Ver análise →" : en ? "See analysis →" : es ? "Ver análisis →" : "Voir l'analyse →",
     },
   ];
 
   return (
     <>
-      <section className="hero">
-        <div className="container">
-          <div className="hero-emojis">
-            <span>🇧🇷</span>
-            <span>⚽</span>
-            <span>🔮</span>
-          </div>
-          <h1>
-            {t(locale, "home.hero.h1.l1")}
-            <br />
-            <span className="accent">{t(locale, "home.hero.h1.l2")}</span>
-          </h1>
-          <p className="lede">
-            <strong>122 {t(locale, "home.hero.lede.parte1")}</strong>{" "}
-            {t(locale, "home.hero.lede.parte2")}{" "}
-            <strong>{t(locale, "home.hero.lede.gratis")}</strong> 🏆
-          </p>
+      <HeroCampeoes locale={locale} />
 
-          <HeroCTAs locale={locale} />
+      <ResumoExperimento locale={locale} />
 
-          <div className="stats">
-            <div className="stat">
-              <div className="stat-num">122</div>
-              <span className="stat-lbl">{t(locale, "home.stats.ias")}</span>
-            </div>
-            <div className="stat">
-              <div className="stat-num">104</div>
-              <span className="stat-lbl">{t(locale, "home.stats.jogos")}</span>
-            </div>
-            <div className="stat">
-              <div className="stat-num">12k+</div>
-              <span className="stat-lbl">
-                {t(locale, "home.stats.palpites")}
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Banner de "novos palpites Quartas" removido — Quartas ja aconteceram,
-          estamos nas Semis (J101 Espanha 2x0 Franca; J102 Ing×Arg 15/07). */}
-
-      {/* BANNER: as IAs já palpitaram quem é o campeão */}
-      <BannerAnimacaoCampeao locale={locale} />
-
-      <CelebracaoMataMata locale={locale} />
-
-      <section className="section" style={{ paddingTop: 8, paddingBottom: 8 }}>
-        <div className="container">
-          <Link
-            href="/jogos"
-            className="card hoverable"
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 16,
-              textDecoration: "none",
-              maxWidth: 880,
-              margin: "0 auto",
-              textAlign: "center",
-              background:
-                "linear-gradient(135deg, color-mix(in srgb, var(--secondary) 16%, transparent), color-mix(in srgb, var(--accent) 14%, transparent))",
-              border: "1px solid color-mix(in srgb, var(--secondary) 36%, transparent)",
-            }}
-          >
-            <span style={{ fontSize: 40, lineHeight: 1 }}>🔮</span>
-            <span style={{ flex: "1 1 320px", minWidth: 0 }}>
-              <span
-                style={{
-                  display: "block",
-                  fontFamily: "var(--ff-mono)",
-                  fontSize: 12,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                  color: "var(--secondary)",
-                  fontWeight: 700,
-                  marginBottom: 4,
-                }}
-              >
-                {pt ? "✨ No ar agora · de graça"
-                : en ? "✨ Live now · free"
-                : es ? "✨ En vivo · gratis"
-                : "✨ En direct · gratuit"}
-              </span>
-              <span
-                style={{
-                  display: "block",
-                  fontSize: 20,
-                  fontWeight: 800,
-                  color: "var(--fg)",
-                  lineHeight: 1.2,
-                }}
-              >
-                {pt ? "Os palpites das IAs pro próximo jogo já saíram"
-                : en ? "The AIs' picks for the next match are out"
-                : es ? "Los pronósticos de las IAs para el próximo partido ya están"
-                : "Les pronostics des IA pour le prochain match sont là"}
-              </span>
-            </span>
-            <span
-              className="btn yellow"
-              style={{ flex: "0 0 auto", pointerEvents: "none" }}
-            >
-              {pt ? "Ver os palpites agora →"
-              : en ? "See the picks now →"
-              : es ? "Ver ahora →"
-              : "Voir maintenant →"}
-            </span>
-          </Link>
-        </div>
-      </section>
-
-      <BannerR32 locale={locale} />
-
-      <BolaoHumanosRecrutamento locale={locale} />
-
-      <AgradecimentoContribuinte locale={locale} />
-
-      <section className="section" style={{ paddingTop: 8 }}>
-        <div className="container">
-          <CaixaDeSugestao locale={locale} />
-        </div>
-      </section>
-
-      <SeguirInstagram locale={locale} />
-
-      <PodioGrupos locale={locale} />
-
+      {/* fase="matamata" (não "geral"): o merge por fase do SerieA.tsx tem um
+          tie-break que prefere a vitrine "-web" no mata-mata quando os dois
+          lados têm o mesmo nº de jogos apurados — isso diverge do total
+          "geral" oficial em public/ranking-ias.json (usado no hero) em
+          alguns casos (ex.: Claude Opus 4.8/ChatGPT 5 Thinking). Mostrar
+          "geral" aqui contradiria os números do hero. Bug pré-existente,
+          fora do escopo deste remodelamento — não mexi na lógica de merge. */}
       <SerieA locale={locale} variante="destaque" fase="matamata" mostrarSeletor />
 
       <CorridaHome locale={locale} />
-
-      {/* Só destaca a melhoria v1→v2 quando o ganho for relevante (>5%).
-          Abaixo disso é ruído — não vai pra home (mesma regra do /analise). */}
-      {retroV2 && retroV2.n_ias > 0 && retroV2.agg.delta_pct > 5 && (
-        <section className="section" style={{ paddingTop: 8 }}>
-          <div className="container">
-            <Link
-              href="/analise"
-              className="card hoverable"
-              style={{
-                display: "block",
-                textDecoration: "none",
-                maxWidth: 880,
-                margin: "0 auto",
-                background:
-                  "linear-gradient(135deg, color-mix(in srgb, var(--secondary) 12%, transparent), color-mix(in srgb, var(--accent) 10%, transparent))",
-                border: "1px solid color-mix(in srgb, var(--secondary) 30%, transparent)",
-              }}
-            >
-              <p
-                style={{
-                  textAlign: "center",
-                  fontFamily: "var(--ff-mono)",
-                  fontSize: 12,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                  color: "var(--secondary)",
-                  marginBottom: 4,
-                }}
-              >
-                {pt ? "✨ As IAs estão melhorando"
-                : en ? "✨ The AIs are improving"
-                : es ? "✨ Las IAs están mejorando"
-                : "✨ Les IA s'améliorent"}
-              </p>
-              <h2 style={{ textAlign: "center", marginBottom: 6, fontSize: 24 }}>
-                {pt ? "Quando revisam o palpite, acertam mais"
-                : en ? "When they revise their pick, they score more"
-                : es ? "Cuando revisan, aciertan más"
-                : "Quand elles révisent, elles marquent plus"}
-              </h2>
-              <p
-                style={{
-                  textAlign: "center",
-                  color: "var(--fg-mid)",
-                  fontSize: 14,
-                  maxWidth: 600,
-                  margin: "0 auto 18px",
-                }}
-              >
-                {pt
-                  ? `Nos ${retroV2.jogos.length} jogos já decididos em que as IAs refizeram o palpite com a Copa rolando (v2):`
-                  : en
-                    ? `Across the ${retroV2.jogos.length} decided matches where the AIs redid their pick mid-tournament (v2):`
-                    : es
-                      ? `En los ${retroV2.jogos.length} partidos decididos donde las IAs rehicieron el pronóstico (v2):`
-                      : `Sur les ${retroV2.jogos.length} matchs décidés où les IA ont refait leur pronostic (v2) :`}
-              </p>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-                  gap: 14,
-                }}
-              >
-                {[
-                  {
-                    valor: `+${retroV2.agg.delta_pct}%`,
-                    lbl: pt ? "mais pontos" : en ? "more points" : es ? "más puntos" : "de points",
-                    cor: "var(--ok, #16a34a)",
-                  },
-                  {
-                    valor: `${retroV2.agg.pct_exato_v1}%→${retroV2.agg.pct_exato_v2}%`,
-                    lbl: pt ? "placar exato" : en ? "exact score" : es ? "marcador exacto" : "score exact",
-                    cor: "var(--secondary)",
-                  },
-                  {
-                    valor: `${retroV2.agg.melhoraram}↑/${retroV2.agg.pioraram}↓`,
-                    lbl: pt ? `de ${retroV2.n_ias} IAs` : en ? `of ${retroV2.n_ias} AIs` : es ? `de ${retroV2.n_ias} IAs` : `sur ${retroV2.n_ias} IA`,
-                    cor: "var(--accent)",
-                  },
-                  {
-                    valor: `${retroV2.agg.pct_mudaram}%`,
-                    lbl: pt ? "palpites mudaram" : en ? "picks changed" : es ? "cambiaron" : "ont changé",
-                    cor: "var(--primary)",
-                  },
-                ].map((s) => (
-                  <div key={s.lbl} style={{ textAlign: "center" }}>
-                    <div
-                      style={{
-                        fontSize: 28,
-                        fontWeight: 900,
-                        fontFamily: "var(--ff-display)",
-                        color: s.cor,
-                      }}
-                    >
-                      {s.valor}
-                    </div>
-                    <div
-                      style={{
-                        fontSize: 11,
-                        color: "var(--fg-muted)",
-                        fontFamily: "var(--ff-mono)",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.04em",
-                        marginTop: 4,
-                      }}
-                    >
-                      {s.lbl}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p
-                style={{
-                  textAlign: "center",
-                  marginTop: 18,
-                  color: "var(--secondary)",
-                  fontWeight: 700,
-                  fontSize: 14,
-                }}
-              >
-                {pt ? "Ver a análise completa →"
-                : en ? "See the full analysis →"
-                : es ? "Ver el análisis completo →"
-                : "Voir l'analyse complète →"}
-              </p>
-            </Link>
-          </div>
-        </section>
-      )}
 
       <section className="section">
         <div className="container">
@@ -471,6 +214,10 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <SeguirInstagram locale={locale} />
+
+      <AgradecimentoContribuinte locale={locale} />
 
       <section className="section">
         <div className="container">

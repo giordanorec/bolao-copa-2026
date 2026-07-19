@@ -9,7 +9,13 @@ import { t, type Locale } from "@/lib/i18n";
  * escondidos no drawer.
  */
 export default function HeaderNavBar({ locale }: { locale: Locale }) {
-  const items = [
+  const items: { href: string; emoji: string; label: string; destaque?: boolean }[] = [
+    {
+      href: "/retrospectiva",
+      emoji: "✨",
+      label: t(locale, "nav.retrospectiva"),
+      destaque: true,
+    },
     {
       href: "/jogos",
       emoji: "⚽",
@@ -82,7 +88,7 @@ export default function HeaderNavBar({ locale }: { locale: Locale }) {
           <Link
             key={it.href}
             href={it.href}
-            className="header-navbar-link"
+            className={`header-navbar-link${it.destaque ? " destaque" : ""}`}
             title={it.label}
           >
             <span className="header-navbar-emoji">{it.emoji}</span>

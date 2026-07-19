@@ -98,7 +98,7 @@ export default async function RootLayout({
               <p>{t(locale, "footer.bolao.texto")}</p>
               <p style={{ marginTop: 12 }}>
                 <Link
-                  href="/signup"
+                  href="/retrospectiva"
                   style={{ color: "var(--primary)", fontWeight: 700 }}
                 >
                   {t(locale, "footer.bolao.criar")}

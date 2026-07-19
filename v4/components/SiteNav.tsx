@@ -49,6 +49,9 @@ export default function SiteNav({
         >
           ✕
         </button>
+        <Link href="/retrospectiva" onClick={fechar} className="site-nav-destaque">
+          ✨ {t(locale, "nav.retrospectiva")}
+        </Link>
         <MeusBoloesLink onClick={fechar} locale={locale} />
         <Link href="/criar" onClick={fechar}>
           ➕{" "}

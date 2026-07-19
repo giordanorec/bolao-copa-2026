@@ -1,0 +1,392 @@
+{
+  "geradoEm": "2026-07-19T22:56:10.754Z",
+  "overview": {
+    "dias": 38,
+    "totalJogos": 104,
+    "totalIas": 124,
+    "totalPalpites": 5797,
+    "totalGols": 311,
+    "mediaGolsJogo": "2.99",
+    "maxTeorico": 1360
+  },
+  "grupos": {
+    "totalJogos": 72,
+    "totalGols": 216,
+    "mediaGolsJogo": "3.00",
+    "jogoMaisPrevisivel": {
+      "numero": 10,
+      "fase": "Grupo E",
+      "timeA": "Alemanha",
+      "timeB": "Curaçao",
+      "isoA": "de",
+      "isoB": "cw",
+      "golsA": 7,
+      "golsB": 1,
+      "cristalA": 3,
+      "cristalB": 0,
+      "votos": 41
+    },
+    "zebraDestaque": {
+      "numero": 8,
+      "fase": "Grupo B",
+      "timeA": "Qatar",
+      "timeB": "Suíça",
+      "isoA": "qa",
+      "isoB": "ch",
+      "golsA": 1,
+      "golsB": 1,
+      "cristalA": 0,
+      "cristalB": 2,
+      "votos": 45
+    }
+  },
+  "zebras": {
+    "lista": [
+      {
+        "numero": 83,
+        "fase": "R32",
+        "timeA": "Portugal",
+        "timeB": "Croácia",
+        "isoA": "pt",
+        "isoB": "hr",
+        "golsA": 2,
+        "golsB": 1,
+        "cristalA": 1,
+        "cristalB": 1,
+        "votos": 51
+      },
+      {
+        "numero": 75,
+        "fase": "R32",
+        "timeA": "Países Baixos",
+        "timeB": "Marrocos",
+        "isoA": "nl",
+        "isoB": "ma",
+        "golsA": 1,
+        "golsB": 1,
+        "cristalA": 2,
+        "cristalB": 1,
+        "votos": 49
+      },
+      {
+        "numero": 8,
+        "fase": "Grupo B",
+        "timeA": "Qatar",
+        "timeB": "Suíça",
+        "isoA": "qa",
+        "isoB": "ch",
+        "golsA": 1,
+        "golsB": 1,
+        "cristalA": 0,
+        "cristalB": 2,
+        "votos": 45
+      },
+      {
+        "numero": 74,
+        "fase": "R32",
+        "timeA": "Alemanha",
+        "timeB": "Paraguai",
+        "isoA": "de",
+        "isoB": "py",
+        "golsA": 1,
+        "golsB": 1,
+        "cristalA": 2,
+        "cristalB": 0,
+        "votos": 41
+      },
+      {
+        "numero": 11,
+        "fase": "Grupo F",
+        "timeA": "Países Baixos",
+        "timeB": "Japão",
+        "isoA": "nl",
+        "isoB": "jp",
+        "golsA": 2,
+        "golsB": 2,
+        "cristalA": 2,
+        "cristalB": 1,
+        "votos": 39
+      },
+      {
+        "numero": 2,
+        "fase": "Grupo A",
+        "timeA": "Coreia do Sul",
+        "timeB": "República Tcheca",
+        "isoA": "kr",
+        "isoB": "cz",
+        "golsA": 2,
+        "golsB": 1,
+        "cristalA": 1,
+        "cristalB": 1,
+        "votos": 38
+      },
+      {
+        "numero": 13,
+        "fase": "Grupo H",
+        "timeA": "Arábia Saudita",
+        "timeB": "Uruguai",
+        "isoA": "sa",
+        "isoB": "uy",
+        "golsA": 1,
+        "golsB": 1,
+        "cristalA": 0,
+        "cristalB": 2,
+        "votos": 37
+      },
+      {
+        "numero": 14,
+        "fase": "Grupo H",
+        "timeA": "Espanha",
+        "timeB": "Cabo Verde",
+        "isoA": "es",
+        "isoB": "cv",
+        "golsA": 0,
+        "golsB": 0,
+        "cristalA": 3,
+        "cristalB": 0,
+        "votos": 36
+      }
+    ],
+    "brasil": {
+      "numero": 91,
+      "fase": "Oitavas",
+      "timeA": "Brasil",
+      "timeB": "Noruega",
+      "isoA": "br",
+      "isoB": "no",
+      "golsA": 1,
+      "golsB": 2,
+      "consensoCampeao": "Brasil"
+    },
+    "semifinalEspanha": {
+      "numero": 101,
+      "fase": "Semifinal",
+      "timeA": "França",
+      "timeB": "Espanha",
+      "isoA": "fr",
+      "isoB": "es",
+      "golsA": 0,
+      "golsB": 2,
+      "cristalA": 1,
+      "cristalB": 1,
+      "votos": 49,
+      "totalIas": 62,
+      "previramVitoriaB": 0
+    },
+    "terceiroLugar": {
+      "numero": 103,
+      "fase": "3º lugar",
+      "timeA": "França",
+      "timeB": "Inglaterra",
+      "isoA": "fr",
+      "isoB": "gb-eng",
+      "golsA": 4,
+      "golsB": 6,
+      "totalGols": 10,
+      "totalIas": 63,
+      "exatos": 0,
+      "previramVitoriaB": 5
+    }
+  },
+  "cravadas": {
+    "lideres": [
+      {
+        "slug": "mistral-small-3",
+        "nome": "Mistral Small 3",
+        "exatos": 22,
+        "pontos": 636
+      },
+      {
+        "slug": "o4-mini",
+        "nome": "OpenAI o4-mini",
+        "exatos": 22,
+        "pontos": 634
+      },
+      {
+        "slug": "o3",
+        "nome": "OpenAI o3",
+        "exatos": 21,
+        "pontos": 605
+      },
+      {
+        "slug": "claude-opus-4-7",
+        "nome": "Claude Opus 4.7",
+        "exatos": 21,
+        "pontos": 597
+      },
+      {
+        "slug": "claude-opus-4-5",
+        "nome": "Claude Opus 4.5",
+        "exatos": 21,
+        "pontos": 592
+      },
+      {
+        "slug": "grok-4-fast",
+        "nome": "Grok 4 Fast Reasoning",
+        "exatos": 20,
+        "pontos": 636
+      }
+    ],
+    "maisImpressionante": {
+      "numero": 82,
+      "fase": "R32",
+      "timeA": "Bélgica",
+      "timeB": "Senegal",
+      "isoA": "be",
+      "isoB": "sn",
+      "golsA": 3,
+      "golsB": 2,
+      "totalGols": 5,
+      "quemCravou": 2
+    }
+  },
+  "humanos": {
+    "gabriel": {
+      "nome": "Gabriel",
+      "pontos": 629,
+      "exatos": 19,
+      "rank": 4,
+      "iasAtras": 121,
+      "totalIas": 124
+    },
+    "totalHumanos": 73,
+    "top": [
+      {
+        "nome": "Gabriel",
+        "pontos": 629,
+        "exatos": 19
+      },
+      {
+        "nome": "Giordano Cabral",
+        "pontos": 551,
+        "exatos": 17
+      },
+      {
+        "nome": "Renzo",
+        "pontos": 546,
+        "exatos": 14
+      },
+      {
+        "nome": "Admilson",
+        "pontos": 512,
+        "exatos": 12
+      },
+      {
+        "nome": "Marcello",
+        "pontos": 486,
+        "exatos": 13
+      }
+    ]
+  },
+  "campeoes": {
+    "geral": [
+      {
+        "slug": "mistral-small-3",
+        "nome": "Mistral Small 3",
+        "pontos": 636,
+        "exatos": 22
+      },
+      {
+        "slug": "grok-4-fast",
+        "nome": "Grok 4 Fast Reasoning",
+        "pontos": 636,
+        "exatos": 20
+      }
+    ],
+    "geralPodio": [
+      {
+        "slug": "mistral-small-3",
+        "nome": "Mistral Small 3",
+        "pontos": 636,
+        "exatos": 22,
+        "posicao": 1
+      },
+      {
+        "slug": "grok-4-fast",
+        "nome": "Grok 4 Fast Reasoning",
+        "pontos": 636,
+        "exatos": 20,
+        "posicao": 1
+      },
+      {
+        "slug": "o4-mini",
+        "nome": "OpenAI o4-mini",
+        "pontos": 634,
+        "exatos": 22,
+        "posicao": 3
+      }
+    ],
+    "serieA": [
+      {
+        "slug": "chatgpt-5-thinking-web",
+        "nome": "ChatGPT 5 Thinking",
+        "pontos": 616,
+        "exatos": 19,
+        "posicao": 1
+      },
+      {
+        "slug": "grok-4-heavy-web",
+        "nome": "Grok 4 Heavy",
+        "pontos": 583,
+        "exatos": 19,
+        "posicao": 2
+      },
+      {
+        "slug": "claude-opus-4-8-web",
+        "nome": "Claude Opus 4.8",
+        "pontos": 573,
+        "exatos": 20,
+        "posicao": 3
+      }
+    ],
+    "humano": {
+      "nome": "Gabriel",
+      "pontos": 629,
+      "exatos": 19,
+      "rank": 4,
+      "iasAtras": 121,
+      "totalIas": 124
+    }
+  },
+  "final": {
+    "numero": 104,
+    "fase": "Final",
+    "timeA": "Espanha",
+    "timeB": "Argentina",
+    "isoA": "es",
+    "isoB": "ar",
+    "golsA": 1,
+    "golsB": 0,
+    "cristalA": 1,
+    "cristalB": 1,
+    "votos": 41,
+    "totalIas": 62,
+    "cravaramTotal": 17,
+    "destaques": [
+      {
+        "slug": "claude-opus-4-8-web",
+        "nome": "Claude Opus 4.8"
+      },
+      {
+        "slug": "grok-4-heavy-web",
+        "nome": "Grok 4 Heavy"
+      },
+      {
+        "slug": "le-chat-mistral-web",
+        "nome": "Le Chat Mistral"
+      },
+      {
+        "slug": "chatgpt-5-thinking-web",
+        "nome": "ChatGPT 5 Thinking"
+      }
+    ]
+  },
+  "consenso": {
+    "acertouVencedor": 66,
+    "totalComCristal": 104,
+    "pctVencedor": 63,
+    "exatos": 20,
+    "pctExatos": 19
+  },
+  "pctMaxCampeoes": 46.8
+}
