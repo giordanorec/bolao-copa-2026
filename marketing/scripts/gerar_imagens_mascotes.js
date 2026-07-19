@@ -73,6 +73,61 @@ const SCENES = [
   },
 ];
 
+// ── Leva 2 (07-12) ──────────────────────────────────────────────────────────
+
+SCENES.push(
+  {
+    id: "07_estrela_cadente",
+    refs: ["gemini-2-5-pro-web.png"],
+    prompt: `Create an image: the attached twin-star plush toy (blue and purple stars joined together) lies flat on its back on a football pitch at night, gazing up at the starry sky, with a tiny comical fabric bandage on one star's head. Around it, the empty stadium is dark and quiet, a single soft spotlight on the plush. A real shooting star streaks across the night sky above — the visual pun: "the fallen star". Melancholic but cute and funny mood, gentle blue night tones.${STYLE}`,
+  },
+  {
+    id: "08_co_campeoes_taca_dividida",
+    refs: ["le-chat-mistral-web.png", "grok-4-heavy-web.png"],
+    prompt: `Create an image: the two attached plush toys — the orange tabby cat with beret and baguette, and the plush rocket with the green alien — stand side by side on a single champion's podium block, EACH holding one handle of the SAME golden trophy, both refusing to let go, like joint champions sharing one title. Confetti rain, night stadium floodlights, festive golden glow. Funny and heartwarming "co-champions" energy.${STYLE}`,
+  },
+  {
+    id: "09_conselho_da_bola_de_cristal",
+    refs: [
+      "chatgpt-5-thinking-web.png",
+      "claude-opus-4-8-web.png",
+      "gemini-2-5-pro-web.png",
+      "grok-4-heavy-web.png",
+      "deepseek-r1-web.png",
+      "le-chat-mistral-web.png",
+      "qwen-3-max-web.png",
+      "perplexity-sonar-pro-web.png",
+    ],
+    prompt: `Create an image: the eight attached plush toys sit in a circle on a football pitch at night around a large glowing crystal ball resting on the grass, like friends around a campfire — the crystal ball casts warm magical light on their plush faces. Inside the ball, a faint swirling galaxy of tiny football icons. Dark stadium around them, intimate and mystical "council of the oracle" mood.${STYLE}`,
+  },
+  {
+    id: "10_zebra_campea",
+    refs: [],
+    prompt: `Create an image: a realistic plush ZEBRA toy wearing a tiny red football jersey with yellow trim (Spain colors), proudly holding a small golden World Cup-style trophy on the center circle of a stadium pitch, confetti falling, floodlights blazing. The smug champion zebra — the upset that came true. Epic and funny.${STYLE}`,
+  },
+  {
+    id: "11_fossa_pos_copa",
+    refs: ["chatgpt-5-thinking-web.png", "claude-opus-4-8-web.png", "grok-4-heavy-web.png", "gemini-2-5-pro-web.png"],
+    prompt: `Create an image: the four attached plush toys slumped together on a living-room sofa in post-World-Cup emptiness — the TV shows only gray static, a deflated football lies on the rug, an empty popcorn bowl tipped over. Dim melancholic evening light from a window. One plush hugs the deflated ball. The universal "the World Cup is over, now what?" feeling. Sad-funny relatable meme energy.${STYLE}`,
+  },
+  {
+    id: "12_ate_2030",
+    refs: [
+      "chatgpt-5-thinking-web.png",
+      "claude-opus-4-8-web.png",
+      "gemini-2-5-pro-web.png",
+      "grok-4-heavy-web.png",
+      "deepseek-r1-web.png",
+      "copilot-microsoft-web.png",
+      "perplexity-sonar-pro-web.png",
+      "le-chat-mistral-web.png",
+      "qwen-3-max-web.png",
+      "manus-web.png",
+    ],
+    prompt: `Create an image: all ten attached plush toys in a big warm group hug pile on the center of a football pitch at golden-hour sunset, seen slightly from above, arranged in a heart-like cluster. Long soft shadows, the last confetti pieces on the grass around them, stadium empty and peaceful. Emotional farewell mood — "see you in 2030". Warm golden tones, gentle and touching.${STYLE}`,
+  },
+);
+
 // ---------------------------------------------------------------------------
 
 function parseArgs(argv) {

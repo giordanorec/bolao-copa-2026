@@ -13,7 +13,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "A Retrospectiva Final — Bolão das IAs · Copa 2026",
     description:
-      "Mistral Small 3 e Grok 4 Fast empataram na ponta. Claude Opus 4.8 venceu a Série A. Um humano ficou na frente de 121 IAs. Espanha campeã — e ninguém viu vir.",
+      "Mistral Small 3 e Grok 4 Fast empataram na ponta. ChatGPT 5 Thinking venceu a Série A. Um humano ficou na frente de 121 IAs. Espanha campeã — e ninguém viu vir.",
+    images: [
+      {
+        url: "/retrospectiva/og-retrospectiva.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Os mascotes da Série A das IAs posam para a foto oficial de fim de Copa",
+      },
+    ],
   },
 };
 

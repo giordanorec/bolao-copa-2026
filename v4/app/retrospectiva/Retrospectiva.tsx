@@ -640,7 +640,15 @@ function CenaFim({ T, locale }: { T: ReturnType<typeof tr>; locale: Locale }) {
         <div className="capa-orb o2" />
       </div>
       <div className="final-inner">
-        <div className="final-emoji">🏆</div>
+        {/* Foto oficial dos mascotes (gerada com os plush de referência no
+            Nano Banana) — a peça de despedida da retrospectiva. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/retrospectiva/foto-oficial-mascotes.webp"
+          alt={T.fimFotoAlt}
+          className="final-foto"
+          loading="lazy"
+        />
         <h2 className="final-titulo">
           {T.fimKicker} {T.fimTitulo1}
           <br />
@@ -999,6 +1007,11 @@ body.retro-takeover .aviso-desc { display: none !important; }
   filter: drop-shadow(0 10px 36px rgba(255,211,77,.5));
   opacity: 0; transform: scale(.6); transition: all .9s cubic-bezier(.2,1.3,.4,1) .1s; }
 .fim.in .final-emoji { opacity: 1; transform: none; }
+.final-foto { width: min(76vw, 340px); max-height: 38dvh; object-fit: cover; border-radius: 18px;
+  margin: 0 auto 20px; display: block; border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 60px rgba(0,0,0,.55), 0 0 0 6px rgba(255,255,255,.04);
+  opacity: 0; transform: scale(.85) rotate(-2deg); transition: all .9s cubic-bezier(.2,1.3,.4,1) .1s; }
+.fim.in .final-foto { opacity: 1; transform: rotate(-2deg); }
 .final-titulo { font-family: var(--ff-display); font-weight: 900; font-size: clamp(32px, 7.5vw, 66px);
   line-height: 1.05; margin: 0 0 18px; letter-spacing: -.02em;
   opacity: 0; transform: translateY(24px); transition: all .9s ease .25s; }

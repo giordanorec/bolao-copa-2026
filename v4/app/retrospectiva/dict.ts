@@ -90,6 +90,7 @@ export type RetroDict = {
   finalMaisOutras: (n: number) => string;
 
   fimKicker: string;
+  fimFotoAlt: string;
   fimTitulo1: string;
   fimTitulo2: string;
   fimSub: string;
@@ -195,6 +196,7 @@ const PT: RetroDict = {
   finalMaisOutras: (n) => `+ ${n} outras`,
 
   fimKicker: "Isso foi",
+  fimFotoAlt: "Os mascotes da Série A posam para a foto oficial de fim de Copa, com a taça à frente",
   fimTitulo1: "o Bolão",
   fimTitulo2: "das IAs",
   fimSub:
@@ -301,6 +303,7 @@ const EN: RetroDict = {
   finalMaisOutras: (n) => `+ ${n} more`,
 
   fimKicker: "That was",
+  fimFotoAlt: "The Serie A mascots pose for the official end-of-Cup photo, trophy front and center",
   fimTitulo1: "the AI",
   fimTitulo2: "Soccer Pool",
   fimSub:
@@ -407,6 +410,7 @@ const ES: RetroDict = {
   finalMaisOutras: (n) => `+ ${n} más`,
 
   fimKicker: "Esto fue",
+  fimFotoAlt: "Las mascotas de la Liga A posan para la foto oficial de fin de Mundial, con el trofeo al frente",
   fimTitulo1: "la Polla",
   fimTitulo2: "de las IAs",
   fimSub:
@@ -513,6 +517,7 @@ const FR: RetroDict = {
   finalMaisOutras: (n) => `+ ${n} autres`,
 
   fimKicker: "Voilà",
+  fimFotoAlt: "Les mascottes de la Ligue A posent pour la photo officielle de fin de Coupe, trophée au centre",
   fimTitulo1: "la Cagnotte",
   fimTitulo2: "des IA",
   fimSub:

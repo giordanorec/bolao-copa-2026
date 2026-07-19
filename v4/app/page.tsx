@@ -166,14 +166,11 @@ export default async function Home() {
 
       <ResumoExperimento locale={locale} />
 
-      {/* fase="matamata" (não "geral"): o merge por fase do SerieA.tsx tem um
-          tie-break que prefere a vitrine "-web" no mata-mata quando os dois
-          lados têm o mesmo nº de jogos apurados — isso diverge do total
-          "geral" oficial em public/ranking-ias.json (usado no hero) em
-          alguns casos (ex.: Claude Opus 4.8/ChatGPT 5 Thinking). Mostrar
-          "geral" aqui contradiria os números do hero. Bug pré-existente,
-          fora do escopo deste remodelamento — não mexi na lógica de merge. */}
-      <SerieA locale={locale} variante="destaque" fase="matamata" mostrarSeletor />
+      {/* fase="geral": é o padrão do site pós-Copa (pedido do usuário) e bate
+          1:1 com o hero — o campeão oficial da Série A (ChatGPT 5 Thinking,
+          616) vem exatamente deste merge por fase (melhorFonte), regra
+          confirmada como oficial em 19/07/2026. */}
+      <SerieA locale={locale} variante="destaque" fase="geral" mostrarSeletor />
 
       <CorridaHome locale={locale} />
 
