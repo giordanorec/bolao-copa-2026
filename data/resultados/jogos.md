@@ -114,3 +114,4 @@ no cálculo de pontuação.
 | 101 | Semifinal | Ter 14/07 | 16h00 | Dallas | França | 0 | 2 | Espanha |
 | 102 | Semifinal | Qua 15/07 | 16h00 | Atlanta | Inglaterra | 1 | 2 | Argentina |
 | 103 | 3º lugar | Sáb 18/07 | 18h00 | Miami | França | 4 | 6 | Inglaterra |
+| 104 | Final | Dom 19/07 | 16h00 | Nova York/NJ | Espanha | 1 | 0 | Argentina |
