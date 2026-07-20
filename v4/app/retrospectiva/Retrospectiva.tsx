@@ -693,8 +693,11 @@ body.retro-takeover .aviso-desc { display: none !important; }
 .retro-root {
   height: 100dvh;
   overflow-y: auto;
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
+  /* Snap SÓ em touch (abaixo). Com mouse, snap (mesmo proximity) puxa o
+     usuário de volta ao ponto anterior a cada parada da roda — testado:
+     preso na capa após 30 notches. E NUNCA scroll-behavior: smooth junto
+     com snap (Chromium engole os deltas da roda). */
+  scroll-snap-type: none;
   background: #05060d;
   color: #fff;
   font-family: var(--ff-sans);
@@ -706,6 +709,11 @@ body.retro-takeover .aviso-desc { display: none !important; }
   position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 110;
   background: linear-gradient(90deg, var(--primary), var(--accent), var(--extra));
   transform-origin: 0 50%;
+}
+/* Touch (celular/tablet): flings cobrem distâncias grandes, o snap ajuda e
+   não prende. Mouse/trackpad ficam com rolagem livre (regra acima). */
+@media (pointer: coarse) {
+  .retro-root { scroll-snap-type: y proximity; }
 }
 .retro-root .cena {
   min-height: 100dvh;
