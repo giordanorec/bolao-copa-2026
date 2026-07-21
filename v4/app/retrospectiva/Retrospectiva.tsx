@@ -80,6 +80,103 @@ export default function Retrospectiva({
     return () => document.body.classList.remove("retro-takeover");
   }, []);
 
+  // Navegação "fullpage" para mouse/trackpad/teclado: um gesto = uma cena,
+  // sempre alinhada à tela (o efeito-Wrapped). CSS snap não serve aqui: com
+  // roda de mouse ele prende o usuário no ponto anterior (testado). Touch
+  // continua com scroll nativo + snap proximity (funciona bem em fling).
+  // Cenas mais altas que a tela avançam em passos de 85% até o fim antes de
+  // pular pra próxima.
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el || window.matchMedia("(pointer: coarse)").matches) return;
+
+    let animando = false;
+    let calmoAte = 0; // ignora inércia de trackpad logo após uma animação
+    let acc = 0;
+    let ultimoWheel = 0;
+
+    const suave = (top: number) => {
+      animando = true;
+      el.scrollTo({ top, behavior: "smooth" });
+      const t0 = Date.now();
+      const check = () => {
+        if (Math.abs(el.scrollTop - top) < 4 || Date.now() - t0 > 900) {
+          animando = false;
+          calmoAte = Date.now() + 220;
+        } else requestAnimationFrame(check);
+      };
+      requestAnimationFrame(check);
+    };
+
+    const navegar = (dir: 1 | -1) => {
+      const list = Array.from(el.querySelectorAll<HTMLElement>(".cena"));
+      if (!list.length) return;
+      const st = el.scrollTop;
+      const vh = el.clientHeight;
+      let cur = 0;
+      list.forEach((c, i) => {
+        if (c.offsetTop <= st + 10) cur = i;
+      });
+      const cena = list[cur];
+      const fimCena = cena.offsetTop + cena.offsetHeight;
+      // dentro de cena alta: consome o excedente antes de trocar de cena
+      if (dir === 1 && fimCena - (st + vh) > 40) {
+        suave(Math.min(st + vh * 0.85, fimCena - vh));
+        return;
+      }
+      if (dir === -1 && st - cena.offsetTop > 40) {
+        suave(Math.max(st - vh * 0.85, cena.offsetTop));
+        return;
+      }
+      const next = Math.min(list.length - 1, Math.max(0, cur + dir));
+      if (next === cur) return;
+      const alvo = list[next];
+      // voltando pra uma cena alta: aterrissa no fim dela (leitura reversa natural)
+      const top =
+        dir === -1 && alvo.offsetHeight > vh + 40
+          ? alvo.offsetTop + alvo.offsetHeight - vh
+          : alvo.offsetTop;
+      suave(top);
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const agora = Date.now();
+      if (animando || agora < calmoAte) return;
+      if (agora - ultimoWheel > 180) acc = 0;
+      ultimoWheel = agora;
+      acc += e.deltaY;
+      if (Math.abs(acc) > 50) {
+        const dir: 1 | -1 = acc > 0 ? 1 : -1;
+        acc = 0;
+        navegar(dir);
+      }
+    };
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
+        e.preventDefault();
+        if (!animando) navegar(1);
+      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+        e.preventDefault();
+        if (!animando) navegar(-1);
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        suave(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        suave(el.scrollHeight - el.clientHeight);
+      }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("keydown", onKey);
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, []);
+
   const onScroll = useCallback(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -364,49 +461,56 @@ function CenaZebras({ T, data }: { T: ReturnType<typeof tr>; data: Retrospectiva
 
 /* ───────────────────────── 5. AS CRAVADAS ───────────────────────── */
 
+// Duas cenas: o ranking de cravadas e, em cena própria, a cravada mais
+// impossível — juntas passavam de 1.100px e estouravam qualquer notebook.
 function CenaCravadas({ T, data }: { T: ReturnType<typeof tr>; data: RetrospectivaData }) {
   const { ref, seen } = useReveal();
+  const { ref: refImp, seen: seenImp } = useReveal();
   const c = data.cravadas;
   return (
-    <section ref={ref} className={`cena cravadas ${seen ? "in" : ""}`}>
-      <span className="kicker">{T.cravadasKicker}</span>
-      <h2 className="cena-h2 tight">{T.cravadasTitulo}</h2>
-      <p className="cravadas-sub">{T.cravadasSub}</p>
-      <div className="cravadas-list">
-        {c.lideres.map((l, i) => (
-          <div key={l.slug} className="cravada-row" style={{ ["--d" as string]: `${i * 0.08}s` }}>
-            <span className="cr-rank">#{i + 1}</span>
-            <span className="cr-nome">{l.nome}</span>
-            <span className="cr-bar-wrap">
-              <span
-                className="cr-bar"
-                style={{ width: `${Math.min(100, (l.exatos / (c.lideres[0]?.exatos || 1)) * 100)}%` }}
-              />
-            </span>
-            <span className="cr-num">
-              <Num to={l.exatos} run={seen} /> <small>{T.cravadasLabel}</small>
-            </span>
-          </div>
-        ))}
-      </div>
-      {c.maisImpressionante && (
-        <div className="impressionante">
-          <span className="kicker light">{T.impressionanteKicker}</span>
-          <div className="zs-match small">
-            <Time iso={c.maisImpressionante.isoA} nome={c.maisImpressionante.timeA} size={44} />
-            <div className="zs-placar small">
-              {c.maisImpressionante.golsA}
-              <span className="zs-x">×</span>
-              {c.maisImpressionante.golsB}
+    <>
+      <section ref={ref} className={`cena cravadas ${seen ? "in" : ""}`}>
+        <span className="kicker">{T.cravadasKicker}</span>
+        <h2 className="cena-h2 tight">{T.cravadasTitulo}</h2>
+        <p className="cravadas-sub">{T.cravadasSub}</p>
+        <div className="cravadas-list">
+          {c.lideres.map((l, i) => (
+            <div key={l.slug} className="cravada-row" style={{ ["--d" as string]: `${i * 0.08}s` }}>
+              <span className="cr-rank">#{i + 1}</span>
+              <span className="cr-nome">{l.nome}</span>
+              <span className="cr-bar-wrap">
+                <span
+                  className="cr-bar"
+                  style={{ width: `${Math.min(100, (l.exatos / (c.lideres[0]?.exatos || 1)) * 100)}%` }}
+                />
+              </span>
+              <span className="cr-num">
+                <Num to={l.exatos} run={seen} /> <small>{T.cravadasLabel}</small>
+              </span>
             </div>
-            <Time iso={c.maisImpressionante.isoB} nome={c.maisImpressionante.timeB} size={44} flip />
-          </div>
-          <p className="zs-cap small">
-            {T.impressionanteTexto(c.maisImpressionante.quemCravou, data.overview.totalIas)}
-          </p>
+          ))}
         </div>
+      </section>
+      {c.maisImpressionante && (
+        <section ref={refImp} className={`cena cravadas ${seenImp ? "in" : ""}`}>
+          <div className="impressionante solo">
+            <span className="kicker light">{T.impressionanteKicker}</span>
+            <div className="zs-match small">
+              <Time iso={c.maisImpressionante.isoA} nome={c.maisImpressionante.timeA} size={44} />
+              <div className="zs-placar small">
+                {c.maisImpressionante.golsA}
+                <span className="zs-x">×</span>
+                {c.maisImpressionante.golsB}
+              </div>
+              <Time iso={c.maisImpressionante.isoB} nome={c.maisImpressionante.timeB} size={44} flip />
+            </div>
+            <p className="zs-cap small">
+              {T.impressionanteTexto(c.maisImpressionante.quemCravou, data.overview.totalIas)}
+            </p>
+          </div>
+        </section>
       )}
-    </section>
+    </>
   );
 }
 
@@ -477,29 +581,39 @@ function CenaCorrida({ T, corrida }: { T: ReturnType<typeof tr>; corrida: TodasF
 
 /* ───────────────────────── 8. O PÓDIO FINAL ───────────────────────── */
 
+function Confetti() {
+  return (
+    <div className="confetti-wrap" aria-hidden>
+      {Array.from({ length: 26 }).map((_, i) => (
+        <span key={i} className={`confetti c${i % 6}`} style={{ ["--i" as string]: i }} />
+      ))}
+    </div>
+  );
+}
+
+// O pódio são TRÊS cenas (uma por categoria) — cada uma cabe numa tela e
+// ganha seu próprio momento, em vez de um bloco de ~1.500px que estourava
+// qualquer viewport.
 function CenaPodio({ T, data }: { T: ReturnType<typeof tr>; data: RetrospectivaData }) {
-  const { ref, seen } = useReveal();
   const co = data.campeoes;
+  return (
+    <>
+      <CenaPodioGeral T={T} co={co} />
+      <CenaPodioSerieA T={T} co={co} />
+      <CenaPodioHumano T={T} co={co} />
+    </>
+  );
+}
+
+function CenaPodioGeral({ T, co }: { T: ReturnType<typeof tr>; co: RetrospectivaData["campeoes"] }) {
+  const { ref, seen } = useReveal();
   const geral = co.geralPodio.filter((p) => p.posicao === 1);
   const bronzeGeral = co.geralPodio.find((p) => p.posicao === 3);
-  const serieA = co.serieA;
-  const visualSerieA = serieA.length >= 3 ? [serieA[1], serieA[0], serieA[2]] : serieA;
-  const alturasSerieA = [58, 96, 44];
-  const medalsSerieA = ["🥈", "🥇", "🥉"];
-
   return (
     <section ref={ref} className={`cena podio-final ${seen ? "in" : ""}`}>
-      {seen && (
-        <div className="confetti-wrap" aria-hidden>
-          {Array.from({ length: 26 }).map((_, i) => (
-            <span key={i} className={`confetti c${i % 6}`} style={{ ["--i" as string]: i }} />
-          ))}
-        </div>
-      )}
+      {seen && <Confetti />}
       <span className="kicker">{T.podioKicker}</span>
       <h2 className="cena-h2 tight">{T.podioTitulo}</h2>
-
-      {/* Geral — empate no topo */}
       <div className="podio-bloco">
         <span className="podio-bloco-label">{T.podioGeralLabel}</span>
         <div className="empate-wrap">
@@ -523,44 +637,62 @@ function CenaPodio({ T, data }: { T: ReturnType<typeof tr>; data: RetrospectivaD
           </div>
         )}
       </div>
+    </section>
+  );
+}
 
-      {/* Série A — pódio clássico */}
-      {visualSerieA.length >= 3 && (
-        <div className="podio-bloco">
-          <span className="podio-bloco-label">{T.podioSerieALabel}</span>
-          <p className="podio-bloco-sub">{T.podioSerieASub}</p>
-          <div className="podio-wrap">
-            {visualSerieA.map((it, i) => {
-              const is1 = it.posicao === 1;
-              return (
-                <div key={it.slug} className={`podio-col p${it.posicao}`} style={{ ["--d" as string]: `${i * 0.15}s` }}>
-                  {is1 && <div className="podio-coroa">👑</div>}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="podio-masc"
-                    src={`/mascots/${it.slug}.png`}
-                    alt={it.nome}
-                    width={is1 ? 130 : 92}
-                    height={is1 ? 130 : 92}
-                    loading="lazy"
-                  />
-                  <div className="podio-step" style={{ height: alturasSerieA[i] }}>
-                    <span className="podio-medal">{medalsSerieA[i]}</span>
-                    <span className="podio-nome">{it.nome}</span>
-                    <span className="podio-pts">
-                      <Num to={it.pontos} run={seen} /> <small>{T.pts}</small>
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Humano */}
+function CenaPodioSerieA({ T, co }: { T: ReturnType<typeof tr>; co: RetrospectivaData["campeoes"] }) {
+  const { ref, seen } = useReveal();
+  const serieA = co.serieA;
+  const visualSerieA = serieA.length >= 3 ? [serieA[1], serieA[0], serieA[2]] : serieA;
+  const alturasSerieA = [58, 96, 44];
+  const medalsSerieA = ["🥈", "🥇", "🥉"];
+  if (visualSerieA.length < 3) return null;
+  return (
+    <section ref={ref} className={`cena podio-final ${seen ? "in" : ""}`}>
+      {seen && <Confetti />}
+      <span className="kicker">{T.podioSerieALabel}</span>
+      <h2 className="cena-h2 tight">{co.serieA[0]?.nome}</h2>
       <div className="podio-bloco">
-        <span className="podio-bloco-label">{T.podioHumanoLabel}</span>
+        <p className="podio-bloco-sub">{T.podioSerieASub}</p>
+        <div className="podio-wrap">
+          {visualSerieA.map((it, i) => {
+            const is1 = it.posicao === 1;
+            return (
+              <div key={it.slug} className={`podio-col p${it.posicao}`} style={{ ["--d" as string]: `${i * 0.15}s` }}>
+                {is1 && <div className="podio-coroa">👑</div>}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="podio-masc"
+                  src={`/mascots/${it.slug}.png`}
+                  alt={it.nome}
+                  width={is1 ? 130 : 92}
+                  height={is1 ? 130 : 92}
+                  loading="lazy"
+                />
+                <div className="podio-step" style={{ height: alturasSerieA[i] }}>
+                  <span className="podio-medal">{medalsSerieA[i]}</span>
+                  <span className="podio-nome">{it.nome}</span>
+                  <span className="podio-pts">
+                    <Num to={it.pontos} run={seen} /> <small>{T.pts}</small>
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CenaPodioHumano({ T, co }: { T: ReturnType<typeof tr>; co: RetrospectivaData["campeoes"] }) {
+  const { ref, seen } = useReveal();
+  return (
+    <section ref={ref} className={`cena podio-final ${seen ? "in" : ""}`}>
+      {seen && <Confetti />}
+      <span className="kicker">{T.podioHumanoLabel}</span>
+      <div className="podio-bloco">
         <div className="humano-card">
           <div className="humano-emoji">🧑‍🚀</div>
           <div className="humano-nome">{co.humano.nome}</div>
@@ -1071,6 +1203,29 @@ body.retro-takeover .aviso-desc { display: none !important; }
   .zs-placar { font-size: clamp(38px, 9vh, 76px); }
   .zebra-emoji, .final-emoji { font-size: clamp(40px, 8vh, 80px); }
 }
+/* Cena própria da "cravada mais impossível" (antes era rodapé da lista) */
+.impressionante.solo { border-top: none; padding-top: 0; max-width: 640px; }
+.impressionante.solo .zs-placar.small { font-size: clamp(48px, 10vw, 84px); }
+.impressionante.solo .zs-cap.small { font-size: 16px; max-width: 52ch; }
+
+/* Celulares estreitos: cards do experimento viram linhas compactas pra
+   cena caber numa tela */
+@media (max-width: 480px) {
+  .exp-grid { gap: 10px; }
+  .exp-card { display: flex; align-items: center; gap: 14px; text-align: left;
+    padding: 14px 16px; max-width: 100%; min-width: 0; width: 100%; }
+  .exp-emoji { font-size: 30px; margin-bottom: 0; flex-shrink: 0; }
+  .exp-card h3 { font-size: 15.5px; margin-bottom: 3px; }
+  .exp-card p { font-size: 12.5px; line-height: 1.45; }
+}
+
+/* Telas baixas: encolhe a foto e os respiros do encerramento */
+@media (max-height: 760px) {
+  .final-foto { max-height: 30dvh; margin-bottom: 14px; }
+  .final-cta { margin-top: 20px; }
+  .hum-swarm { max-width: 260px; margin-bottom: 14px; }
+}
+
 /* ───── DESKTOP SCALE-UP ─────
    Em telas grandes a página deve OCUPAR a tela, não flutuar num miolo de
    mobile. Sobe os tetos dos clamp() e as max-width das cenas. Guard de
@@ -1154,6 +1309,31 @@ body.retro-takeover .aviso-desc { display: none !important; }
   .final-titulo { font-size: clamp(66px, 5.6vw, 92px); }
   .final-sub { font-size: 19px; max-width: 56ch; }
   .btn-retro { font-size: 16px; padding: 15px 30px; }
+}
+
+/* Viewports BAIXOS (notebooks 768p, celulares deitados): espreme as cenas
+   densas pra caberem numa tela. Vem DEPOIS do scale-up de propósito —
+   em 1366×768 os dois se aplicam e este vence nas regras repetidas. */
+@media (max-height: 820px) {
+  .retro-root .cena { padding: 36px 22px; }
+  .cravadas .cena-h2 { font-size: clamp(26px, 3.4vw, 42px); margin-bottom: 10px; }
+  .retro-root .cravadas-sub { margin-bottom: 14px; font-size: 13.5px; }
+  .retro-root .cravadas-list { gap: 6px; margin-bottom: 0; }
+  .retro-root .cravada-row { padding: 0; gap: 6px 10px; }
+  .retro-root .cr-nome { font-size: 13.5px; }
+  .retro-root .cr-num { font-size: 15px; }
+  .retro-root .cr-bar-wrap { height: 4px; }
+  .humanos .cena-h2 { font-size: clamp(26px, 3.4vw, 44px); margin-bottom: 14px; }
+  .hum-swarm { max-width: 300px; margin-bottom: 14px; }
+  .hum-cell { font-size: 15px; }
+  .hum-cell.human { font-size: 24px; }
+  .hum-name { font-size: 34px; margin-bottom: 8px; }
+  .hs-num { font-size: 38px; }
+  .hum-sub { font-size: 15px; }
+  .hum-caption { font-size: 12px; }
+  .corrida-sub { margin-bottom: 14px; }
+  .empate-pts { font-size: 30px; }
+  .empate-coroa { font-size: 30px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
