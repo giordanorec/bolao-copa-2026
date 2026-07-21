@@ -1071,6 +1071,91 @@ body.retro-takeover .aviso-desc { display: none !important; }
   .zs-placar { font-size: clamp(38px, 9vh, 76px); }
   .zebra-emoji, .final-emoji { font-size: clamp(40px, 8vh, 80px); }
 }
+/* ───── DESKTOP SCALE-UP ─────
+   Em telas grandes a página deve OCUPAR a tela, não flutuar num miolo de
+   mobile. Sobe os tetos dos clamp() e as max-width das cenas. Guard de
+   min-height evita estourar verticalmente em notebooks baixos. */
+@media (min-width: 1280px) and (min-height: 720px) {
+  .cena-h2 { font-size: clamp(44px, 4.6vw, 78px); }
+  .kicker { font-size: 15px; letter-spacing: .22em; }
+  /* capa */
+  .capa-inner { max-width: 1100px; }
+  .capa-titulo { font-size: clamp(96px, 8.5vw, 150px); }
+  .capa-stats { max-width: 980px; gap: 34px; }
+  .capa-stat-n { font-size: 62px; }
+  .capa-stat-l { font-size: 15px; max-width: none; }
+  .scroll-hint { font-size: 14px; }
+  /* experimento */
+  .exp-grid { max-width: 1240px; gap: 24px; }
+  .exp-card { max-width: 360px; padding: 30px 26px; }
+  .exp-emoji { font-size: 52px; }
+  .exp-card h3 { font-size: 23px; }
+  .exp-card p { font-size: 16.5px; }
+  /* grupos */
+  .escala-grid { max-width: 780px; gap: 20px; }
+  .escala-num { font-size: 60px; }
+  .escala-label { font-size: 15px; }
+  .escala-foot { font-size: 17px; max-width: 60ch; }
+  .grupos-duo { max-width: 900px; gap: 22px; }
+  .mc-real { font-size: 26px; }
+  .mc-pred { font-size: 13px; }
+  .grupos-card-label { font-size: 13px; }
+  /* zebras */
+  .zebra-emoji { font-size: 128px; }
+  .zs-cristal { font-size: 17px; }
+  .zs-placar { font-size: clamp(104px, 8vw, 148px); }
+  .zs-big { font-size: clamp(88px, 7vw, 126px); }
+  .zs-cap { font-size: 19px; max-width: 58ch; }
+  .zs-cap.small { font-size: 16px; }
+  .zebras-grid { max-width: 980px; gap: 16px; }
+  /* cravadas */
+  .cravadas-sub { font-size: 17px; max-width: 60ch; }
+  .cravadas-list { max-width: 680px; gap: 12px; }
+  .cr-rank { font-size: 13px; }
+  .cr-nome { font-size: 16.5px; }
+  .cr-num { font-size: 19px; }
+  .impressionante { max-width: 620px; }
+  /* humanos */
+  .hum-swarm { max-width: 460px; }
+  .hum-cell { font-size: 21px; }
+  .hum-cell.human { font-size: 34px; }
+  .hum-name { font-size: 54px; }
+  .hs-num { font-size: 56px; }
+  .hs-lbl { font-size: 13px; }
+  .hum-sub { font-size: 19px; max-width: 56ch; }
+  .hum-caption { font-size: 14.5px; }
+  /* corrida */
+  .corrida-sub { font-size: 16.5px; }
+  .corrida-embed { max-width: 1240px; }
+  /* pódio */
+  .podio-bloco { max-width: 860px; }
+  .podio-wrap { max-width: 720px; gap: 16px; }
+  .podio-masc { width: 116px; height: 116px; }
+  .podio-col.p1 .podio-masc { width: 150px; height: 150px; }
+  .podio-nome { font-size: 15px; }
+  .podio-pts { font-size: 24px; }
+  .podio-medal { font-size: 28px; }
+  .empate-coroa { font-size: 40px; }
+  .empate-nome { font-size: 22px; }
+  .empate-pts { font-size: 40px; }
+  .empate-exatos { font-size: 14px; }
+  .terceiro-chip { font-size: 15px; }
+  .podio-bloco-label { font-size: 13.5px; }
+  .podio-bloco-sub { font-size: 15px; max-width: 52ch; }
+  .humano-emoji { font-size: 72px; }
+  .humano-nome { font-size: 32px; }
+  .humano-pts { font-size: 24px; }
+  /* final + fim */
+  .final-cravaram { max-width: 720px; }
+  .final-cravaram h3 { font-size: 20px; }
+  .final-chip { font-size: 14.5px; padding: 9px 18px; }
+  .final-inner { max-width: 900px; }
+  .final-foto { width: min(34vw, 460px); max-height: 44dvh; }
+  .final-titulo { font-size: clamp(66px, 5.6vw, 92px); }
+  .final-sub { font-size: 19px; max-width: 56ch; }
+  .btn-retro { font-size: 16px; padding: 15px 30px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .retro-root { scroll-snap-type: none; }
   .cena * { transition: none !important; animation: none !important; }
